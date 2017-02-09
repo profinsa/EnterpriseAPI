@@ -25,16 +25,18 @@ class app{
            if(isset($_GET["page"]))
                $this->page = $_GET["page"];
        }
-       $link = db_start();
        require 'pages/' . $this->page . '.php';
        $this->scope["page"] = $pageScope;
-       db_end($link);
     }
 }
 
+$link = db_start();
 session_start();
+
 $_app = new app();
 $_app->scope["page"]->process($_app);
+
+db_end($link);
 /*
   If renderGui is true then render template of page
   otherwise do nothing becouse of all response login in page which required before.

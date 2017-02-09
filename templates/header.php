@@ -8,6 +8,10 @@
   <title><?php echo $_app->title; ?></title>
   <!-- Bootstrap Core CSS -->
   <link href="dependencies/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery -->
+  <script src="dependencies/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="dependencies/assets/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Menu CSS -->
   <link href="dependencies/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
   <!-- morris CSS -->
