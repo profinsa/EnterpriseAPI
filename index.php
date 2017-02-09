@@ -1,11 +1,26 @@
 <?php
+function db_start(){
+    $link = mysql_connect('localhost', 'root', 'dataB00m')
+          or die('database error: ' . mysql_error());
+    //echo 'Соединение успешно установлено';
+    mysql_select_db('integralx') or die('Не удалось выбрать базу данных');
+
+    return $link;
+}
+function db_end($link){
+    mysql_close($link);    
+}
 class app{
+    public $scope = [];
     public $title = 'Integral Accounting X';
     public $page = 'main';
     public function __construct(){
-        if(isset($_GET["page"])){
+        if(isset($_GET["page"]))
             $this->page = $_GET["page"];
-        }
+        $link = db_start();
+        require 'pages/' . $this->page . '.php';
+        $this->scope["page"] = $pageScope;
+        db_end($link);
     }
 }
 

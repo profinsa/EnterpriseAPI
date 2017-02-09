@@ -14,7 +14,10 @@
 	    </div>
 	    <div class="col-xs-6">
               <select class="form-control pull-right row b-none">
-		<option>DEMO</option>
+		<?php
+		   foreach($_app->scope["page"]->companies as $value)
+		       echo "<option>$value</option>";
+		?>
               </select>
 	    </div>
 	  </div>
@@ -36,7 +39,10 @@
 	    </div>
 	    <div class="col-xs-6">
               <select class="form-control pull-right row b-none">
-		<option>Russian</option>
+		<?php
+		   foreach($_app->scope["page"]->languages as $value)
+		       echo "<option>$value</option>";
+		?>
               </select>
 	    </div>
 	  </div>
@@ -48,19 +54,22 @@
 	    </div>
 	    <div class="col-xs-6">
               <select class="form-control pull-right row b-none">
-		<option>Blue</option>
+		<?php
+		   foreach($_app->scope["page"]->styles as $value)
+		       echo "<option>$value</option>";
+		?>
               </select>
 	    </div>
 	  </div>
 	</div>
-        <div class="form-group">
+        <!--<div class="form-group">
           <div class="col-md-12">
             <div class="checkbox checkbox-primary pull-left p-t-0">
               <input id="checkbox-signup" type="checkbox">
               <label for="checkbox-signup"> Remember me </label>
             </div>
             <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a> </div>
-        </div>
+        </div>-->
         <div class="form-group text-center m-t-20">
           <div class="col-xs-12">
             <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
