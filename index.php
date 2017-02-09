@@ -1,4 +1,6 @@
 <?php
+require 'vendor/autoload.php';
+
 function db_start(){
     $link = mysql_connect('localhost', 'root', 'dataB00m')
           or die('database error: ' . mysql_error());
@@ -14,22 +16,34 @@ class app{
     public $scope = [];
     public $title = 'Integral Accounting X';
     public $page = 'main';
+    public $renderUi = true;
     public function __construct(){
-        if(isset($_GET["page"]))
-            $this->page = $_GET["page"];
-        $link = db_start();
-        require 'pages/' . $this->page . '.php';
-        $this->scope["page"] = $pageScope;
-        db_end($link);
+       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+           if(isset($_POST["page"]))
+               $this->page = $_POST["page"];
+       }else if($_SERVER['REQUEST_METHOD'] === 'GET'){
+           if(isset($_GET["page"]))
+               $this->page = $_GET["page"];
+       }
+       $link = db_start();
+       require 'pages/' . $this->page . '.php';
+       $this->scope["page"] = $pageScope;
+       db_end($link);
     }
 }
 
+session_start();
 $_app = new app();
-require 'templates/index.php';
+$_app->scope["page"]->process($_app);
+/*
+  If renderGui is true then render template of page
+  otherwise do nothing becouse of all response login in page which required before.
+ */
+if($_app->renderUi)
+    require 'templates/index.php';
 ?>
 <?php
 
-//require 'vendor/autoload.php';
 
 //require 'modules/accounts.php';
 //require 'modules/languages.php';
@@ -45,11 +59,9 @@ require 'templates/index.php';
 // Render a template
 //echo $templates->render('index', ['name' => 'Хохо']);
 
-// Соединяемся, выбираем базу данных
-//echo new mysqli('localhost', 'root', 'dataB00m', 'integral');
+
 /*$link = mysql_connect('localhost', 'root', 'dataB00m')
       or die('Не удалось соединиться: ' . mysql_error());
-echo 'Соединение успешно установлено';
 mysql_select_db('integral') or die('Не удалось выбрать базу данных');
 
 echo mysql_query("insert into test (ind) values('" . 89 . "')");
@@ -58,22 +70,8 @@ echo mysql_query("insert into test (ind) values('" . 89 . "')");
 $query = 'SELECT * FROM test';
 $result = mysql_query($query) or die('Запрос не удался: ' . mysql_error());
 
-// Выводим результаты в html
-echo $_GET["lom"];
-echo "<ul>\n";
-while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    echo "\t<li>\n";
-    foreach ($line as $col_value) {
-        echo "\t\t$col_value\n";
-    }
-    echo "\t</li>\n";
-}
-echo "</ul>\n";
-
-// Освобождаем память от результата
 mysql_free_result($result);
 
-// Закрываем соединение
 mysql_close($link);
 */
 ?>

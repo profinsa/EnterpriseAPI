@@ -7,17 +7,17 @@
   <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
   <title><?php echo $_app->title; ?></title>
   <!-- Bootstrap Core CSS -->
-  <link href="../assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="dependencies/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Menu CSS -->
-  <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+  <link href="dependencies/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
   <!-- morris CSS -->
-  <link href="../plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+  <link href="dependencies/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
   <!-- animation CSS -->
-  <link href="../assets/css/animate.css" rel="stylesheet">
+  <link href="dependencies/assets/css/animate.css" rel="stylesheet">
   <!-- Custom CSS -->
-  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="dependencies/assets/css/style.css" rel="stylesheet">
   <!-- color CSS -->
-  <link href="../assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet">
+  <link href="dependencies/assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>

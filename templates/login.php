@@ -5,7 +5,8 @@
 <section id="wrapper" class="login-register">
   <div class="login-box">
     <div class="white-box">
-      <form class="form-horizontal form-material" id="loginform" action="index.html">
+      <form class="form-horizontal form-material" id="loginform" action="index.php" method="POST">
+	<input type="hidden" name="page" value="login">
         <h3 class="box-title m-b-20">Sign In</h3>
 	<div class="form-group">
 	  <div class="row">
@@ -13,7 +14,7 @@
               <label class="dropdown-label pull-left">Company:</label>
 	    </div>
 	    <div class="col-xs-6">
-              <select class="form-control pull-right row b-none">
+              <select name="company" class="form-control pull-right row b-none">
 		<?php
 		   foreach($_app->scope["page"]->companies as $value)
 		       echo "<option>$value</option>";
@@ -24,12 +25,12 @@
 	</div>
         <div class="form-group ">
           <div class="col-xs-12">
-            <input class="form-control" type="text" required="" placeholder="Username">
+            <input name="name" class="form-control" type="text" required="" placeholder="Username">
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <input class="form-control" type="password" required="" placeholder="Password">
+            <input name="password" class="form-control" type="password" required="" placeholder="Password">
           </div>
         </div>
 	<div class="form-group">
@@ -38,7 +39,7 @@
               <label class="dropdown-label pull-left">Language:</label>
 	    </div>
 	    <div class="col-xs-6">
-              <select class="form-control pull-right row b-none">
+              <select name="language" class="form-control pull-right row b-none">
 		<?php
 		   foreach($_app->scope["page"]->languages as $value)
 		       echo "<option>$value</option>";
@@ -50,7 +51,7 @@
 	<div class="form-group">
 	  <div class="row">
  	    <div class="col-xs-6">
-              <label class="dropdown-label pull-left">Style:</label>
+              <label name="style" class="dropdown-label pull-left">Style:</label>
 	    </div>
 	    <div class="col-xs-6">
               <select class="form-control pull-right row b-none">
@@ -62,6 +63,15 @@
 	    </div>
 	  </div>
 	</div>
+        <div class="form-group">
+	  <div class="row">
+          <div class="col-xs-6">
+            <input name="captcha" class="form-control" type="text" required placeholder="Enter captcha">
+          </div>
+          <div class="col-xs-6">
+	    <img src="<?php echo $_app->scope["page"]->captchaBuilder->inline(); ?>" />
+          </div>
+        </div>
         <!--<div class="form-group">
           <div class="col-md-12">
             <div class="checkbox checkbox-primary pull-left p-t-0">
