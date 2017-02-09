@@ -1,5 +1,7 @@
 <?php
 class main{
+    public $user = false;
+    
     public function __construct(){
         /*        $result = mysql_query('SELECT CompanyID from companies') or die('mysql query error: ' . mysql_error());
 
@@ -13,8 +15,9 @@ class main{
     public function process($app){
        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
+           $this->user = $_SESSION["user"];
        }
     }
 }
-$pageScope = new main($_app);
+$pageScope = new main();
 ?>

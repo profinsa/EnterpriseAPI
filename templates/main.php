@@ -4,10 +4,10 @@
 </div>
 <div id="wrapper">
     <?php
-    include 'nav/top.php';
+    require 'nav/top.php';
     ?>
     <?php
-    include 'nav/left.php';
+    require 'nav/left.php';
     ?>
     <!-- Page Content -->
     <div id="page-wrapper">

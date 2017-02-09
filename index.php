@@ -1,5 +1,6 @@
 <?php
 require 'vendor/autoload.php';
+require 'models/translation.php';
 
 function db_start(){
     $link = mysql_connect('localhost', 'root', 'dataB00m')
@@ -35,6 +36,7 @@ session_start();
 
 $_app = new app();
 $_app->scope["page"]->process($_app);
+$_translation = $_app->scope["page"]->user ? new translation($_app->scope["page"]->user["language"]) : new translation("english");
 
 db_end($link);
 /*

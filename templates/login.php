@@ -126,7 +126,7 @@
 		})
 		.error(function(err){
 		    console.log(err);
-//		    var res = JSON.parse(err);
+		    //		    var res = JSON.parse(err);
 		    document.getElementById('captcha').src = err.responseJSON.captcha; 
 		});
      return false;

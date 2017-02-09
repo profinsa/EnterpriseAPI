@@ -46,6 +46,8 @@ class login{
     ];
 
     public $captchaBuilder = false;
+
+    public $user = false;
     
     public function __construct(){
         $result = mysql_query('SELECT CompanyID from companies') or die('mysql query error: ' . mysql_error());
@@ -58,35 +60,36 @@ class login{
     }
     
     public function process($app){
-       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-           if($_POST["captcha"] != $_SESSION["captcha"])
-               $wrong_captcha = true;
-           $user = $this->user_search($_POST["company"], $_POST["name"], $_POST["password"]);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $wrong_captcha = false;
+            if($_POST["captcha"] != $_SESSION["captcha"])
+                $wrong_captcha = true;
+            $user = $this->user_search($_POST["company"], $_POST["name"], $_POST["password"]);
 
-           if(!$wrong_captcha && $user){                 
-               $app->renderUi = false;
-               $user["language"] = $_POST["language"];
-               $_SESSION["user"] = $user;
-               http_response_code(200);
-               header('Content-Type: application/json');
-               echo json_encode(array(
-                   "message" =>  "ok"
-               ));
-           }else{
-               $this->captchaBuilder->build();
-               $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
-               $app->renderUi = false;
-               http_response_code(401);
-               header('Content-Type: application/json');
-               echo json_encode(array(
-                   "captcha" =>  $this->captchaBuilder->inline()
-               ));
-           }
-       }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
-           $this->captchaBuilder->build();
-           $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
-       }
+            if(!$wrong_captcha && $user){                 
+                $app->renderUi = false;
+                $user["language"] = $_POST["language"];
+                $_SESSION["user"] = $user;
+                http_response_code(200);
+                header('Content-Type: application/json');
+                echo json_encode(array(
+                    "message" =>  "ok"
+                ));
+            }else{
+                $this->captchaBuilder->build();
+                $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
+                $app->renderUi = false;
+                http_response_code(401);
+                header('Content-Type: application/json');
+                echo json_encode(array(
+                    "captcha" =>  $this->captchaBuilder->inline()
+                ));
+            }
+        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $this->captchaBuilder->build();
+            $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
+        }
     }
 }
-$pageScope = new login($_app);
+$pageScope = new login();
 ?>
