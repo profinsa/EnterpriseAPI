@@ -1,10 +1,11 @@
 <?php
 require 'vendor/autoload.php';
+require './common.php';
 
 function db_start(){
-    $db = mysqli_connect('localhost', 'root', 'dataB00m', 'integralx')
-          or die('database error: ' . mysqli_error());
-
+    $config = config();
+    $db = mysqli_connect($config["db_host"], $config["db_user"], $config["db_password"], $config["db_base"])
+        or die('database error: ' . mysqli_error());
     return $db;
 }
 function db_end($db){
