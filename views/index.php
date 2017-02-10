@@ -1,3 +1,9 @@
+<!DOCTYPE html>  
+<html lang="en">
+      <?php
+      require 'header.php';
+      ?>
+<body>
 <!-- Preloader -->
 <div class="preloader">
     <div class="cssload-speeding-wheel"></div>
@@ -350,3 +356,8 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
+<?php
+    require 'footer.php';
+?>
+</body>
+</html>

@@ -1,3 +1,9 @@
+<!DOCTYPE html>  
+<html lang="en">
+      <?php
+      require 'header.php';
+      ?>
+<body>
 <!-- Preloader -->
 <div class="preloader">
     <div class="cssload-speeding-wheel"></div>
@@ -16,7 +22,7 @@
 			<div class="col-xs-6">
 			    <select name="company" class="form-control pull-right row b-none">
 				<?php
-				foreach($_app->scope["page"]->companies as $value)
+				foreach($scope->companies as $value)
 				    echo "<option>$value</option>";
 				?>
 			    </select>
@@ -41,7 +47,7 @@
 			<div class="col-xs-6">
 			    <select name="language" class="form-control pull-right row b-none">
 				<?php
-				foreach($_app->scope["page"]->languages as $value)
+				foreach($translation->languages as $value)
 				    echo "<option>$value</option>";
 				?>
 			    </select>
@@ -56,7 +62,7 @@
 			<div class="col-xs-6">
 			    <select class="form-control pull-right row b-none">
 				<?php
-				foreach($_app->scope["page"]->styles as $value)
+				foreach($scope->styles as $value)
 				    echo "<option>$value</option>";
 				?>
 			    </select>
@@ -69,7 +75,7 @@
 			    <input name="captcha" class="form-control" type="text" required placeholder="Enter captcha">
 			</div>
 			<div class="col-xs-6">
-			    <img id="captcha" src="<?php echo $_app->scope["page"]->captchaBuilder->inline(); ?>" />
+			    <img id="captcha" src="<?php echo $scope->captchaBuilder->inline(); ?>" />
 			</div>
 		    </div>
 		    <!--<div class="form-group">
@@ -122,7 +128,7 @@
  loginform.submit(function(e){
      var req = $.post("index.php", loginform.serialize(), null, 'json')
 		.success(function(data) {
-		    window.location = "index.php?page=main";
+		    window.location = "index.php?page=index";
 		})
 		.error(function(err){
 		    console.log(err);
@@ -132,3 +138,8 @@
      return false;
  });
 </script>
+<?php
+    require 'footer.php';
+?>
+</body>
+</html>

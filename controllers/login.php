@@ -1,45 +1,12 @@
 <?php
 use Gregwar\Captcha\CaptchaBuilder;
 
-class login{
-    protected function user_search($company, $name, $password){
-        $result = mysql_query("SELECT * from payrollemployees WHERE CompanyID='" . $company . "' AND EmployeeUserName='". $name ."' AND EmployeePassword='" . $password . "'") or die('mysql query error: ' . mysql_error());
+require 'models/translation.php';
+require 'models/users.php';
 
-        if(!($ret = mysql_fetch_array($result, MYSQL_ASSOC)))
-            $ret = false;
+class controller{
+    public $companies = [];
 
-        mysql_free_result($result);
-        
-        return $ret;
-    }
-
-    protected function user_get_permissions($name){
-    }
-
-    protected function user_log($name){
-    }
-    
-    public $companies = [
-    ];
-    public $languages = [
-        "Arabic",
-        "ChineseSimple",
-        "ChineseTrad",
-        "Dutch",
-        "English",
-        "French",
-        "Fund",
-        "German",
-        "Hindi",
-        "Italian",
-        "Japanese",
-        "Korean",
-        "Portuguese",
-        "Russian",
-        "Spanish",
-        "Swedish",
-        "Thai"
-    ];
     public $styles = [
         "blue",
         "gray"
@@ -49,22 +16,23 @@ class login{
 
     public $user = false;
     
-    public function __construct(){
-        $result = mysql_query('SELECT CompanyID from companies') or die('mysql query error: ' . mysql_error());
+    public function __construct($db){
+        $result = mysqli_query($db, 'SELECT CompanyID from companies') or die('mysql query error: ' . mysqli_error($db));
 
-        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+        while ($line = mysqli_fetch_assoc($result)) {
             $this->companies[$line["CompanyID"]] = $line["CompanyID"];
         }
-        mysql_free_result($result);
+        mysqli_free_result($result);
         $this->captchaBuilder = new CaptchaBuilder;
     }
     
     public function process($app){
+        $users = new users($app->db);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $wrong_captcha = false;
             if($_POST["captcha"] != $_SESSION["captcha"])
                 $wrong_captcha = true;
-            $user = $this->user_search($_POST["company"], $_POST["name"], $_POST["password"]);
+            $user = $users->search($_POST["company"], $_POST["name"], $_POST["password"]);
 
             if(!$wrong_captcha && $user){                 
                 $app->renderUi = false;
@@ -88,8 +56,10 @@ class login{
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
             $this->captchaBuilder->build();
             $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
+            $translation = new translation($app->db, "english");
+            $scope = $this;
+            require 'views/login.php';
         }
     }
 }
-$pageScope = new login();
 ?>

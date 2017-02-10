@@ -46,7 +46,7 @@
 		    </li>
 		</ul>
 	    </li> -->
-	    <li><a href="index.php?page=login" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu"><?php echo $_translation->translateLabel("Log out"); ?></span></a></li>
+	    <li><a href="index.php?page=login" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel("Log out"); ?></span></a></li>
 	    <!-- <li class="hide-menu">
 		<a href="javacript:void(0);">         
 		    <span>Progress Report</span>

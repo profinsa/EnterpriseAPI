@@ -5,7 +5,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-  <title><?php echo $_app->title; ?></title>
+  <title><?php echo $app->title; ?></title>
   <!-- Bootstrap Core CSS -->
   <link href="dependencies/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- jQuery -->
