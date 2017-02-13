@@ -1,4 +1,29 @@
 <?php
+/*
+Name of Page: Users model
+
+Method: Users model, used for log in users, searching and working with permissions
+
+Date created: Nikita Zaharov, 09.02.2016
+
+Use: For searching, verificating users. Also this model provide method for work with permissions
+
+Input parameters:
+$db: database instance
+
+Output parameters:
+$users: model, it is responsible for working with users and them permissions
+
+Called from:
++ most controllers most controllers from /controllers
+
+Calls:
+sql
+
+Last Modified: 13.02.2016
+Last Modified by: Nikita Zaharov
+*/
+
 class users{
     protected $db = false;
 

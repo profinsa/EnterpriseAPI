@@ -49,11 +49,15 @@ class controller{
     public $captchaBuilder = false;
 
     public $user = false;
-    
+
+    //controllers constructor, initialize CaptchaBuilder
     public function __construct($db){
         $this->captchaBuilder = new CaptchaBuilder;
     }
-    
+
+    /*
+      entry point of controller. Rendering page, loading models, log in with cheking
+     */
     public function process($app){
         $users = new users($app->db);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {//login request process

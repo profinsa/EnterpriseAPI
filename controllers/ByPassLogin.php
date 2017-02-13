@@ -4,7 +4,7 @@ Name of Page: ByPassLogin
 
 Method: This is controller for ByPassLogin page. It contains simple logic for log in as default user and redirecting to index
 
-Date created: Nikita Zaharov, 08.02.2016
+Date created: Nikita Zaharov, 13.02.2016
 
 Use: controller is used by index.php, load by GET request parameter - page=ByPassLogin.
 

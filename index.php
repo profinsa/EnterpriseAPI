@@ -1,4 +1,30 @@
 <?php
+/*
+Name of Page: index
+
+Method: main entry point of application
+
+Date created: Nikita Zaharov, 08.02.2016
+
+Use:  Initialization ofr application,  router for actions. Response for thing like page=index transoforms to call 
+index.php from /controllers
+
+Input parameters:
+GET and POST params and data
+
+Output parameters:
+html site pages
+
+Called from:
++ app object used by most of /controllers and /models
+
+Calls:
++ /controllers/*
+
+
+Last Modified: 13.02.2016
+Last Modified by: Nikita Zaharov
+*/
 require 'vendor/autoload.php';
 require './common.php';
 
@@ -37,3 +63,4 @@ $_app = new app($db);
 $_app->controller->process($_app);
 
 db_end($db);
+?>

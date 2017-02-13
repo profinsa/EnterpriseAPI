@@ -1,16 +1,14 @@
 <?php
 /*
-Name of Page: Index
+Name of Page: chartOfAccount
 
-Method: This is controller for index page.
+Method:
 
 Date created: Nikita Zaharov, 09.02.2016
 
-Use: controller is used by index.php, load by GET request parameter - page=index.
+Use: 
 
 The controller is responsible for:
-+ loading user and translation models
-+ render index page
 
 Input parameters:
 $db: database instance
@@ -32,6 +30,7 @@ Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
+require 'models/GeneralLedger/chartsOfAccount.php';
 
 class controller{
     public $user = false;
@@ -51,8 +50,9 @@ class controller{
             $this->user = $_SESSION["user"];
                
             $translation = new translation($app->db, $this->user["language"]);
+            $grid = new chartsOfAccount($app->db);
             $scope = $this;
-            require 'views/index.php';
+            require 'views/chartsOfAccount.php';
         }
     }
 }
