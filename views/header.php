@@ -20,6 +20,7 @@
   <link href="dependencies/assets/css/animate.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link href="dependencies/assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
   <!-- color CSS -->
   <link href="dependencies/assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

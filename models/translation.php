@@ -4,14 +4,14 @@ class translation{
     protected $lang = "english";
     
     public $languages = [
-        "Arabic",
-        "ChineseSimple",
-        "ChineseTrad",
-        "Dutch",
         "English",
+        "Dutch",
         "French",
         "Fund",
         "German",
+        "Arabic",
+        "ChineseSimple",
+        "ChineseTrad",
         "Hindi",
         "Italian",
         "Japanese",

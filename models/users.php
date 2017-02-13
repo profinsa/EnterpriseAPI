@@ -6,8 +6,8 @@ class users{
         $this->db = $database;
     }
     
-    public function search($company, $name, $password){
-        $result = mysqli_query($this->db, "SELECT * from payrollemployees WHERE CompanyID='" . $company . "' AND EmployeeUserName='". $name ."' AND EmployeePassword='" . $password . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+    public function search($company, $name, $password, $division, $department){
+        $result = mysqli_query($this->db, "SELECT * from payrollemployees WHERE CompanyID='" . $company . "' AND EmployeeUserName='". $name ."' AND EmployeePassword='" . $password . "' AND DivisionID='" . $division . "' AND DepartmentID='" . $department . "'")  or die('mysql query error: ' . mysqli_error($this->db));
 
         if(!($ret = mysqli_fetch_assoc($result)))
             $ret = false;

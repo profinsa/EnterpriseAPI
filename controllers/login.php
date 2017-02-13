@@ -27,20 +27,20 @@ Called from:
 Calls:
 models/translation.php
 models/users.php
+models/companies.php
 app from index.php
 
-Last Modified: 10.02.2016
+Last Modified: 13.02.2016
 Last Modified by: Nikita Zaharov
 */
 
 use Gregwar\Captcha\CaptchaBuilder;
 
 require 'models/translation.php';
+require 'models/companies.php';
 require 'models/users.php';
 
 class controller{
-    public $companies = [];
-
     public $styles = [
         "blue",
         "gray"
@@ -51,12 +51,6 @@ class controller{
     public $user = false;
     
     public function __construct($db){
-        $result = mysqli_query($db, 'SELECT CompanyID from companies') or die('mysql query error: ' . mysqli_error($db));
-
-        while ($line = mysqli_fetch_assoc($result)) {
-            $this->companies[$line["CompanyID"]] = $line["CompanyID"];
-        }
-        mysqli_free_result($result);
         $this->captchaBuilder = new CaptchaBuilder;
     }
     
@@ -67,7 +61,7 @@ class controller{
             if($_POST["captcha"] != $_SESSION["captcha"])
                 $wrong_captcha = true;
 
-            if(!$wrong_captcha && $user = $users->search($_POST["company"], $_POST["name"], $_POST["password"])){//access granted, captcha is matched                 
+            if(!$wrong_captcha && $user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])){//access granted, captcha is matched                 
                 $app->renderUi = false;
                 $user["language"] = $_POST["language"];
                 $_SESSION["user"] = $user;
@@ -82,14 +76,21 @@ class controller{
                 $app->renderUi = false;
                 http_response_code(401);
                 header('Content-Type: application/json');
-                echo json_encode(array(
+                $response = array(
                     "captcha" =>  $this->captchaBuilder->inline()
-                ));
+                );
+                if($wrong_captcha)
+                    $response["wrong_captcha"] = true;
+                if(!$user)
+                    $response["wrong_user"] = true;
+                
+                echo json_encode($response);
             }
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') { //rendering login page
             $this->captchaBuilder->build();
             $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
             $translation = new translation($app->db, "english");
+            $companies = new companies($app->db);
             $scope = $this;
             require 'views/login.php';
         }
