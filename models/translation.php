@@ -28,7 +28,7 @@ Last Modified by: Nikita Zaharov
 class translation{
     protected $terms = array();
     
-    public $lang = "english";
+    public $lang = "English";
     //list of available languages
     public $languages = [
         "English",

@@ -10,6 +10,17 @@
 		 <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
 		 <li role="separator" class="divider"></li>- -->
             <!-- <li><a href="#"><i class="fa fa-language"></i><?php echo $translation->translateLabel("Language"); ?></a></li> -->
+	    <li>
+		<select class="form-control" onchange="changeLanguage(event);">
+		    <option><?php echo $scope->user["language"]; ?></option>
+		    <?php
+		    foreach($translation->languages as $value)
+			if($value != $scope->user["language"])
+			    echo "<option>" . $value . "</option>";
+		    ?>
+		</select>
+	    </li>
+
 	    <li><a href="index.php?page=index&logout=true"><i class="fa fa-power-off"></i><?php echo $translation->translateLabel("Log out"); ?></a></li>
 	</ul>
     </div>

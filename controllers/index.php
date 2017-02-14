@@ -53,6 +53,8 @@ class controller{
             $this->user = $_SESSION["user"];
                
             $translation = new translation($app->db, $this->user["language"]);
+            $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
+            $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
             $scope = $this;
             require 'views/index.php';
         }

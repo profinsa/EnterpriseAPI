@@ -13,11 +13,11 @@
 		<div class="white-box">
 		    <form id="loginform" class="form-horizontal form-material" method="POST">
 			<input type="hidden" name="page" value="login">
-			<h3 class="box-title m-b-20">Sign In</h3>
+			<h3 class="box-title m-b-20"><?php echo $translation->translateLabel("Sign In"); ?></h3>
 			<div class="form-group">
 			    <div class="row">
  				<div class="col-xs-6">
-				    <label class="dropdown-label pull-left">Company:</label>
+				    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Company"); ?>:</label>
 				</div>
 				<div class="col-xs-6">
 				    <select name="company" id="icompany" class="form-control pull-right row b-none" onchange="companySelect(event);">
@@ -29,7 +29,7 @@
 			<div class="form-group">
 			    <div class="row">
  				<div class="col-xs-6">
-				    <label class="dropdown-label pull-left">Division:</label>
+				    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Division"); ?>:</label>
 				</div>
 				<div class="col-xs-6">
 				    <select name="division" id="idivision" class="form-control pull-right row b-none">
@@ -41,7 +41,7 @@
 			<div class="form-group">
 			    <div class="row">
  				<div class="col-xs-6">
-				    <label class="dropdown-label pull-left">Department:</label>
+				    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Department"); ?>:</label>
 				</div>
 				<div class="col-xs-6">
 				    <select name="department" id="idepartment" class="form-control pull-right row b-none">
@@ -52,21 +52,21 @@
 			</div>
 			<div class="form-group ">
 			    <div class="col-xs-12">
-				<input name="name" id="iname" class="form-control" type="text" required="" placeholder="Username">
+				<input name="name" id="iname" class="form-control" type="text" required="" placeholder="<?php echo $translation->translateLabel("User Name"); ?>">
 			    </div>
 			</div>
 			<div class="form-group">
 			    <div class="col-xs-12">
-				<input name="password" id="ipassword" class="form-control" type="password" required="" placeholder="Password">
+				<input name="password" id="ipassword" class="form-control" type="password" required="" placeholder="<?php echo $translation->translateLabel("Password"); ?>">
 			    </div>
 			</div>
 			<div class="form-group">
 			    <div class="row">
  				<div class="col-xs-6">
-				    <label class="dropdown-label pull-left">Language:</label>
+				    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Language"); ?>:</label>
 				</div>
 				<div class="col-xs-6">
-				    <select name="language" class="form-control pull-right row b-none">
+				    <select name="language" class="form-control pull-right row b-none" onchange="changeLanguage(event);">
 					<?php
 					foreach($translation->languages as $value)
 					    echo "<option>$value</option>";
@@ -93,7 +93,7 @@
 			<div class="form-group">
 			    <div class="row">
 				<div class="col-xs-6">
-				    <input name="captcha" id="icaptcha" class="form-control" type="text" required placeholder="Enter captcha">
+				    <input name="captcha" id="icaptcha" class="form-control" type="text" required placeholder="<?php echo $translation->translateLabel("Enter captcha"); ?>">
 				</div>
 				<div class="col-xs-6">
 				    <img id="captcha" src="<?php echo $scope->captchaBuilder->inline(); ?>" />
@@ -109,7 +109,7 @@
 				 </div>-->
 			    <div class="form-group text-center m-t-20">
 				<div class="col-xs-12">
-				    <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
+				    <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"><?php echo $translation->translateLabel("Log In"); ?></button>
 				</div>
 			    </div>
 			    <!--div class="row">
@@ -202,6 +202,16 @@
 	     idepartment.innerHTML = department_options;
 	 }
 	 
+	 function changeLanguage(event){
+	     $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
+	      .success(function(data) {
+		  location.reload();
+	      })
+	      .error(function(err){
+		  console.log('something going wrong');
+	      });
+	 }
+
 	</script>
 	<?php
 	require 'footer.php';

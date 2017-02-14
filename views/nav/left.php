@@ -2,8 +2,7 @@
 <div class="navbar-default sidebar" role="navigation" style="position:absolute; top:-50px; z-index:5000">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
 	<?php include 'leftUser.php'; ?>
-	<ul class="nav" id="side-menu">
-	    
+	<ul class="nav" id="side-menu">	    
 	    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
 		<!-- input-group -->
 		<div class="input-group custom-search-form">
@@ -14,16 +13,6 @@
 		<!-- /input-group -->
 	    </li>
 	    <li class="nav-small-cap m-t-10">--- My Menu</li>
-	    <li>
-		<select name="company" id="icompany" class="form-control" onchange="changeLanguage(event);">
-		    <option><?php echo $scope->user["language"]; ?></option>
-		    <?php
-		    foreach($translation->languages as $value)
-			if($value != $scope->user["language"])
-			    echo "<option>" . $value . "</option>";
-		    ?>
-		</select>
-	    </li>
 	    <li> <a href="index.php?page=index" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Dashboard'); ?> </span></a></li>
 	    
 	    <li> <a href="index.php?page=index#tasks" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Tasks');  ?> </span></a></li>

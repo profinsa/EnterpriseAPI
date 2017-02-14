@@ -93,7 +93,10 @@ class controller{
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') { //rendering login page
             $this->captchaBuilder->build();
             $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
-            $translation = new translation($app->db, "english");
+            if(!key_exists("user", $_SESSION) || !$_SESSION["user"])
+                $_SESSION["user"] = ["language" => "English"];
+
+            $translation = new translation($app->db, $_SESSION["user"]["language"]);
             $companies = new companies($app->db);
             $scope = $this;
             require 'views/login.php';
