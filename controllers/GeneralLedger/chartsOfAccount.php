@@ -53,17 +53,18 @@ class controller{
                
             $grid = new chartsOfAccount($app->db);
 
-            if(key_exists($_GET["getItem"])){
+            if(key_exists("getItem", $_GET)){
                 echo json_encode($grid->getItem($_GET["getItem"]));
             }else if(key_exists($_GET["update"])){
             }else if(key_exists($_GET["delete"])){
-            }
-            $translation = new translation($app->db, $this->user["language"]);
-            $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
-            $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
+            }else{
+                $translation = new translation($app->db, $this->user["language"]);
+                $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
+                $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
             
-            $scope = $this;
-            require 'views/chartsOfAccount.php';
+                $scope = $this;
+                require 'views/chartsOfAccount.php';
+            }
         }
     }
 }

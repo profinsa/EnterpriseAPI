@@ -78,14 +78,13 @@ class chartsOfAccount{
     public function getItem($GLAccountNumber){
         $user = $_SESSION["user"];
         $res = [];
-        
-        $result = mysqli_query($this->db, "SELECT * from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
 
-        while($ret = mysqli_fetch_assoc($result))
-            $res[] = $ret;
+        $result = mysqli_query($this->db, "SELECT " . implode(",", $this->fields["main"]) . " from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
+
+        $ret = mysqli_fetch_assoc($result);
         mysqli_free_result($result);
         
-        return $res;        
+        return $ret;        
     }
 
     public function update($GLAccountNumber){

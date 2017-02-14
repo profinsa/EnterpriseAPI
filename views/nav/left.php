@@ -14,9 +14,19 @@
 		<!-- /input-group -->
 	    </li>
 	    <li class="nav-small-cap m-t-10">--- My Menu</li>
+	    <li>
+		<select name="company" id="icompany" class="form-control" onchange="changeLanguage(event);">
+		    <option><?php echo $scope->user["language"]; ?></option>
+		    <?php
+		    foreach($translation->languages as $value)
+			if($value != $scope->user["language"])
+			    echo "<option>" . $value . "</option>";
+		    ?>
+		</select>
+	    </li>
 	    <li> <a href="index.php?page=index" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Dashboard'); ?> </span></a></li>
 	    
-	    <li> <a href="index.php?page=index#tasks" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Dashboard');  ?> </span></a></li>
+	    <li> <a href="index.php?page=index#tasks" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Tasks');  ?> </span></a></li>
 	    
 	    <li>
 		<a href="index.php?page=index#chat" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Chat');  ?> </span>
@@ -66,5 +76,16 @@
 	    
 	</ul>
     </div>
+    <script>
+     function changeLanguage(event){
+	 $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
+	  .success(function(data) {
+	      location.reload();
+	  })
+	  .error(function(err){
+	      console.log('something going wrong');
+	  });
+     }
+    </script>
 </div>
 <!-- Left navbar-header end -->

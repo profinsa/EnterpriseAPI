@@ -43,7 +43,7 @@
 				<tbody>
 				    <?php
 				    foreach($rows as $row){
-					echo "<tr><td><span onclick=\"editRow(" . $row["GLAccountNumber"] . ")\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span><span onclick=\"deleteRow(" . $row["GLAccountNumber"] . ")\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></td>";
+					echo "<tr><td><span onclick=\"editRow('" . $row["GLAccountNumber"] . "')\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span><span onclick=\"deleteRow('" . $row["GLAccountNumber"] . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></td>";
 					foreach($row as $value)
 					    echo "<td>$value</td>";
 					echo "</tr>";
@@ -57,28 +57,28 @@
 	    </div>
 	    <div id="row_viewer" style="display:none">
 		<div class="table-responsive">
-		    <table id="example23" class="table table-striped">
+		    <table id="example23" class="table">
 			<thead>
 			    <tr>
-				<th></th>
-				<?php
-				$rows = $grid->getPage();
-				foreach($rows[0] as $key =>$value)
-				    echo "<th>$key</th>";
-				?>
+				<th>
+				    <?php echo $translation->translateLabel("Field"); ?>
+				</th>
+				<th>
+				    <?php echo $translation->translateLabel("Value"); ?>
+				</th>
 			    </tr>
 			</thead>
-			<tbody>
-			    <?php
-			    foreach($rows as $row){
-				echo "<tr><td><span onclick=\"editRow(" . $row["GLAccountNumber"] . ")\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span><span onclick=\"deleteRow(" . $row["GLAccountNumber"] . ")\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></td>";
-				foreach($row as $value)
-				    echo "<td>$value</td>";
-				echo "</tr>";
-			    }
-			    ?>
+			<tbody id="row_viewer_tbody">
 			</tbody>
 		    </table>
+		</div>
+		<div class="pull-right">
+		    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">
+			<?php echo $translation->translateLabel("Edit"); ?>
+		    </button>
+                    <button type="submit" class="btn btn-inverse waves-effect waves-light">
+			<?php echo $translation->translateLabel("Cancel"); ?>
+		    </button>
 		</div>
 	    </div>
 	    <div id="row_editor" style="display:none">
@@ -153,6 +153,21 @@
 	     document.getElementById('row_editor').style.display = 'none';
 	     document.getElementById('grid_content').style.display = 'none';
 	     document.getElementById('row_viewer').style.display = 'block';
+
+	     var req = $.getJSON("index.php?page=GeneralLedger/chartsOfAccount&getItem=" + number)
+			.success(function(data) {
+			    var _html = '', ind;
+			    for(ind in data){
+				if(!_html.length)
+				    _html = '<tr><td>' + ind + '</td><td>' + data[ind] + '</td></tr>';
+				else
+				    _html += '<tr><td>' + ind + '</td><td>' + data[ind] + '</td></tr>';
+			    }
+			    document.getElementById('row_viewer_tbody').innerHTML = _html;
+			})
+			.error(function(err){
+			    console.log('something going wrong');
+			});
 	 }
 	</script>
 	<!--Style Switcher -->
