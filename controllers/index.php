@@ -35,6 +35,8 @@ require 'models/translation.php';
 
 class controller{
     public $user = false;
+    public $dashboardTitle = "Accounting Dashboard";
+    public $breadCrumbTitle = "Accounting Dashboard";
     
     public function __construct($db){
     }

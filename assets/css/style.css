@@ -3,3 +3,9 @@
     height: 100%;
     position: fixed;
 }
+
+.grid-action-button {
+    margin-right:5px;
+    display:inline;
+    cursor:pointer;
+}

@@ -34,6 +34,8 @@ require 'models/GeneralLedger/chartsOfAccount.php';
 
 class controller{
     public $user = false;
+    public $dashboardTitle = "Chart Of Accounts";
+    public $breadCrumbTitle = "Chart Of Accounts";
     
     public function __construct($db){
     }
@@ -49,8 +51,17 @@ class controller{
             
             $this->user = $_SESSION["user"];
                
-            $translation = new translation($app->db, $this->user["language"]);
             $grid = new chartsOfAccount($app->db);
+
+            if(key_exists($_GET["getItem"])){
+                echo json_encode($grid->getItem($_GET["getItem"]));
+            }else if(key_exists($_GET["update"])){
+            }else if(key_exists($_GET["delete"])){
+            }
+            $translation = new translation($app->db, $this->user["language"]);
+            $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
+            $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
+            
             $scope = $this;
             require 'views/chartsOfAccount.php';
         }

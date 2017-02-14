@@ -19,40 +19,31 @@
     <!-- Page Content -->
     <div id="page-wrapper">
 	<div class="container-fluid">
-	    <div class="row bg-title">
-		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-		    <h4 class="page-title">All Leads</h4>
-		</div>
-		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-		    <a href="https://themeforest.net/item/elite-admin-responsive-dashboard-web-app-kit-/16750820" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
-		    <ol class="breadcrumb">
-			<li><a href="#">Dashboard</a></li>
-			<li class="active">All Leads</li>
-		    </ol>
-		</div>
-		<!-- /.col-lg-12 -->
-	    </div>
-	    <!-- /row -->
-	    <div class="row">
+	    <?php
+	    require 'uiItems/dashboard.php';
+	    ?>
+	    <!-- grid -->
+	    <div id="grid_content" class="row">
 		<div class="col-sm-12">
 		    <div class="white-box">
-			<h3 class="box-title m-b-0">All Leads</h3>
-			<p class="text-muted m-b-30">all projects Leads</p>
+			<h3 class="box-title m-b-0"><?php echo $scope->dashboardTitle ?></h3>
+			<p class="text-muted m-b-30"><?php echo $scope->dashboardTitle ?></p>
 			<div class="table-responsive">
 			    <table id="example23" class="table table-striped">
 				<thead>
 				    <tr>
+					<th></th>
 					<?php
 					$rows = $grid->getPage();
 					foreach($rows[0] as $key =>$value)
-					    echo "<th>$key</th>";
+					    echo "<th>" . $translation->translateLabel($grid->columnNames[$key]) . "</th>";
 					?>
 				    </tr>
 				</thead>
 				<tbody>
 				    <?php
 				    foreach($rows as $row){
-					echo "<tr>";
+					echo "<tr><td><span onclick=\"editRow(" . $row["GLAccountNumber"] . ")\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span><span onclick=\"deleteRow(" . $row["GLAccountNumber"] . ")\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></td>";
 					foreach($row as $value)
 					    echo "<td>$value</td>";
 					echo "</tr>";
@@ -64,6 +55,35 @@
 		    </div>
 		</div>
 	    </div>
+	    <div id="row_viewer" style="display:none">
+		<div class="table-responsive">
+		    <table id="example23" class="table table-striped">
+			<thead>
+			    <tr>
+				<th></th>
+				<?php
+				$rows = $grid->getPage();
+				foreach($rows[0] as $key =>$value)
+				    echo "<th>$key</th>";
+				?>
+			    </tr>
+			</thead>
+			<tbody>
+			    <?php
+			    foreach($rows as $row){
+				echo "<tr><td><span onclick=\"editRow(" . $row["GLAccountNumber"] . ")\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span><span onclick=\"deleteRow(" . $row["GLAccountNumber"] . ")\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></td>";
+				foreach($row as $value)
+				    echo "<td>$value</td>";
+				echo "</tr>";
+			    }
+			    ?>
+			</tbody>
+		    </table>
+		</div>
+	    </div>
+	    <div id="row_editor" style="display:none">
+	    </div>
+
 	</div>
 	<!-- /#wrapper -->
 	<script src="dependencies/assets/js/custom.min.js"></script>
@@ -124,6 +144,16 @@
 		 'copy', 'csv', 'excel', 'pdf', 'print'
              ]
 	 });
+
+	 function deleteRow(number){
+	     alert(number);
+	 }
+
+	 function editRow(number){
+	     document.getElementById('row_editor').style.display = 'none';
+	     document.getElementById('grid_content').style.display = 'none';
+	     document.getElementById('row_viewer').style.display = 'block';
+	 }
 	</script>
 	<!--Style Switcher -->
 	<script src="dependencies/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>

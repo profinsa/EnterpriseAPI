@@ -65,7 +65,7 @@ class translation{
     public function translateLabel($label){
         //      echo $label . $this->terms[$label]["Translated"] . $this->lang;
         if(key_exists($label, $this->terms) && $this->terms[$label]["Translated"])
-            return $this->terms[$label][$this->lang] . $this->lang;
+            return $this->terms[$label][$this->lang];
         else
             return $label;
     }

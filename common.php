@@ -4,7 +4,7 @@ function config(){
         "db_host" => "localhost",
         "db_user" => "enterprise",
         "db_password" => "enterprise",
-        "db_base" => "integralx"
+        "db_base" => "myenterprise"
     );
 }
 
