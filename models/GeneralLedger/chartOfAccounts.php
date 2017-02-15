@@ -20,11 +20,11 @@ Called from:
 Calls:
 sql
 
-Last Modified: 13.02.2016
+Last Modified: 15.02.2016
 Last Modified by: Nikita Zaharov
 */
 
-class chartsOfAccount{
+class chartOfAccounts{
     protected $db = false;
     protected $gridFields = [
             "GLAccountNumber",
@@ -230,7 +230,18 @@ class chartsOfAccount{
         mysqli_query($this->db, "UPDATE ledgerchartofaccounts set " . $update_fields . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
     }
 
-    public function delete($GLAccountNumber){
+    public function deleteItem($GLAccountNumber){
+        $user = $_SESSION["user"];
+        
+        $update_fields = "";
+        foreach($this->editCategories[$category] as $name){
+            if($update_fields == "")
+                $update_fields = $name . "='" . $values[$name] . "'";
+            else
+                $update_fields .= "," . $name . "='" . $values[$name] . "'";
+        }
+
+        mysqli_query($this->db, "DELETE from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
     }
 }
 ?>

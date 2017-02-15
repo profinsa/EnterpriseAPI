@@ -30,7 +30,7 @@ Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
-require 'models/GeneralLedger/chartsOfAccount.php';
+require 'models/GeneralLedger/chartOfAccounts.php';
 
 class controller{
     public $user = false;
@@ -52,16 +52,21 @@ class controller{
             
         $this->user = $_SESSION["user"];
                
-        $grid = new chartsOfAccount($app->db);
+        $data = new chartOfAccounts($app->db);
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $grid->updateItem($_POST["GLAccountNumber"], $_POST["category"], $_POST);
-            header('Content-Type: application/json');
-            echo "{ \"message\" : \"ok\"}";
+            if(key_exists("update", $_GET)){
+                $data->updateItem($_POST["GLAccountNumber"], $_POST["category"], $_POST);
+                header('Content-Type: application/json');
+                echo "{ \"message\" : \"ok\"}";
+            }
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
             if(key_exists("getItem", $_GET)){
-                echo json_encode($grid->getItem($_GET["getItem"]));
+                echo json_encode($data->getItem($_GET["getItem"]));
             }else if(key_exists("delete", $_GET)){
+                $data->deleteItem($_GET["GLAccountNumber"]);
+                header('Content-Type: application/json');
+                echo "{ \"message\" : \"ok\"}";
             }else{
                 $translation = new translation($app->db, $this->user["language"]);
                 $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
@@ -75,7 +80,7 @@ class controller{
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
                 
-                require 'views/chartsOfAccount.php';
+                require 'views/GeneralLedger/chartOfAccounts.php';
             }
         }
     }

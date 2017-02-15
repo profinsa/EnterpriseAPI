@@ -149,7 +149,7 @@
 	<script>
 	 var loginform = $('#loginform');
 	 loginform.submit(function(e){
-	     var req = $.post("index.php", loginform.serialize(), null, 'json')
+	     var req = $.post("index.php?page=login", loginform.serialize(), null, 'json')
 			.success(function(data) {
 			    window.location = "index.php?page=index";
 			})

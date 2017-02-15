@@ -1,7 +1,7 @@
 <!-- Left navbar-header -->
 <div class="navbar-default sidebar" role="navigation" style="position:absolute; top:-50px; z-index:5000">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-	<?php include 'leftUser.php'; ?>
+	<?php include './views/nav/leftUser.php'; ?>
 	<ul class="nav" id="side-menu">	    
 	    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
 		<!-- input-group -->
@@ -26,7 +26,7 @@
 	    
 	    <li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('General Ledger');  ?><span class="fa arrow"></span><span class="label label-rouded label-info pull-right">3</span></span></a>
 		<ul class="nav nav-second-level">
-		    <li> <a href="index.php?page=GeneralLedger/chartsOfAccount"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a></li>
+		    <li> <a href="index.php?page=GeneralLedger/chartOfAccounts"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a></li>
 		    <li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Ledger Transactions');  ?></a></li>
 		    <li> <a href="crm-edit-leads.html"><?php echo $translation->translateLabel('Bank Accounts');  ?></a></li> 
 		</ul>

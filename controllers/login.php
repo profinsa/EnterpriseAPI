@@ -56,7 +56,7 @@ class controller{
     }
 
     /*
-      entry point of controller. Rendering page, loading models, log in with cheking
+      entry point of controller. Rendering page, loading models, log in with checking
      */
     public function process($app){
         $users = new users($app->db);
@@ -69,7 +69,6 @@ class controller{
                 $app->renderUi = false;
                 $user["language"] = $_POST["language"];
                 $_SESSION["user"] = $user;
-                http_response_code(200);
                 header('Content-Type: application/json');
                 echo json_encode(array(
                     "message" =>  "ok"
