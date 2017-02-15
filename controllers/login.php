@@ -96,6 +96,7 @@ class controller{
             if(!key_exists("user", $_SESSION) || !$_SESSION["user"])
                 $_SESSION["user"] = ["language" => "English"];
 
+            $this->user = $_SESSION["user"];
             $translation = new translation($app->db, $_SESSION["user"]["language"]);
             $companies = new companies($app->db);
             $scope = $this;

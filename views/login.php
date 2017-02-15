@@ -67,9 +67,11 @@
 				</div>
 				<div class="col-xs-6">
 				    <select name="language" class="form-control pull-right row b-none" onchange="changeLanguage(event);">
+					<option><?php echo $scope->user["language"]; ?></option>
 					<?php
 					foreach($translation->languages as $value)
-					    echo "<option>$value</option>";
+					    if($value != $scope->user["language"])
+						echo "<option>" . $value . "</option>";
 					?>
 				    </select>
 				</div>

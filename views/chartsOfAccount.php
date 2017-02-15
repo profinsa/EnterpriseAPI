@@ -22,68 +22,165 @@
 	    <?php
 	    require 'uiItems/dashboard.php';
 	    ?>
-	    <!-- grid -->
-	    <div id="grid_content" class="row">
-		<div class="col-sm-12">
-		    <div class="white-box">
-			<h3 class="box-title m-b-0"><?php echo $scope->dashboardTitle ?></h3>
-			<p class="text-muted m-b-30"><?php echo $scope->dashboardTitle ?></p>
-			<div class="table-responsive">
-			    <table id="example23" class="table table-striped">
-				<thead>
-				    <tr>
-					<th></th>
+	    <div class="col-sm-12">
+		<div class="white-box">
+		    <!--
+			 This is conditional page generation.
+			 Contains three pages:
+		         + grid
+			 main screen of GeneralLedger/chartOfAccounts.
+			 contains table and buttons for edit and delete rows
+			 
+			 + view
+			 page is showed after click edit on grid screen.
+			 contains tabs with fields and values
+			 + edit
+			 page is showed after click edit on view screen.
+			 contains tabs with fileds and values. Values is available for changing.
+		       -->
+		    <?php if($scope->mode == 'grid'): ?>
+			<!-- grid -->
+			<div id="grid_content" class="row">
+			    <h3 class="box-title m-b-0"><?php echo $scope->dashboardTitle ?></h3>
+			    <p class="text-muted m-b-30"><?php echo $scope->dashboardTitle ?></p>
+			    <div class="table-responsive">
+				<table id="example23" class="table table-striped">
+				    <thead>
+					<tr>
+					    <th></th>
+					    <?php
+					    $rows = $grid->getPage();
+					    foreach($rows[0] as $key =>$value)
+						echo "<th>" . $translation->translateLabel($grid->columnNames[$key]) . "</th>";
+					    ?>
+					</tr>
+				    </thead>
+				    <tbody>
 					<?php
-					$rows = $grid->getPage();
-					foreach($rows[0] as $key =>$value)
-					    echo "<th>" . $translation->translateLabel($grid->columnNames[$key]) . "</th>";
+					foreach($rows as $row){
+					    echo "<tr><td><a href=\"index.php?page=GeneralLedger/chartsOfAccount&mode=view&category=Main&item=" . $row["GLAccountNumber"] ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a><span onclick=\"deleteRow('" . $row["GLAccountNumber"] . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></td>";
+					    foreach($row as $value)
+						echo "<td>$value</td>";
+					    echo "</tr>";
+					}
 					?>
-				    </tr>
-				</thead>
-				<tbody>
-				    <?php
-				    foreach($rows as $row){
-					echo "<tr><td><span onclick=\"editRow('" . $row["GLAccountNumber"] . "')\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span><span onclick=\"deleteRow('" . $row["GLAccountNumber"] . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></td>";
-					foreach($row as $value)
-					    echo "<td>$value</td>";
-					echo "</tr>";
-				    }
-				    ?>
-				</tbody>
-			    </table>
+				    </tbody>
+				</table>
+			    </div>
 			</div>
-		    </div>
+		    <?php elseif($scope->mode == 'view'): ?>
+			<div id="row_viewer">
+			    <ul class="nav nav-tabs">
+				<?php  
+				foreach($grid->editCategories as $key =>$value)
+				    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=GeneralLedger/chartsOfAccount&mode=view&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
+				?>
+			    </ul>
+			    <div class="table-responsive">
+				<table class="table">
+				    <thead>
+					<tr>
+					    <th>
+						<?php echo $translation->translateLabel("Field"); ?>
+					    </th>
+					    <th>
+						<?php echo $translation->translateLabel("Value"); ?>
+					    </th>
+					</tr>
+				    </thead>
+				    <tbody id="row_viewer_tbody">
+					<?php
+					$item = $grid->getEditItem($scope->item, $scope->category);
+					foreach($item as $key =>$value)
+					    echo "<tr><td>" . $translation->translateLabel(key_exists($key, $grid->columnNames) ? $grid->columnNames[$key] : $key) . "</td><td>" . $value . "</td></tr>";
+					?>
+				    </tbody>
+				</table>
+			    </div>
+			    <div class="pull-right">
+				<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php?page=GeneralLedger/chartsOfAccount&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
+				    <?php echo $translation->translateLabel("Edit"); ?>
+				</a>
+				<a class="btn btn-inverse waves-effect waves-light" href="index.php?page=GeneralLedger/chartsOfAccount&mode=grid">
+				    <?php echo $translation->translateLabel("Cancel"); ?>
+				</a>
+			    </div>
+			</div>
+		    <?php elseif($scope->mode == 'edit'): ?>
+			<div id="row_editor">
+			    <ul class="nav nav-tabs">
+				<?php  
+				foreach($grid->editCategories as $key =>$value)
+				    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=GeneralLedger/chartsOfAccount&mode=edit&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
+				?>
+			    </ul>
+                            <form id="itemData" class="form-material form-horizontal m-t-30">
+				<input type="hidden" name="GLAccountNumber" value="<?php echo $scope->item; ?>" />
+				<input type="hidden" name="category" value="<?php echo $scope->category; ?>" />
+		                <?php
+				$item = $grid->getEditItem($scope->item, $scope->category);
+				$disabledFields = [
+				    "GLAccountNumber" => true,
+				    "GLAccountCode" => true
+				];
+				$translatedFieldName = '';
+				
+				$types = $grid->getGLAccountTypes();
+				$GLAccountTypeOptions = "";
+				foreach($types as $value){
+				    if($GLAccountTypeOptions == "")
+					$GLAccountTypeOptions = "<option>" . $value["GLAccountType"] . "</option>";
+				    else
+					$GLAccountTypeOptions .= "<option>" . $value["GLAccountType"] . "</option>";
+				}
+				
+				$types = $grid->getGLBalanceTypes();
+				$GLBalanceTypeOptions = "";
+				foreach($types as $value){
+				    if($GLBalanceTypeOptions == "")
+					$GLBalanceTypeOptions = "<option>" . $value["GLBalanceType"] . "</option>";
+				    else
+					$GLBalanceTypeOptions .= "<option>" . $value["GLBalanceType"] . "</option>";
+				}
+				
+				foreach($item as $key =>$value){
+				    $translatedFieldName = $translation->translateLabel(key_exists($key, $grid->columnNames) ? $grid->columnNames[$key] : $key);
+				    if($key == "GLAccountType"){
+					echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">" . $GLAccountTypeOptions ."</select></div></div>";
+				    }elseif($key == "GLBalanceType"){
+					echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">" . $GLBalanceTypeOptions ."</select></div></div>";
+				    }else{
+					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " . (key_exists($key, $disabledFields) ? "disabled" : "") ."></div></div>";
+				    }
+				}
+				?>
+				<div class="pull-right">
+				    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="saveItem()">
+					<?php echo $translation->translateLabel("Save"); ?>
+				    </a>
+				    <a class="btn btn-inverse waves-effect waves-light" href="index.php?page=GeneralLedger/chartsOfAccount&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
+					<?php echo $translation->translateLabel("Cancel"); ?>
+				    </a>
+				</div>
+                            </form>
+			    <script>
+			     function saveItem(){
+				 var itemData = $("#itemData");
+				 $.post("index.php?page=GeneralLedger/chartsOfAccount&update=true", itemData.serialize(), null, 'json')
+				  .success(function(data) {
+				      console.log('ok');
+				      window.location = "index.php?page=GeneralLedger/chartsOfAccount&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>";
+				  })
+				  .error(function(err){
+				      console.log('wrong');
+				  });
+			     }
+			    </script>
+			</div>
+		</div>
+		    <?php endif; ?>
 		</div>
 	    </div>
-	    <div id="row_viewer" style="display:none">
-		<div class="table-responsive">
-		    <table id="example23" class="table">
-			<thead>
-			    <tr>
-				<th>
-				    <?php echo $translation->translateLabel("Field"); ?>
-				</th>
-				<th>
-				    <?php echo $translation->translateLabel("Value"); ?>
-				</th>
-			    </tr>
-			</thead>
-			<tbody id="row_viewer_tbody">
-			</tbody>
-		    </table>
-		</div>
-		<div class="pull-right">
-		    <button type="submit" class="btn btn-info waves-effect waves-light m-r-10">
-			<?php echo $translation->translateLabel("Edit"); ?>
-		    </button>
-                    <button type="submit" class="btn btn-inverse waves-effect waves-light">
-			<?php echo $translation->translateLabel("Cancel"); ?>
-		    </button>
-		</div>
-	    </div>
-	    <div id="row_editor" style="display:none">
-	    </div>
-
 	</div>
 	<!-- /#wrapper -->
 	<script src="dependencies/assets/js/custom.min.js"></script>

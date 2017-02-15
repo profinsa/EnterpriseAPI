@@ -44,12 +44,10 @@ class app{
     public $page = 'index';
     public function __construct($database){
         $this->db = $database; 
+        if(isset($_GET["page"]))
+            $this->page = $_GET["page"];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(isset($_POST["page"]))
-                $this->page = $_POST["page"];
         }else if($_SERVER['REQUEST_METHOD'] === 'GET'){
-            if(isset($_GET["page"]))
-                $this->page = $_GET["page"];
         }
         require 'controllers/' . $this->page . '.php';
         $this->controller = new controller($database);
