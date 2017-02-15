@@ -1,0 +1,62 @@
+* how it works
+  Application is made in MVC style.
+** index.php 
+   main entry point. All requests go through it.
+   It is:
+   + pages router
+     you write index.php?page=GeneralLedger/chartOfAccounts
+     router translated this to controllers/GeneralLedger/chartOfAccounts.php
+
+   + settings loader
+     from common.php
+     for db settings and default user
+
+   + db initializer
+     start connetion to database before any controller
+     end connection after controller and view finish them work
+
+** page loading and rendering, step by step and life cycle
+   First, you typing in browser: someaddress/index.php?page=index
+   1 index.php load settings, connect to db
+   2 index.php load controllers/index.php
+   3 controllers/index.php checking user, if session expired or user unexists -> redirect to page=login
+   4 controllers/index.php load user info from session, including user permissions
+   5 controllers/index.php load translation model
+   6 controllers/index.php load views/index.php and render that
+   7 views/index.php uses translation model to translate interface and user for showing user info. Also it uses 
+     user permissions to hide or to show some ui elements
+
+** index.php?page=GeneralLedger/chartOfAccounts - how it works?
+   Like a previous;
+   controller -> controllers/GeneralLedger/chartOfAccounts.php
+   model -> models/GeneralLedger/chartOfAccounts.php
+   view -> views/GeneralLedger/chartOfAccounts.php
+
+*** controller responds for
+    * loading GeneralLedger/chartOfAccounts page, render that
+    * handling ajax requests:
+      - delete row from ledgerchartofaccounts
+      - get row from leddgerchartofaccounts
+      - update row in leddgerchartofaccounts
+
+    it's pretty simple, only controlling, all request redirecting to view or model
+*** view responds
+    render all aspects of GeneralLedger/chartOfAccounts page
+    Beside rendering common interface items like sidebar and top it contains three subpage which activated by mode param in address:
+    - grid
+      mode, in which view renders grid with buttons for print, edit, delete etc
+    - view
+      mode is activated if click on edit button in row
+    - edit
+      mode is activated if click on edit button in view mode
+
+   view relies on model for all things(load data, editing, deleting) on controller and model
+   it shoud be easy to customize.
+   After copy and paste this code - need renaming many vars to point on right data fields
+*** model responds
+    - working with database(table ledgerchartofaccounts)
+      loading in many rows, on row, updating and deleting row
+    - naming conversion like "GLBudgetPeriod1" => "GL Budget Period 1"
+    - grouping fields like  "Main" => [ "GLAccountNumber", "GLAccountName"] or "Current" => ["GLCurrentYearPeriod1", "GLCurrentYearPeriod2"]
+      this info used by view for rendering tabs and content in tabs
+    - loading values for GLBalanceType and GLAccountType from ledgeraccounttypes and ledgerbalancetype

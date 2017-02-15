@@ -23,9 +23,10 @@ Called from:
 
 Calls:
 models/translation.php
+models/GeneralLedger/chartOfAccounts.php
 app from index.php
 
-Last Modified: 13.02.2016
+Last Modified: 15.02.2016
 Last Modified by: Nikita Zaharov
 */
 

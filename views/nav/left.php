@@ -23,14 +23,16 @@
 	    </li>
 	    
 	    <li class="nav-small-cap">--- Main Menu</li>
-	    
-	    <li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('General Ledger');  ?><span class="fa arrow"></span><span class="label label-rouded label-info pull-right">3</span></span></a>
-		<ul class="nav nav-second-level">
-		    <li> <a href="index.php?page=GeneralLedger/chartOfAccounts"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a></li>
-		    <li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Ledger Transactions');  ?></a></li>
-		    <li> <a href="crm-edit-leads.html"><?php echo $translation->translateLabel('Bank Accounts');  ?></a></li> 
-		</ul>
-	    </li>
+
+	    <?php if($scope->user["accesspermissions"]["GLView"]): ?>
+		<li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('General Ledger');  ?><span class="fa arrow"></span><span class="label label-rouded label-info pull-right">3</span></span></a>
+		    <ul class="nav nav-second-level">
+			<li> <a href="index.php?page=GeneralLedger/chartOfAccounts"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a></li>
+			<li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Ledger Transactions');  ?></a></li>
+			<li> <a href="crm-edit-leads.html"><?php echo $translation->translateLabel('Bank Accounts');  ?></a></li> 
+		    </ul>
+		</li>
+	    <?php endif; ?>
 	    
 	    
 	    <li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('Receivables');  ?><span class="fa arrow"></span><span class="label label-rouded label-info pull-right">3</span></span></a>
