@@ -226,7 +226,7 @@ class chartOfAccounts{
             return $_SESSION["GLchartOfAccountsNew"]["$type"];
         else{
             $_SESSION["GLchartOfAccountsNew"] = $this->editCategories;
-            return $this->editCategories;           
+            return $this->editCategories[$type];           
         }
     } 
 
