@@ -55,7 +55,7 @@
    After copy and paste this code - need renaming many vars to point on right data fields
 *** model responds
     - working with database(table ledgerchartofaccounts)
-      loading in many rows, on row, updating and deleting row
+      loading many rows, one row, updating and deleting row
     - naming conversion like "GLBudgetPeriod1" => "GL Budget Period 1"
     - grouping fields like  "Main" => [ "GLAccountNumber", "GLAccountName"] or "Current" => ["GLCurrentYearPeriod1", "GLCurrentYearPeriod2"]
       this info used by view for rendering tabs and content in tabs

@@ -31,7 +31,8 @@
 				 + grid
 				 main screen of GeneralLedger/chartOfAccounts.
 				 contains table and buttons for edit and delete rows
-				 
+				 + new
+				 page is showed after click new on grid screen.
 				 + view
 				 page is showed after click edit on grid screen.
 				 contains tabs with fields and values
@@ -39,8 +40,9 @@
 				 page is showed after click edit on view screen.
 				 contains tabs with fileds and values. Values is available for changing.
 			       -->
+			    
+			    <!-- grid -->
 			    <?php if($scope->mode == 'grid'): ?>
-				<!-- grid -->
 				<div id="grid_content" class="row">
 				    <h3 class="box-title m-b-0"><?php echo $scope->dashboardTitle ?></h3>
 				    <p class="text-muted m-b-30"><?php echo $scope->dashboardTitle ?></p>
@@ -73,6 +75,11 @@
 					    </tbody>
 					</table>
 				    </div>
+				    <div>
+					<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php?page=GeneralLedger/chartOfAccounts&mode=new&category=Main">
+					    <?php echo $translation->translateLabel("New"); ?>
+					</a>
+				    </div>
 				    <script>
 				     function deleteItem(item){
 					 if(confirm("Are you sure?")){
@@ -88,6 +95,8 @@
 				     }
 				    </script>
 				</div>
+				
+			    <!-- view -->
 			    <?php elseif($scope->mode == 'view'): ?>
 				<div id="row_viewer">
 				    <ul class="nav nav-tabs">
@@ -126,19 +135,21 @@
 					</a>
 				    </div>
 				</div>
-			    <?php elseif($scope->mode == 'edit'): ?>
+			    <!-- edit and new -->
+			    <?php elseif($scope->mode == 'edit' || $scope->mode == 'new'): ?>
 				<div id="row_editor">
 				    <ul class="nav nav-tabs">
 					<?php  
 					foreach($data->editCategories as $key =>$value)
-					    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=GeneralLedger/chartOfAccounts&mode=edit&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
+					    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=GeneralLedger/chartOfAccounts&mode=" . $scope->mode ."&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
 					?>
 				    </ul>
 				    <form id="itemData" class="form-material form-horizontal m-t-30">
 					<input type="hidden" name="GLAccountNumber" value="<?php echo $scope->item; ?>" />
 					<input type="hidden" name="category" value="<?php echo $scope->category; ?>" />
 		            <?php
-			    $item = $data->getEditItem($scope->item, $scope->category);
+			    $item = $scope->mode == 'edit' ? $data->getEditItem($scope->item, $scope->category) :
+						    $data->getNewItem($scope->item, $scope->category);
 			    $disabledFields = [
 				"GLAccountNumber" => true,
 				"GLAccountCode" => true
@@ -164,12 +175,12 @@
 					    echo "<option>" . $type["GLBalanceType"] . "</option>";
 				    echo"</select></div></div>";
 				}else{
-				    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " . (key_exists($key, $disabledFields) ? "disabled" : "") ."></div></div>";
+				    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " . (key_exists($key, $disabledFields) && $scope->mode == "edit" ? "disabled" : "") ."></div></div>";
 				}
 			    }
 			    ?>
 					<div class="pull-right">
-					    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="saveItem()">
+					    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope->mode == "edit" ? "saveItem()" : "createItem()"); ?>">
 						<?php echo $translation->translateLabel("Save"); ?>
 					    </a>
 					    <a class="btn btn-inverse waves-effect waves-light" href="index.php?page=GeneralLedger/chartOfAccounts&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
@@ -178,6 +189,17 @@
 					</div>
 				    </form>
 				    <script>
+				     function createItem(){
+					 var itemData = $("#itemData");
+					 $.post("index.php?page=GeneralLedger/chartOfAccounts&new=true", itemData.serialize(), null, 'json')
+					  .success(function(data) {
+					      console.log('ok');
+					      window.location = "index.php?page=GeneralLedger/chartOfAccounts";
+					  })
+					  .error(function(err){
+					      console.log('wrong');
+					  });
+				     }
 				     function saveItem(){
 					 var itemData = $("#itemData");
 					 $.post("index.php?page=GeneralLedger/chartOfAccounts&update=true", itemData.serialize(), null, 'json')
@@ -189,7 +211,6 @@
 					      console.log('wrong');
 					  });
 				     }
-
 				    </script>
 				</div>
 			</div>

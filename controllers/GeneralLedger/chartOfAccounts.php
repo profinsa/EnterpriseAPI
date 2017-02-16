@@ -31,7 +31,6 @@ Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
-require 'models/GeneralLedger/chartOfAccounts.php';
 
 class controller{
     public $user = false;
@@ -50,7 +49,9 @@ class controller{
             header("Location: index.php?page=login");
             exit;
         }
-            
+
+        require 'models/' . $app->page . '.php';
+
         $this->user = $_SESSION["user"];
                
         $data = new chartOfAccounts($app->db);
@@ -58,6 +59,10 @@ class controller{
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("update", $_GET)){
                 $data->updateItem($_POST["GLAccountNumber"], $_POST["category"], $_POST);
+                header('Content-Type: application/json');
+                echo "{ \"message\" : \"ok\"}";
+            }else if(key_exists("new", $_GET)){
+                $data->insertItem($_POST);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }
@@ -81,7 +86,7 @@ class controller{
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
                 
-                require 'views/GeneralLedger/chartOfAccounts.php';
+                require 'views/' . $app->page . '.php';
             }
         }
     }

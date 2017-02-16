@@ -36,65 +36,65 @@ class chartOfAccounts{
     
     public $editCategories = [
         "Main" => [
-            "GLAccountNumber",
-            "GLAccountName",
-            "GLAccountDescription",
-            "GLAccountUse",
-            "GLAccountType",
-            "GLAccountCode",
-            "GLBalanceType",
-            "GLAccountBalance",
-            "GLOtherNotes"	
+            "GLAccountNumber" => "",
+            "GLAccountName" => "",
+            "GLAccountDescription" => "",
+            "GLAccountUse" => "",
+            "GLAccountType" => "",
+            "GLAccountCode" => "",
+            "GLBalanceType" => "",
+            "GLAccountBalance" => "",
+            "GLOtherNotes" => ""	
         ],
         "Current" => [
-            "GLCurrentYearPeriod1",	 
-            "GLCurrentYearPeriod2",
-            "GLCurrentYearPeriod3",	 
-            "GLCurrentYearPeriod4",	 
-            "GLCurrentYearPeriod5",	 
-            "GLCurrentYearPeriod6",	 
-            "GLCurrentYearPeriod7",	 
-            "GLCurrentYearPeriod8",	 
-            "GLCurrentYearPeriod9",	 
-            "GLCurrentYearPeriod10",
-            "GLCurrentYearPeriod11",
-            "GLCurrentYearPeriod12",
-            "GLCurrentYearPeriod13",
-            "GLCurrentYearPeriod14"
+            "GLCurrentYearPeriod1" => "0.00",	 
+            "GLCurrentYearPeriod2" => "0.00",
+            "GLCurrentYearPeriod3" => "0.00",	 
+            "GLCurrentYearPeriod4" => "0.00",	 
+            "GLCurrentYearPeriod5" => "0.00",	 
+            "GLCurrentYearPeriod6" => "0.00",	 
+            "GLCurrentYearPeriod7" => "0.00",	 
+            "GLCurrentYearPeriod8" => "0.00",	 
+            "GLCurrentYearPeriod9" => "0.00",	 
+            "GLCurrentYearPeriod10" => "0.00",
+            "GLCurrentYearPeriod11" => "0.00",
+            "GLCurrentYearPeriod12" => "0.00",
+            "GLCurrentYearPeriod13" => "0.00",
+            "GLCurrentYearPeriod14" => "0.00"
         ],
         "Budget" => [
-            "GLBudgetBeginningBalance",
-            "GLBudgetPeriod1",
-            "GLBudgetPeriod2",
-            "GLBudgetPeriod3",
-            "GLBudgetPeriod4",
-            "GLBudgetPeriod5",
-            "GLBudgetPeriod6",
-            "GLBudgetPeriod7",
-            "GLBudgetPeriod8",
-            "GLBudgetPeriod9",
-            "GLBudgetPeriod10",
-            "GLBudgetPeriod11",
-            "GLBudgetPeriod12",
-            "GLBudgetPeriod13",
-            "GLBudgetPeriod14"
+            "GLBudgetBeginningBalance" => "0.00",
+            "GLBudgetPeriod1" => "0.00",
+            "GLBudgetPeriod2" => "0.00",
+            "GLBudgetPeriod3" => "0.00",
+            "GLBudgetPeriod4" => "0.00",
+            "GLBudgetPeriod5" => "0.00",
+            "GLBudgetPeriod6" => "0.00",
+            "GLBudgetPeriod7" => "0.00",
+            "GLBudgetPeriod8" => "0.00",
+            "GLBudgetPeriod9" => "0.00",
+            "GLBudgetPeriod10" => "0.00",
+            "GLBudgetPeriod11" => "0.00",
+            "GLBudgetPeriod12" => "0.00",
+            "GLBudgetPeriod13" => "0.00",
+            "GLBudgetPeriod14" => "0.00"
         ],
         "History" => [
-            "GLPriorYearBeginningBalance",
-            "GLPriorYearPeriod1",
-            "GLPriorYearPeriod2",
-            "GLPriorYearPeriod3",
-            "GLPriorYearPeriod4",	 
-            "GLPriortYearPeriod5", //ERROR in sql, musql be Prior	 
-            "GLPriorYearPeriod6",	 
-            "GLPriorYearPeriod7",	 
-            "GLPriorYearPeriod8",	 
-            "GLPriorYearPeriod9",	 
-            "GLPriortYearPeriod10",//ERROR in sql, musql be Prior	 
-            "GLPriorYearPeriod11",
-            "GLPriorYearPeriod12",
-            "GLPriorYearPeriod13",
-            "GLPriorYearPeriod14"
+            "GLPriorYearBeginningBalance" => "0.00",
+            "GLPriorYearPeriod1" => "0.00",
+            "GLPriorYearPeriod2" => "0.00",
+            "GLPriorYearPeriod3" => "0.00",
+            "GLPriorYearPeriod4" => "0.00",	 
+            "GLPriortYearPeriod5" => "0.00", //ERROR in sql, must be Prior	 
+            "GLPriorYearPeriod6" => "0.00",	 
+            "GLPriorYearPeriod7" => "0.00",	 
+            "GLPriorYearPeriod8" => "0.00",	 
+            "GLPriorYearPeriod9" => "0.00",	 
+            "GLPriortYearPeriod10" => "0.00",//ERROR in sql, must be Prior	 
+            "GLPriorYearPeriod11" => "0.00",
+            "GLPriorYearPeriod12" => "0.00",
+            "GLPriorYearPeriod13" => "0.00",
+            "GLPriorYearPeriod14" => "0.00"
         ]
     ];
 
@@ -196,14 +196,26 @@ class chartOfAccounts{
 
     public function getEditItem($GLAccountNumber, $type){
         $user = $_SESSION["user"];
+        $columns = [];
+        foreach($this->editCategories[$type] as $key=>$value)
+            $columns[] = $key;
 
-        $result = mysqli_query($this->db, "SELECT " . implode(",", $this->editCategories[$type]) . " from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $result = mysqli_query($this->db, "SELECT " . implode(",", $columns) . " from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
 
         $ret = mysqli_fetch_assoc($result);
         mysqli_free_result($result);
         
         return $ret;        
     }
+
+    public function getNewItem($id, $type){
+        if(key_exists("GLchartOfAccountsNew", $_SESSION))
+            return $_SESSION["GLchartOfAccountsNew"]["$type"];
+        else{
+            $_SESSION["GLchartOfAccountsNew"] = $this->editCategories;
+            return $this->editCategories;           
+        }
+    } 
     
     public function getItem($GLAccountNumber){
         $user = $_SESSION["user"];
@@ -220,7 +232,7 @@ class chartOfAccounts{
         $user = $_SESSION["user"];
         
         $update_fields = "";
-        foreach($this->editCategories[$category] as $name){
+        foreach($this->editCategories[$category] as $name=>$value){
             if($update_fields == "")
                 $update_fields = $name . "='" . $values[$name] . "'";
             else
@@ -230,11 +242,33 @@ class chartOfAccounts{
         mysqli_query($this->db, "UPDATE ledgerchartofaccounts set " . $update_fields . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
     }
 
+    public function insertItem($values){
+        $user = $_SESSION["user"];
+        
+        $insert_fields = "";
+        $insert_values = "";
+        foreach($this->editCategories as $category=>$arr){
+            foreach($this->editCategories[$category] as $name=>$value){
+                if($insert_fields == ""){
+                    $insert_fields = $name;
+                    $insert_values = "'" . $values[$name] . "'";
+                }else{
+                    $insert_fields .= "," . $name;
+                    $insert_values .= ",'" . $value[$name] . "'";
+                }
+            }
+        }
+
+        $insert_fields .= ',CompanyID,DivisionID,DepartmentID';
+        $insert_values .= ",'" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "'";
+        mysqli_query($this->db, "INSERT INTO ledgerchartofaccounts(" . $insert_fields . ") values(" . $insert_values .")")  or die('mysql query error: ' . mysqli_error($this->db));
+    }
+
     public function deleteItem($GLAccountNumber){
         $user = $_SESSION["user"];
         
         $update_fields = "";
-        foreach($this->editCategories[$category] as $name){
+        foreach($this->editCategories[$category] as $name=>$value){
             if($update_fields == "")
                 $update_fields = $name . "='" . $values[$name] . "'";
             else
