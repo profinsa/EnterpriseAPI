@@ -6,26 +6,32 @@ Method: Model for GeneralLedger/chartOfAccounts. It provides data from database 
 
 Date created: Nikita Zaharov, 13.02.2016
 
-Use: this model used by views/GeneralLedger/chartOfAccounts.php for
+Use: this model used by views/GeneralLedger/chartOfAccounts.php for:
+- as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
+- for loading data from tables, updating, inserting and deleting
 
 Input parameters:
 $db: database instance
+methods has own parameters
 
 Output parameters:
-
+- dictionaries as public properties
+- methods has own output
 
 Called from:
-
+created and used for ajax requests by controllers/GeneralLedger/chartOfAccounts.php
+used as model by views/GeneralLedger/chartOfAccounts.php
 
 Calls:
 sql
 
-Last Modified: 15.02.2016
+Last Modified: 16.02.2016
 Last Modified by: Nikita Zaharov
 */
 
 class chartOfAccounts{
     protected $db = false;
+    //fields to render in grid
     protected $gridFields = [
             "GLAccountNumber",
             "GLAccountName",
@@ -33,7 +39,8 @@ class chartOfAccounts{
             "GLBalanceType",
             "GLAccountBalance",
     ];
-    
+
+    //categories which contains table columns, used by view for render tabs and them content
     public $editCategories = [
         "Main" => [
             "GLAccountNumber" => "",
@@ -98,6 +105,7 @@ class chartOfAccounts{
         ]
     ];
 
+    //table column to translation/ObjID
     public $columnNames = [
         "GLAccountNumber" => "Account Number",
         "GLAccountName" => "Account Name",
@@ -158,6 +166,7 @@ class chartOfAccounts{
         $this->db = $database;
     }
 
+    //getting list of available values for GLAccountType 
     public function getGLAccountTypes(){
         $user = $_SESSION["user"];
         $res = [];
@@ -170,6 +179,7 @@ class chartOfAccounts{
         return $res;
     }
     
+    //getting list of available values for GLBalanceType 
     public function getGLBalanceTypes(){
         $user = $_SESSION["user"];
         $res = [];
@@ -181,7 +191,8 @@ class chartOfAccounts{
         
         return $res;
     }
-    
+
+    //getting rows for grid
     public function getPage($number){
         $user = $_SESSION["user"];
         $res = [];
@@ -194,6 +205,7 @@ class chartOfAccounts{
         return $res;
     }
 
+    //getting data for grid edit form 
     public function getEditItem($GLAccountNumber, $type){
         $user = $_SESSION["user"];
         $columns = [];
@@ -208,6 +220,7 @@ class chartOfAccounts{
         return $ret;        
     }
 
+    //getting data for new record
     public function getNewItem($id, $type){
         if(key_exists("GLchartOfAccountsNew", $_SESSION))
             return $_SESSION["GLchartOfAccountsNew"]["$type"];
@@ -216,7 +229,8 @@ class chartOfAccounts{
             return $this->editCategories;           
         }
     } 
-    
+
+    //getting data for grid view form
     public function getItem($GLAccountNumber){
         $user = $_SESSION["user"];
 
@@ -228,6 +242,7 @@ class chartOfAccounts{
         return $ret;        
     }
 
+    //updating data of grid item
     public function updateItem($GLAccountNumber, $category, $values){
         $user = $_SESSION["user"];
         
@@ -242,6 +257,7 @@ class chartOfAccounts{
         mysqli_query($this->db, "UPDATE ledgerchartofaccounts set " . $update_fields . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
     }
 
+    //add row to table
     public function insertItem($values){
         $user = $_SESSION["user"];
         
@@ -264,6 +280,7 @@ class chartOfAccounts{
         mysqli_query($this->db, "INSERT INTO ledgerchartofaccounts(" . $insert_fields . ") values(" . $insert_values .")")  or die('mysql query error: ' . mysqli_error($this->db));
     }
 
+    //delete row from table
     public function deleteItem($GLAccountNumber){
         $user = $_SESSION["user"];
         

@@ -2,13 +2,11 @@
 /*
 Name of Page: language
 
-Method: controller
+Method: used for changing ui language
 
 Date created: Nikita Zaharov, 15.02.2016
 
 Use: 
-
-The controller is responsible for:
 
 Input parameters:
 $db: database instance
@@ -24,7 +22,7 @@ Calls:
 models/translation.php
 app from index.php
 
-Last Modified: 15.02.2016
+Last Modified: 16.02.2016
 Last Modified by: Nikita Zaharov
 */
 

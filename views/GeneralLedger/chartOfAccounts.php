@@ -16,6 +16,40 @@
 	    <?php
 	    require './views/nav/left.php';
 	    ?>
+	    <!--
+		 Name of Page: chartOfAccounts view
+
+		 Method: renders whole page. 
+
+		 Date created: Nikita Zaharov, 13.02.2016
+
+		 Use: used by controllers/GeneralLedger/chartOfAccounts.php for rendering page
+		 Page may renders in four modes:
+	         + grid
+		 data is displayed in table mode
+		 + view
+		 one record from table displayed showed more detail with categorized tabs
+		 + edit
+		 same as previous, but record displayed not as text as inputs for edit
+		 + new
+		 same as previous, but with default values and record inserted, not updated
+
+		 Input parameters:
+
+		 Output parameters:
+		 html
+
+		 Called from:
+		 controllers/GeneralLedger/chartOfAccounts.php
+
+		 Calls:
+		 translation model
+		 chartOfAccounts model
+		 app as model
+
+		 Last Modified: 16.02.2016
+		 Last Modified by: Nikita Zaharov
+	       -->
 
 	    <!-- Page Content -->
 	    <div id="page-wrapper">
@@ -27,7 +61,7 @@
 			<div class="white-box">
 			    <!--
 				 This is conditional page generation.
-				 Contains three pages:
+				 Contains four pages:
 				 + grid
 				 main screen of GeneralLedger/chartOfAccounts.
 				 contains table and buttons for edit and delete rows
@@ -52,7 +86,9 @@
 						<tr>
 						    <th></th>
 						    <?php
+						    //getting data for table
 						    $rows = $data->getPage();
+						    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 						    foreach($rows[0] as $key =>$value)
 							echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
 						    ?>
@@ -60,6 +96,8 @@
 					    </thead>
 					    <tbody>
 						<?php
+						//renders table rows using rows, getted in previous block
+						//also renders buttons like edit, delete of row
 						foreach($rows as $row){
 						    echo "<tr><td>";
 						    if($scope->user["accesspermissions"]["GLEdit"])
@@ -81,6 +119,7 @@
 					</a>
 				    </div>
 				    <script>
+				     //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
 				     function deleteItem(item){
 					 if(confirm("Are you sure?")){
 					     var itemData = $("#itemData");
@@ -100,7 +139,9 @@
 			    <?php elseif($scope->mode == 'view'): ?>
 				<div id="row_viewer">
 				    <ul class="nav nav-tabs">
-					<?php  
+					<?php
+					//render tabs like Main, Current etc
+					//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 					foreach($data->editCategories as $key =>$value)
 					    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=GeneralLedger/chartOfAccounts&mode=view&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
 					?>
@@ -119,6 +160,7 @@
 					    </thead>
 					    <tbody id="row_viewer_tbody">
 						<?php
+						//renders table, contains record data using getEditItem from model
 						$item = $data->getEditItem($scope->item, $scope->category);
 						foreach($item as $key =>$value)
 						    echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>" . $value . "</td></tr>";
@@ -127,6 +169,11 @@
 					</table>
 				    </div>
 				    <div class="pull-right">
+					<!--
+					     buttons Edit and Cancel
+					     for translation uses translation model
+					     for category(which tab is activated) uses $scope of controller
+					   -->
 					<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php?page=GeneralLedger/chartOfAccounts&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
 					    <?php echo $translation->translateLabel("Edit"); ?>
 					</a>
@@ -140,6 +187,8 @@
 				<div id="row_editor">
 				    <ul class="nav nav-tabs">
 					<?php  
+					//render tabs like Main, Current etc
+					//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 					foreach($data->editCategories as $key =>$value)
 					    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=GeneralLedger/chartOfAccounts&mode=" . $scope->mode ."&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
 					?>
@@ -148,17 +197,21 @@
 					<input type="hidden" name="GLAccountNumber" value="<?php echo $scope->item; ?>" />
 					<input type="hidden" name="category" value="<?php echo $scope->category; ?>" />
 		            <?php
+			    //getting record.
 			    $item = $scope->mode == 'edit' ? $data->getEditItem($scope->item, $scope->category) :
 						    $data->getNewItem($scope->item, $scope->category);
+			    //fields which displayed with disabled inputs
 			    $disabledFields = [
 				"GLAccountNumber" => true,
 				"GLAccountCode" => true
 			    ];
+			    //used as translated field name
 			    $translatedFieldName = '';
 			    
 			    foreach($item as $key =>$value){
 				$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
 				if($key == "GLAccountType"){
+				    //renders select with available values for GLAccountType
 				    echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
 				    $types = $data->getGLAccountTypes();
 				    echo "<option>" . $value . "</option>";
@@ -167,6 +220,7 @@
 					    echo "<option>" . $type["GLAccountType"] . "</option>";
 				    echo"</select></div></div>";
 				}elseif($key == "GLBalanceType"){
+				    //renders select with available values for GLBalanceType
 				    echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
 				    $types = $data->getGLBalanceTypes();
 				    echo "<option>" . $value . "</option>";
@@ -175,11 +229,15 @@
 					    echo "<option>" . $type["GLBalanceType"] . "</option>";
 				    echo"</select></div></div>";
 				}else{
+				    //renders input for any other field
 				    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " . (key_exists($key, $disabledFields) && $scope->mode == "edit" ? "disabled" : "") ."></div></div>";
 				}
 			    }
 			    ?>
 					<div class="pull-right">
+					    <!--
+						 renders buttons translated Save and Cancel using translation model
+					       -->
 					    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope->mode == "edit" ? "saveItem()" : "createItem()"); ?>">
 						<?php echo $translation->translateLabel("Save"); ?>
 					    </a>
@@ -189,6 +247,7 @@
 					</div>
 				    </form>
 				    <script>
+				     //handler of save button if we in new mode. Just doing XHR request to save data
 				     function createItem(){
 					 var itemData = $("#itemData");
 					 $.post("index.php?page=GeneralLedger/chartOfAccounts&new=true", itemData.serialize(), null, 'json')
@@ -200,6 +259,7 @@
 					      console.log('wrong');
 					  });
 				     }
+				     //handler of save button if we in edit mode. Just doing XHR request to save data
 				     function saveItem(){
 					 var itemData = $("#itemData");
 					 $.post("index.php?page=GeneralLedger/chartOfAccounts&update=true", itemData.serialize(), null, 'json')

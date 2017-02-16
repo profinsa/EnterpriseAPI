@@ -2,13 +2,13 @@
 /*
 Name of Page: chartOfAccount
 
-Method:
+Method: controller of GeneralLedger/chartOfAccount page, used for rendering page and interacting with it
 
 Date created: Nikita Zaharov, 09.02.2016
 
-Use: 
-
-The controller is responsible for:
+Use: The controller is responsible for:
+- page rendering using view
+- handling XHR request(delete, update and new item in grid)
 
 Input parameters:
 $db: database instance
@@ -26,7 +26,7 @@ models/translation.php
 models/GeneralLedger/chartOfAccounts.php
 app from index.php
 
-Last Modified: 15.02.2016
+Last Modified: 16.02.2016
 Last Modified by: Nikita Zaharov
 */
 
