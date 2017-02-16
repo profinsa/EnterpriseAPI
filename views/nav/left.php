@@ -57,13 +57,26 @@
 	    
 	    
 	    <li class="nav-small-cap">--- Support</li>
-	    
-	    <li> <a href="https://stfbinc.helpdocs.com" Target="_Blank">Help Documentation</a></li>
-	    <li> <a href="https://stfbinc.teamwork.com/support/" Target="_Blank">Support Ticket</a></li> 
+	    <li>
+		<a href="https://stfbinc.helpdocs.com" Target="_Blank" class="waves-effect">
+		    <i class="icon-docs fa-fw"></i>
+		    <span class="hide-menu"><?php echo $translation->translateLabel("Help Documentation"); ?></span>
+		</a>
+	    </li>
+	    <li>
+		<a href="https://stfbinc.teamwork.com/support/" Target="_Blank" class="waves-effect">
+		    <i class="icon-support fa-fw"></i>
+		    <span class="hide-menu"><?php echo $translation->translateLabel("Support Ticket"); ?></span>
+		</a>
+	    </li> 
 	    
 
-	    <li><a href="index.php?page=index&logout=true" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel("Log out"); ?></span></a></li>
-
+	    <li>
+		<a href="index.php?page=index&logout=true" class="waves-effect">
+		    <i class="icon-logout fa-fw"></i>
+		    <span class="hide-menu"><?php echo $translation->translateLabel("Log out"); ?></span>
+		</a>
+	    </li>
 	    
 	</ul>
     </div>

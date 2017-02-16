@@ -1,12 +1,12 @@
 <?php
 /*
-Name of Page: chartsOfAccount model
+Name of Page: chartOfAccounts model
 
-Method: 
+Method: Model for GeneralLedger/chartOfAccounts. It provides data from database and default values, column names and categories
 
 Date created: Nikita Zaharov, 13.02.2016
 
-Use:
+Use: this model used by views/GeneralLedger/chartOfAccounts.php for
 
 Input parameters:
 $db: database instance

@@ -2,7 +2,7 @@
 /*
 Name of Page: language
 
-Method:
+Method: controller
 
 Date created: Nikita Zaharov, 15.02.2016
 
