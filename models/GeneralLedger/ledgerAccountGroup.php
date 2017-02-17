@@ -145,7 +145,7 @@ class ledgerAccountGroup{
                     $insert_values = "'" . $values[$name] . "'";
                 }else{
                     $insert_fields .= "," . $name;
-                    $insert_values .= ",'" . $value[$name] . "'";
+                    $insert_values .= ",'" . $values[$name] . "'";
                 }
             }
         }
