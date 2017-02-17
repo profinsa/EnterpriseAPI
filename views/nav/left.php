@@ -29,10 +29,17 @@
 		    <ul class="nav nav-second-level">
 			<li>
 			    <a href="index.php?page=GeneralLedger/chartOfAccounts"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a>
+			</li>
+			<li>
 			    <a href="index.php?page=GeneralLedger/ledgerAccountGroup"><?php echo $translation->translateLabel('Ledger Account Group');  ?></a>
 			</li>
+			<li>
+			    <a href="index.php?page=GeneralLedger/bankTransactions"><?php echo $translation->translateLabel('Banck Transactions');  ?></a>
+			</li>
+			<li>
+			    <a href="index.php?page=GeneralLedger/bankAccounts"><?php echo $translation->translateLabel('Bank Accounts');  ?></a>
+			</li>
 			<li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Ledger Transactions');  ?></a></li>
-			<li> <a href="crm-edit-leads.html"><?php echo $translation->translateLabel('Bank Accounts');  ?></a></li> 
 		    </ul>
 		</li>
 	    <?php endif; ?>
