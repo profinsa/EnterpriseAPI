@@ -17,13 +17,13 @@
 	    require './views/nav/left.php';
 	    ?>
 	    <!--
-		 Name of Page: bankAccounts view
+		 Name of Page: bankTransactions view
 
 		 Method: renders whole page. 
 
 		 Date created: Nikita Zaharov, 17.02.2016
 
-		 Use: used by controllers/GeneralLedger/bankAccounts.php for rendering page
+		 Use: used by controllers/GeneralLedger/bankTransactions.php for rendering page
 		 Page may renders in four modes:
 	         + grid
 		 data is displayed in table mode
@@ -40,7 +40,7 @@
 		 html
 
 		 Called from:
-		 controllers/GeneralLedger/bankAccounts.php
+		 controllers/GeneralLedger/bankTransactions.php
 
 		 Calls:
 		 translation model
@@ -202,7 +202,7 @@
 						    $data->getNewItem($scope->item, $scope->category);
 			    //fields which displayed with disabled inputs
 			    $disabledFields = [
-				"BankID" => true,
+				"BankTransactionID" => true,
 			    ];
 			    //used as translated field name
 			    $translatedFieldName = '';
@@ -210,7 +210,7 @@
 			    foreach($item as $key =>$value){
 				$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
 				if($key == "CurrencyID"){
-				    //renders select with available values for GLAccountType
+				    //renders select with available values for CurrencyID
 				    echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
 				    $types = $data->getCurrencyTypes();
 				    echo "<option value=\"" . $value . "\">" . $value . "</option>";

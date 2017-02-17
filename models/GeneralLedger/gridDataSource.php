@@ -1,13 +1,12 @@
 <?php
 /*
-Name of Page: bankAccounts model
+Name of Page: gridDataSource class
 
-Method: Model for GeneralLedger/banckAccounts. It provides data from database and default values, column names and categories
+Method: ancestor for GeneralLedger/* models. It provides data from database
 
 Date created: Nikita Zaharov, 17.02.2016
 
-Use: this model used by views/GeneralLedger/bankAccounts.php for:
-- as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
+Use: this model used for
 - for loading data from tables, updating, inserting and deleting
 
 Input parameters:
@@ -15,12 +14,10 @@ $db: database instance
 methods has own parameters
 
 Output parameters:
-- dictionaries as public properties
 - methods has own output
 
 Called from:
-created and used for ajax requests by controllers/GeneralLedger/banckAccounts.php
-used as model by views/GeneralLedger/backAccounts.php
+inherited by models/GeneralLedger/*
 
 Calls:
 sql
@@ -28,77 +25,14 @@ sql
 Last Modified: 17.02.2016
 Last Modified by: Nikita Zaharov
 */
-
-class bankAccounts{
-    protected $tableName = "bankaccounts";
+class gridDataSource{
+    protected $tableName = "";
     protected $db = false;
     //fields to render in grid
-    protected $gridFields = [
-        "BankID",
-        "BankAccountNumber",
-        "BankName",
-        "BankPhone",
-        "GLBankAccount"
-    ];
+    protected $gridFields = [];
 
-    public $idField = "BankAccountNumber";
+    public $idField = "";
     
-    //categories which contains table columns, used by view for render tabs and them content
-    public $editCategories = [
-        "Main" => [
-            "BankID" => "",
-            "BankAccountNumber" => "",
-            "BankName" => "",
-            "BankAddress1" => "",
-            "BankAddress2" => "",
-            "BankCity" => "",
-            "BankState" => "",
-            "BankZip" => "",
-            "BankCountry" => "",
-            "BankPhone" => "",
-            "BankFax" => "",
-            "BankContactName" => "",
-            "BankEmail" => "",
-            "BankWebsite" => "",
-            "SwiftCode" => "",
-            "RoutingCode" => "",
-            "CurrencyID" => "USD",
-            "CurrencyExchangeRate" => "1.00",
-            "NextCheckNumber" => "",
-            "NextDepositNumber" => "",
-            "UnpostedDeposits" => "0.00",
-            "GLBankAccount" => "",
-            "Notes" => ""
-        ],
-    ];
-
-    //table column to translation/ObjID
-    public $columnNames = [
-        "BankID" => "Bank ID",
-        "BankAccountNumber" => "Bank Account Number",
-        "BankName" => "Bank Name",
-        "BankAddress1" => "Bank Address 1",
-        "BankAddress2" => "Bank Address 2",
-        "BankCity" => "Bank City",
-        "BankState" => "Bank State",
-        "BankZip" => "Bank Zip",
-        "BankCountry" => "Bank Country",
-        "BankPhone" => "Bank Phone",
-        "BankFax" => "Bank Fax",
-        "BankContactName" => "Bank Contact Name",
-        "BankEmail" => "Bank Email",
-        "BankWebsite" => "Bank Website",
-        "SwiftCode" => "Swift Code",
-        "RoutingCode" => "Routing Code",
-        "CurrencyID" => "Currency ID",
-        "CurrencyExchangeRate" => "Currency Exchange Rate",
-        "NextCheckNumber" => "Next Check Number",
-        "NextDepositNumber" => "Next Deposit Number",
-        "UnpostedDeposits" => "Unposted Deposits",
-        "GLBankAccount" => "GL Bank Account",
-        "Notes" => "Notes"
-    ];
-
     public function __construct($database){
         $this->db = $database;
     }
@@ -146,10 +80,10 @@ class bankAccounts{
 
     //getting data for new record
     public function getNewItem($id, $type){
-        if(key_exists("GLbankAccountsNew", $_SESSION))
-            return $_SESSION["GLbankAccountsNew"]["$type"];
+        if(key_exists("GLbankTransactionsNew", $_SESSION))
+            return $_SESSION["GLbankTransactionsNew"]["$type"];
         else{
-            $_SESSION["GLbankAccountsNew"] = $this->editCategories;
+            $_SESSION["GLbankTransactionsNew"] = $this->editCategories;
             return $this->editCategories[$type];           
         }
     } 
@@ -219,4 +153,5 @@ class bankAccounts{
         mysqli_query($this->db, "DELETE from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'")  or die('mysql query error: ' . mysqli_error($this->db));
     }
 }
+
 ?>
