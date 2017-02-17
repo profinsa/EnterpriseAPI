@@ -222,7 +222,7 @@
 					    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope->mode == "edit" ? "saveItem()" : "createItem()"); ?>">
 						<?php echo $translation->translateLabel("Save"); ?>
 					    </a>
-					    <a class="btn btn-inverse waves-effect waves-light" href="index.php?page=GeneralLedger/ledgerAccountGroup&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
+					    <a class="btn btn-inverse waves-effect waves-light" href="index.php?page=<?php echo $app->page . ( $scope->mode != "new" ? "&mode=view&category=" . $scope->category . "&item=" . $scope->item : "") ; ?>">
 						<?php echo $translation->translateLabel("Cancel"); ?>
 					    </a>
 					</div>

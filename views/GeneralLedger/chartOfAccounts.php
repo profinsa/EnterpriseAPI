@@ -101,7 +101,7 @@
 						foreach($rows as $row){
 						    echo "<tr><td>";
 						    if($scope->user["accesspermissions"]["GLEdit"])
-							echo "<a href=\"index.php?page=GeneralLedger/chartOfAccounts&mode=view&category=Main&item=" . $row["GLAccountNumber"] ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+							echo "<a href=\"index.php?page=" . $app->page . "&mode=view&category=Main&item=" . $row["GLAccountNumber"] ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
 						    if($scope->user["accesspermissions"]["GLDelete"])
 							echo "<span onclick=\"deleteItem('" . $row["GLAccountNumber"] . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
 						    echo "</td>";
@@ -114,7 +114,7 @@
 					</table>
 				    </div>
 				    <div>
-					<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php?page=GeneralLedger/chartOfAccounts&mode=new&category=Main">
+					<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php?page=<?php echo  $app->page; ?>&mode=new&category=Main">
 					    <?php echo $translation->translateLabel("New"); ?>
 					</a>
 				    </div>
@@ -123,9 +123,9 @@
 				     function deleteItem(item){
 					 if(confirm("Are you sure?")){
 					     var itemData = $("#itemData");
-					     $.getJSON("index.php?page=GeneralLedger/chartOfAccounts&delete=true&GLAccountNumber=" + item)
+					     $.getJSON("index.php?page=<?php  echo $app->page; ?>&delete=true&GLAccountNumber=" + item)
 					      .success(function(data) {
-						  window.location = "index.php?page=GeneralLedger/chartOfAccounts";
+						  window.location = "index.php?page=<?php  echo $app->page; ?>";
 					      })
 					      .error(function(err){
 						  console.log('wrong');
@@ -143,7 +143,7 @@
 					//render tabs like Main, Current etc
 					//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 					foreach($data->editCategories as $key =>$value)
-					    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=GeneralLedger/chartOfAccounts&mode=view&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
+					    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=" . $app->page . "&mode=view&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
 					?>
 				    </ul>
 				    <div class="table-responsive">
@@ -174,10 +174,10 @@
 					     for translation uses translation model
 					     for category(which tab is activated) uses $scope of controller
 					   -->
-					<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php?page=GeneralLedger/chartOfAccounts&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
+					<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php?page=<?php echo  $app->page;  ?>&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
 					    <?php echo $translation->translateLabel("Edit"); ?>
 					</a>
-					<a class="btn btn-inverse waves-effect waves-light" href="index.php?page=GeneralLedger/chartOfAccounts&mode=grid">
+					<a class="btn btn-inverse waves-effect waves-light" href="index.php?page=<?php echo $app->page; ?>&mode=grid">
 					    <?php echo $translation->translateLabel("Cancel"); ?>
 					</a>
 				    </div>
@@ -190,7 +190,7 @@
 					//render tabs like Main, Current etc
 					//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 					foreach($data->editCategories as $key =>$value)
-					    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=GeneralLedger/chartOfAccounts&mode=" . $scope->mode ."&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
+					    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=" . $app->page . "&mode=" . $scope->mode ."&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
 					?>
 				    </ul>
 				    <form id="itemData" class="form-material form-horizontal m-t-30">
@@ -241,7 +241,7 @@
 					    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope->mode == "edit" ? "saveItem()" : "createItem()"); ?>">
 						<?php echo $translation->translateLabel("Save"); ?>
 					    </a>
-					    <a class="btn btn-inverse waves-effect waves-light" href="index.php?page=GeneralLedger/chartOfAccounts&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
+					    <a class="btn btn-inverse waves-effect waves-light" href="index.php?page=<?php echo $app->page . ( $scope->mode != "new" ? "&mode=view&category=" . $scope->category . "&item=" . $scope->item : "") ; ?>">
 						<?php echo $translation->translateLabel("Cancel"); ?>
 					    </a>
 					</div>
@@ -250,10 +250,10 @@
 				     //handler of save button if we in new mode. Just doing XHR request to save data
 				     function createItem(){
 					 var itemData = $("#itemData");
-					 $.post("index.php?page=GeneralLedger/chartOfAccounts&new=true", itemData.serialize(), null, 'json')
+					 $.post("index.php?page=<?php  echo $app->page; ?>&new=true", itemData.serialize(), null, 'json')
 					  .success(function(data) {
 					      console.log('ok');
-					      window.location = "index.php?page=GeneralLedger/chartOfAccounts";
+					      window.location = "index.php?page=<?php  echo $app->page; ?>";
 					  })
 					  .error(function(err){
 					      console.log('wrong');
@@ -262,10 +262,10 @@
 				     //handler of save button if we in edit mode. Just doing XHR request to save data
 				     function saveItem(){
 					 var itemData = $("#itemData");
-					 $.post("index.php?page=GeneralLedger/chartOfAccounts&update=true", itemData.serialize(), null, 'json')
+					 $.post("index.php?page=<?php  echo $app->page; ?>&update=true", itemData.serialize(), null, 'json')
 					  .success(function(data) {
 					      console.log('ok');
-					      window.location = "index.php?page=GeneralLedger/chartOfAccounts&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>";
+					      window.location = "index.php?page=<?php  echo $app->page; ?>&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>";
 					  })
 					  .error(function(err){
 					      console.log('wrong');
