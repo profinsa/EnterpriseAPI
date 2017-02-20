@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/backAccounts.php
 Calls:
 sql
 
-Last Modified: 17.02.2016
+Last Modified: 20.02.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -59,12 +59,14 @@ class bankTransactions extends gridDataSource{
                 "defaultValue" => ""
             ], 
             "GLBankAccount1" => [
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getAccounts"
             ],
             "GLBankAccount2" => [
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getAccounts"
             ],
             "TransactionType" => [
                 "inputType" => "dropdown",
@@ -72,7 +74,7 @@ class bankTransactions extends gridDataSource{
                 "dataProvider" => "getTransactionTypes"
             ],
             "TransactionDate" => [
-                "inputType" => "text",
+                "inputType" => "datepicker",
                 "defaultValue" => ""
             ],
             "CurrencyID" =>	[
@@ -97,12 +99,16 @@ class bankTransactions extends gridDataSource{
                 "defaultValue" => ""
             ],	 
             "Posted" =>  [
+                "disabledEdit" => true,
+                "disabledNew" => true,
                 "inputType" => "checkbox",
-                "defaultValue" => "false"
+                "defaultValue" => "0"
             ],	
             "Cleared" =>  [
+                "disabledEdit" => true,
+                "disabledNew" => true,
                 "inputType" => "checkbox",
-                "defaultValue" => "false"
+                "defaultValue" => "0"
             ],	
             "Notes" =>  [
                 "inputType" => "text",
@@ -129,6 +135,24 @@ class bankTransactions extends gridDataSource{
         "Notes" => "Notes" 
     ];
 
+    //getting list of available transaction types 
+    public function getAccounts(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $raw_res = [];
+        $result = mysqli_query($this->db, "SELECT GLAccountNumber,GLAccountName from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+
+        while($ret = mysqli_fetch_assoc($result))
+            $raw_res[] = $ret;
+        foreach($raw_res as $key=>$value)
+            $res[$value["GLAccountNumber"]] = [
+                "title" => $value["GLAccountNumber"] . ", " . $value["GLAccountName"],
+                "value" => $value["GLAccountNumber"]
+            ];
+        mysqli_free_result($result);
+        return $res;
+    }
+    
     //getting list of available transaction types 
     public function getTransactionTypes(){
         $user = $_SESSION["user"];

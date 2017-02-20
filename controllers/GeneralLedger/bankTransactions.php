@@ -26,7 +26,7 @@ models/translation.php
 models/GeneralLedger/bankTransactions.php
 app from index.php
 
-Last Modified: 17.02.2016
+Last Modified: 20.02.2016
 Last Modified by: Nikita Zaharov
 */
 

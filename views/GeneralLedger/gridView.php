@@ -219,13 +219,24 @@
 				switch($data->editCategories[$scope->category][$key]["inputType"]){
 				    case "text" :
 					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " . ( key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit" ? "readonly" : "") ."></div></div>";
+					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " .
+					     ( (key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope->category][$key]) && $scope->mode == "new") ? "readonly" : "")
+					    ."></div></div>";
+					break;
+					
+				    case "datepicker" :
+					//renders text input with label
+					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatepicker\" value=\"" . $value ."\" " .
+					     ( (key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope->category][$key]) && $scope->mode == "new") ? "readonly" : "")
+					    ."></div></div>";
 					break;
 
 				    case "checkbox" :
 					//renders checkbox input with label
 					echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " . ( key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit" ? "readonly" : "") ."></div></div>";
+					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+					     ( (key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit") || (key_exists("disabledNew", $data->editCategories[$scope->category][$key]) && $scope->mode == "new") ? "disabled" : "")
+					    ."></div></div>";
 					break;
 					
 				    case "dropdown" :
@@ -233,9 +244,14 @@
 					echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
 					$method = $data->editCategories[$scope->category][$key]["dataProvider"];
 					$types = $data->$method();
-					echo "<option value=\"" . $value . "\">" . $types[$value]["title"] . "</option>";
+
+					if($value)
+					    echo "<option value=\"" . $value . "\">" . $types[$value]["title"] . "</option>";
+					else
+					    echo "<option></option>";
+					echo json_encode($types);
 					foreach($types as $type)
-					    if($type[$key] != $value)
+					    if(!$value || $type[$key] != $value)
 						echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
 					echo"</select></div></div>";
 					break;
@@ -289,6 +305,7 @@
 	    <!-- /#wrapper -->
 	    <script src="dependencies/assets/js/custom.min.js"></script>
 	    <script src="dependencies/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
+	    <script src="dependencies/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
 	    <!-- start - This is for export functionality only -->
 	    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
@@ -345,6 +362,8 @@
 		     'copy', 'csv', 'excel', 'pdf', 'print'
 		 ]
 	     });
+
+	     jQuery('.fdatepicker').datepicker();
 
 	    </script>
 	    <!--Style Switcher -->
