@@ -67,8 +67,9 @@ class bankTransactions extends gridDataSource{
                 "defaultValue" => ""
             ],
             "TransactionType" => [
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getTransactionTypes"
             ],
             "TransactionDate" => [
                 "inputType" => "text",
@@ -88,20 +89,20 @@ class bankTransactions extends gridDataSource{
                 "defaultValue" => ""
             ],
             "BeginningBalance" =>  [
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "checkbox",
+                "defaultValue" => "false"
             ],	
             "Reference" =>  [
                 "inputType" => "text",
                 "defaultValue" => ""
             ],	 
             "Posted" =>  [
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "checkbox",
+                "defaultValue" => "false"
             ],	
             "Cleared" =>  [
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "checkbox",
+                "defaultValue" => "false"
             ],	
             "Notes" =>  [
                 "inputType" => "text",
@@ -127,5 +128,24 @@ class bankTransactions extends gridDataSource{
         "Cleared" => "Cleared", 	
         "Notes" => "Notes" 
     ];
+
+    //getting list of available transaction types 
+    public function getTransactionTypes(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $raw_res = [];
+        $result = mysqli_query($this->db, "SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+
+        while($ret = mysqli_fetch_assoc($result))
+            $raw_res[] = $ret;
+        foreach($raw_res as $key=>$value)
+            $res[$value["BankTransactionTypeID"]] = [
+                "title" => $value["BankTransactionTypeID"],
+                "value" => $value["BankTransactionTypeID"]
+            ];
+        mysqli_free_result($result);
+        
+        return $res;
+    }
 }
 ?>

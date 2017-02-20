@@ -162,8 +162,19 @@
 						<?php
 						//renders table, contains record data using getEditItem from model
 						$item = $data->getEditItem($scope->item, $scope->category);
-						foreach($item as $key =>$value)
-						    echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>" . $value . "</td></tr>";
+						foreach($item as $key =>$value){
+						    echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
+						    switch($data->editCategories[$scope->category][$key]["inputType"]){
+							case "checkbox" :
+							    echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
+							    break;
+							case "text":
+							case "dropdown":
+							    echo $value;
+							    break;
+						    }
+						    echo "</td></tr>";
+						}
 						?>
 					    </tbody>
 					</table>
@@ -207,12 +218,18 @@
 				$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
 				switch($data->editCategories[$scope->category][$key]["inputType"]){
 				    case "text" :
-					//renders input for any other field
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " . ( key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit" ? "disabled" : "") ."></div></div>";
+					//renders text input with label
+					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " . ( key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit" ? "readonly" : "") ."></div></div>";
+					break;
+
+				    case "checkbox" :
+					//renders checkbox input with label
+					echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " . ( key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit" ? "readonly" : "") ."></div></div>";
 					break;
 					
 				    case "dropdown" :
-					//renders select with available values for CurrencyID
+					//renders select with available values as dropdowns with label
 					echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
 					$method = $data->editCategories[$scope->category][$key]["dataProvider"];
 					$types = $data->$method();
