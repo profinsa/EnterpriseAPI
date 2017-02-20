@@ -26,7 +26,7 @@ models/translation.php
 models/GeneralLedger/ledgerAccountGroup.php
 app from index.php
 
-Last Modified: 16.02.2016
+Last Modified: 20.02.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -58,7 +58,7 @@ class controller{
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("update", $_GET)){
-                $data->updateItem($_POST["GLAccountGroupID"], $_POST["category"], $_POST);
+                $data->updateItem($_POST["id"], $_POST["category"], $_POST);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }else if(key_exists("new", $_GET)){
@@ -70,7 +70,7 @@ class controller{
             if(key_exists("getItem", $_GET)){
                 echo json_encode($data->getItem($_GET["getItem"]));
             }else if(key_exists("delete", $_GET)){
-                $data->deleteItem($_GET["GLAccountGroupID"]);
+                $data->deleteItem($_GET["id"]);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }else{
@@ -86,7 +86,7 @@ class controller{
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
                 
-                require 'views/' . $app->page . '.php';
+                require 'views/GeneralLedger/gridView.php';
             }
         }
     }

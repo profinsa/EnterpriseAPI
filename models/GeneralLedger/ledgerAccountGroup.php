@@ -25,12 +25,15 @@ used as model by views/GeneralLedger/ledgerAccountGroup.php
 Calls:
 sql
 
-Last Modified: 16.02.2016
+Last Modified: 20.02.2016
 Last Modified by: Nikita Zaharov
 */
 
-class ledgerAccountGroup{
-    protected $db = false;
+require "./models/GeneralLedger/gridDataSource.php";
+
+class ledgerAccountGroup extends gridDataSource{
+    protected $tableName = "ledgeraccountgroup";
+
     //fields to render in grid
     protected $gridFields = [
         "GLAccountGroupID",
@@ -41,15 +44,36 @@ class ledgerAccountGroup{
         "GLReportLevel"
     ];
 
+    public $idField = "GLAccountGroupID";
+    
     //categories which contains table columns, used by view for render tabs and them content
     public $editCategories = [
         "Main" => [
-            "GLAccountGroupID" => "",
-            "GLAccountGroupName" => "",
-            "GLAccountGroupBalance"	=> "0.00",
-            "GLAccountUse" => "",
-            "GLReportingAccount" => false,
-            "GLReportLevel" => ""
+            "GLAccountGroupID" => [
+                "disabledEdit" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLAccountGroupName" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLAccountGroupBalance"	=> [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLAccountUse" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLReportingAccount" => [
+                "inputType" => "text",
+                "defaultValue" => "False"
+            ],
+            "GLReportLevel" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]
         ]
     ];
 
