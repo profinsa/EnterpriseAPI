@@ -136,24 +136,6 @@ class bankTransactions extends gridDataSource{
     ];
 
     //getting list of available transaction types 
-    public function getAccounts(){
-        $user = $_SESSION["user"];
-        $res = [];
-        $raw_res = [];
-        $result = mysqli_query($this->db, "SELECT GLAccountNumber,GLAccountName from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
-
-        while($ret = mysqli_fetch_assoc($result))
-            $raw_res[] = $ret;
-        foreach($raw_res as $key=>$value)
-            $res[$value["GLAccountNumber"]] = [
-                "title" => $value["GLAccountNumber"] . ", " . $value["GLAccountName"],
-                "value" => $value["GLAccountNumber"]
-            ];
-        mysqli_free_result($result);
-        return $res;
-    }
-    
-    //getting list of available transaction types 
     public function getTransactionTypes(){
         $user = $_SESSION["user"];
         $res = [];

@@ -39,7 +39,7 @@
 			<li>
 			    <a href="index.php?page=GeneralLedger/bankAccounts"><?php echo $translation->translateLabel('Bank Accounts');  ?></a>
 			</li>
-			<li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Ledger Transactions');  ?></a></li>
+			<!-- <li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Ledger Transactions');  ?></a></li> -->
 		    </ul>
 		</li>
 	    <?php endif; ?>

@@ -26,7 +26,7 @@ models/translation.php
 models/GeneralLedger/banckAccounts.php
 app from index.php
 
-Last Modified: 17.02.2016
+Last Modified: 20.02.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -86,7 +86,7 @@ class controller{
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
                 
-                require 'views/' . $app->page . '.php';
+                require 'views/GeneralLedger/gridView.php';
             }
         }
     }
