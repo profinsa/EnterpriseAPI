@@ -41,10 +41,16 @@ class gridDataSource{
     public function getCurrencyTypes(){
         $user = $_SESSION["user"];
         $res = [];
+        $raw_res = [];
         $result = mysqli_query($this->db, "SELECT CurrencyID,CurrencyType from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
 
         while($ret = mysqli_fetch_assoc($result))
-            $res[] = $ret;
+            $raw_res[] = $ret;
+        foreach($raw_res as $key=>$value)
+            $res[$value["CurrencyID"]] = [
+                "title" => $value["CurrencyID"] . ", " . $value["CurrencyType"],
+                "value" => $value["CurrencyID"]
+            ];
         mysqli_free_result($result);
         
         return $res;
@@ -80,12 +86,17 @@ class gridDataSource{
 
     //getting data for new record
     public function getNewItem($id, $type){
+        $values = [];
         if(key_exists("GLbankTransactionsNew", $_SESSION))
-            return $_SESSION["GLbankTransactionsNew"]["$type"];
+            foreach($_SESSION["GLbankTransactionsNew"]["$type"] as $key=>$value)
+                $values[$key] = $value["defaultValue"];
         else{
             $_SESSION["GLbankTransactionsNew"] = $this->editCategories;
-            return $this->editCategories[$type];           
+            $values = [];
+            foreach($this->editCategories[$type] as $key=>$value)
+                $values[$key] = $value["defaultValue"];
         }
+        return $values;
     } 
 
     //getting data for grid view form

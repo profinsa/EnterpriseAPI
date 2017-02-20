@@ -49,21 +49,65 @@ class bankTransactions extends gridDataSource{
     //categories which contains table columns, used by view for render tabs and them content
     public $editCategories = [
         "Main" => [
-            "BankTransactionID" => "",
-            "BankDocumentNumber" =>	"", 
-            "GLBankAccount1" => "",
-            "GLBankAccount2" => "",
-            "TransactionType" => "",
-            "TransactionDate" => "",
-            "CurrencyID" =>	"USD",
-            "CurrencyExchangeRate" => "1",
-            "TransactionAmount" => "",
-            "BeginningBalance" => "",	
-            "Reference" => "",	 
-            "Posted" => "",	
-            "Cleared" => "",	
-            "Notes" => "",
-        ],
+            "BankTransactionID" => [
+                "disabledEdit" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "BankDocumentNumber" =>	[
+                "inputType" => "text",
+                "defaultValue" => ""
+            ], 
+            "GLBankAccount1" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLBankAccount2" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TransactionType" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TransactionDate" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CurrencyID" =>	[
+                "inputType" => "dropdown",
+                "defaultValue" => "USD",
+                "dataProvider" => "getCurrencyTypes"
+            ],
+            "CurrencyExchangeRate" => [
+                "inputType" => "text",
+                "defaultValue" => "1"
+            ],
+            "TransactionAmount" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "BeginningBalance" =>  [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],	
+            "Reference" =>  [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],	 
+            "Posted" =>  [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],	
+            "Cleared" =>  [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],	
+            "Notes" =>  [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]
+        ]
     ];
 
     //table column to translation/ObjID

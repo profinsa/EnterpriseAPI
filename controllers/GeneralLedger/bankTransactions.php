@@ -44,7 +44,7 @@ class controller{
     }
     
     public function process($app){
-        if(!$_SESSION["user"]){ //redirect to prevent access unlogined users
+        if(!key_exists("user", $_SESSION) || !$_SESSION["user"]){ //redirect to prevent access unlogined users
             $_SESSION["user"] = false;
             header("Location: index.php?page=login");
             exit;
@@ -86,7 +86,7 @@ class controller{
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
                 
-                require 'views/' . $app->page . '.php';
+                require 'views/GeneralLedger/gridView.php';
             }
         }
     }
