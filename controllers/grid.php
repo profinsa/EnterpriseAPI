@@ -38,9 +38,8 @@ class controller{
     public $mode = "grid";
     public $category = "Main";
     public $item = "0";
-    
-    public function __construct($db){
-    }
+    public $dashboardTitle = "";
+    public $breadCrumbTitle = "";
     
     public function process($app){
         if(!$_SESSION["user"]){ //redirect to prevent access unlogined users
@@ -75,8 +74,8 @@ class controller{
                 echo "{ \"message\" : \"ok\"}";
             }else{
                 $translation = new translation($app->db, $this->user["language"]);
-                $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
-                $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
+                $this->dashboardTitle = $translation->translateLabel($data->dashboardTitle);
+                $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
             
                 $scope = $this;
                 if(key_exists("mode", $_GET))

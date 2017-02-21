@@ -105,11 +105,11 @@ class gridDataSource{
     //getting data for new record
     public function getNewItem($id, $type){
         $values = [];
-        if(key_exists("GL" . $this->tablename . "New", $_SESSION))
-            foreach($_SESSION["GL" . $this->tablename . "New"]["$type"] as $key=>$value)
+        if(key_exists("GL" . $this->tableName . "New", $_SESSION))
+            foreach($_SESSION["GL" . $this->tableName . "New"]["$type"] as $key=>$value)
                 $values[$key] = $value["defaultValue"];
         else{
-            $_SESSION["GL" . $this->tablename . "New"] = $this->editCategories;
+            $_SESSION["GL" . $this->tableName . "New"] = $this->editCategories;
             $values = [];
             foreach($this->editCategories[$type] as $key=>$value)
                 $values[$key] = $value["defaultValue"];
