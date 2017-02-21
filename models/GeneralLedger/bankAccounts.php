@@ -29,7 +29,7 @@ Last Modified: 21.02.2016
 Last Modified by: Nikita Zaharov
 */
 
-require "./models/GeneralLedger/gridDataSource.php";
+require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "bankaccounts";

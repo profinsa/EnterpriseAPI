@@ -251,7 +251,7 @@
 					    echo "<option></option>";
 					echo json_encode($types);
 					foreach($types as $type)
-					    if(!$value || (key_exists($key, $type) && $type[$key] != $value))
+					    if(!$value || $type[$key] != $value)
 						echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
 					echo"</select></div></div>";
 					break;
