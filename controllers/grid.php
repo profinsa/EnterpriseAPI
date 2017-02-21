@@ -42,13 +42,15 @@ class controller{
     public $breadCrumbTitle = "";
     
     public function process($app){
-        if(!$_SESSION["user"]){ //redirect to prevent access unlogined users
+        if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
             $_SESSION["user"] = false;
             header("Location: index.php?page=login");
             exit;
         }
 
         $this->action = $_GET["action"];
+        if(!file_exists('models/' . $_GET["action"] . '.php'))
+            throw new Exception("model " . 'models/' . $_GET["action"] . '.php' . " is not found");
         require 'models/' . $_GET["action"] . '.php';
 
         $this->user = $_SESSION["user"];
@@ -84,7 +86,7 @@ class controller{
                     $this->category = $_GET["category"];
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
-                
+
                 require 'views/gridView.php';
             }
         }

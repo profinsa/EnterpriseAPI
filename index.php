@@ -49,16 +49,22 @@ class app{
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else if($_SERVER['REQUEST_METHOD'] === 'GET'){
         }
+        if(!file_exists('controllers/' . $this->page . '.php'))
+            throw new Exception("controller ". 'controllers/' . $this->page . '.php' . "is not found");
         require 'controllers/' . $this->page . '.php';
         $this->controller = new controller($database);
     }
 }
 
-$db = db_start();
-session_start();
+try{
+    $db = db_start();
+    session_start();
 
-$_app = new app($db);
-$_app->controller->process($_app);
+    $_app = new app($db);
+    $_app->controller->process($_app);
 
-db_end($db);
+    db_end($db);
+}catch(Exception $e){
+    echo '<b>Fatal error: </b>' . $e->getMessage();
+}
 ?>
