@@ -28,16 +28,16 @@
 		<li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('General Ledger');  ?><span class="fa arrow"></span></span></a>
 		    <ul class="nav nav-second-level">
 			<li>
-			    <a href="index.php?page=GeneralLedger/chartOfAccounts"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a>
+			    <a href="index.php?page=grid&action=GeneralLedger/chartOfAccounts"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a>
 			</li>
 			<li>
-			    <a href="index.php?page=GeneralLedger/ledgerAccountGroup"><?php echo $translation->translateLabel('Ledger Account Group');  ?></a>
+			    <a href="index.php?page=grid&action=GeneralLedger/ledgerAccountGroup"><?php echo $translation->translateLabel('Ledger Account Group');  ?></a>
 			</li>
 			<li>
-			    <a href="index.php?page=GeneralLedger/bankTransactions"><?php echo $translation->translateLabel('Banck Transactions');  ?></a>
+			    <a href="index.php?page=grid&action=GeneralLedger/bankTransactions"><?php echo $translation->translateLabel('Banck Transactions');  ?></a>
 			</li>
 			<li>
-			    <a href="index.php?page=GeneralLedger/bankAccounts"><?php echo $translation->translateLabel('Bank Accounts');  ?></a>
+			    <a href="index.php?page=grid&action=GeneralLedger/bankAccounts"><?php echo $translation->translateLabel('Bank Accounts');  ?></a>
 			</li>
 			<!-- <li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Ledger Transactions');  ?></a></li> -->
 		    </ul>

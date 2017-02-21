@@ -25,13 +25,13 @@ used as model by views/GeneralLedger/ledgerAccountGroup.php
 Calls:
 sql
 
-Last Modified: 20.02.2016
+Last Modified: 21.02.2016
 Last Modified by: Nikita Zaharov
 */
 
 require "./models/GeneralLedger/gridDataSource.php";
 
-class ledgerAccountGroup extends gridDataSource{
+class gridData extends gridDataSource{
     protected $tableName = "ledgeraccountgroup";
 
     //fields to render in grid
@@ -44,6 +44,8 @@ class ledgerAccountGroup extends gridDataSource{
         "GLReportLevel"
     ];
 
+    public $dashboardTitle = "Ledger Account Group";
+    public $breadCrumbTitle = "Ledger Account Group";
     public $idField = "GLAccountGroupID";
     
     //categories which contains table columns, used by view for render tabs and them content

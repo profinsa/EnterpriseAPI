@@ -31,7 +31,7 @@ Last Modified by: Nikita Zaharov
 
 require "./models/GeneralLedger/gridDataSource.php";
 
-class chartOfAccounts extends gridDataSource{
+class gridData extends gridDataSource{
     protected $tableName = "ledgerchartofaccounts";
     //fields to render in grid
     protected $gridFields = [
@@ -43,6 +43,8 @@ class chartOfAccounts extends gridDataSource{
             "GLAccountBalance",
     ];
 
+    public $dashboardTitle = "Chart Of Accounts";
+    public $breadCrumbTitle = "Chart Of Accounts";
     public $idField = "GLAccountNumber";
 
     //categories which contains table columns, used by view for render tabs and them content

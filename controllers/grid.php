@@ -1,10 +1,10 @@
 <?php
 /*
-Name of Page: bankAccounts
+Name of Page: gridController
 
-Method: controller of GeneralLedger/bankAccounts page, used for rendering page and interacting with it
+Method: controller for many grid pages(like General Ledger pages etc), used for rendering page and interacting with it
 
-Date created: Nikita Zaharov, 17.02.2016
+Date created: Nikita Zaharov, 21.02.2016
 
 Use: The controller is responsible for:
 - page rendering using view
@@ -23,10 +23,10 @@ Called from:
 
 Calls:
 models/translation.php
-models/GeneralLedger/banckAccounts.php
+models/gridDataSource derevatives -- models who inherits from gridDataSource
 app from index.php
 
-Last Modified: 20.02.2016
+Last Modified: 21.02.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -34,8 +34,7 @@ require 'models/translation.php';
 
 class controller{
     public $user = false;
-    public $dashboardTitle = "Bank Accounts";
-    public $breadCrumbTitle = "Bank Accounts";
+    public $action = "";
     public $mode = "grid";
     public $category = "Main";
     public $item = "0";
@@ -50,11 +49,12 @@ class controller{
             exit;
         }
 
-        require 'models/' . $app->page . '.php';
+        $this->action = $_GET["action"];
+        require 'models/' . $_GET["action"] . '.php';
 
         $this->user = $_SESSION["user"];
                
-        $data = new bankAccounts($app->db);
+        $data = new gridData($app->db);
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("update", $_GET)){

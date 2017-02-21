@@ -25,13 +25,13 @@ used as model by views/GeneralLedger/backAccounts.php
 Calls:
 sql
 
-Last Modified: 20.02.2016
+Last Modified: 21.02.2016
 Last Modified by: Nikita Zaharov
 */
 
 require "./models/GeneralLedger/gridDataSource.php";
 
-class bankAccounts extends gridDataSource{
+class gridData extends gridDataSource{
     protected $tableName = "bankaccounts";
     protected $db = false;
     //fields to render in grid
@@ -43,6 +43,8 @@ class bankAccounts extends gridDataSource{
         "GLBankAccount"
     ];
 
+    public $dashboardTitle = "Bank Accounts";
+    public $breadCrumbTitle = "Bank Accounts";
     public $idField = "BankAccountNumber";
     
     //categories which contains table columns, used by view for render tabs and them content
