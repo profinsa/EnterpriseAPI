@@ -25,83 +25,251 @@ used as model by views/GeneralLedger/chartOfAccounts.php
 Calls:
 sql
 
-Last Modified: 16.02.2016
+Last Modified: 21.02.2016
 Last Modified by: Nikita Zaharov
 */
 
-class chartOfAccounts{
-    protected $db = false;
+require "./models/GeneralLedger/gridDataSource.php";
+
+class chartOfAccounts extends gridDataSource{
+    protected $tableName = "ledgerchartofaccounts";
     //fields to render in grid
     protected $gridFields = [
             "GLAccountNumber",
+            "GLAccountCode",
             "GLAccountName",
             "GLAccountType",
             "GLBalanceType",
             "GLAccountBalance",
     ];
 
+    public $idField = "GLAccountNumber";
+
     //categories which contains table columns, used by view for render tabs and them content
     public $editCategories = [
         "Main" => [
-            "GLAccountNumber" => "",
-            "GLAccountName" => "",
-            "GLAccountDescription" => "",
-            "GLAccountUse" => "",
-            "GLAccountType" => "",
-            "GLAccountCode" => "",
-            "GLBalanceType" => "",
-            "GLAccountBalance" => "",
-            "GLOtherNotes" => ""	
+            "GLAccountNumber" => [
+                "disableEdit" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLAccountCode" => [
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getGLAccountGroups"
+            ],
+            "GLAccountName" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLAccountDescription" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLAccountUse" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLAccountType" => [
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getGLAccountTypes"
+            ],
+            "GLBalanceType" => [
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getGLBalanceTypes"
+            ],
+            "GLAccountBalance" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLOtherNotes" => [
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]	
         ],
         "Current" => [
-            "GLCurrentYearPeriod1" => "0.00",	 
-            "GLCurrentYearPeriod2" => "0.00",
-            "GLCurrentYearPeriod3" => "0.00",	 
-            "GLCurrentYearPeriod4" => "0.00",	 
-            "GLCurrentYearPeriod5" => "0.00",	 
-            "GLCurrentYearPeriod6" => "0.00",	 
-            "GLCurrentYearPeriod7" => "0.00",	 
-            "GLCurrentYearPeriod8" => "0.00",	 
-            "GLCurrentYearPeriod9" => "0.00",	 
-            "GLCurrentYearPeriod10" => "0.00",
-            "GLCurrentYearPeriod11" => "0.00",
-            "GLCurrentYearPeriod12" => "0.00",
-            "GLCurrentYearPeriod13" => "0.00",
-            "GLCurrentYearPeriod14" => "0.00"
+            "GLCurrentYearPeriod1" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],	 
+            "GLCurrentYearPeriod2" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod3" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod4" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod5" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod6" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod7" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod8" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod9" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod10" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod11" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod12" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod13" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLCurrentYearPeriod14" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ]
         ],
         "Budget" => [
-            "GLBudgetBeginningBalance" => "0.00",
-            "GLBudgetPeriod1" => "0.00",
-            "GLBudgetPeriod2" => "0.00",
-            "GLBudgetPeriod3" => "0.00",
-            "GLBudgetPeriod4" => "0.00",
-            "GLBudgetPeriod5" => "0.00",
-            "GLBudgetPeriod6" => "0.00",
-            "GLBudgetPeriod7" => "0.00",
-            "GLBudgetPeriod8" => "0.00",
-            "GLBudgetPeriod9" => "0.00",
-            "GLBudgetPeriod10" => "0.00",
-            "GLBudgetPeriod11" => "0.00",
-            "GLBudgetPeriod12" => "0.00",
-            "GLBudgetPeriod13" => "0.00",
-            "GLBudgetPeriod14" => "0.00"
+            "GLBudgetBeginningBalance" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod1" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod2" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod3" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod4" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod5" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod6" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod7" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod8" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod9" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod10" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod11" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod12" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod13" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLBudgetPeriod14" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ]
         ],
         "History" => [
-            "GLPriorYearBeginningBalance" => "0.00",
-            "GLPriorYearPeriod1" => "0.00",
-            "GLPriorYearPeriod2" => "0.00",
-            "GLPriorYearPeriod3" => "0.00",
-            "GLPriorYearPeriod4" => "0.00",	 
-            "GLPriortYearPeriod5" => "0.00", //ERROR in sql, must be Prior	 
-            "GLPriorYearPeriod6" => "0.00",	 
-            "GLPriorYearPeriod7" => "0.00",	 
-            "GLPriorYearPeriod8" => "0.00",	 
-            "GLPriorYearPeriod9" => "0.00",	 
-            "GLPriortYearPeriod10" => "0.00",//ERROR in sql, must be Prior	 
-            "GLPriorYearPeriod11" => "0.00",
-            "GLPriorYearPeriod12" => "0.00",
-            "GLPriorYearPeriod13" => "0.00",
-            "GLPriorYearPeriod14" => "0.00"
+            "GLPriorYearBeginningBalance" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod1" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod2" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod3" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod4" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriortYearPeriod5" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],//ERROR in sql, must be Prior
+            "GLPriorYearPeriod6" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod7" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod8" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod9" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriortYearPeriod10" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],//ERROR in sql, must be Prior	 
+            "GLPriorYearPeriod11" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod12" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod13" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ],
+            "GLPriorYearPeriod14" => [
+                "inputType" => "text",
+                "defaultValue" => "0.00"
+            ]
         ]
     ];
 
@@ -112,7 +280,7 @@ class chartOfAccounts{
         "GLAccountDescription" => "Account Description",
         "GLAccountUse" => "Account Use",
         "GLAccountType" => "Account Type",
-        "GLAccountCode" => "Account Code",
+        "GLAccountCode" => "Account Group",
         "GLBalanceType" => "Balance Type",
         "GLAccountBalance" => "Account Balance",
         "GLOtherNotes" => "Other Notes",
@@ -162,18 +330,42 @@ class chartOfAccounts{
         "GLPriorYearPeriod14" => "GL Prior Year Period 14"
     ];
 
-    public function __construct($database){
-        $this->db = $database;
-    }
+    //getting list of available GLAccount Groups
+    public function getGLAccountGroups(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $res_raw = [];
+        $result = mysqli_query($this->db, "SELECT GLAccountGroupID from ledgeraccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountGroupID ASC")  or die('mysql query error: ' . mysqli_error($this->db));
 
-    //getting list of available values for GLAccountType 
+        while($ret = mysqli_fetch_assoc($result))
+            $res_raw[] = $ret;
+
+        foreach($res_raw as $value)
+            $res[$value["GLAccountGroupID"]] = [
+                "title" => $value["GLAccountGroupID"],
+                "value" => $value["GLAccountGroupID"]                
+            ];
+        
+        mysqli_free_result($result);
+        
+        return $res;
+    }
+    
+    //getting list of available GLAccount
     public function getGLAccountTypes(){
         $user = $_SESSION["user"];
         $res = [];
+        $res_ras = [];
         $result = mysqli_query($this->db, "SELECT GLAccountType from ledgeraccounttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
 
         while($ret = mysqli_fetch_assoc($result))
-            $res[] = $ret;
+            $res_raw[] = $ret;
+        foreach($res_raw as $value)
+            $res[$value["GLAccountType"]] = [
+                "title" => $value["GLAccountType"],
+                "value" => $value["GLAccountType"]                
+            ];
+        
         mysqli_free_result($result);
         
         return $res;
@@ -183,116 +375,21 @@ class chartOfAccounts{
     public function getGLBalanceTypes(){
         $user = $_SESSION["user"];
         $res = [];
+        $res_raw = [];
         $result = mysqli_query($this->db, "SELECT GLBalanceType from ledgerbalancetype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
 
         while($ret = mysqli_fetch_assoc($result))
-            $res[] = $ret;
+            $res_raw[] = $ret;
+
+        foreach($res_raw as $value)
+            $res[$value["GLBalanceType"]] = [
+                "title" => $value["GLBalanceType"],
+                "value" => $value["GLBalanceType"]                
+            ];
+        
         mysqli_free_result($result);
         
         return $res;
-    }
-
-    //getting rows for grid
-    public function getPage($number){
-        $user = $_SESSION["user"];
-        $res = [];
-        $result = mysqli_query($this->db, "SELECT " . implode(",", $this->gridFields) . " from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
-
-        while($ret = mysqli_fetch_assoc($result))
-            $res[] = $ret;
-        mysqli_free_result($result);
-        
-        return $res;
-    }
-
-    //getting data for grid edit form 
-    public function getEditItem($GLAccountNumber, $type){
-        $user = $_SESSION["user"];
-        $columns = [];
-        foreach($this->editCategories[$type] as $key=>$value)
-            $columns[] = $key;
-
-        $result = mysqli_query($this->db, "SELECT " . implode(",", $columns) . " from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
-
-        $ret = mysqli_fetch_assoc($result);
-        mysqli_free_result($result);
-        
-        return $ret;        
-    }
-
-    //getting data for new record
-    public function getNewItem($id, $type){
-        if(key_exists("GLchartOfAccountsNew", $_SESSION))
-            return $_SESSION["GLchartOfAccountsNew"]["$type"];
-        else{
-            $_SESSION["GLchartOfAccountsNew"] = $this->editCategories;
-            return $this->editCategories[$type];           
-        }
-    } 
-
-    //getting data for grid view form
-    public function getItem($GLAccountNumber){
-        $user = $_SESSION["user"];
-
-        $result = mysqli_query($this->db, "SELECT " . implode(",", $this->gridFields) . " from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
-
-        $ret = mysqli_fetch_assoc($result);
-        mysqli_free_result($result);
-        
-        return $ret;        
-    }
-
-    //updating data of grid item
-    public function updateItem($GLAccountNumber, $category, $values){
-        $user = $_SESSION["user"];
-        
-        $update_fields = "";
-        foreach($this->editCategories[$category] as $name=>$value){
-            if($update_fields == "")
-                $update_fields = $name . "='" . $values[$name] . "'";
-            else
-                $update_fields .= "," . $name . "='" . $values[$name] . "'";
-        }
-
-        mysqli_query($this->db, "UPDATE ledgerchartofaccounts set " . $update_fields . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
-    }
-
-    //add row to table
-    public function insertItem($values){
-        $user = $_SESSION["user"];
-        
-        $insert_fields = "";
-        $insert_values = "";
-        foreach($this->editCategories as $category=>$arr){
-            foreach($this->editCategories[$category] as $name=>$value){
-                if($insert_fields == ""){
-                    $insert_fields = $name;
-                    $insert_values = "'" . $values[$name] . "'";
-                }else{
-                    $insert_fields .= "," . $name;
-                    $insert_values .= ",'" . $values[$name] . "'";
-                }
-            }
-        }
-
-        $insert_fields .= ',CompanyID,DivisionID,DepartmentID';
-        $insert_values .= ",'" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "'";
-        mysqli_query($this->db, "INSERT INTO ledgerchartofaccounts(" . $insert_fields . ") values(" . $insert_values .")")  or die('mysql query error: ' . mysqli_error($this->db));
-    }
-
-    //delete row from table
-    public function deleteItem($GLAccountNumber){
-        $user = $_SESSION["user"];
-        
-        $update_fields = "";
-        foreach($this->editCategories[$category] as $name=>$value){
-            if($update_fields == "")
-                $update_fields = $name . "='" . $values[$name] . "'";
-            else
-                $update_fields .= "," . $name . "='" . $values[$name] . "'";
-        }
-
-        mysqli_query($this->db, "DELETE from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLAccountNumber='" . $GLAccountNumber ."'")  or die('mysql query error: ' . mysqli_error($this->db));
     }
 }
 ?>
