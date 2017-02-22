@@ -9,7 +9,7 @@
 	    <div class="cssload-speeding-wheel"></div>
 	</div>
 	<section id="wrapper" class="login">
-	    <div class="login-box">
+	    <div class="login-box login-box-position">
 		<div class="white-box">
 		    <form id="loginform" class="form-horizontal form-material" method="POST">
 			<input type="hidden" name="page" value="login">

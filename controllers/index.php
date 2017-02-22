@@ -27,7 +27,7 @@ Calls:
 models/translation.php
 app from index.php
 
-Last Modified: 13.02.2016
+Last Modified: 21.02.2016
 Last Modified by: Nikita Zaharov
 */
 

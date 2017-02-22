@@ -1,9 +1,16 @@
+/*
+login page
+*/
 .login {
     background-color : #03A9F4;
     height: 100%;
     position: fixed;
+    overflow : scroll;
 }
 
+/*
+controls
+*/
 .grid-checkbox{
     width : 25px;
     hegith : 25px;
@@ -13,4 +20,14 @@
     margin-right:5px;
     display:inline;
     cursor:pointer;
+}
+
+
+/*
+adoptation for screen sizes
+*/
+@media all and (max-height: 700px) {
+    .login-box-position {
+	margin-top: 10px;
+    }
 }
