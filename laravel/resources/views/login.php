@@ -151,7 +151,7 @@
 	 loginform.submit(function(e){
 	     var req = $.post("login", loginform.serialize(), null, 'json')
 			.success(function(data) {
-			    window.location = "index.php?page=index";
+			    window.location = "index";
 			})
 			.error(function(err){
 			    var res = err.responseJSON;
@@ -205,7 +205,7 @@
 	 }
 	 
 	 function changeLanguage(event){
-	     $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
+	     $.getJSON("laguage/" + event.target.value)
 	      .success(function(data) {
 		  location.reload();
 	      })

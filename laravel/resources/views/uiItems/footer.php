@@ -1,9 +1,9 @@
 <footer class="footer">
     <?php
-    echo $scope->user["CompanyID"] . ' / ' .
-	 $scope->user["DivisionID"] . ' / ' .
-	 $scope->user["DepartmentID"] . ' / ' .
-	 $scope->user["EmployeeID"];
+    echo $user["CompanyID"] . ' / ' .
+	 $user["DivisionID"] . ' / ' .
+	 $user["DepartmentID"] . ' / ' .
+	 $user["EmployeeID"];
     ?>
     <div class="pull-right">
 	<script>

@@ -1,7 +1,7 @@
 <!-- Left navbar-header -->
 <div class="navbar-default sidebar" role="navigation" style="position:absolute; top:-50px; z-index:5000">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-	<?php include './views/nav/leftUser.php'; ?>
+	<?php require 'leftUser.php'; ?>
 	<ul class="nav" id="side-menu">	    
 	    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
 		<!-- input-group -->
@@ -24,7 +24,7 @@
 	    
 	    <li class="nav-small-cap">--- Main Menu</li>
 
-	    <?php if($scope->user["accesspermissions"]["GLView"]): ?>
+	    <?php if($user["accesspermissions"]["GLView"]): ?>
 		<li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('General Ledger');  ?><span class="fa arrow"></span></span></a>
 		    <ul class="nav nav-second-level">
 			<li>
