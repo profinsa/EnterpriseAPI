@@ -125,7 +125,7 @@
 					     var itemData = $("#itemData");
 					     $.getJSON("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
 					      .success(function(data) {
-						  window.location = "<?php echo $public_prefix; ?>/grid/<?php $scope["path"]; ?>";
+						  window.location = "<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"]; ?>/grid/main/all";
 					      })
 					      .error(function(err){
 						  console.log('wrong');
@@ -143,7 +143,7 @@
 					//render tabs like Main, Current etc
 					//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 					foreach($data->editCategories as $key =>$value)
-					    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"grid/" . $scope["path"] .  "/view/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
+					    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"" . $public_prefix ."/grid/" . $scope["path"] .  "/view/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
 					?>
 				    </ul>
 				    <div class="table-responsive">
@@ -201,10 +201,11 @@
 					//render tabs like Main, Current etc
 					//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 					foreach($data->editCategories as $key =>$value)
-					    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"grid/" . $scope["path"] . "/" .  $scope["mode"] ."/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
+					    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"" . $public_prefix . "/grid/" . $scope["path"] . "/" .  $scope["mode"] ."/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
 					?>
 				    </ul>
 				    <form id="itemData" class="form-material form-horizontal m-t-30">
+					<?php echo csrf_field(); ?>
 					<input type="hidden" name="id" value="<?php echo $scope["item"]; ?>" />
 					<input type="hidden" name="category" value="<?php echo $scope["category"]; ?>" />
 		            <?php
@@ -244,14 +245,15 @@
 					echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
 					$method = $data->editCategories[$scope["category"]][$key]["dataProvider"];
 					$types = $data->$method();
-
+//
+					echo json_encode($types) . 'eeeee'. $value;
 					if($value)
-					    echo "<option value=\"" . $value . "\">" . $types[$value]["title"] . "</option>";
+					    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
 					else
 					    echo "<option></option>";
-					echo json_encode($types);
+
 					foreach($types as $type)
-					    if(!$value || (key_exists($key, $type) && $type[$key] != $value))
+					    if(!$value || $type["value"] != $value)
 						echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
 					echo"</select></div></div>";
 					break;
@@ -286,7 +288,7 @@
 				     //handler of save button if we in edit mode. Just doing XHR request to save data
 				     function saveItem(){
 					 var itemData = $("#itemData");
-					 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"]; ?>update", itemData.serialize(), null, 'json')
+					 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"]; ?>/update", itemData.serialize(), null, 'json')
 					  .success(function(data) {
 					      console.log('ok');
 					      window.location = "<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"];  ?>/view/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>";
@@ -319,6 +321,9 @@
 
 	    <script>
 	     $(document).ready(function(){
+		 $.ajaxSetup({
+		     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+		 });
 		 $('#myTable').DataTable();
 		 $(document).ready(function() {
 		     var table = $('#example').DataTable({

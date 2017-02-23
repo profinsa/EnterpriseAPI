@@ -23,13 +23,17 @@ created and used for ajax requests by controllers/GeneralLedger/banckAccounts.ph
 used as model by views/GeneralLedger/backAccounts.php
 
 Calls:
-sql
+DB
 
-Last Modified: 21.02.2016
+Last Modified: 23.02.2016
 Last Modified by: Nikita Zaharov
 */
 
-require "./models/gridDataSource.php";
+namespace App\Models;
+
+use Illuminate\Support\Facades\DB;
+require __DIR__ . "/../../Models/gridDataSource.php";
+use Session;
 
 class gridData extends gridDataSource{
     protected $tableName = "banktransactions";
@@ -139,19 +143,15 @@ class gridData extends gridDataSource{
 
     //getting list of available transaction types 
     public function getTransactionTypes(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $raw_res = [];
-        $result = mysqli_query($this->db, "SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $result = DB::select("SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
-        while($ret = mysqli_fetch_assoc($result))
-            $raw_res[] = $ret;
-        foreach($raw_res as $key=>$value)
-            $res[$value["BankTransactionTypeID"]] = [
-                "title" => $value["BankTransactionTypeID"],
-                "value" => $value["BankTransactionTypeID"]
+        foreach($result as $key=>$value)
+            $res[$value->BankTransactionTypeID] = [
+                "title" => $value->BankTransactionTypeID,
+                "value" => $value->BankTransactionTypeID
             ];
-        mysqli_free_result($result);
         
         return $res;
     }

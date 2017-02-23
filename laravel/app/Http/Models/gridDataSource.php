@@ -110,12 +110,9 @@ class gridDataSource{
     public function getItem($id){
         $user = Session::get("user");
 
-        $result = mysqli_query($this->db, "SELECT " . implode(",", $this->gridFields) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $result = DB::select("SELECT " . implode(",", $this->gridFields) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'", array());
 
-        $ret = mysqli_fetch_assoc($result);
-        mysqli_free_result($result);
-        
-        return $ret;        
+        return json_decode(json_encode($result), true)[0];
     }
 
     //updating data of grid item
@@ -130,12 +127,12 @@ class gridDataSource{
                 $update_fields .= "," . $name . "='" . $values[$name] . "'";
         }
 
-        mysqli_query($this->db, "UPDATE " . $this->tableName . " set " . $update_fields . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'")  or die('mysql query error: ' . mysqli_error($this->db));
+        DB::update("UPDATE " . $this->tableName . " set " . $update_fields . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'");
     }
 
     //add row to table
     public function insertItem($values){
-        $user = Session("user");
+        $user = Session::get("user");
         
         $insert_fields = "";
         $insert_values = "";
@@ -153,22 +150,14 @@ class gridDataSource{
 
         $insert_fields .= ',CompanyID,DivisionID,DepartmentID';
         $insert_values .= ",'" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "'";
-        mysqli_query($this->db, "INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")")  or die('mysql query error: ' . mysqli_error($this->db));
+        DB::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")");
     }
 
     //delete row from table
     public function deleteItem($id){
         $user = Session::get("user");
         
-        $update_fields = "";
-        foreach($this->editCategories[$category] as $name=>$value){
-            if($update_fields == "")
-                $update_fields = $name . "='" . $values[$name] . "'";
-            else
-                $update_fields .= "," . $name . "='" . $values[$name] . "'";
-        }
-
-        mysqli_query($this->db, "DELETE from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'")  or die('mysql query error: ' . mysqli_error($this->db));
+        DB::delete("DELETE from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'");
     }
 }
 

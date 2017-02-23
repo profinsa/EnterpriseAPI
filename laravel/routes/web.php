@@ -29,3 +29,6 @@ Route::get('/index', "Index@index");
 
 //grid pages
 Route::get('/grid/{folder}/{page}/{action}/{category}/{item}', "Grid@show");
+Route::post('/grid/{folder}/{page}/update', "Grid@update");
+Route::post('/grid/{folder}/{page}/insert', "Grid@insert");
+Route::get('/grid/{folder}/{page}/delete/{item}', "Grid@delete");

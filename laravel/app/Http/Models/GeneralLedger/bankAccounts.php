@@ -23,17 +23,19 @@ created and used for ajax requests by controllers/GeneralLedger/banckAccounts.ph
 used as model by views/GeneralLedger/backAccounts.php
 
 Calls:
-sql
+DB
 
-Last Modified: 21.02.2016
+Last Modified: 23.02.2016
 Last Modified by: Nikita Zaharov
 */
 
-require "./models/gridDataSource.php";
+namespace App\Models;
+
+require __DIR__ . "/../../Models/gridDataSource.php";
+use Session;
 
 class gridData extends gridDataSource{
     protected $tableName = "bankaccounts";
-    protected $db = false;
     //fields to render in grid
     protected $gridFields = [
         "BankID",

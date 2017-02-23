@@ -54,11 +54,11 @@ class Grid extends BaseController{
         }
 
         require __DIR__ . "/../Models/" . $folder . '/' . $page .  '.php';
+        $data = new \App\Models\gridData();
 
         $user = Session::get("user");
                
         $translation = new \App\Models\translation($user["language"]);
-        $data = new \App\Models\gridData();
 
         $sessionValues = Session::all();//получаем данные из сессии
         $token = $sessionValues['_token'];
@@ -79,20 +79,29 @@ class Grid extends BaseController{
         ]);
     }
 
-    public function update($folder, $page, $item){
+    public function update($folder, $page){
+        require __DIR__ . "/../Models/" . $folder . '/' . $page .  '.php';
+        $data = new \App\Models\gridData();
+        
         $data->updateItem($_POST["id"], $_POST["category"], $_POST);
         header('Content-Type: application/json');
         echo "{ \"message\" : \"ok\"}";
     }
     
-    public function insert($folder, $page, $item){
+    public function insert($folder, $page){
+        require __DIR__ . "/../Models/" . $folder . '/' . $page .  '.php';
+        $data = new \App\Models\gridData();
+        
         $data->insertItem($_POST);
         header('Content-Type: application/json');
         echo "{ \"message\" : \"ok\"}";
     }
 
     public function delete($folder, $page, $item){
-        $data->deleteItem($_GET["id"]);
+        require __DIR__ . "/../Models/" . $folder . '/' . $page .  '.php';
+        $data = new \App\Models\gridData();
+        
+        $data->deleteItem($item);
         header('Content-Type: application/json');
         echo "{ \"message\" : \"ok\"}";
     }

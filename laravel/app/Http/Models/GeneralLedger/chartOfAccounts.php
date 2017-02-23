@@ -25,11 +25,15 @@ used as model by views/GeneralLedger/chartOfAccounts.php
 Calls:
 sql
 
-Last Modified: 21.02.2016
+Last Modified: 23.02.2016
 Last Modified by: Nikita Zaharov
 */
 
-require "./models/gridDataSource.php";
+namespace App\Models;
+
+use Illuminate\Support\Facades\DB;
+require __DIR__ . "/../../Models/gridDataSource.php";
+use Session;
 
 class gridData extends gridDataSource{
     protected $tableName = "ledgerchartofaccounts"; //table name which used for read and write fields
@@ -347,62 +351,44 @@ class gridData extends gridDataSource{
 
     //getting list of available GLAccount Groups
     public function getGLAccountGroups(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $res_raw = [];
-        $result = mysqli_query($this->db, "SELECT GLAccountGroupID from ledgeraccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountGroupID ASC")  or die('mysql query error: ' . mysqli_error($this->db));
-
-        while($ret = mysqli_fetch_assoc($result))
-            $res_raw[] = $ret;
-
-        foreach($res_raw as $value)
-            $res[$value["GLAccountGroupID"]] = [
-                "title" => $value["GLAccountGroupID"],
-                "value" => $value["GLAccountGroupID"]                
+        $result = DB::select("SELECT GLAccountGroupID from ledgeraccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountGroupID ASC", array());
+        foreach($result as $value)
+            $res[$value->GLAccountGroupID] = [
+                "title" => $value->GLAccountGroupID,
+                "value" => $value->GLAccountGroupID                
             ];
-        
-        mysqli_free_result($result);
         
         return $res;
     }
     
     //getting list of available GLAccount
     public function getGLAccountTypes(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $res_ras = [];
-        $result = mysqli_query($this->db, "SELECT GLAccountType from ledgeraccounttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $result = DB::select("SELECT GLAccountType from ledgeraccounttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
-        while($ret = mysqli_fetch_assoc($result))
-            $res_raw[] = $ret;
-        foreach($res_raw as $value)
-            $res[$value["GLAccountType"]] = [
-                "title" => $value["GLAccountType"],
-                "value" => $value["GLAccountType"]                
+        foreach($result as $value)
+            $res[$value->GLAccountType] = [
+                "title" => $value->GLAccountType,
+                "value" => $value->GLAccountType                
             ];
-        
-        mysqli_free_result($result);
         
         return $res;
     }
     
     //getting list of available values for GLBalanceType 
     public function getGLBalanceTypes(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $res_raw = [];
-        $result = mysqli_query($this->db, "SELECT GLBalanceType from ledgerbalancetype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $result = DB::select("SELECT GLBalanceType from ledgerbalancetype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
-        while($ret = mysqli_fetch_assoc($result))
-            $res_raw[] = $ret;
-
-        foreach($res_raw as $value)
-            $res[$value["GLBalanceType"]] = [
-                "title" => $value["GLBalanceType"],
-                "value" => $value["GLBalanceType"]                
+        foreach($result as $value)
+            $res[$value->GLBalanceType] = [
+                "title" => $value->GLBalanceType,
+                "value" => $value->GLBalanceType                
             ];
-        
-        mysqli_free_result($result);
         
         return $res;
     }

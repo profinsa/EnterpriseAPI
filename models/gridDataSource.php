@@ -171,14 +171,6 @@ class gridDataSource{
     public function deleteItem($id){
         $user = $_SESSION["user"];
         
-        $update_fields = "";
-        foreach($this->editCategories[$category] as $name=>$value){
-            if($update_fields == "")
-                $update_fields = $name . "='" . $values[$name] . "'";
-            else
-                $update_fields .= "," . $name . "='" . $values[$name] . "'";
-        }
-
         mysqli_query($this->db, "DELETE from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'")  or die('mysql query error: ' . mysqli_error($this->db));
     }
 }
