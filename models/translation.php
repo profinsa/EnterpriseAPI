@@ -57,8 +57,7 @@ class translation{
 
         while ($row = mysqli_fetch_assoc($result)) {
             $this->terms[$row["ObjID"]] = $row;
-        }            
-        mysqli_free_result($result);
+        }
     }
 
     //translate term(label) to language with whic model is initialized

@@ -67,11 +67,11 @@
 				</div>
 				<div class="col-xs-6">
 				    <select name="language" class="form-control pull-right row b-none" onchange="changeLanguage(event);">
-					<option><?php echo $scope->user["language"]; ?></option>
+					<option><?php /*echo $scope->user["language"]; */?></option>
 					<?php
-					foreach($translation->languages as $value)
+/*					foreach($translation->languages as $value)
 					    if($value != $scope->user["language"])
-						echo "<option>" . $value . "</option>";
+						echo "<option>" . $value . "</option>";*/
 					?>
 				    </select>
 				</div>
@@ -85,8 +85,8 @@
 			     <div class="col-xs-6">
 			     <select class="form-control pull-right row b-none">
 			     <?php
-			     foreach($scope->styles as $value)
-			     echo "<option>$value</option>";
+			     /*foreach($scope->styles as $value)
+			     echo "<option>$value</option>";*/
 			     ?>
 			     </select>
 			     </div>
@@ -98,7 +98,7 @@
 				    <input name="captcha" id="icaptcha" class="form-control" type="text" required placeholder="<?php echo $translation->translateLabel("Enter captcha"); ?>">
 				</div>
 				<div class="col-xs-6">
-				    <img id="captcha" src="<?php echo $scope->captchaBuilder->inline(); ?>" />
+				    <img id="captcha" src="<?php /*echo $scope->captchaBuilder->inline();*/ ?>" />
 				</div>
 			    </div>
 			    <!--<div class="form-group">
