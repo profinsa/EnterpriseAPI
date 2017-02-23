@@ -18,6 +18,7 @@ Route::get('/', function () {
 //login page
 Route::get('/login', "Login@show");
 Route::post('/login', "Login@login");
+Route::get('/ByPassLogin', "Login@ByPassLogin");
 
 //Language settings
 

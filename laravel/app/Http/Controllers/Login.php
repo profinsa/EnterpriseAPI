@@ -15,6 +15,7 @@ use Gregwar\Captcha\CaptchaBuilder;
 require __DIR__ . "/../Models/translation.php";
 require __DIR__ . "/../Models/companies.php";
 require __DIR__ . "/../Models/users.php";
+require __DIR__ . "/../../common.php";
 
 class _app{
     public $title = "Integral Accounting New Tech PHP";
@@ -80,6 +81,21 @@ class Login extends BaseController
     }
 
     public function ByPassLogin(){
+        $users = new \App\Models\users();
+        $defaultUser = defaultUser();
+        if($_SERVER['REQUEST_METHOD'] === 'GET') { //log in as default user and redirect to index
+            $user = $users->search($defaultUser["Company"],
+                                   $defaultUser["Username"],
+                                   $defaultUser["Password"],
+                                   $defaultUser["Division"],
+                                   $defaultUser["Department"]);                 
+
+            $user["language"] = $defaultUser["Language"];
+            Session::put("user", $user);
+
+            header("Location: index");
+            return;
+        }
     }
 }
 
