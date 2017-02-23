@@ -82,7 +82,7 @@
 	    
 
 	    <li>
-		<a href="index.php?page=index&logout=true" class="waves-effect">
+		<a href="login" class="waves-effect">
 		    <i class="icon-logout fa-fw"></i>
 		    <span class="hide-menu"><?php echo $translation->translateLabel("Log out"); ?></span>
 		</a>
@@ -92,7 +92,7 @@
     </div>
     <script>
      function changeLanguage(event){
-	 $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
+	 $.getJSON("language/" + event.target.value)
 	  .success(function(data) {
 	      location.reload();
 	  })

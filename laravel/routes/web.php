@@ -19,6 +19,10 @@ Route::get('/', function () {
 Route::get('/login', "Login@show");
 Route::post('/login', "Login@login");
 
+//Language settings
+
+Route::get('/language/{lang}', "Language@set");
+
 //index page
 Route::get('/index', "Index@index");
 

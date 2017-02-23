@@ -54,8 +54,7 @@ class _translation{
     }
 }
 
-class Index extends BaseController
-{
+class Index extends BaseController{
     public $dashboardTitle = "Accounting Dashboard";
     public $breadCrumbTitle = "Accounting Dashboard";
     
@@ -66,7 +65,7 @@ class Index extends BaseController
         if(!Session::has("user") || !key_exists("EmployeeUserName", Session::get("user"))){//redirect to prevent access un logined users
             Session::put("user", false);
             header("Location: login");
-            exit;
+            return;
         }
 
         $user = Session::get("user");

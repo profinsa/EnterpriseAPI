@@ -60,10 +60,9 @@ class Login extends BaseController
         if(!$wrong_captcha && $user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])){//access granted, captcha is matched                 
             $user["language"] = $_POST["language"];
             Session::put("user", $user);
-            header('Content-Type: application/json');
-            echo json_encode(array(
+            return Response::json(array(
                 "message" =>  "ok"
-            ));
+            ), 200); 
         }else{//something wrong: captcha, company, username, password. Generating new captcha
             $captcha->build();
             Session::put("captcha", $captcha->getPhrase());
@@ -77,7 +76,10 @@ class Login extends BaseController
                 $response["wrong_user"] = true;
 
             return Response::json($response, 401); 
-            }        
+        }        
+    }
+
+    public function ByPassLogin(){
     }
 }
 
