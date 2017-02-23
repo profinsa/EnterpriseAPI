@@ -13,12 +13,12 @@
 		<!-- /input-group -->
 	    </li>
 	    <li class="nav-small-cap m-t-10">--- My Menu</li>
-	    <li> <a href="index.php?page=index" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Dashboard'); ?> </span></a></li>
+	    <li> <a href="<?php echo $public_prefix; ?>/index" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Dashboard'); ?> </span></a></li>
 	    
-	    <li> <a href="index.php?page=index#tasks" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Tasks');  ?> </span></a></li>
+	    <li> <a href="<?php echo $public_prefix; ?>/index#tasks" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Tasks');  ?> </span></a></li>
 	    
 	    <li>
-		<a href="index.php?page=index#chat" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Chat');  ?> </span>
+		<a href="<?php echo $public_prefix; ?>/index#chat" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Chat');  ?> </span>
 		</a>
 	    </li>
 	    
@@ -28,16 +28,16 @@
 		<li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('General Ledger');  ?><span class="fa arrow"></span></span></a>
 		    <ul class="nav nav-second-level">
 			<li>
-			    <a href="index.php?page=grid&action=GeneralLedger/chartOfAccounts"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a>
+			    <a href="<?php echo $public_prefix; ?>/grid/GeneralLedger/chartOfAccounts/grid/main/all"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a>
 			</li>
 			<li>
-			    <a href="index.php?page=grid&action=GeneralLedger/ledgerAccountGroup"><?php echo $translation->translateLabel('Ledger Account Group');  ?></a>
+			    <a href="<?php echo $public_prefix; ?>/grid/GeneralLedger/ledgerAccountGroup/grid/main/all"><?php echo $translation->translateLabel('Ledger Account Group');  ?></a>
 			</li>
 			<li>
-			    <a href="index.php?page=grid&action=GeneralLedger/bankTransactions"><?php echo $translation->translateLabel('Banck Transactions');  ?></a>
+			    <a href="<?php echo $public_prefix; ?>/grid/GeneralLedger/bankTransactions/grid/main/all"><?php echo $translation->translateLabel('Banck Transactions');  ?></a>
 			</li>
 			<li>
-			    <a href="index.php?page=grid&action=GeneralLedger/bankAccounts"><?php echo $translation->translateLabel('Bank Accounts');  ?></a>
+			    <a href="<?php echo $public_prefix; ?>/grid/GeneralLedger/bankAccounts/grid/main/all"><?php echo $translation->translateLabel('Bank Accounts');  ?></a>
 			</li>
 			<!-- <li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Ledger Transactions');  ?></a></li> -->
 		    </ul>

@@ -22,94 +22,83 @@ inherited by models/GeneralLedger/*
 Calls:
 sql
 
-Last Modified: 21.02.2016
+Last Modified: 23.02.2016
 Last Modified by: Nikita Zaharov
 */
+
+namespace App\Models;
+
+use Illuminate\Support\Facades\DB;
+use Session;
+
 class gridDataSource{
     protected $tableName = "";
-    protected $db = false;
     //fields to render in grid
     protected $gridFields = [];
 
     public $idField = "";
     
-    public function __construct($database){
-        $this->db = $database;
-    }
-
     //getting list of available transaction types 
     public function getAccounts(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $raw_res = [];
-        $result = mysqli_query($this->db, "SELECT GLAccountNumber,GLAccountName from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $result = DB::select("SELECT GLAccountNumber,GLAccountName from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
-        while($ret = mysqli_fetch_assoc($result))
-            $raw_res[] = $ret;
-        foreach($raw_res as $key=>$value)
-            $res[$value["GLAccountNumber"]] = [
-                "title" => $value["GLAccountNumber"] . ", " . $value["GLAccountName"],
-                "value" => $value["GLAccountNumber"]
+        foreach($result as $key=>$value)
+            $res[$value->GLAccountNumber] = [
+                "title" => $value->GLAccountNumber . ", " . $value->GLAccountName,
+                "value" => $value->GLAccountNumber
             ];
-        mysqli_free_result($result);
         return $res;
     }
     
     //getting list of available values for GLAccountType 
     public function getCurrencyTypes(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $raw_res = [];
-        $result = mysqli_query($this->db, "SELECT CurrencyID,CurrencyType from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $result = DB::select("SELECT CurrencyID,CurrencyType from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
-        while($ret = mysqli_fetch_assoc($result))
-            $raw_res[] = $ret;
-        foreach($raw_res as $key=>$value)
-            $res[$value["CurrencyID"]] = [
-                "title" => $value["CurrencyID"] . ", " . $value["CurrencyType"],
-                "value" => $value["CurrencyID"]
+        foreach($result as $key=>$value)
+            $res[$value->CurrencyID] = [
+                "title" => $value->CurrencyID . ", " . $value->CurrencyType,
+                "value" => $value->CurrencyID
             ];
-        mysqli_free_result($result);
         
         return $res;
     }
     
     //getting rows for grid
     public function getPage($number){
-        $user = $_SESSION["user"];
-        $res = [];
-        $result = mysqli_query($this->db, "SELECT " . implode(",", $this->gridFields) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $user = Session::get("user");
+        $result = DB::select("SELECT " . implode(",", $this->gridFields) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
-        while($ret = mysqli_fetch_assoc($result))
-            $res[] = $ret;
-        mysqli_free_result($result);
+        $result = json_decode(json_encode($result), true);
         
-        return $res;
+        return $result;
     }
 
     //getting data for grid edit form 
     public function getEditItem($id, $type){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $columns = [];
         foreach($this->editCategories[$type] as $key=>$value)
             $columns[] = $key;
 
-        $result = mysqli_query($this->db, "SELECT " . implode(",", $columns) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $result = DB::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'", array());
 
-        $ret = mysqli_fetch_assoc($result);
-        mysqli_free_result($result);
+        $result = json_decode(json_encode($result), true)[0];
         
-        return $ret;        
+        return $result;        
     }
 
     //getting data for new record
     public function getNewItem($id, $type){
         $values = [];
-        if(key_exists("GL" . $this->tableName . "New", $_SESSION))
-            foreach($_SESSION["GL" . $this->tableName . "New"]["$type"] as $key=>$value)
+        if(Session::has("GL" . $this->tableName . "New"))
+            foreach(Session::get("GL" . $this->tableName . "New")["$type"] as $key=>$value)
                 $values[$key] = $value["defaultValue"];
         else{
-            $_SESSION["GL" . $this->tableName . "New"] = $this->editCategories;
+            Session::put("GL" . $this->tableName . "New", $this->editCategories);
             $values = [];
             foreach($this->editCategories[$type] as $key=>$value)
                 $values[$key] = $value["defaultValue"];
@@ -119,7 +108,7 @@ class gridDataSource{
 
     //getting data for grid view form
     public function getItem($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
         $result = mysqli_query($this->db, "SELECT " . implode(",", $this->gridFields) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'")  or die('mysql query error: ' . mysqli_error($this->db));
 
@@ -131,7 +120,7 @@ class gridDataSource{
 
     //updating data of grid item
     public function updateItem($id, $category, $values){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         
         $update_fields = "";
         foreach($this->editCategories[$category] as $name=>$value){
@@ -146,7 +135,7 @@ class gridDataSource{
 
     //add row to table
     public function insertItem($values){
-        $user = $_SESSION["user"];
+        $user = Session("user");
         
         $insert_fields = "";
         $insert_values = "";
@@ -169,7 +158,7 @@ class gridDataSource{
 
     //delete row from table
     public function deleteItem($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         
         $update_fields = "";
         foreach($this->editCategories[$category] as $name=>$value){

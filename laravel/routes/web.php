@@ -27,5 +27,5 @@ Route::get('/language/{lang}', "Language@set");
 //index page
 Route::get('/index', "Index@index");
 
-//
-//Route::get('/grid', "Grid@grid");
+//grid pages
+Route::get('/grid/{folder}/{page}/{action}/{category}/{item}', "Grid@show");

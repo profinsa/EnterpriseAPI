@@ -21,12 +21,6 @@ class _app{
     public $title = "Integral Accounting New Tech PHP";
 }
 
-class _translation{
-    public function translateLabel($label){
-        return $label;
-    }
-}
-
 class Login extends BaseController
 {
     //use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -40,6 +34,7 @@ class Login extends BaseController
         $sessionValues = Session::all();//получаем данные из сессии
         $token = $sessionValues['_token'];
         return view("login", [ "app" => new _app,
+                               "public_prefix" => public_prefix(),
                                "translation" => new \App\Models\translation("english"),
                                "companies" => new \App\Models\companies,
                                "captchaBuilder" => $captcha,

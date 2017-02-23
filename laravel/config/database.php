@@ -43,7 +43,7 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'integralx'),
+            'database' => env('DB_DATABASE', 'myenterprise'),
             'username' => env('DB_USERNAME', 'enterprise'),
             'password' => env('DB_PASSWORD', 'enterprise'),
             'charset' => 'utf8mb4',

@@ -7,24 +7,24 @@
   <meta name="csrf-token" content="<?php echo csrf_token(); ?>" />  <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
   <title><?php echo $app->title; ?></title>
   <!-- Bootstrap Core CSS -->
-  <link href="dependencies/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo $public_prefix; ?>/dependencies/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- jQuery -->
-  <script src="dependencies/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap Core JavaScript -->
-  <script src="dependencies/assets/bootstrap/dist/js/bootstrap.min.js"></script>
-  <link href="dependencies/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+  <script src="<?php echo $public_prefix; ?>/dependencies/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link href="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
   <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
   <!-- Menu CSS -->
-  <link href="dependencies/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+  <link href="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
   <!-- morris CSS -->
-  <link href="dependencies/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+  <link href="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
   <!-- animation CSS -->
-  <link href="dependencies/assets/css/animate.css" rel="stylesheet">
+  <link href="<?php echo $public_prefix; ?>/dependencies/assets/css/animate.css" rel="stylesheet">
   <!-- Custom CSS -->
-  <link href="dependencies/assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="<?php echo $public_prefix; ?>/dependencies/assets/css/style.css" rel="stylesheet">
+  <link href="<?php echo $public_prefix; ?>/assets/css/style.css" rel="stylesheet">
   <!-- color CSS -->
-  <link href="dependencies/assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet">
+  <link href="<?php echo $public_prefix; ?>/dependencies/assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>

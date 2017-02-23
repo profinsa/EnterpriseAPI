@@ -1,4 +1,8 @@
 <?php
+function public_prefix(){
+    return "/app/laravel/public";
+}
+
 function defaultUser(){
     return [
         "Company" => "DINOS",
