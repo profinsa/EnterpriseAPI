@@ -12,7 +12,7 @@
 	    <div class="login-box login-box-position">
 		<div class="white-box">
 		    <form id="loginform" class="form-horizontal form-material" method="POST">
-			<input type="hidden" name="page" value="login">
+			<?php echo csrf_field(); ?>
 			<h3 class="box-title m-b-20"><?php echo $translation->translateLabel("Sign In"); ?></h3>
 			<div class="form-group">
 			    <div class="row">
@@ -67,11 +67,11 @@
 				</div>
 				<div class="col-xs-6">
 				    <select name="language" class="form-control pull-right row b-none" onchange="changeLanguage(event);">
-					<option><?php /*echo $scope->user["language"]; */?></option>
+					<option><?php echo $user["language"]; ?></option>
 					<?php
-/*					foreach($translation->languages as $value)
-					    if($value != $scope->user["language"])
-						echo "<option>" . $value . "</option>";*/
+					foreach($translation->languages as $value)
+					    if($value != $user["language"])
+						echo "<option>" . $value . "</option>";
 					?>
 				    </select>
 				</div>
@@ -98,7 +98,7 @@
 				    <input name="captcha" id="icaptcha" class="form-control" type="text" required placeholder="<?php echo $translation->translateLabel("Enter captcha"); ?>">
 				</div>
 				<div class="col-xs-6">
-				    <img id="captcha" src="<?php /*echo $scope->captchaBuilder->inline();*/ ?>" />
+				    <img id="captcha" src="<?php echo $captchaBuilder->inline(); ?>" />
 				</div>
 			    </div>
 			    <!--<div class="form-group">
@@ -149,7 +149,7 @@
 	<script>
 	 var loginform = $('#loginform');
 	 loginform.submit(function(e){
-	     var req = $.post("index.php?page=login", loginform.serialize(), null, 'json')
+	     var req = $.post("login", loginform.serialize(), null, 'json')
 			.success(function(data) {
 			    window.location = "index.php?page=index";
 			})

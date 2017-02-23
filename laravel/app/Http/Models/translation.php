@@ -19,7 +19,7 @@ Called from:
 + most controllers from /controllers
 
 Calls:
-sql
+DB
 
 Last Modified: 23.02.2016
 Last Modified by: Nikita Zaharov

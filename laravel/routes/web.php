@@ -15,4 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//login page
 Route::get('/login', "Login@show");
+Route::post('/login', "Login@login");
+
+//index page
+Route::get('/index', "Index@index");
+
+//
+//Route::get('/grid', "Grid@grid");

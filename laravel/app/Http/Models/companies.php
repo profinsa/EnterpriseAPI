@@ -18,7 +18,7 @@ Called from:
 + controllers/login.php
 
 Calls:
-sql
+DB
 
 Last Modified: 23.02.2016
 Last Modified by: Nikita Zaharov
