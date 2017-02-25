@@ -21,7 +21,7 @@
 		</select>
 	    </li>
 
-	    <li><a href="login"><i class="fa fa-power-off"></i><?php echo $translation->translateLabel("Log out"); ?></a></li>
+	    <li><a href="<?php echo $public_prefix; ?>/login"><i class="fa fa-power-off"></i><?php echo $translation->translateLabel("Log out"); ?></a></li>
 	</ul>
     </div>
 </div>

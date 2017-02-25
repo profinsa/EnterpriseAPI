@@ -8,14 +8,15 @@
   <title><?php echo $app->title; ?></title>
   <!-- Bootstrap Core CSS -->
   <link href="<?php echo $public_prefix; ?>/dependencies/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <!-- jQuery -->
   <script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap Core JavaScript -->
   <script src="<?php echo $public_prefix; ?>/dependencies/assets/bootstrap/dist/js/bootstrap.min.js"></script>
   <link href="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-  <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" /> 
   <!-- Menu CSS -->
-  <link href="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+  <!-- <link href="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet"> -->
   <!-- morris CSS -->
   <link href="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
   <!-- animation CSS -->
