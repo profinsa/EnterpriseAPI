@@ -63,7 +63,7 @@ class Index extends BaseController{
 
         $sessionValues = Session::all();//получаем данные из сессии
         $token = $sessionValues['_token'];
-        return view("index", [ "app" => new _app,
+        return view("nindex", [ "app" => new _app,
                                "public_prefix" => public_prefix(),
                                "translation" => $translation,
                                "companies" => new \App\Models\companies,

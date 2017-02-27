@@ -11,6 +11,10 @@ login page
 /*
 controls
 */
+.dropdown-label {
+    padding:7px 0 0 0px;
+}
+
 .grid-checkbox{
     width : 25px;
     hegith : 25px;

@@ -62,7 +62,7 @@ class Grid extends BaseController{
 
         $sessionValues = Session::all();//получаем данные из сессии
         $token = $sessionValues['_token'];
-        return view("gridView", [ "app" => new _app,
+        return view("ngridView", [ "app" => new _app,
                                   "public_prefix" => public_prefix(),
                                   "translation" => $translation,
                                   "user" => $user,
