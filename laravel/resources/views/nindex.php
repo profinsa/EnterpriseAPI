@@ -3,7 +3,7 @@
 <html>
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Leads</title>
+	<title><?php echo $app->title; ?></title>
 	<link href="<?php echo $public_prefix; ?>/assets/css/newtechcrm-vertical.css" rel="stylesheet">
 	<link href="<?php echo $public_prefix; ?>/assets/css/style.css" rel="stylesheet">
 	<script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/jquery/dist/jquery.min.js"></script>
@@ -591,18 +591,22 @@
 	    "type" => "submenu",
 	    "data" => [
 		[
+		    "id" => "GeneralLedger/chartOfAccounts",
 		    "full" => $translation->translateLabel('Chart Of Accounts'),
 		    "href"=> $public_prefix . "/grid/GeneralLedger/chartOfAccounts/grid/main/all"
 		],
 		[
+		    "id" => "GeneralLedger/ledgerAccountGroup",
 		    "full" => $translation->translateLabel('Ledger Account Group'),
 		    "href" => $public_prefix . "/grid/GeneralLedger/ledgerAccountGroup/grid/main/all"
 		],
 		[
-		    "full" => $translation->translateLabel('Banck Transactions'),
+		    "id" => "GeneralLedger/bankTransactions",
+		    "full" => $translation->translateLabel('Bank Transactions'),
 		    "href" => $public_prefix . "/grid/GeneralLedger/bankTransactions/grid/main/all"
 		],
 		[
+		    "id" => "GeneralLedger/bankAccounts",
 		    "full" => $translation->translateLabel('Bank Accounts'),
 		    "href" => $public_prefix . "/grid/GeneralLedger/bankAccounts/grid/main/all"
 		]
@@ -671,9 +675,9 @@
     ?>
 	  
 
-    <body style="min-height: 450px;" class=""><header id="header"><div id="navbar"><div class="navbar navbar-inverse" role="navigation">
+    <body onload="main();" style="min-height: 450px;" class=""><header id="header"><div id="navbar"><div class="navbar navbar-inverse" role="navigation">
 	<div class="navbar-header">
-            <a class="navbar-brand nav-link" href="http://demo.espocrm.com/basic/?lang=en_US#"><img src="./Leads_files/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
+            <a class="navbar-brand nav-link" href="<?php echo $public_prefix; ?>/index"><img src="<?php echo $public_prefix; ?>/assets/images/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-body">
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>
@@ -683,21 +687,20 @@
 
 	<div class="navbar-collapse navbar-body collapse" aria-expanded="false" style="height: 1px;">
             <ul class="nav navbar-nav tabs" style="height: 600px;"> <!-- 178 -->
-  		<li data-name="Haha" class="not-in-more" >
+<!--   		<li data-name="Haha" class="not-in-more">
 		    <a href="#demo" data-toggle="collapse">General Ledger</a>
-
-		    <div id="demo" class="collapse">
-			<a href="http://demo.espocrm.com/basic/?lang=en_US#Opportunity" class="nav-link active"><span class="full-label">Opportunities</span><span class="short-label" title="Opportunities">Op</span></a>
-		    </div>
-		</li>
+		</li> 
+		<li id="demo" class="collapse out" data-name="Opport" class="not-in-more">
+		    <a href="#" class="nav-link active"><span class="full-label">Opportunities</span><span class="short-label" title="Opportunities">Op</span></a>
+		</li> -->
 		<?php
 		foreach ($menuCategories as $key=>$item){
 		    if($item["type"] == "item")
-			echo "<li data-name=\"". $item["data"]["full"] ."\" class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["full"] ."\">". $item["data"]["full"] ."</span></a></li>";
+			echo "<li id=\"" . ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") . "\" data-name=\"". $item["data"]["full"] ."\" class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["full"] ."\">". $item["data"]["full"] ."</span></a></li>";
 		    else if($item["type"] == "submenu"){			
 			/*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">--". $key ."</span><span class=\"short-label\" title=\"". $key ."\">--". $key ."</span></a></li>";*/
 			foreach($item["data"] as $key=>$subitem){
-			    echo "<li data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a href=\"" . $subitem["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["full"] ."\">--". $subitem["full"] ."</span></a></li>";
+			    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a href=\"" . $subitem["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["full"] ."\">--". $subitem["full"] ."</span></a></li>";
 			}
 		    }
 		}
@@ -737,7 +740,7 @@
                     </ul>
 		</li>
 		<li class="dropdown menu-container">
-                    <a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="http://demo.espocrm.com/basic/?lang=en_US#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                    <a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="nav-menu-dropdown">
 			<li><a href="#" class="nav-link">Language</a></li>
                         <li class="divider"></li>
@@ -753,12 +756,21 @@
     </div>
     </div>
     </header>
-    <div id="content" class="container content">
+    <div id="content" class="container content" style="background: #ffffff">
 	<?php
 	if(isset($content))
 	    require $content;
 	?>
     </div>
     <div id="popup-notifications-container" class="hidden"></div>
+    <script>
+     function main(){
+	 <?php if(isset($scope)): ?>
+	 var path = "<?php echo $scope["path"]; ?>";
+	 console.log(path);
+	 document.getElementById(path).className += " active";
+	 <?php endif; ?>
+     }
+    </script>
     </body>
 </html>

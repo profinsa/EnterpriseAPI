@@ -125,7 +125,7 @@
 					     var itemData = $("#itemData");
 					     $.getJSON("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
 					      .success(function(data) {
-						  window.location = "<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"]; ?>/grid/main/all";
+						  window.location = "<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
 					      })
 					      .error(function(err){
 						  console.log('wrong');
@@ -188,7 +188,7 @@
 					<a class="btn btn-info waves-effect waves-light m-r-10" href="<?php echo $public_prefix; ?>/grid/<?php echo  $scope["path"];  ?>/edit/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>">
 					    <?php echo $translation->translateLabel("Edit"); ?>
 					</a>
-					<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"] . "/grid/main/all"; ?>">
+					<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"] . "/grid/Main/all"; ?>">
 					    <?php echo $translation->translateLabel("Cancel"); ?>
 					</a>
 				    </div>
@@ -267,7 +267,7 @@
 					    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 						<?php echo $translation->translateLabel("Save"); ?>
 					    </a>
-					    <a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"] . "/" .  ( $scope["mode"] != "new" ? "view/" . $scope["category"] . "/" . $scope["item"] : "view/main/all" ) ; ?>">
+					    <a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"] . "/" .  ( $scope["mode"] != "new" ? "view/" . $scope["category"] . "/" . $scope["item"] : "view/Main/all" ) ; ?>">
 						<?php echo $translation->translateLabel("Cancel"); ?>
 					    </a>
 					</div>
@@ -279,7 +279,7 @@
 					 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] . "/insert" ?>", itemData.serialize(), null, 'json')
 					  .success(function(data) {
 					      console.log('ok');
-					      window.location = "<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] . "/grid/main/all"; ?>";
+					      window.location = "<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] . "/grid/Main/all"; ?>";
 					  })
 					  .error(function(err){
 					      console.log('wrong');

@@ -62,12 +62,13 @@ class Grid extends BaseController{
 
         $sessionValues = Session::all();//получаем данные из сессии
         $token = $sessionValues['_token'];
-        return view("nindex", [ "app" => new _app,
+        $app =new _app;
+        return view("nindex", [ "app" => $app,
                                 "public_prefix" => public_prefix(),
                                 "translation" => $translation,
                                 "user" => $user,
                                 "data" => $data,
-                                "dashboardTitle" => $data->dashboardTitle = $translation->translateLabel($data->dashboardTitle),
+                                "dashboardTitle" => $app->title = $data->dashboardTitle = $translation->translateLabel($data->dashboardTitle),
                                 "breadCrumbTitle" => $data->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle),
                                 "scope" => [
                                     "path" => $folder . "/" . $page,
