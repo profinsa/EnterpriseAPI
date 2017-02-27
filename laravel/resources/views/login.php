@@ -32,7 +32,7 @@
 				<div class="form-group">
 				    <div class="row">
  					<div class="col-xs-6">
-					    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Company"); ?>:</label>
+					    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Company"); ?></label>
 					</div>
 					<div class="col-xs-6">
 					    <select name="company" id="icompany" class="form-control pull-right row b-none" onchange="companySelect(event);">
@@ -44,7 +44,7 @@
 				<div class="form-group">
 				    <div class="row">
  					<div class="col-xs-6">
-					    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Division"); ?>:</label>
+					    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Division"); ?></label>
 					</div>
 					<div class="col-xs-6">
 					    <select name="division" id="idivision" class="form-control pull-right row b-none">
@@ -56,7 +56,7 @@
 				<div class="form-group">
 				    <div class="row">
  					<div class="col-xs-6">
-					    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Department"); ?>:</label>
+					    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Department"); ?></label>
 					</div>
 					<div class="col-xs-6">
 					    <select name="department" id="idepartment" class="form-control pull-right row b-none">
@@ -68,7 +68,7 @@
 				<div class="form-group">
 				    <div class="row">
  					<div class="col-xs-6">
-					    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Language"); ?>:</label>
+					    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Language"); ?></label>
 					</div>
 					<div class="col-xs-6">
 					    <select name="language" class="form-control pull-right row b-none" onchange="changeLanguage(event);">

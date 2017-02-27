@@ -12,7 +12,7 @@
 	
 	<meta content="utf-8" http-equiv="encoding">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<meta name="description" content="EspoCRM is Open Source CRM application. Increase profitability through customer loyalty!">
+	<meta name="description" content="">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<?php
@@ -26,7 +26,7 @@
 	<style type="text/css" data-gs-id="gridstack-style-12375"></style>
 	<style type="text/css" data-gs-id="gridstack-style-21980"></style>
         <script type="text/javascript">
-         $(function () {
+         /*$(function () {
              Espo.loader.cacheTimestamp = 1488024192;
              Espo.require('app', function (App) {
                  var app = new App({
@@ -37,7 +37,7 @@
                      app.start();
                  });
              });
-         });
+         });*/
         </script>
 	<style type="text/css">/*.lleo_errorSelection *::-moz-selection,
 				  .lleo_errorSelection *::selection,
@@ -593,72 +593,78 @@
 		[
 		    "id" => "GeneralLedger/chartOfAccounts",
 		    "full" => $translation->translateLabel('Chart Of Accounts'),
+		    "short" => "CO",
 		    "href"=> $public_prefix . "/grid/GeneralLedger/chartOfAccounts/grid/main/all"
 		],
 		[
 		    "id" => "GeneralLedger/ledgerAccountGroup",
 		    "full" => $translation->translateLabel('Ledger Account Group'),
+		    "short" => "LA",
 		    "href" => $public_prefix . "/grid/GeneralLedger/ledgerAccountGroup/grid/main/all"
 		],
 		[
 		    "id" => "GeneralLedger/bankTransactions",
 		    "full" => $translation->translateLabel('Bank Transactions'),
+		    "short" => "BT",
 		    "href" => $public_prefix . "/grid/GeneralLedger/bankTransactions/grid/main/all"
 		],
 		[
 		    "id" => "GeneralLedger/bankAccounts",
 		    "full" => $translation->translateLabel('Bank Accounts'),
+		    "short" => "BA",
 		    "href" => $public_prefix . "/grid/GeneralLedger/bankAccounts/grid/main/all"
 		]
 	    ]
 	];
     }
- /*   $menuCategories[$translation->translateLabel('Receivables')] = [
-	"type" => "submenu",
-	"data" => [
-	    [
-		"full" => $translation->translateLabel('Quotes'),
-		"href"=> "#"
-	    ],
-	    [
-		"full" => $translation->translateLabel('Orders'),
-		"href" => "#"
-	    ],
-	    [
-		"full" => $translation->translateLabel('Invoices'),
-		"href" => "#"
-	    ]
-	]
-    ];
+    /*   $menuCategories[$translation->translateLabel('Receivables')] = [
+       "type" => "submenu",
+       "data" => [
+       [
+       "full" => $translation->translateLabel('Quotes'),
+       "href"=> "#"
+       ],
+       [
+       "full" => $translation->translateLabel('Orders'),
+       "href" => "#"
+       ],
+       [
+       "full" => $translation->translateLabel('Invoices'),
+       "href" => "#"
+       ]
+       ]
+       ];
 
-    $menuCategories[$translation->translateLabel('Payables')] = [
-	"type" => "submenu",
-	"data" => [
-	    [
-		"full" => $translation->translateLabel('Purchase Orders'),
-		"href"=> "#"
-	    ],
-	    [
-		"full" => $translation->translateLabel('Vouchers'),
-		"href" => "#"
-	    ],
-	    [
-		"full" => $translation->translateLabel('Vendors'),
-		"href" => "#"
-	    ]
-	]
-    ];*/
+       $menuCategories[$translation->translateLabel('Payables')] = [
+       "type" => "submenu",
+       "data" => [
+       [
+       "full" => $translation->translateLabel('Purchase Orders'),
+       "href"=> "#"
+       ],
+       [
+       "full" => $translation->translateLabel('Vouchers'),
+       "href" => "#"
+       ],
+       [
+       "full" => $translation->translateLabel('Vendors'),
+       "href" => "#"
+       ]
+       ]
+       ];*/
 
     $menuCategories[$translation->translateLabel('Support')] = [
 	"type" => "submenu",
 	"data" => [
 	    [
 		"full" => $translation->translateLabel('Help Documentation'),
+		"short" => "HD",
 		"href" => "https://stfbinc.helpdocs.com",
 		"Target" => "_Blank"
 	    ],
 	    [
 		"full" => $translation->translateLabel('Support Ticket'),
+		"short" => "ST",
 		"href" => "https://stfbinc.teamwork.com/support/",
 		"Target" => "_Blank"
 	    ]
@@ -669,108 +675,115 @@
 	"type" => "item",
 	"data" => [
 	    "full" => $translation->translateLabel('Log out'),
+	    "short" => "LO",
 	    "href" => $public_prefix . "/login"
 	]
     ];
     ?>
-	  
+    
 
-    <body onload="main();" style="min-height: 450px;" class=""><header id="header"><div id="navbar"><div class="navbar navbar-inverse" role="navigation">
-	<div class="navbar-header">
-            <a class="navbar-brand nav-link" href="<?php echo $public_prefix; ?>/index"><img src="<?php echo $public_prefix; ?>/assets/images/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-body">
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-		<span class="icon-bar"></span>
-            </button>
-	</div>
-
-	<div class="navbar-collapse navbar-body collapse" aria-expanded="false" style="height: 1px;">
-            <ul class="nav navbar-nav tabs" style="height: 600px;"> <!-- 178 -->
-<!--   		<li data-name="Haha" class="not-in-more">
-		    <a href="#demo" data-toggle="collapse">General Ledger</a>
-		</li> 
-		<li id="demo" class="collapse out" data-name="Opport" class="not-in-more">
-		    <a href="#" class="nav-link active"><span class="full-label">Opportunities</span><span class="short-label" title="Opportunities">Op</span></a>
-		</li> -->
-		<?php
-		foreach ($menuCategories as $key=>$item){
-		    if($item["type"] == "item")
-			echo "<li id=\"" . ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") . "\" data-name=\"". $item["data"]["full"] ."\" class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["full"] ."\">". $item["data"]["full"] ."</span></a></li>";
-		    else if($item["type"] == "submenu"){			
-			/*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">--". $key ."</span><span class=\"short-label\" title=\"". $key ."\">--". $key ."</span></a></li>";*/
-			foreach($item["data"] as $key=>$subitem){
-			    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a href=\"" . $subitem["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["full"] ."\">--". $subitem["full"] ."</span></a></li>";
-			}
-		    }
-		}
-		?>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-		<li class="nav navbar-nav navbar-form global-search-container">
-                    <div class="input-group has-feedback">
-			<input type="text" id="global-search-input" class="form-control input-sm" placeholder="Search">
-			<div class="input-group-btn">
-			    <a class="btn btn-link global-searcy-button" data-action="search"><span class="glyphicon glyphicon-search"></span></a>
-			</div>
+    <body onload="main();" style="min-height: 450px;" class="">
+	<header id="header">
+	    <div id="navbar">
+		<div class="navbar navbar-inverse" role="navigation">
+		    <div class="navbar-header">
+			<a class="navbar-brand nav-link" href="<?php echo $public_prefix; ?>/index"><img id="logosection"  src="<?php echo $public_prefix; ?>/assets/images/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-body">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			</button>
 		    </div>
-		    <div class="global-search-panel-container"></div>
 
-		</li>
-		<li class="dropdown notifications-badge-container">
-                    <a href="javascript:" class="notifications-button" data-action="showNotifications" title="New notifications: 25">
-			<span class="glyphicon glyphicon-bell icon warning"></span>
-		    </a>
-		    <div class="notifications-panel-container"></div>
-
-		</li>
-		<li class="dropdown hidden-xs quick-create-container">
-                    <a id="nav-quick-create-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="http://demo.espocrm.com/basic/?lang=en_US#"><i class="glyphicon glyphicon-plus"></i></a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="nav-quick-create-dropdown">
-			<li class="dropdown-header">Create</li>
-			<li><a href="http://demo.espocrm.com/basic/?lang=en_US#Account/create" data-name="Account" data-action="quick-create">Account</a></li>
-			<li><a href="http://demo.espocrm.com/basic/?lang=en_US#Contact/create" data-name="Contact" data-action="quick-create">Contact</a></li>
-			<li><a href="http://demo.espocrm.com/basic/?lang=en_US#Lead/create" data-name="Lead" data-action="quick-create">Lead</a></li>
-			<li><a href="http://demo.espocrm.com/basic/?lang=en_US#Opportunity/create" data-name="Opportunity" data-action="quick-create">Opportunity</a></li>
-			<li><a href="http://demo.espocrm.com/basic/?lang=en_US#Meeting/create" data-name="Meeting" data-action="quick-create">Meeting</a></li>
-			<li><a href="http://demo.espocrm.com/basic/?lang=en_US#Call/create" data-name="Call" data-action="quick-create">Call</a></li>
-			<li><a href="http://demo.espocrm.com/basic/?lang=en_US#Task/create" data-name="Task" data-action="quick-create">Task</a></li>
-			<li><a href="http://demo.espocrm.com/basic/?lang=en_US#Case/create" data-name="Case" data-action="quick-create">Case</a></li>
-			<li><a href="http://demo.espocrm.com/basic/?lang=en_US#Email/create" data-name="Email" data-action="quick-create">Email</a></li>
-                    </ul>
-		</li>
-		<li class="dropdown menu-container">
-                    <a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="nav-menu-dropdown">
-			<li><a href="#" class="nav-link">Language</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#" class="nav-link">Log Out</a></li>
-                    </ul>
-		</li>
-            </ul>
-            <a class="minimizer" href="javascript:">
-		<span class="glyphicon glyphicon glyphicon-menu-right right"></span>
-		<span class="glyphicon glyphicon glyphicon-menu-left left"></span>
-            </a>
+		    <div id="ssidebar" class="navbar-collapse navbar-body collapse" aria-expanded="false" style="height: 1px;">
+			<ul id="sidebar" class="nav navbar-nav tabs" style="height: 600px;"> <!-- 178 -->
+			    <!--   		<li data-name="Haha" class="not-in-more">
+				 <a href="#demo" data-toggle="collapse">General Ledger</a>
+				 </li> 
+				 <li id="demo" class="collapse out" data-name="Opport" class="not-in-more">
+				 <a href="#" class="nav-link active"><span class="full-label">Opportunities</span><span class="short-label" title="Opportunities">Op</span></a>
+				 </li> -->
+			    <?php
+			    foreach ($menuCategories as $key=>$item){
+				if($item["type"] == "item")
+				    echo "<li id=\"" . ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") . "\" data-name=\"". $item["data"]["full"] ."\" class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li>";
+				else if($item["type"] == "submenu"){			
+				    /*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">". $key ."</span><span class=\"short-label\" title=\"". $key ."\">". $key ."</span></a></li>";*/
+				    foreach($item["data"] as $key=>$subitem){
+					echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a href=\"" . $subitem["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
+				    }
+				}
+			    }
+			    ?>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+			    <!-- <li class="nav navbar-nav navbar-form global-search-container">
+				<div class="input-group has-feedback">
+				    <input type="text" id="global-search-input" class="form-control input-sm" placeholder="Search">
+				    <div class="input-group-btn">
+					<a class="btn btn-link global-searcy-button" data-action="search"><span class="glyphicon glyphicon-search"></span></a>
+				    </div>
+				</div>
+				<div class="global-search-panel-container"></div>
+			    </li> -->
+			    <li class="dropdown menu-container">
+				<a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="nav-menu-dropdown">
+				    <li><a href="http://demo.espocrm.com/basic/?lang=en_US#User/view/1" class="nav-link">Admin</a></li>
+				    <li class="divider"></li>
+				    <li><a href="http://demo.espocrm.com/basic/?lang=en_US#Admin" class="nav-link">Administration</a></li>
+				    <li><a href="http://demo.espocrm.com/basic/?lang=en_US#Preferences" class="nav-link">Preferences</a></li>
+				    <li><a href="http://demo.espocrm.com/basic/?lang=en_US#About" class="nav-link">About</a></li>
+				    <li class="divider"></li>
+				    <li><a href="http://demo.espocrm.com/basic/?lang=en_US#clearCache" class="nav-link">Clear Local Cache</a></li>
+				    <li><a href="http://demo.espocrm.com/basic/?lang=en_US#logout" class="nav-link">Log Out</a></li>
+				</ul>
+			    </li>
+			    <li>
+				<a class="minimizer" href="javascript:toggleSideBar()">
+				    <span id="sideBarHider" class="glyphicon glyphicon glyphicon-menu-left"></span>
+				    <span id="sideBarShower" style="display:none;" class="glyphicon glyphicon glyphicon-menu-right"></span>
+				</a>
+			    </li>
+			</ul>
+		    </div>
+		</div>
+	    </div>
+	</header>
+	<div id="content" class="container content" style="background: #ffffff">
+	    <?php
+	    if(isset($content))
+		require $content;
+	    ?>
 	</div>
-    </div>
-    </div>
-    </header>
-    <div id="content" class="container content" style="background: #ffffff">
-	<?php
-	if(isset($content))
-	    require $content;
-	?>
-    </div>
-    <div id="popup-notifications-container" class="hidden"></div>
-    <script>
-     function main(){
-	 <?php if(isset($scope)): ?>
-	 var path = "<?php echo $scope["path"]; ?>";
-	 console.log(path);
-	 document.getElementById(path).className += " active";
-	 <?php endif; ?>
-     }
-    </script>
+	<div id="popup-notifications-container" class="hidden"></div>
+	<script>
+	 function main(){
+	     <?php if(isset($scope)): ?>
+	     var path = "<?php echo $scope["path"]; ?>";
+	     document.getElementById(path).className += " active";
+	     <?php endif; ?>
+	 }
+
+	 var sidebarToggled = true;
+	 function toggleSideBar(){
+	     if(sidebarToggled){
+		 $('body').addClass('minimized');
+		 /*$('#sidebar')[0].style.display = 'none';
+		 console.log($('#sidebar'));*/
+		 $('#logosection')[0].style.display = 'none';
+		 $('#sideBarHider')[0].style.display = 'none';
+		 $('#sideBarShower')[0].style.display = 'block';
+		 sidebarToggled = false;
+	     }else{
+		 $('body').removeClass('minimized');
+		 /*$('#sidebar')[0].style.display = 'block';*/
+		 $('#logosection')[0].style.display = 'block';
+		 $('#sideBarHider')[0].style.display = 'block';
+		 $('#sideBarShower')[0].style.display = 'none';
+		 sidebarToggled = true;
+	     }
+	 }
+	</script>
     </body>
 </html>
