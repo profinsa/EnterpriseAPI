@@ -62,20 +62,22 @@ class Grid extends BaseController{
 
         $sessionValues = Session::all();//получаем данные из сессии
         $token = $sessionValues['_token'];
-        return view("ngridView", [ "app" => new _app,
-                                  "public_prefix" => public_prefix(),
-                                  "translation" => $translation,
-                                  "user" => $user,
-                                  "data" => $data,
-                                  "dashboardTitle" => $data->dashboardTitle = $translation->translateLabel($data->dashboardTitle),
-                                  "breadCrumbTitle" => $data->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle),
-                                  "scope" => [
-                                      "path" => $folder . "/" . $page,
-                                      "mode" => $mode,
-                                      "category" => $category,
-                                      "item" => $item
-                                  ],
-                                  "token" => $token
+        return view("nindex", [ "app" => new _app,
+                                "public_prefix" => public_prefix(),
+                                "translation" => $translation,
+                                "user" => $user,
+                                "data" => $data,
+                                "dashboardTitle" => $data->dashboardTitle = $translation->translateLabel($data->dashboardTitle),
+                                "breadCrumbTitle" => $data->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle),
+                                "scope" => [
+                                    "path" => $folder . "/" . $page,
+                                    "mode" => $mode,
+                                    "category" => $category,
+                                    "item" => $item
+                                ],
+                                "token" => $token,
+                                "header" => "nheader.php",
+                                "content" => "ngridView.php"
         ]);
     }
 

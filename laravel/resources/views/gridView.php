@@ -135,7 +135,7 @@
 				    </script>
 				</div>
 				
-			    <!-- view -->
+				<!-- view -->
 			    <?php elseif($scope["mode"] == 'view'): ?>
 				<div id="row_viewer">
 				    <ul class="nav nav-tabs">
@@ -193,7 +193,7 @@
 					</a>
 				    </div>
 				</div>
-			    <!-- edit and new -->
+				<!-- edit and new -->
 			    <?php elseif($scope["mode"] == 'edit' || $scope["mode"] == 'new'): ?>
 				<div id="row_editor">
 				    <ul class="nav nav-tabs">
@@ -208,58 +208,58 @@
 					<?php echo csrf_field(); ?>
 					<input type="hidden" name="id" value="<?php echo $scope["item"]; ?>" />
 					<input type="hidden" name="category" value="<?php echo $scope["category"]; ?>" />
-		            <?php
-			    //getting record.
-			    $item = $scope["mode"] == 'edit' ? $data->getEditItem($scope["item"], $scope["category"]) :
-						    $data->getNewItem($scope["item"], $scope["category"]);
-			    //used as translated field name
-			    $translatedFieldName = '';
-			    
-			    foreach($item as $key =>$value){
-				$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
-				switch($data->editCategories[$scope["category"]][$key]["inputType"]){
-				    case "text" :
-					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " .
-					     ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
-					    ."></div></div>";
-					break;
+					<?php
+					//getting record.
+					$item = $scope["mode"] == 'edit' ? $data->getEditItem($scope["item"], $scope["category"]) :
+								  $data->getNewItem($scope["item"], $scope["category"]);
+					//used as translated field name
+					$translatedFieldName = '';
 					
-				    case "datepicker" :
-					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatepicker\" value=\"" . $value ."\" " .
-					     ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
-					    ."></div></div>";
-					break;
+					foreach($item as $key =>$value){
+					    $translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
+					    switch($data->editCategories[$scope["category"]][$key]["inputType"]){
+						case "text" :
+						    //renders text input with label
+						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " .
+							 ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
+							."></div></div>";
+						    break;
+						    
+						case "datepicker" :
+						    //renders text input with label
+						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatepicker\" value=\"" . $value ."\" " .
+							 ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
+							."></div></div>";
+						    break;
 
-				    case "checkbox" :
-					//renders checkbox input with label
-					echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
-					     ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit") || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "disabled" : "")
-					    ."></div></div>";
-					break;
-					
-				    case "dropdown" :
-					//renders select with available values as dropdowns with label
-					echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
-					$method = $data->editCategories[$scope["category"]][$key]["dataProvider"];
-					$types = $data->$method();
-//
-					echo json_encode($types) . 'eeeee'. $value;
-					if($value)
-					    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
-					else
-					    echo "<option></option>";
+						case "checkbox" :
+						    //renders checkbox input with label
+						    echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+							 ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit") || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "disabled" : "")
+							."></div></div>";
+						    break;
+						    
+						case "dropdown" :
+						    //renders select with available values as dropdowns with label
+						    echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
+						    $method = $data->editCategories[$scope["category"]][$key]["dataProvider"];
+						    $types = $data->$method();
+						    //
+						    echo json_encode($types) . 'eeeee'. $value;
+						    if($value)
+							echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
+						    else
+							echo "<option></option>";
 
-					foreach($types as $type)
-					    if(!$value || $type["value"] != $value)
-						echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
-					echo"</select></div></div>";
-					break;
-				}
-			    }
-			    ?>
+						    foreach($types as $type)
+							if(!$value || $type["value"] != $value)
+							    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+						    echo"</select></div></div>";
+						    break;
+					    }
+					}
+					?>
 					<div class="pull-right">
 					    <!--
 						 renders buttons translated Save and Cancel using translation model
