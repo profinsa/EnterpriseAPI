@@ -4,7 +4,8 @@
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title><?php echo $app->title; ?></title>
-	<script src="<?php echo $public_prefix; ?>/dependencies/assets/bootstrap/dist/js/bootstrap.min.js"></script>	
+	<script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- <script src="<?php echo $public_prefix; ?>/dependencies/assets/bootstrap/dist/js/bootstrap.min.js"></script> -->	
 	<script type="text/javascript" src="<?php echo $public_prefix; ?>/assets/js/espo.min.js" data-base-path=""></script>
 	<script src="chrome-extension://mclbjdibcpiohnhgkjkbfbnjcafkhani/files/foreground.js"></script>
  	<?php
@@ -13,7 +14,6 @@
 	?>
 	<link href="<?php echo $public_prefix; ?>/assets/css/newtechcrm-vertical.css" rel="stylesheet">
  	<link href="<?php echo $public_prefix; ?>/assets/css/style.css" rel="stylesheet">
-	<script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/jquery/dist/jquery.min.js"></script>
 	<meta content="utf-8" http-equiv="encoding">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="description" content="">
@@ -22,11 +22,19 @@
 	<link rel="shortcut icon" sizes="196x196" href="http://demo.espocrm.com/basic/client/img/favicon196x196.png">
 	<link rel="icon" href="http://demo.espocrm.com/basic/client/img/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="http://demo.espocrm.com/basic/client/img/favicon.ico" type="image/x-icon">
+	<style>
+	 .active a {
+	     backround-color : red;
+	 }
+	</style>
     </head>
     <?php
     $menuCategories = [];
     if($user["accesspermissions"]["GLView"]){
-	$menuCategories[$translation->translateLabel('General Ledger')] = [
+	$menuCategories["GeneralLedger"] = [
+	    "id" => "GeneralLedger",
+	    "full"=> $translation->translateLabel('General Ledger'),
+	    "short" => "GL",
 	    "type" => "submenu",
 	    "data" => [
 		[
@@ -92,7 +100,10 @@
        ]
        ];*/
 
-    $menuCategories[$translation->translateLabel('Support')] = [
+    $menuCategories["Support"] = [
+	"id" => "Support",
+	"full" => $translation->translateLabel('Support'),
+	"short" => "Sp",
 	"type" => "submenu",
 	"data" => [
 	    [
@@ -125,11 +136,12 @@
 
 		    <div id="ssidebar" class="collapse navbar-collapse navbar-body">
 			<ul id="sidebar" class="nav navbar-nav tabs" style="height: 600px;"> <!-- 178 -->
-			    <!--   		<li data-name="Haha" class="not-in-more">
+			    <!-- <li data-name="Haha" class="not-in-more">
 				 <a href="#demo" data-toggle="collapse">General Ledger</a>
 				 </li> 
-				 <li id="demo" class="collapse out" data-name="Opport" class="not-in-more">
-				 <a href="#" class="nav-link active"><span class="full-label">Opportunities</span><span class="short-label" title="Opportunities">Op</span></a>
+				 <li id="demo" class="collapse-sidebar-item collapse in" data-name="Opport" class="not-in-more">
+				 <a href="#" style="margin-left:10px;" class="nav-link active"><span class="full-label">Opportunities</span><span class="short-label" title="Opportunities">Op</span></a>
+				 <a href="#" style="margin-left:10px;" class="nav-link active"><span class="full-label">Opportunities</span><span class="short-label" title="Opportunities">Op</span></a>
 				 </li> -->
 			    <?php
 			    foreach ($menuCategories as $key=>$item){
@@ -137,9 +149,13 @@
 				    echo "<li id=\"" . ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") . "\" data-name=\"". $item["data"]["full"] ."\" class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li>";
 				else if($item["type"] == "submenu"){			
 				    /*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">". $key ."</span><span class=\"short-label\" title=\"". $key ."\">". $key ."</span></a></li>";*/
+				    echo "<li data-name=\"". $key ."\"  class=\"not-in-more\"><a href=\"#list" . $item["id"] . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $item["full"] ."</span><span class=\"short-label\" title=\"". $item["short"] ."\">". $item["short"] ."</span></a></li>";
+				    echo "<li id=\"list" . $item["id"] . "\" class=\"collapse-sidebar-item collapse in\" data-name=\"" . $key ."\" class=\"not-in-more\" style=\"display:none\"><ul class=\"nav navbar-nav tabs\">";
+				    //echo  "<a href=\"#\" style=\"margin-left:10px;\" class=\"nav-link active\"><span class=\"full-label\">Opportunities</span><span class=\"short-label\" title=\"Opportunities\">Op</span></a>";
 				    foreach($item["data"] as $key=>$subitem){
-					echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a href=\"" . $subitem["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
+					echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a style=\"padding-left:25px;\" href=\"" . $subitem["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
 				    }
+				    echo "</ul></li>";
 				}
 			    }
 			    ?>
@@ -185,10 +201,33 @@
 	</div>
 	<div id="popup-notifications-container" class="hidden"></div>
 	<script>
+	 function sideBarCloseAll(){
+	     var items = $(".collapse-sidebar-item");
+	     items.css('display', 'none');
+	     items.collapse('hide');
+	     items.on('hidden.bs.collapse', function (e) {
+		 $(e.currentTarget).css('display', 'none');
+	     });
+	     items.on('show.bs.collapse', function (e) {
+		 sideBarCloseAll();
+		 $(e.currentTarget).css('display', 'block');
+	     })
+	 }
+
+	 function sideBarSelectItem(folder, item){
+	     console.log($("#list" + folder));
+	     var _item = $("#list" + folder);
+	     setTimeout(function(){
+		 _item.collapse('show');
+		 _item.css('display', 'block');
+	     }, 1000);
+	     document.getElementById(folder + '/' + item).className += " active";
+	 }
+	 
 	 function main(){
+	     sideBarCloseAll();
 	     <?php if(isset($scope)): ?>
-	     var path = "<?php echo $scope["path"]; ?>";
-	     document.getElementById(path).className += " active";
+	     sideBarSelectItem("<?php echo  $scope["pathFolder"] . "\",\"" . $scope["pathPage"];?>");
 	     <?php endif; ?>
 	 }
 

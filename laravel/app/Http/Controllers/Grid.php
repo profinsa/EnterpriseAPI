@@ -25,7 +25,7 @@ Calls:
 models/translation.php
 models/gridDataSource derevatives -- models who inherits from gridDataSource
 
-Last Modified: 23.02.2016
+Last Modified: 28.02.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -72,6 +72,8 @@ class Grid extends BaseController{
                                 "breadCrumbTitle" => $data->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle),
                                 "scope" => [
                                     "path" => $folder . "/" . $page,
+                                    "pathFolder" => $folder,
+                                    "pathPage" => $page,
                                     "mode" => $mode,
                                     "category" => $category,
                                     "item" => $item
