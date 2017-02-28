@@ -50,12 +50,28 @@
 
 	 .sidebar-toggler{
 	     position:absolute;
-	     bottom:10px
+	     left : 12px;
+	     bottom:10px;
 	 }
 
 	 div.sidebar-toggler a{
 	     color:white;
 	     text-decoration:none;
+	 }
+
+	 .top-bar{
+	     height : 70px !important;
+	 }
+
+	 body.top-bar-minimized .top-bar{
+	     /*height : 10px !important;*/
+	     display : none;
+	 }
+
+	 @media screen and (min-width : 768px){
+	     .hide-on-small{
+		 display : none !important;
+	     }
 	 }
 	</style>
     </head>
@@ -156,24 +172,17 @@
 	<header id="header">
 	    <div id="navbar">
 		<div class="navbar navbar-inverse" role="navigation">
-		    <div class="navbar-header">
+		    <div class="navbar-header top-bar">
 			<a class="navbar-brand nav-link" href="<?php echo $public_prefix; ?>/index"><img id="logosection"  src="<?php echo $public_prefix; ?>/assets/images/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-body">
+			<button type="button" class="navbar-toggle hide-on-small" data-toggle="collapse" data-target=".navbar-body">
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 			</button>
 		    </div>
 
-		    <div id="ssidebar" class="collapse navbar-collapse navbar-body">
+		    <div class="collapse navbar-collapse navbar-body">
 			<ul id="sidebar" class="nav navbar-nav tabs navbar-items" style="height: 400px;"> <!-- 178 -->
-			    <!-- <li data-name="Haha" class="not-in-more">
-				 <a href="#demo" data-toggle="collapse">General Ledger</a>
-				 </li> 
-				 <li id="demo" class="collapse-sidebar-item collapse in" data-name="Opport" class="not-in-more">
-				 <a href="#" style="margin-left:10px;" class="nav-link active"><span class="full-label">Opportunities</span><span class="short-label" title="Opportunities">Op</span></a>
-				 <a href="#" style="margin-left:10px;" class="nav-link active"><span class="full-label">Opportunities</span><span class="short-label" title="Opportunities">Op</span></a>
-				 </li> -->
 			    <?php
 			    foreach ($menuCategories as $key=>$item){
 				if($item["type"] == "item")
@@ -192,12 +201,12 @@
 			    }
 			    ?>
 			</ul>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right top-bar">
 			    <li class="dropdown menu-container">
 				<a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="nav-menu-dropdown">
+				<ul class="dropdown-menu" role="menu" aria-labelledby="nav-menu-dropdown" style="z-index:10000;">
 				    <li>
-					<select class="form-control" onchange="changeLanguage(event);">
+					<select class="form-control" onchange="changeLanguage(event);" style="z-index:10000;">
 					    <option><?php echo $user["language"]; ?></option>
 					    <?php
 					    foreach($translation->languages as $value)
@@ -214,6 +223,11 @@
 				    </li>
 				</ul>
 			    </li>
+			    <li class="pull-right" style="position:relative; top:45px;">
+				<a class="minimizer" class="dropdown-toggle" href="javascript:toggleTopBar()">
+				    <span id="topBarHider" class="glyphicon glyphicon glyphicon-menu-up"></span>
+				</a>
+			    </li>
 			</ul>
 			<div class="sidebar-toggler">
 			    <a class="minimizer" href="javascript:toggleSideBar()">
@@ -225,6 +239,9 @@
 		</div>
 	    </div>
 	</header>
+	<a class="minimizer"  style="position:absolute; top:5px; right:7px; text-decoration:none;" href="javascript:toggleTopBar()">
+	    <span id="topBarShower" style="display:none;" class="glyphicon glyphicon glyphicon-menu-down"></span>
+	</a>
 	<div id="content" class="container content" style="background: #ffffff">
 	    <?php
 	    if(isset($content))
@@ -268,7 +285,7 @@
 	     if(sidebarToggled){
 		 $('body').addClass('minimized');
 		 /*$('#sidebar')[0].style.display = 'none';
-		 console.log($('#sidebar'));*/
+		    console.log($('#sidebar'));*/
 		 $('#logosection')[0].style.display = 'none';
 		 $('#sideBarHider')[0].style.display = 'none';
 		 $('#sideBarShower')[0].style.display = 'block';
@@ -280,6 +297,23 @@
 		 $('#sideBarHider')[0].style.display = 'block';
 		 $('#sideBarShower')[0].style.display = 'none';
 		 sidebarToggled = true;
+	     }
+	 }
+
+	 var topbarToggled = true;
+	 function toggleTopBar(){
+	     if(topbarToggled){
+		 $('body').addClass('top-bar-minimized');
+		 $('.nav-link')[0].style.display = 'none';
+		 $('#topBarHider')[0].style.display = 'none';
+		 $('#topBarShower')[0].style.display = 'block';
+		 topbarToggled = false;
+	     }else{
+		 $('body').removeClass('top-bar-minimized');
+		 $('.nav-link')[0].style.display = 'block';
+		 $('#topBarHider')[0].style.display = 'block';
+		 $('#topBarShower')[0].style.display = 'none';
+		 topbarToggled = true;
 	     }
 	 }
 
