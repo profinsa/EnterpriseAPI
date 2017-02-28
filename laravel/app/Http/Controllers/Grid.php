@@ -62,8 +62,8 @@ class Grid extends BaseController{
 
         $sessionValues = Session::all();//получаем данные из сессии
         $token = $sessionValues['_token'];
-        $app =new _app;
-        return view("nindex", [ "app" => $app,
+        $app = new _app;
+        return view("index", [ "app" => $app,
                                 "public_prefix" => public_prefix(),
                                 "translation" => $translation,
                                 "user" => $user,
@@ -77,8 +77,8 @@ class Grid extends BaseController{
                                     "item" => $item
                                 ],
                                 "token" => $token,
-                                "header" => "nheader.php",
-                                "content" => "ngridView.php"
+                                "header" => "header.php",
+                                "content" => "gridView.php"
         ]);
     }
 
