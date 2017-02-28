@@ -26,6 +26,12 @@
 	 .active a {
 	     backround-color : red;
 	 }
+	 body.minimized .nav-item-level2 a{
+	     padding-left:45px
+	 }
+	 .nav-item-level2 a{
+	     padding-left:25px;
+	 }
 	</style>
     </head>
     <?php
@@ -149,13 +155,13 @@
 				    echo "<li id=\"" . ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") . "\" data-name=\"". $item["data"]["full"] ."\" class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li>";
 				else if($item["type"] == "submenu"){			
 				    /*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">". $key ."</span><span class=\"short-label\" title=\"". $key ."\">". $key ."</span></a></li>";*/
-				    echo "<li data-name=\"". $key ."\"  class=\"not-in-more\"><a href=\"#list" . $item["id"] . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $item["full"] ."</span><span class=\"short-label\" title=\"". $item["short"] ."\">". $item["short"] ."</span></a></li>";
+				    echo "<ul class=\"nav navbar-nav tabs\"><li data-name=\"". $key ."\"  class=\"not-in-more\"><a href=\"#list" . $item["id"] . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $item["full"] ."</span><span class=\"short-label\" title=\"". $item["short"] ."\">". $item["short"] ."</span></a></li>";
 				    echo "<li id=\"list" . $item["id"] . "\" class=\"collapse-sidebar-item collapse in\" data-name=\"" . $key ."\" class=\"not-in-more\" style=\"display:none\"><ul class=\"nav navbar-nav tabs\">";
 				    //echo  "<a href=\"#\" style=\"margin-left:10px;\" class=\"nav-link active\"><span class=\"full-label\">Opportunities</span><span class=\"short-label\" title=\"Opportunities\">Op</span></a>";
 				    foreach($item["data"] as $key=>$subitem){
-					echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a style=\"padding-left:25px;\" href=\"" . $subitem["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
+					echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a href=\"" . $subitem["href"] . "\" class=\"nav-link nav-item-level2\" style=\"padding-left:25px\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
 				    }
-				    echo "</ul></li>";
+				    echo "</ul></li></ul>";
 				}
 			    }
 			    ?>
