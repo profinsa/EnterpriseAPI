@@ -1,6 +1,6 @@
 <?php
 function public_prefix(){
-    return "/app/laravel/public";
+    return "/laravel";
 }
 
 function defaultUser(){

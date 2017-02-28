@@ -7,4 +7,4 @@
 <link href="<?php echo $public_prefix; ?>/dependencies/assets/css/style.css" rel="stylesheet">
 <link href="<?php echo $public_prefix; ?>/assets/css/style.css" rel="stylesheet">
 <!-- color CSS -->
-<link href="<?php echo $public_prefix; ?>/dependencies/assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet">
+<!-- <link href="<?php echo $public_prefix; ?>/dependencies/assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet">-->

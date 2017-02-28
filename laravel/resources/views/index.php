@@ -48,29 +48,63 @@
 	     width : 100%;
 	 }
 
-	 .sidebar-toggler{
-	     position:absolute;
-	     left : 12px;
-	     bottom:10px;
-	 }
-
-	 div.sidebar-toggler a{
-	     color:white;
-	     text-decoration:none;
-	 }
-
 	 .top-bar{
 	     height : 70px !important;
 	 }
 
-	 body.top-bar-minimized .top-bar{
-	     /*height : 10px !important;*/
-	     display : none;
+	 
+	 .top-bar-offset{
+	     margin-top : 50px !important;
 	 }
 
+	 .top-bar-shower-off{
+	     display : none;
+	 }
+	 
+	 @media screen and (max-width : 768px){
+	     .top-bar-toggler{
+		 display:none !important;
+	     }
+
+	     div.sidebar-toggler{
+		 display:none;
+	     }
+	 }
+	 
 	 @media screen and (min-width : 768px){
+	     .sidebar-toggler{
+		 position:absolute;
+		 left : 12px;
+		 bottom:10px;
+	     }
+	     
+	     div.sidebar-toggler a{
+		 color:white;
+		 text-decoration:none;
+	     }
+
+	     body.top-bar-minimized .top-bar{
+		 /*height : 10px !important;*/
+		 display : none;
+	     }
+
+	     body.top-bar-minimized .top-bar-offset{
+		 margin-top : 0px !important;
+		 padding-top : 0px !important;
+	     }
+	     
 	     .hide-on-small{
 		 display : none !important;
+	     }
+	     .top-bar-offset{
+		 margin-top : 0px;
+	     }
+	     .top-bar-shower{
+		 display : block;
+		 position:fixed;
+		 top:5px;
+		 right:7px;
+		 text-decoration:none;
 	     }
 	 }
 	</style>
@@ -223,7 +257,7 @@
 				    </li>
 				</ul>
 			    </li>
-			    <li class="pull-right" style="position:relative; top:45px;">
+			    <li class="pull-right top-bar-toggler" style="position:relative; top:45px;">
 				<a class="minimizer" class="dropdown-toggle" href="javascript:toggleTopBar()">
 				    <span id="topBarHider" class="glyphicon glyphicon glyphicon-menu-up"></span>
 				</a>
@@ -239,10 +273,10 @@
 		</div>
 	    </div>
 	</header>
-	<a class="minimizer"  style="position:absolute; top:5px; right:7px; text-decoration:none;" href="javascript:toggleTopBar()">
-	    <span id="topBarShower" style="display:none;" class="glyphicon glyphicon glyphicon-menu-down"></span>
+	<a class="minimizer top-bar-shower-off top-bar-toggler" href="javascript:toggleTopBar()">
+	    <span id="topBarShower" class="glyphicon glyphicon glyphicon-menu-down"></span>
 	</a>
-	<div id="content" class="container content" style="background: #ffffff">
+	<div id="content" class="container content top-bar-offset" style="background: #ffffff">
 	    <?php
 	    if(isset($content))
 		require $content;
@@ -305,13 +339,15 @@
 	     if(topbarToggled){
 		 $('body').addClass('top-bar-minimized');
 		 $('.nav-link')[0].style.display = 'none';
-		 $('#topBarHider')[0].style.display = 'none';
+		 $('.top-bar-shower-off').addClass('top-bar-shower');
+		 $('.top-bar-shower-off').removeClass('top-bar-shower-off');
 		 $('#topBarShower')[0].style.display = 'block';
 		 topbarToggled = false;
 	     }else{
 		 $('body').removeClass('top-bar-minimized');
 		 $('.nav-link')[0].style.display = 'block';
-		 $('#topBarHider')[0].style.display = 'block';
+		 $('.top-bar-shower').addClass('top-bar-shower-off');
+		 $('.top-bar-shower').removeClass('top-bar-shower');
 		 $('#topBarShower')[0].style.display = 'none';
 		 topbarToggled = true;
 	     }
