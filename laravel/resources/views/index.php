@@ -26,11 +26,36 @@
 	 .active a {
 	     backround-color : red;
 	 }
-	 body.minimized .nav-item-level2 a{
-	     padding-left:45px
+	 body.minimized .nav-item-level2{
+	     margin-left:10px;
 	 }
-	 .nav-item-level2 a{
-	     padding-left:25px;
+	 .nav-item-level2{
+	     margin-left:25px;
+	 }
+	 
+	 body.minimized .nav-item-level1{
+	     margin-left:0px;
+	 }
+	 .nav-item-level1{
+	     margin-left:5px;
+	 }
+
+	 .navbar-items{
+	     padding-left: 0px;
+	     padding-right: 0px;
+	     margin-left: 0px;
+	     margin-right: 0px;
+	     width : 100%;
+	 }
+
+	 .sidebar-toggler{
+	     position:absolute;
+	     bottom:10px
+	 }
+
+	 div.sidebar-toggler a{
+	     color:white;
+	     text-decoration:none;
 	 }
 	</style>
     </head>
@@ -141,7 +166,7 @@
 		    </div>
 
 		    <div id="ssidebar" class="collapse navbar-collapse navbar-body">
-			<ul id="sidebar" class="nav navbar-nav tabs" style="height: 600px;"> <!-- 178 -->
+			<ul id="sidebar" class="nav navbar-nav tabs navbar-items" style="height: 400px;"> <!-- 178 -->
 			    <!-- <li data-name="Haha" class="not-in-more">
 				 <a href="#demo" data-toggle="collapse">General Ledger</a>
 				 </li> 
@@ -155,24 +180,19 @@
 				    echo "<li id=\"" . ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") . "\" data-name=\"". $item["data"]["full"] ."\" class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li>";
 				else if($item["type"] == "submenu"){			
 				    /*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">". $key ."</span><span class=\"short-label\" title=\"". $key ."\">". $key ."</span></a></li>";*/
-				    echo "<ul class=\"nav navbar-nav tabs\"><li data-name=\"". $key ."\"  class=\"not-in-more\"><a href=\"#list" . $item["id"] . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $item["full"] ."</span><span class=\"short-label\" title=\"". $item["short"] ."\">". $item["short"] ."</span></a></li>";
-				    echo "<li id=\"list" . $item["id"] . "\" class=\"collapse-sidebar-item collapse in\" data-name=\"" . $key ."\" class=\"not-in-more\" style=\"display:none\"><ul class=\"nav navbar-nav tabs\">";
+				    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". $key ."\"  class=\"not-in-more\"><a class=\"nav-item-level1\" href=\"#list" . $item["id"] . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $item["full"] ."</span><span class=\"short-label\" title=\"". $item["short"] ."\">". $item["short"] ."</span></a></li>";
+				    echo "<li id=\"list" . $item["id"] . "\" class=\"collapse-sidebar-item collapse in\" data-name=\"" . $key ."\" class=\"not-in-more\" style=\"display:none\">";
+				    echo "<ul class=\"nav navbar-nav tabs navbar-items\">";
 				    //echo  "<a href=\"#\" style=\"margin-left:10px;\" class=\"nav-link active\"><span class=\"full-label\">Opportunities</span><span class=\"short-label\" title=\"Opportunities\">Op</span></a>";
 				    foreach($item["data"] as $key=>$subitem){
-					echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a href=\"" . $subitem["href"] . "\" class=\"nav-link nav-item-level2\" style=\"padding-left:25px\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
+					echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a href=\"" . $subitem["href"] . "\" class=\"nav-link nav-item-level2\" ><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
 				    }
-				    echo "</ul></li></ul>";
+				    echo "</ul></li></ul></li>";
 				}
 			    }
 			    ?>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-			    <li>
-				<a class="minimizer" href="javascript:toggleSideBar()">
-				    <span id="sideBarHider" class="glyphicon glyphicon glyphicon-menu-left"></span>
-				    <span id="sideBarShower" style="display:none;" class="glyphicon glyphicon glyphicon-menu-right"></span>
-				</a>
-			    </li>
 			    <li class="dropdown menu-container">
 				<a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="nav-menu-dropdown">
@@ -195,6 +215,12 @@
 				</ul>
 			    </li>
 			</ul>
+			<div class="sidebar-toggler">
+			    <a class="minimizer" href="javascript:toggleSideBar()">
+				<span id="sideBarHider" class="glyphicon glyphicon glyphicon-menu-left"></span>
+				<span id="sideBarShower" style="display:none;" class="glyphicon glyphicon glyphicon-menu-right"></span>
+			    </a>
+			</div>
 		    </div>
 		</div>
 	    </div>
