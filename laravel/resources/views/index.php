@@ -79,6 +79,9 @@
 	 }
 	 
 	 @media screen and (min-width : 768px){
+	     .hide-logo{
+		 display: none;
+	     }
 	     .sidebar-toggler{
 		 position:absolute;
 		 left : 12px;
@@ -115,7 +118,7 @@
 		 position:fixed;
 		 top:5px;
 		 right:7px;
-		 text-decoration:none;
+		 text-decoration:none !important;
 	     }
 	     .top-bar-link{
 		 margin-left:20px;
@@ -170,7 +173,7 @@
     $menuCategories["Payables"] = [
 	"type" => "submenu",
 	"id" => "Payables",
-	"full" => $translation->translateLabel('Payables'),
+	"full" => $translation->translateLabel('Accounts Payable'),
 	"short" => "Pa",
 	"data" => [
 	    [
@@ -269,7 +272,7 @@
 	    <div id="navbar">
 		<div class="navbar navbar-inverse" role="navigation">
 		    <div class="navbar-header top-bar">
-			<a class="navbar-brand nav-link" href="<?php echo $public_prefix; ?>/index"><img id="logosection"  src="<?php echo $public_prefix; ?>/assets/images/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
+			<a class="navbar-brand nav-link logo-link" href="<?php echo $public_prefix; ?>/index"><img id="logosection"  src="<?php echo $public_prefix; ?>/assets/images/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
 			<button type="button" class="navbar-toggle hide-on-small" data-toggle="collapse" data-target=".navbar-body">
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
@@ -315,9 +318,9 @@
 			    ?>
 			    <li class="dropdown menu-container">
 				<a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-				<ul class="dropdown-menu" role="menu" aria-labelledby="nav-menu-dropdown" style="z-index:10000;">
+				<ul class="dropdown-menu" role="menu" aria-labelledby="nav-menu-dropdown">
 				    <li>
-					<select class="form-control" onchange="changeLanguage(event);" style="z-index:10000;">
+					<select class="form-control" onchange="changeLanguage(event);">
 					    <option><?php echo $user["language"]; ?></option>
 					    <?php
 					    foreach($translation->languages as $value)
@@ -334,7 +337,7 @@
 				    </li>
 				</ul>
 			    </li>
-			    <li class="pull-right top-bar-toggler" style="position:relative; top:45px;">
+			    <li class="pull-right top-bar-toggler" style="margin-top:45px;">
 				<a class="minimizer" class="dropdown-toggle" href="javascript:toggleTopBar()">
 				    <span id="topBarHider" class="glyphicon glyphicon glyphicon-menu-up"></span>
 				</a>
@@ -353,6 +356,7 @@
 	<a class="minimizer top-bar-shower-off top-bar-toggler" href="javascript:toggleTopBar()">
 	    <span id="topBarShower" class="glyphicon glyphicon glyphicon-menu-down"></span>
 	</a>
+	<?php require "footer.php"; ?>
 	<div id="content" class="container content top-bar-offset" style="background: #ffffff">
 	    <?php
 	    if(isset($content))
@@ -397,14 +401,14 @@
 		 $('body').addClass('minimized');
 		 /*$('#sidebar')[0].style.display = 'none';
 		    console.log($('#sidebar'));*/
-		 $('#logosection')[0].style.display = 'none';
+		 $('#logosection').addClass("hide-logo");
 		 $('#sideBarHider')[0].style.display = 'none';
 		 $('#sideBarShower')[0].style.display = 'block';
 		 sidebarToggled = false;
 	     }else{
 		 $('body').removeClass('minimized');
 		 /*$('#sidebar')[0].style.display = 'block';*/
-		 $('#logosection')[0].style.display = 'block';
+		 $('#logosection').removeClass("hide-logo");
 		 $('#sideBarHider')[0].style.display = 'block';
 		 $('#sideBarShower')[0].style.display = 'none';
 		 sidebarToggled = true;
@@ -415,14 +419,14 @@
 	 function toggleTopBar(){
 	     if(topbarToggled){
 		 $('body').addClass('top-bar-minimized');
-		 $('.nav-link')[0].style.display = 'none';
+		 $('.logo-link').addClass("hide-logo");
 		 $('.top-bar-shower-off').addClass('top-bar-shower');
 		 $('.top-bar-shower-off').removeClass('top-bar-shower-off');
 		 $('#topBarShower')[0].style.display = 'block';
 		 topbarToggled = false;
 	     }else{
 		 $('body').removeClass('top-bar-minimized');
-		 $('.nav-link')[0].style.display = 'block';
+		 $('.logo-link').removeClass("hide-logo");
 		 $('.top-bar-shower').addClass('top-bar-shower-off');
 		 $('.top-bar-shower').removeClass('top-bar-shower');
 		 $('#topBarShower')[0].style.display = 'none';
@@ -439,6 +443,23 @@
 		  console.log('something going wrong');
 	      });
 	 }
+
+	 function onlocation(location){
+	     var path = new String(location);
+	     if(path.search(/index\#\//) != -1){
+		 path = path.replace(/index\#\//, "");
+		 console.log(path);
+		 $.get(path + "?partial=true")
+		     .done(function( data ) {
+			 $( "#content" ).html( data );
+		     });
+	     }
+	 }
+
+	 onlocation(window.location);
+	 $(window).on('hashchange', function() {
+	     onlocation(window.location);
+	 });
 	</script>
     </body>
 </html>

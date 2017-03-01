@@ -63,7 +63,7 @@ class Grid extends BaseController{
         $sessionValues = Session::all();//получаем данные из сессии
         $token = $sessionValues['_token'];
         $app = new _app;
-        return view("index", [ "app" => $app,
+        return view(key_exists("partial",$_GET) ? "gridView" : "index", [ "app" => $app,
                                 "public_prefix" => public_prefix(),
                                 "translation" => $translation,
                                 "user" => $user,
