@@ -21,7 +21,7 @@ Called from:
 Calls:
 DB
 
-Last Modified: 23.02.2016
+Last Modified: 1.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -36,22 +36,7 @@ class translation{
     //list of available languages
     public $languages = [
         "English",
-        "Dutch",
-        "French",
-        "Fund",
-        "German",
-        "Arabic",
-        "ChineseSimple",
-        "ChineseTrad",
-        "Hindi",
-        "Italian",
-        "Japanese",
-        "Korean",
-        "Portuguese",
-        "Russian",
         "Spanish",
-        "Swedish",
-        "Thai"
     ];
 
     //model constructor, just load all words for a certain language

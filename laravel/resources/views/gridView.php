@@ -34,6 +34,13 @@
    -->
 
 <!-- Page Content -->
+<?php
+require "header.php";
+require "footer.php";
+?>
+<link href="<?php echo $public_prefix; ?>/assets/css/newtechcrm-vertical.css" rel="stylesheet">
+<link href="<?php echo $public_prefix; ?>/assets/css/style.css" rel="stylesheet">
+
 <div class="white-box">
     <!--
 	 This is conditional page generation.
@@ -51,8 +58,8 @@
 	 contains tabs with fileds and values. Values is available for changing.
        -->
 
-    <!-- grid -->
     <?php if($scope["mode"] == 'grid'): ?>
+	<!-- grid -->
 	<div id="grid_content" class="row">
 	    <div class="table-responsive">
 		<table id="example23" class="table">
@@ -112,8 +119,8 @@
 	    </script>
 	</div>
 	
-	<!-- view -->
     <?php elseif($scope["mode"] == 'view'): ?>
+	<!-- view -->
 	<div id="row_viewer">
 	    <ul class="nav nav-tabs">
 		<?php
@@ -170,8 +177,8 @@
 		</a>
 	    </div>
 	</div>
-	<!-- edit and new -->
     <?php elseif($scope["mode"] == 'edit' || $scope["mode"] == 'new'): ?>
+	<!-- edit and new -->
 	<div id="row_editor">
 	    <ul class="nav nav-tabs">
 		<?php  
@@ -279,10 +286,11 @@
     <?php endif; ?>
 </div>
 
-<script>
+<script language="javascript" type="text/javascript">
  <?php  if(!key_exists("partial", $_GET)):?>
  $(document).ready(function(){
  <?php endif; ?>
+     console.log('loaded');
      $.ajaxSetup({
 	 headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
      });

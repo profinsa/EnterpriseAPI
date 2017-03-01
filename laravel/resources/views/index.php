@@ -146,25 +146,25 @@
 		    "id" => "GeneralLedger/chartOfAccounts",
 		    "full" => $translation->translateLabel('Chart Of Accounts'),
 		    "short" => "CO",
-		    "href"=> $public_prefix . "/grid/GeneralLedger/chartOfAccounts/grid/main/all"
+		    "href"=> $public_prefix . "/index#/grid/GeneralLedger/chartOfAccounts/grid/main/all"
 		],
 		[
 		    "id" => "GeneralLedger/ledgerAccountGroup",
 		    "full" => $translation->translateLabel('Ledger Account Group'),
 		    "short" => "LA",
-		    "href" => $public_prefix . "/grid/GeneralLedger/ledgerAccountGroup/grid/main/all"
+		    "href" => $public_prefix . "/index#/grid/GeneralLedger/ledgerAccountGroup/grid/main/all"
 		],
 		[
 		    "id" => "GeneralLedger/bankTransactions",
 		    "full" => $translation->translateLabel('Bank Transactions'),
 		    "short" => "BT",
-		    "href" => $public_prefix . "/grid/GeneralLedger/bankTransactions/grid/main/all"
+		    "href" => $public_prefix . "/index#/grid/GeneralLedger/bankTransactions/grid/main/all"
 		],
 		[
 		    "id" => "GeneralLedger/bankAccounts",
 		    "full" => $translation->translateLabel('Bank Accounts'),
 		    "short" => "BA",
-		    "href" => $public_prefix . "/grid/GeneralLedger/bankAccounts/grid/main/all"
+		    "href" => $public_prefix . "/index#/grid/GeneralLedger/bankAccounts/grid/main/all"
 		]
 	    ]
 	];
@@ -174,7 +174,7 @@
 	"type" => "submenu",
 	"id" => "Payables",
 	"full" => $translation->translateLabel('Accounts Payable'),
-	"short" => "Pa",
+	"short" => "AP",
 	"data" => [
 	    [
 		"id" => "Payables/PurchaseOrders",
@@ -201,7 +201,7 @@
 	"type" => "submenu",
 	"id" => "Receivables",
 	"full" => $translation->translateLabel('Receivables'),
-	"short" => "Re",
+	"short" => "AR",
 	"data" => [
 	    [
 		"id" => "Receivables/Quotes",
@@ -356,8 +356,8 @@
 	<a class="minimizer top-bar-shower-off top-bar-toggler" href="javascript:toggleTopBar()">
 	    <span id="topBarShower" class="glyphicon glyphicon glyphicon-menu-down"></span>
 	</a>
-	<?php require "footer.php"; ?>
 	<div id="content" class="container content top-bar-offset" style="background: #ffffff">
+	    <?php require "footer.php"; ?>
 	    <?php
 	    if(isset($content))
 		require $content;
@@ -376,6 +376,10 @@
 		 sideBarCloseAll();
 		 $(e.currentTarget).css('display', 'block');
 	     })
+	 }
+
+	 function sideBarDeselectAll(){
+	     $('.nav-item-level2').removeClass('sidebar-active');
 	 }
 
 	 function sideBarSelectItem(folder, item){
@@ -446,13 +450,22 @@
 
 	 function onlocation(location){
 	     var path = new String(location);
+	     var match;
 	     if(path.search(/index\#\//) != -1){
 		 path = path.replace(/index\#\//, "");
-		 console.log(path);
+		 match = path.match(/grid\/(\w+)\/(\w+)\//);
+		 if(match){
+		     sideBarCloseAll();
+		     sideBarDeselectAll();
+		     sideBarSelectItem(match[1], match[2]);
+		 }
+
 		 $.get(path + "?partial=true")
-		     .done(function( data ) {
-			 $( "#content" ).html( data );
-		     });
+		  .done(function(data){
+		      setTimeout(function(){
+			  $("#content").html(data);
+		      },0);
+		  });
 	     }
 	 }
 
