@@ -23,17 +23,12 @@
 	<link rel="icon" href="http://demo.espocrm.com/basic/client/img/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="http://demo.espocrm.com/basic/client/img/favicon.ico" type="image/x-icon">
 	<style>
-	 .active{
-	     margin-left:0px !important;
+	 .sidebar-active{
 	     background : red;
-	     position:relative;
-	     left:-8px;
-	     padding-left:18px !important;
-	     z-index:1000;
 	 }
 	 body.minimized .nav-item-level2{
 	     margin-left:0px !important;
-	     padding-left:0px !important;
+	     padding-left:3px !important;
 	 }
 	 .nav-item-level2{
 	     padding-left:10px;
@@ -41,7 +36,7 @@
 	 
 	 body.minimized .nav-item-level1{
 	     margin-left:0px !important;
-	     padding-left:0px !important;
+	     padding-left:8px !important;
 	 }
 	 .nav-item-level1{
 	     margin-left:0px;
@@ -283,7 +278,7 @@
 		    </div>
 
 		    <div class="collapse navbar-collapse navbar-body">
-			<ul id="sidebar" class="nav navbar-nav tabs navbar-items" style="height: 400px;"> <!-- 178 -->
+			<ul id="sidebar" class="nav navbar-nav tabs" style="margin-top:0px; height: 400px;"> <!-- 178 -->
 			    <?php
 			    foreach ($menuCategories as $key=>$item){
 				if($item["type"] == "item")
@@ -386,7 +381,7 @@
 		 _item.collapse('show');
 		 _item.css('display', 'block');
 	     }, 1000);
-	     document.getElementById(folder + '/' + item).className += " active";
+	     document.getElementById(folder + '/' + item).className += " sidebar-active";
 	 }
 	 
 	 function main(){

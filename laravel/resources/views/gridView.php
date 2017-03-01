@@ -54,10 +54,8 @@
     <!-- grid -->
     <?php if($scope["mode"] == 'grid'): ?>
 	<div id="grid_content" class="row">
-	    <h3 class="box-title m-b-0"><?php echo $data->dashboardTitle ?></h3>
-	    <p class="text-muted m-b-30"><?php echo $data->dashboardTitle ?></p>
 	    <div class="table-responsive">
-		<table id="example23" class="table table-striped">
+		<table id="example23" class="table">
 		    <thead>
 			<tr>
 			    <th></th>
@@ -89,10 +87,13 @@
 		    </tbody>
 		</table>
 	    </div>
-	    <div>
-		<a class="btn btn-info waves-effect waves-light m-r-10" href="<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"] ?>/new/Main/new">
-		    <?php echo $translation->translateLabel("New"); ?>
-		</a>
+	    <div class="dt-buttons-container row col-md-12">
+		<br/>
+		<div class="col-md-2 new-button-action">
+		    <a class="btn btn-info" href="<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"] ?>/new/Main/new">
+			<?php echo $translation->translateLabel("New"); ?>
+		    </a>
+		</div>
 	    </div>
 	    <script>
 	     //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
@@ -297,48 +298,58 @@
      $.ajaxSetup({
 	 headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
      });
-     $('#myTable').DataTable();
-     $(document).ready(function() {
-	 var table = $('#example').DataTable({
-	     "columnDefs": [
-		 { "visible": false, "targets": 2 }
-	     ],
-	     "order": [[ 2, 'asc' ]],
-	     "displayLength": 25,
-	     "drawCallback": function ( settings ) {
-		 var api = this.api();
-		 var rows = api.rows( {page:'current'} ).nodes();
-		 var last=null;
-
-		 api.column(2, {page:'current'} ).data().each( function ( group, i ) {
-		     if ( last !== group ) {
-			 $(rows).eq( i ).before(
-			     '<tr class="group"><td colspan="5">'+group+'</td></tr>'
-			 );
-
-			 last = group;
-		     }
-		 } );
-	     }
-	 } );
-
-	 // Order by the grouping
-	 $('#example tbody').on( 'click', 'tr.group', function () {
-	     var currentOrder = table.order()[0];
-	     if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
-		 table.order( [ 2, 'desc' ] ).draw();
-	     }
-	     else {
-		 table.order( [ 2, 'asc' ] ).draw();
-	     }
-	 });
+//     $('#myTable').DataTable();
+     $('#example23').DataTable( {
+	 dom: 'Bfrtip',
+	 buttons: [
+	     'copy', 'csv', 'excel', 'pdf', 'print'
+	 ]
      });
- });
- $('#example23').DataTable( {
-     dom: 'Bfrtip',
-     buttons: [
-	 'copy', 'csv', 'excel', 'pdf', 'print'
-     ]
+
+     var buttons = $('.dt-buttons-container').remove();
+     buttons.insertAfter($('#example23_paginate'));
+     var dtbuttons = $('.dt-buttons').remove();
+     dtbuttons.addClass("col-md-4");
+     buttons.append(dtbuttons);
+     //     buttons.insertAfter($(".new-button-action"));
+     
+     $('.dt-button').addClass("btn btn-info");
+     $('.dt-button').css("margin-left", "3px");
+     $('.dt-button').removeClass("dt-button buttons-html5");
+
+/*     var table = $('#example').DataTable({
+	 "columnDefs": [
+	     { "visible": false, "targets": 2 }
+	 ],
+	 "order": [[ 2, 'asc' ]],
+	 "displayLength": 25,
+	 "drawCallback": function ( settings ) {
+	     var api = this.api();
+	     var rows = api.rows( {page:'current'} ).nodes();
+	     var last=null;
+
+	     api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+		 if ( last !== group ) {
+		     $(rows).eq( i ).before(
+			 '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+		     );
+
+		     last = group;
+		 }
+	     } );
+	 }
+     } );*/
+
+     // Order by the grouping
+     $('#example tbody').on( 'click', 'tr.group', function () {
+	 var currentOrder = table.order()[0];
+	 if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+	     table.order( [ 2, 'desc' ] ).draw();
+	 }
+	 else {
+	     table.order( [ 2, 'asc' ] ).draw();
+	 }
+     });
  });
 
  jQuery('.fdatepicker').datepicker();
