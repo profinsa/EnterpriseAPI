@@ -23,28 +23,37 @@
 	<link rel="icon" href="http://demo.espocrm.com/basic/client/img/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="http://demo.espocrm.com/basic/client/img/favicon.ico" type="image/x-icon">
 	<style>
-	 .active a {
-	     backround-color : red;
+	 .active{
+	     margin-left:0px !important;
+	     background : red;
+	     position:relative;
+	     left:-8px;
+	     padding-left:18px !important;
+	     z-index:1000;
 	 }
 	 body.minimized .nav-item-level2{
-	     margin-left:10px;
+	     margin-left:0px !important;
+	     padding-left:0px !important;
 	 }
 	 .nav-item-level2{
-	     margin-left:25px;
+	     padding-left:10px;
 	 }
 	 
 	 body.minimized .nav-item-level1{
-	     margin-left:0px;
+	     margin-left:0px !important;
+	     padding-left:0px !important;
 	 }
 	 .nav-item-level1{
-	     margin-left:5px;
+	     margin-left:0px;
+	     padding-left:0px;
 	 }
 
 	 .navbar-items{
-	     padding-left: 0px;
-	     padding-right: 0px;
-	     margin-left: 0px;
-	     margin-right: 0px;
+	     margin-top: 0px !important;
+	     padding-left: 0px !important;
+	     padding-right: 0px !important;
+	     margin-left: 0px !important;
+	     margin-right: 0px !important;
 	     width : 100%;
 	 }
 
@@ -67,6 +76,9 @@
 	     }
 
 	     div.sidebar-toggler{
+		 display:none;
+	     }
+	     .hide-on-handsheld{
 		 display:none;
 	     }
 	 }
@@ -92,6 +104,10 @@
 		 margin-top : 0px !important;
 		 padding-top : 0px !important;
 	     }
+
+	     body.minimized .navbar-right{
+		 width : 100% !important; 
+	     }
 	     
 	     .hide-on-small{
 		 display : none !important;
@@ -106,6 +122,16 @@
 		 right:7px;
 		 text-decoration:none;
 	     }
+	     .top-bar-link{
+		 margin-left:20px;
+		 margin-top:40px;
+	     }
+	     li.top-bar-link a{
+		 color:gray !important;
+	     }
+	     li.top-bar-link a:hover{
+		 color:black !important;
+	     }
 	 }
 	</style>
     </head>
@@ -114,7 +140,7 @@
     if($user["accesspermissions"]["GLView"]){
 	$menuCategories["GeneralLedger"] = [
 	    "id" => "GeneralLedger",
-	    "full"=> $translation->translateLabel('General Ledger'),
+	    "full"=> $translation->translateLabel('Ledger'),
 	    "short" => "GL",
 	    "type" => "submenu",
 	    "data" => [
@@ -145,62 +171,103 @@
 	    ]
 	];
     }
-    /*   $menuCategories[$translation->translateLabel('Receivables')] = [
-       "type" => "submenu",
-       "data" => [
-       [
-       "full" => $translation->translateLabel('Quotes'),
-       "href"=> "#"
-       ],
-       [
-       "full" => $translation->translateLabel('Orders'),
-       "href" => "#"
-       ],
-       [
-       "full" => $translation->translateLabel('Invoices'),
-       "href" => "#"
-       ]
-       ]
-       ];
 
-       $menuCategories[$translation->translateLabel('Payables')] = [
-       "type" => "submenu",
-       "data" => [
-       [
-       "full" => $translation->translateLabel('Purchase Orders'),
-       "href"=> "#"
-       ],
-       [
-       "full" => $translation->translateLabel('Vouchers'),
-       "href" => "#"
-       ],
-       [
-       "full" => $translation->translateLabel('Vendors'),
-       "href" => "#"
-       ]
-       ]
-       ];*/
-
-    $menuCategories["Support"] = [
-	"id" => "Support",
-	"full" => $translation->translateLabel('Support'),
-	"short" => "Sp",
+    $menuCategories["Payables"] = [
 	"type" => "submenu",
+	"id" => "Payables",
+	"full" => $translation->translateLabel('Payables'),
+	"short" => "Pa",
 	"data" => [
 	    [
-		"full" => $translation->translateLabel('Help Documentation'),
-		"short" => "HD",
-		"href" => "https://stfbinc.helpdocs.com",
-		"Target" => "_Blank"
+		"id" => "Payables/PurchaseOrders",
+		"full" => $translation->translateLabel('Purchase Orders'),
+		"href"=> "#",
+		"short" => "PO"
 	    ],
 	    [
-		"full" => $translation->translateLabel('Support Ticket'),
-		"short" => "ST",
-		"href" => "https://stfbinc.teamwork.com/support/",
-		"Target" => "_Blank"
+		"id" => "Payables/Vouchers",
+		"full" => $translation->translateLabel('Vouchers'),
+		"href" => "#",
+		"short" => "Vo"
+	    ],
+	    [
+		"id" => "Payables/Vendors",
+		"full" => $translation->translateLabel('Vendors'),
+		"href" => "#",
+		"short" => "Ve"
 	    ]
 	]
     ];
+
+    $menuCategories['Receivables'] = [
+	"type" => "submenu",
+	"id" => "Receivables",
+	"full" => $translation->translateLabel('Receivables'),
+	"short" => "Re",
+	"data" => [
+	    [
+		"id" => "Receivables/Quotes",
+		"full" => $translation->translateLabel('Quotes'),
+		"short" => "Qu",
+		"href"=> "#"
+	    ],
+	    [
+		"id" => "Receivables/Orders",
+		"full" => $translation->translateLabel('Orders'),
+		"short" => "Or",
+		"href" => "#"
+	    ],
+	    [
+		"id" => "Receivables/Invoices",
+		"full" => $translation->translateLabel('Invoices'),
+		"short" => "In",
+		"href" => "#"
+	    ]
+	]
+    ];
+
+    $menuCategories["Documentation"] = [
+	"type" => "item",
+	"data" => [
+	    "id" => "Documentation",
+	    "full" => $translation->translateLabel('Help Documentation'),
+	    "short" => "HD",
+	    "href" => "https://stfbinc.helpdocs.com",
+	    "Target" => "_Blank"
+	]
+    ];
+    
+    $menuCategories["SupportTicket"] = [
+	"type" => "item",
+	"data" => [
+	    "id" => "Support",
+	    "full" => $translation->translateLabel('Support Ticket'),
+	    "short" => "ST",
+	    "href" => "https://stfbinc.teamwork.com/support/",
+	    "Target" => "_Blank"
+	]
+    ];
+
+    /*    $menuCategories["Support"] = [
+       "id" => "Support",
+       "full" => $translation->translateLabel('Support'),
+       "short" => "Sp",
+       "type" => "submenu",
+       "data" => [
+       [
+       "full" => $translation->translateLabel('Help Documentation'),
+       "short" => "HD",
+       "href" => "https://stfbinc.helpdocs.com",
+       "Target" => "_Blank"
+       ],
+       [
+       "full" => $translation->translateLabel('Support Ticket'),
+       "short" => "ST",
+       "href" => "https://stfbinc.teamwork.com/support/",
+       "Target" => "_Blank"
+       ]
+       ]
+       ];*/
     ?>
     <body onload="main();" style="min-height: 450px;" class="">
 	<header id="header">
@@ -220,7 +287,7 @@
 			    <?php
 			    foreach ($menuCategories as $key=>$item){
 				if($item["type"] == "item")
-				    echo "<li id=\"" . ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") . "\" data-name=\"". $item["data"]["full"] ."\" class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li>";
+				    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") ."\"  class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link nav-item-level1\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li></ul></li>";
 				else if($item["type"] == "submenu"){			
 				    /*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">". $key ."</span><span class=\"short-label\" title=\"". $key ."\">". $key ."</span></a></li>";*/
 				    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". $key ."\"  class=\"not-in-more\"><a class=\"nav-item-level1\" href=\"#list" . $item["id"] . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $item["full"] ."</span><span class=\"short-label\" title=\"". $item["short"] ."\">". $item["short"] ."</span></a></li>";
@@ -228,14 +295,29 @@
 				    echo "<ul class=\"nav navbar-nav tabs navbar-items\">";
 				    //echo  "<a href=\"#\" style=\"margin-left:10px;\" class=\"nav-link active\"><span class=\"full-label\">Opportunities</span><span class=\"short-label\" title=\"Opportunities\">Op</span></a>";
 				    foreach($item["data"] as $key=>$subitem){
-					echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more\"><a href=\"" . $subitem["href"] . "\" class=\"nav-link nav-item-level2\" ><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
+					echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more nav-link nav-item-level2\"><a href=\"" . $subitem["href"] . "\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
 				    }
 				    echo "</ul></li></ul></li>";
 				}
 			    }
 			    ?>
 			</ul>
-			<ul class="nav navbar-nav navbar-right top-bar">
+			<ul class="nav navbar navbar-nav navbar-right top-bar hide-on-handsheld">
+			    <?php
+			    foreach ($menuCategories as $key=>$item){
+				if($item["type"] == "item")
+				    echo "<li class=\"top-bar-link\"><a  href=\"" . $item["data"]["href"] . "\">". $item["data"]["full"] . "<span class=\"sr-only\">(current)</span></a></li>";
+				else if($item["type"] == "submenu"){
+				    echo "<li class=\"dropdown top-bar-link\">";
+				    echo "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded\"false\">"  . $item["full"] . " <span class=\"caret\"></span></a>";
+				    echo "<ul class=\"dropdown-menu\">";
+				    foreach($item["data"] as $key=>$subitem){
+					echo "<li><a href=\"" . $subitem["href"] . "\" class=\"nav-link\">" . $subitem["full"] ."</a></li>";
+				    }
+				    echo "</ul></li>";
+				}
+			    }
+			    ?>
 			    <li class="dropdown menu-container">
 				<a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="nav-menu-dropdown" style="z-index:10000;">
