@@ -26,7 +26,7 @@ Called from:
 Calls:
 models/translation.php
 
-Last Modified: 23.02.2016
+Last Modified: 02.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -70,6 +70,7 @@ class Index extends BaseController{
                                "user" => $user,
                                "dashboardTitle" => $translation->translateLabel($this->dashboardTitle),
                                "breadCrumbTitle" => $translation->translateLabel($this->breadCrumbTitle),
+                               "header" => "header.php",
                                "token" => $token
         ]);
     }

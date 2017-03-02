@@ -29,7 +29,7 @@
      grid model
      app as model
 
-     Last Modified: 28.02.2016
+     Last Modified: 02.03.2016
      Last Modified by: Nikita Zaharov
    -->
 
@@ -290,21 +290,16 @@
      $.ajaxSetup({
 	 headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
      });
-     //     $('#myTable').DataTable();
      var table = $('#example23').DataTable( {
-//	 dom: 'Bfrtip',
 	 buttons: [
 	     'copy', 'csv', 'excel', 'pdf', 'print'
 	 ]
      });
 
-     var buttons = $('.dt-buttons-container');//.remove();
-     //buttons.insertAfter($('#example23_paginate'));
+     var buttons = $('.dt-buttons-container');
      var dtbuttons = table.buttons().container();
-     //$('#example23_wrapper').append(dtbuttons);
      dtbuttons.addClass("col-md-4");
      buttons.append(dtbuttons);
-     //buttons.insertAfter($(".new-button-action"));
      
      $('.dt-button').addClass("btn btn-info");
      $('.dt-button').css("margin-left", "3px");

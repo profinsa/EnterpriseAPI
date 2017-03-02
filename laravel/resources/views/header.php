@@ -1,9 +1,6 @@
-<!-- <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />  -->
-<!-- <link href="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/morrisjs/morris.css" rel="stylesheet"> -->
-<!-- animation CSS -->
-<!-- <link href="<?php echo $public_prefix; ?>/dependencies/assets/css/animate.css" rel="stylesheet">
-<!-- Custom CSS -->
-<!-- <link href="<?php echo $public_prefix; ?>/dependencies/assets/css/style.css" rel="stylesheet"> -->
+<script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- <script src="<?php echo $public_prefix; ?>/dependencies/assets/bootstrap/dist/js/bootstrap.min.js"></script> -->	
+<script type="text/javascript" src="<?php echo $public_prefix; ?>/assets/js/espo.min.js" data-base-path=""></script>
+<script src="chrome-extension://mclbjdibcpiohnhgkjkbfbnjcafkhani/files/foreground.js"></script>
+<link href="<?php echo $public_prefix; ?>/assets/css/newtechcrm-vertical.css" rel="stylesheet">
 <link href="<?php echo $public_prefix; ?>/assets/css/style.css" rel="stylesheet">
-<!-- color CSS -->
-<!-- <link href="<?php echo $public_prefix; ?>/dependencies/assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet"> -->
