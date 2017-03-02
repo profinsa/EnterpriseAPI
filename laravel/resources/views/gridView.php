@@ -35,11 +35,11 @@
 
 <!-- Page Content -->
 <?php
-require "header.php";
-require "footer.php";
+//require "header.php";
+//require "footer.php";
 ?>
-<link href="<?php echo $public_prefix; ?>/assets/css/newtechcrm-vertical.css" rel="stylesheet">
-<link href="<?php echo $public_prefix; ?>/assets/css/style.css" rel="stylesheet">
+<!-- <link href="<?php echo $public_prefix; ?>/assets/css/newtechcrm-vertical.css" rel="stylesheet">
+     <link href="<?php echo $public_prefix; ?>/assets/css/style.css" rel="stylesheet"> -->
 
 <div class="white-box">
     <!--

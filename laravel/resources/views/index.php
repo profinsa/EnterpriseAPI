@@ -64,6 +64,12 @@
 	 .top-bar-shower-off{
 	     display : none;
 	 }
+
+	 .white-box{
+	     background: #ffffff;
+	     padding: 25px;
+	     margin-bottom: 15px;
+	 }
 	 
 	 @media screen and (max-width : 768px){
 	     .top-bar-toggler{
@@ -245,27 +251,6 @@
 	    "Target" => "_Blank"
 	]
     ];
-
-    /*    $menuCategories["Support"] = [
-       "id" => "Support",
-       "full" => $translation->translateLabel('Support'),
-       "short" => "Sp",
-       "type" => "submenu",
-       "data" => [
-       [
-       "full" => $translation->translateLabel('Help Documentation'),
-       "short" => "HD",
-       "href" => "https://stfbinc.helpdocs.com",
-       "Target" => "_Blank"
-       ],
-       [
-       "full" => $translation->translateLabel('Support Ticket'),
-       "short" => "ST",
-       "href" => "https://stfbinc.teamwork.com/support/",
-       "Target" => "_Blank"
-       ]
-       ]
-       ];*/
     ?>
     <body onload="main();" style="min-height: 450px;" class="">
 	<header id="header">
@@ -289,7 +274,7 @@
 				else if($item["type"] == "submenu"){			
 				    /*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">". $key ."</span><span class=\"short-label\" title=\"". $key ."\">". $key ."</span></a></li>";*/
 				    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". $key ."\"  class=\"not-in-more\"><a class=\"nav-item-level1\" href=\"#list" . $item["id"] . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $item["full"] ."</span><span class=\"short-label\" title=\"". $item["short"] ."\">". $item["short"] ."</span></a></li>";
-				    echo "<li id=\"list" . $item["id"] . "\" class=\"collapse-sidebar-item collapse in\" data-name=\"" . $key ."\" class=\"not-in-more\" style=\"display:none\">";
+				    echo "<li id=\"list" . $item["id"] . "\" class=\"collapse-sidebar-item collapse\" data-name=\"" . $key ."\" class=\"not-in-more\" style=\"display:none\">";
 				    echo "<ul class=\"nav navbar-nav tabs navbar-items\">";
 				    //echo  "<a href=\"#\" style=\"margin-left:10px;\" class=\"nav-link active\"><span class=\"full-label\">Opportunities</span><span class=\"short-label\" title=\"Opportunities\">Op</span></a>";
 				    foreach($item["data"] as $key=>$subitem){
@@ -356,8 +341,8 @@
 	<a class="minimizer top-bar-shower-off top-bar-toggler" href="javascript:toggleTopBar()">
 	    <span id="topBarShower" class="glyphicon glyphicon glyphicon-menu-down"></span>
 	</a>
+	<?php require "footer.php"; ?>
 	<div id="content" class="container content top-bar-offset" style="background: #ffffff">
-	    <?php require "footer.php"; ?>
 	    <?php
 	    if(isset($content))
 		require $content;
@@ -365,17 +350,17 @@
 	</div>
 	<div id="popup-notifications-container" class="hidden"></div>
 	<script>
+	 var sidebarItems = $(".collapse-sidebar-item");
+	 sidebarItems.on('hidden.bs.collapse', function (e) {
+	     $(e.currentTarget).css('display', 'none');
+	 });
+	 sidebarItems.on('show.bs.collapse', function (e) {
+	     sideBarCloseAll();
+	     $(e.currentTarget).css('display', 'block');
+	 })
 	 function sideBarCloseAll(){
-	     var items = $(".collapse-sidebar-item");
-	     items.css('display', 'none');
-	     items.collapse('hide');
-	     items.on('hidden.bs.collapse', function (e) {
-		 $(e.currentTarget).css('display', 'none');
-	     });
-	     items.on('show.bs.collapse', function (e) {
-		 sideBarCloseAll();
-		 $(e.currentTarget).css('display', 'block');
-	     })
+	     sidebarItems.css('display', 'none');
+	     sidebarItems.collapse('hide');
 	 }
 
 	 function sideBarDeselectAll(){
@@ -383,17 +368,23 @@
 	 }
 
 	 function sideBarSelectItem(folder, item){
-	     console.log($("#list" + folder));
 	     var _item = $("#list" + folder);
-	     setTimeout(function(){
-		 _item.collapse('show');
-		 _item.css('display', 'block');
-	     }, 1000);
-	     document.getElementById(folder + '/' + item).className += " sidebar-active";
+	     console.log('ddddd', _item[0].className);
+	     if(!_item.hasClass('in')){
+		 sideBarCloseAll();
+		 setTimeout(function(){
+		     _item.collapse('show');
+		     _item.css('display', 'block');
+		 }, 500);
+	     }
+	     var selItem = document.getElementById(folder + '/' + item);
+	     if(!$(selItem).hasClass("sidebar-active")){
+		 sideBarDeselectAll();
+		 $(selItem).addClass("sidebar-active");
+	     }
 	 }
 	 
 	 function main(){
-	     sideBarCloseAll();
 	     <?php if(isset($scope)): ?>
 	     sideBarSelectItem("<?php echo  $scope["pathFolder"] . "\",\"" . $scope["pathPage"];?>");
 	     <?php endif; ?>
@@ -403,15 +394,12 @@
 	 function toggleSideBar(){
 	     if(sidebarToggled){
 		 $('body').addClass('minimized');
-		 /*$('#sidebar')[0].style.display = 'none';
-		    console.log($('#sidebar'));*/
 		 $('#logosection').addClass("hide-logo");
 		 $('#sideBarHider')[0].style.display = 'none';
 		 $('#sideBarShower')[0].style.display = 'block';
 		 sidebarToggled = false;
 	     }else{
 		 $('body').removeClass('minimized');
-		 /*$('#sidebar')[0].style.display = 'block';*/
 		 $('#logosection').removeClass("hide-logo");
 		 $('#sideBarHider')[0].style.display = 'block';
 		 $('#sideBarShower')[0].style.display = 'none';
@@ -454,13 +442,9 @@
 	     if(path.search(/index\#\//) != -1){
 		 path = path.replace(/index\#\//, "");
 		 match = path.match(/grid\/(\w+)\/(\w+)\//);
-		 if(match){
-		   //  console.log($("#" + match[1] + "/" + match[2]).length);
-		     sideBarCloseAll();
-		     sideBarDeselectAll();
+		 if(match)
 		     sideBarSelectItem(match[1], match[2]);
-		 }
-
+		 
 		 $.get(path + "?partial=true")
 		  .done(function(data){
 		      setTimeout(function(){
