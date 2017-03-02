@@ -2,6 +2,8 @@
 <script src="<?php echo $public_prefix; ?>/dependencies/assets/js/custom.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"</script>
 <!-- <script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/datatables/jquery.dataTables.min.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+<link href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
 <!-- start - This is for export functionality only -->

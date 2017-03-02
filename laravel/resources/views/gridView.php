@@ -53,6 +53,7 @@
 
     <?php if($scope["mode"] == 'grid'): ?>
 	<link href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
 
 	<!-- grid -->
 	<div id="grid_content" class="row">
@@ -102,7 +103,7 @@
 	     function deleteItem(item){
 		 if(confirm("Are you sure?")){
 		     var itemData = $("#itemData");
-		     $.getJSON("<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
+		     $.getJSON("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
 		      .success(function(data) {
 			  window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
 		      })
@@ -164,10 +165,10 @@
 		     for translation uses translation model
 		     for category(which tab is activated) uses $scope of controller
 		   -->
-		<a class="btn btn-info waves-effect waves-light m-r-10" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo  $scope["path"];  ?>/edit/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>">
+		<a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo  $scope["path"];  ?>/edit/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>">
 		    <?php echo $translation->translateLabel("Edit"); ?>
 		</a>
-		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/grid/Main/all"; ?>">
+		<a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/grid/Main/all"; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
 	    </div>
@@ -243,10 +244,10 @@
 		    <!--
 			 renders buttons translated Save and Cancel using translation model
 		       -->
-		    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
+		    <a class="btn btn-info" onclick="<?php echo ($scope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 			<?php echo $translation->translateLabel("Save"); ?>
 		    </a>
-		    <a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/" .  ( $scope["mode"] != "new" ? "view/" . $scope["category"] . "/" . $scope["item"] : "grid/Main/all" ) ; ?>">
+		    <a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/" .  ( $scope["mode"] != "new" ? "view/" . $scope["category"] . "/" . $scope["item"] : "grid/Main/all" ) ; ?>">
 			<?php echo $translation->translateLabel("Cancel"); ?>
 		    </a>
 		</div>
@@ -255,7 +256,7 @@
 	     //handler of save button if we in new mode. Just doing XHR request to save data
 	     function createItem(){
 		 var itemData = $("#itemData");
-		 $.post("<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"] . "/insert" ?>", itemData.serialize(), null, 'json')
+		 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] . "/insert" ?>", itemData.serialize(), null, 'json')
 		  .success(function(data) {
 		      console.log('ok');
 		      window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"] . "/grid/Main/all"; ?>";
@@ -267,7 +268,7 @@
 	     //handler of save button if we in edit mode. Just doing XHR request to save data
 	     function saveItem(){
 		 var itemData = $("#itemData");
-		 $.post("<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"]; ?>/update", itemData.serialize(), null, 'json')
+		 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"]; ?>/update", itemData.serialize(), null, 'json')
 		  .success(function(data) {
 		      console.log('ok');
 		      window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"];  ?>/view/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>";
@@ -290,19 +291,20 @@
 	 headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
      });
      //     $('#myTable').DataTable();
-     $('#example23').DataTable( {
-	 dom: 'Bfrtip',
+     var table = $('#example23').DataTable( {
+//	 dom: 'Bfrtip',
 	 buttons: [
 	     'copy', 'csv', 'excel', 'pdf', 'print'
 	 ]
      });
 
-     var buttons = $('.dt-buttons-container').remove();
-     buttons.insertAfter($('#example23_paginate'));
-     var dtbuttons = $('.dt-buttons').remove();
+     var buttons = $('.dt-buttons-container');//.remove();
+     //buttons.insertAfter($('#example23_paginate'));
+     var dtbuttons = table.buttons().container();
+     //$('#example23_wrapper').append(dtbuttons);
      dtbuttons.addClass("col-md-4");
      buttons.append(dtbuttons);
-     //     buttons.insertAfter($(".new-button-action"));
+     //buttons.insertAfter($(".new-button-action"));
      
      $('.dt-button').addClass("btn btn-info");
      $('.dt-button').css("margin-left", "3px");

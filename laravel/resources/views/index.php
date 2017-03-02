@@ -23,6 +23,10 @@
 	<link rel="icon" href="http://demo.espocrm.com/basic/client/img/favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="http://demo.espocrm.com/basic/client/img/favicon.ico" type="image/x-icon">
 	<style>
+	 .navbar-nav>.open>a {
+	     background : #E0E0E0 !important;
+	     color : black !important;
+	 }
 	 .sidebar-active{
 	     background : red;
 	 }
