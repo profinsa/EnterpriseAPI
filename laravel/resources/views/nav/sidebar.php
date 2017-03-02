@@ -23,3 +23,54 @@
 	<span id="sideBarShower" style="display:none;" class="glyphicon glyphicon glyphicon-menu-right"></span>
     </a>
 </div>
+<script>
+ var sidebarItems = $(".collapse-sidebar-item");
+ sidebarItems.on('hidden.bs.collapse', function (e) {
+     $(e.currentTarget).css('display', 'none');
+ });
+ sidebarItems.on('show.bs.collapse', function (e) {
+     sideBarCloseAll();
+     $(e.currentTarget).css('display', 'block');
+ })
+     function sideBarCloseAll(){
+	 sidebarItems.css('display', 'none');
+	 sidebarItems.collapse('hide');
+     }
+
+ function sideBarDeselectAll(){
+     $('.nav-item-level2').removeClass('sidebar-active');
+ }
+
+ function sideBarSelectItem(folder, item){
+     var _item = $("#list" + folder);
+     if(!_item.hasClass('in')){
+	 sideBarCloseAll();
+	 setTimeout(function(){
+	     _item.collapse('show');
+	     _item.css('display', 'block');
+	 }, 500);
+     }
+     var selItem = document.getElementById(folder + '/' + item);
+     if(!$(selItem).hasClass("sidebar-active")){
+	 sideBarDeselectAll();
+	 $(selItem).addClass("sidebar-active");
+     }
+ }
+ 
+ var sidebarToggled = true;
+ function toggleSideBar(){
+     if(sidebarToggled){
+	 $('body').addClass('minimized');
+	 $('#logosection').addClass("hide-logo");
+	 $('#sideBarHider')[0].style.display = 'none';
+	 $('#sideBarShower')[0].style.display = 'block';
+	 sidebarToggled = false;
+     }else{
+	 $('body').removeClass('minimized');
+	 $('#logosection').removeClass("hide-logo");
+	 $('#sideBarHider')[0].style.display = 'block';
+	 $('#sideBarShower')[0].style.display = 'none';
+	 sidebarToggled = true;
+     }
+ }
+</script>

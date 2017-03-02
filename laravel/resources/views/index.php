@@ -13,126 +13,6 @@
 	<meta name="description" content="">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<style>
-	 .navbar-nav>.open>a {
-	     background : #E0E0E0 !important;
-	     color : black !important;
-	 }
-	 .sidebar-active{
-	     background : red;
-	 }
-	 body.minimized .nav-item-level2{
-	     margin-left:0px !important;
-	     padding-left:3px !important;
-	 }
-	 .nav-item-level2{
-	     padding-left:10px;
-	 }
-	 
-	 body.minimized .nav-item-level1{
-	     margin-left:0px !important;
-	     padding-left:8px !important;
-	 }
-	 .nav-item-level1{
-	     margin-left:0px;
-	     padding-left:0px;
-	 }
-
-	 .navbar-items{
-	     margin-top: 0px !important;
-	     padding-left: 0px !important;
-	     padding-right: 0px !important;
-	     margin-left: 0px !important;
-	     margin-right: 0px !important;
-	     width : 100%;
-	 }
-
-	 .top-bar{
-	     height : 70px !important;
-	 }
-
-	 
-	 .top-bar-offset{
-	     margin-top : 50px !important;
-	 }
-
-	 .top-bar-shower-off{
-	     display : none;
-	 }
-
-	 .white-box{
-	     background: #ffffff;
-	     padding: 25px;
-	     margin-bottom: 15px;
-	 }
-	 
-	 @media screen and (max-width : 768px){
-	     .top-bar-toggler{
-		 display:none !important;
-	     }
-
-	     div.sidebar-toggler{
-		 display:none;
-	     }
-	     .hide-on-handsheld{
-		 display:none;
-	     }
-	 }
-	 
-	 @media screen and (min-width : 768px){
-	     .hide-logo{
-		 display: none;
-	     }
-	     .sidebar-toggler{
-		 position:absolute;
-		 left : 12px;
-		 bottom:10px;
-	     }
-	     
-	     div.sidebar-toggler a{
-		 color:white;
-		 text-decoration:none;
-	     }
-
-	     body.top-bar-minimized .top-bar{
-		 /*height : 10px !important;*/
-		 display : none;
-	     }
-
-	     body.top-bar-minimized .top-bar-offset{
-		 margin-top : 0px !important;
-		 padding-top : 0px !important;
-	     }
-
-	     body.minimized .navbar-right{
-		 width : 100% !important; 
-	     }
-	     
-	     .hide-on-small{
-		 display : none !important;
-	     }
-	     .top-bar-offset{
-		 margin-top : 0px;
-	     }
-	     .top-bar-shower{
-		 display : block;
-		 position:fixed;
-		 top:5px;
-		 right:7px;
-		 text-decoration:none !important;
-	     }
-	     .top-bar-link{
-		 margin-left:20px;
-		 margin-top:40px;
-	     }
-	     li.top-bar-link a{
-		 color:gray !important;
-	     }
-	     li.top-bar-link a:hover{
-		 color:black !important;
-	     }
-	 }
-	</style>
     </head>
     <?php
     $menuCategories = [];
@@ -279,91 +159,9 @@
 	</div>
 	<div id="popup-notifications-container" class="hidden"></div>
 	<script>
-	 var sidebarItems = $(".collapse-sidebar-item");
-	 sidebarItems.on('hidden.bs.collapse', function (e) {
-	     $(e.currentTarget).css('display', 'none');
-	 });
-	 sidebarItems.on('show.bs.collapse', function (e) {
-	     sideBarCloseAll();
-	     $(e.currentTarget).css('display', 'block');
-	 })
-	 function sideBarCloseAll(){
-	     sidebarItems.css('display', 'none');
-	     sidebarItems.collapse('hide');
-	 }
-
-	 function sideBarDeselectAll(){
-	     $('.nav-item-level2').removeClass('sidebar-active');
-	 }
-
-	 function sideBarSelectItem(folder, item){
-	     var _item = $("#list" + folder);
-	     if(!_item.hasClass('in')){
-		 sideBarCloseAll();
-		 setTimeout(function(){
-		     _item.collapse('show');
-		     _item.css('display', 'block');
-		 }, 500);
-	     }
-	     var selItem = document.getElementById(folder + '/' + item);
-	     if(!$(selItem).hasClass("sidebar-active")){
-		 sideBarDeselectAll();
-		 $(selItem).addClass("sidebar-active");
-	     }
-	 }
-	 
-	 function main(){
-	     <?php if(isset($scope)): ?>
-	     sideBarSelectItem("<?php echo  $scope["pathFolder"] . "\",\"" . $scope["pathPage"];?>");
-	     <?php endif; ?>
-	 }
-
-	 var sidebarToggled = true;
-	 function toggleSideBar(){
-	     if(sidebarToggled){
-		 $('body').addClass('minimized');
-		 $('#logosection').addClass("hide-logo");
-		 $('#sideBarHider')[0].style.display = 'none';
-		 $('#sideBarShower')[0].style.display = 'block';
-		 sidebarToggled = false;
-	     }else{
-		 $('body').removeClass('minimized');
-		 $('#logosection').removeClass("hide-logo");
-		 $('#sideBarHider')[0].style.display = 'block';
-		 $('#sideBarShower')[0].style.display = 'none';
-		 sidebarToggled = true;
-	     }
-	 }
-
-	 var topbarToggled = true;
-	 function toggleTopBar(){
-	     if(topbarToggled){
-		 $('body').addClass('top-bar-minimized');
-		 $('.logo-link').addClass("hide-logo");
-		 $('.top-bar-shower-off').addClass('top-bar-shower');
-		 $('.top-bar-shower-off').removeClass('top-bar-shower-off');
-		 $('#topBarShower')[0].style.display = 'block';
-		 topbarToggled = false;
-	     }else{
-		 $('body').removeClass('top-bar-minimized');
-		 $('.logo-link').removeClass("hide-logo");
-		 $('.top-bar-shower').addClass('top-bar-shower-off');
-		 $('.top-bar-shower').removeClass('top-bar-shower');
-		 $('#topBarShower')[0].style.display = 'none';
-		 topbarToggled = true;
-	     }
-	 }
-
-	 function changeLanguage(event){
-	     $.getJSON("<?php echo $public_prefix; ?>/language/" + event.target.value)
-	      .success(function(data) {
-		  location.reload();
-	      })
-	      .error(function(err){
-		  console.log('something going wrong');
-	      });
-	 }
-
+	 /*
+	    parsing window.location, loading page and insert to content section. Main entry point of SAP
+	 */
 	 function onlocation(location){
 	     var path = new String(location);
 	     var match;
@@ -386,6 +184,13 @@
 	 $(window).on('hashchange', function() {
 	     onlocation(window.location);
 	 });
+
+	 //select sidebar item if application loaded in separated pages mode, like that: grid/GeneralLedger/ledgerAccountGroup/grid/main/all, without index#/
+	 function main(){
+	     <?php if(isset($scope)): ?>
+	     sideBarSelectItem("<?php echo  $scope["pathFolder"] . "\",\"" . $scope["pathPage"];?>");
+	     <?php endif; ?>
+	 }
 	</script>
     </body>
 </html>

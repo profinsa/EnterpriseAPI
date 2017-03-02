@@ -41,3 +41,33 @@
 	</a>
     </li>
 </ul>
+<script>
+ var topbarToggled = true;
+ function toggleTopBar(){
+     if(topbarToggled){
+	 $('body').addClass('top-bar-minimized');
+	 $('.logo-link').addClass("hide-logo");
+	 $('.top-bar-shower-off').addClass('top-bar-shower');
+	 $('.top-bar-shower-off').removeClass('top-bar-shower-off');
+	 $('#topBarShower')[0].style.display = 'block';
+	 topbarToggled = false;
+     }else{
+	 $('body').removeClass('top-bar-minimized');
+	 $('.logo-link').removeClass("hide-logo");
+	 $('.top-bar-shower').addClass('top-bar-shower-off');
+	 $('.top-bar-shower').removeClass('top-bar-shower');
+	 $('#topBarShower')[0].style.display = 'none';
+	 topbarToggled = true;
+     }
+ }
+
+ function changeLanguage(event){
+     $.getJSON("<?php echo $public_prefix; ?>/language/" + event.target.value)
+      .success(function(data) {
+	  location.reload();
+      })
+      .error(function(err){
+	  console.log('something going wrong');
+      });
+ }
+</script>
