@@ -369,7 +369,6 @@
 
 	 function sideBarSelectItem(folder, item){
 	     var _item = $("#list" + folder);
-	     console.log('ddddd', _item[0].className);
 	     if(!_item.hasClass('in')){
 		 sideBarCloseAll();
 		 setTimeout(function(){

@@ -34,13 +34,6 @@
    -->
 
 <!-- Page Content -->
-<?php
-//require "header.php";
-//require "footer.php";
-?>
-<!-- <link href="<?php echo $public_prefix; ?>/assets/css/newtechcrm-vertical.css" rel="stylesheet">
-     <link href="<?php echo $public_prefix; ?>/assets/css/style.css" rel="stylesheet"> -->
-
 <div class="white-box">
     <!--
 	 This is conditional page generation.
@@ -59,10 +52,12 @@
        -->
 
     <?php if($scope["mode"] == 'grid'): ?>
+	<link href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+
 	<!-- grid -->
 	<div id="grid_content" class="row">
 	    <div class="table-responsive">
-		<table id="example23" class="table">
+		<table id="example23" class="table table-striped table-bordered">
 		    <thead>
 			<tr>
 			    <th></th>
