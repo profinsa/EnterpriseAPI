@@ -455,6 +455,7 @@
 		 path = path.replace(/index\#\//, "");
 		 match = path.match(/grid\/(\w+)\/(\w+)\//);
 		 if(match){
+		   //  console.log($("#" + match[1] + "/" + match[2]).length);
 		     sideBarCloseAll();
 		     sideBarDeselectAll();
 		     sideBarSelectItem(match[1], match[2]);

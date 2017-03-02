@@ -82,7 +82,7 @@ require "footer.php";
 			foreach($rows as $row){
 			    echo "<tr><td>";
 			    if($user["accesspermissions"]["GLEdit"])
-				echo "<a href=\"" . $public_prefix ."/grid/" . $scope["path"] . "/view/Main/" . $row[$data->idField] ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+				echo "<a href=\"" . $public_prefix ."/index#/grid/" . $scope["path"] . "/view/Main/" . $row[$data->idField] ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
 			    if($user["accesspermissions"]["GLDelete"])
 				echo "<span onclick=\"deleteItem('" . $row[$data->idField] . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
 			    echo "</td>";
@@ -97,7 +97,7 @@ require "footer.php";
 	    <div class="dt-buttons-container row col-md-12">
 		<br/>
 		<div class="col-md-2 new-button-action">
-		    <a class="btn btn-info" href="<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"] ?>/new/Main/new">
+		    <a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] ?>/new/Main/new">
 			<?php echo $translation->translateLabel("New"); ?>
 		    </a>
 		</div>
@@ -107,9 +107,9 @@ require "footer.php";
 	     function deleteItem(item){
 		 if(confirm("Are you sure?")){
 		     var itemData = $("#itemData");
-		     $.getJSON("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
+		     $.getJSON("<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
 		      .success(function(data) {
-			  window.location = "<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
+			  window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
 		      })
 		      .error(function(err){
 			  console.log('wrong');
@@ -127,7 +127,7 @@ require "footer.php";
 		//render tabs like Main, Current etc
 		//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 		foreach($data->editCategories as $key =>$value)
-		    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"" . $public_prefix ."/grid/" . $scope["path"] .  "/view/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
+		    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"" . $public_prefix ."/index#/grid/" . $scope["path"] .  "/view/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
 		?>
 	    </ul>
 	    <div class="table-responsive">
@@ -169,10 +169,10 @@ require "footer.php";
 		     for translation uses translation model
 		     for category(which tab is activated) uses $scope of controller
 		   -->
-		<a class="btn btn-info waves-effect waves-light m-r-10" href="<?php echo $public_prefix; ?>/grid/<?php echo  $scope["path"];  ?>/edit/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>">
+		<a class="btn btn-info waves-effect waves-light m-r-10" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo  $scope["path"];  ?>/edit/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>">
 		    <?php echo $translation->translateLabel("Edit"); ?>
 		</a>
-		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"] . "/grid/Main/all"; ?>">
+		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/grid/Main/all"; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
 	    </div>
@@ -185,7 +185,7 @@ require "footer.php";
 		//render tabs like Main, Current etc
 		//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 		foreach($data->editCategories as $key =>$value)
-		    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"" . $public_prefix . "/grid/" . $scope["path"] . "/" .  $scope["mode"] ."/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
+		    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"" . $public_prefix . "/index#/grid/" . $scope["path"] . "/" .  $scope["mode"] ."/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
 		?>
 	    </ul>
 	    <form id="itemData" class="form-material form-horizontal m-t-30">
@@ -251,7 +251,7 @@ require "footer.php";
 		    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 			<?php echo $translation->translateLabel("Save"); ?>
 		    </a>
-		    <a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/grid/<?php echo $scope["path"] . "/" .  ( $scope["mode"] != "new" ? "view/" . $scope["category"] . "/" . $scope["item"] : "grid/Main/all" ) ; ?>">
+		    <a class="btn btn-inverse waves-effect waves-light" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/" .  ( $scope["mode"] != "new" ? "view/" . $scope["category"] . "/" . $scope["item"] : "grid/Main/all" ) ; ?>">
 			<?php echo $translation->translateLabel("Cancel"); ?>
 		    </a>
 		</div>
@@ -260,10 +260,10 @@ require "footer.php";
 	     //handler of save button if we in new mode. Just doing XHR request to save data
 	     function createItem(){
 		 var itemData = $("#itemData");
-		 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] . "/insert" ?>", itemData.serialize(), null, 'json')
+		 $.post("<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"] . "/insert" ?>", itemData.serialize(), null, 'json')
 		  .success(function(data) {
 		      console.log('ok');
-		      window.location = "<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] . "/grid/Main/all"; ?>";
+		      window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"] . "/grid/Main/all"; ?>";
 		  })
 		  .error(function(err){
 		      console.log('wrong');
@@ -272,10 +272,10 @@ require "footer.php";
 	     //handler of save button if we in edit mode. Just doing XHR request to save data
 	     function saveItem(){
 		 var itemData = $("#itemData");
-		 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"]; ?>/update", itemData.serialize(), null, 'json')
+		 $.post("<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"]; ?>/update", itemData.serialize(), null, 'json')
 		  .success(function(data) {
 		      console.log('ok');
-		      window.location = "<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"];  ?>/view/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>";
+		      window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"];  ?>/view/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>";
 		  })
 		  .error(function(err){
 		      console.log('wrong');
