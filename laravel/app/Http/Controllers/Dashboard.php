@@ -1,16 +1,16 @@
 <?php
 /*
-Name of Page: Index
+Name of Page: Dashboard
 
-Method: This is controller for index page.
+Method: controller for dashboard page.
 
-Date created: Nikita Zaharov, 23.02.2016
+Date created: Nikita Zaharov, 03.03.2016
 
-Use: controller is used by router
+Use: controller is used by index.php
 
 The controller is responsible for:
 + loading user and translation models
-+ render index page
++ render dashboard page
 
 Input parameters:
 
@@ -24,7 +24,7 @@ Called from:
 Calls:
 models/translation.php
 
-Last Modified: 02.03.2016
+Last Modified: 03.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -42,11 +42,10 @@ class _app{
     public $title = "Integral Accounting New Tech PHP";
 }
 
-class Index extends BaseController{
+class Dashboard extends BaseController{
     public $dashboardTitle = "Accounting Dashboard";
-    public $breadCrumbTitle = "Accounting Dashboard";
     
-    public function index(){
+    public function show(){
         if(!Session::has("user") || !key_exists("EmployeeUserName", Session::get("user"))){//redirect to prevent access un logined users
             Session::put("user", []);
             header("Location: login");
@@ -57,20 +56,21 @@ class Index extends BaseController{
                
         $translation = new \App\Models\translation($user["language"]);
         $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
-        $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
 
         $sessionValues = Session::all();
         $token = $sessionValues['_token'];
-        return view("index", [ "app" => new _app,
-                               "public_prefix" => public_prefix(),
-                               "translation" => $translation,
-                               "companies" => new \App\Models\companies,
-                               "user" => $user,
-                               "dashboardTitle" => $translation->translateLabel($this->dashboardTitle),
-                               "breadCrumbTitle" => $translation->translateLabel($this->breadCrumbTitle),
-                               "header" => "header.php",
-                               "token" => $token
-        ]);
+        return view(key_exists("partial",$_GET) ? "dashboard" : "index",
+                    [ "app" => new _app,
+                      "public_prefix" => public_prefix(),
+                      "translation" => $translation,
+                      "companies" => new \App\Models\companies,
+                      "user" => $user,
+                      "dashboardTitle" => $translation->translateLabel($this->dashboardTitle),
+                      "header" => "header.php",
+                      "token" => $token,
+                      "header" => "header.php",
+                      "content" => "dashboard.php"
+                    ]);
     }
 }
 ?>

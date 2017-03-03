@@ -27,6 +27,10 @@ Route::get('/language/{lang}', "Language@set");
 //index page
 Route::get('/index', "Index@index");
 
+//dashboard page
+
+Route::get('/dashboard', "Dashboard@show");
+
 //grid pages
 Route::get('/grid/{folder}/{page}/{action}/{category}/{item}', "Grid@show");
 Route::post('/grid/{folder}/{page}/update', "Grid@update");

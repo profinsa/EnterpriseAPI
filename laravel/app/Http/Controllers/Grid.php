@@ -60,28 +60,29 @@ class Grid extends BaseController{
                
         $translation = new \App\Models\translation($user["language"]);
 
-        $sessionValues = Session::all();//получаем данные из сессии
+        $sessionValues = Session::all();
         $token = $sessionValues['_token'];
         $app = new _app;
-        return view(key_exists("partial",$_GET) ? "gridView" : "index", [ "app" => $app,
-                                "public_prefix" => public_prefix(),
-                                "translation" => $translation,
-                                "user" => $user,
-                                "data" => $data,
-                                "dashboardTitle" => $app->title = $data->dashboardTitle = $translation->translateLabel($data->dashboardTitle),
-                                "breadCrumbTitle" => $data->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle),
-                                "scope" => [
-                                    "path" => $folder . "/" . $page,
-                                    "pathFolder" => $folder,
-                                    "pathPage" => $page,
-                                    "mode" => $mode,
-                                    "category" => $category,
-                                    "item" => $item
-                                ],
-                                "token" => $token,
-                                "header" => "header.php",
-                                "content" => "gridView.php"
-        ]);
+        return view(key_exists("partial",$_GET) ? "gridView" : "index",
+                    [ "app" => $app,
+                      "public_prefix" => public_prefix(),
+                      "translation" => $translation,
+                      "user" => $user,
+                      "data" => $data,
+                      "dashboardTitle" => $app->title = $data->dashboardTitle = $translation->translateLabel($data->dashboardTitle),
+                      "breadCrumbTitle" => $data->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle),
+                      "scope" => [
+                          "path" => $folder . "/" . $page,
+                          "pathFolder" => $folder,
+                          "pathPage" => $page,
+                          "mode" => $mode,
+                          "category" => $category,
+                          "item" => $item
+                      ],
+                      "token" => $token,
+                      "header" => "header.php",
+                      "content" => "gridView.php"
+                    ]);
     }
 
     public function update($folder, $page){
