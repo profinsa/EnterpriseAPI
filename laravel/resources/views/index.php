@@ -179,6 +179,9 @@
 		      setTimeout(function(){
 			  $("#content").html(data);
 		      },0);
+		  })
+		  .error(function(){
+		      window.location = "<?php echo $public_prefix; ?>/login";
 		  });
 	     }
 	 }

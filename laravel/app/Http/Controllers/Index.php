@@ -49,8 +49,7 @@ class Index extends BaseController{
     public function index(){
         if(!Session::has("user") || !key_exists("EmployeeUserName", Session::get("user"))){//redirect to prevent access un logined users
             Session::put("user", []);
-            header("Location: login");
-            return;
+            return redirect("/login");
         }
 
         $user = Session::get("user");

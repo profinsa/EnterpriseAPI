@@ -47,10 +47,13 @@ class _app{
 
 class Grid extends BaseController{
     public function show($folder, $page, $mode, $category, $item){
+        $public_prefix = public_prefix();
         if(!Session::has("user") || !key_exists("EmployeeUserName", Session::get("user"))){//redirect to prevent access un logined users
             Session::put("user", []);
-            header("Location: login");
-            return;
+            if(key_exists("partial", $_GET))
+                return response('wrong session', 401)->header('Content-Type', 'text/plain');
+            else
+                return redirect("/login");
         }
 
         require __DIR__ . "/../Models/" . $folder . '/' . $page .  '.php';
@@ -65,7 +68,7 @@ class Grid extends BaseController{
         $app = new _app;
         return view(key_exists("partial",$_GET) ? "gridView" : "index",
                     [ "app" => $app,
-                      "public_prefix" => public_prefix(),
+                      "public_prefix" => $public_prefix,
                       "translation" => $translation,
                       "user" => $user,
                       "data" => $data,
@@ -112,16 +115,4 @@ class Grid extends BaseController{
         echo "{ \"message\" : \"ok\"}";
     }
 }
-/*
-    public $mode = "grid";
-    public $category = "Main";
-    
-    public function process($app){
-        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
-            if(key_exists("getItem", $_GET)){
-                echo json_encode($data->getItem($_GET["getItem"]));
-        }
-    }
-}
-*/
 ?>

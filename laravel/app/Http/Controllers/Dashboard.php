@@ -48,8 +48,10 @@ class Dashboard extends BaseController{
     public function show(){
         if(!Session::has("user") || !key_exists("EmployeeUserName", Session::get("user"))){//redirect to prevent access un logined users
             Session::put("user", []);
-            header("Location: login");
-            return;
+            if(key_exists("partial", $_GET))
+                return response('wrong session', 401)->header('Content-Type', 'text/plain');
+            else
+                return redirect("/login");
         }
 
         $user = Session::get("user");
