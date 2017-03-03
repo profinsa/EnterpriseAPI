@@ -31,12 +31,13 @@
  sidebarItems.on('show.bs.collapse', function (e) {
      sideBarCloseAll();
      $(e.currentTarget).css('display', 'block');
- })
-     function sideBarCloseAll(){
-	 sidebarItems.css('display', 'none');
-	 sidebarItems.collapse('hide');
-     }
-
+ });
+ 
+ function sideBarCloseAll(){
+     sidebarItems.css('display', 'none');
+     sidebarItems.collapse('hide');
+ }
+ 
  function sideBarDeselectAll(){
      $('.nav-item-level2').removeClass('sidebar-active');
  }

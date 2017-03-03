@@ -132,7 +132,7 @@
 	    <div id="navbar">
 		<div class="navbar navbar-inverse" role="navigation">
 		    <div class="navbar-header top-bar">
-			<a class="navbar-brand nav-link logo-link" href="<?php echo $public_prefix; ?>/index"><img id="logosection"  src="<?php echo $public_prefix; ?>/assets/images/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
+			<a class="navbar-brand nav-link logo-link" href="<?php echo $public_prefix; ?>/index#/dashboard"><img id="logosection"  src="<?php echo $public_prefix; ?>/assets/images/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
 			<button type="button" class="navbar-toggle hide-on-small" data-toggle="collapse" data-target=".navbar-body">
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
@@ -170,7 +170,10 @@
 		 match = path.match(/grid\/(\w+)\/(\w+)\//);
 		 if(match)
 		     sideBarSelectItem(match[1], match[2]);
-		 
+		 else{
+		     sideBarCloseAll();
+		     sideBarDeselectAll();
+		 }
 		 $.get(path + "?partial=true")
 		  .done(function(data){
 		      setTimeout(function(){

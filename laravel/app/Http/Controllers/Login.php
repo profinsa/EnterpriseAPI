@@ -88,7 +88,7 @@ class Login extends BaseController
             $user["language"] = $defaultUser["Language"];
             Session::put("user", $user);
 
-            header("Location: index");
+            header("Location: index#/dashboard");
             return;
         }
     }

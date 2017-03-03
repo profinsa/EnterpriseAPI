@@ -115,7 +115,7 @@
 	 loginform.submit(function(e){
 	     var req = $.post("login", loginform.serialize(), null, 'json')
 			.success(function(data) {
-			    window.location = "index";
+			    window.location = "index#/dashboard";
 			})
 			.error(function(err){
 			    var res = err.responseJSON;
