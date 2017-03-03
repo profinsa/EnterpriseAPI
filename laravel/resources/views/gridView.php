@@ -89,11 +89,9 @@
 	    </div>
 	    <div class="dt-buttons-container row col-md-12">
 		<br/>
-		<div class="col-md-2 new-button-action">
-		    <a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] ?>/new/Main/new">
-			<?php echo $translation->translateLabel("New"); ?>
-		    </a>
-		</div>
+		<a class="btn btn-info new-button-action dt-button" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] ?>/new/Main/new">
+		    <?php echo $translation->translateLabel("New"); ?>
+		</a>
 	    </div>
 	    <script>
 	     //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
@@ -307,7 +305,8 @@
 
      var buttons = $('.dt-buttons-container');
      var dtbuttons = table.buttons().container();
-     dtbuttons.addClass("col-md-4");
+     dtbuttons.prepend($(".new-button-action"));
+     dtbuttons.addClass("col-md-12");
      buttons.append(dtbuttons);
      
      $('.dt-button').addClass("btn btn-info");

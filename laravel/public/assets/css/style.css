@@ -102,6 +102,7 @@ body.minimized .nav-item-level1{
 }
 
 @media screen and (min-width : 768px){
+    /*index page*/
     .hide-logo{
 	display: none;
     }
@@ -152,5 +153,10 @@ body.minimized .nav-item-level1{
     }
     li.top-bar-link a:hover{
 	color:black !important;
+    }
+
+    /* gridView*/
+    .new-button-action{
+	margin-right : 150px;
     }
 }
