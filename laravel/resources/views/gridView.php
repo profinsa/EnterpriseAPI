@@ -220,8 +220,6 @@
 			    echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
 			    $method = $data->editCategories[$scope["category"]][$key]["dataProvider"];
 			    $types = $data->$method();
-			    //
-			    echo json_encode($types) . 'eeeee'. $value;
 			    if($value)
 				echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
 			    else

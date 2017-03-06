@@ -244,14 +244,13 @@
 					echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
 					$method = $data->editCategories[$scope->category][$key]["dataProvider"];
 					$types = $data->$method();
-
 					if($value)
-					    echo "<option value=\"" . $value . "\">" . $types[$value]["title"] . "</option>";
+					    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
 					else
 					    echo "<option></option>";
-					echo json_encode($types);
+
 					foreach($types as $type)
-					    if(!$value || (key_exists($key, $type) && $type[$key] != $value))
+					    if(!$value || $type["value"] != $value)
 						echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
 					echo"</select></div></div>";
 					break;
