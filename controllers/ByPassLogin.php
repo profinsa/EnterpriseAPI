@@ -39,7 +39,7 @@ class controller{
     }
     
     public function process($app){
-        $users = new users($app->db);
+        $users = new users();
         $defaultUser = defaultUser();
         if($_SERVER['REQUEST_METHOD'] === 'GET') { //log in as default user and redirect to index
             $user = $users->search($defaultUser["Company"],

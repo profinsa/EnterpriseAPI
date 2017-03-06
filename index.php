@@ -31,7 +31,6 @@ require './common.php';
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 $GLOBALS["capsule"] = new Capsule;
-$top = "eeeTTTTTTTTT";
 $config = config();
 $capsule->addConnection([
     "driver" => "mysql",

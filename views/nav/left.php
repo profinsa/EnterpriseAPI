@@ -21,51 +21,116 @@
 		<a href="index.php?page=index#chat" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Chat');  ?> </span>
 		</a>
 	    </li>
-	    
-	    <li class="nav-small-cap">--- Main Menu</li>
 
-	    <?php if($scope->user["accesspermissions"]["GLView"]): ?>
-		<li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('General Ledger');  ?><span class="fa arrow"></span></span></a>
-		    <ul class="nav nav-second-level">
-			<li>
-			    <a href="index.php?page=grid&action=GeneralLedger/chartOfAccounts"><?php echo $translation->translateLabel('Chart Of Accounts');  ?></a>
-			</li>
-			<li>
-			    <a href="index.php?page=grid&action=GeneralLedger/ledgerAccountGroup"><?php echo $translation->translateLabel('Ledger Account Group');  ?></a>
-			</li>
-			<li>
-			    <a href="index.php?page=grid&action=GeneralLedger/bankTransactions"><?php echo $translation->translateLabel('Banck Transactions');  ?></a>
-			</li>
-			<li>
-			    <a href="index.php?page=grid&action=GeneralLedger/bankAccounts"><?php echo $translation->translateLabel('Bank Accounts');  ?></a>
-			</li>
-			<!-- <li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Ledger Transactions');  ?></a></li> -->
-		    </ul>
-		</li>
-	    <?php endif; ?>
+	    <li class="nav-small-cap">--- Main Menu</li>
+	    <?php
+	    $menuCategories = [];
+	    if($scope->user["accesspermissions"]["GLView"]){
+		$menuCategories["GeneralLedger"] = [
+		    "id" => "GeneralLedger",
+		    "full"=> $translation->translateLabel('General Ledger'),
+		    "short" => "GL",
+		    "type" => "submenu",
+		    "data" => [
+			[
+			    "id" => "GeneralLedger/chartOfAccounts",
+			    "full" => $translation->translateLabel('Chart Of Accounts'),
+			    "short" => "CO",
+			    "href"=> $public_prefix . "GeneralLedger/chartOfAccounts"
+			],
+			[
+			    "id" => "GeneralLedger/ledgerAccountGroup",
+			    "full" => $translation->translateLabel('Ledger Account Group'),
+			    "short" => "LA",
+			    "href" => $public_prefix . "GeneralLedger/ledgerAccountGroup"
+			],
+			[
+			    "id" => "GeneralLedger/bankTransactions",
+			    "full" => $translation->translateLabel('Bank Transactions'),
+			    "short" => "BT",
+			    "href" => $public_prefix . "GeneralLedger/bankTransactions"
+			],
+			[
+			    "id" => "GeneralLedger/bankAccounts",
+			    "full" => $translation->translateLabel('Bank Accounts'),
+			    "short" => "BA",
+			    "href" => $public_prefix . "GeneralLedger/bankAccounts"
+			]
+		    ]
+		];
+	    }
+
+	    $menuCategories['Receivables'] = [
+		"type" => "submenu",
+		"id" => "Receivables",
+		"full" => $translation->translateLabel('Receivables'),
+		"short" => "AR",
+		"data" => [
+		    [
+			"id" => "Receivables/Quotes",
+			"full" => $translation->translateLabel('Quotes'),
+			"short" => "Qu",
+			"href"=> "#"
+		    ],
+		    [
+			"id" => "Receivables/Orders",
+			"full" => $translation->translateLabel('Orders'),
+			"short" => "Or",
+			"href" => "#"
+		    ],
+		    [
+			"id" => "Receivables/Invoices",
+			"full" => $translation->translateLabel('Invoices'),
+			"short" => "In",
+			"href" => "#"
+		    ]
+		]
+	    ];
 	    
-	    
-	    <li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('Receivables');  ?><span class="fa arrow"></span></span></a>
-		<ul class="nav nav-second-level">
-		    <li> <a href="crm-leads.html"><?php echo $translation->translateLabel('Quotes');  ?></a></li>
-		    <li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Orders');  ?></a></li>
-		    <li> <a href="crm-edit-leads.html"><?php echo $translation->translateLabel('Invoices');  ?></a></li> 
-		</ul>
-	    </li>
-	    
-	    
-	    <li><a href="javascript:void(0);" class="waves-effect"><i class="icon-people fa-fw"></i> <span class="hide-menu"><?php echo $translation->translateLabel('Payables');  ?><span class="fa arrow"></span></span></a>
-		<ul class="nav nav-second-level">
-		    <li> <a href="crm-leads.html"><?php echo $translation->translateLabel('Purchase Orders');  ?></a></li>
-		    <li> <a href="crm-add-leads.html"><?php echo $translation->translateLabel('Vouchers');  ?></a></li>
-		    <li> <a href="crm-edit-leads.html"><?php echo $translation->translateLabel('Vendors');  ?></a></li> 
-		</ul>
-	    </li>
-	    
-	    
-	    
-	    
-	    
+	    $menuCategories["Payables"] = [
+		"type" => "submenu",
+		"id" => "Payables",
+		"full" => $translation->translateLabel('Payables'),
+		"short" => "AP",
+		"data" => [
+		    [
+			"id" => "Payables/PurchaseOrders",
+			"full" => $translation->translateLabel('Purchase Orders'),
+			"href"=> "#",
+			"short" => "PO"
+		    ],
+		    [
+			"id" => "Payables/Vouchers",
+			"full" => $translation->translateLabel('Vouchers'),
+			"href" => "#",
+			"short" => "Vo"
+		    ],
+		    [
+			"id" => "Payables/Vendors",
+			"full" => $translation->translateLabel('Vendors'),
+			"href" => "#",
+			"short" => "Ve"
+		    ]
+		]
+	    ];
+	    ?>
+
+	    <?php
+	    foreach ($menuCategories as $key=>$item){
+		if($item["type"] == "item")
+		    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") ."\"  class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link nav-item-level1\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li></ul></li>";
+		else if($item["type"] == "submenu"){			
+
+		    echo "<li  id=\"list" . $item["id"] . "\"><a href=\"javascript:void(0);\" class=\"waves-effect\"><i class=\"icon-people fa-fw\"></i> <span class=\"hide-menu\">" . $item["full"] . "<span class=\"fa arrow\"></span></span></a>";
+		    echo "<ul class=\"nav nav-second-level\">";
+		    foreach($item["data"] as $key=>$subitem){
+			echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"index.php?page=grid&action=" . $subitem["href"] . "\">" . $subitem["full"] . "</a></li>";
+		    }
+		    echo "</ul></li>";
+		}
+	    }
+	    ?>
+
 	    <li class="nav-small-cap">--- Support</li>
 	    <li>
 		<a href="https://stfbinc.helpdocs.com" Target="_Blank" class="waves-effect">
