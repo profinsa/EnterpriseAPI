@@ -36,6 +36,7 @@ class translation{
     //list of available languages
     public $languages = [
         "English",
+        "French",
         "Spanish",
     ];
 
