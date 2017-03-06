@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/backAccounts.php
 Calls:
 sql
 
-Last Modified: 21.02.2016
+Last Modified: 06.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -141,17 +141,13 @@ class gridData extends gridDataSource{
     public function getTransactionTypes(){
         $user = $_SESSION["user"];
         $res = [];
-        $raw_res = [];
-        $result = mysqli_query($this->db, "SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'")  or die('mysql query error: ' . mysqli_error($this->db));
+        $result = $GLOBALS["capsule"]::select("SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
-        while($ret = mysqli_fetch_assoc($result))
-            $raw_res[] = $ret;
-        foreach($raw_res as $key=>$value)
-            $res[$value["BankTransactionTypeID"]] = [
-                "title" => $value["BankTransactionTypeID"],
-                "value" => $value["BankTransactionTypeID"]
+        foreach($result as $key=>$value)
+            $res[$value->BankTransactionTypeID] = [
+                "title" => $value->BankTransactionTypeID,
+                "value" => $value->BankTransactionTypeID
             ];
-        mysqli_free_result($result);
         
         return $res;
     }

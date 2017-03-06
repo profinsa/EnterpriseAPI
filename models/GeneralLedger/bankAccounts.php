@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/backAccounts.php
 Calls:
 sql
 
-Last Modified: 21.02.2016
+Last Modified: 06.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -33,7 +33,6 @@ require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "bankaccounts";
-    protected $db = false;
     //fields to render in grid
     protected $gridFields = [
         "BankID",

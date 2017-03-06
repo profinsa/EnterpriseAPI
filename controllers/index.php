@@ -13,7 +13,6 @@ The controller is responsible for:
 + render index page
 
 Input parameters:
-$db: database instance
 $app : application instance, object
 
 Output parameters:
@@ -49,7 +48,7 @@ class controller{
             
             $this->user = $_SESSION["user"];
                
-            $translation = new translation($app->db, $this->user["language"]);
+            $translation = new translation($this->user["language"]);
             $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
             $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
             $scope = $this;

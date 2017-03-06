@@ -11,7 +11,6 @@ Use: The controller is responsible for:
 - handling XHR request(delete, update and new item in grid)
 
 Input parameters:
-$db: database instance
 $app : application instance, object
 
 Output parameters:
@@ -55,7 +54,7 @@ class controller{
 
         $this->user = $_SESSION["user"];
                
-        $data = new gridData($app->db);
+        $data = new gridData();
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("update", $_GET)){
@@ -75,7 +74,7 @@ class controller{
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }else{
-                $translation = new translation($app->db, $this->user["language"]);
+                $translation = new translation($this->user["language"]);
                 $this->dashboardTitle = $translation->translateLabel($data->dashboardTitle);
                 $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
             
