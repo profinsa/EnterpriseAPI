@@ -47,7 +47,7 @@
 		 grid model
 		 app as model
 
-		 Last Modified: 20.02.2016
+		 Last Modified: 06.03.2016
 		 Last Modified by: Nikita Zaharov
 	       -->
 
@@ -304,6 +304,7 @@
 	    </div>
 	    <!-- /#wrapper -->
 	    <script src="dependencies/assets/js/custom.min.js"></script>
+	    <!-- <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"</script> -->
 	    <script src="dependencies/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
 	    <script src="dependencies/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
@@ -317,47 +318,15 @@
 	    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
 	    <!-- end - This is for export functionality only -->
 
+	    <style>
+	     .grid-length label{
+		 margin-top : 7px;
+		 text-align : center !important;
+	     }
+	    </style>
 	    <script>
-	     $(document).ready(function(){
-		 $('#myTable').DataTable();
-		 $(document).ready(function() {
-		     var table = $('#example').DataTable({
-			 "columnDefs": [
-			     { "visible": false, "targets": 2 }
-			 ],
-			 "order": [[ 2, 'asc' ]],
-			 "displayLength": 25,
-			 "drawCallback": function ( settings ) {
-			     var api = this.api();
-			     var rows = api.rows( {page:'current'} ).nodes();
-			     var last=null;
-
-			     api.column(2, {page:'current'} ).data().each( function ( group, i ) {
-				 if ( last !== group ) {
-				     $(rows).eq( i ).before(
-					 '<tr class="group"><td colspan="5">'+group+'</td></tr>'
-				     );
-
-				     last = group;
-				 }
-			     } );
-			 }
-		     } );
-
-		     // Order by the grouping
-		     $('#example tbody').on( 'click', 'tr.group', function () {
-			 var currentOrder = table.order()[0];
-			 if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
-			     table.order( [ 2, 'desc' ] ).draw();
-			 }
-			 else {
-			     table.order( [ 2, 'asc' ] ).draw();
-			 }
-		     });
-		 });
-	     });
 	     $('#example23').DataTable( {
-		 dom: 'Bfrtip',
+		 dom : "Bfrt<\"grid-footer row col-md-12\"<\"col-md-3 grid-length\"l><\"col-md-3\"i><\"col-md-6\"p>>",
 		 buttons: [
 		     'copy', 'csv', 'excel', 'pdf', 'print'
 		 ]
@@ -366,8 +335,8 @@
 	     jQuery('.fdatepicker').datepicker();
 
 	    </script>
-	    <!--Style Switcher -->
-	    <script src="dependencies/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+	    <!--Style Switcher 
+	    <script src="dependencies/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>-->
 	    <?php
 	    require './views/footer.php';
 	    ?>
