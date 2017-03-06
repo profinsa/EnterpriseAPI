@@ -14,7 +14,6 @@ The controller is responsible for:
 + captcha generating and updating
 
 Input parameters:
-$db: database instance
 $app : application instance, object
 
 Output parameters:
@@ -40,6 +39,9 @@ require 'models/translation.php';
 require 'models/companies.php';
 require 'models/users.php';
 
+$GLOBALS["capsule"]->setAsGlobal();
+//echo json_encode() . 'eeeeeeeeeee';
+
 class controller{
     public $styles = [
         "blue",
@@ -51,7 +53,7 @@ class controller{
     public $user = false;
 
     //controllers constructor, initialize CaptchaBuilder
-    public function __construct($db){
+    public function __construct(){
         $this->captchaBuilder = new CaptchaBuilder;
     }
 
@@ -59,7 +61,7 @@ class controller{
       entry point of controller. Rendering page, loading models, log in with checking
      */
     public function process($app){
-        $users = new users($app->db);
+        $users = new users();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {//login request process
             $wrong_captcha = false;
             if($_POST["captcha"] != $_SESSION["captcha"])
@@ -96,9 +98,10 @@ class controller{
                 $_SESSION["user"] = ["language" => "English"];
 
             $this->user = $_SESSION["user"];
-            $translation = new translation($app->db, $_SESSION["user"]["language"]);
-            $companies = new companies($app->db);
+            $translation = new translation( $_SESSION["user"]["language"]);
+            $companies = new companies();
             $scope = $this;
+
             require 'views/login.php';
         }
     }

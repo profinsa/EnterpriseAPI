@@ -21,9 +21,10 @@ Called from:
 Calls:
 sql
 
-Last Modified: 13.02.2016
+Last Modified: 06.03.2016
 Last Modified by: Nikita Zaharov
 */
+
 
 class translation{
     protected $terms = array();
@@ -50,22 +51,23 @@ class translation{
         "Thai"
     ];
 
-    //model constructor, just load all words for a certain language
-    public function __construct($db, $language){
-        $this->lang = $language;
-        $result = mysqli_query($db, "SELECT ObjID,ObjDescription," . $language . ",Translated from translation") or die('mysql query error: ' . mysqli_error($db));
+    public function __construct($language){
+        if($language)
+            $this->lang = $language;
+        $result = $GLOBALS["capsule"]::select("SELECT ObjID,ObjDescription," . $language . ",Translated from translation", array());
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            $this->terms[$row["ObjID"]] = $row;
-        }
+        foreach($result as $row) {
+            $this->terms[$row->ObjID] = $row;
+        }            
     }
 
     //translate term(label) to language with whic model is initialized
     public function translateLabel($label){
         //      echo $label . $this->terms[$label]["Translated"] . $this->lang;
-        if(key_exists($label, $this->terms) && $this->terms[$label]["Translated"])
-            return $this->terms[$label][$this->lang];
-        else
+        if(key_exists($label, $this->terms) && $this->terms[$label]->Translated){
+            $lang = $this->lang;
+            return $this->terms[$label]->$lang;
+        }else
             return $label;
     }
 }

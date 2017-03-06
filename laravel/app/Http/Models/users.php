@@ -42,6 +42,5 @@ class users{
         
         return $result;
     }
-
 }
 ?>

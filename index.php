@@ -28,22 +28,28 @@ Last Modified by: Nikita Zaharov
 require 'vendor/autoload.php';
 require './common.php';
 
-function db_start(){
-    $config = config();
-    $db = mysqli_connect($config["db_host"], $config["db_user"], $config["db_password"], $config["db_base"])
-        or die('database error: ' . mysqli_error());
-    return $db;
-}
-function db_end($db){
-    mysqli_close($db);    
-}
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$GLOBALS["capsule"] = new Capsule;
+$top = "eeeTTTTTTTTT";
+$config = config();
+$capsule->addConnection([
+    "driver" => "mysql",
+    "host" => $config["db_host"],
+    "database" => $config["db_base"],
+    "username" => $config["db_user"],
+    "password" => $config["db_password"],
+    "charset" => "utf8",
+    "collation" => "utf8_unicode_ci",
+    "prefix" => ""
+]);
+$capsule->setAsGlobal();
+
 class app{
-    public $db = false;
     public $controller = false;
     public $title = 'Integral Accounting X';
     public $page = 'index';
-    public function __construct($database){
-        $this->db = $database; 
+    public function __construct(){
         if(isset($_GET["page"]))
             $this->page = $_GET["page"];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -51,19 +57,16 @@ class app{
         }
         if(!file_exists('controllers/' . $this->page . '.php'))
             throw new Exception("controller ". 'controllers/' . $this->page . '.php' . "is not found");
-        require 'controllers/' . $this->page . '.php';
-        $this->controller = new controller($database);
+        include 'controllers/' . $this->page . '.php';
+        $this->controller = new controller();
     }
 }
 
 try{
-    $db = db_start();
     session_start();
 
-    $_app = new app($db);
+    $_app = new app();
     $_app->controller->process($_app);
-
-    db_end($db);
 }catch(Exception $e){
     echo '<b>Fatal error: </b>' . $e->getMessage();
 }
