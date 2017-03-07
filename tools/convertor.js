@@ -41,9 +41,16 @@ function parse_files(files){
     }
 }
 
-function generate_models(files){
-    var ind, content, menuCategories = '', find, fields;
-    
+function generate_models(files, menuTitle){
+    var ind, content, find, fields;
+    var menuCategories =
+	    "$menuCategories[\"" + menuTitle +  "\"] = [\n" +
+	    "\"type\" => \"submenu\",\n" +
+	    "\"id\" => \"" + menuTitle + "\",\n" +
+	    "\"full\" => $translation->translateLabel('" + menuTitle + "'),\n" +
+	    "\"short\" => \"" + menuTitle.substring(0, 2) + "\",\n"+
+	    "\"data\" => [\n";
+	    
     //generating models content
     for(ind in files){
 	content = "<?php\nrequire \"./models/gridDataSource.php\";\nclass gridData extends gridDataSource{\nprotected $tableName = \"" + files[ind].tableName + "\"\n;";
@@ -63,7 +70,17 @@ function generate_models(files){
 	
 	content += "}?>\n";
 	fs.writeFileSync('models/' + ind + '.php', content);
+
+	menuCategories += "\n[\n" +
+	    "\"id\" => \"" + menuTitle + "/" + ind + "\",\n" +
+	    "\"full\" => $translation->translateLabel('" + files[ind].label + "'),\n" +
+	     "\"href\"=> \"" + menuTitle + "/" + ind  + "\",\n" +
+	    "\"short\" => \"" + (files[ind].label? files[ind].label.substring(0,2) : "") + "\"\n],";
+
     }
+    menuCategories = menuCategories.substring(0, menuCategories.length - 1);
+    menuCategories += "\n]\n];\n";
+    fs.writeFileSync('models/menuCategories.php', menuCategories);
 }
 
 if(process.argv.length < 3){
@@ -86,7 +103,7 @@ if(process.argv.length < 3){
     }
 
     parse_files(files);
-    generate_models(files);
+    generate_models(files, process.argv[2].match(/\/(.+)/)[1]);
     
     console.log(JSON.stringify(files, null, 3));
 }
