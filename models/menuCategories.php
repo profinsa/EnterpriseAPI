@@ -241,54 +241,84 @@ $menuCategories["OrderProcessing"] = [
     ]
 ];
 
-$menuCategories["CashReceipts"] = [
+$menuCategories["ServiceProcessing"] = [
     "type" => "submenu",
-    "id" => "CashReceipts",
-    "full" => $translation->translateLabel('CashReceipts'),
-    "short" => "Ca",
+    "id" => "ServiceProcessing",
+    "full" => $translation->translateLabel('ServiceProcessing'),
+    "short" => "Se",
     "data" => [
 
         [
-            "id" => "CashReceipts/CashReceiptCustomer",
-            "full" => $translation->translateLabel('Cash Receipts - Customers'),
-            "href"=> "CashReceipts/CashReceiptCustomer",
-            "short" => "Ca"
-        ],
-        [
-            "id" => "CashReceipts/CashReceiptInvoice",
-            "full" => $translation->translateLabel('View Cash Receipt Invoices'),
-            "href"=> "CashReceipts/CashReceiptInvoice",
-            "short" => "Vi"
-        ],
-        [
-            "id" => "CashReceipts/CashReceiptsHeader",
-            "full" => $translation->translateLabel('View Customer Receipts'),
-            "href"=> "CashReceipts/CashReceiptsHeader",
-            "short" => "Vi"
-        ],
-        [
-            "id" => "CashReceipts/ReceiptsHeaderClosed",
-            "full" => $translation->translateLabel('Closed Receipt'),
-            "href"=> "CashReceipts/ReceiptsHeaderClosed",
+            "id" => "ServiceProcessing/ServiceInvoiceHeaderClosed",
+            "full" => $translation->translateLabel('Closed Service Invoices'),
+            "href"=> "ServiceProcessing/ServiceInvoiceHeaderClosed",
             "short" => "Cl"
         ],
         [
-            "id" => "CashReceipts/ReceiptsHeader",
-            "full" => $translation->translateLabel('Receipts'),
-            "href"=> "CashReceipts/ReceiptsHeader",
-            "short" => "Re"
+            "id" => "ServiceProcessing/ServiceInvoiceHeader",
+            "full" => $translation->translateLabel('Service Invoices'),
+            "href"=> "ServiceProcessing/ServiceInvoiceHeader",
+            "short" => "Se"
         ],
         [
-            "id" => "CashReceipts/ReceiptsHeaderHistory",
-            "full" => $translation->translateLabel('Receipts History'),
-            "href"=> "CashReceipts/ReceiptsHeaderHistory",
-            "short" => "Re"
+            "id" => "ServiceProcessing/ServiceInvoiceHeaderHistory",
+            "full" => $translation->translateLabel('Service Invoices History'),
+            "href"=> "ServiceProcessing/ServiceInvoiceHeaderHistory",
+            "short" => "Se"
         ],
         [
-            "id" => "CashReceipts/ReceiptsHeaderMemorized",
-            "full" => $translation->translateLabel('Memorized Receipts'),
-            "href"=> "CashReceipts/ReceiptsHeaderMemorized",
+            "id" => "ServiceProcessing/ServiceInvoiceHeaderMemorized",
+            "full" => $translation->translateLabel('InvoiceHeader'),
+            "href"=> "ServiceProcessing/ServiceInvoiceHeaderMemorized",
+            "short" => "In"
+        ],
+        [
+            "id" => "ServiceProcessing/ServiceOrderHeaderClosed",
+            "full" => $translation->translateLabel('Closed Service Orders'),
+            "href"=> "ServiceProcessing/ServiceOrderHeaderClosed",
+            "short" => "Cl"
+        ],
+        [
+            "id" => "ServiceProcessing/ServiceOrderHeader",
+            "full" => $translation->translateLabel('Service Orders'),
+            "href"=> "ServiceProcessing/ServiceOrderHeader",
+            "short" => "Se"
+        ],
+        [
+            "id" => "ServiceProcessing/ServiceOrderHeaderHistory",
+            "full" => $translation->translateLabel('Service Orders'),
+            "href"=> "ServiceProcessing/ServiceOrderHeaderHistory",
+            "short" => "Se"
+        ],
+        [
+            "id" => "ServiceProcessing/ServiceOrderHeaderHold",
+            "full" => $translation->translateLabel('Service Orders On Hold'),
+            "href"=> "ServiceProcessing/ServiceOrderHeaderHold",
+            "short" => "Se"
+        ],
+        [
+            "id" => "ServiceProcessing/ServiceOrderHeaderInvoice",
+            "full" => $translation->translateLabel('Invoice Service Orders'),
+            "href"=> "ServiceProcessing/ServiceOrderHeaderInvoice",
+            "short" => "In"
+        ],
+        [
+            "id" => "ServiceProcessing/ServiceOrderHeaderMemorized",
+            "full" => $translation->translateLabel('Memorized Service Orders'),
+            "href"=> "ServiceProcessing/ServiceOrderHeaderMemorized",
             "short" => "Me"
+        ],
+        [
+            "id" => "ServiceProcessing/ServiceOrderHeaderPick",
+            "full" => $translation->translateLabel('Fulfill Service Orders'),
+            "href"=> "ServiceProcessing/ServiceOrderHeaderPick",
+            "short" => "Fu"
+        ],
+        [
+            "id" => "ServiceProcessing/ServiceOrderHeaderShip",
+            "full" => $translation->translateLabel('Perform Service Orders'),
+            "href"=> "ServiceProcessing/ServiceOrderHeaderShip",
+            "short" => "Pe"
         ]
     ]
 ];

@@ -31,6 +31,42 @@ function parse_list(content, file){
     //	console.log(content);
 }
 
+function parse_detail(content, file){
+    var ind, match, field, re, group_re = /DetailsView[\s\n]+ID=\"(\w+)\"/g,
+	groups_content = {}, group, groups = {}, group_name;
+
+    while(match = group_re.exec(content)){
+	if(group)
+	    group.content = content.substring(group.index, match.index);
+	group = groups_content[match[1]] = { index : match.index };
+    }
+    if(group)
+	group.content = content.substring(group.index);
+
+    for(ind in groups_content){
+	group_name = ind.match(/(.*)Group/);
+	if(group_name)
+	    group_name = group_name[1];
+	else
+	    group_name = ind;
+	group = groups[group_name] = {};
+	while(groups_content[ind].content && (
+	    (match = groups_content[ind].content.match(/BoundField\s*HeaderText\=\"<\%\$\s*Translation:([\w\s]+)\s*\%>\"\s*DataField\=\"([\w\s]+)\"/i)) ||
+		(match = groups_content[ind].content.match(/TemplateField\s*HeaderText=\"<\%\$ Translation:([\w\s]+)\s*%>" SortExpression=\"(\w+)\"/i)))){
+	    group[match[2]] = {
+		inputType : "text",
+		defaultValue : ""
+	    };
+	    if(!file.hasOwnProperty("columnNames"))
+		file.columnNames = {};
+	    file.columnNames[match[2]] = match[1].replace(/\s*$/, "");
+	    groups_content[ind].content = groups_content[ind].content.substring(match.index + match[1].length);
+	}
+    }
+//    console.log(match.index);
+    file.groups = groups;
+}
+
 function parse_files(files){
     var content, ind;
     for(ind in files){
@@ -38,11 +74,15 @@ function parse_files(files){
 	    content = fs.readFileSync(process.argv[2] + '/' + ind + 'List.aspx').toString();
 	    parse_list(content, files[ind]);
 	}
+	if(files[ind].detail){
+	    content = fs.readFileSync(process.argv[2] + '/' + ind + 'Detail.aspx').toString();
+	    parse_detail(content, files[ind]);
+	}
     }
 }
 
 function generate_models(files, menuTitle){
-    var ind, content, find, fields;
+    var ind, content, find, fields, groups, group, gind;
     var menuCategories =
 	    "$menuCategories[\"" + menuTitle +  "\"] = [\n" +
 	    "\"type\" => \"submenu\",\n" +
@@ -60,15 +100,33 @@ function generate_models(files, menuTitle){
 	content += "protected $gridFields =" + JSON.stringify(files[ind].gridFields) + ";\n";
 	content += "public $dashboardTitle =\"" + files[ind].label + "\";\n";
 	content += "public $breadCrumbTitle =\"" + files[ind].label + "\";\n";
+	content += "public $idField =\"" + files[ind].keyNames[3] + "\";\n";
 
+	content += "public $editCategories = [\n";
+	groups = files[ind].groups;
+	for(gind in groups){
+	    content += "\"" + gind + "\" => [\n";
+
+	    group = groups[gind];
+	    for(find in group){
+		content += "\n\"" + find + "\" => [\n" +
+		    "\"inputType\" => \"" + group[find].inputType + "\",\n" +
+		    "\"defaultValue\" => \"" + group[find].defaultValue + "\"\n" +		    
+		    "],"; 
+	    }
+	    content = content.substring(0,content.length - 1);
+	    content += "\n]\n";
+	}
+	content = content.substring(0, content.length - 1);
+	content += "];\n";
 
 	content += "public $columnNames = [\n";
 	fields = files[ind].columnNames;
 	for(find in fields){
-	    content += "\"" + find + "\" => \"" + fields[find] + "\","; 
+	    content += "\n\"" + find + "\" => \"" + fields[find] + "\","; 
 	}
 	content = content.substring(0, content.length - 1);
-	content += "];";
+	content += "];\n";
 	
 	content += "}?>\n";
 	fs.writeFileSync('models/' + ind + '.php', content);
