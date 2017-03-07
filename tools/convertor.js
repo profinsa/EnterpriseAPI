@@ -6,7 +6,7 @@ function parse_list(content, file){
     if(match){
 	field = match[1];
 	field = field.replace(/\s*Translation:/,'');
-	field = field.replace(/\s*List/,'');	    
+	field = field.replace(/\s*List\s*/,'');	    
 	file.label = field;
 
     }
@@ -25,7 +25,7 @@ function parse_list(content, file){
     re = /BoundField\s*HeaderText\=\"<\%\$\s*Translation:([\w\s]+)\s*\%>\"\s*DataField\=\"([\w\s]+)\"/ig;
     while(match = re.exec(content)){
 	file.gridFields.push(match[2]);
-	file.columnNames[match[2]] = match[1];
+	file.columnNames[match[2]] = match[1].replace(/\s*$/, "");
     }
 	
     //	console.log(content);
@@ -42,14 +42,27 @@ function parse_files(files){
 }
 
 function generate_models(files){
-    var ind, content, menuCategories = '';
+    var ind, content, menuCategories = '', find, fields;
     
     //generating models content
     for(ind in files){
-	content = "<?php\nrequire \"./models/gridDataSource.php\";\nclass gridData extends gridDataSource{protected $tableName = \"";
+	content = "<?php\nrequire \"./models/gridDataSource.php\";\nclass gridData extends gridDataSource{\nprotected $tableName = \"" + files[ind].tableName + "\"\n;";
+
+	content += "protected $gridFields =" + JSON.stringify(files[ind].gridFields) + ";\n";
+	content += "public $dashboardTitle =\"" + files[ind].label + "\";\n";
+	content += "public $breadCrumbTitle =\"" + files[ind].label + "\";\n";
+
+
+	content += "public $columnNames = [\n";
+	fields = files[ind].columnNames;
+	for(find in fields){
+	    content += "\"" + find + "\" => \"" + fields[find] + "\","; 
+	}
+	content = content.substring(0, content.length - 1);
+	content += "];";
 	
 	content += "}?>\n";
-	fs.writeFileSync(ind + '.php', content);
+	fs.writeFileSync('models/' + ind + '.php', content);
     }
 }
 
