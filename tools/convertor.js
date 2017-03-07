@@ -10,7 +10,7 @@ function parse_list(content, file){
 	file.label = field;
 
     }
-    match = content.match(/ObjectName\=\"(\w+)\".+TableName\=\"(\w+)\"/i);
+    match = content.match(/ObjectName\=\"(\w+)\"[\s\S]+TableName\=\"(\w+)\"/im);
     if(match){
 	file.objectName = match[1];
 	file.tableName = match[2].toLowerCase();
@@ -53,6 +53,8 @@ function generate_models(files, menuTitle){
 	    
     //generating models content
     for(ind in files){
+	if(!files[ind].list)
+	    continue;
 	content = "<?php\nrequire \"./models/gridDataSource.php\";\nclass gridData extends gridDataSource{\nprotected $tableName = \"" + files[ind].tableName + "\"\n;";
 
 	content += "protected $gridFields =" + JSON.stringify(files[ind].gridFields) + ";\n";
