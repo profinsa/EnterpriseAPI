@@ -1,8 +1,8 @@
 <?php
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "contractsheader"
-;protected $gridFields =["OrderNumber","TransactionType","ContractTypeID","ContractStartDate","ContractEndDate","CurrencyID","Total","CustomerID"];
+protected $tableName = "contractsheader";
+protected $gridFields =["OrderNumber","TransactionType","ContractTypeID","ContractStartDate","ContractEndDate","CurrencyID","Total","CustomerID"];
 public $dashboardTitle ="Contracts";
 public $breadCrumbTitle ="Contracts";
 public $idField ="OrderNumber";

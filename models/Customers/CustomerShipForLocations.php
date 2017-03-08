@@ -9,6 +9,14 @@ public $idField ="CustomerID";
 public $editCategories = [
 "Main" => [
 
+"CustomerID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ShipToID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "ShipForID" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -41,6 +49,10 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"ShipForeCountry" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "ShipForEmail" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -54,10 +66,6 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ShipForNotes" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShipForeCountry" => [
 "inputType" => "text",
 "defaultValue" => ""
 ]

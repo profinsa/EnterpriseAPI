@@ -9,6 +9,10 @@ public $idField ="CustomerID";
 public $editCategories = [
 "Main" => [
 
+"CustomerID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "ReferenceID" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -60,6 +64,22 @@ public $editCategories = [
 "ReferenceComments" => [
 "inputType" => "text",
 "defaultValue" => ""
+],
+"Approved" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ApprovedBy" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ApprovedDate" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"EnteredBy" => [
+"inputType" => "text",
+"defaultValue" => ""
 ]
 ]];
 public $columnNames = [
@@ -77,5 +97,9 @@ public $columnNames = [
 "ReferencePromptPerc" => "Reference Prompt Perc",
 "ReferenceLateDays" => "Reference Late Days",
 "ReferenceFutures" => "Reference Futures",
-"ReferenceComments" => "Reference Comments"];
+"ReferenceComments" => "Reference Comments",
+"Approved" => "Approved",
+"ApprovedBy" => "ApprovedBy",
+"ApprovedDate" => "ApprovedDate",
+"EnteredBy" => "EnteredBy"];
 }?>

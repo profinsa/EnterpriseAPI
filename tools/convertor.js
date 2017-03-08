@@ -9,9 +9,7 @@ var mysql_config = {
 };
 
 function isEmpty(object) {
-    for (var key in object)
-        if (object.hasOwnProperty(key)) return true;
-    return false;
+    return JSON.stringify(object) == '{}';
 }
 
 function getFieldsFromTable(table, cb){
@@ -19,15 +17,17 @@ function getFieldsFromTable(table, cb){
 
     connection.connect();
 
-    connection.query('describe vendortypes', function (error, results, fields) {
+    connection.query('describe ' + table, function (error, results, fields) {
 	var ind, _fields = {};
 	if (error)
 	    throw error;
 
 	for(ind in results){
-	    if(results[ind].Field != 'CompanyID' ||
-	       results[ind].Field != 'DivisionID' ||
-	       results[ind].Field != 'DepartmentID')
+	    if(results[ind].Field != 'CompanyID' &&
+	       results[ind].Field != 'DivisionID' &&
+	       results[ind].Field != 'DepartmentID'&&
+	       results[ind].Field != 'LockedBy'&&
+	       results[ind].Field != 'LockTS')
 	    _fields[results[ind].Field] = results[ind];
 	}
 	cb(_fields);
@@ -119,7 +119,7 @@ function parse_files(files){
 
 function generate_model(file, title, menuTitle, cb){
     var content, find, fields, groups, group, gind;
-    content = "<?php\nrequire \"./models/gridDataSource.php\";\nclass gridData extends gridDataSource{\nprotected $tableName = \"" + file.tableName + "\"\n;";
+    content = "<?php\nrequire \"./models/gridDataSource.php\";\nclass gridData extends gridDataSource{\nprotected $tableName = \"" + file.tableName + "\";\n";
 
     content += "protected $gridFields =" + JSON.stringify(file.gridFields) + ";\n";
     content += "public $dashboardTitle =\"" + file.label + "\";\n";
@@ -165,7 +165,7 @@ function generate_model(file, title, menuTitle, cb){
 
 function process_model(file, title, menuTitle, cb){
     var group;
-    if(!file.detail || isEmpty(file.groups)){
+//    if(!file.detail || isEmpty(file.groups)){
 	getFieldsFromTable(file.tableName, function(fields){
 	    var ind;
 	    file.groups = {};
@@ -181,7 +181,10 @@ function process_model(file, title, menuTitle, cb){
 	    console.log(JSON.stringify(file, null, 3));
 	    generate_model(file, title, menuTitle, cb);
 	});
-    }
+  //  }else{
+//	console.log(JSON.stringify(file, null, 3));
+//	generate_model(file, title, menuTitle, cb);
+  //  }
 }
 
 function generate_models(files, menuTitle, fcounter){
@@ -202,6 +205,7 @@ function generate_models(files, menuTitle, fcounter){
 	process_model(files[ind], ind, menuTitle, function(_menuCategories){
 	    _fcounter++;
 	    menuCategories += _menuCategories;
+	    console.log(_fcounter, fcounter);
 	    if(_fcounter == fcounter){
 		menuCategories = menuCategories.substring(0, menuCategories.length - 1);
 		menuCategories += "\n]\n];\n";

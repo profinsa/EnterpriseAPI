@@ -1,8 +1,8 @@
 <?php
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "orderheaderhistory"
-;protected $gridFields =["OrderNumber","OrderTypeID","OrderDate","CustomerID","CurrencyID","Total","ShipDate","Invoiced"];
+protected $tableName = "orderheaderhistory";
+protected $gridFields =["OrderNumber","OrderTypeID","OrderDate","CustomerID","CurrencyID","Total","ShipDate","Invoiced"];
 public $dashboardTitle ="Orders History";
 public $breadCrumbTitle ="Orders History";
 public $idField ="OrderNumber";

@@ -9,11 +9,19 @@ public $idField ="CustomerID";
 public $editCategories = [
 "Main" => [
 
+"CustomerID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "ItemPricingCode" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ItemPrice" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CurrencyID" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -42,5 +50,6 @@ public $columnNames = [
 "Freight" => "Freight",
 "Handling" => "Handling",
 "Advertising" => "Advertising",
-"Shipping" => "Shipping"];
+"Shipping" => "Shipping",
+"CurrencyID" => "CurrencyID"];
 }?>

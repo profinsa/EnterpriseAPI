@@ -1,8 +1,8 @@
 <?php
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "quotetrackingheader"
-;protected $gridFields =["OrderNumber","QuoteStatus","QuoteDescription","ExpectedCloseDate","SaleProbability","EnteredBy"];
+protected $tableName = "quotetrackingheader";
+protected $gridFields =["OrderNumber","QuoteStatus","QuoteDescription","ExpectedCloseDate","SaleProbability","EnteredBy"];
 public $dashboardTitle ="QuoteTrackingHeader";
 public $breadCrumbTitle ="QuoteTrackingHeader";
 public $idField ="OrderNumber";
@@ -41,19 +41,19 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"EnteredBy" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"Approved" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ApprovedBy" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "ApprovedDate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CommentNumber" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CommentDate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Comment" => [
 "inputType" => "text",
 "defaultValue" => ""
 ]
@@ -72,5 +72,7 @@ public $columnNames = [
 "ApprovedDate" => "Approved Date",
 "CommentNumber" => "Comment Number",
 "CommentDate" => "Comment Date",
-"Comment" => "Comment"];
+"Comment" => "Comment",
+"Approved" => "Approved",
+"ApprovedBy" => "ApprovedBy"];
 }?>

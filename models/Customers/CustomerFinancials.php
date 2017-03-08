@@ -9,7 +9,7 @@ public $idField ="CustomerID";
 public $editCategories = [
 "Main" => [
 
-"BookedOrders" => [
+"CustomerID" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -17,11 +17,11 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"AverageDaytoPay" => [
+"LateDays" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"LateDays" => [
+"AverageDaytoPay" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -33,10 +33,6 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"PromptPerc" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
 "HighestCredit" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -45,15 +41,23 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"PromptPerc" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"BookedOrders" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "AdvertisingDollars" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"CurrentARBalance" => [
+"TotalAR" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"TotalAR" => [
+"CurrentARBalance" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -85,10 +89,6 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"LastSalesDate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
 "SalesYTD" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -101,7 +101,7 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"PaymentsYTD" => [
+"LastSalesDate" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -110,6 +110,10 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PaymentsLifetime" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"PaymentsYTD" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],

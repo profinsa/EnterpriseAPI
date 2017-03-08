@@ -1,8 +1,8 @@
 <?php
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "ordertrackingdetail"
-;protected $gridFields =["OrderNumber","CommentNumber","CommentDate","Comment","CommentDetails","ApprovedBy","ApprovedDate"];
+protected $tableName = "ordertrackingdetail";
+protected $gridFields =["OrderNumber","CommentNumber","CommentDate","Comment","CommentDetails","ApprovedBy","ApprovedDate"];
 public $dashboardTitle ="OrderTrackingDetail";
 public $breadCrumbTitle ="OrderTrackingDetail";
 public $idField ="OrderNumber";
@@ -29,6 +29,10 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"Approved" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "ApprovedBy" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -46,5 +50,6 @@ public $columnNames = [
 "Comment" => "Comment",
 "CommentDetails" => "Comment Details",
 "ApprovedBy" => "Approved By",
-"ApprovedDate" => "Approved Date"];
+"ApprovedDate" => "Approved Date",
+"Approved" => "Approved"];
 }?>

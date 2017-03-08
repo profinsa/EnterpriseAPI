@@ -9,11 +9,19 @@ public $idField ="CustomerID";
 public $editCategories = [
 "Main" => [
 
+"CustomerID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "CommentLineID" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CommentDate" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CommentType" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],

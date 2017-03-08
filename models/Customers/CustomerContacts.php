@@ -9,7 +9,15 @@ public $idField ="CustomerID";
 public $editCategories = [
 "Main" => [
 
+"CustomerID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "ContactID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ContactType" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -29,15 +37,19 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"ContactDepartment" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ContactSource" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "ContactSalutation" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ContactLogin" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ContactPassword" => [
+"ContactIndustry" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -97,7 +109,31 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ContactDepartment" => [
+"ContactLogin" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ContactPassword" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ContactPasswordOld" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ContactPasswordDate" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ContactPasswordExpires" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ContactPasswordExpiresDate" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ContactRegion" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -106,30 +142,6 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ContactCallingRestrictions" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CustomerID" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ContactLogID" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ContactDate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ContactCallStartTime" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ContactCallEndTime" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ContactDesctiption" => [
 "inputType" => "text",
 "defaultValue" => ""
 ]
@@ -167,5 +179,12 @@ public $columnNames = [
 "ContactDate" => "Contact Date",
 "ContactCallStartTime" => "Call Start Time",
 "ContactCallEndTime" => "Call End Time",
-"ContactDesctiption" => "Desctiption"];
+"ContactDesctiption" => "Desctiption",
+"ContactSource" => "ContactSource",
+"ContactIndustry" => "ContactIndustry",
+"ContactPasswordOld" => "ContactPasswordOld",
+"ContactPasswordDate" => "ContactPasswordDate",
+"ContactPasswordExpires" => "ContactPasswordExpires",
+"ContactPasswordExpiresDate" => "ContactPasswordExpiresDate",
+"ContactRegion" => "ContactRegion"];
 }?>

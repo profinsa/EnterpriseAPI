@@ -9,7 +9,19 @@ public $idField ="CustomerID";
 public $editCategories = [
 "Main" => [
 
+"CustomerID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerItemID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "CustomerItemDescription" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ItemID" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],

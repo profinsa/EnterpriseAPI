@@ -13,19 +13,23 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"AccountStatus" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "CustomerName" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"CustomerFirstName" => [
+"CustomerSex" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"CustomerLastName" => [
+"CustomerBornDate" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"CustomerSalutation" => [
+"CustomerNationality" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -81,18 +85,79 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"CustomerPasswordOld" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerPasswordDate" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerPasswordExpires" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerPasswordExpiresDate" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerFirstName" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerLastName" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerSalutation" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerSpeciality" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "Attention" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerTypeID" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TaxIDNo" => [
 "inputType" => "text",
 "defaultValue" => ""
-]
-]
-"Info" => [
-
+],
+"VATTaxIDNumber" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"VatTaxOtherNumber" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CurrencyID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"GLSalesAccount" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"TermsID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "TermsStart" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"EmployeeID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"TaxGroupID" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -128,6 +193,18 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"SendCreditMemos" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"SendDebitMemos" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"Statements" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "StatementCycleCode" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -135,10 +212,23 @@ public $editCategories = [
 "CustomerSpecialInstructions" => [
 "inputType" => "text",
 "defaultValue" => ""
-]
-]
-"Ship" => [
-
+],
+"CustomerShipToId" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerShipForId" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ShipMethodID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"WarehouseID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "RoutingInfo1" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -159,6 +249,38 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"PickTicketsNeeded" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"PackingListNeeded" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"SpecialLabelsNeeded" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"CustomerItemCodes" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ConfirmBeforeShipping" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"Backorders" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"UseStoreNumbers" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"UseDepartmentNumbers" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "SpecialShippingInstructions" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -166,11 +288,16 @@ public $editCategories = [
 "RoutingNotes" => [
 "inputType" => "text",
 "defaultValue" => ""
-]
-]
-"Allowance" => [
-
+],
+"ApplyRebate" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "RebateAmount" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"RebateGLAccount" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -178,7 +305,15 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"ApplyNewStore" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "NewStoreDiscount" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"NewStoreGLAccount" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -186,7 +321,15 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"ApplyWarehouse" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "WarehouseAllowance" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"WarehouseGLAccount" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -194,7 +337,15 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"ApplyAdvertising" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "AdvertisingDiscount" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"AdvertisingGLAccount" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -202,7 +353,15 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"ApplyManualAdvert" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "ManualAdvertising" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ManualAdvertisingGLAccount" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -210,7 +369,15 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
+"ApplyTrade" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "TradeDiscount" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"TradeDiscountGLAccount" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
@@ -221,10 +388,7 @@ public $editCategories = [
 "SpecialTerms" => [
 "inputType" => "text",
 "defaultValue" => ""
-]
-]
-"EDI" => [
-
+],
 "EDIQualifier" => [
 "inputType" => "text",
 "defaultValue" => ""
@@ -257,322 +421,99 @@ public $editCategories = [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipToID" => [
+"EDIPurchaseOrders" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipToName" => [
+"EDIInvoices" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipToAddress1" => [
+"EDIPayments" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipToAddress2" => [
+"EDIOrderStatus" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipToAddress3" => [
+"EDIShippingNotices" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipToCity" => [
+"Approved" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipToState" => [
+"ApprovedBy" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipToZip" => [
+"ApprovedDate" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipForID" => [
+"EnteredBy" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipForName" => [
+"ConvertedFromVendor" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipForAddress1" => [
+"ConvertedFromLead" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipForAddress2" => [
+"CustomerRegionID" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipForAddress3" => [
+"CustomerSourceID" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipForCity" => [
+"CustomerIndustryID" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipForState" => [
+"Confirmed" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipForZip" => [
+"FirstContacted" => [
 "inputType" => "text",
 "defaultValue" => ""
-]
-]
-"Financials" => [
-
-"CustomerID" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"BookedOrders" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"AvailibleCredit" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"AverageDaytoPay" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LateDays" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LastPaymentDate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LastPaymentAmount" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"PromptPerc" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HighestCredit" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HighestBalance" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"AdvertisingDollars" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CurrentARBalance" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TotalAR" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Under30" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Over30" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Over60" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Over90" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Over120" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Over150" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Over180" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LastSalesDate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SalesYTD" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SalesLastYear" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SalesLifetime" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"PaymentsYTD" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"PaymentsLastYear" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"PaymentsLifetime" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"WriteOffsYTD" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"WriteOffsLastYear" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"WriteOffsLifetime" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"InvoicesYTD" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"InvoicesLastYear" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"InvoicesLifetime" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditMemos" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LastCreditMemoDate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditMemosYTD" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditMemosLastYear" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditMemosLifetime" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"RMAs" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LastRMADate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"RMAsYTD" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"RMAsLastYear" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"RMAsLifetime" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReferenceID" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReferenceName" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReferenceDate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReferenceSoldSince" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReferenceLastSale" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReferenceHighCredit" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReferenceCurrentBalance" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReferencePastDue" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReferenceLateDays" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CommentLineID" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CommentDate" => [
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CommentType" => [
-"inputType" => "text",
-"defaultValue" => ""
 ],
-"Comment" => [
+"LastFollowUp" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"TransactionType" => [
+"NextFollowUp" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"TransactionNumber" => [
+"ReferedByExistingCustomer" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"TransactionDate" => [
+"ReferedBy" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"TransactionAmount" => [
+"ReferedDate" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"CurrencyID" => [
+"ReferalURL" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"ShipDate" => [
+"Hot" => [
 "inputType" => "text",
 "defaultValue" => ""
 ],
-"TrackingNumber" => [
+"PrimaryInterest" => [
 "inputType" => "text",
 "defaultValue" => ""
 ]
@@ -716,5 +657,71 @@ public $columnNames = [
 "TransactionAmount" => "Transaction Amount",
 "CurrencyID" => "Currency ID",
 "ShipDate" => "Ship Date",
-"TrackingNumber" => "Tracking Number"];
+"TrackingNumber" => "Tracking Number",
+"AccountStatus" => "AccountStatus",
+"CustomerSex" => "CustomerSex",
+"CustomerBornDate" => "CustomerBornDate",
+"CustomerNationality" => "CustomerNationality",
+"CustomerPasswordOld" => "CustomerPasswordOld",
+"CustomerPasswordDate" => "CustomerPasswordDate",
+"CustomerPasswordExpires" => "CustomerPasswordExpires",
+"CustomerPasswordExpiresDate" => "CustomerPasswordExpiresDate",
+"CustomerSpeciality" => "CustomerSpeciality",
+"VATTaxIDNumber" => "VATTaxIDNumber",
+"VatTaxOtherNumber" => "VatTaxOtherNumber",
+"GLSalesAccount" => "GLSalesAccount",
+"TermsID" => "TermsID",
+"EmployeeID" => "EmployeeID",
+"TaxGroupID" => "TaxGroupID",
+"SendCreditMemos" => "SendCreditMemos",
+"SendDebitMemos" => "SendDebitMemos",
+"Statements" => "Statements",
+"CustomerShipToId" => "CustomerShipToId",
+"CustomerShipForId" => "CustomerShipForId",
+"ShipMethodID" => "ShipMethodID",
+"WarehouseID" => "WarehouseID",
+"PickTicketsNeeded" => "PickTicketsNeeded",
+"PackingListNeeded" => "PackingListNeeded",
+"SpecialLabelsNeeded" => "SpecialLabelsNeeded",
+"CustomerItemCodes" => "CustomerItemCodes",
+"ConfirmBeforeShipping" => "ConfirmBeforeShipping",
+"Backorders" => "Backorders",
+"UseStoreNumbers" => "UseStoreNumbers",
+"UseDepartmentNumbers" => "UseDepartmentNumbers",
+"ApplyRebate" => "ApplyRebate",
+"RebateGLAccount" => "RebateGLAccount",
+"ApplyNewStore" => "ApplyNewStore",
+"NewStoreGLAccount" => "NewStoreGLAccount",
+"ApplyWarehouse" => "ApplyWarehouse",
+"WarehouseGLAccount" => "WarehouseGLAccount",
+"ApplyAdvertising" => "ApplyAdvertising",
+"AdvertisingGLAccount" => "AdvertisingGLAccount",
+"ApplyManualAdvert" => "ApplyManualAdvert",
+"ManualAdvertisingGLAccount" => "ManualAdvertisingGLAccount",
+"ApplyTrade" => "ApplyTrade",
+"TradeDiscountGLAccount" => "TradeDiscountGLAccount",
+"EDIPurchaseOrders" => "EDIPurchaseOrders",
+"EDIInvoices" => "EDIInvoices",
+"EDIPayments" => "EDIPayments",
+"EDIOrderStatus" => "EDIOrderStatus",
+"EDIShippingNotices" => "EDIShippingNotices",
+"Approved" => "Approved",
+"ApprovedBy" => "ApprovedBy",
+"ApprovedDate" => "ApprovedDate",
+"EnteredBy" => "EnteredBy",
+"ConvertedFromVendor" => "ConvertedFromVendor",
+"ConvertedFromLead" => "ConvertedFromLead",
+"CustomerRegionID" => "CustomerRegionID",
+"CustomerSourceID" => "CustomerSourceID",
+"CustomerIndustryID" => "CustomerIndustryID",
+"Confirmed" => "Confirmed",
+"FirstContacted" => "FirstContacted",
+"LastFollowUp" => "LastFollowUp",
+"NextFollowUp" => "NextFollowUp",
+"ReferedByExistingCustomer" => "ReferedByExistingCustomer",
+"ReferedBy" => "ReferedBy",
+"ReferedDate" => "ReferedDate",
+"ReferalURL" => "ReferalURL",
+"Hot" => "Hot",
+"PrimaryInterest" => "PrimaryInterest"];
 }?>

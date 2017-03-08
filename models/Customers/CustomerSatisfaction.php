@@ -9,6 +9,14 @@ public $idField ="CustomerID";
 public $editCategories = [
 "Main" => [
 
+"CustomerID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
+"ItemID" => [
+"inputType" => "text",
+"defaultValue" => ""
+],
 "SurveyDate" => [
 "inputType" => "text",
 "defaultValue" => ""
