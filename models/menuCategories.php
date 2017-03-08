@@ -323,4 +323,104 @@ $menuCategories["ServiceProcessing"] = [
     ]
 ];
 
+$menuCategories["Customers"] = [
+    "type" => "submenu",
+    "id" => "Customers",
+    "full" => $translation->translateLabel('Customers'),
+    "short" => "Cu",
+    "data" => [
+
+        [
+            "id" => "Customers/CommentTypes",
+            "full" => $translation->translateLabel('Comment Types'),
+            "href"=> "Customers/CommentTypes",
+            "short" => "Co"
+        ],
+        [
+            "id" => "Customers/CustomerAccountStatuses",
+            "full" => $translation->translateLabel('Customer Account Statuses'),
+            "href"=> "Customers/CustomerAccountStatuses",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerComments",
+            "full" => $translation->translateLabel('Customer Comments'),
+            "href"=> "Customers/CustomerComments",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerContactLog",
+            "full" => $translation->translateLabel('Customer Contact Log'),
+            "href"=> "Customers/CustomerContactLog",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerContacts",
+            "full" => $translation->translateLabel('Customer Contacts'),
+            "href"=> "Customers/CustomerContacts",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerCreditReferences",
+            "full" => $translation->translateLabel('Customer Credit References'),
+            "href"=> "Customers/CustomerCreditReferences",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerFinancials",
+            "full" => $translation->translateLabel('Customer Financials'),
+            "href"=> "Customers/CustomerFinancials",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerInformation",
+            "full" => $translation->translateLabel('Customer Information'),
+            "href"=> "Customers/CustomerInformation",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerItemCrossReference",
+            "full" => $translation->translateLabel('Customer Item Cross Reference'),
+            "href"=> "Customers/CustomerItemCrossReference",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerPriceCrossReference",
+            "full" => $translation->translateLabel('Customer Price Cross Reference'),
+            "href"=> "Customers/CustomerPriceCrossReference",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerReferences",
+            "full" => $translation->translateLabel('CustomerReferences'),
+            "href"=> "Customers/CustomerReferences",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerSatisfaction",
+            "full" => $translation->translateLabel('CustomerSatisfaction'),
+            "href"=> "Customers/CustomerSatisfaction",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerShipForLocations",
+            "full" => $translation->translateLabel('Customer Ship For Locations'),
+            "href"=> "Customers/CustomerShipForLocations",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerShipToLocations",
+            "full" => $translation->translateLabel('Customer Ship To Locations'),
+            "href"=> "Customers/CustomerShipToLocations",
+            "short" => "Cu"
+        ],
+        [
+            "id" => "Customers/CustomerTypes",
+            "full" => $translation->translateLabel('Customer Types'),
+            "href"=> "Customers/CustomerTypes",
+            "short" => "Cu"
+        ]
+    ]
+];
+
 ?>
