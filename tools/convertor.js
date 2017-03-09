@@ -1,3 +1,31 @@
+/*
+ Name of Page: ASPX to php models convertor
+
+ Method: It read *List.aspx files and created models for using it in integral accounting enterprise x
+
+ Date created: Nikita Zaharov, 06.03.2016
+
+ Use: 
+ reads *List.aspx files, extracts table name, fileds, types and other and then created model for
+ use in integralx project as screen. Also it generate menu model for menu(sidebar items with links)
+
+ Input parameters:
+ directory which contains .aspx files or pat to .aspx file
+
+ Output parameters:
+ - screen models for each .aspx file
+ - menuCategories model(which contains menu items) for all .aspx files
+
+ Called from:
+ as command line tool
+
+ Calls:
+ mysql
+
+ Last Modified: 09.03.2016
+ Last Modified by: Nikita Zaharov
+ */
+
 var fs = require('fs');
 var mysql = require('mysql');
 

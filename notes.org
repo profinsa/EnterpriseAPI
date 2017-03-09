@@ -92,3 +92,45 @@
   After model is filled - screen is done.
   All screens are rendered by one view(views/gridView). For some screens view must be adopted.
   
+
+* aspxconvertor how use?
+  Convertor is works in two modes:
+  + converting whole directory
+    It trying search all *List.aspx files in directory which path passed as argument
+    It extracts table name, key fields and grid column from that files.
+    Then it extracts columns from tables and create model for screen and model for menu.
+  + converting single page
+    It trying read file which path passed as argument
+    It extracts table name, key fields and grid column from that files.
+    Then it extracts columns from tables and create model for screen and model for menu.
+    
+** What does the convertor do?
+   + extracts page name, table name, key fields and grid columns from .aspx file
+   + extracts column names from table description directly from mysql
+   + creates screen model file(php file, which contains class) and write to him:
+     - table name
+     - grid columns
+     - dashboard and breadcrumb titles
+     - key fields
+     - fields grouped by categories(only Main on start, but we can split fields on many groups)
+       field in group has name, inputType(text, dropdown, datepicker etc) and default value
+     - columnNames array which contains pairs:
+       tablefieldname=>translatedfieldname
+
+** how it use?
+   in command line mode change directory to integralx/tools
+   node convertor.js yourpath/EnterpriseASP/EnterpriseASPAR/OrderProcessing
+   for converting directory
+   or
+   node convertor.js yourpath/EnterpriseASP/EnterpriseASPAR/OrderProcessing/ContractsHeaderList.aspx
+   for converting one file
+   
+   models will appear as integralx/tools/models/ContractsHeader.php
+   Also menu model(file which contains items from sidebar) will be created as integralx/tools/models/menuCategories.php
+
+   Then we need put screen models like ContractsHeader.php to somewhere in integralx/models
+   For example and default(as used in generated menuCategories) put it as integralx/models/OrderProcessing/ContractsHeader.php
+
+   Then we need copy text from integralx/tools/models/menuCategories.php to end of integralx/models/menuCategories.php
+
+   After that generated screen or screens can be accesssed from browser
