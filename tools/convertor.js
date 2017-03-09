@@ -135,7 +135,8 @@ function generate_model(file, title, menuTitle, cb){
 	for(find in group){
 	    content += "\n\"" + find + "\" => [\n" +
 		"\"inputType\" => \"" + group[find].inputType + "\",\n" +
-		"\"defaultValue\" => \"" + group[find].defaultValue + "\"\n" +		    
+		"\"defaultValue\" => \"" + group[find].defaultValue + "\"\n" +
+		(group[find].hasOwnProperty("disabledEdit") ? "\"disabledEdit\" => \"" + group[find].disabledEdit + "\"\n" : "") +
 		"],"; 
 	}
 	content = content.substring(0,content.length - 1);
@@ -171,14 +172,23 @@ function process_model(file, title, menuTitle, cb){
 	    file.groups = {};
 	    group = file.groups["Main"] = {};
 	    for(ind in fields){
+//		console.log(fields[ind]);
 		if(!file.columnNames.hasOwnProperty(ind))
 		    file.columnNames[ind] = ind;
 		group[ind] = {
-		    inputType : "text",
 		    defaultValue : ""
 		};
+		if(fields[ind].Type == 'datetime'){
+		    group[ind].inputType = 'datepicker';
+		    group[ind].defaultValue = 'now';
+		}else if(fields[ind].Type == 'timestamp'){
+		    group[ind].inputType = 'timestamp';
+		    group[ind].defaultValue = 'now';
+		    group[ind].disabledEdit = true;
+		}else
+		    group[ind].inputType = "text";
 	    }
-	    console.log(JSON.stringify(file, null, 3));
+//	    console.log(JSON.stringify(file, null, 3));
 	    generate_model(file, title, menuTitle, cb);
 	});
   //  }else{

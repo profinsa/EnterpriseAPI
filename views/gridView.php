@@ -169,6 +169,8 @@
 							    echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
 							    break;
 							case "text":
+							case "timestamp" :
+							case "datepicker" :
 							case "dropdown":
 							    echo $value;
 							    break;
@@ -217,6 +219,7 @@
 			    foreach($item as $key =>$value){
 				$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
 				switch($data->editCategories[$scope->category][$key]["inputType"]){
+					
 				    case "text" :
 					//renders text input with label
 					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " .
@@ -226,7 +229,7 @@
 					
 				    case "datepicker" :
 					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatepicker\" value=\"" . $value ."\" " .
+					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatepicker\" value=\"" . ($value == 'now'? date("m/d/y") : $value) ."\" " .
 					     ( (key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope->category][$key]) && $scope->mode == "new") ? "readonly" : "")
 					    ."></div></div>";
 					break;
