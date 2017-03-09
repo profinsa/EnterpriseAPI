@@ -40,16 +40,17 @@ function isEmpty(object) {
     return JSON.stringify(object) == '{}';
 }
 
+var connection = mysql.createConnection(mysql_config);
+
+connection.connect();
+
 function getFieldsFromTable(table, cb){
-    var connection = mysql.createConnection(mysql_config);
-
-    connection.connect();
-
     connection.query('describe ' + table, function (error, results, fields) {
 	var ind, _fields = {};
-	if (error)
-	    throw error;
-
+	if(error){
+	    cb(error);
+	    return;
+	}
 	for(ind in results){
 	    if(results[ind].Field != 'CompanyID' &&
 	       results[ind].Field != 'DivisionID' &&
@@ -58,10 +59,119 @@ function getFieldsFromTable(table, cb){
 	       results[ind].Field != 'LockTS')
 	    _fields[results[ind].Field] = results[ind];
 	}
-	cb(_fields);
+	cb(undefined, _fields);
     });
+}
 
-    connection.end();    
+function generate_model(file, title, menuTitle, cb){
+    var content, find, fields, groups, group, gind;
+    content = "<?php\nrequire \"./models/gridDataSource.php\";\nclass gridData extends gridDataSource{\nprotected $tableName = \"" + file.tableName + "\";\n";
+
+    content += "protected $gridFields =" + JSON.stringify(file.gridFields) + ";\n";
+    content += "public $dashboardTitle =\"" + file.label + "\";\n";
+    content += "public $breadCrumbTitle =\"" + file.label + "\";\n";
+    content += "public $idField =\"" + (file.keyNames ? file.keyNames[3] : '') + "\";\n";
+
+    content += "public $editCategories = [\n";
+    groups = file.groups;
+    for(gind in groups){
+	content += "\"" + gind + "\" => [\n";
+
+	group = groups[gind];
+	for(find in group){
+	    content += "\n\"" + find + "\" => [\n" +
+		"\"inputType\" => \"" + group[find].inputType + "\",\n" +
+		"\"defaultValue\" => \"" + group[find].defaultValue + "\"\n" +
+		(group[find].hasOwnProperty("disabledEdit") ? ",\"disabledEdit\" => \"" + group[find].disabledEdit + "\"\n" : "") +
+		"],"; 
+	}
+	content = content.substring(0,content.length - 1);
+	content += "\n]\n";
+    }
+    content = content.substring(0, content.length - 1);
+    content += "];\n";
+
+    content += "public $columnNames = [\n";
+    fields = file.columnNames;
+    for(find in fields){
+	content += "\n\"" + find + "\" => \"" + fields[find] + "\",";
+	//generate_model(
+    }
+    content = content.substring(0, content.length - 1);
+    content += "];\n";
+    
+    content += "}?>\n";
+    fs.writeFileSync('models/' + file.outFile + '.php', content);
+
+    cb("\n[\n" +
+       "\"id\" => \"" + menuTitle + "/" + title + "\",\n" +
+       "\"full\" => $translation->translateLabel('" + file.label + "'),\n" +
+       "\"href\"=> \"" + menuTitle + "/" + title  + "\",\n" +
+       "\"short\" => \"" + (file.label? file.label.substring(0,2) : "") + "\"\n],");
+ }
+
+function generate_models(files, menuTitle, fcounter){
+    var _fcounter = 0;
+    var ind, content;
+    var menuCategories =
+	    "$menuCategories[\"" + menuTitle +  "\"] = [\n" +
+	    "\"type\" => \"submenu\",\n" +
+	    "\"id\" => \"" + menuTitle + "\",\n" +
+	    "\"full\" => $translation->translateLabel('" + menuTitle + "'),\n" +
+	    "\"short\" => \"" + menuTitle.substring(0, 2) + "\",\n"+
+	    "\"data\" => [\n";
+	    
+    //generating models content
+    for(ind in files){
+	if(!files[ind].list)
+	    continue;
+	process_model(files[ind], ind, menuTitle, function(err, _menuCategories){
+	    _fcounter++;
+	    menuCategories += err ? '' : _menuCategories;
+	    console.log(_fcounter, fcounter);
+	    if(_fcounter == fcounter){
+		menuCategories = menuCategories.substring(0, menuCategories.length - 1);
+		menuCategories += "\n]\n];\n";
+		fs.writeFileSync('models/menuCategories.php', menuCategories);
+		connection.end();    
+	    }
+	});
+   }
+}
+
+function process_model(file, title, menuTitle, cb){
+    var group;
+//    if(!file.detail || isEmpty(file.groups)){
+    getFieldsFromTable(file.tableName, function(err, fields){
+	if(err){
+	    cb(err);
+	    console.log(err);
+	    return;
+	}
+	    
+	var ind;
+	file.groups = {};
+	group = file.groups["Main"] = {};
+	for(ind in fields){
+	    //		console.log(fields[ind]);
+	    if(!file.columnNames.hasOwnProperty(ind))
+		file.columnNames[ind] = ind;
+	    group[ind] = {
+		defaultValue : ""
+	    };
+	    if(fields[ind].Type == 'datetime' || fields[ind].Type == 'timestamp'){
+		group[ind].inputType = 'datepicker';
+		group[ind].defaultValue = 'now';
+	    }else
+		group[ind].inputType = "text";
+	}
+	//	    console.log(JSON.stringify(file, null, 3));
+	generate_model(file, title, menuTitle, cb);
+    });
+    //  }else{
+    //	console.log(JSON.stringify(file, null, 3));
+    //	generate_model(file, title, menuTitle, cb);
+    //  }
 }
 
 function parse_list(content, file){
@@ -131,122 +241,23 @@ function parse_detail(content, file){
     file.groups = groups;
 }
 
-function parse_files(files){
+function parse_files(files, fullpath){
     var content, ind;
     for(ind in files){
-	if(files[ind].list){
-	    content = fs.readFileSync(process.argv[2] + '/' + ind + 'List.aspx').toString();
-	    parse_list(content, files[ind]);
-	}
-	if(files[ind].detail){
-	    content = fs.readFileSync(process.argv[2] + '/' + ind + 'Detail.aspx').toString();
-	    parse_detail(content, files[ind]);
-	}
-    }
-}
-
-function generate_model(file, title, menuTitle, cb){
-    var content, find, fields, groups, group, gind;
-    content = "<?php\nrequire \"./models/gridDataSource.php\";\nclass gridData extends gridDataSource{\nprotected $tableName = \"" + file.tableName + "\";\n";
-
-    content += "protected $gridFields =" + JSON.stringify(file.gridFields) + ";\n";
-    content += "public $dashboardTitle =\"" + file.label + "\";\n";
-    content += "public $breadCrumbTitle =\"" + file.label + "\";\n";
-    content += "public $idField =\"" + file.keyNames[3] + "\";\n";
-
-    content += "public $editCategories = [\n";
-    groups = file.groups;
-    for(gind in groups){
-	content += "\"" + gind + "\" => [\n";
-
-	group = groups[gind];
-	for(find in group){
-	    content += "\n\"" + find + "\" => [\n" +
-		"\"inputType\" => \"" + group[find].inputType + "\",\n" +
-		"\"defaultValue\" => \"" + group[find].defaultValue + "\"\n" +
-		(group[find].hasOwnProperty("disabledEdit") ? ",\"disabledEdit\" => \"" + group[find].disabledEdit + "\"\n" : "") +
-		"],"; 
-	}
-	content = content.substring(0,content.length - 1);
-	content += "\n]\n";
-    }
-    content = content.substring(0, content.length - 1);
-    content += "];\n";
-
-    content += "public $columnNames = [\n";
-    fields = file.columnNames;
-    for(find in fields){
-	content += "\n\"" + find + "\" => \"" + fields[find] + "\",";
-	//generate_model(
-    }
-    content = content.substring(0, content.length - 1);
-    content += "];\n";
-    
-    content += "}?>\n";
-    fs.writeFileSync('models/' + title + '.php', content);
-
-    cb("\n[\n" +
-       "\"id\" => \"" + menuTitle + "/" + title + "\",\n" +
-       "\"full\" => $translation->translateLabel('" + file.label + "'),\n" +
-       "\"href\"=> \"" + menuTitle + "/" + title  + "\",\n" +
-       "\"short\" => \"" + (file.label? file.label.substring(0,2) : "") + "\"\n],");
- }
-
-function process_model(file, title, menuTitle, cb){
-    var group;
-//    if(!file.detail || isEmpty(file.groups)){
-	getFieldsFromTable(file.tableName, function(fields){
-	    var ind;
-	    file.groups = {};
-	    group = file.groups["Main"] = {};
-	    for(ind in fields){
-//		console.log(fields[ind]);
-		if(!file.columnNames.hasOwnProperty(ind))
-		    file.columnNames[ind] = ind;
-		group[ind] = {
-		    defaultValue : ""
-		};
-		if(fields[ind].Type == 'datetime' || fields[ind].Type == 'timestamp'){
-		    group[ind].inputType = 'datepicker';
-		    group[ind].defaultValue = 'now';
-		}else
-		    group[ind].inputType = "text";
+	if(fullpath){
+		content = fs.readFileSync(files[ind].path).toString();
+		parse_list(content, files[ind]);
+	}else{
+	    if(files[ind].list){
+		content = fs.readFileSync(process.argv[2] + '/' + ind + 'List.aspx').toString();
+		parse_list(content, files[ind]);
 	    }
-//	    console.log(JSON.stringify(file, null, 3));
-	    generate_model(file, title, menuTitle, cb);
-	});
-  //  }else{
-//	console.log(JSON.stringify(file, null, 3));
-//	generate_model(file, title, menuTitle, cb);
-  //  }
-}
-
-function generate_models(files, menuTitle, fcounter){
-    var _fcounter = 0;
-    var ind, content;
-    var menuCategories =
-	    "$menuCategories[\"" + menuTitle +  "\"] = [\n" +
-	    "\"type\" => \"submenu\",\n" +
-	    "\"id\" => \"" + menuTitle + "\",\n" +
-	    "\"full\" => $translation->translateLabel('" + menuTitle + "'),\n" +
-	    "\"short\" => \"" + menuTitle.substring(0, 2) + "\",\n"+
-	    "\"data\" => [\n";
-	    
-    //generating models content
-    for(ind in files){
-	if(!files[ind].list)
-	    continue;
-	process_model(files[ind], ind, menuTitle, function(_menuCategories){
-	    _fcounter++;
-	    menuCategories += _menuCategories;
-	    console.log(_fcounter, fcounter);
-	    if(_fcounter == fcounter){
-		menuCategories = menuCategories.substring(0, menuCategories.length - 1);
-		menuCategories += "\n]\n];\n";
-		fs.writeFileSync('models/menuCategories.php', menuCategories);
+	    if(files[ind].detail){
+		content = fs.readFileSync(process.argv[2] + '/' + ind + 'Detail.aspx').toString();
+		parse_detail(content, files[ind]);
 	    }
-	});
-   }
+	}
+    }
 }
 
 function main(){
@@ -276,4 +287,46 @@ function main(){
     }
 }
 
-main();
+//main();
+
+function make_all(){
+    var menu = require("./menu.js").Node, ind, smenu, sind, items, iind;
+    var files = [];
+
+    for(ind in menu){
+	smenu = menu[ind].Node;
+	console.log(menu[ind]._ObjectName, menu[ind]._Text); 
+	for(sind in smenu){
+	    console.log('  ', smenu[sind]._ObjectName, smenu[sind]._Text); 
+	    items = smenu[sind].Node;
+	    for(iind in items){
+		if(items[iind]._NavigateUrl){
+		    var parts = items[iind]._NavigateUrl.match(/\~\/(.+)\/(.+)\/(.+)/),
+			path;
+		    if(parts){
+			if(!fs.existsSync('models/' + parts[1]))
+			    fs.mkdirSync('models/' + parts[1]);
+			if(!fs.existsSync('models/' + parts[1] + '/' + parts[2]))
+			    fs.mkdirSync('models/' + parts[1] + '/' + parts[2]);
+			//if(!fs.existsSync('models/' + parts[1] + '/' + parts[2] + '/' + parts[3]))
+			  //  fs.mkdirSync('models/' + parts[1] + '/' + parts[2] + '/' + parts[3]);
+			path = parts[1] + "/" + parts[2] + "/" + parts[3];
+			if(fs.existsSync(path)){
+			    files.push({
+				outFile : path.match(/(.+)\.aspx/)[1],
+				path : path,
+				list : true
+			    });
+			}
+		    }
+		}
+		//	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
+	    }
+	}
+    }
+    
+    parse_files(files, true);
+    generate_models(files, 'general', files.length);
+}
+
+make_all();
