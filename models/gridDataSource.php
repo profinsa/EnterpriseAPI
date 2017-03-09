@@ -115,6 +115,9 @@ class gridDataSource{
         
         $update_fields = "";
         foreach($this->editCategories[$category] as $name=>$value){
+            if($value["inputType"] == 'datepicker')
+                $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                                      
             if($update_fields == "")
                 $update_fields = $name . "='" . $values[$name] . "'";
             else
@@ -132,6 +135,9 @@ class gridDataSource{
         $insert_values = "";
         foreach($this->editCategories as $category=>$arr){
             foreach($this->editCategories[$category] as $name=>$value){
+                if($value["inputType"] == 'datepicker')
+                    $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                                      
                 if($insert_fields == ""){
                     $insert_fields = $name;
                     $insert_values = "'" . $values[$name] . "'";
