@@ -1,3 +1,29 @@
+<!--
+     Name of Page: view
+
+     Method: renders content of screen in view mode. 
+
+     Date created: Nikita Zaharov, 09.03.2016
+
+     Use: used by views/gridView.php for rendering content in view mode
+     Data displayed as simple two column table with edit and cancel buttons
+
+     Input parameters:
+
+     Output parameters:
+     html
+
+     Called from:
+     views/gridView.php
+
+     Calls:
+     translation model
+     grid model
+     app as model
+
+     Last Modified: 09.03.2016
+     Last Modified by: Nikita Zaharov
+   -->
 <div id="row_viewer">
     <ul class="nav nav-tabs">
 	<?php

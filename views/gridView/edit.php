@@ -1,3 +1,30 @@
+<!--
+     Name of Page: edit
+
+     Method: renders content of screen in edit and new mode. 
+
+     Date created: Nikita Zaharov, 09.03.2016
+
+     Use: used by views/gridView.php for rendering content in edit and new mode
+     Data displayed as simple two column table with edit and cancel buttons.
+     fileld values implemented as inputs;
+
+     Input parameters:
+
+     Output parameters:
+     html
+
+     Called from:
+     views/gridView.php
+
+     Calls:
+     translation model
+     grid model
+     app as model
+
+     Last Modified: 09.03.2016
+     Last Modified by: Nikita Zaharov
+   -->
 <div id="row_editor">
     <ul class="nav nav-tabs">
 	<?php  
@@ -27,7 +54,7 @@
 			 ( (key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope->category][$key]) && $scope->mode == "new") ? "readonly" : "")
 			."></div></div>";
 		    break;
-		    
+		case "timestamp" :    
 		case "datepicker" :
 		    //renders text input with label
 		    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatepicker\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .

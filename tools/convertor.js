@@ -136,7 +136,7 @@ function generate_model(file, title, menuTitle, cb){
 	    content += "\n\"" + find + "\" => [\n" +
 		"\"inputType\" => \"" + group[find].inputType + "\",\n" +
 		"\"defaultValue\" => \"" + group[find].defaultValue + "\"\n" +
-		(group[find].hasOwnProperty("disabledEdit") ? "\"disabledEdit\" => \"" + group[find].disabledEdit + "\"\n" : "") +
+		(group[find].hasOwnProperty("disabledEdit") ? ",\"disabledEdit\" => \"" + group[find].disabledEdit + "\"\n" : "") +
 		"],"; 
 	}
 	content = content.substring(0,content.length - 1);
@@ -178,13 +178,9 @@ function process_model(file, title, menuTitle, cb){
 		group[ind] = {
 		    defaultValue : ""
 		};
-		if(fields[ind].Type == 'datetime'){
+		if(fields[ind].Type == 'datetime' || fields[ind].Type == 'timestamp'){
 		    group[ind].inputType = 'datepicker';
 		    group[ind].defaultValue = 'now';
-		}else if(fields[ind].Type == 'timestamp'){
-		    group[ind].inputType = 'timestamp';
-		    group[ind].defaultValue = 'now';
-		    group[ind].disabledEdit = true;
 		}else
 		    group[ind].inputType = "text";
 	    }
