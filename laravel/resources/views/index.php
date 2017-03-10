@@ -17,7 +17,7 @@
     <?php
     $menuCategories = [];
     if($user["accesspermissions"]["GLView"]){
-	$menuCategories["GeneralLedger"] = [
+	$menuCategories["Ledger"] = [
 	    "id" => "GeneralLedger",
 	    "full"=> $translation->translateLabel('Ledger'),
 	    "short" => "GL",
