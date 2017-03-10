@@ -27,30 +27,30 @@
 		    "id" => "GeneralLedger/chartOfAccounts",
 		    "full" => $translation->translateLabel('Chart Of Accounts'),
 		    "short" => "CO",
-		    "href"=> $public_prefix . "/index#/grid/GeneralLedger/chartOfAccounts/grid/main/all"
+		    "href"=> "GeneralLedger/chartOfAccounts"
 		],
 		[
 		    "id" => "GeneralLedger/ledgerAccountGroup",
 		    "full" => $translation->translateLabel('Ledger Account Group'),
 		    "short" => "LA",
-		    "href" => $public_prefix . "/index#/grid/GeneralLedger/ledgerAccountGroup/grid/main/all"
+		    "href" => "GeneralLedger/ledgerAccountGroup"
 		],
 		[
 		    "id" => "GeneralLedger/bankTransactions",
 		    "full" => $translation->translateLabel('Bank Transactions'),
 		    "short" => "BT",
-		    "href" => $public_prefix . "/index#/grid/GeneralLedger/bankTransactions/grid/main/all"
+		    "href" => "GeneralLedger/bankTransactions"
 		],
 		[
 		    "id" => "GeneralLedger/bankAccounts",
 		    "full" => $translation->translateLabel('Bank Accounts'),
 		    "short" => "BA",
-		    "href" => $public_prefix . "/index#/grid/GeneralLedger/bankAccounts/grid/main/all"
+		    "href" => "GeneralLedger/bankAccounts"
 		]
 	    ]
 	];
     }
-
+/*
     $menuCategories["Payables"] = [
 	"type" => "submenu",
 	"id" => "Payables",
@@ -103,7 +103,9 @@
 		"href" => "#"
 	    ]
 	]
-    ];
+    ];*/
+
+    require "menuCategoriesGenerated.php";
 
     $menuCategories["Documentation"] = [
 	"type" => "item",
@@ -127,7 +129,7 @@
 	]
     ];
     ?>
-    <body onload="main();" style="min-height: 450px;" class="">
+    <body onload="main();" style="min-height: 800px;" class="">
 	<header id="header">
 	    <div id="navbar">
 		<div class="navbar navbar-inverse" role="navigation">

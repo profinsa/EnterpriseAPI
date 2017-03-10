@@ -146,7 +146,8 @@ body.minimized .nav-item-level1{
     }
     .top-bar-link{
 	margin-left:20px;
-	margin-top:40px;
+	margin-top:5px;
+	margin-bottom:1px;
     }
     li.top-bar-link a{
 	color:gray !important;

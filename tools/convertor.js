@@ -110,7 +110,7 @@ function generate_model(file, title, menuTitle, cb){
        "\"short\" => \"" + (file.label? file.label.substring(0,2) : "") + "\"\n],");
  }
 
-function generate_models(files, menuTitle, fcounter){
+function generate_models(files, menuTitle, fcounter, notGenerateMenu){
     var _fcounter = 0;
     var ind, content;
     var menuCategories =
@@ -132,7 +132,8 @@ function generate_models(files, menuTitle, fcounter){
 	    if(_fcounter == fcounter){
 		menuCategories = menuCategories.substring(0, menuCategories.length - 1);
 		menuCategories += "\n]\n];\n";
-		fs.writeFileSync('models/menuCategories.php', menuCategories);
+		if(!notGenerateMenu)
+		    fs.writeFileSync('models/menuCategories.php', menuCategories);
 		connection.end();    
 	    }
 	});
@@ -292,10 +293,17 @@ function main(){
 function make_all(){
     var menu = require("./menu.js").Node, ind, smenu, sind, items, iind;
     var files = [];
+    var menuCategories = '';
 
     for(ind in menu){
 	smenu = menu[ind].Node;
 	console.log(menu[ind]._ObjectName, menu[ind]._Text); 
+	menuCategories += "<?php \n $menuCategories[\"" + menu[ind]._Text.replace("\'","").replace(" ", "") +  "\"] = [\n" +
+	    "\"type\" => \"submenu\",\n" +
+	    "\"id\" => \"" + menu[ind]._Text.replace("\'","").replace(" ", "") + "\",\n" +
+	    "\"full\" => $translation->translateLabel('" + menu[ind]._Text.replace("\'","\\'") + "'),\n" +
+	    "\"short\" => \"" + menu[ind]._Text.substring(0, 2) + "\",\n"+
+	    "\"data\" => [\n";
 	for(sind in smenu){
 	    console.log('  ', smenu[sind]._ObjectName, smenu[sind]._Text); 
 	    items = smenu[sind].Node;
@@ -318,15 +326,23 @@ function make_all(){
 				list : true
 			    });
 			}
+			menuCategories += "\n[\n" +
+			    "\"id\" => \"" + smenu[sind]._Text.replace("\'","").replace(" ", "") + "/" + items[iind]._Text.replace("\'","").replace(" ", "") + "\",\n" +
+			    "\"full\" => $translation->translateLabel('" + items[iind]._Text.replace("\'","\\'") + "'),\n" +
+			    "\"href\"=> \"" + parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1]  + "\",\n" +
+			    "\"short\" => \"" + (items[iind]._Text? items[iind]._Text.substring(0,2) : "") + "\"\n],";
+			//	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
 		    }
 		}
-		//	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
 	    }
 	}
+	menuCategories = menuCategories.substring(0, menuCategories.length - 1);
+	menuCategories += "\n]\n];\n ?>";
     }
     
     parse_files(files, true);
-    generate_models(files, 'general', files.length);
+    generate_models(files, 'general', files.length, true);
+    fs.writeFileSync('models/menuCategoriesGenerated.php', menuCategories);
 }
 
 make_all();

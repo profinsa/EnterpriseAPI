@@ -87,6 +87,7 @@ class controller{
                     $this->item = $_GET["item"];
 
                 require 'models/menuCategories.php';
+                require 'models/menuCategoriesGenerated.php';
                 require 'views/gridView.php';
             }
         }
