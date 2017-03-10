@@ -331,11 +331,11 @@ function make_all(){
 				list : true
 			    });
 			}
-			menuCategories += "\n[\n" +
-			    "\"id\" => \"" + smenu[sind]._Text.replace("\'","").replace(" ", "") + "/" + items[iind]._Text.replace("\'","").replace(" ", "") + "\",\n" +
-			    "\"full\" => $translation->translateLabel('" + items[iind]._Text.replace("\'","\\'") + "'),\n" +
-			    "\"href\"=> \"" + parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1]  + "\",\n" +
-			    "\"short\" => \"" + (items[iind]._Text? items[iind]._Text.substring(0,2) : "") + "\"\n],";
+			menuCategories += "\n    [\n" +
+			    "    \"id\" => \"" + menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
+			    "    \"full\" => $translation->translateLabel('" + items[iind]._Text.replace("\'","\\'") + "'),\n" +
+			    "    \"href\"=> \"" + parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1]  + "\",\n" +
+			    "    \"short\" => \"" + (items[iind]._Text? items[iind]._Text.substring(0,2) : "") + "\"\n],";
 			//	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
 		    }
 		}

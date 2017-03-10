@@ -263,7 +263,6 @@
 		 var itemData = $("#itemData");
 		 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"]; ?>/update", itemData.serialize(), null, 'json')
 		  .success(function(data) {
-		      console.log('ok');
 		      window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"];  ?>/view/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>";
 		  })
 		  .error(function(err){

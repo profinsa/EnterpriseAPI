@@ -32,7 +32,7 @@ Route::get('/index', "Index@index");
 Route::get('/dashboard', "Dashboard@show");
 
 //grid pages
-Route::get('/grid/{folder}/{subfolder}/{page}/{action}/{category}/{item}', "Grid@show")->where('subfolder', '[\w\.]+');
-Route::post('/grid/{folder}/{subfolder}/{page}/update', "Grid@update")->where('subfolder', '[\w\.]+');
-Route::post('/grid/{folder}/{subfolder}/{page}/insert', "Grid@insert")->where('subfolder', '[\w\.]+');
-Route::get('/grid/{folder}/{subfolder}/{page}/delete/{item}', "Grid@delete")->where('subfolder', '[\w\.]+');
+Route::get('/grid/{folder}/{subfolder}/{page}/{action}/{category}/{item}', "Grid@show");
+Route::post('/grid/{folder}/{subfolder}/{page}/update', "Grid@update");
+Route::post('/grid/{folder}/{subfolder}/{page}/insert', "Grid@insert");
+Route::get('/grid/{folder}/{subfolder}/{page}/delete/{item}', "Grid@delete");

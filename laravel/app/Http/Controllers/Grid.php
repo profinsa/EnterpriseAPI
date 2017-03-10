@@ -88,7 +88,7 @@ class Grid extends BaseController{
                     ]);
     }
 
-    public function update($folder, $page){
+    public function update($folder, $subfolder, $page){
         require __DIR__ . "/../Models/" . $folder . "/" . $subfolder  . '/' . $page .  '.php';
         $data = new \App\Models\gridData();
         
@@ -97,7 +97,7 @@ class Grid extends BaseController{
         echo "{ \"message\" : \"ok\"}";
     }
     
-    public function insert($folder, $page){
+    public function insert($folder, $subfolder, $page){
         require __DIR__ . "/../Models/" . $folder . "/" . $subfolder  . '/' . $page .  '.php';
         $data = new \App\Models\gridData();
         
@@ -106,7 +106,7 @@ class Grid extends BaseController{
         echo "{ \"message\" : \"ok\"}";
     }
 
-    public function delete($folder, $page, $item){
+    public function delete($folder, $subfolder, $page, $item){
         require __DIR__ . "/../Models/" . $folder . "/" . $subfolder  . '/' . $page .  '.php';
         $data = new \App\Models\gridData();
         

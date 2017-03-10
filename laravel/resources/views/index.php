@@ -130,6 +130,24 @@
     ];
     ?>
     <body onload="main();" style="min-height: 800px;" class="">
+	<script>
+	 var menuCategories = <?php echo json_encode($menuCategories); ?>;
+	 function findMenuItem(href){
+	     var ind, sind, submenu, iind, items;
+	     for(ind in menuCategories){
+		 items = menuCategories[ind].data;
+		 for(iind in items){
+		     if(href.match(items[iind].href))
+			 return {
+			     menu : menuCategories[ind],
+			     item : items[iind]
+			 };
+		 }
+	     }
+	     return undefined;
+	 }
+	 //	 console.log(JSON.stringify(menuCategories, null, 3));
+	</script>
 	<header id="header">
 	    <div id="navbar">
 		<div class="navbar navbar-inverse" role="navigation">
@@ -169,9 +187,10 @@
 	     var match;
 	     if(path.search(/index\#\//) != -1){
 		 path = path.replace(/index\#\//, "");
-		 match = path.match(/grid\/(\w+)\/(\w+)\//);
+		 match = path.match(/grid\/(\w+)\/\w+\/(\w+)\//);
+//		 console.log();
 		 if(match)
-		     sideBarSelectItem(match[1], match[2]);
+		     sideBarSelectItem(findMenuItem(path));//match[1], match[2]);
 		 else{
 		     sideBarCloseAll();
 		     sideBarDeselectAll();
