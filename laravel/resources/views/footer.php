@@ -4,7 +4,8 @@
 <!-- <script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/datatables/jquery.dataTables.min.js"></script> -->
 <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
 <link href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
-<script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+<!-- <script src="<?php echo $public_prefix; ?>/dependencies/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.js"></script> -->
 
 <!-- start - This is for export functionality only -->
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>

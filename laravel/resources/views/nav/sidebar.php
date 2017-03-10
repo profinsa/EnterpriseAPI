@@ -1,4 +1,4 @@
-<ul id="sidebar" class="nav navbar-nav tabs" style="margin-top:0px; height: 900px; overflow:scroll"> <!-- 178 -->
+<ul id="sidebar" class="nav navbar-nav tabs" style="margin-top:0px; height: 900px;"> <!-- overflow:scroll"> - 178 -->
     <?php
     foreach ($menuCategories as $key=>$item){
 	if($item["type"] == "item"){
