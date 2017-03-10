@@ -18,7 +18,7 @@
     $menuCategories = [];
     if($user["accesspermissions"]["GLView"]){
 	$menuCategories["Ledger"] = [
-	    "id" => "GeneralLedger",
+	    "id" => "Ledger",
 	    "full"=> $translation->translateLabel('Ledger'),
 	    "short" => "GL",
 	    "type" => "submenu",
@@ -27,25 +27,25 @@
 		    "id" => "GeneralLedger/chartOfAccounts",
 		    "full" => $translation->translateLabel('Chart Of Accounts'),
 		    "short" => "CO",
-		    "href"=> "GeneralLedger/chartOfAccounts"
+		    "href"=> "GeneralLedger/./chartOfAccounts"
 		],
 		[
 		    "id" => "GeneralLedger/ledgerAccountGroup",
 		    "full" => $translation->translateLabel('Ledger Account Group'),
 		    "short" => "LA",
-		    "href" => "GeneralLedger/ledgerAccountGroup"
+		    "href" => "GeneralLedger/./ledgerAccountGroup"
 		],
 		[
 		    "id" => "GeneralLedger/bankTransactions",
 		    "full" => $translation->translateLabel('Bank Transactions'),
 		    "short" => "BT",
-		    "href" => "GeneralLedger/bankTransactions"
+		    "href" => "GeneralLedger/./bankTransactions"
 		],
 		[
 		    "id" => "GeneralLedger/bankAccounts",
 		    "full" => $translation->translateLabel('Bank Accounts'),
 		    "short" => "BA",
-		    "href" => "GeneralLedger/bankAccounts"
+		    "href" => "GeneralLedger/./bankAccounts"
 		]
 	    ]
 	];
@@ -183,7 +183,8 @@
 		      },0);
 		  })
 		  .error(function(){
-		      window.location = "<?php echo $public_prefix; ?>/login";
+//		      window.location = "<?php echo $public_prefix; ?>/login";
+		      window.location = "<?php echo $public_prefix; ?>/ByPassLogin";
 		  });
 	     }
 	 }

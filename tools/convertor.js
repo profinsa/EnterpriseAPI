@@ -65,7 +65,12 @@ function getFieldsFromTable(table, cb){
 
 function generate_model(file, title, menuTitle, cb){
     var content, find, fields, groups, group, gind;
-    content = "<?php\nrequire \"./models/gridDataSource.php\";\nclass gridData extends gridDataSource{\nprotected $tableName = \"" + file.tableName + "\";\n";
+    content = "<?php\n";
+    content += "namespace App\\Models;\n require __DIR__ . \"/../../../Models/gridDataSource.php\";\n"; //for laravel
+    content += "class gridData extends gridDataSource{\n"; //for laravel
+    //content += "require \"./models/gridDataSource.php\";\n"; //for intergralx
+    //content += "class gridData extends gridDataSource{\n"; //for intergralx
+    content += "protected $tableName = \"" + file.tableName + "\";\n";
 
     content += "protected $gridFields =" + JSON.stringify(file.gridFields) + ";\n";
     content += "public $dashboardTitle =\"" + file.label + "\";\n";
@@ -298,9 +303,9 @@ function make_all(){
     for(ind in menu){
 	smenu = menu[ind].Node;
 	console.log(menu[ind]._ObjectName, menu[ind]._Text); 
-	menuCategories += "<?php \n $menuCategories[\"" + menu[ind]._Text.replace("\'","").replace(" ", "") +  "\"] = [\n" +
+	menuCategories += "<?php \n $menuCategories[\"" + menu[ind]._Text.replace(/[\'\s"]/g,"") +  "\"] = [\n" +
 	    "\"type\" => \"submenu\",\n" +
-	    "\"id\" => \"" + menu[ind]._Text.replace("\'","").replace(" ", "") + "\",\n" +
+	    "\"id\" => \"" + menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
 	    "\"full\" => $translation->translateLabel('" + menu[ind]._Text.replace("\'","\\'") + "'),\n" +
 	    "\"short\" => \"" + menu[ind]._Text.substring(0, 2) + "\",\n"+
 	    "\"data\" => [\n";

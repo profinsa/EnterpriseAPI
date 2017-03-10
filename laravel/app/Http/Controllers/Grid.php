@@ -46,7 +46,7 @@ class _app{
 }
 
 class Grid extends BaseController{
-    public function show($folder, $page, $mode, $category, $item){
+    public function show($folder, $subfolder, $page, $mode, $category, $item){
         $public_prefix = public_prefix();
         if(!Session::has("user") || !key_exists("EmployeeUserName", Session::get("user"))){//redirect to prevent access un logined users
             Session::put("user", []);
@@ -56,7 +56,7 @@ class Grid extends BaseController{
                 return redirect("/login");
         }
 
-        require __DIR__ . "/../Models/" . $folder . '/' . $page .  '.php';
+        require __DIR__ . "/../Models/" . $folder . '/' . $subfolder .'/' . $page .  '.php';
         $data = new \App\Models\gridData();
 
         $user = Session::get("user");
@@ -75,8 +75,8 @@ class Grid extends BaseController{
                       "dashboardTitle" => $app->title = $data->dashboardTitle = $translation->translateLabel($data->dashboardTitle),
                       "breadCrumbTitle" => $data->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle),
                       "scope" => [
-                          "path" => $folder . "/" . $page,
-                          "pathFolder" => $folder,
+                          "path" => $folder . "/" . $subfolder . "/" . $page,
+                          "pathFolder" => $folder . '/' . $subfolder,
                           "pathPage" => $page,
                           "mode" => $mode,
                           "category" => $category,
@@ -89,7 +89,7 @@ class Grid extends BaseController{
     }
 
     public function update($folder, $page){
-        require __DIR__ . "/../Models/" . $folder . '/' . $page .  '.php';
+        require __DIR__ . "/../Models/" . $folder . "/" . $subfolder  . '/' . $page .  '.php';
         $data = new \App\Models\gridData();
         
         $data->updateItem($_POST["id"], $_POST["category"], $_POST);
@@ -98,7 +98,7 @@ class Grid extends BaseController{
     }
     
     public function insert($folder, $page){
-        require __DIR__ . "/../Models/" . $folder . '/' . $page .  '.php';
+        require __DIR__ . "/../Models/" . $folder . "/" . $subfolder  . '/' . $page .  '.php';
         $data = new \App\Models\gridData();
         
         $data->insertItem($_POST);
@@ -107,7 +107,7 @@ class Grid extends BaseController{
     }
 
     public function delete($folder, $page, $item){
-        require __DIR__ . "/../Models/" . $folder . '/' . $page .  '.php';
+        require __DIR__ . "/../Models/" . $folder . "/" . $subfolder  . '/' . $page .  '.php';
         $data = new \App\Models\gridData();
         
         $data->deleteItem($item);
