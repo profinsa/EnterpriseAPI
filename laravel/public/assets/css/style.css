@@ -102,6 +102,16 @@ body.minimized .nav-item-level1{
 }
 
 @media screen and (min-width : 768px){
+    .logo-container{
+	z-index : 20000;
+	position:relative;
+    }
+    .sidebar{
+	margin-bottom : 10px;
+	margin-top:0px;
+	min-height: 700px;
+	position:relative;
+    }
     /*index page*/
     .hide-logo{
 	display: none;

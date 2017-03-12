@@ -1,4 +1,4 @@
-<ul id="sidebar" class="nav navbar-nav tabs" style="margin-top:0px; height: 900px;"> <!-- overflow:scroll"> - 178 -->
+<ul id="sidebar" class="nav navbar-nav tabs sidebar"> <!-- - 178 -->
     <?php
     foreach ($menuCategories as $key=>$item){
 	if($item["type"] == "item"){
@@ -93,4 +93,32 @@
 	 sidebarToggled = true;
      }
  }
+ (function(){
+     var $sidebar   = $("#sidebar"), 
+	 $window    = $(window),
+	 offset     = $sidebar.offset(),
+	 topPadding = 15;
+     $sidebar.css("position:relative");
+
+     $window.scroll(function(){
+	 var wscroll = $window.scrollTop();
+	 console.log($window.scrollTop());
+	 if(!wscroll){
+	     $sidebar.css("top", 0 + 'px');
+	 }else if ($window.scrollTop() > offset.top) {
+		 //     $sidebar.css("position:relative");
+		 console.log((($window.scrollTop() - offset.top + topPadding) * -1) + 'px');
+		 $sidebar.css("top", (($window.scrollTop() * -1) + 80) + 'px');
+		 //		 $sidebar.css("top", (($window.scrollTop() - offset.top + topPadding) * -1) + 'px');
+		 //    $sidebar.stop().animate({
+		 //	 marginTop: $window.scrollTop() - offset.top + topPadding
+		 //   });
+	 } else {
+//	     $sidebar.css("position:fixed");
+//             $sidebar.stop().animate({
+//		 marginTop: 0
+  //           });
+	 }
+     });
+ })();
 </script>

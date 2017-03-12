@@ -16,7 +16,7 @@
     </head>
     <?php
     $menuCategories = [];
-    if($user["accesspermissions"]["GLView"]){
+/*    if($user["accesspermissions"]["GLView"]){
 	$menuCategories["Ledger"] = [
 	    "id" => "Ledger",
 	    "full"=> $translation->translateLabel('Ledger'),
@@ -49,7 +49,7 @@
 		]
 	    ]
 	];
-    }
+    }*/
 /*
     $menuCategories["Payables"] = [
 	"type" => "submenu",
@@ -151,7 +151,7 @@
 	<header id="header">
 	    <div id="navbar">
 		<div class="navbar navbar-inverse" role="navigation">
-		    <div class="navbar-header top-bar">
+		    <div class="navbar-header top-bar logo-container">
 			<a class="navbar-brand nav-link logo-link" href="<?php echo $public_prefix; ?>/index#/dashboard"><img id="logosection"  src="<?php echo $public_prefix; ?>/assets/images/logo.png" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
 			<button type="button" class="navbar-toggle hide-on-small" data-toggle="collapse" data-target=".navbar-body">
 			    <span class="icon-bar"></span>
