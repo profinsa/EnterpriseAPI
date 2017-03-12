@@ -105,20 +105,22 @@
 	 console.log($window.scrollTop());
 	 if(!wscroll){
 	     $sidebar.css("top", 0 + 'px');
-	 }else if ($window.scrollTop() > offset.top) {
-		 //     $sidebar.css("position:relative");
-		 console.log((($window.scrollTop() - offset.top + topPadding) * -1) + 'px');
-		 $sidebar.css("top", (($window.scrollTop() * -1) + 80) + 'px');
-		 //		 $sidebar.css("top", (($window.scrollTop() - offset.top + topPadding) * -1) + 'px');
-		 //    $sidebar.stop().animate({
-		 //	 marginTop: $window.scrollTop() - offset.top + topPadding
-		 //   });
-	 } else {
+	     //	 }else if ($window.scrollTop() > offset.top
+	 }else if($window.scrollTop()){
+	     //     $sidebar.css("position:relative");
+	     console.log((($window.scrollTop() - offset.top + topPadding) * -1) + 'px');
+	     $sidebar.css("top", ($window.scrollTop() * -1) + 'px');
+	     //		 $sidebar.css("top", (($window.scrollTop() - offset.top + topPadding) * -1) + 'px');
+	     //    $sidebar.stop().animate({
+	     //	 marginTop: $window.scrollTop() - offset.top + topPadding
+	     //   });
+	 }
+	 //else {
 //	     $sidebar.css("position:fixed");
 //             $sidebar.stop().animate({
 //		 marginTop: 0
   //           });
-	 }
+	 //}
      });
  })();
 </script>
