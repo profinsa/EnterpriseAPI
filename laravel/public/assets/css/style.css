@@ -152,6 +152,12 @@ body.minimized .nav-item-level1{
     .top-bar-offset{
 	margin-top : 0px;
     }
+
+    .top-bar-toggler{
+	position : absolute;
+	top : 42px;
+    }
+    
     .top-bar-shower{
 	display : block;
 	position:fixed;
@@ -161,7 +167,7 @@ body.minimized .nav-item-level1{
     }
     .top-bar-link{
 //	font-size:8pt;
-	margin-left:0px;
+	margin-left:5px;
 	margin-top:5px;
 	margin-bottom:1px;
     }

@@ -37,7 +37,7 @@
 	    </li>
 	</ul>
     </li>
-    <li class="pull-right top-bar-toggler" style="margin-top:5px;">
+    <li class="pull-right top-bar-toggler">
 	<a class="minimizer" class="dropdown-toggle" href="javascript:toggleTopBar()">
 	    <span id="topBarHider" class="glyphicon glyphicon glyphicon-menu-up"></span>
 	</a>

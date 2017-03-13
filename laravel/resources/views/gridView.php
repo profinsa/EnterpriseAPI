@@ -330,6 +330,7 @@
  
  jQuery('.fdatepicker').datepicker({
      autoclose : true,
+     orientation : "bottom",
      format: {
 	 toDisplay: function (date, format, language) {
 	     //console.log(date,' eee');
