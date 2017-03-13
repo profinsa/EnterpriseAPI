@@ -128,6 +128,7 @@
 	    "Target" => "_Blank"
 	]
     ];
+     
     ?>
     <body onload="main();" style="min-height: 800px;" class="">
 	<script>
@@ -137,11 +138,23 @@
 	     for(ind in menuCategories){
 		 items = menuCategories[ind].data;
 		 for(iind in items){
-		     if(href.match(items[iind].href))
-			 return {
-			     menu : menuCategories[ind],
-			     item : items[iind]
-			 };
+		     if(items[iind].type == "item"){
+			 if(href.match(items[iind].href))
+			     return {
+				 menu : menuCategories[ind],
+				 item : items[iind]
+			     };
+		     }else if(items[iind].type == "submenu"){
+			 submenu = items[iind].data;
+			 for(sind in submenu){
+			     if(href.match(items[iind].href))
+				 return {
+				     menu : menuCategories[ind],
+				     submenu : items[iind],
+				     item : submenu[sind]
+			     };
+			 }
+		     }
 		 }
 	     }
 	     return undefined;
@@ -199,6 +212,7 @@
 		  .done(function(data){
 		      setTimeout(function(){
 			  $("#content").html(data);
+			  window.scrollTo(0,0);
 		      },0);
 		  })
 		  .error(function(){

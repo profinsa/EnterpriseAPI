@@ -1,6 +1,6 @@
 <ul class="nav navbar navbar-nav navbar-right top-bar hide-on-handsheld">
     <?php
-    foreach ($menuCategories as $key=>$item){
+/*    foreach ($menuCategories as $key=>$item){
 	if($item["type"] == "item"){
 	//    $href = preg_match("/^http/", $item["data"]["href"]) ? $item["data"]["href"] : $public_prefix . "/index#/grid/" . $item["data"]["href"] . "/grid/main/all";
 	  //  echo "<li class=\"top-bar-link\"><a  href=\"" . $href . "\">". $item["data"]["full"] . "<span class=\"sr-only\">(current)</span></a></li>";
@@ -14,7 +14,7 @@
 	    }
 	    echo "</ul></li>";
 	}
-    }
+    }*/
     ?>
     <li class="dropdown menu-container">
 	<a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>

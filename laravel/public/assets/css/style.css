@@ -48,7 +48,24 @@ body.minimized .nav-item-level2{
     padding-left:3px !important;
 }
 .nav-item-level2{
-    padding-left:10px;
+    padding-left:10px !important;
+}
+
+body.minimized .nav-item-submenu{
+    margin-left:0px !important;
+    padding-left:12px !important;
+}
+
+.nav-item-submenu {
+    padding-left:21px !important;
+}
+
+body.minimized .nav-item-level3{
+    margin-left:0px !important;
+    padding-left:7px !important;
+}
+.nav-item-level3{
+    padding-left:18px !important;
 }
 
 body.minimized .nav-item-level1{

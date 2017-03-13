@@ -4,20 +4,79 @@
 	if($item["type"] == "item"){
 	    $href = preg_match("/^http/", $item["data"]["href"]) ? $item["data"]["href"] : $public_prefix . "/index#/grid/" . $item["data"]["href"] . "/grid/main/all";
 	    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") ."\"  class=\"not-in-more\"><a href=\"" . $href . "\" class=\"nav-link nav-item-level1\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li></ul></li>";
-	}else if($item["type"] == "submenu"){			
+	}else if($item["type"] == "submenu"){
 	    /*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">". $key ."</span><span class=\"short-label\" title=\"". $key ."\">". $key ."</span></a></li>";*/
 	    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". $key ."\"  class=\"not-in-more\"><a class=\"nav-item-level1\" href=\"#list" . $item["id"] . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $item["full"] ."</span><span class=\"short-label\" title=\"". $item["short"] ."\">". $item["short"] ."</span></a></li>";
 	    echo "<li id=\"list" . $item["id"] . "\" class=\"collapse-sidebar-item collapse\" data-name=\"" . $key ."\" class=\"not-in-more\" style=\"display:none\">";
 	    echo "<ul class=\"nav navbar-nav tabs navbar-items\">";
 	    //echo  "<a href=\"#\" style=\"margin-left:10px;\" class=\"nav-link active\"><span class=\"full-label\">Opportunities</span><span class=\"short-label\" title=\"Opportunities\">Op</span></a>";
 	    foreach($item["data"] as $key=>$subitem){
-		$href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . $subitem["href"] . "/grid/main/all";
-		echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["full"] ."\" class=\"not-in-more nav-link nav-item-level2\"><a href=\"" . $href . "\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
+		if($subitem["type"] == "item"){
+		    $href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . $subitem["href"] . "/grid/main/all";
+		    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["id"] ."\" class=\"not-in-more nav-link nav-item-level2\"><a href=\"" . $href . "\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
+		}else if($subitem["type"] == "submenu"){
+		    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"#list". str_replace("/", "", $subitem["id"]) ."\"  class=\"not-in-more\"><a class=\"nav-item-submenu\" href=\"#list" . str_replace("/", "", $subitem["id"]) . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
+		    echo "<li id=\"list" . str_replace("/", "", $subitem["id"]) . "\" class=\"collapse-sidebar-item collapse\" data-name=\"" . $subitem["id"] ."\" class=\"not-in-more\" style=\"display:none\">";
+		    echo "<ul class=\"nav navbar-nav tabs navbar-items\">";
+		    foreach($subitem["data"] as $ssubitem){
+			$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . $ssubitem["href"] . "/grid/main/all";
+			echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\" data-name=\"". $ssubitem["full"] ."\" class=\"not-in-more nav-link nav-item-level3\"><a href=\"" . $href . "\"><span class=\"full-label\">". $ssubitem["full"] ."</span><span class=\"short-label\" title=\"". $ssubitem["short"] ."\">". $ssubitem["short"] ."</span></a></li>";
+		    }
+		    echo "</ul></li></ul></li>";
+		}
 	    }
 	    echo "</ul></li></ul></li>";
 	}
-    }
+    }   
     ?>
+    <li>
+	<ul class="nav navbar-nav tabs navbar-items">
+	    <li data-name="MRPE" class="not-in-more">
+		<a class="nav-item-level1 collapsed" href="#listMRPE" data-toggle="collapse" aria-expanded="false">
+		    <span class="full-label">MRP</span>
+		    <span class="short-label" title="MR">MR</span>
+		</a>
+	    </li>
+	    <li id="listMRPE" class="collapse-sidebar-item collapse" data-name="MRPE" style="display:none" aria-expanded="false">
+		<ul class="nav navbar-nav tabs navbar-items">
+		    <li id="MRPE/ViewBillOfMaterials" data-name="View Bill Of Materials" class="not-in-more nav-link nav-item-level2">
+			<a href="/app/laravel/public/index#/grid/EnterpriseASPInv/BillOfMaterials/InventoryAssembliesList/grid/main/all">
+			    <span class="full-label">View Bill Of Materials</span>
+			    <span class="short-label" title="Vi">Vi</span>
+			</a>
+		    </li>
+		    <li id="MRPE/ViewBuildInstructions" data-name="View Build Instructions" class="not-in-more nav-link nav-item-level2">
+			<a href="/app/laravel/public/index#/grid/EnterpriseASPInv/BillOfMaterials/InventoryAssembliesInstructionsList/grid/main/all">
+			    <span class="full-label">View Build Instructions</span>
+			    <span class="short-label" title="Vi">Vi</span>
+			</a>
+		    </li>
+		    <li data-name="MRPER" class="not-in-more">
+			<a class="nav-item-submenu collapsed" href="#listMRPER" data-toggle="collapse" aria-expanded="false" data-parent="#nestedcol">
+			    <span class="full-label">MRPFF</span>
+			    <span class="short-label" title="MR">MR</span>
+			</a>
+		    </li>
+		    <li id="listMRPER" class="collapse-sidebar-item collapse" data-name="MRPER" style="display:none" aria-expanded="false">
+			<ul class="nav navbar-nav tabs navbar-items">
+			    <li id="MRPER/ViewBillOfMaterials" data-name="View Bill Of Materials" class="not-in-more nav-link nav-item-level3">
+				<a href="/app/laravel/public/index#/grid/EnterpriseASPInv/BillOfMaterials/InventoryAssembliesList/grid/main/all">
+				    <span class="full-label">View Bill Of Materials</span>
+				    <span class="short-label" title="Vi">Vi</span>
+				</a>
+			    </li>
+			    <li id="MRPER/ViewBuildInstructions" data-name="View Build Instructions" class="not-in-more nav-link nav-item-level3">
+				<a href="/app/laravel/public/index#/grid/EnterpriseASPInv/BillOfMaterials/InventoryAssembliesInstructionsList/grid/main/all">
+				    <span class="full-label">View Build Instructions</span>
+				    <span class="short-label" title="Vi">Vi</span>
+				</a>
+			    </li>
+			</ul>
+		    </li>
+		</ul>
+	    </li>
+	</ul>
+    </li>
 </ul>
 <div class="sidebar-toggler">
     <a class="minimizer" href="javascript:toggleSideBar()">
@@ -28,20 +87,26 @@
 <script>
  var sidebarItems = $(".collapse-sidebar-item");
  sidebarItems.on('hidden.bs.collapse', function (e) {
+     console.log('ddd', e);
      $(e.currentTarget).css('display', 'none');
      var $sidebar   = $("#sidebar"), 
 	 $content = $("#content");
      $content.height('100%');
      if($sidebar.height() > $content.height())
 	 $content.height($sidebar.height());
+     e.stopPropagation();
  });
- sidebarItems.on('show.bs.collapse', function (e) {
-     sideBarCloseAll();
+ sidebarItems.on('show.bs.collapse', function(e){
+     var parent = $(e.currentTarget).parent().parent().parent().parent();
+     console.log(parent, parent.is('.in, .collapse'));
+     if(!parent.is('.in, .collapse'))
+	 sideBarCloseAll();
      $(e.currentTarget).css('display', 'block');
      var $sidebar   = $("#sidebar"), 
 	 $content = $("#content");
      if($sidebar.height() > $content.height())
 	 $content.height($sidebar.height());
+     e.stopPropagation();
  });
  
  function sideBarCloseAll(){
@@ -71,7 +136,7 @@
  function sideBarSelectItem(object){
      if(!object)
 	 return;
-     var _item = $("#list" + object.menu.id);
+     var _item = $(document.getElementById("list" + object.menu.id));
      if(!_item.hasClass('in')){
 	 sideBarCloseAll();
 	 setTimeout(function(){
@@ -115,7 +180,7 @@
 	     $sidebar.css("top", 0 + 'px');
 	 }else if(wscroll){
 	     //	     console.log($sidebar.height(), $(".sidebar-toggler").offset());
-	     console.log(wscroll, $sidebar.height(), $window.height());
+	     //console.log(wscroll, $sidebar.height(), $window.height());
 	     if(wscroll < $sidebar.height() - $window.height() + 150)
 		 $sidebar.css("top", (wscroll * -1) + 'px');
 	     else
