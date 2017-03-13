@@ -147,7 +147,7 @@
 		     }else if(items[iind].type == "submenu"){
 			 submenu = items[iind].data;
 			 for(sind in submenu){
-			     if(href.match(items[iind].href))
+			     if(href.match(submenu[sind].href))
 				 return {
 				     menu : menuCategories[ind],
 				     submenu : items[iind],

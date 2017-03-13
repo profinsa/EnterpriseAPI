@@ -133,6 +133,14 @@ body.minimized .nav-item-level1{
 //	min-height: 700px;
 	position:relative;
     }
+    body.minimized .sidebar{
+	margin-bottom : 10px;
+	margin-top:0px !important;
+	top :0px;
+//	min-height: 700px;
+	position:relative;
+    }
+
     .sidebar-toggler{
 	width:100%;
 	background:#555555;

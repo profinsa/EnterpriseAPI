@@ -16,7 +16,7 @@
 		    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["id"] ."\" class=\"not-in-more nav-link nav-item-level2\"><a href=\"" . $href . "\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
 		}else if($subitem["type"] == "submenu"){
 		    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"#list". str_replace("/", "", $subitem["id"]) ."\"  class=\"not-in-more\"><a class=\"nav-item-submenu\" href=\"#list" . str_replace("/", "", $subitem["id"]) . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
-		    echo "<li id=\"list" . str_replace("/", "", $subitem["id"]) . "\" class=\"collapse-sidebar-item collapse\" data-name=\"" . $subitem["id"] ."\" class=\"not-in-more\" style=\"display:none\">";
+		    echo "<li id=\"list" . str_replace("/", "", $subitem["id"]) . "\" class=\"collapse-sidebar-two-level-item collapse\" data-name=\"" . $subitem["id"] ."\" class=\"not-in-more\" style=\"display:none\">";
 		    echo "<ul class=\"nav navbar-nav tabs navbar-items\">";
 		    foreach($subitem["data"] as $ssubitem){
 			$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . $ssubitem["href"] . "/grid/main/all";
@@ -38,8 +38,8 @@
 </div>
 <script>
  var sidebarItems = $(".collapse-sidebar-item");
- sidebarItems.on('hidden.bs.collapse', function (e) {
-     console.log('ddd', e);
+ var TwolevelItems = $(".collapse-sidebar-two-level-item");
+ function onhidden(e) {
      $(e.currentTarget).css('display', 'none');
      var $sidebar   = $("#sidebar"), 
 	 $content = $("#content");
@@ -47,12 +47,23 @@
      if($sidebar.height() > $content.height())
 	 $content.height($sidebar.height());
      e.stopPropagation();
- });
+ }
+ sidebarItems.on('hidden.bs.collapse', onhidden);
+ TwolevelItems.on('hidden.bs.collapse', onhidden);
  sidebarItems.on('show.bs.collapse', function(e){
+     sideBarCloseAll();
+     $(e.currentTarget).css('display', 'block');
+     var $sidebar   = $("#sidebar"), 
+	 $content = $("#content");
+     if($sidebar.height() > $content.height())
+	 $content.height($sidebar.height());
+     e.stopPropagation();
+ });
+ TwolevelItems.on('show.bs.collapse', function(e){
      var parent = $(e.currentTarget).parent().parent().parent().parent();
      console.log(parent, parent.is('.in, .collapse'));
-     if(!parent.is('.in, .collapse'))
-	 sideBarCloseAll();
+//     if(!parent.is('.in, .collapse'))
+     sideBarCloseTwolevelAll();
      $(e.currentTarget).css('display', 'block');
      var $sidebar   = $("#sidebar"), 
 	 $content = $("#content");
@@ -65,30 +76,22 @@
      sidebarItems.css('display', 'none');
      sidebarItems.collapse('hide');
  }
+
+ function sideBarCloseTwolevelAll(){
+     TwolevelItems.css('display', 'none');
+     TwolevelItems.collapse('hide');
+ }
  
  function sideBarDeselectAll(){
-     $('.nav-item-level2').removeClass('sidebar-active');
+     $('.nav-item-level2, .nav-item-level3').removeClass('sidebar-active');
  }
 
- /* function sideBarSelectItem(folder, item){
-    var _item = $("#list" + folder);
-    if(!_item.hasClass('in')){
-    sideBarCloseAll();
-    setTimeout(function(){
-    _item.collapse('show');
-    _item.css('display', 'block');
-    }, 500);
-    }
-    var selItem = document.getElementById(folder + '/' + item);
-    if(!$(selItem).hasClass("sidebar-active")){
-    sideBarDeselectAll();
-    $(selItem).addClass("sidebar-active");
-    }
-    }*/
+
  function sideBarSelectItem(object){
      if(!object)
 	 return;
-     var _item = $(document.getElementById("list" + object.menu.id));
+     var _item = $(document.getElementById("list" + object.menu.id)), sitem;
+     //console.log(object, _item);
      if(!_item.hasClass('in')){
 	 sideBarCloseAll();
 	 setTimeout(function(){
@@ -96,7 +99,19 @@
 	     _item.css('display', 'block');
 	 }, 500);
      }
+     
+     if(object.hasOwnProperty("submenu")){
+	 sitem = $(document.getElementById("list" + object.submenu.id.replace(/\//, "")));
+	 if(!sitem.hasClass('in')){
+	     sideBarCloseTwolevelAll();
+	     setTimeout(function(){
+//		 sitem.collapse('show');
+		 sitem.css('display', 'block');
+	     }, 500);
+	 }
+     }
      var selItem = document.getElementById(object.item.id);
+     //console.log(selItem, 'llooo');
      if(!$(selItem).hasClass("sidebar-active")){
 	 sideBarDeselectAll();
 	 $(selItem).addClass("sidebar-active");
