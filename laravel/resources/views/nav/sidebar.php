@@ -29,54 +29,6 @@
 	}
     }   
     ?>
-    <li>
-	<ul class="nav navbar-nav tabs navbar-items">
-	    <li data-name="MRPE" class="not-in-more">
-		<a class="nav-item-level1 collapsed" href="#listMRPE" data-toggle="collapse" aria-expanded="false">
-		    <span class="full-label">MRP</span>
-		    <span class="short-label" title="MR">MR</span>
-		</a>
-	    </li>
-	    <li id="listMRPE" class="collapse-sidebar-item collapse" data-name="MRPE" style="display:none" aria-expanded="false">
-		<ul class="nav navbar-nav tabs navbar-items">
-		    <li id="MRPE/ViewBillOfMaterials" data-name="View Bill Of Materials" class="not-in-more nav-link nav-item-level2">
-			<a href="/app/laravel/public/index#/grid/EnterpriseASPInv/BillOfMaterials/InventoryAssembliesList/grid/main/all">
-			    <span class="full-label">View Bill Of Materials</span>
-			    <span class="short-label" title="Vi">Vi</span>
-			</a>
-		    </li>
-		    <li id="MRPE/ViewBuildInstructions" data-name="View Build Instructions" class="not-in-more nav-link nav-item-level2">
-			<a href="/app/laravel/public/index#/grid/EnterpriseASPInv/BillOfMaterials/InventoryAssembliesInstructionsList/grid/main/all">
-			    <span class="full-label">View Build Instructions</span>
-			    <span class="short-label" title="Vi">Vi</span>
-			</a>
-		    </li>
-		    <li data-name="MRPER" class="not-in-more">
-			<a class="nav-item-submenu collapsed" href="#listMRPER" data-toggle="collapse" aria-expanded="false" data-parent="#nestedcol">
-			    <span class="full-label">MRPFF</span>
-			    <span class="short-label" title="MR">MR</span>
-			</a>
-		    </li>
-		    <li id="listMRPER" class="collapse-sidebar-item collapse" data-name="MRPER" style="display:none" aria-expanded="false">
-			<ul class="nav navbar-nav tabs navbar-items">
-			    <li id="MRPER/ViewBillOfMaterials" data-name="View Bill Of Materials" class="not-in-more nav-link nav-item-level3">
-				<a href="/app/laravel/public/index#/grid/EnterpriseASPInv/BillOfMaterials/InventoryAssembliesList/grid/main/all">
-				    <span class="full-label">View Bill Of Materials</span>
-				    <span class="short-label" title="Vi">Vi</span>
-				</a>
-			    </li>
-			    <li id="MRPER/ViewBuildInstructions" data-name="View Build Instructions" class="not-in-more nav-link nav-item-level3">
-				<a href="/app/laravel/public/index#/grid/EnterpriseASPInv/BillOfMaterials/InventoryAssembliesInstructionsList/grid/main/all">
-				    <span class="full-label">View Build Instructions</span>
-				    <span class="short-label" title="Vi">Vi</span>
-				</a>
-			    </li>
-			</ul>
-		    </li>
-		</ul>
-	    </li>
-	</ul>
-    </li>
 </ul>
 <div class="sidebar-toggler">
     <a class="minimizer" href="javascript:toggleSideBar()">

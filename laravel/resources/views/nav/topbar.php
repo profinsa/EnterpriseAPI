@@ -1,6 +1,6 @@
 <ul class="nav navbar navbar-nav navbar-right top-bar hide-on-handsheld">
     <?php
-/*    foreach ($menuCategories as $key=>$item){
+    foreach ($menuCategories as $key=>$item){
 	if($item["type"] == "item"){
 	//    $href = preg_match("/^http/", $item["data"]["href"]) ? $item["data"]["href"] : $public_prefix . "/index#/grid/" . $item["data"]["href"] . "/grid/main/all";
 	  //  echo "<li class=\"top-bar-link\"><a  href=\"" . $href . "\">". $item["data"]["full"] . "<span class=\"sr-only\">(current)</span></a></li>";
@@ -9,12 +9,19 @@
 	    echo "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded\"false\">"  . $item["full"] . " <span class=\"caret\"></span></a>";
 	    echo "<ul class=\"dropdown-menu\">";
 	    foreach($item["data"] as $key=>$subitem){
-		$href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . $subitem["href"] . "/grid/main/all";
-		echo "<li><a href=\"" . $href . "\" class=\"nav-link\">" . $subitem["full"] ."</a></li>";
+		if($subitem["type"] == "item"){
+		    $href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . $subitem["href"] . "/grid/main/all";
+		    echo "<li><a href=\"" . $href . "\" class=\"nav-link\">" . $subitem["full"] ."</a></li>";
+		}else if($subitem["type"] == "submenu"){
+		    foreach($subitem["data"] as $ssubitem){
+			$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . $ssubitem["href"] . "/grid/main/all";
+			echo "<li><a href=\"" . $href . "\" class=\"nav-link\">" . $ssubitem["full"] ."</a></li>";
+		    }
+		};
 	    }
 	    echo "</ul></li>";
 	}
-    }*/
+    }
     ?>
     <li class="dropdown menu-container">
 	<a id="nav-menu-dropdown" class="dropdown-toggle" data-toggle="dropdown" href="#" title="Menu"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
