@@ -1,6 +1,6 @@
 <?php
 $menuCategories = [];
-if($scope->user["accesspermissions"]["GLView"]){
+/*if($scope->user["accesspermissions"]["GLView"]){
     $menuCategories["GeneralLedger"] = [
         "id" => "GeneralLedger",
         "full"=> $translation->translateLabel('General Ledger'),
@@ -34,7 +34,7 @@ if($scope->user["accesspermissions"]["GLView"]){
         ]
     ];
 }
-
+/*
 $menuCategories['Receivables'] = [
     "type" => "submenu",
     "id" => "Receivables",
@@ -88,5 +88,5 @@ $menuCategories["Payables"] = [
         ]
     ]
 ];
-
+*/
 ?>

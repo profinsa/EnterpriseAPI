@@ -298,12 +298,12 @@ function main(){
 function make_all(){
     var menu = require("./menu.js").Node, ind, smenu, sind, items, iind;
     var files = [];
-    var menuCategories = '';
+    var menuCategories = "<?php \n ";
 
     for(ind in menu){
 	smenu = menu[ind].Node;
 	console.log(menu[ind]._ObjectName, menu[ind]._Text); 
-	menuCategories += "<?php \n $menuCategories[\"" + menu[ind]._Text.replace(/[\'\s"]/g,"") +  "\"] = [\n" +
+	menuCategories += "$menuCategories[\"" + menu[ind]._Text.replace(/[\'\s"]/g,"") +  "\"] = [\n" +
 	    "\"type\" => \"submenu\",\n" +
 	    "\"id\" => \"" + menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
 	    "\"full\" => $translation->translateLabel('" + menu[ind]._Text.replace("\'","\\'") + "'),\n" +
@@ -312,6 +312,12 @@ function make_all(){
 	for(sind in smenu){
 	    console.log('  ', smenu[sind]._ObjectName, smenu[sind]._Text); 
 	    items = smenu[sind].Node;
+	    menuCategories += "\n    [\n" +
+		"    \"type\" => \"submenu\",\n" +
+		"    \"id\" => \"" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
+		"    \"full\" => $translation->translateLabel('" + smenu[sind]._Text.replace("\'","\\'") + "'),\n" +
+		"    \"short\" => \"" + smenu[sind]._Text.substring(0, 2) + "\",\n"+
+		"    \"data\" => [\n";
 	    for(iind in items){
 		if(items[iind]._NavigateUrl){
 		    var parts = items[iind]._NavigateUrl.match(/\~\/(.+)\/(.+)\/(.+)/),
@@ -331,19 +337,22 @@ function make_all(){
 				list : true
 			    });
 			}
-			menuCategories += "\n    [\n" +
-			    "    \"id\" => \"" + menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
-			    "    \"full\" => $translation->translateLabel('" + items[iind]._Text.replace("\'","\\'") + "'),\n" +
-			    "    \"href\"=> \"" + parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1]  + "\",\n" +
-			    "    \"short\" => \"" + (items[iind]._Text? items[iind]._Text.substring(0,2) : "") + "\"\n],";
+			menuCategories += "\n        [\n" +
+			    "        \"id\" => \"" + menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
+			    "        \"full\" => $translation->translateLabel('" + items[iind]._Text.replace("\'","\\'") + "'),\n" +
+			    "        \"href\"=> \"" + parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1]  + "\",\n" +
+			    "        \"short\" => \"" + (items[iind]._Text? items[iind]._Text.substring(0,2) : "") + "\"\n        ],";
 			//	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
 		    }
 		}
 	    }
+	    menuCategories = menuCategories.substring(0, menuCategories.length - 1);
+	    menuCategories += "\n    ]\n    ],";
 	}
 	menuCategories = menuCategories.substring(0, menuCategories.length - 1);
-	menuCategories += "\n]\n];\n ?>";
+	menuCategories += "\n]\n];\n";
     }
+    menuCategories += "?>";
     
     parse_files(files, true);
     generate_models(files, 'general', files.length, true);

@@ -29,17 +29,38 @@
 		if($item["type"] == "item")
 		    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") ."\"  class=\"not-in-more\"><a href=\"" . $item["data"]["href"] . "\" class=\"nav-link nav-item-level1\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li></ul></li>";
 		else if($item["type"] == "submenu"){			
-
 		    echo "<li  id=\"list" . $item["id"] . "\"><a href=\"javascript:void(0);\" class=\"waves-effect\"><i class=\"icon-people fa-fw\"></i> <span class=\"hide-menu\">" . $item["full"] . "<span class=\"fa arrow\"></span></span></a>";
 		    echo "<ul class=\"nav nav-second-level\">";
 		    foreach($item["data"] as $key=>$subitem){
-			echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"index.php?page=grid&action=" . $subitem["href"] . "\">" . $subitem["full"] . "</a></li>";
+			if($subitem["type"] == "item")
+			    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"index.php?page=grid&action=" . $subitem["href"] . "\">" . $subitem["full"] . "</a></li>";
+			else if($subitem["type"] == "submenu"){
+			    echo "<li> <a href=\"javascript:void(0)\" class=\"waves-effect\">" . $subitem["full"] . "<span class=\"fa arrow\"></span></a>";
+			    echo "<ul class=\"nav nav-third-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
+			    foreach($subitem["data"] as $skey=>$ssubitem)
+				echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\"><a href=\"index.php?page=grid&action=" . $ssubitem["href"] . "\">" . $ssubitem["full"] . "</a></li>";
+			    
+			    echo "</ul>";
+			}
 		    }
 		    echo "</ul></li>";
 		}
 	    }
 	    ?>
-
+	    <!-- 	    <li class=""> <a href="javascript:void(0)" class="waves-effect"><i data-icon="F" class="linea-icon linea-software fa-fw"></i> <span class="hide-menu">Multi-Level Dropdown<span class="fa arrow"></span></span></a>
+		 <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+		 <li> <a href="javascript:void(0)">Second Level Item</a> </li>
+		 <li> <a href="javascript:void(0)">Second Level Item</a> </li>
+		 <li class=""> <a href="javascript:void(0)" class="waves-effect">Third Level <span class="fa arrow"></span></a>
+		 <ul class="nav nav-third-level collapse" aria-expanded="false" style="height: 0px;">
+		 <li> <a href="javascript:void(0)">Third Level Item</a> </li>
+		 <li> <a href="javascript:void(0)">Third Level Item</a> </li>
+		 <li> <a href="javascript:void(0)">Third Level Item</a> </li>
+		 <li> <a href="javascript:void(0)">Third Level Item</a> </li>
+		 </ul>
+		 </li>
+		 </ul>
+		 </li> -->
 	    <li class="nav-small-cap">--- Support</li>
 	    <li>
 		<a href="https://stfbinc.helpdocs.com" Target="_Blank" class="waves-effect">
