@@ -121,7 +121,7 @@ body.minimized .nav-item-level1{
 	background:#555555;
 	position:absolute;
 	padding-left : 12px;
-	padding-top : 10px;
+	padding-top : 8px;
 	left:0px;
 	height : 30px;
 	bottom:0px;
@@ -160,7 +160,8 @@ body.minimized .nav-item-level1{
 	text-decoration:none !important;
     }
     .top-bar-link{
-	margin-left:20px;
+//	font-size:8pt;
+	margin-left:0px;
 	margin-top:5px;
 	margin-bottom:1px;
     }

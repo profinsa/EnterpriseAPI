@@ -2,8 +2,8 @@
     <?php
     foreach ($menuCategories as $key=>$item){
 	if($item["type"] == "item"){
-	    $href = preg_match("/^http/", $item["data"]["href"]) ? $item["data"]["href"] : $public_prefix . "/index#/grid/" . $item["data"]["href"] . "/grid/main/all";
-	    echo "<li class=\"top-bar-link\"><a  href=\"" . $href . "\">". $item["data"]["full"] . "<span class=\"sr-only\">(current)</span></a></li>";
+	//    $href = preg_match("/^http/", $item["data"]["href"]) ? $item["data"]["href"] : $public_prefix . "/index#/grid/" . $item["data"]["href"] . "/grid/main/all";
+	  //  echo "<li class=\"top-bar-link\"><a  href=\"" . $href . "\">". $item["data"]["full"] . "<span class=\"sr-only\">(current)</span></a></li>";
 	}else if($item["type"] == "submenu"){
 	    echo "<li class=\"dropdown top-bar-link\">";
 	    echo "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded\"false\">"  . $item["full"] . " <span class=\"caret\"></span></a>";

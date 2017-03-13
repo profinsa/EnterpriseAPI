@@ -33,6 +33,13 @@
  sidebarItems.on('show.bs.collapse', function (e) {
      sideBarCloseAll();
      $(e.currentTarget).css('display', 'block');
+     var $sidebar   = $("#sidebar"), 
+	 $content = $("#content");
+
+//     console.log($sidebar.height() > $content.height());
+     if($sidebar.height() > $content.height())
+	 $content.height($sidebar.height());
+     console.log($content.height());
  });
  
  function sideBarCloseAll(){
@@ -97,30 +104,19 @@
      var $sidebar   = $("#sidebar"), 
 	 $window    = $(window),
 	 offset     = $sidebar.offset(),
-	 topPadding = 15;
-     $sidebar.css("position:relative");
+	 topPadding = 15,
+	 $content = $("#content");
 
      $window.scroll(function(){
 	 var wscroll = $window.scrollTop();
-	 console.log($window.scrollTop());
 	 if(!wscroll){
 	     $sidebar.css("top", 0 + 'px');
-	     //	 }else if ($window.scrollTop() > offset.top
 	 }else if($window.scrollTop()){
-	     //     $sidebar.css("position:relative");
-	     console.log((($window.scrollTop() - offset.top + topPadding) * -1) + 'px');
 	     $sidebar.css("top", ($window.scrollTop() * -1) + 'px');
-	     //		 $sidebar.css("top", (($window.scrollTop() - offset.top + topPadding) * -1) + 'px');
 	     //    $sidebar.stop().animate({
 	     //	 marginTop: $window.scrollTop() - offset.top + topPadding
 	     //   });
 	 }
-	 //else {
-//	     $sidebar.css("position:fixed");
-//             $sidebar.stop().animate({
-//		 marginTop: 0
-  //           });
-	 //}
      });
  })();
 </script>
