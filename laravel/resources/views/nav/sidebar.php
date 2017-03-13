@@ -29,17 +29,19 @@
  var sidebarItems = $(".collapse-sidebar-item");
  sidebarItems.on('hidden.bs.collapse', function (e) {
      $(e.currentTarget).css('display', 'none');
+     var $sidebar   = $("#sidebar"), 
+	 $content = $("#content");
+     $content.height('100%');
+     if($sidebar.height() > $content.height())
+	 $content.height($sidebar.height());
  });
  sidebarItems.on('show.bs.collapse', function (e) {
      sideBarCloseAll();
      $(e.currentTarget).css('display', 'block');
      var $sidebar   = $("#sidebar"), 
 	 $content = $("#content");
-
-//     console.log($sidebar.height() > $content.height());
      if($sidebar.height() > $content.height())
 	 $content.height($sidebar.height());
-     console.log($content.height());
  });
  
  function sideBarCloseAll(){
@@ -111,8 +113,13 @@
 	 var wscroll = $window.scrollTop();
 	 if(!wscroll){
 	     $sidebar.css("top", 0 + 'px');
-	 }else if($window.scrollTop()){
-	     $sidebar.css("top", ($window.scrollTop() * -1) + 'px');
+	 }else if(wscroll){
+	     //	     console.log($sidebar.height(), $(".sidebar-toggler").offset());
+	     console.log(wscroll, $sidebar.height(), $window.height());
+	     if(wscroll < $sidebar.height() - $window.height() + 150)
+		 $sidebar.css("top", (wscroll * -1) + 'px');
+	     else
+		 $sidebar.css("bottom", '0px');	 
 	     //    $sidebar.stop().animate({
 	     //	 marginTop: $window.scrollTop() - offset.top + topPadding
 	     //   });
