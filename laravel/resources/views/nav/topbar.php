@@ -8,7 +8,13 @@
 	    echo "<li class=\"dropdown top-bar-link\">";
 	    echo "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded\"false\">"  . $item["full"] . " <span class=\"caret\"></span></a>";
 	    echo "<ul class=\"dropdown-menu\">";
+	    $first = true;
 	    foreach($item["data"] as $key=>$subitem){
+		if(!$first)
+		    echo "<li class=\"divider\"></li>\n";
+		else
+		    $first = false;
+		echo "<li class=\"dropdown-header\">" . $subitem["full"] . "</li>\n";
 		if($subitem["type"] == "item"){
 		    $href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . $subitem["id"] . "/grid/main/all";
 		    echo "<li><a href=\"" . $href . "\" class=\"nav-link\">" . $subitem["full"] ."</a></li>";
