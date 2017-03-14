@@ -131,36 +131,6 @@
      
     ?>
     <body onload="main();" style="min-height: 800px;" class="">
-	<script>
-	 var menuCategories = <?php echo json_encode($menuCategories); ?>;
-	 function findMenuItem(href){
-	     var ind, sind, submenu, iind, items;
-	     for(ind in menuCategories){
-		 items = menuCategories[ind].data;
-		 for(iind in items){
-		     if(items[iind].type == "item"){
-			 if(href.match(items[iind].href))
-			     return {
-				 menu : menuCategories[ind],
-				 item : items[iind]
-			     };
-		     }else if(items[iind].type == "submenu"){
-			 submenu = items[iind].data;
-			 for(sind in submenu){
-			     if(href.match(submenu[sind].href))
-				 return {
-				     menu : menuCategories[ind],
-				     submenu : items[iind],
-				     item : submenu[sind]
-			     };
-			 }
-		     }
-		 }
-	     }
-	     return undefined;
-	 }
-	 //	 console.log(JSON.stringify(menuCategories, null, 3));
-	</script>
 	<header id="header">
 	    <div id="navbar">
 		<div class="navbar navbar-inverse" role="navigation">
@@ -192,6 +162,34 @@
 	</div>
 	<div id="popup-notifications-container" class="hidden"></div>
 	<script>
+	 var menuCategories = <?php echo json_encode($menuCategories); ?>;
+	 function findMenuItem(href){
+	     var ind, sind, submenu, iind, items;
+	     for(ind in menuCategories){
+		 items = menuCategories[ind].data;
+		 for(iind in items){
+		     if(items[iind].type == "item"){
+			 if(href.match(items[iind].id))
+			     return {
+				 menu : menuCategories[ind],
+				 item : items[iind]
+			     };
+		     }else if(items[iind].type == "submenu"){
+			 submenu = items[iind].data;
+			 for(sind in submenu){
+			     if(href.match(submenu[sind].id))
+				 return {
+				     menu : menuCategories[ind],
+				     submenu : items[iind],
+				     item : submenu[sind]
+				 };
+			 }
+		     }
+		 }
+	     }
+	     return undefined;
+	 }
+	 //	 console.log(JSON.stringify(menuCategories, null, 3));
 	 /*
 	    parsing window.location, loading page and insert to content section. Main entry point of SAP
 	 */

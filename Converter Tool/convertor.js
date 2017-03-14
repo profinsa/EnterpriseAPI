@@ -299,6 +299,7 @@ function make_all(){
     var menu = require("./menu.js").Node, ind, smenu, sind, items, iind;
     var files = [];
     var menuCategories = "<?php \n ";
+    var menuIdToPath = "<?php\n $menuIdToPath = [\n ";
 
     for(ind in menu){
 	smenu = menu[ind].Node;
@@ -314,7 +315,7 @@ function make_all(){
 	    items = smenu[sind].Node;
 	    menuCategories += "\n    [\n" +
 		"    \"type\" => \"submenu\",\n" +
-		"    \"id\" => \"" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
+		"    \"id\" => \"" + menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
 		"    \"full\" => $translation->translateLabel('" + smenu[sind]._Text.replace("\'","\\'") + "'),\n" +
 		"    \"short\" => \"" + smenu[sind]._Text.substring(0, 2) + "\",\n"+
 		"    \"data\" => [\n";
@@ -337,11 +338,14 @@ function make_all(){
 				list : true
 			    });
 			}
+			var _id = menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"");
+			var _href = parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1];
 			menuCategories += "\n        [\n" +
-			    "        \"id\" => \"" + menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
+			    "        \"id\" => \"" + _id + "\",\n" +
 			    "        \"full\" => $translation->translateLabel('" + items[iind]._Text.replace("\'","\\'") + "'),\n" +
-			    "        \"href\"=> \"" + parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1]  + "\",\n" +
+			    "        \"href\"=> \"" + _href  + "\",\n" +
 			    "        \"short\" => \"" + (items[iind]._Text? items[iind]._Text.substring(0,2) : "") + "\"\n        ],";
+			menuIdToPath += "\n    \"" + _id  + "\" => \"" + _href + "\",";
 			//	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
 		    }
 		}
@@ -353,10 +357,13 @@ function make_all(){
 	menuCategories += "\n]\n];\n";
     }
     menuCategories += "?>";
+    menuIdToPath = menuIdToPath.substring(0, menuIdToPath.length - 1);
+    menuIdToPath += "\n];\n?>";
     
     parse_files(files, true);
     generate_models(files, 'general', files.length, true);
     fs.writeFileSync('models/menuCategoriesGenerated.php', menuCategories);
+    fs.writeFileSync('models/menuIdToHref.php', menuIdToPath);
 }
 
 make_all();

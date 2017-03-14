@@ -10,11 +10,11 @@
 	    echo "<ul class=\"dropdown-menu\">";
 	    foreach($item["data"] as $key=>$subitem){
 		if($subitem["type"] == "item"){
-		    $href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . $subitem["href"] . "/grid/main/all";
+		    $href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . $subitem["id"] . "/grid/main/all";
 		    echo "<li><a href=\"" . $href . "\" class=\"nav-link\">" . $subitem["full"] ."</a></li>";
 		}else if($subitem["type"] == "submenu"){
 		    foreach($subitem["data"] as $ssubitem){
-			$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . $ssubitem["href"] . "/grid/main/all";
+			$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . $ssubitem["id"] . "/grid/main/all";
 			echo "<li><a href=\"" . $href . "\" class=\"nav-link\">" . $ssubitem["full"] ."</a></li>";
 		    }
 		};

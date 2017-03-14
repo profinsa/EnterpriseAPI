@@ -40,13 +40,13 @@ use Session;
 
 require __DIR__ . "/../Models/translation.php";
 require __DIR__ . "/../../common.php";
-
 class _app{
     public $title = "Integral Accounting New Tech PHP";
 }
 
 class Grid extends BaseController{
     public function show($folder, $subfolder, $page, $mode, $category, $item){
+        require __DIR__ . "/../Models/menuIdToHref.php";
         $public_prefix = public_prefix();
         if(!Session::has("user") || !key_exists("EmployeeUserName", Session::get("user"))){//redirect to prevent access un logined users
             Session::put("user", []);
@@ -56,7 +56,7 @@ class Grid extends BaseController{
                 return redirect("/login");
         }
 
-        require __DIR__ . "/../Models/" . $folder . '/' . $subfolder .'/' . $page .  '.php';
+        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
         $data = new \App\Models\gridData();
 
         $user = Session::get("user");
