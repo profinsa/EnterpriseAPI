@@ -89,7 +89,8 @@ class Grid extends BaseController{
     }
 
     public function update($folder, $subfolder, $page){
-        require __DIR__ . "/../Models/" . $folder . "/" . $subfolder  . '/' . $page .  '.php';
+        require __DIR__ . "/../Models/menuIdToHref.php";
+        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
         $data = new \App\Models\gridData();
         
         $data->updateItem($_POST["id"], $_POST["category"], $_POST);
@@ -98,7 +99,8 @@ class Grid extends BaseController{
     }
     
     public function insert($folder, $subfolder, $page){
-        require __DIR__ . "/../Models/" . $folder . "/" . $subfolder  . '/' . $page .  '.php';
+        require __DIR__ . "/../Models/menuIdToHref.php";
+        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
         $data = new \App\Models\gridData();
         
         $data->insertItem($_POST);
@@ -107,7 +109,8 @@ class Grid extends BaseController{
     }
 
     public function delete($folder, $subfolder, $page, $item){
-        require __DIR__ . "/../Models/" . $folder . "/" . $subfolder  . '/' . $page .  '.php';
+        require __DIR__ . "/../Models/menuIdToHref.php";
+        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
         $data = new \App\Models\gridData();
         
         $data->deleteItem($item);

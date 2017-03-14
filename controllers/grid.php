@@ -47,10 +47,11 @@ class controller{
             exit;
         }
 
+        require 'models/menuIdToHref.php';
         $this->action = $_GET["action"];
-        if(!file_exists('models/' . $_GET["action"] . '.php'))
-            throw new Exception("model " . 'models/' . $_GET["action"] . '.php' . " is not found");
-        require 'models/' . $_GET["action"] . '.php';
+        if(!file_exists('models/' . $menuIdToPath[$_GET["action"]] . '.php'))
+            throw new Exception("model " . 'models/' . $menuIdToPath[$_GET["action"]] . '.php' . " is not found");
+        require 'models/' . $menuIdToPath[$_GET["action"]] . '.php';
 
         $this->user = $_SESSION["user"];
                
