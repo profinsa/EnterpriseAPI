@@ -3,167 +3,229 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollw2detail";
-public $gridFields =["EmployeeID","W2Year","W2ControlNumber","EmployeeName","EmployeeSSNumber"];
 public $dashboardTitle ="PayrollW2Detail";
 public $breadCrumbTitle ="PayrollW2Detail";
 public $idField ="EmployeeID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID"];
+public $gridFields = [
+
+"EmployeeID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"W2Year" => [
+    "dbType" => "varchar(4)",
+    "inputType" => "text"
+],
+"W2ControlNumber" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"EmployeeName" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"EmployeeSSNumber" => [
+    "dbType" => "varchar(15)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "EmployeeID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Year" => [
+"dbType" => "varchar(4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2ControlNumber" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeName" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeSSNumber" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeAddress1" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeAddress2" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeCity" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeState" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeZip" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeCountry" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box1" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box2" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box3" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box4" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box5" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box6" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box7" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box8" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box9" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box10" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box11" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box12" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box13" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box13b" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box14" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box15" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box15Check1" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box15Check2" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box15Check3" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box15Check4" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box15Check5" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box15Check6" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box15Check7" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box17" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box18" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box19" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box20" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Box21" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

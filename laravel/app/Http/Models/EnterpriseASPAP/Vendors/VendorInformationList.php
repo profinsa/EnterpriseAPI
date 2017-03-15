@@ -3,363 +3,478 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "vendorinformation";
-public $gridFields =["VendorID","VendorTypeID","VendorName","VendorEmail","VendorLogin","VendorPassword"];
 public $dashboardTitle ="Vendors Information";
 public $breadCrumbTitle ="Vendors Information";
 public $idField ="VendorID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
+public $gridFields = [
+
+"VendorID" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"VendorTypeID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"VendorName" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"VendorEmail" => [
+    "dbType" => "varchar(60)",
+    "inputType" => "text"
+],
+"VendorLogin" => [
+    "dbType" => "varchar(60)",
+    "inputType" => "text"
+],
+"VendorPassword" => [
+    "dbType" => "varchar(15)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "VendorID" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AccountStatus" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorName" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorAddress1" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorAddress2" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorAddress3" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorCity" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorState" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorZip" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorCountry" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorPhone" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorFax" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorEmail" => [
+"dbType" => "varchar(60)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorWebPage" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorLogin" => [
+"dbType" => "varchar(60)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorPassword" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorPasswordOld" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorPasswordDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "VendorPasswordExpires" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorPasswordExpiresDate" => [
+"dbType" => "int(11)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Attention" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorTypeID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AccountNumber" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToName" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToAddress1" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToAddress2" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToAddress3" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToCity" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToState" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToZip" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToCountry" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToPhone" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToFax" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToEmail" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToWebsite" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RemittToNotes" => [
+"dbType" => "varchar(250)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ShipMethodID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "WarehouseID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PriceMatrix" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PriceMatrixCurrent" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TermsID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TermsStart" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPurchaseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TaxIDNo" => [
+"dbType" => "varchar(20)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VATTaxIDNumber" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VatTaxOtherNumber" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TaxGroupID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CreditLimit" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AvailibleCredit" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CreditComments" => [
+"dbType" => "varchar(250)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CreditRating" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApprovalDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CustomerSince" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "FreightPayment" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CustomerSpecialInstructions" => [
+"dbType" => "varchar(255)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SpecialTerms" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Vendor1099" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIQualifier" => [
+"dbType" => "varchar(2)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIID" => [
+"dbType" => "varchar(12)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDITestQualifier" => [
+"dbType" => "varchar(2)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDITestID" => [
+"dbType" => "varchar(12)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIContactName" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIContactAddressLine" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIContactAgentPhone" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIContactAgentFax" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIPurchaseOrders" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIInvoices" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIShippingNotices" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIOrderStatus" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EDIPayments" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Approved" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApprovedBy" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ConvertedFromCustomer" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorRegionID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorSourceID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorIndustryID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Comfirmed" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FirstContacted" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "LastFollowUp" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "NextFollowUp" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferedBy" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferedDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferalURL" => [
+"dbType" => "varchar(60)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Hot" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

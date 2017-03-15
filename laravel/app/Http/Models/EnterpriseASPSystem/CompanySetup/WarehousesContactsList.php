@@ -3,115 +3,244 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "warehousescontacts";
-public $gridFields =["WarehouseID","ContactID","ContactTypeID","ContactDescription","ContactLastName","ContactFirstName","ContactAddress1","ContactAddress2","ContactAddress3","ContactCity","ContactState","ContactZip","ContactPhone","ContactFax","ContactCellular","ContactPager","ContactEmail","ContactWebPage","ContactLogin","ContactPassword","ContactPasswordOld","ContactPasswordDate","ContactPasswordExpiresDate","ContactRegion","ContactNotes"];
 public $dashboardTitle ="WarehousesContacts";
 public $breadCrumbTitle ="WarehousesContacts";
 public $idField ="WarehouseID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","WarehouseID","ContactID"];
+public $gridFields = [
+
+"WarehouseID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"ContactID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"ContactTypeID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"ContactDescription" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"ContactLastName" => [
+    "dbType" => "varchar(20)",
+    "inputType" => "text"
+],
+"ContactFirstName" => [
+    "dbType" => "varchar(20)",
+    "inputType" => "text"
+],
+"ContactAddress1" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"ContactAddress2" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"ContactAddress3" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"ContactCity" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"ContactState" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"ContactZip" => [
+    "dbType" => "varchar(10)",
+    "inputType" => "text"
+],
+"ContactPhone" => [
+    "dbType" => "varchar(30)",
+    "inputType" => "text"
+],
+"ContactFax" => [
+    "dbType" => "varchar(30)",
+    "inputType" => "text"
+],
+"ContactCellular" => [
+    "dbType" => "varchar(30)",
+    "inputType" => "text"
+],
+"ContactPager" => [
+    "dbType" => "varchar(30)",
+    "inputType" => "text"
+],
+"ContactEmail" => [
+    "dbType" => "varchar(60)",
+    "inputType" => "text"
+],
+"ContactWebPage" => [
+    "dbType" => "varchar(80)",
+    "inputType" => "text"
+],
+"ContactLogin" => [
+    "dbType" => "varchar(60)",
+    "inputType" => "text"
+],
+"ContactPassword" => [
+    "dbType" => "varchar(20)",
+    "inputType" => "text"
+],
+"ContactPasswordOld" => [
+    "dbType" => "varchar(15)",
+    "inputType" => "text"
+],
+"ContactPasswordDate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+],
+"ContactPasswordExpiresDate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+],
+"ContactRegion" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"ContactNotes" => [
+    "dbType" => "varchar(250)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "WarehouseID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactTypeID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactDescription" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactLastName" => [
+"dbType" => "varchar(20)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactFirstName" => [
+"dbType" => "varchar(20)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactAddress1" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactAddress2" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactAddress3" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactCity" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactState" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactZip" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactPhone" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactFax" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactCellular" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactPager" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactEmail" => [
+"dbType" => "varchar(60)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactWebPage" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactLogin" => [
+"dbType" => "varchar(60)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactPassword" => [
+"dbType" => "varchar(20)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactPasswordOld" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactPasswordDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactPasswordExpires" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactPasswordExpiresDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactRegion" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactNotes" => [
+"dbType" => "varchar(250)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

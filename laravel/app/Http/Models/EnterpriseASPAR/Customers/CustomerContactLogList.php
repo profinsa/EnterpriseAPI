@@ -3,39 +3,69 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customercontactlog";
-public $gridFields =["CustomerID","ContactID","ContactLogID","ContactDate","ContactDesctiption"];
 public $dashboardTitle ="Customer Contact Log";
 public $breadCrumbTitle ="Customer Contact Log";
 public $idField ="CustomerID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID","ContactID","ContactLogID"];
+public $gridFields = [
+
+"CustomerID" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"ContactID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"ContactLogID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"ContactDate" => [
+    "dbType" => "timestamp",
+    "inputType" => "datetime"
+],
+"ContactDesctiption" => [
+    "dbType" => "varchar(255)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "CustomerID" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactLogID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ContactDate" => [
+"dbType" => "timestamp",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactCallStartTime" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactCallEndTime" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactDesctiption" => [
+"dbType" => "varchar(255)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

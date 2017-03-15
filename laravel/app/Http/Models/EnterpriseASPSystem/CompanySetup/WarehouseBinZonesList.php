@@ -3,19 +3,32 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "warehousebinzones";
-public $gridFields =["WarehouseBinZoneID","WarehouseBinZoneDescription"];
 public $dashboardTitle ="WarehouseBinZones";
 public $breadCrumbTitle ="WarehouseBinZones";
 public $idField ="WarehouseBinZoneID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","WarehouseBinZoneID"];
+public $gridFields = [
+
+"WarehouseBinZoneID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"WarehouseBinZoneDescription" => [
+    "dbType" => "varchar(120)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "WarehouseBinZoneID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "WarehouseBinZoneDescription" => [
+"dbType" => "varchar(120)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

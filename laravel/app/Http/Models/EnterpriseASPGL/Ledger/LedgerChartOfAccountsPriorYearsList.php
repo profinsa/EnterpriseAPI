@@ -3,131 +3,200 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "ledgerchartofaccountsprioryears";
-public $gridFields =["GLAccountNumber","GLFiscalYear","GLBudgetID","GLAccountName","GLAccountDescription","GLAccountUse","GLAccountType","GLBalanceType","GLAccountBalance"];
 public $dashboardTitle ="Prior Fiscal Year Balances";
 public $breadCrumbTitle ="Prior Fiscal Year Balances";
 public $idField ="GLAccountNumber";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","GLAccountNumber","GLFiscalYear"];
+public $gridFields = [
+
+"GLAccountNumber" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"GLFiscalYear" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+],
+"GLBudgetID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"GLAccountName" => [
+    "dbType" => "varchar(30)",
+    "inputType" => "text"
+],
+"GLAccountDescription" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"GLAccountUse" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"GLAccountType" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"GLBalanceType" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"GLAccountBalance" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "GLAccountNumber" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLFiscalYear" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "GLAccountName" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLAccountDescription" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLAccountUse" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLAccountType" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLBalanceType" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLReportingAccount" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLReportLevel" => [
+"dbType" => "smallint(6)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CurrencyID" => [
+"dbType" => "varchar(3)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CurrencyExchangeRate" => [
+"dbType" => "float",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLAccountBalance" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLAccountBeginningBalance" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLOtherNotes" => [
+"dbType" => "varchar(255)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLBudgetID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearBeginningBalance" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod1" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod2" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod3" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod4" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriortYearPeriod5" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod6" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod7" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod8" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod9" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriortYearPeriod10" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod11" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod12" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod13" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPriorYearPeriod14" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

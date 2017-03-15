@@ -72,8 +72,8 @@ class gridDataSource{
         $user = Session::get("user");
         $keyFields = "";
         $fields = [];
-        foreach($this->gridFields as $value)
-            $fields[] = $value;
+        foreach($this->gridFields as $key=>$value)
+            $fields[] = $key;
         foreach($this->idFields as $key){
             switch($key){
             case "CompanyID" :

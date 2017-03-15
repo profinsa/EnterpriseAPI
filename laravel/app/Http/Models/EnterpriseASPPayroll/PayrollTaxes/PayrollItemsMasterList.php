@@ -3,211 +3,316 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollitemsmaster";
-public $gridFields =["PayrollItemID","PayrollItemDescription","Basis","PayrollItemTypeID","YTDMaximum","Minimum","WageHigh","WageLow","ItemAmount","ItemPercent","PercentAmount","TotalAmount","GLAccount"];
 public $dashboardTitle ="PayrollItemsMaster";
 public $breadCrumbTitle ="PayrollItemsMaster";
 public $idField ="PayrollItemID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","PayrollItemID"];
+public $gridFields = [
+
+"PayrollItemID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"PayrollItemDescription" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"Basis" => [
+    "dbType" => "varchar(20)",
+    "inputType" => "text"
+],
+"PayrollItemTypeID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"YTDMaximum" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"Minimum" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"WageHigh" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"WageLow" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"ItemAmount" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"ItemPercent" => [
+    "dbType" => "float",
+    "inputType" => "text"
+],
+"PercentAmount" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"TotalAmount" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"GLAccount" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "PayrollItemID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PayrollItemDescription" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Basis" => [
+"dbType" => "varchar(20)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PayrollItemTypeID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "YTDMaximum" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Minimum" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "WageHigh" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "WageLow" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ItemAmount" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ItemPercent" => [
+"dbType" => "float",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PercentAmount" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TotalAmount" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApplyItem" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLAccount2" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLAccount3" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Employer" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployerItemAmount" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployerItemPercent" => [
+"dbType" => "float",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployerPercentAmount" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployerTotalAmount" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DefaultItem" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Frm941Line2" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Frm941Line3" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Frm941Line4" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Frm941Line6a" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Frm941Line6b" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Frm941Line7" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Frm941Line9" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Frm941Line12" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box1" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box2" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box3" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box4" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box5" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box6" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box7" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box8" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box9" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box10" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box11" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box12" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box13" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box13b" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box14" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box15" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box17" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box18" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box20" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "W2Box21" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

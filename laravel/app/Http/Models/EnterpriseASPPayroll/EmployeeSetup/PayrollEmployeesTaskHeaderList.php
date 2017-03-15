@@ -3,75 +3,126 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollemployeestaskheader";
-public $gridFields =["TaskTypeID","StartDate","DueDate","CompletedDate","PriorityID","LeadID","CustomerID","VendorID"];
 public $dashboardTitle ="Payroll Employees Tasks";
 public $breadCrumbTitle ="Payroll Employees Tasks";
 public $idField ="EmployeeID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID","EmployeeTaskID"];
+public $gridFields = [
+
+"TaskTypeID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"StartDate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+],
+"DueDate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+],
+"CompletedDate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+],
+"PriorityID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"LeadID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"CustomerID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"VendorID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "EmployeeID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeTaskID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TaskTypeID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "StartDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "DueDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Completed" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CompletedDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PriorityID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RelatedDocumentType" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RelatedDocumentNumber" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "LeadID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CustomerID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Description" => [
+"dbType" => "varchar(200)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DelegatedTo" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DelegatedDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ]

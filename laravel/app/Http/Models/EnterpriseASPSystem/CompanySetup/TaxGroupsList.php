@@ -3,27 +3,42 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "taxgroups";
-public $gridFields =["TaxGroupID","TotalPercent"];
 public $dashboardTitle ="Tax Groups";
 public $breadCrumbTitle ="Tax Groups";
 public $idField ="TaxGroupID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","TaxGroupID"];
+public $gridFields = [
+
+"TaxGroupID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"TotalPercent" => [
+    "dbType" => "float",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "TaxGroupID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TaxGroupDetailID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TotalPercent" => [
+"dbType" => "float",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TaxOnTax" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ]
