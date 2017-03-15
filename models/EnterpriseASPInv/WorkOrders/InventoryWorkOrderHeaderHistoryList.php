@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "workorderheaderhistory";
-protected $gridFields =["WorkOrderNumber","WorkOrderType","WorkOrderDate","WorkOrderStartDate","WorkOrderManager","WorkOrderCompletedDate","WorkOrderReference","WorkOrderTotalCost"];
+public $gridFields =["WorkOrderNumber","WorkOrderType","WorkOrderDate","WorkOrderStartDate","WorkOrderManager","WorkOrderCompletedDate","WorkOrderReference","WorkOrderTotalCost"];
 public $dashboardTitle ="WorkOrderHeaderHistory";
 public $breadCrumbTitle ="WorkOrderHeaderHistory";
 public $idField ="WorkOrderNumber";

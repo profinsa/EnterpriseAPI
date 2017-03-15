@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "expensereportitems";
-protected $gridFields =["ExpenseReportItemID","ExpenseReportItemDescription","ExpsneseReportGLAccount","ExpenseReportMilageRate"];
+public $gridFields =["ExpenseReportItemID","ExpenseReportItemDescription","ExpsneseReportGLAccount","ExpenseReportMilageRate"];
 public $dashboardTitle ="ExpenseReportItems";
 public $breadCrumbTitle ="ExpenseReportItems";
 public $idField ="ExpenseReportItemID";

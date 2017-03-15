@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "banktransactiontypes";
-protected $gridFields =["BankTransactionTypeID","BankTransactionTypeDesc"];
+public $gridFields =["BankTransactionTypeID","BankTransactionTypeDesc"];
 public $dashboardTitle ="Bank Transaction Types";
 public $breadCrumbTitle ="Bank Transaction Types";
 public $idField ="BankTransactionTypeID";

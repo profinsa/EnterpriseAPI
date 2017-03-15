@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "ledgertransactionshistory";
-protected $gridFields =["GLTransactionNumber","GLTransactionTypeID","GLTransactionDate","GLTransactionDescription","CurrencyID","GLTransactionAmount","GLTransactionBalance","GLTransactionPostedYN"];
+public $gridFields =["GLTransactionNumber","GLTransactionTypeID","GLTransactionDate","GLTransactionDescription","CurrencyID","GLTransactionAmount","GLTransactionBalance","GLTransactionPostedYN"];
 public $dashboardTitle ="Ledger Transactions History";
 public $breadCrumbTitle ="Ledger Transactions History";
 public $idField ="GLTransactionNumber";

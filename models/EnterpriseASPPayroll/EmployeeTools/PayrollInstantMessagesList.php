@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollinstantmessages";
-protected $gridFields =["InstantMessageID","InstantMessageText","EmployeeID","EmployeeEmail","TimeSent"];
+public $gridFields =["InstantMessageID","InstantMessageText","EmployeeID","EmployeeEmail","TimeSent"];
 public $dashboardTitle ="PayrollInstantMessages";
 public $breadCrumbTitle ="PayrollInstantMessages";
 public $idField ="InstantMessageID";

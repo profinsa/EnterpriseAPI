@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventorycrossselling";
-protected $gridFields =["ItemID","CrossSellItemID","CrossSellItemReason","CrossSellItemPromotion","CrossSellItemPromotionEnds"];
+public $gridFields =["ItemID","CrossSellItemID","CrossSellItemReason","CrossSellItemPromotion","CrossSellItemPromotionEnds"];
 public $dashboardTitle ="InventoryCrossSelling";
 public $breadCrumbTitle ="InventoryCrossSelling";
 public $idField ="ItemID";

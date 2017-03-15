@@ -106,6 +106,7 @@ class gridDataSource{
         $columns = [];
         foreach($this->editCategories[$type] as $key=>$value)
             $columns[] = $key;
+        
         $keyValues = explode("__", $id);
         $keyFields = "";
         $fcount = 0;
@@ -206,8 +207,15 @@ class gridDataSource{
     //delete row from table
     public function deleteItem($id){
         $user = Session::get("user");
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
         
-        DB::delete("DELETE from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'");
+        DB::delete("DELETE from " . $this->tableName .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 }
 

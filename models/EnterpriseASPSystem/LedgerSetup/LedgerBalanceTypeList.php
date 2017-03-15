@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "ledgerbalancetype";
-protected $gridFields =["GLBalanceType","GLBalanceTypeDescription"];
+public $gridFields =["GLBalanceType","GLBalanceTypeDescription"];
 public $dashboardTitle ="LedgerBalanceType";
 public $breadCrumbTitle ="LedgerBalanceType";
 public $idField ="GLBalanceType";

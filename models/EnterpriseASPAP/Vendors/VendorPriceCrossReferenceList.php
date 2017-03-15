@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "vendorpricecrossreference";
-protected $gridFields =["VendorID","ItemPricingCode","ItemPrice","Freight","Handling","Advertising","Shipping"];
+public $gridFields =["VendorID","ItemPricingCode","ItemPrice","Freight","Handling","Advertising","Shipping"];
 public $dashboardTitle ="Vendor Price Cross Reference";
 public $breadCrumbTitle ="Vendor Price Cross Reference";
 public $idField ="VendorID";

@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "aptransactiontypes";
-protected $gridFields =["TransactionTypeID","TransactionDescription"];
+public $gridFields =["TransactionTypeID","TransactionDescription"];
 public $dashboardTitle ="AP Transaction Types";
 public $breadCrumbTitle ="AP Transaction Types";
 public $idField ="TransactionTypeID";

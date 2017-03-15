@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollfedtaxtables";
-protected $gridFields =["WithholdingStatus","TaxBracket","OverAmnt","NotOver","Cumulative","StatusType","Country","PayrollYear"];
+public $gridFields =["WithholdingStatus","TaxBracket","OverAmnt","NotOver","Cumulative","StatusType","Country","PayrollYear"];
 public $dashboardTitle ="PayrollFedTaxTables";
 public $breadCrumbTitle ="PayrollFedTaxTables";
 public $idField ="Country";

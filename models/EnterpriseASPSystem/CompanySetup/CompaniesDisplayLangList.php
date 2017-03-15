@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "companiesdisplaylang";
-protected $gridFields =["DisplayLang","ApprovedBy","EnteredBy"];
+public $gridFields =["DisplayLang","ApprovedBy","EnteredBy"];
 public $dashboardTitle ="CompaniesDisplayLang";
 public $breadCrumbTitle ="CompaniesDisplayLang";
 public $idField ="DisplayLang";

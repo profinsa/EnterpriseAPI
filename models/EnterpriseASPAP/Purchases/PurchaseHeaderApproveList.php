@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "purchaseheader";
-protected $gridFields =["PurchaseNumber","TransactionTypeID","PurchaseDate","VendorID","CurrencyID","Total","Shipped","ShipDate","Received"];
+public $gridFields =["PurchaseNumber","TransactionTypeID","PurchaseDate","VendorID","CurrencyID","Total","Shipped","ShipDate","Received"];
 public $dashboardTitle ="Approve Purchases";
 public $breadCrumbTitle ="Approve Purchases";
 public $idField ="PurchaseNumber";

@@ -64,7 +64,29 @@ class gridDataSource{
     //getting rows for grid
     public function getPage($number){
         $user = $_SESSION["user"];
-        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $this->gridFields) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $keyFields = "";
+        $fields = [];
+        foreach($this->gridFields as $value)
+            $fields[] = $value;
+        foreach($this->idFields as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true);
         
@@ -78,7 +100,15 @@ class gridDataSource{
         foreach($this->editCategories[$type] as $key=>$value)
             $columns[] = $key;
 
-        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'", array());
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true)[0];
         
@@ -103,8 +133,16 @@ class gridDataSource{
     //getting data for grid view form
     public function getItem($id){
         $user = $_SESSION["user"];
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
 
-        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $this->gridFields) . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'", array());
+
+        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $this->gridFields) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         return json_decode(json_encode($result), true)[0];
     }
@@ -112,6 +150,13 @@ class gridDataSource{
     //updating data of grid item
     public function updateItem($id, $category, $values){
         $user = $_SESSION["user"];
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
         
         $update_fields = "";
         foreach($this->editCategories[$category] as $name=>$value){
@@ -124,7 +169,7 @@ class gridDataSource{
                 $update_fields .= "," . $name . "='" . $values[$name] . "'";
         }
 
-        $GLOBALS["capsule"]::update("UPDATE " . $this->tableName . " set " . $update_fields . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'");
+        $GLOBALS["capsule"]::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 
     //add row to table

@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "workorderpriority";
-protected $gridFields =["WorkOrderPriority","WorkOrderPriorityDescription"];
+public $gridFields =["WorkOrderPriority","WorkOrderPriorityDescription"];
 public $dashboardTitle ="Work Order Priorities";
 public $breadCrumbTitle ="Work Order Priorities";
 public $idField ="WorkOrderPriority";

@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollemployeestaskheader";
-protected $gridFields =["TaskTypeID","StartDate","DueDate","CompletedDate","PriorityID","LeadID","CustomerID","VendorID"];
+public $gridFields =["TaskTypeID","StartDate","DueDate","CompletedDate","PriorityID","LeadID","CustomerID","VendorID"];
 public $dashboardTitle ="Payroll Employees Tasks";
 public $breadCrumbTitle ="Payroll Employees Tasks";
 public $idField ="EmployeeID";

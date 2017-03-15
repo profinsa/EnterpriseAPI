@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "audittablesdescription";
-protected $gridFields =["TableName","DocumentType","TransactionNumberField","TransactionLineNumberField"];
+public $gridFields =["TableName","DocumentType","TransactionNumberField","TransactionLineNumberField"];
 public $dashboardTitle ="AuditTablesDescription";
 public $breadCrumbTitle ="AuditTablesDescription";
 public $idField ="undefined";

@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "ledgeraccounttypes";
-protected $gridFields =["GLAccountType"];
+public $gridFields =["GLAccountType"];
 public $dashboardTitle ="Ledger Account Types";
 public $breadCrumbTitle ="Ledger Account Types";
 public $idField ="GLAccountType";

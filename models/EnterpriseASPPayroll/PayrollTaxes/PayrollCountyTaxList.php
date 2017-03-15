@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollcountytax";
-protected $gridFields =["State","County","StateName","CountyName","CountyRate","CountyWageBase","CountyUIIRate","CountyUIWageBase","CountyOtherRate","CountyOtherWageBase"];
+public $gridFields =["State","County","StateName","CountyName","CountyRate","CountyWageBase","CountyUIIRate","CountyUIWageBase","CountyOtherRate","CountyOtherWageBase"];
 public $dashboardTitle ="PayrollCountyTax";
 public $breadCrumbTitle ="PayrollCountyTax";
 public $idField ="State";

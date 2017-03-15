@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventorywishlist";
-protected $gridFields =["ItemID","CustomerID","WishQuantity","WishDate"];
+public $gridFields =["ItemID","CustomerID","WishQuantity","WishDate"];
 public $dashboardTitle ="InventoryWishList ";
 public $breadCrumbTitle ="InventoryWishList ";
 public $idField ="ItemID";

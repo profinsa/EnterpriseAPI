@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventoryitemsdisplaylang";
-protected $gridFields =["ItemID","DisplayLang","ItemName","ItemDescription"];
+public $gridFields =["ItemID","DisplayLang","ItemName","ItemDescription"];
 public $dashboardTitle ="InventoryItemsDisplayLang";
 public $breadCrumbTitle ="InventoryItemsDisplayLang";
 public $idField ="ItemID";

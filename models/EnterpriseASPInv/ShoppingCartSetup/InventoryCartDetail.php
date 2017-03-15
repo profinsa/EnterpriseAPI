@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventorycart";
-protected $gridFields =["DefaultPricingCode","RestockingFee","MinimumOrderAmount","ApprovedDate"];
+public $gridFields =["DefaultPricingCode","RestockingFee","MinimumOrderAmount","ApprovedDate"];
 public $dashboardTitle ="InventoryCart ";
 public $breadCrumbTitle ="InventoryCart ";
 public $idField ="undefined";

@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "ordertypes";
-protected $gridFields =["OrderTypeID","OrderTypeDescription"];
+public $gridFields =["OrderTypeID","OrderTypeDescription"];
 public $dashboardTitle ="Order Types";
 public $breadCrumbTitle ="Order Types";
 public $idField ="OrderTypeID";

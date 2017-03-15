@@ -37,8 +37,11 @@
 		    //getting data for table
 		    $rows = $data->getPage(1);
 		    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
-		    foreach($rows[0] as $key =>$value)
-			echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
+		    if(count($rows)){
+			foreach($rows[0] as $key =>$value)
+			    if(in_array($key, $data->gridFields))
+				echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
+		    }
 		    ?>
 		</tr>
 	    </thead>
@@ -46,17 +49,24 @@
 		<?php
 		//renders table rows using rows, getted in previous block
 		//also renders buttons like edit, delete of row
-		foreach($rows as $row){
-		    echo "<tr><td>";
-		    if($scope->user["accesspermissions"]["GLEdit"])
-			echo "<a href=\"index.php?page=" . $app->page . "&action=" . $scope->action . "&mode=view&category=Main&item=" . $row[$data->idField] ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
-		    if($scope->user["accesspermissions"]["GLDelete"])
-			echo "<span onclick=\"deleteItem('" . $row[$data->idField] . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
-		    echo "</td>";
-		    foreach($row as $value)
-			echo "<td>$value</td>";
-		    
-		    echo "</tr>";
+		if(count($rows)){
+		    foreach($rows as $row){
+			$keyString = '';
+			foreach($data->idFields as $key){
+			    $keyString .= $row[$key] . "__";
+			}
+			$keyString = substr($keyString, 0, -2);
+			echo "<tr><td>";
+			if($scope->user["accesspermissions"]["GLEdit"])
+			    echo "<a href=\"index.php?page=" . $app->page . "&action=" . $scope->action . "&mode=view&category=Main&item=" . $keyString ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+			if($scope->user["accesspermissions"]["GLDelete"])
+			    echo "<span onclick=\"deleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
+			echo "</td>";
+			foreach($row as $key=>$value)
+			    if(in_array($key, $data->gridFields))
+				echo "<td>$value</td>";
+			echo "</tr>";
+		    }
 		}
 		?>
 	    </tbody>

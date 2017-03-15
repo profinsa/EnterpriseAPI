@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "bankreconciliation";
-protected $gridFields =["BankID","BankRecStartDate","BankRecEndDate","GLBankAccount","BankRecEndingBalance"];
+public $gridFields =["BankID","BankRecStartDate","BankRecEndDate","GLBankAccount","BankRecEndingBalance"];
 public $dashboardTitle ="Bank Reconciliation";
 public $breadCrumbTitle ="Bank Reconciliation";
 public $idField ="BankID";
