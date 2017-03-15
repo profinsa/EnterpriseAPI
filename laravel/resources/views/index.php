@@ -169,7 +169,7 @@
 		 items = menuCategories[ind].data;
 		 for(iind in items){
 		     if(items[iind].type == "item"){
-			 if(href.match(items[iind].id))
+			 if(href.match("/" + items[iind].id + "/"))
 			     return {
 				 menu : menuCategories[ind],
 				 item : items[iind]
@@ -177,7 +177,9 @@
 		     }else if(items[iind].type == "submenu"){
 			 submenu = items[iind].data;
 			 for(sind in submenu){
-			     if(href.match(submenu[sind].id))
+//			     console.log(href);
+//			     console.log(submenu[sind].id);
+			     if(href.match("/" + submenu[sind].id + "/"))
 				 return {
 				     menu : menuCategories[ind],
 				     submenu : items[iind],
@@ -215,7 +217,7 @@
 		  })
 		  .error(function(){
 //		      window.location = "<?php echo $public_prefix; ?>/login";
-//		      window.location = "<?php echo $public_prefix; ?>/ByPassLogin";
+		      window.location = "<?php echo $public_prefix; ?>/ByPassLogin";
 		  });
 	     }
 	 }
