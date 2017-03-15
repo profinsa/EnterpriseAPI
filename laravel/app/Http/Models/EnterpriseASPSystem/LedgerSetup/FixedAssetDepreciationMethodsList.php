@@ -7,6 +7,7 @@ protected $gridFields =["AssetDepreciationMethodID","DepreciationMethodDescripti
 public $dashboardTitle ="Fixed Asset Depreciation Methods";
 public $breadCrumbTitle ="Fixed Asset Depreciation Methods";
 public $idField ="AssetDepreciationMethodID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","AssetDepreciationMethodID"];
 public $editCategories = [
 "Main" => [
 

@@ -7,6 +7,7 @@ protected $gridFields =["ProblemType","ProblemTypeDescription"];
 public $dashboardTitle ="Help Problem Types";
 public $breadCrumbTitle ="Help Problem Types";
 public $idField ="ProblemType";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ProblemType"];
 public $editCategories = [
 "Main" => [
 

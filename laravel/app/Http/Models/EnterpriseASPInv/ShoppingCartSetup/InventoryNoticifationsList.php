@@ -7,6 +7,7 @@ protected $gridFields =["ItemID","CustomerID","NotificationType","Confirmed","Ap
 public $dashboardTitle ="InventoryNoticifations";
 public $breadCrumbTitle ="InventoryNoticifations";
 public $idField ="ItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID","CustomerID"];
 public $editCategories = [
 "Main" => [
 

@@ -7,6 +7,7 @@ protected $gridFields =["GLAccountGroupID","GLAccountGroupName","GLAccountGroupB
 public $dashboardTitle ="Ledger Account Group";
 public $breadCrumbTitle ="Ledger Account Group";
 public $idField ="GLAccountGroupID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","GLAccountGroupID"];
 public $editCategories = [
 "Main" => [
 

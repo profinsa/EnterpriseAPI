@@ -7,6 +7,7 @@ protected $gridFields =["WarehouseBinZoneID","WarehouseBinZoneDescription"];
 public $dashboardTitle ="WarehouseBinZones";
 public $breadCrumbTitle ="WarehouseBinZones";
 public $idField ="WarehouseBinZoneID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","WarehouseBinZoneID"];
 public $editCategories = [
 "Main" => [
 

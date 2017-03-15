@@ -7,6 +7,7 @@ protected $gridFields =["TransitID","TransitEnteredDate","TransitETAlDate","Tran
 public $dashboardTitle ="WarehouseTransitHeader";
 public $breadCrumbTitle ="WarehouseTransitHeader";
 public $idField ="TransitID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","TransitID"];
 public $editCategories = [
 "Main" => [
 
@@ -15,11 +16,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "TransitEnteredDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "TransitETAlDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "TransitShipVia" => [
@@ -31,7 +32,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "TransitShipDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "TransitTrackingNumber" => [
@@ -59,7 +60,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "TransitReceivedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "TransitRequestedBy" => [
@@ -119,7 +120,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

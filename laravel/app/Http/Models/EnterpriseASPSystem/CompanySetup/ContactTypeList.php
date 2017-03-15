@@ -7,6 +7,7 @@ protected $gridFields =["ContactType","ContactTypeDescription"];
 public $dashboardTitle ="Contact Type";
 public $breadCrumbTitle ="Contact Type";
 public $idField ="ContactType";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ContactType"];
 public $editCategories = [
 "Main" => [
 

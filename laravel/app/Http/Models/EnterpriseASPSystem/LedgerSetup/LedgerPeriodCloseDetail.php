@@ -7,6 +7,7 @@ protected $gridFields =["FiscalStartDate","FiscalEndDate","CurrentFiscalYear","C
 public $dashboardTitle ="Period Close ";
 public $breadCrumbTitle ="Period Close ";
 public $idField ="undefined";
+public $idFields = ["CompanyID","DivisionID","DepartmentID"];
 public $editCategories = [
 "Main" => [
 
@@ -339,11 +340,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "FiscalStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "FiscalEndDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrentFiscalYear" => [
@@ -351,63 +352,63 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CurrentPeriod" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period1Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period2Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period3Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period4Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period5Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period6Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period7Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period8Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period9Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period10Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period11Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period12Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period13Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period14Date" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Period1Closed" => [

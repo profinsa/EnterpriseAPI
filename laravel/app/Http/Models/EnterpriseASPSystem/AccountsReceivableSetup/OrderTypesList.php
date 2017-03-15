@@ -7,6 +7,7 @@ protected $gridFields =["OrderTypeID","OrderTypeDescription"];
 public $dashboardTitle ="Order Types";
 public $breadCrumbTitle ="Order Types";
 public $idField ="OrderTypeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderTypeID"];
 public $editCategories = [
 "Main" => [
 

@@ -7,6 +7,7 @@ protected $gridFields =["ResourceId","ResourceType","ResourceProductId","Resourc
 public $dashboardTitle ="Help Resources";
 public $breadCrumbTitle ="Help Resources";
 public $idField ="ResourceId";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ResourceId"];
 public $editCategories = [
 "Main" => [
 

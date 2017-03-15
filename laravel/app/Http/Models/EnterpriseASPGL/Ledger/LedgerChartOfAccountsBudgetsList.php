@@ -7,6 +7,7 @@ protected $gridFields =["GLBudgetID","GLAccountNumber","GLAccountName","GLBudget
 public $dashboardTitle ="Budgets";
 public $breadCrumbTitle ="Budgets";
 public $idField ="GLBudgetID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","GLBudgetID","GLAccountNumber"];
 public $editCategories = [
 "Main" => [
 
@@ -27,7 +28,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "GLFiscalYear" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "GLBudgetBeginningBalance" => [

@@ -7,6 +7,7 @@ protected $gridFields =["BankTransactionID","BankDocumentNumber","TransactionTyp
 public $dashboardTitle ="Bank Transactions";
 public $breadCrumbTitle ="Bank Transactions";
 public $idField ="BankTransactionID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","BankTransactionID"];
 public $editCategories = [
 "Main" => [
 
@@ -31,11 +32,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "TransactionDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SystemDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyID" => [
@@ -111,7 +112,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

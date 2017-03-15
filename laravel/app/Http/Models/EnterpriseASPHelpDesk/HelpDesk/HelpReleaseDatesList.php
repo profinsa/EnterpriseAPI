@@ -7,6 +7,7 @@ protected $gridFields =["ProductName","CurrentVersion","NextVersion","ReleaseDat
 public $dashboardTitle ="Help Release Dates";
 public $breadCrumbTitle ="Help Release Dates";
 public $idField ="ProductName";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ProductName","CurrentVersion"];
 public $editCategories = [
 "Main" => [
 
@@ -23,7 +24,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ReleaseDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Notes" => [

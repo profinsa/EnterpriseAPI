@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeID","SecurityLevel"];
 public $dashboardTitle ="Access Permissions";
 public $breadCrumbTitle ="Access Permissions";
 public $idField ="EmployeeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID"];
 public $editCategories = [
 "Main" => [
 

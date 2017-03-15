@@ -7,6 +7,7 @@ protected $gridFields =["SupportRequestType","SupportRequestTypeDescription"];
 public $dashboardTitle ="Support Request Types";
 public $breadCrumbTitle ="Support Request Types";
 public $idField ="SupportRequestType";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","SupportRequestType"];
 public $editCategories = [
 "Main" => [
 

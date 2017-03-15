@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeID","AmountAccrued","AmountUsed","LastAccrued"]
 public $dashboardTitle ="PayrollEmployeesAccrual";
 public $breadCrumbTitle ="PayrollEmployeesAccrual";
 public $idField ="EmployeeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID","AccrualID"];
 public $editCategories = [
 "Main" => [
 
@@ -23,7 +24,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastAccrued" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Active" => [
@@ -39,7 +40,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AccrualID" => [

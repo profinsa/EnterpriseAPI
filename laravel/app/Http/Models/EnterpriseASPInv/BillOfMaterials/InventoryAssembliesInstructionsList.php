@@ -7,6 +7,7 @@ protected $gridFields =["AssemblyID","AssemblySchematicURL","AssemblyPictureURL"
 public $dashboardTitle ="Assemblies Instructions";
 public $breadCrumbTitle ="Assemblies Instructions";
 public $idField ="AssemblyID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","AssemblyID"];
 public $editCategories = [
 "Main" => [
 
@@ -43,7 +44,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "AssemblyLastUpdated" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AssemblyLastUpdatedBy" => [

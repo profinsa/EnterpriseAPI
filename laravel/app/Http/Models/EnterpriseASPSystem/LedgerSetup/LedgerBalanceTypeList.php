@@ -7,6 +7,7 @@ protected $gridFields =["GLBalanceType","GLBalanceTypeDescription"];
 public $dashboardTitle ="LedgerBalanceType";
 public $breadCrumbTitle ="LedgerBalanceType";
 public $idField ="GLBalanceType";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","GLBalanceType"];
 public $editCategories = [
 "Main" => [
 

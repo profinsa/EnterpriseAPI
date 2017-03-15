@@ -7,6 +7,7 @@ protected $gridFields =["CheckTypeID","CheckTypeDescription"];
 public $dashboardTitle ="PayrollCheckType";
 public $breadCrumbTitle ="PayrollCheckType";
 public $idField ="CheckTypeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CheckTypeID"];
 public $editCategories = [
 "Main" => [
 

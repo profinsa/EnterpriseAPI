@@ -7,6 +7,7 @@ protected $gridFields =["WorkOrderInProgress","WorkOrderInProgressDescription"];
 public $dashboardTitle ="Work Order In Progress Types";
 public $breadCrumbTitle ="Work Order In Progress Types";
 public $idField ="WorkOrderInProgress";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","WorkOrderInProgress"];
 public $editCategories = [
 "Main" => [
 

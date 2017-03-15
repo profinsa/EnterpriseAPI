@@ -7,6 +7,7 @@ protected $gridFields =["ItemID","WarehouseID","WarehouseBinID","QtyOnHand","Qty
 public $dashboardTitle ="Inventory By Warehouse";
 public $breadCrumbTitle ="Inventory By Warehouse";
 public $idField ="ItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID","WarehouseID","WarehouseBinID"];
 public $editCategories = [
 "Main" => [
 
@@ -43,7 +44,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastCountDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

@@ -7,6 +7,7 @@ protected $gridFields =["ItemID","WarehouseID","WarehouseBinID","PurchaseOrderNu
 public $dashboardTitle ="Inventory Serial Numbers";
 public $breadCrumbTitle ="Inventory Serial Numbers";
 public $idField ="ItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID","WarehouseID","WarehouseBinID","PurchaseOrderNumber","PurchaseOrderLineNumber","SerialNumber"];
 public $editCategories = [
 "Main" => [
 
@@ -51,7 +52,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "DateReceived" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "OriginalLotOrderQty" => [
@@ -63,7 +64,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LotExpirationDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SerialNumberComment" => [

@@ -7,6 +7,7 @@ protected $gridFields =["CommentType"];
 public $dashboardTitle ="Comment Types";
 public $breadCrumbTitle ="Comment Types";
 public $idField ="CommentType";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CommentType"];
 public $editCategories = [
 "Main" => [
 

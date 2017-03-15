@@ -7,6 +7,7 @@ protected $gridFields =["ProjectTypeID","ProjectTypeDescription"];
 public $dashboardTitle ="Project Types";
 public $breadCrumbTitle ="Project Types";
 public $idField ="ProjectTypeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ProjectTypeID"];
 public $editCategories = [
 "Main" => [
 

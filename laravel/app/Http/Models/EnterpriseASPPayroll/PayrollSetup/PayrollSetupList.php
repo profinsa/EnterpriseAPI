@@ -7,6 +7,7 @@ protected $gridFields =["FederalTaxIDNumber","StateTaxIDNumber","CountyTaxIDNumb
 public $dashboardTitle ="PayrollSetup";
 public $breadCrumbTitle ="PayrollSetup";
 public $idField ="undefined";
+public $idFields = ["CompanyID","DivisionID","DepartmentID"];
 public $editCategories = [
 "Main" => [
 

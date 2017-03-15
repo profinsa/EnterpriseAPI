@@ -7,6 +7,7 @@ protected $gridFields =["CustomerID","ContactID","ContactLogID","ContactDate","C
 public $dashboardTitle ="Customer Contact Log";
 public $breadCrumbTitle ="Customer Contact Log";
 public $idField ="CustomerID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID","ContactID","ContactLogID"];
 public $editCategories = [
 "Main" => [
 
@@ -23,15 +24,15 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ContactDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactCallStartTime" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactCallEndTime" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactDesctiption" => [

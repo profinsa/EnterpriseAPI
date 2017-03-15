@@ -7,6 +7,7 @@ protected $gridFields =["AssemblyID"];
 public $dashboardTitle ="Inventory Assemblies";
 public $breadCrumbTitle ="Inventory Assemblies";
 public $idField ="AssemblyID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","AssemblyID","ItemID"];
 public $editCategories = [
 "Main" => [
 
@@ -51,7 +52,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

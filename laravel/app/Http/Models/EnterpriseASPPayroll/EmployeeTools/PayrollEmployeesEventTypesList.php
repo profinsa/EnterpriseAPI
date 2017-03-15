@@ -7,6 +7,7 @@ protected $gridFields =["EventID","EventDescription"];
 public $dashboardTitle ="PayrollEmployeesEventTypes";
 public $breadCrumbTitle ="PayrollEmployeesEventTypes";
 public $idField ="EventID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EventID"];
 public $editCategories = [
 "Main" => [
 

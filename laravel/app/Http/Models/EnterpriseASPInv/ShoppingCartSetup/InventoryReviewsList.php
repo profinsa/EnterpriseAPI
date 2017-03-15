@@ -7,6 +7,7 @@ protected $gridFields =["ItemID","ReviewID","ReviewBy","ReviewDate","Rating","He
 public $dashboardTitle ="InventoryReviews";
 public $breadCrumbTitle ="InventoryReviews";
 public $idField ="ItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID","ReviewID"];
 public $editCategories = [
 "Main" => [
 
@@ -23,7 +24,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ReviewDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Review" => [

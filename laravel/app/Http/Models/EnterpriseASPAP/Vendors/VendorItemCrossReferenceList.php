@@ -7,6 +7,7 @@ protected $gridFields =["VendorID","VendorItemID","VendorItemDescription","ItemI
 public $dashboardTitle ="Vendor Item Cross Reference";
 public $breadCrumbTitle ="Vendor Item Cross Reference";
 public $idField ="VendorID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","VendorID","VendorItemID"];
 public $editCategories = [
 "Main" => [
 

@@ -7,6 +7,7 @@ protected $gridFields =["LeadID","LeadLastName","LeadFirstName","LeadEmail","Lea
 public $dashboardTitle ="Lead Information";
 public $breadCrumbTitle ="Lead Information";
 public $idField ="LeadID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","LeadID"];
 public $editCategories = [
 "Main" => [
 
@@ -87,7 +88,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LeadPasswordDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "LeadPasswordExpires" => [
@@ -131,15 +132,15 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "FirstContacted" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "LastFollowUp" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "NextFollowUp" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferedByExistingCustomer" => [
@@ -151,7 +152,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ReferedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferalURL" => [
@@ -159,7 +160,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastVisit" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "IPAddress" => [
@@ -215,7 +216,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ConvertedToCustomerDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "LeadMemo1" => [

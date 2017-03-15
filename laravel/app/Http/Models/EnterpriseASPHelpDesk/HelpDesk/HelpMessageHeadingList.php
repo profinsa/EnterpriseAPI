@@ -7,6 +7,7 @@ protected $gridFields =["MessageHeadingId","MessageHeadingTitle","MessageHeading
 public $dashboardTitle ="Help Message Headings";
 public $breadCrumbTitle ="Help Message Headings";
 public $idField ="MessageHeadingId";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","MessageHeadingId"];
 public $editCategories = [
 "Main" => [
 
@@ -27,7 +28,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "MessageHeadingDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

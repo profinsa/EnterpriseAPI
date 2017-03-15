@@ -7,6 +7,7 @@ protected $gridFields =["CustomerID","ShipToID","ShipToName","ShipToAttention"];
 public $dashboardTitle ="Customer Ship To Locations";
 public $breadCrumbTitle ="Customer Ship To Locations";
 public $idField ="CustomerID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID","ShipToID"];
 public $editCategories = [
 "Main" => [
 

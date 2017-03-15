@@ -7,6 +7,7 @@ protected $gridFields =["LeadID","ItemID","SurveyDate"];
 public $dashboardTitle ="LeadSatisfaction";
 public $breadCrumbTitle ="LeadSatisfaction";
 public $idField ="LeadID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","LeadID","ItemID","SurveyDate"];
 public $editCategories = [
 "Main" => [
 
@@ -19,7 +20,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "SurveyDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "QuestionOne" => [

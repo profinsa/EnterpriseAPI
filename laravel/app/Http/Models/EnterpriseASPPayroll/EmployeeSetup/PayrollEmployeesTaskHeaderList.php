@@ -7,6 +7,7 @@ protected $gridFields =["TaskTypeID","StartDate","DueDate","CompletedDate","Prio
 public $dashboardTitle ="Payroll Employees Tasks";
 public $breadCrumbTitle ="Payroll Employees Tasks";
 public $idField ="EmployeeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID","EmployeeTaskID"];
 public $editCategories = [
 "Main" => [
 
@@ -23,11 +24,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "StartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "DueDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Completed" => [
@@ -35,7 +36,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CompletedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PriorityID" => [
@@ -71,7 +72,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "DelegatedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

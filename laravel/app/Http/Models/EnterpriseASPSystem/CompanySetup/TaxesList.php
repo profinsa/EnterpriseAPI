@@ -7,6 +7,7 @@ protected $gridFields =["TaxID","TaxDescription","TaxPercent","GLTaxAccount"];
 public $dashboardTitle ="Taxes";
 public $breadCrumbTitle ="Taxes";
 public $idField ="TaxID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","TaxID"];
 public $editCategories = [
 "Main" => [
 
@@ -39,7 +40,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

@@ -7,6 +7,7 @@ protected $gridFields =["AccrualFrequency","AccruslFrequencyDescription","Accrua
 public $dashboardTitle ="PayrollEmployeesAccrualFrequency";
 public $breadCrumbTitle ="PayrollEmployeesAccrualFrequency";
 public $idField ="AccrualFrequency";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","AccrualFrequency"];
 public $editCategories = [
 "Main" => [
 

@@ -7,6 +7,7 @@ protected $gridFields =["Priority","PriorityDescription"];
 public $dashboardTitle ="Help Priorities";
 public $breadCrumbTitle ="Help Priorities";
 public $idField ="Priority";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","Priority"];
 public $editCategories = [
 "Main" => [
 

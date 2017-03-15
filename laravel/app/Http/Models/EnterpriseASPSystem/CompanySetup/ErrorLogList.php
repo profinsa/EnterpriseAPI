@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeID","ErrorDate","ErrorTime","ErrorCode","ErrorM
 public $dashboardTitle ="Error Log";
 public $breadCrumbTitle ="Error Log";
 public $idField ="ErrorID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ErrorID"];
 public $editCategories = [
 "Main" => [
 
@@ -19,11 +20,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ErrorDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ErrorTime" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ScreenName" => [
@@ -47,7 +48,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CallTime" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Error" => [

@@ -7,6 +7,7 @@ protected $gridFields =["ReceiptMethodID","ReceiptMethodDescription"];
 public $dashboardTitle ="ReceiptMethods";
 public $breadCrumbTitle ="ReceiptMethods";
 public $idField ="ReceiptMethodID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ReceiptMethodID"];
 public $editCategories = [
 "Main" => [
 

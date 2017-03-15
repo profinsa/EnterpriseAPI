@@ -7,6 +7,7 @@ protected $gridFields =["TransactionTypeID","TransactionDescription"];
 public $dashboardTitle ="AR Transaction Types";
 public $breadCrumbTitle ="AR Transaction Types";
 public $idField ="TransactionTypeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","TransactionTypeID"];
 public $editCategories = [
 "Main" => [
 

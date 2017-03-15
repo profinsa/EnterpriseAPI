@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeID","AppointmenStart","AppointmentEnd","Appoint
 public $dashboardTitle ="PayrollEmployeesCalendar";
 public $breadCrumbTitle ="PayrollEmployeesCalendar";
 public $idField ="EmployeeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID","AppointmenStart"];
 public $editCategories = [
 "Main" => [
 
@@ -15,11 +16,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "AppointmenStart" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AppointmentEnd" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AppointmentReason" => [

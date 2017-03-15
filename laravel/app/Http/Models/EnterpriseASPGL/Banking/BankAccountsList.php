@@ -7,6 +7,7 @@ protected $gridFields =["BankID","BankAccountNumber","BankName","BankPhone","GLB
 public $dashboardTitle ="Bank Accounts";
 public $breadCrumbTitle ="Bank Accounts";
 public $idField ="BankID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","BankID"];
 public $editCategories = [
 "Main" => [
 
@@ -119,7 +120,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeDepartmentID","EmployeeDepartmentDescription"];
 public $dashboardTitle ="PayrollEmployeeDepartment";
 public $breadCrumbTitle ="PayrollEmployeeDepartment";
 public $idField ="EmployeeDepartmentID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeDepartmentID"];
 public $editCategories = [
 "Main" => [
 

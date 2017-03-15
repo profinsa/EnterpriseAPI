@@ -7,6 +7,7 @@ protected $gridFields =["CreditCardTypeID","CreditCardDescription"];
 public $dashboardTitle ="Credit Card Types";
 public $breadCrumbTitle ="Credit Card Types";
 public $idField ="CreditCardTypeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CreditCardTypeID"];
 public $editCategories = [
 "Main" => [
 

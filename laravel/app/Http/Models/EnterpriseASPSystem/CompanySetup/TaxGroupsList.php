@@ -7,6 +7,7 @@ protected $gridFields =["TaxGroupID","TotalPercent"];
 public $dashboardTitle ="Tax Groups";
 public $breadCrumbTitle ="Tax Groups";
 public $idField ="TaxGroupID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","TaxGroupID"];
 public $editCategories = [
 "Main" => [
 

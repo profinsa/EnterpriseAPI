@@ -7,6 +7,7 @@ protected $gridFields =["GLAccountType"];
 public $dashboardTitle ="Ledger Account Types";
 public $breadCrumbTitle ="Ledger Account Types";
 public $idField ="GLAccountType";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","GLAccountType"];
 public $editCategories = [
 "Main" => [
 

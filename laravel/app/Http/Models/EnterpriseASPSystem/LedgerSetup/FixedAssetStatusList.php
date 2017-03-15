@@ -7,6 +7,7 @@ protected $gridFields =["AssetStatusID","AssetStatusDescription"];
 public $dashboardTitle ="Fixed Asset Status";
 public $breadCrumbTitle ="Fixed Asset Status";
 public $idField ="AssetStatusID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","AssetStatusID"];
 public $editCategories = [
 "Main" => [
 

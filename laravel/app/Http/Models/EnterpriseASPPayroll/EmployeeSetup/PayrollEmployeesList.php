@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeID","EmployeeTypeID","EmployeeName","ActiveYN",
 public $dashboardTitle ="Employees";
 public $breadCrumbTitle ="Employees";
 public $idField ="EmployeeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID"];
 public $editCategories = [
 "Main" => [
 
@@ -31,7 +32,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "EmployeePasswordDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EmployeePasswordExpires" => [
@@ -99,11 +100,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "HireDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Birthday" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Commissionable" => [
@@ -231,7 +232,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

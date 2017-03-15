@@ -7,6 +7,7 @@ protected $gridFields =["PurchaseNumber","PurchaseDescription","SpecialInstructi
 public $dashboardTitle ="PurchaseTrackingHeader";
 public $breadCrumbTitle ="PurchaseTrackingHeader";
 public $idField ="PurchaseNumber";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
 public $editCategories = [
 "Main" => [
 
@@ -43,7 +44,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

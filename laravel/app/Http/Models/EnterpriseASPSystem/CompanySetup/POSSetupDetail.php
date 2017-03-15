@@ -7,6 +7,7 @@ protected $gridFields =["DefaultPricingCode"];
 public $dashboardTitle ="POS Setup ";
 public $breadCrumbTitle ="POS Setup ";
 public $idField ="undefined";
+public $idFields = ["CompanyID","DivisionID","DepartmentID"];
 public $editCategories = [
 "Main" => [
 

@@ -7,6 +7,7 @@ protected $gridFields =["AccountStatus","AccountStatusDescription"];
 public $dashboardTitle ="Vendor Account Statuses";
 public $breadCrumbTitle ="Vendor Account Statuses";
 public $idField ="AccountStatus";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","AccountStatus"];
 public $editCategories = [
 "Main" => [
 

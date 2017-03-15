@@ -7,6 +7,7 @@ protected $gridFields =["ItemID","CrossSellItemID","CrossSellItemReason","CrossS
 public $dashboardTitle ="InventoryCrossSelling";
 public $breadCrumbTitle ="InventoryCrossSelling";
 public $idField ="ItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
 public $editCategories = [
 "Main" => [
 
@@ -27,7 +28,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CrossSellItemPromotionEnds" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

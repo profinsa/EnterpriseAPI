@@ -144,7 +144,7 @@
 				    echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
 				    break;
 				case "timestamp" :
-				case "datepicker" :
+				case "datetime" :
 				    echo date("m/d/y", strtotime($value));
 				    break;
 				case "text":
@@ -204,9 +204,9 @@
 				."></div></div>";
 			    break;
 			    
-			case "datepicker" :
+			case "datetime" :
 			    //renders text input with label
-			    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatepicker\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+			    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
 				 ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
 				."></div></div>";
 			    break;
@@ -328,7 +328,7 @@
  });
      <?php endif; ?>
  
- jQuery('.fdatepicker').datepicker({
+ jQuery('.fdatetime').datepicker({
      autoclose : true,
      orientation : "bottom",
      format: {

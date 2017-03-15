@@ -7,6 +7,7 @@ protected $gridFields =["GLTransactionNumber","GLTransactionTypeID","GLTransacti
 public $dashboardTitle ="Closed Ledger Transactions";
 public $breadCrumbTitle ="Closed Ledger Transactions";
 public $idField ="GLTransactionNumber";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
 public $editCategories = [
 "Main" => [
 
@@ -19,11 +20,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "GLTransactionDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SystemDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "GLTransactionDescription" => [
@@ -83,7 +84,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

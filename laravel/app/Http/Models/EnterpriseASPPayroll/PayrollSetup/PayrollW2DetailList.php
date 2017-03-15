@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeID","W2Year","W2ControlNumber","EmployeeName","
 public $dashboardTitle ="PayrollW2Detail";
 public $breadCrumbTitle ="PayrollW2Detail";
 public $idField ="EmployeeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID"];
 public $editCategories = [
 "Main" => [
 

@@ -7,6 +7,7 @@ protected $gridFields =["CustomerID","CustomerTypeID","CustomerName","CustomerLo
 public $dashboardTitle ="Customer Information";
 public $breadCrumbTitle ="Customer Information";
 public $idField ="CustomerID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
 public $editCategories = [
 "Main" => [
 
@@ -27,7 +28,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CustomerBornDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CustomerNationality" => [
@@ -91,7 +92,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CustomerPasswordDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CustomerPasswordExpires" => [
@@ -167,7 +168,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PriceMatrixCurrent" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CreditRating" => [
@@ -187,11 +188,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovalDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CustomerSince" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SendCreditMemos" => [
@@ -243,7 +244,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "RoutingInfoCurrent" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "FreightPayment" => [
@@ -451,7 +452,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [
@@ -483,15 +484,15 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "FirstContacted" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "LastFollowUp" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "NextFollowUp" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferedByExistingCustomer" => [
@@ -503,7 +504,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ReferedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferalURL" => [

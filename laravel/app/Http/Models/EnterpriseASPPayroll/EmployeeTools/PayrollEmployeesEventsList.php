@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeID","EventDate","EventID","EventTime","EventTim
 public $dashboardTitle ="PayrollEmployeesEvents";
 public $breadCrumbTitle ="PayrollEmployeesEvents";
 public $idField ="EmployeeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID","EventDate","EventID"];
 public $editCategories = [
 "Main" => [
 
@@ -15,7 +16,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "EventDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EventID" => [
@@ -47,7 +48,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

@@ -7,6 +7,7 @@ protected $gridFields =["PaymentTypeID","PaymentTypeDescription"];
 public $dashboardTitle ="Payment Types";
 public $breadCrumbTitle ="Payment Types";
 public $idField ="PaymentTypeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentTypeID"];
 public $editCategories = [
 "Main" => [
 

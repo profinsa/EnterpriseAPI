@@ -7,6 +7,7 @@ protected $gridFields =["CaseId","CustomerId","ProductId","ProblemType","Problem
 public $dashboardTitle ="Help Problem Reports";
 public $breadCrumbTitle ="Help Problem Reports";
 public $idField ="CaseId";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CaseId"];
 public $editCategories = [
 "Main" => [
 
@@ -55,7 +56,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ProblemDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ProblemShortDescription" => [
@@ -87,7 +88,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ProblemFixDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ProblemFix" => [

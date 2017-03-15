@@ -7,6 +7,7 @@ protected $gridFields =["DefaultPricingCode","RestockingFee","MinimumOrderAmount
 public $dashboardTitle ="InventoryCart ";
 public $breadCrumbTitle ="InventoryCart ";
 public $idField ="undefined";
+public $idFields = ["CompanyID","DivisionID","DepartmentID"];
 public $editCategories = [
 "Main" => [
 
@@ -119,7 +120,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

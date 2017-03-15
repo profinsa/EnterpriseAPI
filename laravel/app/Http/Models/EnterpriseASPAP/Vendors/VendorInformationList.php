@@ -7,6 +7,7 @@ protected $gridFields =["VendorID","VendorTypeID","VendorName","VendorEmail","Ve
 public $dashboardTitle ="Vendors Information";
 public $breadCrumbTitle ="Vendors Information";
 public $idField ="VendorID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
 public $editCategories = [
 "Main" => [
 
@@ -79,7 +80,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "VendorPasswordDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "VendorPasswordExpires" => [
@@ -171,7 +172,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PriceMatrixCurrent" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyID" => [
@@ -223,11 +224,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovalDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CustomerSince" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "FreightPayment" => [
@@ -307,7 +308,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [
@@ -335,15 +336,15 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "FirstContacted" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "LastFollowUp" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "NextFollowUp" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferedBy" => [
@@ -351,7 +352,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ReferedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferalURL" => [

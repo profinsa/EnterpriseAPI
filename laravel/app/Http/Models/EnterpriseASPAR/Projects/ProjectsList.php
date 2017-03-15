@@ -7,6 +7,7 @@ protected $gridFields =["ProjectID","ProjectName","ProjectTypeID","CustomerID","
 public $dashboardTitle ="Projects";
 public $breadCrumbTitle ="Projects";
 public $idField ="ProjectID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ProjectID"];
 public $editCategories = [
 "Main" => [
 
@@ -31,11 +32,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ProjectStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ProjectCompleteDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyID" => [

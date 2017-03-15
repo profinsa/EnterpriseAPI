@@ -7,6 +7,7 @@ protected $gridFields =["NewsId","NewsProductId","NewsTitle","NewsDate","NewsMes
 public $dashboardTitle ="Help News Board";
 public $breadCrumbTitle ="Help News Board";
 public $idField ="NewsId";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","NewsId"];
 public $editCategories = [
 "Main" => [
 
@@ -23,7 +24,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "NewsDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "NewsMessage" => [

@@ -7,6 +7,7 @@ protected $gridFields =["Country","FITRate","FITWageBase","FICARate","FICAWageBa
 public $dashboardTitle ="PayrollFedTax";
 public $breadCrumbTitle ="PayrollFedTax";
 public $idField ="Country";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","Country"];
 public $editCategories = [
 "Main" => [
 

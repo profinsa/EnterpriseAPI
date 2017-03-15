@@ -7,6 +7,7 @@ protected $gridFields =["GLParentSegment","GLAccountNumber","GLAccountName","GLA
 public $dashboardTitle ="Ledger Chart Of Accounts";
 public $breadCrumbTitle ="Ledger Chart Of Accounts";
 public $idField ="GLAccountNumber";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","GLAccountNumber"];
 public $editCategories = [
 "Main" => [
 
@@ -195,7 +196,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "GLPriorFiscalYear" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "GLPriorYearBeginningBalance" => [

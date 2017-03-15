@@ -7,6 +7,7 @@ protected $gridFields =["ItemID","CustomerID","WishQuantity","WishDate"];
 public $dashboardTitle ="InventoryWishList ";
 public $breadCrumbTitle ="InventoryWishList ";
 public $idField ="ItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID","CustomerID"];
 public $editCategories = [
 "Main" => [
 
@@ -23,7 +24,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "WishDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

@@ -7,6 +7,7 @@ protected $gridFields =["PurchaseNumber","TransactionTypeID","PurchaseDate","Ven
 public $dashboardTitle ="Receive Purchases";
 public $breadCrumbTitle ="Receive Purchases";
 public $idField ="PurchaseNumber";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
 public $editCategories = [
 "Main" => [
 
@@ -19,27 +20,27 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PurchaseDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PurchaseDueDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PurchaseShipDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PurchaseCancelDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PurchaseDateRequested" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SystemDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Memorize" => [
@@ -183,7 +184,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PaymentDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "GLPurchaseAccount" => [
@@ -207,11 +208,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CheckDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PaidDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CreditCardTypeID" => [
@@ -227,7 +228,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CreditCardExpDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CreditCardCSVNumber" => [
@@ -255,7 +256,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Printed" => [
@@ -263,7 +264,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PrintedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Shipped" => [
@@ -271,7 +272,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ShipDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "TrackingNumber" => [
@@ -283,7 +284,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ReceivedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "RecivingNumber" => [
@@ -295,7 +296,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PostedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CommissionPaid" => [
@@ -311,7 +312,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "OriginalPurchaseDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "HeaderMemo1" => [

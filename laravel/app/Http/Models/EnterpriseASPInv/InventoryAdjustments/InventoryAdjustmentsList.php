@@ -7,6 +7,7 @@ protected $gridFields =["AdjustmentID","AdjustmentTypeID","AdjustmentDate","Adju
 public $dashboardTitle ="Inventory Adjustments";
 public $breadCrumbTitle ="Inventory Adjustments";
 public $idField ="AdjustmentID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","AdjustmentID"];
 public $editCategories = [
 "Main" => [
 
@@ -19,11 +20,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "AdjustmentDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SystemDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AdjustmentReason" => [
@@ -59,7 +60,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

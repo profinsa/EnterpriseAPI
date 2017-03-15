@@ -7,6 +7,7 @@ protected $gridFields =["WorkOrderStatus","WorkOrderStatusDescription"];
 public $dashboardTitle ="WorkOrderStatus";
 public $breadCrumbTitle ="WorkOrderStatus";
 public $idField ="WorkOrderStatus";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","WorkOrderStatus"];
 public $editCategories = [
 "Main" => [
 

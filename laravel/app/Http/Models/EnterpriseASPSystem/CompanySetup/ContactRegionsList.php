@@ -7,6 +7,7 @@ protected $gridFields =["ContactRegionID","ContactRegionDescription"];
 public $dashboardTitle ="Contact Regions";
 public $breadCrumbTitle ="Contact Regions";
 public $idField ="ContactRegionID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ContactRegionID"];
 public $editCategories = [
 "Main" => [
 

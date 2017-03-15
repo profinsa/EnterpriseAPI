@@ -7,6 +7,7 @@ protected $gridFields =["CurrencyID","CurrencyType","CurrenycySymbol","CurrencyE
 public $dashboardTitle ="Currencies";
 public $breadCrumbTitle ="Currencies";
 public $idField ="CurrencyID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CurrencyID"];
 public $editCategories = [
 "Main" => [
 
@@ -27,7 +28,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CurrencyRateLastUpdate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyPrecision" => [

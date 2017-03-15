@@ -7,6 +7,7 @@ protected $gridFields =["TimeUnitID","TimeUnitDescription"];
 public $dashboardTitle ="TimeUnits";
 public $breadCrumbTitle ="TimeUnits";
 public $idField ="TimeUnitID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","TimeUnitID"];
 public $editCategories = [
 "Main" => [
 

@@ -7,6 +7,7 @@ protected $gridFields =["TableName","DocumentType","TransactionNumberField","Tra
 public $dashboardTitle ="AuditTablesDescription";
 public $breadCrumbTitle ="AuditTablesDescription";
 public $idField ="undefined";
+public $idFields = ["TableName"];
 public $editCategories = [
 "Main" => [
 

@@ -7,6 +7,7 @@ protected $gridFields =["OrderNumber","QuoteStatus","QuoteDescription","Expected
 public $dashboardTitle ="QuoteTrackingHeader";
 public $breadCrumbTitle ="QuoteTrackingHeader";
 public $idField ="OrderNumber";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber"];
 public $editCategories = [
 "Main" => [
 
@@ -27,7 +28,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ExpectedCloseDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SaleProbability" => [
@@ -55,7 +56,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

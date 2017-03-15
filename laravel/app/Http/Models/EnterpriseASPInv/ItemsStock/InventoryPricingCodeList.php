@@ -7,6 +7,7 @@ protected $gridFields =["ItemID","ItemPricingCode","Price","SalesPrice","SaleSta
 public $dashboardTitle ="Inventory Pricing Code";
 public $breadCrumbTitle ="Inventory Pricing Code";
 public $idField ="ItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID","ItemPricingCode"];
 public $editCategories = [
 "Main" => [
 
@@ -51,11 +52,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "SaleStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SaleEndDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Approved" => [
@@ -67,7 +68,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

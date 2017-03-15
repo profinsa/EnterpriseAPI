@@ -7,6 +7,7 @@ protected $gridFields =["PricingMethodID","PricingMethodDescription"];
 public $dashboardTitle ="Inventory Pricing Methods";
 public $breadCrumbTitle ="Inventory Pricing Methods";
 public $idField ="PricingMethodID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","PricingMethodID"];
 public $editCategories = [
 "Main" => [
 

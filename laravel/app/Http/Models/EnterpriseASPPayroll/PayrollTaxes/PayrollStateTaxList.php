@@ -7,6 +7,7 @@ protected $gridFields =["State","StateName","SUTARate","SUTAWageBase","SITRate",
 public $dashboardTitle ="PayrollStateTax";
 public $breadCrumbTitle ="PayrollStateTax";
 public $idField ="State";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","State"];
 public $editCategories = [
 "Main" => [
 

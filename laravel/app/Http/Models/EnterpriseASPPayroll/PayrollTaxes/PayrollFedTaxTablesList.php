@@ -7,6 +7,7 @@ protected $gridFields =["WithholdingStatus","TaxBracket","OverAmnt","NotOver","C
 public $dashboardTitle ="PayrollFedTaxTables";
 public $breadCrumbTitle ="PayrollFedTaxTables";
 public $idField ="Country";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","Country","WithholdingStatus","StatusType","TaxBracket"];
 public $editCategories = [
 "Main" => [
 

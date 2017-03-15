@@ -7,6 +7,7 @@ protected $gridFields =["ItemCategoryID","ItemFamilyID","DisplayLang","CategoryN
 public $dashboardTitle ="InventoryCategoriesDisplayLang";
 public $breadCrumbTitle ="InventoryCategoriesDisplayLang";
 public $idField ="ItemCategoryID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemCategoryID","ItemFamilyID","DisplayLang"];
 public $editCategories = [
 "Main" => [
 

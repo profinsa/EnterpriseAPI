@@ -7,6 +7,7 @@ protected $gridFields =["VendorID","BookedPurchaseOrders","CurrentAPBalance","Pu
 public $dashboardTitle ="Vendor Financials";
 public $breadCrumbTitle ="Vendor Financials";
 public $idField ="VendorID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
 public $editCategories = [
 "Main" => [
 
@@ -23,7 +24,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastPaymentDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "LastPaymentAmount" => [
@@ -91,7 +92,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastPurchaseDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PurchaseYTD" => [
@@ -123,7 +124,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastDebitMemoDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "DebitMemosYTD" => [
@@ -143,7 +144,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastReturnDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReturnsYTD" => [

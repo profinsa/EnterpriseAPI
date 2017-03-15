@@ -7,6 +7,7 @@ protected $gridFields =["PayrollID","EmployeeID","PayrollDate","PayPeriodStartDa
 public $dashboardTitle ="PayrollRegister";
 public $breadCrumbTitle ="PayrollRegister";
 public $idField ="PayrollID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","PayrollID","EmployeeID"];
 public $editCategories = [
 "Main" => [
 
@@ -19,19 +20,19 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PayrollDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PayPeriodStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PayPeriodEndDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PaidThrough" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CheckTypeID" => [
@@ -39,11 +40,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PayrollCheckDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SystemDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CheckNumber" => [

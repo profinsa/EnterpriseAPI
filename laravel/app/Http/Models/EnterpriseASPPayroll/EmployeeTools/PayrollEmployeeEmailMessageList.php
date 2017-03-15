@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeID","EmailMessageID","CommunicationType","Statu
 public $dashboardTitle ="PayrollEmployeeEmailMessage";
 public $breadCrumbTitle ="PayrollEmployeeEmailMessage";
 public $idField ="EmailMessageID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmailMessageID"];
 public $editCategories = [
 "Main" => [
 

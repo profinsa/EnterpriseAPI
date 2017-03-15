@@ -7,6 +7,7 @@ protected $gridFields =["BankID","BankRecStartDate","BankRecEndDate","GLBankAcco
 public $dashboardTitle ="Bank Reconciliation";
 public $breadCrumbTitle ="Bank Reconciliation";
 public $idField ="BankID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","BankID"];
 public $editCategories = [
 "Main" => [
 
@@ -15,11 +16,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "BankRecStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "BankRecEndDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyID" => [

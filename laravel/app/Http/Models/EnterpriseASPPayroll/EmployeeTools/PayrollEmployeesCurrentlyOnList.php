@@ -7,6 +7,7 @@ protected $gridFields =["LoginDate","EmployeeID","Status","EmployeeEmail"];
 public $dashboardTitle ="PayrollEmployeesCurrentlyOn";
 public $breadCrumbTitle ="PayrollEmployeesCurrentlyOn";
 public $idField ="LoginDate";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","LoginDate","EmployeeID"];
 public $editCategories = [
 "Main" => [
 

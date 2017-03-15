@@ -7,11 +7,12 @@ protected $gridFields =["SystemMessageAt"];
 public $dashboardTitle ="CompaniesSystemWideMessage ";
 public $breadCrumbTitle ="CompaniesSystemWideMessage ";
 public $idField ="undefined";
+public $idFields = ["CompanyID","DivisionID","DepartmentID"];
 public $editCategories = [
 "Main" => [
 
 "SystemMessageAt" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SystemMessageBy" => [

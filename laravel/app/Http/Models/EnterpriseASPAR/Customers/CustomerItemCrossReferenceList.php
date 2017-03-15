@@ -7,6 +7,7 @@ protected $gridFields =["CustomerID","CustomerItemID","CustomerItemDescription",
 public $dashboardTitle ="Customer Item Cross Reference";
 public $breadCrumbTitle ="Customer Item Cross Reference";
 public $idField ="CustomerID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID","CustomerItemID"];
 public $editCategories = [
 "Main" => [
 

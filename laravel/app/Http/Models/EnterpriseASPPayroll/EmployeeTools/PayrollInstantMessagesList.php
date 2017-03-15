@@ -7,6 +7,7 @@ protected $gridFields =["InstantMessageID","InstantMessageText","EmployeeID","Em
 public $dashboardTitle ="PayrollInstantMessages";
 public $breadCrumbTitle ="PayrollInstantMessages";
 public $idField ="InstantMessageID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","InstantMessageID"];
 public $editCategories = [
 "Main" => [
 
@@ -27,7 +28,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "TimeSent" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

@@ -7,6 +7,7 @@ protected $gridFields =["LeadTypeID","LeadTypeDescription"];
 public $dashboardTitle ="Lead Type";
 public $breadCrumbTitle ="Lead Type";
 public $idField ="LeadTypeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","LeadTypeID"];
 public $editCategories = [
 "Main" => [
 

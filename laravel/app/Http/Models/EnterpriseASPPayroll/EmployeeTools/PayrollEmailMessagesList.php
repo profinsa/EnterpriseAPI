@@ -7,6 +7,7 @@ protected $gridFields =["EmailMessageID","Sender","CCTo","Subject","Priority","T
 public $dashboardTitle ="PayrollEmailMessages";
 public $breadCrumbTitle ="PayrollEmailMessages";
 public $idField ="EmailMessageID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmailMessageID"];
 public $editCategories = [
 "Main" => [
 
@@ -35,7 +36,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "TimeSent" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

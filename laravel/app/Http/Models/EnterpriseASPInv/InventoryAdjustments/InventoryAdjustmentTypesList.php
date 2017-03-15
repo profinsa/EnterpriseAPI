@@ -7,6 +7,7 @@ protected $gridFields =["AdjustmentTypeID","AdjustmentTypeDescription"];
 public $dashboardTitle ="Inventory Adjustment Types";
 public $breadCrumbTitle ="Inventory Adjustment Types";
 public $idField ="AdjustmentTypeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","AdjustmentTypeID"];
 public $editCategories = [
 "Main" => [
 

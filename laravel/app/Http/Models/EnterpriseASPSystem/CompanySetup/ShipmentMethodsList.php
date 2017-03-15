@@ -7,6 +7,7 @@ protected $gridFields =["ShipMethodID","ShipMethodDescription","ShippingAccountN
 public $dashboardTitle ="Shipment Methods";
 public $breadCrumbTitle ="Shipment Methods";
 public $idField ="ShipMethodID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ShipMethodID"];
 public $editCategories = [
 "Main" => [
 

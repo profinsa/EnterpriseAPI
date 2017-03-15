@@ -7,6 +7,7 @@ protected $gridFields =["WorkFlowTypeID","WorkFlowResponsibleEmployee","WorkFlow
 public $dashboardTitle ="CompaniesWorkflowByEmployees";
 public $breadCrumbTitle ="CompaniesWorkflowByEmployees";
 public $idField ="WorkFlowTypeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","WorkFlowTypeID","WorkFlowResponsibleEmployee"];
 public $editCategories = [
 "Main" => [
 

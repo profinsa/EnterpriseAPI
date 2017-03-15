@@ -7,6 +7,7 @@ protected $gridFields =["ItemID","DisplayLang","ItemName","ItemDescription"];
 public $dashboardTitle ="InventoryItemsDisplayLang";
 public $breadCrumbTitle ="InventoryItemsDisplayLang";
 public $idField ="ItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID","DisplayLang"];
 public $editCategories = [
 "Main" => [
 
@@ -75,7 +76,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

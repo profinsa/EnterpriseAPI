@@ -7,6 +7,7 @@ protected $gridFields =["EmployeeID","AuditID","EntryDate","EntryTime","Document
 public $dashboardTitle ="Audit Trail History";
 public $breadCrumbTitle ="Audit Trail History";
 public $idField ="EmployeeID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","EmployeeID","AuditID"];
 public $editCategories = [
 "Main" => [
 
@@ -19,11 +20,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "EntryDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EntryTime" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "DocumentType" => [

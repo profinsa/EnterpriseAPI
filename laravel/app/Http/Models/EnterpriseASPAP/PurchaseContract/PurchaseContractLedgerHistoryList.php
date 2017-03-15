@@ -7,6 +7,7 @@ protected $gridFields =["PurchaseOrderLineNumber","NumberUsed","DateUsed"];
 public $dashboardTitle ="PurchaseContractLedgerHistory";
 public $breadCrumbTitle ="PurchaseContractLedgerHistory";
 public $idField ="";
+public $idFields = ;
 public $editCategories = [
 "Main" => [
 
@@ -27,7 +28,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "DateUsed" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

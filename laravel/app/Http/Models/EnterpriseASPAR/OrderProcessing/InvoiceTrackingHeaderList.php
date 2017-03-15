@@ -7,6 +7,7 @@ protected $gridFields =["InvoiceNumber","InvoiceDescription","EnteredBy"];
 public $dashboardTitle ="InvoiceTrackingHeader";
 public $breadCrumbTitle ="InvoiceTrackingHeader";
 public $idField ="InvoiceNumber";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
 public $editCategories = [
 "Main" => [
 
@@ -23,7 +24,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PaymentExpectedBy" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PaymentProblem" => [
@@ -47,7 +48,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

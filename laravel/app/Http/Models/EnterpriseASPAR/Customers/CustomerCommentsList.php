@@ -7,6 +7,7 @@ protected $gridFields =["CustomerID","CommentLineID","CommentDate","CommentType"
 public $dashboardTitle ="Customer Comments";
 public $breadCrumbTitle ="Customer Comments";
 public $idField ="CustomerID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID","CommentLineID"];
 public $editCategories = [
 "Main" => [
 
@@ -19,7 +20,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CommentDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CommentType" => [

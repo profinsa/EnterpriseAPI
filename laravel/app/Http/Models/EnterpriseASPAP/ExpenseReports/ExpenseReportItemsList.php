@@ -7,6 +7,7 @@ protected $gridFields =["ExpenseReportItemID","ExpenseReportItemDescription","Ex
 public $dashboardTitle ="ExpenseReportItems";
 public $breadCrumbTitle ="ExpenseReportItems";
 public $idField ="ExpenseReportItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ExpenseReportItemID"];
 public $editCategories = [
 "Main" => [
 

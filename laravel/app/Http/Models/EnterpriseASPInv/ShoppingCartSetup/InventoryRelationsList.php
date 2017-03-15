@@ -7,6 +7,7 @@ protected $gridFields =["ItemID","RelatedItemID","RelatedItemReason"];
 public $dashboardTitle ="InventoryRelations";
 public $breadCrumbTitle ="InventoryRelations";
 public $idField ="ItemID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
 public $editCategories = [
 "Main" => [
 

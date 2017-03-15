@@ -7,6 +7,7 @@ protected $gridFields =["WarehouseID","ContactID","ContactTypeID","ContactDescri
 public $dashboardTitle ="WarehousesContacts";
 public $breadCrumbTitle ="WarehousesContacts";
 public $idField ="WarehouseID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","WarehouseID","ContactID"];
 public $editCategories = [
 "Main" => [
 
@@ -95,7 +96,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ContactPasswordDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactPasswordExpires" => [
@@ -103,7 +104,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ContactPasswordExpiresDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactRegion" => [

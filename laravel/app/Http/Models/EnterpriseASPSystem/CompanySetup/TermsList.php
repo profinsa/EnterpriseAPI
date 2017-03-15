@@ -7,6 +7,7 @@ protected $gridFields =["TermsID","TermsDescription","NetDays","DiscountPercent"
 public $dashboardTitle ="Terms";
 public $breadCrumbTitle ="Terms";
 public $idField ="TermsID";
+public $idFields = ["CompanyID","DivisionID","DepartmentID","TermsID"];
 public $editCategories = [
 "Main" => [
 
