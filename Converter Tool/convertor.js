@@ -66,16 +66,17 @@ function getFieldsFromTable(table, cb){
 function generate_model(file, title, menuTitle, cb){
     var content, find, fields, groups, group, gind;
     content = "<?php\n";
-    content += "namespace App\\Models;\n require __DIR__ . \"/../../../Models/gridDataSource.php\";\n"; //for laravel
-    content += "class gridData extends gridDataSource{\n"; //for laravel
-    //content += "require \"./models/gridDataSource.php\";\n"; //for intergralx
-    //content += "class gridData extends gridDataSource{\n"; //for intergralx
+   // content += "namespace App\\Models;\n require __DIR__ . \"/../../../Models/gridDataSource.php\";\n"; //for laravel
+ //   content += "class gridData extends gridDataSource{\n"; //for laravel
+    content += "require \"./models/gridDataSource.php\";\n"; //for intergralx
+    content += "class gridData extends gridDataSource{\n"; //for intergralx
     content += "protected $tableName = \"" + file.tableName + "\";\n";
 
-    content += "protected $gridFields =" + JSON.stringify(file.gridFields) + ";\n";
+    content += "public $gridFields =" + JSON.stringify(file.gridFields) + ";\n";
     content += "public $dashboardTitle =\"" + file.label + "\";\n";
     content += "public $breadCrumbTitle =\"" + file.label + "\";\n";
     content += "public $idField =\"" + (file.keyNames ? file.keyNames[3] : '') + "\";\n";
+    content += "public $idFields = " + (file.keyNames ? JSON.stringify(file.keyNames) : '') + ";\n";
 
     content += "public $editCategories = [\n";
     groups = file.groups;
@@ -166,7 +167,7 @@ function process_model(file, title, menuTitle, cb){
 		defaultValue : ""
 	    };
 	    if(fields[ind].Type == 'datetime' || fields[ind].Type == 'timestamp'){
-		group[ind].inputType = 'datepicker';
+		group[ind].inputType = 'datetime';
 		group[ind].defaultValue = 'now';
 	    }else
 		group[ind].inputType = "text";

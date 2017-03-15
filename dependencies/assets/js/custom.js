@@ -30,6 +30,7 @@ $(document).ready(function () {
             $('.fxsdr').attr('checked', false);
         }
     });
+    
     //Loads the correct sidebar on window load,
     //collapses the sidebar on window resize.
     // Sets the min-height of #page-wrapper to window size
@@ -53,11 +54,39 @@ $(document).ready(function () {
         });
         var url = window.location;
         var element = $('ul.nav a').filter(function () {
-            return this.href == url || url.href.indexOf(this.href) == 0;
-        }).addClass('active').parent().parent().addClass('in').parent();
-        if (element.is('li')) {
-            element.addClass('active');
-        }
+	    var pattern = this.href.replace(/[=\.\:|\\\{\}\(\)\[\]\^\$\+\*\?\.]/g, "\\$&");
+	    if(url.href.match(new RegExp(pattern + "(\\&+|$)"))){
+		console.log(new RegExp(pattern + "(\\&+|$)"));
+	    }
+            return url.href.match(new RegExp(pattern + "(\\&+|$)"));
+//            return this.href == url || url.href.match(new RegExp(pattern + "(\\&+|$)"));
+        }).addClass('active').parent().parent();
+	var firstLevel = element.parent().parent();
+	if(firstLevel.hasClass('collapse'))
+	    firstLevel.collapse();
+	var twoLevel = element;
+	twoLevel.collapse();
+	var onlyOne = true;
+	twoLevel.on('shown.bs.collapse', function(e){
+	    e.stopPropagation();
+	});
+//	twoLevel.css("display", "none");
+	firstLevel.on('shown.bs.collapse', function(e){
+	    setTimeout(function(){
+		//console.log('ddd', twoLevel);
+		if(onlyOne){
+//		    twoLevel.css("display", "block");
+		    twoLevel.css("height", "100%");
+		    twoLevel.addClass("in");
+//		    console.log(twoLevel.collapse());
+		    onlyOne = false;
+		}
+	    }, 700);
+	});
+	
+	element = element.parent();
+        if (element.is('li'))
+	    element.addClass('active');
     });
     // This is for resize window
     $(function () {
