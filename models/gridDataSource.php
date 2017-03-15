@@ -201,8 +201,15 @@ class gridDataSource{
     //delete row from table
     public function deleteItem($id){
         $user = $_SESSION["user"];
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["capsule"]::delete("DELETE from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND " . $this->idField . "='" . $id ."'");
+        $GLOBALS["capsule"]::delete("DELETE from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 }
 ?>
