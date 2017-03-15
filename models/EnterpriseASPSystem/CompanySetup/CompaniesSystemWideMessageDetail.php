@@ -11,7 +11,7 @@ public $editCategories = [
 "Main" => [
 
 "SystemMessageAt" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SystemMessageBy" => [

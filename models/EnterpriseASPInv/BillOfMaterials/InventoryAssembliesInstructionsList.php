@@ -43,7 +43,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "AssemblyLastUpdated" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AssemblyLastUpdatedBy" => [

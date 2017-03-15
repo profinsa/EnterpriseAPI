@@ -27,7 +27,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CurrencyRateLastUpdate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyPrecision" => [

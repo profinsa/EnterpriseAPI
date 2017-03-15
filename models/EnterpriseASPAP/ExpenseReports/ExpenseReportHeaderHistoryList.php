@@ -19,7 +19,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ExpenseReportDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ExpenseReportForEmployee" => [
@@ -51,7 +51,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ExpenseReportPaidDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ExpenseReportPaymentID" => [
@@ -67,7 +67,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ExpenseReportApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ExpenseReportMemo1" => [

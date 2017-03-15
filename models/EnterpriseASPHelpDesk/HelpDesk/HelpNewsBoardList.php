@@ -23,7 +23,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "NewsDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "NewsMessage" => [

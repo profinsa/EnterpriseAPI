@@ -31,7 +31,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "MessageTopicDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

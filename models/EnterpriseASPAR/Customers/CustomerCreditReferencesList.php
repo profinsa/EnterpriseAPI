@@ -23,7 +23,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ReferenceDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferenceFactor" => [
@@ -31,11 +31,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ReferenceSoldSince" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferenceLastSale" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferenceHighCredit" => [
@@ -75,7 +75,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

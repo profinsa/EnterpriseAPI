@@ -27,7 +27,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "BankRecCutoffDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "BankRecEndingBalance" => [

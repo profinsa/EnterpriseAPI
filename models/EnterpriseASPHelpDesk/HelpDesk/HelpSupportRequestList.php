@@ -59,7 +59,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "SupportDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SupportQuestion" => [
@@ -83,7 +83,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "SupportResolutionDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SupportTimeSpentFixing" => [

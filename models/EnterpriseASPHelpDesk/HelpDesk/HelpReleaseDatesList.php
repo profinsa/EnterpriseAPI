@@ -23,7 +23,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ReleaseDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Notes" => [

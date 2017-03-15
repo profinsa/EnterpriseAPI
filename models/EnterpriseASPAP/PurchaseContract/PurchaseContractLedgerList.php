@@ -27,7 +27,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "DateUsed" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

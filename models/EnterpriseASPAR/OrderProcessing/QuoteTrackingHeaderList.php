@@ -27,7 +27,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ExpectedCloseDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SaleProbability" => [
@@ -55,7 +55,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

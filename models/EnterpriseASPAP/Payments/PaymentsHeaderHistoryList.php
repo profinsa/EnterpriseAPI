@@ -27,7 +27,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CheckDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Paid" => [
@@ -35,7 +35,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PaymentDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Memorize" => [
@@ -51,15 +51,15 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "SystemDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "DueToDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PurchaseDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Amount" => [
@@ -103,7 +103,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "SelectedForPaymentDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ApprovedForPayment" => [
@@ -111,7 +111,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedForPaymentDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Cleared" => [

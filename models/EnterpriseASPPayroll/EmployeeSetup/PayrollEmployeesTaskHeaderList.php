@@ -23,11 +23,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "StartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "DueDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Completed" => [
@@ -35,7 +35,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CompletedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PriorityID" => [
@@ -71,7 +71,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "DelegatedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

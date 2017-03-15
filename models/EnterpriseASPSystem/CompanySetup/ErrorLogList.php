@@ -19,11 +19,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ErrorDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ErrorTime" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ScreenName" => [
@@ -47,7 +47,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CallTime" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Error" => [

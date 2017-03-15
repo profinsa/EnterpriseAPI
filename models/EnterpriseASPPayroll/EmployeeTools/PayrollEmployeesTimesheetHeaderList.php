@@ -19,11 +19,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PeriodStart" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PeriodEnd" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Notes" => [
@@ -39,7 +39,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Processed" => [
@@ -51,7 +51,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ProcessedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

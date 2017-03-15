@@ -19,15 +19,15 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "WorkOrderDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "WorkOrderStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "WorkOrderExpectedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "WorkOrderCompleted" => [
@@ -35,11 +35,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "WorkOrderCompletedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "WorkOrderCancelDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "WorkOrderReference" => [
@@ -47,7 +47,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "WorkOrderReferenceDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "WorkOrderRequestedBy" => [
@@ -67,7 +67,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "WorkOrderApprovedByDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "WorkOrderForCompanyID" => [

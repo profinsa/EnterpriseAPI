@@ -15,7 +15,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "GLFiscalYear" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "GLAccountName" => [

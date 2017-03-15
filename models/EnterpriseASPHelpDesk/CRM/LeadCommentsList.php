@@ -19,7 +19,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CommentDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CommentType" => [

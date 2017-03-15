@@ -27,7 +27,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastPaymentDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "LastPaymentAmount" => [
@@ -103,7 +103,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastSalesDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PaymentsLastYear" => [
@@ -147,7 +147,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastCreditMemoDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CreditMemosYTD" => [
@@ -167,7 +167,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastRMADate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "RMAsYTD" => [

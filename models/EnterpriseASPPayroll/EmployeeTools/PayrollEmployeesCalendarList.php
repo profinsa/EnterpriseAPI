@@ -15,11 +15,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "AppointmenStart" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AppointmentEnd" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AppointmentReason" => [

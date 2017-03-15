@@ -95,7 +95,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ContactPasswordDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactPasswordExpires" => [
@@ -103,7 +103,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ContactPasswordExpiresDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ContactRegion" => [

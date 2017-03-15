@@ -55,7 +55,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ProblemDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ProblemShortDescription" => [
@@ -87,7 +87,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ProblemFixDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ProblemFix" => [

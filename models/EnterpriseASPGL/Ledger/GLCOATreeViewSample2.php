@@ -195,7 +195,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "GLPriorFiscalYear" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "GLPriorYearBeginningBalance" => [

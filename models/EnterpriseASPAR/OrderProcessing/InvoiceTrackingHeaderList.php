@@ -23,7 +23,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PaymentExpectedBy" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PaymentProblem" => [
@@ -47,7 +47,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

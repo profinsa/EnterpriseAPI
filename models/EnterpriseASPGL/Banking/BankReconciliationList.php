@@ -15,11 +15,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "BankRecStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "BankRecEndDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyID" => [

@@ -27,7 +27,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "TimeSent" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

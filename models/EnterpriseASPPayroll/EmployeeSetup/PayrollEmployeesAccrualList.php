@@ -23,7 +23,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastAccrued" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Active" => [
@@ -39,7 +39,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AccrualID" => [

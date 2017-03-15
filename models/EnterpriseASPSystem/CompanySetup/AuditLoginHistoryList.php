@@ -19,7 +19,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LoginDateTime" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "MachineName" => [

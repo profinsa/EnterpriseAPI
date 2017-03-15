@@ -27,23 +27,23 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "InvoiceDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "InvoiceDueDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "InvoiceShipDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "InvoiceCancelDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SystemDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Memorize" => [
@@ -199,19 +199,19 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ScheduledStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ScheduledEndDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ServiceStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ServiceEndDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PerformedBy" => [
@@ -243,7 +243,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CheckDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CreditCardTypeID" => [
@@ -259,7 +259,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CreditCardExpDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CreditCardCSVNumber" => [
@@ -283,7 +283,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PickedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Printed" => [
@@ -291,7 +291,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PrintedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Shipped" => [
@@ -299,7 +299,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ShipDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "TrackingNumber" => [
@@ -311,7 +311,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "BilledDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Backordered" => [
@@ -323,7 +323,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "PostedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "AllowanceDiscountPerc" => [
@@ -339,7 +339,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "MasterBillOfLadingDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "TrailerNumber" => [
@@ -395,7 +395,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [

@@ -43,7 +43,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LastCountDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

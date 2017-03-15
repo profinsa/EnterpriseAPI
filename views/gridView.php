@@ -119,7 +119,7 @@
 		 ]
 	     });
 
-	     jQuery('.fdatepicker').datepicker({
+	     jQuery('.fdatetime').datepicker({
 		 autoclose : true,
 		 format: {
 		     toDisplay: function (date, format, language) {

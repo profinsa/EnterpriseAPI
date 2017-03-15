@@ -19,7 +19,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "SurveyDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "QuestionOne" => [

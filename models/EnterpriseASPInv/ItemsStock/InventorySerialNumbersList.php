@@ -51,7 +51,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "DateReceived" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "OriginalLotOrderQty" => [
@@ -63,7 +63,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "LotExpirationDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SerialNumberComment" => [

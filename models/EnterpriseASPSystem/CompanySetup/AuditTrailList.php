@@ -19,11 +19,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "EntryDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EntryTime" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "DocumentType" => [

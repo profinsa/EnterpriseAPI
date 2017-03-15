@@ -27,7 +27,7 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "CrossSellItemPromotionEnds" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ]
 ]];

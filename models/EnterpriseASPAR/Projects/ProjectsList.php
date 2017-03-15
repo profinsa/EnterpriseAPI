@@ -31,11 +31,11 @@ public $editCategories = [
 "defaultValue" => ""
 ],
 "ProjectStartDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ProjectCompleteDate" => [
-"inputType" => "datepicker",
+"inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyID" => [

@@ -56,7 +56,7 @@
 			    echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
 			    break;
 			case "timestamp" :
-			case "datepicker" :
+			case "datetime" :
 			    echo date("m/d/y", strtotime($value));
 			    break;
 			case "text":
