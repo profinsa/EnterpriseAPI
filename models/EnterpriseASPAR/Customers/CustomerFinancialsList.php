@@ -2,183 +2,257 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customerfinancials";
-public $gridFields =["CustomerID","BookedOrders","CurrentARBalance","SalesYTD","PaymentsYTD","InvoicesYTD","LastSalesDate"];
 public $dashboardTitle ="Customer Financials";
 public $breadCrumbTitle ="Customer Financials";
 public $idField ="CustomerID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
+public $gridFields = [
+
+"CustomerID" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"BookedOrders" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"CurrentARBalance" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"SalesYTD" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"PaymentsYTD" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"InvoicesYTD" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"LastSalesDate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "CustomerID" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AvailibleCredit" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "LateDays" => [
+"dbType" => "smallint(6)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AverageDaytoPay" => [
+"dbType" => "smallint(6)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "LastPaymentDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "LastPaymentAmount" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "HighestCredit" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "HighestBalance" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PromptPerc" => [
+"dbType" => "float",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "BookedOrders" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AdvertisingDollars" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "TotalAR" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CurrentARBalance" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Under30" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Over30" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Over60" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Over90" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Over120" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Over150" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Over180" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SalesYTD" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SalesLastYear" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SalesLifetime" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "LastSalesDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "PaymentsLastYear" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PaymentsLifetime" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PaymentsYTD" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "WriteOffsYTD" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "WriteOffsLastYear" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "WriteOffsLifetime" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "InvoicesYTD" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "InvoicesLastYear" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "InvoicesLifetime" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CreditMemos" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "LastCreditMemoDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CreditMemosYTD" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CreditMemosLastYear" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CreditMemosLifetime" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RMAs" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "LastRMADate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "RMAsYTD" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RMAsLastYear" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "RMAsLifetime" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

@@ -2,83 +2,128 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customercreditreferences";
-public $gridFields =["CustomerID","ReferenceID","ReferenceName","ReferenceDate","ReferenceSoldSince","ReferenceHighCredit"];
 public $dashboardTitle ="Customer Credit References";
 public $breadCrumbTitle ="Customer Credit References";
 public $idField ="CustomerID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID","ReferenceID"];
+public $gridFields = [
+
+"CustomerID" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"ReferenceID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"ReferenceName" => [
+    "dbType" => "varchar(30)",
+    "inputType" => "text"
+],
+"ReferenceDate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+],
+"ReferenceSoldSince" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+],
+"ReferenceHighCredit" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "CustomerID" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferenceID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferenceName" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferenceDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferenceFactor" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferenceSoldSince" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferenceLastSale" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "ReferenceHighCredit" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferenceCurrentBalance" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferencePastDue" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferencePromptPerc" => [
+"dbType" => "float",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferenceLateDays" => [
+"dbType" => "int(11)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferenceFutures" => [
+"dbType" => "varchar(30)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ReferenceComments" => [
+"dbType" => "varchar(250)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Approved" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApprovedBy" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

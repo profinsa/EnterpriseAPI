@@ -2,19 +2,32 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollitemtypes";
-public $gridFields =["PayrollItemTypeID","PayrollItemTypeDescription"];
 public $dashboardTitle ="PayrollItemTypes";
 public $breadCrumbTitle ="PayrollItemTypes";
 public $idField ="PayrollItemTypeID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","PayrollItemTypeID"];
+public $gridFields = [
+
+"PayrollItemTypeID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"PayrollItemTypeDescription" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "PayrollItemTypeID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PayrollItemTypeDescription" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

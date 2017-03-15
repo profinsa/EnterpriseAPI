@@ -2,15 +2,23 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "ledgeraccounttypes";
-public $gridFields =["GLAccountType"];
 public $dashboardTitle ="Ledger Account Types";
 public $breadCrumbTitle ="Ledger Account Types";
 public $idField ="GLAccountType";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","GLAccountType"];
+public $gridFields = [
+
+"GLAccountType" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "GLAccountType" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

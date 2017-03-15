@@ -2,215 +2,285 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollsetup";
-public $gridFields =["FederalTaxIDNumber","StateTaxIDNumber","CountyTaxIDNumber","GLPayrollCashAccount"];
 public $dashboardTitle ="PayrollSetup";
 public $breadCrumbTitle ="PayrollSetup";
 public $idField ="undefined";
 public $idFields = ["CompanyID","DivisionID","DepartmentID"];
+public $gridFields = [
+
+"FederalTaxIDNumber" => [
+    "dbType" => "varchar(15)",
+    "inputType" => "text"
+],
+"StateTaxIDNumber" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"CountyTaxIDNumber" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"GLPayrollCashAccount" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "FederalTaxIDNumber" => [
+"dbType" => "varchar(15)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "State" => [
+"dbType" => "varchar(20)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "StateTaxIDNumber" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "County" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CountyTaxIDNumber" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CityName" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CityTaxIDNumber" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FITRate" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FITWageBase" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FICARate" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FICAEmployerPortion" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FICAWageBase" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FUTARate" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FUTAWageBase" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SUTARate" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SUTAWageBase" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SITRate" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SITWageBase" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SDIRate" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SDIWageBase" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SSIRate" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SSIWageBase" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FICAMedRate" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FICAMedWageBase" => [
+"dbType" => "double",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CreatePayroll" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PayCommissions" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "OTAfter" => [
+"dbType" => "int(11)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLFITPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLFITExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLFICAPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLFICAExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLFUTAPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLFUTAExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLSUTAPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLSUTAExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLSITPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLSITExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLSDIPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLSDIExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLFICAMedPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLFICAMedExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPayrollCashAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLLocalPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLSalesPayrollExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLOfficePayrollExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLWarehousePayrollExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLProductionPayrollExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLOvertimePayrollExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLWagesPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLPayrollTaxExpenseAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "GLBonusPayrollAccount" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

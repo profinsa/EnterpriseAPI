@@ -2,43 +2,74 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "currencytypes";
-public $gridFields =["CurrencyID","CurrencyType","CurrenycySymbol","CurrencyExchangeRate","CurrencyRateLastUpdate"];
 public $dashboardTitle ="Currencies";
 public $breadCrumbTitle ="Currencies";
 public $idField ="CurrencyID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","CurrencyID"];
+public $gridFields = [
+
+"CurrencyID" => [
+    "dbType" => "varchar(3)",
+    "inputType" => "text"
+],
+"CurrencyType" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"CurrenycySymbol" => [
+    "dbType" => "varchar(1)",
+    "inputType" => "text"
+],
+"CurrencyExchangeRate" => [
+    "dbType" => "float",
+    "inputType" => "text"
+],
+"CurrencyRateLastUpdate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "CurrencyID" => [
+"dbType" => "varchar(3)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CurrencyType" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CurrenycySymbol" => [
+"dbType" => "varchar(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CurrencyExchangeRate" => [
+"dbType" => "float",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CurrencyRateLastUpdate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "CurrencyPrecision" => [
+"dbType" => "int(11)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "MajorUnits" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "MinorUnits" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

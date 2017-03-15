@@ -63,7 +63,7 @@ function getFieldsFromTable(table, cb){
     });
 }
 
-function generate_model(file, title, menuTitle, cb){
+function generate_model(file, title, menuTitle, tableFields, cb){
     var content, find, fields, groups, group, gind;
     content = "<?php\n";
    // content += "namespace App\\Models;\n require __DIR__ . \"/../../../Models/gridDataSource.php\";\n"; //for laravel
@@ -72,12 +72,30 @@ function generate_model(file, title, menuTitle, cb){
     content += "class gridData extends gridDataSource{\n"; //for intergralx
     content += "protected $tableName = \"" + file.tableName + "\";\n";
 
-    content += "public $gridFields =" + JSON.stringify(file.gridFields) + ";\n";
     content += "public $dashboardTitle =\"" + file.label + "\";\n";
     content += "public $breadCrumbTitle =\"" + file.label + "\";\n";
     content += "public $idField =\"" + (file.keyNames ? file.keyNames[3] : '') + "\";\n";
     content += "public $idFields = " + (file.keyNames ? JSON.stringify(file.keyNames) : '') + ";\n";
 
+    content += "public $gridFields = [\n";
+    var inputType, field;
+    for(find in file.gridFields){
+	if(tableFields[file.gridFields[find]]){
+	    field = tableFields[file.gridFields[find]];
+	//    console.log(JSON.stringify(tableFields[file.gridFields[find]]), file.gridFields[find]);
+	    if(field.Type == 'datetime' || field.Type == 'timestamp')
+		inputType = 'datetime';
+	    else
+		inputType = "text";
+	    content += "\n\"" + file.gridFields[find] + "\" => [\n" +
+		"    \"dbType\" => \"" + field.Type + "\",\n" +
+		"    \"inputType\" => \"" + inputType + "\"\n" +
+		"],";
+	}
+    }
+    content = content.substring(0, content.length - 1);
+    content += "\n];\n\n";
+    
     content += "public $editCategories = [\n";
     groups = file.groups;
     for(gind in groups){
@@ -86,6 +104,7 @@ function generate_model(file, title, menuTitle, cb){
 	group = groups[gind];
 	for(find in group){
 	    content += "\n\"" + find + "\" => [\n" +
+		"\"dbType\" => \"" + group[find].dbType + "\",\n" +
 		"\"inputType\" => \"" + group[find].inputType + "\",\n" +
 		"\"defaultValue\" => \"" + group[find].defaultValue + "\"\n" +
 		(group[find].hasOwnProperty("disabledEdit") ? ",\"disabledEdit\" => \"" + group[find].disabledEdit + "\"\n" : "") +
@@ -134,7 +153,7 @@ function generate_models(files, menuTitle, fcounter, notGenerateMenu){
 	process_model(files[ind], ind, menuTitle, function(err, _menuCategories){
 	    _fcounter++;
 	    menuCategories += err ? '' : _menuCategories;
-	    console.log(_fcounter, fcounter);
+	    //console.log(_fcounter, fcounter);
 	    if(_fcounter == fcounter){
 		menuCategories = menuCategories.substring(0, menuCategories.length - 1);
 		menuCategories += "\n]\n];\n";
@@ -166,6 +185,7 @@ function process_model(file, title, menuTitle, cb){
 	    group[ind] = {
 		defaultValue : ""
 	    };
+	    group[ind].dbType = fields[ind].Type;
 	    if(fields[ind].Type == 'datetime' || fields[ind].Type == 'timestamp'){
 		group[ind].inputType = 'datetime';
 		group[ind].defaultValue = 'now';
@@ -173,7 +193,7 @@ function process_model(file, title, menuTitle, cb){
 		group[ind].inputType = "text";
 	}
 	//	    console.log(JSON.stringify(file, null, 3));
-	generate_model(file, title, menuTitle, cb);
+	generate_model(file, title, menuTitle, fields,  cb);
     });
     //  }else{
     //	console.log(JSON.stringify(file, null, 3));
@@ -304,7 +324,7 @@ function make_all(){
 
     for(ind in menu){
 	smenu = menu[ind].Node;
-	console.log(menu[ind]._ObjectName, menu[ind]._Text); 
+	//console.log(menu[ind]._ObjectName, menu[ind]._Text); 
 	menuCategories += "$menuCategories[\"" + menu[ind]._Text.replace(/[\'\s"]/g,"") +  "\"] = [\n" +
 	    "\"type\" => \"submenu\",\n" +
 	    "\"id\" => \"" + menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
@@ -312,7 +332,7 @@ function make_all(){
 	    "\"short\" => \"" + menu[ind]._Text.substring(0, 2) + "\",\n"+
 	    "\"data\" => [\n";
 	for(sind in smenu){
-	    console.log('  ', smenu[sind]._ObjectName, smenu[sind]._Text); 
+	    //console.log('  ', smenu[sind]._ObjectName, smenu[sind]._Text); 
 	    items = smenu[sind].Node;
 	    menuCategories += "\n    [\n" +
 		"    \"type\" => \"submenu\",\n" +

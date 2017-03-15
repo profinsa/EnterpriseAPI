@@ -21,7 +21,7 @@
      grid model
      app as model
 
-     Last Modified: 09.03.2016
+     Last Modified: 15.03.2016
      Last Modified by: Nikita Zaharov
    -->
 <div id="row_viewer">

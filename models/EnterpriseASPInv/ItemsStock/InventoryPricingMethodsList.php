@@ -2,19 +2,32 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventorypricingmethods";
-public $gridFields =["PricingMethodID","PricingMethodDescription"];
 public $dashboardTitle ="Inventory Pricing Methods";
 public $breadCrumbTitle ="Inventory Pricing Methods";
 public $idField ="PricingMethodID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","PricingMethodID"];
+public $gridFields = [
+
+"PricingMethodID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"PricingMethodDescription" => [
+    "dbType" => "varchar(80)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "PricingMethodID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PricingMethodDescription" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

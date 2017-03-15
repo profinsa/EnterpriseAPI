@@ -2,19 +2,32 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "vendortypes";
-public $gridFields =["VendorTypeID","VendorTypeDescription"];
 public $dashboardTitle ="Vendor Types";
 public $breadCrumbTitle ="Vendor Types";
 public $idField ="VendorTypeID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","VendorTypeID"];
+public $gridFields = [
+
+"VendorTypeID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"VendorTypeDescription" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "VendorTypeID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VendorTypeDescription" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

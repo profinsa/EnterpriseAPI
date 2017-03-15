@@ -21,7 +21,7 @@
      grid model
      app as model
 
-     Last Modified: 09.03.2016
+     Last Modified: 15.03.2016
      Last Modified by: Nikita Zaharov
    -->
 
@@ -39,7 +39,7 @@
 		    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 		    if(count($rows)){
 			foreach($rows[0] as $key =>$value)
-			    if(in_array($key, $data->gridFields))
+			    if(key_exists($key, $data->gridFields))
 				echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
 		    }
 		    ?>
@@ -63,8 +63,23 @@
 			    echo "<span onclick=\"deleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
 			echo "</td>";
 			foreach($row as $key=>$value)
-			    if(in_array($key, $data->gridFields))
-				echo "<td>$value</td>";
+			    if(key_exists($key, $data->gridFields)){
+				echo "<td>\n";
+				switch($data->gridFields[$key]["inputType"]){
+				    case "checkbox" :
+					echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
+					break;
+				    case "timestamp" :
+				    case "datetime" :
+					echo date("m/d/y", strtotime($value));
+					break;
+				    case "text":
+				    case "dropdown":
+					echo $value;
+					break;
+				}
+				echo "</td>\n";
+			    }
 			echo "</tr>";
 		    }
 		}

@@ -2,75 +2,118 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventorypricingcode";
-public $gridFields =["ItemID","ItemPricingCode","Price","SalesPrice","SaleStartDate","SaleEndDate"];
 public $dashboardTitle ="Inventory Pricing Code";
 public $breadCrumbTitle ="Inventory Pricing Code";
 public $idField ="ItemID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID","ItemPricingCode"];
+public $gridFields = [
+
+"ItemID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"ItemPricingCode" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"Price" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"SalesPrice" => [
+    "dbType" => "decimal(19,4)",
+    "inputType" => "text"
+],
+"SaleStartDate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+],
+"SaleEndDate" => [
+    "dbType" => "datetime",
+    "inputType" => "datetime"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "ItemID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ItemPricingCode" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CurrencyID" => [
+"dbType" => "varchar(3)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CurrencyExchangeRate" => [
+"dbType" => "float",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Price" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "MSRP" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "HotItem" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FeaturedItem" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SaleItem" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SalesPrice" => [
+"dbType" => "decimal(19,4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SaleStartDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "SaleEndDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "Approved" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApprovedBy" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ],
 "EnteredBy" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

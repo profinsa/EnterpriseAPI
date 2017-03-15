@@ -2,19 +2,32 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "helpstatus";
-public $gridFields =["StatusId","StatusDescription"];
 public $dashboardTitle ="Help Statuses";
 public $breadCrumbTitle ="Help Statuses";
 public $idField ="StatusId";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","StatusId"];
+public $gridFields = [
+
+"StatusId" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"StatusDescription" => [
+    "dbType" => "varchar(120)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "StatusId" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "StatusDescription" => [
+"dbType" => "varchar(120)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

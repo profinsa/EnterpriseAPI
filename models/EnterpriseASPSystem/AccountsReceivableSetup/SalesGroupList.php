@@ -2,39 +2,69 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "salesgroup";
-public $gridFields =["SalesGroupID","EmployeeID","SalesGroupSupervisor","ComissionPerc","ComissionType"];
 public $dashboardTitle ="SalesGroup";
 public $breadCrumbTitle ="SalesGroup";
 public $idField ="SalesGroupID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","SalesGroupID","EmployeeID"];
+public $gridFields = [
+
+"SalesGroupID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"EmployeeID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"SalesGroupSupervisor" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"ComissionPerc" => [
+    "dbType" => "float",
+    "inputType" => "text"
+],
+"ComissionType" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "SalesGroupID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EmployeeID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SalesGroupDescription" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SalesGroupSupervisor" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SplitCommission" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ComissionPerc" => [
+"dbType" => "float",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ComissionType" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

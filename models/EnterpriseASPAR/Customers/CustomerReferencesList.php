@@ -2,215 +2,301 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customerreferences";
-public $gridFields =["CustomerID","ReferenceID","CompanyName","ProjectName","Country","FirstName","LastName","MiddleName"];
 public $dashboardTitle ="CustomerReferences";
 public $breadCrumbTitle ="CustomerReferences";
 public $idField ="ReferenceID";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","ReferenceID","CustomerID"];
+public $gridFields = [
+
+"CustomerID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"ReferenceID" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"CompanyName" => [
+    "dbType" => "varchar(80)",
+    "inputType" => "text"
+],
+"ProjectName" => [
+    "dbType" => "varchar(80)",
+    "inputType" => "text"
+],
+"Country" => [
+    "dbType" => "varchar(80)",
+    "inputType" => "text"
+],
+"FirstName" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"LastName" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+],
+"MiddleName" => [
+    "dbType" => "varchar(50)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "ReferenceID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CustomerID" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Permission" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "CompanyName" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ProjectName" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PerferedLanguage" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Country" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AddressLine1" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AddressLine2" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AddressLine3" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "City" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "State" => [
+"dbType" => "varchar(40)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Zip" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "FirstName" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "LastName" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "MiddleName" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "AdditionalLastName" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Title" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Salutation" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Email" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PhoneCountry" => [
+"dbType" => "varchar(4)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PhoneArea" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PhoneNumber" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PhoneExt" => [
+"dbType" => "varchar(10)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertConsumerBusinessMfg" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertEducation" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertFinancial" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertGeneral" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertGovernment" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertHealthcare" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertIndustrialManagement" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertMedia" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertNonProfit" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertProfessional" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertRetail" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "VertTelecommunications" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ImplementedCompanyWide" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ImplementedWithinDepartments" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DeptHumanResources" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DeptInformationTechnology" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DeptAccountingFinance" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DeptResearch" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DeptMarketing" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DeptTravel" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DeptSales" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DeptDistributionWarehouse" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DeptOther" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "NumberOfEmployees" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "NumberOfUsers" => [
+"dbType" => "varchar(50)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DescribeProject" => [
+"dbType" => "varchar(999)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "DescriptSolution" => [
+"dbType" => "varchar(999)",
 "inputType" => "text",
 "defaultValue" => ""
 ]

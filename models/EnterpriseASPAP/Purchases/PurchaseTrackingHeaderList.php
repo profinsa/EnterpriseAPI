@@ -2,47 +2,79 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "purchasetrackingheader";
-public $gridFields =["PurchaseNumber","PurchaseDescription","SpecialInstructions","SpecialNeeds","EnteredBy"];
 public $dashboardTitle ="PurchaseTrackingHeader";
 public $breadCrumbTitle ="PurchaseTrackingHeader";
 public $idField ="PurchaseNumber";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
+public $gridFields = [
+
+"PurchaseNumber" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+],
+"PurchaseDescription" => [
+    "dbType" => "varchar(80)",
+    "inputType" => "text"
+],
+"SpecialInstructions" => [
+    "dbType" => "varchar(255)",
+    "inputType" => "text"
+],
+"SpecialNeeds" => [
+    "dbType" => "varchar(255)",
+    "inputType" => "text"
+],
+"EnteredBy" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+]
+];
+
 public $editCategories = [
 "Main" => [
 
 "PurchaseNumber" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PurchaseDescription" => [
+"dbType" => "varchar(80)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "PurchaseLongDescription" => [
+"dbType" => "varchar(255)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SpecialInstructions" => [
+"dbType" => "varchar(255)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "SpecialNeeds" => [
+"dbType" => "varchar(255)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "EnteredBy" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "Approved" => [
+"dbType" => "tinyint(1)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApprovedBy" => [
+"dbType" => "varchar(36)",
 "inputType" => "text",
 "defaultValue" => ""
 ],
 "ApprovedDate" => [
+"dbType" => "datetime",
 "inputType" => "datetime",
 "defaultValue" => "now"
 ]
