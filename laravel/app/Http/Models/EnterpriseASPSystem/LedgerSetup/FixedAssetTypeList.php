@@ -3,7 +3,7 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "fixedassettype";
-protected $gridFields =["AssetTypeID","AssetTypeDescription"];
+public $gridFields =["AssetTypeID","AssetTypeDescription"];
 public $dashboardTitle ="Fixed Asset Type";
 public $breadCrumbTitle ="Fixed Asset Type";
 public $idField ="AssetTypeID";

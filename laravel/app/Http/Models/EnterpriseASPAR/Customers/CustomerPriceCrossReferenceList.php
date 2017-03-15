@@ -3,7 +3,7 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customerpricecrossreference";
-protected $gridFields =["CustomerID","ItemPricingCode","ItemPrice","Freight","Handling","Advertising","Shipping"];
+public $gridFields =["CustomerID","ItemPricingCode","ItemPrice","Freight","Handling","Advertising","Shipping"];
 public $dashboardTitle ="Customer Price Cross Reference";
 public $breadCrumbTitle ="Customer Price Cross Reference";
 public $idField ="CustomerID";

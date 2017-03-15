@@ -3,7 +3,7 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "commenttypes";
-protected $gridFields =["CommentType"];
+public $gridFields =["CommentType"];
 public $dashboardTitle ="Comment Types";
 public $breadCrumbTitle ="Comment Types";
 public $idField ="CommentType";

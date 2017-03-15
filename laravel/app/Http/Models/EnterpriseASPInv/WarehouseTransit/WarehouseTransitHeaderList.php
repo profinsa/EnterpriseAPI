@@ -3,7 +3,7 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "warehousetransitheader";
-protected $gridFields =["TransitID","TransitEnteredDate","TransitETAlDate","TransitShipVia","TransitShipDate","TransitTrailerPrefix","TransitShippingInstructions","TransitReceivedDate","TransitRequestedBy","ApprovedBy","ApprovedDate","EnteredBy","TransitHeaderMemo1","TransitHeaderMemo2","TransitHeaderMemo3","TransitHeaderMemo4","TransitHeaderMemo5","TransitHeaderMemo6","TransitHeaderMemo7","TransitHeaderMemo8","TransitHeaderMemo9","TransitHeaderMemo10","Signature","SignaturePassword","SupervisorSignature","SupervisorSignaturePassword","ManagerSignature","ManagerSignaturePassword"];
+public $gridFields =["TransitID","TransitEnteredDate","TransitETAlDate","TransitShipVia","TransitShipDate","TransitTrailerPrefix","TransitShippingInstructions","TransitReceivedDate","TransitRequestedBy","ApprovedBy","ApprovedDate","EnteredBy","TransitHeaderMemo1","TransitHeaderMemo2","TransitHeaderMemo3","TransitHeaderMemo4","TransitHeaderMemo5","TransitHeaderMemo6","TransitHeaderMemo7","TransitHeaderMemo8","TransitHeaderMemo9","TransitHeaderMemo10","Signature","SignaturePassword","SupervisorSignature","SupervisorSignaturePassword","ManagerSignature","ManagerSignaturePassword"];
 public $dashboardTitle ="WarehouseTransitHeader";
 public $breadCrumbTitle ="WarehouseTransitHeader";
 public $idField ="TransitID";

@@ -3,7 +3,7 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "leadinformation";
-protected $gridFields =["LeadID","LeadLastName","LeadFirstName","LeadEmail","LeadLogin","LeadPassword","Hot","Confirmed"];
+public $gridFields =["LeadID","LeadLastName","LeadFirstName","LeadEmail","LeadLogin","LeadPassword","Hot","Confirmed"];
 public $dashboardTitle ="Lead Information";
 public $breadCrumbTitle ="Lead Information";
 public $idField ="LeadID";

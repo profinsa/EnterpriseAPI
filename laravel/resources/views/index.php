@@ -215,7 +215,7 @@
 		  })
 		  .error(function(){
 //		      window.location = "<?php echo $public_prefix; ?>/login";
-		      window.location = "<?php echo $public_prefix; ?>/ByPassLogin";
+//		      window.location = "<?php echo $public_prefix; ?>/ByPassLogin";
 		  });
 	     }
 	 }

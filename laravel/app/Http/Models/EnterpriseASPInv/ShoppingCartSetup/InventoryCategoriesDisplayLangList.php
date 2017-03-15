@@ -3,7 +3,7 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventorycategoriesdisplaylang";
-protected $gridFields =["ItemCategoryID","ItemFamilyID","DisplayLang","CategoryName","CategoryDescription"];
+public $gridFields =["ItemCategoryID","ItemFamilyID","DisplayLang","CategoryName","CategoryDescription"];
 public $dashboardTitle ="InventoryCategoriesDisplayLang";
 public $breadCrumbTitle ="InventoryCategoriesDisplayLang";
 public $idField ="ItemCategoryID";

@@ -3,7 +3,7 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "helpsupportrequesttype";
-protected $gridFields =["SupportRequestType","SupportRequestTypeDescription"];
+public $gridFields =["SupportRequestType","SupportRequestTypeDescription"];
 public $dashboardTitle ="Support Request Types";
 public $breadCrumbTitle ="Support Request Types";
 public $idField ="SupportRequestType";

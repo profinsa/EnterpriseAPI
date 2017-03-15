@@ -3,7 +3,7 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "ledgerchartofaccountsprioryears";
-protected $gridFields =["GLAccountNumber","GLFiscalYear","GLBudgetID","GLAccountName","GLAccountDescription","GLAccountUse","GLAccountType","GLBalanceType","GLAccountBalance"];
+public $gridFields =["GLAccountNumber","GLFiscalYear","GLBudgetID","GLAccountName","GLAccountDescription","GLAccountUse","GLAccountType","GLBalanceType","GLAccountBalance"];
 public $dashboardTitle ="Prior Fiscal Year Balances";
 public $breadCrumbTitle ="Prior Fiscal Year Balances";
 public $idField ="GLAccountNumber";

@@ -3,7 +3,7 @@ namespace App\Models;
  require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "companies";
-protected $gridFields =["FiscalStartDate","FiscalEndDate","CurrentFiscalYear","CurrentPeriod","Period1Date","Period2Date","Period3Date","Period4Date","Period5Date","Period6Date","Period7Date","Period8Date","Period9Date","Period10Date","Period11Date","Period12Date","Period13Date","Period14Date"];
+public $gridFields =["FiscalStartDate","FiscalEndDate","CurrentFiscalYear","CurrentPeriod","Period1Date","Period2Date","Period3Date","Period4Date","Period5Date","Period6Date","Period7Date","Period8Date","Period9Date","Period10Date","Period11Date","Period12Date","Period13Date","Period14Date"];
 public $dashboardTitle ="Period Close ";
 public $breadCrumbTitle ="Period Close ";
 public $idField ="undefined";
