@@ -89,7 +89,7 @@
 		</div>
 	    </div>
 	    <!-- /#wrapper -->
-	    <script src="dependencies/assets/js/custom.min.js"></script>
+	    <script src="dependencies/assets/js/custom.js"></script>
 	    <!-- <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"</script> -->
 	    <script src="dependencies/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>

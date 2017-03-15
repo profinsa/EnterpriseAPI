@@ -56,11 +56,14 @@ $(document).ready(function () {
         var element = $('ul.nav a').filter(function () {
 	    var pattern = this.href.replace(/[=\.\:|\\\{\}\(\)\[\]\^\$\+\*\?\.]/g, "\\$&");
 	    if(url.href.match(new RegExp(pattern + "(\\&+|$)"))){
-		console.log(new RegExp(pattern + "(\\&+|$)"));
+//		console.log(url.href);
+//		console.log(new RegExp(pattern + "(\\&+|$)"));
 	    }
             return url.href.match(new RegExp(pattern + "(\\&+|$)"));
 //            return this.href == url || url.href.match(new RegExp(pattern + "(\\&+|$)"));
-        }).addClass('active').parent().parent();
+        });
+	element.addClass('active');
+	element = element.parent().parent();
 	var firstLevel = element.parent().parent();
 	if(firstLevel.hasClass('collapse'))
 	    firstLevel.collapse();
@@ -85,7 +88,7 @@ $(document).ready(function () {
 	});
 	
 	element = element.parent();
-        if (element.is('li'))
+        if(element.is('li'))
 	    element.addClass('active');
     });
     // This is for resize window
