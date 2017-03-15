@@ -23,21 +23,18 @@ created and used for ajax requests by controllers/GeneralLedger/banckAccounts.ph
 used as model by views/GeneralLedger/backAccounts.php
 
 Calls:
-DB
+sql
 
-Last Modified: 23.02.2016
+Last Modified: 15.03.2016
 Last Modified by: Nikita Zaharov
 */
 
-namespace App\Models;
-
-require __DIR__ . "/../../Models/gridDataSource.php";
-use Session;
+require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "bankaccounts";
     //fields to render in grid
-    protected $gridFields = [
+    public $gridFields = [
         "BankID",
         "BankAccountNumber",
         "BankName",
@@ -48,6 +45,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle = "Bank Accounts";
     public $breadCrumbTitle = "Bank Accounts";
     public $idField = "BankAccountNumber";
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "BankAccountNumber"];
     
     //categories which contains table columns, used by view for render tabs and them content
     public $editCategories = [

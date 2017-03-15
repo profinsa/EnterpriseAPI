@@ -25,20 +25,20 @@ used as model by views/GeneralLedger/chartOfAccounts.php
 Calls:
 sql
 
-Last Modified: 23.02.2016
+Last Modified: 15.03.2016
 Last Modified by: Nikita Zaharov
 */
 
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
-require __DIR__ . "/../../Models/gridDataSource.php";
+require __DIR__ . "/../../../Models/gridDataSource.php";
 use Session;
 
 class gridData extends gridDataSource{
     protected $tableName = "ledgerchartofaccounts"; //table name which used for read and write fields
     //fields to render in grid
-    protected $gridFields = [ //field list for showing in grid mode(columns)
+    public $gridFields = [ //field list for showing in grid mode(columns)
             "GLAccountNumber",
             "GLAccountCode",
             "GLAccountName",
@@ -50,6 +50,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle = "Chart Of Accounts"; //title in dashboard
     public $breadCrumbTitle = "Chart Of Accounts"; //title in breadCrumb
     public $idField = "GLAccountNumber"; //fieldname in database on which is selecting(CompanyID, DevisionID, DepartmentID, GLAccountNumber)
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "GLAccountNumber"];
 
     /*categories which contains table columns, used by view for render tabs and them content
       It's array, each item - category name(Main, Current etc)

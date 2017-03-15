@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/ledgerAccountGroup.php
 Calls:
 sql
 
-Last Modified: 06.03.2016
+Last Modified: 15.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -35,7 +35,7 @@ class gridData extends gridDataSource{
     protected $tableName = "ledgeraccountgroup";
 
     //fields to render in grid
-    protected $gridFields = [
+    public $gridFields = [
         "GLAccountGroupID",
         "GLAccountGroupName",
         "GLAccountGroupBalance",
@@ -47,7 +47,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle = "Ledger Account Group";
     public $breadCrumbTitle = "Ledger Account Group";
     public $idField = "GLAccountGroupID";
-    
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "GLAccountGroupID"];    
     //categories which contains table columns, used by view for render tabs and them content
     public $editCategories = [
         "Main" => [

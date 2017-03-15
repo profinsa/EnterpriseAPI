@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/backAccounts.php
 Calls:
 sql
 
-Last Modified: 06.03.2016
+Last Modified: 15.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -34,7 +34,7 @@ require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     protected $tableName = "banktransactions";
     //fields to render in grid
-    protected $gridFields = [ 	 	
+    public $gridFields = [ 	 	
         "BankTransactionID",
         "BankDocumentNumber",
         "TransactionType",
@@ -47,6 +47,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle = "Bank Transactions";
     public $breadCrumbTitle = "Bank Transactions";
     public $idField = "BankTransactionID";
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "BankTransactionID"];
     
     //categories which contains table columns, used by view for render tabs and them content
     public $editCategories = [

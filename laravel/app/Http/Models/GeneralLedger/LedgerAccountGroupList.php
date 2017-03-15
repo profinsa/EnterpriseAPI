@@ -25,20 +25,20 @@ used as model by views/GeneralLedger/ledgerAccountGroup.php
 Calls:
 sql
 
-Last Modified: 23.02.2016
+Last Modified: 15.03.2016
 Last Modified by: Nikita Zaharov
 */
 
 namespace App\Models;
 
-require __DIR__ . "/../../Models/gridDataSource.php";
+require __DIR__ . "/../../../Models/gridDataSource.php";
 use Session;
 
 class gridData extends \App\Models\gridDataSource{
     protected $tableName = "ledgeraccountgroup";
 
     //fields to render in grid
-    protected $gridFields = [
+    public $gridFields = [
         "GLAccountGroupID",
         "GLAccountGroupName",
         "GLAccountGroupBalance",
@@ -50,6 +50,7 @@ class gridData extends \App\Models\gridDataSource{
     public $dashboardTitle = "Ledger Account Group";
     public $breadCrumbTitle = "Ledger Account Group";
     public $idField = "GLAccountGroupID";
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "GLAccountGroupID"];
     
     //categories which contains table columns, used by view for render tabs and them content
     public $editCategories = [
