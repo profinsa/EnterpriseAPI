@@ -36,8 +36,8 @@ var mysql_config = {
     database : 'integralx'
 };
 
-var outputFormat = "newtech";
-//var outputFormat = "integralx";
+//var outputFormat = "newtech";
+var outputFormat = "integralx";
 
 function isEmpty(object) {
     return JSON.stringify(object) == '{}';
@@ -236,9 +236,10 @@ function parse_list(content, file){
 	};
 	if(match.length > 2){
 	    var format;
-	    if(format = match[3].match(/DataFormatString\=\"([^\"]+)\"/))
+	    if(format = match[3].match(/DataFormatString\=\"([^\"]+)\"/)){
 		file.gridFields[match[2]].format = format[1];
-		//console.log(format[1]);
+		console.log(format[1], file);
+	    }
 	}
 	file.columnNames[match[2]] = match[1].replace(/\s*$/, "");
     }

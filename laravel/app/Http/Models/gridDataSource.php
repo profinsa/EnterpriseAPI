@@ -166,13 +166,18 @@ class gridDataSource{
         
         $update_fields = "";
         foreach($this->editCategories[$category] as $name=>$value){
-            if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
-                $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+            if(key_exists($name, $values)){
+                if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
+                    $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                else
+                    if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                        $values[$name] = str_replace(",", "", $values[$name]);
 
-            if($update_fields == "")
-                $update_fields = $name . "='" . $values[$name] . "'";
-            else
-                $update_fields .= "," . $name . "='" . $values[$name] . "'";
+                if($update_fields == "")
+                    $update_fields = $name . "='" . $values[$name] . "'";
+                else
+                    $update_fields .= "," . $name . "='" . $values[$name] . "'";
+            }
         }
 
         DB::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
@@ -186,15 +191,20 @@ class gridDataSource{
         $insert_values = "";
         foreach($this->editCategories as $category=>$arr){
             foreach($this->editCategories[$category] as $name=>$value){
-                if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
-                    $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                if(key_exists($name, $values)){
+                    if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
+                        $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                    else
+                        if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                            $values[$name] = str_replace(",", "", $values[$name]);
 
-                if($insert_fields == ""){
-                    $insert_fields = $name;
-                    $insert_values = "'" . $values[$name] . "'";
-                }else{
-                    $insert_fields .= "," . $name;
-                    $insert_values .= ",'" . $values[$name] . "'";
+                    if($insert_fields == ""){
+                        $insert_fields = $name;
+                        $insert_values = "'" . $values[$name] . "'";
+                    }else{
+                        $insert_fields .= "," . $name;
+                        $insert_values .= ",'" . $values[$name] . "'";
+                    }
                 }
             }
         }
