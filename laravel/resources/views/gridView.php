@@ -29,7 +29,7 @@
      grid model
      app as model
 
-     Last Modified: 02.03.2016
+     Last Modified: 16.03.2016
      Last Modified by: Nikita Zaharov
    -->
 
@@ -50,7 +50,7 @@
 	 page is showed after click edit on view screen.
 	 contains tabs with fileds and values. Values is available for changing.
        -->
-
+    <?php require "format.php"; ?>
     <?php if($scope["mode"] == 'grid'): ?>
 	<!-- grid -->
 	<div id="grid_content" class="row">
@@ -73,38 +73,6 @@
 		    </thead>
 		    <tbody>
 			<?php
-			function numberToStr($strin){
-//			    return preg_replace();
-			    return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
-			}
-			function formatField($typeDef, $value){
-			    $match;
-			    if(key_exists("format", $typeDef)){
-				if(preg_match('/(.*)\{\s?0\s?\:\s?(\w)(\d?)\s?\}(.*)/', $typeDef["format"], $match)){
-				    echo $match[1];
-				    switch($match[2]){
-					case 'D' :
-					case 'd' :
-					    break;
-
-					case 'N' :
-					case 'n' :
-					    $afterdot = 2;
-					    if($match[3])
-						$afterdot = $match[2];
-					    if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts)){
-						return numberToStr($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
-					    }
-					    break;
-				    }
-				    echo $match[4];
-				}
-				else
-				    return $value;
-			    }
-			    else
-				return $value;
-			}
 			//renders table rows using rows, getted in previous block
 			//also renders buttons like edit, delete of row
 			if(count($rows)){
@@ -207,7 +175,7 @@
 				    break;
 				case "text":
 				case "dropdown":
-				    echo $value;
+				    echo formatField($data->editCategories[$scope["category"]][$key], $value);
 				    break;
 			    }
 			    echo "</td></tr>";
@@ -257,7 +225,7 @@
 		    switch($data->editCategories[$scope["category"]][$key]["inputType"]){
 			case "text" :
 			    //renders text input with label
-			    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . $value ."\" " .
+			    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . formatField($data->editCategories[$scope["category"]][$key], $value) ."\" " .
 				 ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
 				."></div></div>";
 			    break;
