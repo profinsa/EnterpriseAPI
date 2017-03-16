@@ -27,34 +27,42 @@ public $gridFields = [
 ],
 "YTDMaximum" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "Minimum" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "WageHigh" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "WageLow" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "ItemAmount" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "ItemPercent" => [
     "dbType" => "float",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "PercentAmount" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "TotalAmount" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "GLAccount" => [

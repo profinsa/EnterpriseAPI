@@ -19,6 +19,7 @@ public $gridFields = [
 ],
 "TaxPercent" => [
     "dbType" => "float",
+    "format" => "{0:#.####}",
     "inputType" => "text"
 ],
 "GLTaxAccount" => [

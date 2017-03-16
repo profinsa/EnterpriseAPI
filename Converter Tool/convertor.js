@@ -36,6 +36,9 @@ var mysql_config = {
     database : 'integralx'
 };
 
+var outputFormat = "newtech";
+//var outputFormat = "integralx";
+
 function isEmpty(object) {
     return JSON.stringify(object) == '{}';
 }
@@ -66,10 +69,13 @@ function getFieldsFromTable(table, cb){
 function generate_model(file, title, menuTitle, tableFields, cb){
     var content, find, fields, groups, group, gind;
     content = "<?php\n";
-   // content += "namespace App\\Models;\n require __DIR__ . \"/../../../Models/gridDataSource.php\";\n"; //for laravel
- //   content += "class gridData extends gridDataSource{\n"; //for laravel
-    content += "require \"./models/gridDataSource.php\";\n"; //for intergralx
-    content += "class gridData extends gridDataSource{\n"; //for intergralx
+    if(outputFormat == "newtech"){
+	content += "namespace App\\Models;\n require __DIR__ . \"/../../../Models/gridDataSource.php\";\n"; //for laravel
+	content += "class gridData extends gridDataSource{\n"; //for laravel
+    }else{
+	content += "require \"./models/gridDataSource.php\";\n"; //for intergralx
+	content += "class gridData extends gridDataSource{\n"; //for intergralx
+    }
     content += "protected $tableName = \"" + file.tableName + "\";\n";
 
     content += "public $dashboardTitle =\"" + file.label + "\";\n";
@@ -80,15 +86,16 @@ function generate_model(file, title, menuTitle, tableFields, cb){
     content += "public $gridFields = [\n";
     var inputType, field;
     for(find in file.gridFields){
-	if(tableFields[file.gridFields[find]]){
-	    field = tableFields[file.gridFields[find]];
-	//    console.log(JSON.stringify(tableFields[file.gridFields[find]]), file.gridFields[find]);
+	if(tableFields[find]){
+	    field = tableFields[find];
+	//    console.log(JSON.stringify(tableFields[find]), find);
 	    if(field.Type == 'datetime' || field.Type == 'timestamp')
 		inputType = 'datetime';
 	    else
 		inputType = "text";
-	    content += "\n\"" + file.gridFields[find] + "\" => [\n" +
+	    content += "\n\"" + find + "\" => [\n" +
 		"    \"dbType\" => \"" + field.Type + "\",\n" +
+		(file.gridFields[find].hasOwnProperty("format") ? "    \"format\" => \"" + file.gridFields[find].format + "\",\n" : "")+
 		"    \"inputType\" => \"" + inputType + "\"\n" +
 		"],";
 	}
@@ -221,11 +228,18 @@ function parse_list(content, file){
 	file.keyNames = match[1].split(",");
     }
 
-    file.gridFields = [];
+    file.gridFields = {};
     file.columnNames = {};
-    re = /BoundField\s*HeaderText\=\"<\%\$\s*Translation:([\w\s]+)\s*\%>\"\s*DataField\=\"([\w\s]+)\"/ig;
+    re = /BoundField\s*HeaderText\=\"<\%\$\s*Translation:([\w\s]+)\s*\%>\"\s*DataField\=\"([\w\s]+)\"([^>]*\/>)/ig;
     while(match = re.exec(content)){
-	file.gridFields.push(match[2]);
+	file.gridFields[match[2]] = {
+	};
+	if(match.length > 2){
+	    var format;
+	    if(format = match[3].match(/DataFormatString\=\"([^\"]+)\"/))
+		file.gridFields[match[2]].format = format[1];
+		//console.log(format[1]);
+	}
 	file.columnNames[match[2]] = match[1].replace(/\s*$/, "");
     }
 	
@@ -386,5 +400,6 @@ function make_all(){
     fs.writeFileSync('models/menuCategoriesGenerated.php', menuCategories);
     fs.writeFileSync('models/menuIdToHref.php', menuIdToPath);
 }
+
 
 make_all();

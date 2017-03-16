@@ -23,14 +23,17 @@ public $gridFields = [
 ],
 "ReferenceDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "ReferenceSoldSince" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "ReferenceHighCredit" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ]
 ];

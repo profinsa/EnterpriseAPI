@@ -19,6 +19,7 @@ public $gridFields = [
 ],
 "CommentDate" => [
     "dbType" => "timestamp",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "CommentType" => [

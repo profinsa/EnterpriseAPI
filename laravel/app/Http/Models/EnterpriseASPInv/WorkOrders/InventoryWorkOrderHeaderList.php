@@ -19,10 +19,12 @@ public $gridFields = [
 ],
 "WorkOrderDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "WorkOrderStartDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "WorkOrderManager" => [
@@ -31,6 +33,7 @@ public $gridFields = [
 ],
 "WorkOrderCompletedDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "WorkOrderReference" => [
@@ -39,6 +42,7 @@ public $gridFields = [
 ],
 "WorkOrderTotalCost" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ]
 ];

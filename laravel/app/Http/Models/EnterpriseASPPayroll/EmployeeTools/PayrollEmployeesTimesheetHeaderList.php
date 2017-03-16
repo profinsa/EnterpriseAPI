@@ -19,10 +19,12 @@ public $gridFields = [
 ],
 "PeriodStart" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "PeriodEnd" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "ApprovedBy" => [
@@ -31,6 +33,7 @@ public $gridFields = [
 ],
 "ApprovedDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ]
 ];

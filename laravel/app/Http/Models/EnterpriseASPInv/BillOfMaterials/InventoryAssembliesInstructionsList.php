@@ -31,6 +31,7 @@ public $gridFields = [
 ],
 "AssemblyLastUpdated" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "AssemblyLastUpdatedBy" => [

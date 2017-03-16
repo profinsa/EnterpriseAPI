@@ -19,6 +19,7 @@ public $gridFields = [
 ],
 "AccrualFrequencyRate" => [
     "dbType" => "float",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "AccrualFrequencyUnit" => [

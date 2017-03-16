@@ -15,6 +15,7 @@ public $gridFields = [
 ],
 "TotalPercent" => [
     "dbType" => "float",
+    "format" => "{0:#.####}",
     "inputType" => "text"
 ]
 ];

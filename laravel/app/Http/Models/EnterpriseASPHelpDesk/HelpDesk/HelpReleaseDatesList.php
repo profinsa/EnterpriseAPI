@@ -23,6 +23,7 @@ public $gridFields = [
 ],
 "ReleaseDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "Notes" => [

@@ -15,10 +15,12 @@ public $gridFields = [
 ],
 "AuditID" => [
     "dbType" => "decimal(24,0)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "LoginDateTime" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "MachineName" => [

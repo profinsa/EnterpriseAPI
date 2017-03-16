@@ -28,10 +28,6 @@ public $gridFields = [
 "GLBankAccount" => [
     "dbType" => "varchar(36)",
     "inputType" => "text"
-],
-"GLBankAccount" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
 ]
 ];
 

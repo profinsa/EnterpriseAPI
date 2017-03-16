@@ -15,10 +15,12 @@ public $gridFields = [
 ],
 "AppointmenStart" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "AppointmentEnd" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "AppointmentReason" => [

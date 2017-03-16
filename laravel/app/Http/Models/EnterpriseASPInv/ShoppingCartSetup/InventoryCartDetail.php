@@ -15,14 +15,17 @@ public $gridFields = [
 ],
 "RestockingFee" => [
     "dbType" => "float",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "MinimumOrderAmount" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "ApprovedDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ]
 ];

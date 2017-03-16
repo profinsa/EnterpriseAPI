@@ -23,6 +23,7 @@ public $gridFields = [
 ],
 "SUTAWageBase" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "SITRate" => [
@@ -31,6 +32,7 @@ public $gridFields = [
 ],
 "SITWageBase" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "SDIRate" => [
@@ -39,6 +41,7 @@ public $gridFields = [
 ],
 "SDIWageBase" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ]
 ];

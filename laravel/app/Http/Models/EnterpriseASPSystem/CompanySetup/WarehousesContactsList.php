@@ -95,10 +95,12 @@ public $gridFields = [
 ],
 "ContactPasswordDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "ContactPasswordExpiresDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "ContactRegion" => [

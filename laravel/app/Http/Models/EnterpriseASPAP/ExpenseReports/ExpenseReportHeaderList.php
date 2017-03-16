@@ -19,6 +19,7 @@ public $gridFields = [
 ],
 "ExpenseReportDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "ExpenseReportForEmployee" => [
@@ -31,10 +32,12 @@ public $gridFields = [
 ],
 "ExpenseReportTotal" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "ExpenseReportDueEmployee" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "ExpenseReportPaymentID" => [

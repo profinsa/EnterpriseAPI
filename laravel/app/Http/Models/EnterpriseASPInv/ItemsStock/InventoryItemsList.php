@@ -35,6 +35,7 @@ public $gridFields = [
 ],
 "Price" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ]
 ];

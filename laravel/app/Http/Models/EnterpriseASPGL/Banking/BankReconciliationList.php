@@ -15,10 +15,12 @@ public $gridFields = [
 ],
 "BankRecStartDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "BankRecEndDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "GLBankAccount" => [
@@ -27,6 +29,7 @@ public $gridFields = [
 ],
 "BankRecEndingBalance" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ]
 ];
