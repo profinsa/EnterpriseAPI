@@ -58,7 +58,10 @@ class gridData extends gridDataSource{
         "GLAccountBalance" => [
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
-            "inputType" => "text"
+            "inputType" => "text",
+            "addFields" => "CurrencyID",
+            "currencyField" => "CurrencyID",
+            "formatFunction" => "currencyFormat"
         ]
     ];
 
@@ -114,6 +117,17 @@ class gridData extends gridDataSource{
                 "defaultValue" => "",
                 "dataProvider" => "getGLAccountTypes"
             ],
+            "CurrencyID" =>	[
+                "dbType" => "varchar(3)",
+                "inputType" => "dropdown",
+                "defaultValue" => "USD",
+                "dataProvider" => "getCurrencyTypes"
+            ],
+            "CurrencyExchangeRate" => [
+                "dbType" => "float",
+                "inputType" => "text",
+                "defaultValue" => "1"
+            ],
             "GLBalanceType" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
@@ -124,7 +138,9 @@ class gridData extends gridDataSource{
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
             ],
             "GLOtherNotes" => [
                 "dbType" => "varchar(255)",
@@ -135,87 +151,128 @@ class gridData extends gridDataSource{
         "Current" => [
             "GLCurrentYearPeriod1" => [
                 "dbType" => "decimal(19,4)",
-                "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0",
+                "addFields" => "CurrencyID",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
             ],	 
             "GLCurrentYearPeriod2" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod3" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod4" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod5" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod6" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod7" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod8" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod9" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod10" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod11" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod12" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod13" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLCurrentYearPeriod14" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ]
         ],
         "Budget" => [
@@ -223,91 +280,137 @@ class gridData extends gridDataSource{
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "addFields" => "CurrencyID",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod1" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod2" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod3" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod4" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod5" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod6" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod7" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod8" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod9" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod10" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod11" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod12" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod13" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLBudgetPeriod14" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ]
         ],
         "History" => [
@@ -315,91 +418,136 @@ class gridData extends gridDataSource{
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "addFields" => "CurrencyID",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod1" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod2" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod3" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod4" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriortYearPeriod5" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],//ERROR in sql, must be Prior
             "GLPriorYearPeriod6" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod7" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod8" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod9" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriortYearPeriod10" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],//ERROR in sql, must be Prior	 
             "GLPriorYearPeriod11" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod12" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod13" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
             ],
             "GLPriorYearPeriod14" => [
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => "0.00"
+                "defaultValue" => "0.00",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
             ]
         ]
     ];
@@ -408,6 +556,8 @@ class gridData extends gridDataSource{
        many columns not translated by them names. For that column must be converted to displayed title. This is table contains column names and their displaed titles.
      */
     public $columnNames = [
+        "CurrencyID" => "Currency ID",
+        "CurrencyExchangeRate" => "Currency Exchange Rate", 
         "GLAccountNumber" => "Account Number",
         "GLAccountName" => "Account Name",
         "GLAccountDescription" => "Account Description",
