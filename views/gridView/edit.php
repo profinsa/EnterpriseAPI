@@ -50,8 +50,14 @@
 		    
 		case "text" :
 		    //renders text input with label
-		    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"" . formatField($data->editCategories[$scope->category][$key], $value) ."\" " .
-			 ( (key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope->category][$key]) && $scope->mode == "new") ? "readonly" : "")
+		    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\""; 
+		    if(key_exists("formatFunction", $data->editCategories[$scope->category][$key])){
+			$formatFunction = $data->editCategories[$scope->category][$key]["formatFunction"];
+			echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+		    }
+		    else
+			echo formatField($data->editCategories[$scope->category][$key], $value);
+		    echo"\" " .	 ( (key_exists("disabledEdit", $data->editCategories[$scope->category][$key]) && $scope->mode == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope->category][$key]) && $scope->mode == "new") ? "readonly" : "")
 			."></div></div>";
 		    break;
 		case "timestamp" :    

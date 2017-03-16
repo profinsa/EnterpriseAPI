@@ -61,7 +61,12 @@
 			    break;
 			case "text":
 			case "dropdown":
-			    echo formatField($data->editCategories[$scope->category][$key], $value);			    
+			    if(key_exists("formatFunction", $data->editCategories[$scope->category][$key])){
+				$formatFunction = $data->editCategories[$scope->category][$key]["formatFunction"];
+				echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+			    }
+			    else
+				echo formatField($data->editCategories[$scope->category][$key], $value);		    
 			    break;
 		    }
 		    echo "</td></tr>";

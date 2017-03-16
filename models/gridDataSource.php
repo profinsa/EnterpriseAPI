@@ -22,7 +22,7 @@ inherited by models/GeneralLedger/*
 Calls:
 sql
 
-Last Modified: 06.03.2016
+Last Modified: 16.03.2016
 Last Modified by: Nikita Zaharov
 */
 class gridDataSource{
@@ -66,8 +66,14 @@ class gridDataSource{
         $user = $_SESSION["user"];
         $keyFields = "";
         $fields = [];
-        foreach($this->gridFields as $key=>$value)
+        foreach($this->gridFields as $key=>$value){
             $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
         foreach($this->idFields as $key){
             switch($key){
             case "CompanyID" :
@@ -220,6 +226,34 @@ class gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
         
         $GLOBALS["capsule"]::delete("DELETE from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+    
+    //formatting and getting raw values for currency fields
+    public function currencyFormat($values, $fieldContainer, $fieldName, $value, $in){
+        $user = $_SESSION["user"];
+        if($in)
+            return 1;
+        else {
+            if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts)){
+                $desc = false;
+                if($fieldContainer == "gridFields"){
+                    foreach($this->gridFields as $key=>$_desc)
+                        if($key == $fieldName)
+                            $desc = $_desc;
+                }else if($fieldContainer == "editCategories"){
+                    foreach($this->editCategories as $category){
+                        foreach($category as $key=>$_desc)
+                            if($key == $fieldName)
+                                $desc = $_desc;
+                    }
+                }
+                if($desc && key_exists("currencyField", $desc)){
+                    $result = $GLOBALS["capsule"]::select("SELECT CurrencyPrecision from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CurrencyID='" . $values[$desc["currencyField"]] . "'" , array());
+                    return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $numberParts[1]) . '.' . substr($numberParts[2], 0, $result[0]->CurrencyPrecision < 5 ? $result[0]->CurrencyPrecision : 2);
+                }
+            }
+        }
+        return $value;
     }
 }
 ?>

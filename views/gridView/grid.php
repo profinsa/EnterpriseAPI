@@ -75,7 +75,12 @@
 					break;
 				    case "text":
 				    case "dropdown":
-					echo formatField($data->gridFields[$key], $value);
+					if(key_exists("formatFunction", $data->gridFields[$key])){
+					    $formatFunction = $data->gridFields[$key]["formatFunction"];
+					    echo $data->$formatFunction($row, "gridFields", $key, $value, false);
+					}
+					else
+					    echo formatField($data->gridFields[$key], $value);
 					break;
 				}
 				echo "</td>\n";
