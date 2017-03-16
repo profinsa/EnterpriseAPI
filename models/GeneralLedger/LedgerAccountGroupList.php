@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/ledgerAccountGroup.php
 Calls:
 sql
 
-Last Modified: 15.03.2016
+Last Modified: 16.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -36,12 +36,31 @@ class gridData extends gridDataSource{
 
     //fields to render in grid
     public $gridFields = [
-        "GLAccountGroupID",
-        "GLAccountGroupName",
-        "GLAccountGroupBalance",
-        "GLAccountUse",
-        "GLReportingAccount",
-        "GLReportLevel"
+        "GLAccountGroupID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLAccountGroupName" => [
+            "dbType" => "varchar(128)",
+            "inputType" => "text"
+        ],
+        "GLAccountGroupBalance" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text"
+        ],
+        "GLAccountUse" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLReportingAccount" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "text"
+        ],
+        "GLReportLevel" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ]
     ];
 
     public $dashboardTitle = "Ledger Account Group";
@@ -52,27 +71,35 @@ class gridData extends gridDataSource{
     public $editCategories = [
         "Main" => [
             "GLAccountGroupID" => [
+                "dbType" => "varchar(36)",
                 "disabledEdit" => true,
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "GLAccountGroupName" => [
+                "dbType" => "varchar(128)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "GLAccountGroupBalance"	=> [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLAccountUse" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "GLReportingAccount" => [
+                "dbType" => "tinyint(1)",
+                "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => "False"
+                "defaultValue" => "0"
             ],
             "GLReportLevel" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ]

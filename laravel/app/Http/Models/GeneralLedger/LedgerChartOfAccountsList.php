@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/chartOfAccounts.php
 Calls:
 sql
 
-Last Modified: 15.03.2016
+Last Modified: 16.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -39,12 +39,31 @@ class gridData extends gridDataSource{
     protected $tableName = "ledgerchartofaccounts"; //table name which used for read and write fields
     //fields to render in grid
     public $gridFields = [ //field list for showing in grid mode(columns)
-            "GLAccountNumber",
-            "GLAccountCode",
-            "GLAccountName",
-            "GLAccountType",
-            "GLBalanceType",
-            "GLAccountBalance",
+        "GLAccountNumber" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLAccountCode" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLAccountName" => [
+            "dbType" => "varchar(30)",
+            "inputType" => "text"
+        ],
+        "GLAccountType" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLBalanceType" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLAccountBalance" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text"
+        ]
     ];
 
     public $dashboardTitle = "Chart Of Accounts"; //title in dashboard
@@ -67,224 +86,322 @@ class gridData extends gridDataSource{
     public $editCategories = [
         "Main" => [
             "GLAccountNumber" => [
+                "dbType" => "varchar(36)",
                 "disableEdit" => true,
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "GLAccountCode" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "defaultValue" => "",
                 "dataProvider" => "getGLAccountGroups"
             ],
             "GLAccountName" => [
+                "dbType" => "varchar(30)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "GLAccountDescription" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "GLAccountUse" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "GLAccountType" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "defaultValue" => "",
                 "dataProvider" => "getGLAccountTypes"
             ],
             "GLBalanceType" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "defaultValue" => "",
                 "dataProvider" => "getGLBalanceTypes"
             ],
             "GLAccountBalance" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "GLOtherNotes" => [
+                "dbType" => "varchar(255)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ]	
         ],
         "Current" => [
             "GLCurrentYearPeriod1" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],	 
             "GLCurrentYearPeriod2" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod3" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod4" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod5" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod6" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod7" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod8" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod9" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod10" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod11" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod12" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod13" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLCurrentYearPeriod14" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ]
         ],
         "Budget" => [
             "GLBudgetBeginningBalance" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod1" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod2" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod3" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod4" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod5" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod6" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod7" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod8" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod9" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod10" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod11" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod12" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod13" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLBudgetPeriod14" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ]
         ],
         "History" => [
             "GLPriorYearBeginningBalance" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod1" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod2" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod3" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod4" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriortYearPeriod5" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],//ERROR in sql, must be Prior
             "GLPriorYearPeriod6" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod7" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod8" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod9" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriortYearPeriod10" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],//ERROR in sql, must be Prior	 
             "GLPriorYearPeriod11" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod12" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod13" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ],
             "GLPriorYearPeriod14" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => "0.00"
             ]

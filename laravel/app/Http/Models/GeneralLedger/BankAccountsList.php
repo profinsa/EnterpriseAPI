@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/backAccounts.php
 Calls:
 DB
 
-Last Modified: 15.03.2016
+Last Modified: 16.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -38,11 +38,26 @@ class gridData extends gridDataSource{
     protected $tableName = "bankaccounts";
     //fields to render in grid
     public $gridFields = [
-        "BankID",
-        "BankAccountNumber",
-        "BankName",
-        "BankPhone",
-        "GLBankAccount"
+        "BankID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "BankAccountNumber" => [
+            "dbType" => "varchar(30)",
+            "inputType" => "text"
+        ],
+        "BankName" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text"
+        ],
+        "BankPhone" => [
+            "dbType" => "varchar(30)",
+            "inputType" => "text"
+        ],
+        "GLBankAccount" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ]
     ];
 
     public $dashboardTitle = "Bank Accounts";
@@ -54,97 +69,120 @@ class gridData extends gridDataSource{
     public $editCategories = [
         "Main" => [
             "BankID" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "disabledEdit" => "true",
                 "defaultValue" => ""
             ],
             "BankAccountNumber" => [
-                "inputType" => "text",
+               "dbType" => "varchar(30)",
+               "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankName" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankAddress1" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankAddress2" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankCity" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankState" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankZip" => [
+                "dbType" => "varchar(10)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankCountry" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankPhone" => [
+                "dbType" => "varchar(30)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankFax" => [
+                "dbType" => "varchar(30)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankContactName" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankEmail" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankWebsite" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "SwiftCode" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "RoutingCode" => [
+                "dbType" => "varchar(20)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "CurrencyID" => [
+                "dbType" => "varchar(3)",
                 "inputType" => "dropdown",
                 "defaultValue" => "USD",
                 "dataProvider" => "getCurrencyTypes"
             ],
             "CurrencyExchangeRate" => [
+                "dbType" => "float",
                 "inputType" => "text",
                 "defaultValue" => "1.00"
             ],
             "NextCheckNumber" => [
+                "dbType" => "int(11)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "NextDepositNumber" => [
+                "dbType" => "int(11)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "UnpostedDeposits" => [
+                "dbType" => "decimal(19,4)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "GLBankAccount" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "defaultValue" => "",
                 "dataProvider" => "getAccounts"
             ],
             "Notes" => [
+                "dbType" => "varchar(255)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ]

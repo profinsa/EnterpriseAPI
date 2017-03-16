@@ -38,14 +38,37 @@ use Session;
 class gridData extends gridDataSource{
     protected $tableName = "banktransactions";
     //fields to render in grid
-    public $gridFields = [ 	 	
-        "BankTransactionID",
-        "BankDocumentNumber",
-        "TransactionType",
-        "TransactionDate",
-        "TransactionAmount",
-        "Posted",
-        "Cleared"
+    public $gridFields = [
+        "BankTransactionID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "BankDocumentNumber" => [
+            "dbType" => "varchar(30)",
+            "inputType" => "text"
+        ],
+        "TransactionType" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "TransactionDate" => [
+            "dbType" => "datetime",
+            "format" => "{0:d}",
+            "inputType" => "datetime"
+        ],
+        "TransactionAmount" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text"
+        ],
+        "Posted" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "text"
+        ],
+        "Cleared" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "text"
+        ]
     ];
 
     public $dashboardTitle = "Bank Transactions";
@@ -57,67 +80,82 @@ class gridData extends gridDataSource{
     public $editCategories = [
         "Main" => [
             "BankTransactionID" => [
+                "dbType" => "varchar(36)",
                 "disabledEdit" => true,
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BankDocumentNumber" =>	[
+                "dbType" => "varchar(30)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ], 
             "GLBankAccount1" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "defaultValue" => "",
                 "dataProvider" => "getAccounts"
             ],
             "GLBankAccount2" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "defaultValue" => "",
                 "dataProvider" => "getAccounts"
             ],
             "TransactionType" => [
+                "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "defaultValue" => "",
                 "dataProvider" => "getTransactionTypes"
             ],
             "TransactionDate" => [
-                "inputType" => "datepicker",
+                "dbType" => "datetime",
+                "inputType" => "datetime",
                 "defaultValue" => ""
             ],
             "CurrencyID" =>	[
+                "dbType" => "varchar(3)",
                 "inputType" => "dropdown",
                 "defaultValue" => "USD",
                 "dataProvider" => "getCurrencyTypes"
             ],
             "CurrencyExchangeRate" => [
+                "dbType" => "float",
                 "inputType" => "text",
                 "defaultValue" => "1"
             ],
             "TransactionAmount" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BeginningBalance" =>  [
+                "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
                 "defaultValue" => "false"
             ],	
             "Reference" =>  [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],	 
             "Posted" =>  [
+                "dbType" => "tinyint(1)",
                 "disabledEdit" => true,
                 "disabledNew" => true,
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],	
             "Cleared" =>  [
+                "dbType" => "tinyint(1)",
                 "disabledEdit" => true,
                 "disabledNew" => true,
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],	
             "Notes" =>  [
+                "dbType" => "varchar(255)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ]
