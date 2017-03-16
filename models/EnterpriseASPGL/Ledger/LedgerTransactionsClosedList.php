@@ -18,6 +18,7 @@ public $gridFields = [
 ],
 "GLTransactionDate" => [
     "dbType" => "timestamp",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "GLTransactionDescription" => [
@@ -30,10 +31,12 @@ public $gridFields = [
 ],
 "GLTransactionAmount" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "GLTransactionBalance" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "GLTransactionPostedYN" => [

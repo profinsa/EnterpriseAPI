@@ -26,18 +26,22 @@ public $gridFields = [
 ],
 "ItemAmount" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "ItemPercent" => [
     "dbType" => "float",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "PercentAmount" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "TotalAmount" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ]
 ];

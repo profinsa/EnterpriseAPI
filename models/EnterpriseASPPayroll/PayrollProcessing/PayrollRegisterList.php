@@ -18,14 +18,17 @@ public $gridFields = [
 ],
 "PayrollDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "PayPeriodStartDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "PayPeriodEndDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "CheckTypeID" => [
@@ -34,6 +37,7 @@ public $gridFields = [
 ],
 "PayrollCheckDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "CheckNumber" => [
@@ -42,6 +46,7 @@ public $gridFields = [
 ],
 "NetPay" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ]
 ];

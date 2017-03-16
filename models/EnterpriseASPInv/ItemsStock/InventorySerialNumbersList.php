@@ -26,6 +26,7 @@ public $gridFields = [
 ],
 "PurchaseOrderLineNumber" => [
     "dbType" => "decimal(18,0)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "SerialNumber" => [
@@ -34,6 +35,7 @@ public $gridFields = [
 ],
 "DateReceived" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "OriginalLotOrderQty" => [
@@ -46,6 +48,7 @@ public $gridFields = [
 ],
 "LotExpirationDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ]
 ];

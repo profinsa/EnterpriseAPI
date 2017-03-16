@@ -22,10 +22,12 @@ public $gridFields = [
 ],
 "CurrencyExchangeRate" => [
     "dbType" => "float",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "CurrencyRateLastUpdate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ]
 ];

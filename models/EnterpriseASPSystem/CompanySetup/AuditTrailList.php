@@ -18,10 +18,12 @@ public $gridFields = [
 ],
 "EntryDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "EntryTime" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "DocumentType" => [

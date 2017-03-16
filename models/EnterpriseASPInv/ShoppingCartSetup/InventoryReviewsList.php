@@ -22,6 +22,7 @@ public $gridFields = [
 ],
 "ReviewDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "Rating" => [

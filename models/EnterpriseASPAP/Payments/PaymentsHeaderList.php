@@ -34,6 +34,7 @@ public $gridFields = [
 ],
 "PaymentDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "CurrencyID" => [
@@ -42,6 +43,7 @@ public $gridFields = [
 ],
 "Amount" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "Cleared" => [

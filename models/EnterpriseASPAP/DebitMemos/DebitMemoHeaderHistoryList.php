@@ -18,6 +18,7 @@ public $gridFields = [
 ],
 "PurchaseDate" => [
     "dbType" => "timestamp",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "VendorID" => [
@@ -30,6 +31,7 @@ public $gridFields = [
 ],
 "Total" => [
     "dbType" => "decimal(19,4)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ]
 ];

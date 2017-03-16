@@ -10,6 +10,7 @@ public $gridFields = [
 
 "SystemMessageAt" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ]
 ];

@@ -75,7 +75,7 @@
 					break;
 				    case "text":
 				    case "dropdown":
-					echo $value;
+					echo formatField($data->gridFields[$key], $value);
 					break;
 				}
 				echo "</td>\n";

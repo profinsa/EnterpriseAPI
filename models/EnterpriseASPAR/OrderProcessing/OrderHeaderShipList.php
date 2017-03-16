@@ -10,6 +10,7 @@ public $gridFields = [
 
 "ShipDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ]
 ];

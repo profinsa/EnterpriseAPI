@@ -30,6 +30,7 @@ public $gridFields = [
 ],
 "TimeSent" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ]
 ];

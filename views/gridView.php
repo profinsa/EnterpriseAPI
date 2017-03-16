@@ -74,7 +74,8 @@
 				 page is showed after click edit on view screen.
 				 contains tabs with fileds and values. Values is available for changing.
 			       -->
-			    
+			    <!-- formating staff -->
+			    <?php require "format.php"; ?>
 			    <!-- grid -->
 			    <?php if($scope->mode == 'grid'): ?>
 				<?php  require "views/gridView/grid.php";?>

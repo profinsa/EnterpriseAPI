@@ -30,6 +30,7 @@ public $gridFields = [
 ],
 "HireDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ]
 ];

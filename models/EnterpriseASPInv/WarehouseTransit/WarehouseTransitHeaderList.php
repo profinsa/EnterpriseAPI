@@ -14,10 +14,12 @@ public $gridFields = [
 ],
 "TransitEnteredDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "TransitETAlDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "TransitShipVia" => [
@@ -26,6 +28,7 @@ public $gridFields = [
 ],
 "TransitShipDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "TransitTrailerPrefix" => [
@@ -38,6 +41,7 @@ public $gridFields = [
 ],
 "TransitReceivedDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "TransitRequestedBy" => [
@@ -50,6 +54,7 @@ public $gridFields = [
 ],
 "ApprovedDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "EnteredBy" => [

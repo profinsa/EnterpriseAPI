@@ -61,7 +61,7 @@
 			    break;
 			case "text":
 			case "dropdown":
-			    echo $value;
+			    echo formatField($data->editCategories[$scope->category][$key], $value);			    
 			    break;
 		    }
 		    echo "</td></tr>";

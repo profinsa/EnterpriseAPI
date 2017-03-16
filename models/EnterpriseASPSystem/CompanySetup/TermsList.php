@@ -22,6 +22,7 @@ public $gridFields = [
 ],
 "DiscountPercent" => [
     "dbType" => "float",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "DiscountDays" => [

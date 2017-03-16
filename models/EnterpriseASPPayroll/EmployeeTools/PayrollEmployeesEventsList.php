@@ -14,6 +14,7 @@ public $gridFields = [
 ],
 "EventDate" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "EventID" => [
@@ -22,6 +23,7 @@ public $gridFields = [
 ],
 "EventTime" => [
     "dbType" => "float",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "EventTimeUnits" => [

@@ -14,10 +14,12 @@ public $gridFields = [
 ],
 "AuditID" => [
     "dbType" => "bigint(20)",
+    "format" => "{0:n}",
     "inputType" => "text"
 ],
 "LoginDateTime" => [
     "dbType" => "datetime",
+    "format" => "{0:d}",
     "inputType" => "datetime"
 ],
 "MachineName" => [
