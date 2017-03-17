@@ -72,8 +72,14 @@ class gridDataSource{
         $user = Session::get("user");
         $keyFields = "";
         $fields = [];
-        foreach($this->gridFields as $key=>$value)
+        foreach($this->gridFields as $key=>$value){
             $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
         foreach($this->idFields as $key){
             switch($key){
             case "CompanyID" :
@@ -104,8 +110,14 @@ class gridDataSource{
     public function getEditItem($id, $type){
         $user = Session::get("user");
         $columns = [];
-        foreach($this->editCategories[$type] as $key=>$value)
+        foreach($this->editCategories[$type] as $key=>$value){
             $columns[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $columns[] = $addfield;
+            }
+        }
         
         $keyValues = explode("__", $id);
         $keyFields = "";
@@ -169,9 +181,12 @@ class gridDataSource{
             if(key_exists($name, $values)){
                 if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
                     $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
-                else
-                    if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
-                        $values[$name] = str_replace(",", "", $values[$name]);
+                else if(key_exists("formatFunction", $value)){
+                    $formatFunction = $value["formatFunction"];
+                    $values[$name] = $this->$formatFunction($values, "editCategories", $name, $values[$name], true);
+                }
+                if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                    $values[$name] = str_replace(",", "", $values[$name]);
 
                 if($update_fields == "")
                     $update_fields = $name . "='" . $values[$name] . "'";
@@ -194,9 +209,12 @@ class gridDataSource{
                 if(key_exists($name, $values)){
                     if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
                         $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
-                    else
-                        if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
-                            $values[$name] = str_replace(",", "", $values[$name]);
+                    else if(key_exists("formatFunction", $value)){
+                        $formatFunction = $value["formatFunction"];
+                        $values[$name] = $this->$formatFunction($values, "editCategories", $name, $values[$name], true);
+                    }
+                    if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                        $values[$name] = str_replace(",", "", $values[$name]);
 
                     if($insert_fields == ""){
                         $insert_fields = $name;
@@ -226,6 +244,43 @@ class gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
         
         DB::delete("DELETE from " . $this->tableName .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+    protected $currencyPrecisions = [];
+    
+    //formatting and getting raw values for currency fields
+    public function currencyFormat($values, $fieldContainer, $fieldName, $value, $in){
+        $user = Session::get("user");
+        if($in)
+            return str_replace(",", "", $value);
+        else {
+            if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts)){
+                $desc = false;
+                if($fieldContainer == "gridFields"){
+                    foreach($this->gridFields as $key=>$_desc)
+                        if($key == $fieldName)
+                            $desc = $_desc;
+                }else if($fieldContainer == "editCategories"){
+                    foreach($this->editCategories as $category){
+                        foreach($category as $key=>$_desc)
+                            if($key == $fieldName)
+                                $desc = $_desc;
+                    }
+                }
+                if($desc && key_exists("currencyField", $desc)){
+                    if(key_exists($values[$desc["currencyField"]], $this->currencyPrecisions))
+                        $result = $this->currencyPrecisions[$values[$desc["currencyField"]]];
+                    else 
+                        $this->currencyPrecisions[$values[$desc["currencyField"]]] = $result = DB::select("SELECT CurrencyPrecision from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CurrencyID='" . $values[$desc["currencyField"]] . "'" , array());
+                    //return json_encode($result);
+                    if($result)
+                        return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $numberParts[1]) . '.' . substr($numberParts[2], 0, $result[0]->CurrencyPrecision < 5 ? $result[0]->CurrencyPrecision : 2);
+                    else
+                        return $value;
+                }
+            }
+        }
+        return $value;
     }
 }
 

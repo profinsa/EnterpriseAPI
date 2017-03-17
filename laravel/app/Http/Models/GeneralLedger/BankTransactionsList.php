@@ -59,7 +59,10 @@ class gridData extends gridDataSource{
         "TransactionAmount" => [
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
-            "inputType" => "text"
+            "inputType" => "text",
+            "addFields" => "CurrencyID",
+            "currencyField" => "CurrencyID",
+            "formatFunction" => "currencyFormat"
         ],
         "Posted" => [
             "dbType" => "tinyint(1)",
@@ -128,7 +131,9 @@ class gridData extends gridDataSource{
                 "dbType" => "decimal(19,4)",
                 "format" => "{0:n}",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
             ],
             "BeginningBalance" =>  [
                 "dbType" => "tinyint(1)",

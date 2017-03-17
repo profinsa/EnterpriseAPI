@@ -173,7 +173,9 @@ class gridData extends gridDataSource{
             "UnpostedDeposits" => [
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
             ],
             "GLBankAccount" => [
                 "dbType" => "varchar(36)",

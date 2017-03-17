@@ -1,212 +1,203 @@
 <?php
+/*
+Name of Page: bankTransactions model
+
+Method: Model for GeneralLedger/banckAccounts. It provides data from database and default values, column names and categories
+
+Date created: Nikita Zaharov, 17.02.2016
+
+Use: this model used by views/GeneralLedger/bankTransactions.php for:
+- as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
+- for loading data from tables, updating, inserting and deleting
+
+Input parameters:
+$db: database instance
+methods has own parameters
+
+Output parameters:
+- dictionaries as public properties
+- methods has own output
+
+Called from:
+created and used for ajax requests by controllers/GeneralLedger/banckAccounts.php
+used as model by views/GeneralLedger/backAccounts.php
+
+Calls:
+DB
+
+Last Modified: 15.03.2016
+Last Modified by: Nikita Zaharov
+*/
+
 namespace App\Models;
- require __DIR__ . "/../../../Models/gridDataSource.php";
+
+use Illuminate\Support\Facades\DB;
+require __DIR__ . "/../../../Models/gridDataSource.php";
+use Session;
+
 class gridData extends gridDataSource{
-protected $tableName = "banktransactions";
-public $dashboardTitle ="Bank Transactions";
-public $breadCrumbTitle ="Bank Transactions";
-public $idField ="BankTransactionID";
-public $idFields = ["CompanyID","DivisionID","DepartmentID","BankTransactionID"];
-public $gridFields = [
+    protected $tableName = "banktransactions";
+    //fields to render in grid
+    public $gridFields = [
+        "BankTransactionID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "BankDocumentNumber" => [
+            "dbType" => "varchar(30)",
+            "inputType" => "text"
+        ],
+        "TransactionType" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "TransactionDate" => [
+            "dbType" => "datetime",
+            "format" => "{0:d}",
+            "inputType" => "datetime"
+        ],
+        "TransactionAmount" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text",
+            "addFields" => "CurrencyID",
+            "currencyField" => "CurrencyID",
+            "formatFunction" => "currencyFormat"
+        ],
+        "Posted" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "text"
+        ],
+        "Cleared" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "text"
+        ]
+    ];
 
-"BankTransactionID" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-],
-"BankDocumentNumber" => [
-    "dbType" => "varchar(30)",
-    "inputType" => "text"
-],
-"TransactionType" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-],
-"TransactionDate" => [
-    "dbType" => "datetime",
-    "format" => "{0:d}",
-    "inputType" => "datetime"
-],
-"TransactionAmount" => [
-    "dbType" => "decimal(19,4)",
-    "format" => "{0:n}",
-    "inputType" => "text"
-],
-"Posted" => [
-    "dbType" => "tinyint(1)",
-    "inputType" => "text"
-],
-"Cleared" => [
-    "dbType" => "tinyint(1)",
-    "inputType" => "text"
-]
-];
+    public $dashboardTitle = "Bank Transactions";
+    public $breadCrumbTitle = "Bank Transactions";
+    public $idField = "BankTransactionID";
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "BankTransactionID"];
+    
+    //categories which contains table columns, used by view for render tabs and them content
+    public $editCategories = [
+        "Main" => [
+            "BankTransactionID" => [
+                "dbType" => "varchar(36)",
+                "disabledEdit" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "BankDocumentNumber" =>	[
+                "dbType" => "varchar(30)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ], 
+            "GLBankAccount1" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getAccounts"
+            ],
+            "GLBankAccount2" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getAccounts"
+            ],
+            "TransactionType" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getTransactionTypes"
+            ],
+            "TransactionDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => ""
+            ],
+            "CurrencyID" =>	[
+                "dbType" => "varchar(3)",
+                "inputType" => "dropdown",
+                "defaultValue" => "USD",
+                "dataProvider" => "getCurrencyTypes"
+            ],
+            "CurrencyExchangeRate" => [
+                "dbType" => "float",
+                "inputType" => "text",
+                "defaultValue" => "1"
+            ],
+            "TransactionAmount" => [
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
+                "inputType" => "text",
+                "defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+            ],
+            "BeginningBalance" =>  [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "false"
+            ],	
+            "Reference" =>  [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],	 
+            "Posted" =>  [
+                "dbType" => "tinyint(1)",
+                "disabledEdit" => true,
+                "disabledNew" => true,
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],	
+            "Cleared" =>  [
+                "dbType" => "tinyint(1)",
+                "disabledEdit" => true,
+                "disabledNew" => true,
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],	
+            "Notes" =>  [
+                "dbType" => "varchar(255)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]
+        ]
+    ];
 
-public $editCategories = [
-"Main" => [
+    //table column to translation/ObjID
+    public $columnNames = [
+        "BankTransactionID" => "Transaction ID",
+        "BankDocumentNumber" => "Bank Document Number", 	 
+        "GLBankAccount1" => "Bank Account",
+        "GLBankAccount2" => "Offset Account", 
+        "TransactionType" => "Transaction Type", 
+        "TransactionDate" => "Transaction Date",
+        "CurrencyID" => "Currency ID",
+        "CurrencyExchangeRate" => "Currency Exchange Rate", 
+        "TransactionAmount" => "Transaction Amount", 
+        "BeginningBalance" => "Beginning Balance", 	
+        "Reference" => "Reference", 	 
+        "Posted" => "Posted", 	
+        "Cleared" => "Cleared", 	
+        "Notes" => "Notes" 
+    ];
 
-"BankTransactionID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"BankDocumentNumber" => [
-"dbType" => "varchar(30)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"GLBankAccount1" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"GLBankAccount2" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TransactionType" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TransactionDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"SystemDate" => [
-"dbType" => "timestamp",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"CurrencyID" => [
-"dbType" => "varchar(3)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CurrencyExchangeRate" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TransactionAmount" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"BeginningBalance" => [
-"dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Reference" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Posted" => [
-"dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Cleared" => [
-"dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Notes" => [
-"dbType" => "varchar(255)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"BatchControlNumber" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"BatchControlTotal" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Signature" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SignaturePassword" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SupervisorSignature" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SupervisorPassword" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ManagerSignature" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ManagerPassword" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Approved" => [
-"dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ApprovedBy" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ApprovedDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"EnteredBy" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-]
-]];
-public $columnNames = [
+    //getting list of available transaction types 
+    public function getTransactionTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
-"BankTransactionID" => "Transaction ID",
-"BankDocumentNumber" => "Bank Document Number",
-"TransactionType" => "Transaction Type",
-"TransactionDate" => "Transaction Date",
-"TransactionAmount" => "Transaction Amount",
-"Posted" => "Posted",
-"Cleared" => "Cleared",
-"GLBankAccount1" => "GLBankAccount1",
-"GLBankAccount2" => "GLBankAccount2",
-"SystemDate" => "SystemDate",
-"CurrencyID" => "CurrencyID",
-"CurrencyExchangeRate" => "CurrencyExchangeRate",
-"BeginningBalance" => "BeginningBalance",
-"Reference" => "Reference",
-"Notes" => "Notes",
-"BatchControlNumber" => "BatchControlNumber",
-"BatchControlTotal" => "BatchControlTotal",
-"Signature" => "Signature",
-"SignaturePassword" => "SignaturePassword",
-"SupervisorSignature" => "SupervisorSignature",
-"SupervisorPassword" => "SupervisorPassword",
-"ManagerSignature" => "ManagerSignature",
-"ManagerPassword" => "ManagerPassword",
-"Approved" => "Approved",
-"ApprovedBy" => "ApprovedBy",
-"ApprovedDate" => "ApprovedDate",
-"EnteredBy" => "EnteredBy"];
-}?>
+        foreach($result as $key=>$value)
+            $res[$value->BankTransactionTypeID] = [
+                "title" => $value->BankTransactionTypeID,
+                "value" => $value->BankTransactionTypeID
+            ];
+        
+        return $res;
+    }
+}
+?>

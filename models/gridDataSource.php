@@ -267,7 +267,10 @@ class gridDataSource{
                         $result = $this->currencyPrecisions[$values[$desc["currencyField"]]];
                     else 
                         $this->currencyPrecisions[$values[$desc["currencyField"]]] = $result = $GLOBALS["capsule"]::select("SELECT CurrencyPrecision from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CurrencyID='" . $values[$desc["currencyField"]] . "'" , array());
-                    return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $numberParts[1]) . '.' . substr($numberParts[2], 0, $result[0]->CurrencyPrecision < 5 ? $result[0]->CurrencyPrecision : 2);
+                    if($result)
+                        return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $numberParts[1]) . '.' . substr($numberParts[2], 0, $result[0]->CurrencyPrecision < 5 ? $result[0]->CurrencyPrecision : 2);
+                    else
+                        return $value;
                 }
             }
         }

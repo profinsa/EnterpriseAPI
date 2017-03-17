@@ -50,26 +50,28 @@
 		//renders table, contains record data using getEditItem from model
 		$item = $data->getEditItem($scope->item, $scope->category);
 		foreach($item as $key =>$value){
-		    echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
-		    switch($data->editCategories[$scope->category][$key]["inputType"]){
-			case "checkbox" :
-			    echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
-			    break;
-			case "timestamp" :
-			case "datetime" :
-			    echo date("m/d/y", strtotime($value));
-			    break;
-			case "text":
-			case "dropdown":
-			    if(key_exists("formatFunction", $data->editCategories[$scope->category][$key])){
-				$formatFunction = $data->editCategories[$scope->category][$key]["formatFunction"];
-				echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-			    }
-			    else
-				echo formatField($data->editCategories[$scope->category][$key], $value);		    
-			    break;
+		    if(key_exists($key, $data->editCategories[$scope->category])){
+			echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
+			switch($data->editCategories[$scope->category][$key]["inputType"]){
+			    case "checkbox" :
+				echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
+				break;
+			    case "timestamp" :
+			    case "datetime" :
+				echo date("m/d/y", strtotime($value));
+				break;
+			    case "text":
+			    case "dropdown":
+				if(key_exists("formatFunction", $data->editCategories[$scope->category][$key])){
+				    $formatFunction = $data->editCategories[$scope->category][$key]["formatFunction"];
+				    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+				}
+				else
+				    echo formatField($data->editCategories[$scope->category][$key], $value);		    
+				break;
+			}
+			echo "</td></tr>";
 		    }
-		    echo "</td></tr>";
 		}
 		?>
 	    </tbody>
