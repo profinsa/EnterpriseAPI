@@ -130,8 +130,8 @@ public $editCategories = [
 ],
 "VendorPasswordExpires" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "VendorPasswordExpiresDate" => [
 "dbType" => "int(11)",
@@ -330,8 +330,8 @@ public $editCategories = [
 ],
 "Vendor1099" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EDIQualifier" => [
 "dbType" => "varchar(2)",
@@ -375,33 +375,33 @@ public $editCategories = [
 ],
 "EDIPurchaseOrders" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EDIInvoices" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EDIShippingNotices" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EDIOrderStatus" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EDIPayments" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Approved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",
@@ -420,8 +420,8 @@ public $editCategories = [
 ],
 "ConvertedFromCustomer" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "VendorRegionID" => [
 "dbType" => "varchar(36)",
@@ -440,8 +440,8 @@ public $editCategories = [
 ],
 "Comfirmed" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "FirstContacted" => [
 "dbType" => "datetime",
@@ -475,8 +475,8 @@ public $editCategories = [
 ],
 "Hot" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ]
 ]];
 public $columnNames = [

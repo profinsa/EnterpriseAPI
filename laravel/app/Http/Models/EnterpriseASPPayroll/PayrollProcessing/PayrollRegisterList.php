@@ -207,18 +207,18 @@ public $editCategories = [
 ],
 "Voided" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Reconciled" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Printed" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "RegularHours" => [
 "dbType" => "float",
@@ -247,8 +247,8 @@ public $editCategories = [
 ],
 "Posted" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ]
 ]];
 public $columnNames = [

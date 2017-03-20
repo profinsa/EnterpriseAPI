@@ -152,13 +152,13 @@ public $editCategories = [
 ],
 "CreatePayroll" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PayCommissions" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "OTAfter" => [
 "dbType" => "int(11)",

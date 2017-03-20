@@ -56,8 +56,8 @@ public $editCategories = [
 ],
 "ProblemAssigned" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ProblemAssignedTo" => [
 "dbType" => "varchar(36)",
@@ -126,8 +126,8 @@ public $editCategories = [
 ],
 "ProblemFixed" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ProblemFixDate" => [
 "dbType" => "datetime",
@@ -151,8 +151,8 @@ public $editCategories = [
 ],
 "ProblemApproved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ProblemApprovedBy" => [
 "dbType" => "varchar(36)",

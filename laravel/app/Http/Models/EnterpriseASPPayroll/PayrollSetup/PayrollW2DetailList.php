@@ -171,38 +171,38 @@ public $editCategories = [
 ],
 "Box15Check1" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Box15Check2" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Box15Check3" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Box15Check4" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Box15Check5" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Box15Check6" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Box15Check7" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Box17" => [
 "dbType" => "decimal(19,4)",

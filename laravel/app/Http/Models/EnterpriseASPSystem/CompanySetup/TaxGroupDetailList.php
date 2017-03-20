@@ -50,8 +50,8 @@ public $editCategories = [
 ],
 "TaxOnTax" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ]
 ]];
 public $columnNames = [

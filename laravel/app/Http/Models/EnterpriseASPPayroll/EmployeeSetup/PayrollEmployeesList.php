@@ -71,8 +71,8 @@ public $editCategories = [
 ],
 "EmployeePasswordExpires" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EmployeePasswordExpiresDate" => [
 "dbType" => "int(11)",
@@ -86,8 +86,8 @@ public $editCategories = [
 ],
 "ActiveYN" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EmployeeAddress1" => [
 "dbType" => "varchar(50)",
@@ -161,8 +161,8 @@ public $editCategories = [
 ],
 "Commissionable" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "CommissionPerc" => [
 "dbType" => "float",
@@ -306,8 +306,8 @@ public $editCategories = [
 ],
 "Approved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",

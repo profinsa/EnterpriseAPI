@@ -89,8 +89,8 @@ public $editCategories = [
 ],
 "GLReportingAccount" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "GLReportLevel" => [
 "dbType" => "smallint(6)",

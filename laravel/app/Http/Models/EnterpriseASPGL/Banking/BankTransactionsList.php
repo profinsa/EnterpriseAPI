@@ -138,7 +138,7 @@ class gridData extends gridDataSource{
             "BeginningBalance" =>  [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
-                "defaultValue" => "false"
+                "defaultValue" => "0"
             ],	
             "Reference" =>  [
                 "dbType" => "varchar(50)",

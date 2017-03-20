@@ -82,8 +82,8 @@ public $editCategories = [
 ],
 "Memorize" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "OrderNumber" => [
 "dbType" => "varchar(36)",
@@ -167,8 +167,8 @@ public $editCategories = [
 ],
 "TaxFreight" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Handling" => [
 "dbType" => "decimal(19,4)",
@@ -187,8 +187,8 @@ public $editCategories = [
 ],
 "ShipToWarehouse" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "WarehouseID" => [
 "dbType" => "varchar(36)",
@@ -242,8 +242,8 @@ public $editCategories = [
 ],
 "Paid" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PaymentID" => [
 "dbType" => "varchar(36)",
@@ -337,8 +337,8 @@ public $editCategories = [
 ],
 "Approved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",
@@ -352,8 +352,8 @@ public $editCategories = [
 ],
 "Printed" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PrintedDate" => [
 "dbType" => "datetime",
@@ -362,8 +362,8 @@ public $editCategories = [
 ],
 "Shipped" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ShipDate" => [
 "dbType" => "datetime",
@@ -377,8 +377,8 @@ public $editCategories = [
 ],
 "Received" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ReceivedDate" => [
 "dbType" => "datetime",
@@ -392,8 +392,8 @@ public $editCategories = [
 ],
 "Posted" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PostedDate" => [
 "dbType" => "datetime",
@@ -402,13 +402,13 @@ public $editCategories = [
 ],
 "CommissionPaid" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "CommissionSelectToPay" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "OriginalPurchaseNumber" => [
 "dbType" => "varchar(36)",

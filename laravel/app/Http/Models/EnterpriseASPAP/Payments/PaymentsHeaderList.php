@@ -81,8 +81,8 @@ public $editCategories = [
 ],
 "CheckPrinted" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "CheckDate" => [
 "dbType" => "timestamp",
@@ -91,8 +91,8 @@ public $editCategories = [
 ],
 "Paid" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PaymentDate" => [
 "dbType" => "datetime",
@@ -101,8 +101,8 @@ public $editCategories = [
 ],
 "Memorize" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PaymentClassID" => [
 "dbType" => "varchar(36)",
@@ -151,8 +151,8 @@ public $editCategories = [
 ],
 "Void" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Notes" => [
 "dbType" => "varchar(255)",
@@ -176,8 +176,8 @@ public $editCategories = [
 ],
 "SelectedForPayment" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "SelectedForPaymentDate" => [
 "dbType" => "timestamp",
@@ -186,8 +186,8 @@ public $editCategories = [
 ],
 "ApprovedForPayment" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedForPaymentDate" => [
 "dbType" => "datetime",
@@ -196,8 +196,8 @@ public $editCategories = [
 ],
 "Cleared" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "InvoiceNumber" => [
 "dbType" => "varchar(36)",
@@ -206,18 +206,18 @@ public $editCategories = [
 ],
 "Posted" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Reconciled" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Credit" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",

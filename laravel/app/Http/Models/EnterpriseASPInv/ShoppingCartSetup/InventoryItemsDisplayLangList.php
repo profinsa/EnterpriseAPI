@@ -42,8 +42,8 @@ public $editCategories = [
 ],
 "IsActive" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ItemName" => [
 "dbType" => "varchar(50)",
@@ -102,8 +102,8 @@ public $editCategories = [
 ],
 "Approved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",

@@ -62,8 +62,8 @@ public $editCategories = [
 ],
 "AdjustmentPosted" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "AdjustmentNotes" => [
 "dbType" => "varchar(255)",
@@ -72,8 +72,8 @@ public $editCategories = [
 ],
 "AdjustmentPostToGL" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "BatchControlNumber" => [
 "dbType" => "varchar(36)",
@@ -87,8 +87,8 @@ public $editCategories = [
 ],
 "Approved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",

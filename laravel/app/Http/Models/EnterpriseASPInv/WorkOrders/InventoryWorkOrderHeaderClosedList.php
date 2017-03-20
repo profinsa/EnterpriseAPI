@@ -77,8 +77,8 @@ public $editCategories = [
 ],
 "WorkOrderCompleted" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "WorkOrderCompletedDate" => [
 "dbType" => "datetime",
@@ -252,8 +252,8 @@ public $editCategories = [
 ],
 "Memorize" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ]
 ]];
 public $columnNames = [
