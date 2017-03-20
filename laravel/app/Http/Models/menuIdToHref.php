@@ -156,6 +156,7 @@
     "GeneralLedger/Banking/ViewBankTransactions" => "EnterpriseASPGL/Banking/BankTransactionsList",
     "GeneralLedger/Banking/ReconcileBankAccounts" => "EnterpriseASPGL/Banking/BankReconciliationList",
     "GeneralLedger/Banking/ViewBankReconciliations" => "EnterpriseASPGL/Banking/BankReconciliationSummaryList",
+    "GeneralLedger/FixedAssets/ViewAssets" => "EnterpriseASPGL/FixedAssets/FixedAssetsList",
     "GeneralLedger/LedgerSetup/Currencies" => "EnterpriseASPSystem/CompanySetup/CurrencyTypesList",
     "GeneralLedger/LedgerSetup/ClosePeriod" => "EnterpriseASPSystem/LedgerSetup/LedgerPeriodCloseDetail",
     "GeneralLedger/LedgerSetup/CloseYear" => "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",

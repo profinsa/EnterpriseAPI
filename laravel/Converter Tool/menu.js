@@ -1281,13 +1281,15 @@ module.exports = {
 		    "_Target": ""
 		},
 		{
-		    "Node": {
-			"_ImageUrl": "~/images/fixed_assets.gif",
-			"_Text": "View Assets ",
-			"_NavigateUrl": "~/EnterpriseASPGL/FixedAssets/FixedAssetsList.aspx",
-			"_ObjectName": "FixedAssets",
-			"_Target": ""
-		    },
+		    "Node": [
+			{
+			    "_ImageUrl": "~/images/fixed_assets.gif",
+			    "_Text": "View Assets ",
+			    "_NavigateUrl": "~/EnterpriseASPGL/FixedAssets/FixedAssetsList.aspx",
+			    "_ObjectName": "FixedAssets",
+			    "_Target": ""
+			}
+		    ],
 		    "_ImageUrl": "~/images/fixed_assets.gif",
 		    "_Text": "Fixed Assets",
 		    "_NavigateUrl": "",

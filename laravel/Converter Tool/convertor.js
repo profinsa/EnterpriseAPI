@@ -36,8 +36,8 @@ var mysql_config = {
     database : 'integralx'
 };
 
-//var outputFormat = "newtech";
-var outputFormat = "integralx";
+var outputFormat = "newtech";
+//var outputFormat = "integralx";
 
 function isEmpty(object) {
     return JSON.stringify(object) == '{}';
@@ -196,6 +196,9 @@ function process_model(file, title, menuTitle, cb){
 	    if(fields[ind].Type == 'datetime' || fields[ind].Type == 'timestamp'){
 		group[ind].inputType = 'datetime';
 		group[ind].defaultValue = 'now';
+	    }else if(group[ind].dbType == "tinyint(1)"){
+		group[ind].inputType = 'checkbox';
+		group[ind].defaultValue = '0';		
 	    }else
 		group[ind].inputType = "text";
 	}
@@ -238,7 +241,7 @@ function parse_list(content, file){
 	    var format;
 	    if(format = match[3].match(/DataFormatString\=\"([^\"]+)\"/)){
 		file.gridFields[match[2]].format = format[1];
-		console.log(format[1], file);
+		//console.log(format[1], file);
 	    }
 	}
 	file.columnNames[match[2]] = match[1].replace(/\s*$/, "");
@@ -395,7 +398,8 @@ function make_all(){
     menuCategories += "?>";
     menuIdToPath = menuIdToPath.substring(0, menuIdToPath.length - 1);
     menuIdToPath += "\n];\n?>";
-    
+
+    console.log(files);
     parse_files(files, true);
     generate_models(files, 'general', files.length, true);
     fs.writeFileSync('models/menuCategoriesGenerated.php', menuCategories);
