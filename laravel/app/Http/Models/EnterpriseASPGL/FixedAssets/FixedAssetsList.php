@@ -1,6 +1,10 @@
 <?php
 namespace App\Models;
 require __DIR__ . "/../../../Models/gridDataSource.php";
+
+use Illuminate\Support\Facades\DB;
+use Session;
+
 class gridData extends gridDataSource{
     protected $tableName = "fixedassets";
     public $dashboardTitle ="Fixed Assets";
@@ -57,8 +61,9 @@ class gridData extends gridDataSource{
             ],
             "AssetTypeID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getFixedAssetTypes"
             ],
             "AssetStatusID" => [
                 "dbType" => "varchar(36)",
@@ -87,7 +92,8 @@ class gridData extends gridDataSource{
             ],
             "AssetDepreciationMethodID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getFixedAssetDepreciationMethods",
                 "defaultValue" => ""
             ],
             "DepreciationPeriod" => [
@@ -182,17 +188,20 @@ class gridData extends gridDataSource{
             ],
             "GLFixedAssetAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "GLFixedAccumDepreciationAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "GLFixedDisposalAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ]/*,
             "Approved" => [
@@ -258,5 +267,34 @@ class gridData extends gridDataSource{
         "EnteredBy" => "EnteredBy",
         "Posted" => "Posted"
     ];
+
+    //getting list of available fixed asset types 
+    public function getFixedAssetTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT AssetTypeID,AssetTypeDescription from fixedassettype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->AssetTypeID] = [
+                "title" => $value->AssetTypeID,
+                "value" => $value->AssetTypeID
+            ];
+        
+        return $res;
+    }
+    //getting list of available fixed asset depreciation methos 
+    public function getFixedAssetDepreciationMethods(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT AssetDepreciationMethodID,DepreciationMethodDescription from fixedassetdepreciationmethods WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->AssetDepreciationMethodID] = [
+                "title" => $value->AssetDepreciationMethodID,
+                "value" => $value->AssetDepreciationMethodID
+            ];
+        
+        return $res;
+    }
 }
 ?>

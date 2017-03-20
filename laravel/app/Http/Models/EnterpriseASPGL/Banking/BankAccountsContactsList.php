@@ -1,12 +1,12 @@
 <?php
 namespace App\Models;
- require __DIR__ . "/../../../Models/gridDataSource.php";
+require __DIR__ . "/../../../Models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "bankaccountscontacts";
-public $dashboardTitle ="BankAccountsContacts";
-public $breadCrumbTitle ="BankAccountsContacts";
-public $idField ="BankID";
-public $idFields = ["CompanyID","DivisionID","DepartmentID","BankID","ContactID"];
+    protected $tableName = "bankaccountscontacts";
+    public $dashboardTitle ="BankAccountsContacts";
+    public $breadCrumbTitle ="BankAccountsContacts";
+    public $idField ="BankID";
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","BankID","ContactID"];
     public $gridFields = [
         "BankID" => [
             "dbType" => "varchar(36)",
