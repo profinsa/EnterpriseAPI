@@ -215,9 +215,11 @@
 			  window.scrollTo(0,0);
 		      },0);
 		  })
-		  .error(function(){
-//		      window.location = "<?php echo $public_prefix; ?>/login";
-		      window.location = "<?php echo $public_prefix; ?>/ByPassLogin";
+		  .error(function(xhr){
+		      if(xhr.status == 401)
+			  window.location = "<?php echo $public_prefix; ?>/login";
+		      else
+			  alert("Unable to load page");
 		  });
 	     }
 	 }

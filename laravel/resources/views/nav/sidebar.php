@@ -61,7 +61,7 @@
  });
  TwolevelItems.on('show.bs.collapse', function(e){
      var parent = $(e.currentTarget).parent().parent().parent().parent();
-     console.log(parent, parent.is('.in, .collapse'));
+//     console.log(parent, parent.is('.in, .collapse'));
 //     if(!parent.is('.in, .collapse'))
      sideBarCloseTwolevelAll();
      $(e.currentTarget).css('display', 'block');
