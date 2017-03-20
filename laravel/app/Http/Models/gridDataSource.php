@@ -38,6 +38,36 @@ class gridDataSource{
 
     public $idField = "";
 
+    //getting list of available contact regions 
+    public function getContactRegions(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT ContactRegionID,ContactRegionDescription from contactregions WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ContactRegionID] = [
+                "title" => $value->ContactRegionID,
+                "value" => $value->ContactRegionID
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available contact types 
+    public function getContactTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT ContactType,ContactTypeDescription from contacttype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ContactType] = [
+                "title" => $value->ContactType,
+                "value" => $value->ContactType
+            ];
+        
+        return $res;
+    }
+    
     //getting list of available ledger transaction types 
     public function getLedgerTransactionTypes(){
         $user = Session::get("user");

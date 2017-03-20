@@ -120,7 +120,7 @@
 	    </div>
 	    <div class="dt-buttons-container row col-md-12">
 		<br/>
-		<?php if(property_exists($data, "modes") && in_array("new", $data->modes)): ?>
+		<?php if(!property_exists($data, "modes") || in_array("new", $data->modes)): ?>
 		<a class="btn btn-info new-button-action dt-button" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] ?>/new/Main/new">
 		    <?php echo $translation->translateLabel("New"); ?>
 		</a>
