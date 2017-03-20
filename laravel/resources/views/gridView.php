@@ -93,7 +93,7 @@
 					echo "<td>\n";
 					switch($data->gridFields[$key]["inputType"]){
 					    case "checkbox" :
-						echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
+						echo $value ? "True" : "False";
 						break;
 					    case "timestamp" :
 					    case "datetime" :
