@@ -7,6 +7,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Ledger Transactions";
     public $idField ="GLTransactionNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
+    public $modes = ["grid", "view", "edit", "new"];
     public $gridFields = [
         "GLTransactionNumber" => [
             "dbType" => "varchar(36)",
@@ -49,7 +50,6 @@ class gridData extends gridDataSource{
 
     public $editCategories = [
         "Main" => [
-
             "GLTransactionNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
@@ -57,7 +57,8 @@ class gridData extends gridDataSource{
             ],
             "GLTransactionTypeID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getLedgerTransactionTypes",
                 "defaultValue" => ""
             ],
             "GLTransactionDate" => [
@@ -65,11 +66,11 @@ class gridData extends gridDataSource{
                 "inputType" => "datetime",
                 "defaultValue" => "now"
             ],
-            "SystemDate" => [
+            /*            "SystemDate" => [
                 "dbType" => "timestamp",
                 "inputType" => "datetime",
                 "defaultValue" => "now"
-            ],
+                ],*/
             "GLTransactionDescription" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
@@ -100,11 +101,11 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
-            "GLTransactionBalance" => [
+            /*            "GLTransactionBalance" => [
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
+                ],*/
             "GLTransactionPostedYN" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
@@ -125,7 +126,7 @@ class gridData extends gridDataSource{
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
-            "Reversal" => [
+            /*            "Reversal" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
@@ -189,9 +190,10 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
+            ],*/
             "Memorize" => [
                 "dbType" => "tinyint(1)",
+                "inputType" => "text",
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ]
@@ -200,7 +202,7 @@ class gridData extends gridDataSource{
         "GLTransactionNumber" => "Transaction Number",
         "GLTransactionTypeID" => "Type",
         "GLTransactionDate" => "Date",
-        "GLTransactionDescription" => "Description",
+        "GLTransactionDescription" => "GL Transaction Description",
         "CurrencyID" => "Currency",
         "GLTransactionAmount" => "Amount",
         "GLTransactionBalance" => "Balance",

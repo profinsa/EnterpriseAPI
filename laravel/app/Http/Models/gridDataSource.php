@@ -37,8 +37,38 @@ class gridDataSource{
     protected $gridFields = [];
 
     public $idField = "";
-    
+
+    //getting list of available ledger transaction types 
+    public function getLedgerTransactionTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT TransactionTypeID,TransactionTypeDescription from ledgertransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->TransactionTypeID] = [
+                "title" => $value->TransactionTypeID,
+                "value" => $value->TransactionTypeID
+            ];
+        
+        return $res;
+    }
+
     //getting list of available transaction types 
+    public function getBankTransactionTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->BankTransactionTypeID] = [
+                "title" => $value->BankTransactionTypeID,
+                "value" => $value->BankTransactionTypeID
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available account types 
     public function getAccounts(){
         $user = Session::get("user");
         $res = [];

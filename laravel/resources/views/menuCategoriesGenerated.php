@@ -1082,12 +1082,6 @@ $menuCategories["GeneralLedger"] = [
         "short" => "Vi"
         ],
         [
-        "id" => "GeneralLedger/Ledger/StoreGLTransactions",
-        "full" => $translation->translateLabel('Store GL Transactions'),
-        "href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsStoreList",
-        "short" => "St"
-        ],
-        [
         "id" => "GeneralLedger/Ledger/ViewBudgets",
         "full" => $translation->translateLabel('View Budgets'),
         "href"=> "EnterpriseASPGL/Ledger/LedgerChartOfAccountsBudgetsList",

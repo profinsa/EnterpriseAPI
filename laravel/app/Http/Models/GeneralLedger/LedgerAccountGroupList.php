@@ -58,7 +58,7 @@ class gridData extends \App\Models\gridDataSource{
         ],
         "GLReportingAccount" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ],
         "GLReportLevel" => [
             "dbType" => "varchar(36)",
@@ -99,7 +99,7 @@ class gridData extends \App\Models\gridDataSource{
             "GLReportingAccount" => [
                 "dbType" => "tinyint(1)",
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
             "GLReportLevel" => [

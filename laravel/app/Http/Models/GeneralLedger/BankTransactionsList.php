@@ -66,11 +66,11 @@ class gridData extends gridDataSource{
         ],
         "Posted" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ],
         "Cleared" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ]
     ];
 
@@ -109,7 +109,7 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "defaultValue" => "",
-                "dataProvider" => "getTransactionTypes"
+                "dataProvider" => "getBankTransactionTypes"
             ],
             "TransactionDate" => [
                 "dbType" => "datetime",
@@ -185,19 +185,5 @@ class gridData extends gridDataSource{
         "Notes" => "Notes" 
     ];
 
-    //getting list of available transaction types 
-    public function getTransactionTypes(){
-        $user = Session::get("user");
-        $res = [];
-        $result = DB::select("SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
-
-        foreach($result as $key=>$value)
-            $res[$value->BankTransactionTypeID] = [
-                "title" => $value->BankTransactionTypeID,
-                "value" => $value->BankTransactionTypeID
-            ];
-        
-        return $res;
-    }
 }
 ?>
