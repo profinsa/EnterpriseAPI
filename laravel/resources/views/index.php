@@ -104,6 +104,7 @@
 	    ]
 	]
     ];*/
+    $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
 
     require "menuCategoriesGenerated.php";
 

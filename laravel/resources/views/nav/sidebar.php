@@ -12,14 +12,14 @@
 	    //echo  "<a href=\"#\" style=\"margin-left:10px;\" class=\"nav-link active\"><span class=\"full-label\">Opportunities</span><span class=\"short-label\" title=\"Opportunities\">Op</span></a>";
 	    foreach($item["data"] as $key=>$subitem){
 		if($subitem["type"] == "item"){
-		    $href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . $subitem["id"] . "/grid/main/all";
+		    $href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . (key_exists("href_ended", $subitem) ? $subitem["href_ended"] : $subitem["id"] . "/grid/Main/all");
 		    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\" data-name=\"". $subitem["id"] ."\" class=\"not-in-more nav-link nav-item-level2\"><a href=\"" . $href . "\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
 		}else if($subitem["type"] == "submenu"){
 		    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"#list". str_replace("/", "", $subitem["id"]) ."\"  class=\"not-in-more\"><a class=\"nav-item-submenu\" href=\"#list" . str_replace("/", "", $subitem["id"]) . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $subitem["full"] ."</span><span class=\"short-label\" title=\"". $subitem["short"] ."\">". $subitem["short"] ."</span></a></li>";
 		    echo "<li id=\"list" . str_replace("/", "", $subitem["id"]) . "\" class=\"collapse-sidebar-two-level-item collapse\" data-name=\"" . $subitem["id"] ."\" class=\"not-in-more\" style=\"display:none\">";
 		    echo "<ul class=\"nav navbar-nav tabs navbar-items\">";
 		    foreach($subitem["data"] as $ssubitem){
-			$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . $ssubitem["id"] . "/grid/main/all";
+			$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"] . "/grid/Main/all");
 			echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\" data-name=\"". $ssubitem["full"] ."\" class=\"not-in-more nav-link nav-item-level3\"><a href=\"" . $href . "\"><span class=\"full-label\">". $ssubitem["full"] ."</span><span class=\"short-label\" title=\"". $ssubitem["short"] ."\">". $ssubitem["short"] ."</span></a></li>";
 		    }
 		    echo "</ul></li></ul></li>";
