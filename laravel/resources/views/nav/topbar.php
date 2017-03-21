@@ -16,7 +16,7 @@
 		    $first = false;
 		echo "<li class=\"dropdown-header\">" . $subitem["full"] . "</li>\n";
 		if($subitem["type"] == "item"){
-		    $href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . $subitem["id"] . "/grid/main/all";
+		    $href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . (key_exists("href_ended", $subitem) ? $subitem["href_ended"] : $subitem["id"] . "/grid/Main/all");
 		    echo "<li><a href=\"" . $href . "\" class=\"nav-link\">" . $subitem["full"] ."</a></li>";
 		}else if($subitem["type"] == "submenu"){
 		    foreach($subitem["data"] as $ssubitem){
