@@ -24,7 +24,7 @@ Called from:
 Calls:
 models/translation.php
 
-Last Modified: 02.03.2016
+Last Modified: 22.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -37,6 +37,7 @@ use Session;
 
 require __DIR__ . "/../../common.php";
 require __DIR__ . "/../Models/translation.php";
+require __DIR__ . "/../Models/security.php";
 
 class _app{
     public $title = "Integral Accounting New Tech PHP";
@@ -57,6 +58,7 @@ class Index extends BaseController{
         $translation = new \App\Models\translation($user["language"]);
         $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
         $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
+        $security = new \App\Models\Security($user["accesspermissions"], []);
 
         $sessionValues = Session::all();
         $token = $sessionValues['_token'];
@@ -68,7 +70,8 @@ class Index extends BaseController{
                                "dashboardTitle" => $translation->translateLabel($this->dashboardTitle),
                                "breadCrumbTitle" => $translation->translateLabel($this->breadCrumbTitle),
                                "header" => "header.php",
-                               "token" => $token
+                               "token" => $token,
+                               "security" => $security
         ]);
     }
 }

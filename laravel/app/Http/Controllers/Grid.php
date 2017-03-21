@@ -25,7 +25,7 @@ Calls:
 models/translation.php
 models/gridDataSource derevatives -- models who inherits from gridDataSource
 
-Last Modified: 28.02.2016
+Last Modified: 22.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -40,29 +40,11 @@ use Session;
 
 require __DIR__ . "/../Models/translation.php";
 require __DIR__ . "/../Models/permissionsGenerated.php";
+require __DIR__ . "/../Models/security.php";
 require __DIR__ . "/../../common.php";
 
 class _app{
     public $title = "Integral Accounting New Tech PHP";
-}
-
-class Security{
-    protected $permissions;
-    protected $useraccess;
-    public function __construct($useraccessperm, $perm){
-        $this->permissions = $perm;
-        $this->useraccess = $useraccessperm;
-    }
-
-    public function can($action){
-        if($this->permissions[$action] == "any" || $this->permissions[$action] == "Always")
-            return 1;
-        $perms = explode("|", $this->permissions[$action]);
-        foreach($perms as $value)
-            if(key_exists($value, $this->useraccess) && $this->useraccess[$value])
-                return 1;
-        return 0;
-    }
 }
 
 class Grid extends BaseController{
@@ -84,7 +66,7 @@ class Grid extends BaseController{
         $_perm = new \App\Models\permissionsByFile();
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
         if(key_exists($filename[1], $_perm->permissions))
-            $security = new Security($user["accesspermissions"], $_perm->permissions[$filename[1]]);
+            $security = new \App\Models\Security($user["accesspermissions"], $_perm->permissions[$filename[1]]);
         else
             return response('permissions not found', 500)->header('Content-Type', 'text/plain');
         

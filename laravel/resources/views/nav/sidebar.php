@@ -4,7 +4,7 @@
 	if($item["type"] == "item"){
 	    $href = preg_match("/^http/", $item["data"]["href"]) ? $item["data"]["href"] : $public_prefix . "/index#/grid/" . $item["data"]["id"] . "/grid/main/all";
 	    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") ."\"  class=\"not-in-more\"><a href=\"" . $href . "\" class=\"nav-link nav-item-level1\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li></ul></li>";
-	}else if($item["type"] == "submenu"){
+	}else if($item["type"] == "submenu" && $security->checkMenu($item["id"])){
 	    /*echo "<li data-name=\"". $key ."\" class=\"not-in-more\"><a href=\"" . $key . "\" class=\"nav-link\"><span class=\"full-label\">". $key ."</span><span class=\"short-label\" title=\"". $key ."\">". $key ."</span></a></li>";*/
 	    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". $key ."\"  class=\"not-in-more\"><a class=\"nav-item-level1\" href=\"#list" . $item["id"] . "\" data-toggle=\"collapse\"><span class=\"full-label\">". $item["full"] ."</span><span class=\"short-label\" title=\"". $item["short"] ."\">". $item["short"] ."</span></a></li>";
 	    echo "<li id=\"list" . $item["id"] . "\" class=\"collapse-sidebar-item collapse\" data-name=\"" . $key ."\" class=\"not-in-more\" style=\"display:none\">";
