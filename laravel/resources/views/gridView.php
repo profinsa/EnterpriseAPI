@@ -83,9 +83,9 @@
 				}
 				$keyString = substr($keyString, 0, -2);
 				echo "<tr><td>";
-				if($user["accesspermissions"]["GLEdit"])
+				if($security->can("select"))
 				    echo "<a href=\"" . $public_prefix ."/index#/grid/" . $scope["path"] . "/view/Main/" . $keyString ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
-				if($user["accesspermissions"]["GLDelete"])
+				if($security->can("delete"))
 				    echo "<span onclick=\"deleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
 				echo "</td>";
 				foreach($row as $key=>$value)
@@ -120,8 +120,8 @@
 	    </div>
 	    <div class="dt-buttons-container row col-md-12">
 		<br/>
-		<?php if(!property_exists($data, "modes") || in_array("new", $data->modes)): ?>
-		<a class="btn btn-info new-button-action dt-button" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] ?>/new/Main/new">
+		<?php if((!property_exists($data, "modes") || in_array("new", $data->modes)) && $security->can("insert")): ?>
+		    <a class="btn btn-info new-button-action dt-button" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] ?>/new/Main/new">
 		    <?php echo $translation->translateLabel("New"); ?>
 		</a>
 		<?php endif; ?>
@@ -203,9 +203,11 @@
 		     for translation uses translation model
 		     for category(which tab is activated) uses $scope of controller
 		   -->
+		<?php if($security->can("update")): ?>
 		<a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo  $scope["path"];  ?>/edit/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>">
 		    <?php echo $translation->translateLabel("Edit"); ?>
 		</a>
+		<?php endif; ?>
 		<a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/grid/Main/all"; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
@@ -289,9 +291,11 @@
 		    <!--
 			 renders buttons translated Save and Cancel using translation model
 		       -->
+		    <?php if($security->can("update")): ?>
 		    <a class="btn btn-info" onclick="<?php echo ($scope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 			<?php echo $translation->translateLabel("Save"); ?>
 		    </a>
+		    <?php endif; ?>
 		    <a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/" .  ( $scope["mode"] != "new" ? "view/" . $scope["category"] . "/" . $scope["item"] : "grid/Main/all" ) ; ?>">
 			<?php echo $translation->translateLabel("Cancel"); ?>
 		    </a>

@@ -46,9 +46,22 @@ class _app{
     public $title = "Integral Accounting New Tech PHP";
 }
 
-class Permissions{
-    public function __construct($perm){
+class Security{
+    protected $permissions;
+    protected $useraccess;
+    public function __construct($useraccessperm, $perm){
+        $this->permissions = $perm;
+        $this->useraccess = $useraccessperm;
+    }
 
+    public function can($action){
+        if($this->permissions[$action] == "any" || $this->permissions[$action] == "Always")
+            return 1;
+        $perms = explode("|", $this->permissions[$action]);
+        foreach($perms as $value)
+            if(key_exists($value, $this->useraccess) && $this->useraccess[$value])
+                return 1;
+        return 0;
     }
 }
 
@@ -64,12 +77,14 @@ class Grid extends BaseController{
                 return redirect("/login");
         }
 
+        $user = Session::get("user");
+        
         $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
 
         $_perm = new \App\Models\permissionsByFile();
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
         if(key_exists($filename[1], $_perm->permissions))
-           $permissions = new Permissions($_perm->permissions[$filename[1]]);
+            $security = new Security($user["accesspermissions"], $_perm->permissions[$filename[1]]);
         else
             return response('permissions not found', 500)->header('Content-Type', 'text/plain');
         
@@ -78,7 +93,6 @@ class Grid extends BaseController{
         require __DIR__ . "/../Models/" . $model_path .  '.php';
         $data = new \App\Models\gridData();
 
-        $user = Session::get("user");
                
         $translation = new \App\Models\translation($user["language"]);
 
@@ -105,7 +119,8 @@ class Grid extends BaseController{
                       ],
                       "token" => $token,
                       "header" => "header.php",
-                      "content" => "gridView.php"
+                      "content" => "gridView.php",
+                      "security" => $security
                     ]);
     }
 
