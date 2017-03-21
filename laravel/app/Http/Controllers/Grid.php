@@ -39,9 +39,17 @@ use Illuminate\Http\Request;
 use Session;
 
 require __DIR__ . "/../Models/translation.php";
+require __DIR__ . "/../Models/permissionsGenerated.php";
 require __DIR__ . "/../../common.php";
+
 class _app{
     public $title = "Integral Accounting New Tech PHP";
+}
+
+class Permissions{
+    public function __construct($perm){
+
+    }
 }
 
 class Grid extends BaseController{
@@ -56,7 +64,18 @@ class Grid extends BaseController{
                 return redirect("/login");
         }
 
-        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
+        $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
+
+        $_perm = new \App\Models\permissionsByFile();
+        preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        if(key_exists($filename[1], $_perm->permissions))
+           $permissions = new Permissions($_perm->permissions[$filename[1]]);
+        else
+            return response('permissions not found', 500)->header('Content-Type', 'text/plain');
+        
+        //echo json_encode($permissions->permissions[$filename[1]]);
+        
+        require __DIR__ . "/../Models/" . $model_path .  '.php';
         $data = new \App\Models\gridData();
 
         $user = Session::get("user");
@@ -66,6 +85,8 @@ class Grid extends BaseController{
         $sessionValues = Session::all();
         $token = $sessionValues['_token'];
         $app = new _app;
+
+        //        preg_match("/(.+)
         return view(key_exists("partial",$_GET) ? "gridView" : "index",
                     [ "app" => $app,
                       "public_prefix" => $public_prefix,
@@ -80,7 +101,7 @@ class Grid extends BaseController{
                           "pathPage" => $page,
                           "mode" => $mode,
                           "category" => $category,
-                          "item" => $item
+                          "item" => $item                          
                       ],
                       "token" => $token,
                       "header" => "header.php",
