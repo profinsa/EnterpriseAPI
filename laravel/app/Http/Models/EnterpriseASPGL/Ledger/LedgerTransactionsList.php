@@ -1,6 +1,10 @@
 <?php
 namespace App\Models;
 require __DIR__ . "/../../../Models/gridDataSource.php";
+
+use Illuminate\Support\Facades\DB;
+use Session;
+
 class gridData extends gridDataSource{
     protected $tableName = "ledgertransactions";
     public $dashboardTitle ="Ledger Transactions";
@@ -94,12 +98,16 @@ class gridData extends gridDataSource{
             "GLTransactionAmount" => [
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
             ],
             "GLTransactionAmountUndistributed" => [
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
             ],
             /*            "GLTransactionBalance" => [
                 "dbType" => "decimal(19,4)",
@@ -229,4 +237,18 @@ class gridData extends gridDataSource{
         "ManagerPassword" => "Manager Password",
         "Memorize" => "Memorize"
     ];
+
+    public function PostManual(){
+        $user = Session::get("user");
+
+        DB::statement("CALL LedgerTransactions_PostManual('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["GLTransactionNumber"] . "',@PostingResult,@DisbalanceAmount,@IsValid,@SWP_RET_VALUE)");
+
+        $results = DB::select('select @PostingResult as PostingResult, @DisbalanceAmount as DisbalanceAmount, @IsValid as IsValid, @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($results[0]->SWP_RET_VALUE > -1){
+            header('Content-Type: application/json');
+            echo json_encode($results);
+        }else
+            return response(json_encode($results), 400)->header('Content-Type', 'text/plain');
+        
+    }
 }?>

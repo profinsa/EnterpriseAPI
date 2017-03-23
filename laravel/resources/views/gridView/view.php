@@ -61,6 +61,12 @@
 	    <a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo  $scope["path"];  ?>/edit/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>">
 		<?php echo $translation->translateLabel("Edit"); ?>
 	    </a>
+	    <?php
+	    if(file_exists(__DIR__ . "/../" . $PartsPath . "viewActions.php"))
+		require __DIR__ . "/../" . $PartsPath . "viewActions.php";
+	    if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
+		require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
+	    ?>
 	<?php endif; ?>
 	<a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/grid/Main/all"; ?>">
 	    <?php echo $translation->translateLabel("Cancel"); ?>

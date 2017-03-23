@@ -79,7 +79,8 @@
 	     var itemData = $("#itemData");
 	     $.getJSON("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
 	      .success(function(data) {
-		  window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
+		  onlocation(window.location);
+//		  window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
 	      })
 	      .error(function(err){
 		  console.log('wrong');

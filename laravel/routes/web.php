@@ -36,3 +36,4 @@ Route::get('/grid/{folder}/{subfolder}/{page}/{action}/{category}/{item}', "Grid
 Route::post('/grid/{folder}/{subfolder}/{page}/update', "Grid@update");
 Route::post('/grid/{folder}/{subfolder}/{page}/insert', "Grid@insert");
 Route::get('/grid/{folder}/{subfolder}/{page}/delete/{item}', "Grid@delete");
+Route::post('/grid/{folder}/{subfolder}/{page}/procedure/{name}', "Grid@procedure");

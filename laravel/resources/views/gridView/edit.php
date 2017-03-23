@@ -79,6 +79,12 @@
 		<a class="btn btn-info" onclick="<?php echo ($scope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 		    <?php echo $translation->translateLabel("Save"); ?>
 		</a>
+		<?php 
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "editActions.php";
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
+		?>
 	    <?php endif; ?>
 	    <a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/" .  ( $scope["mode"] != "new" ? "view/" . $scope["category"] . "/" . $scope["item"] : "grid/Main/all" ) ; ?>">
 		<?php echo $translation->translateLabel("Cancel"); ?>

@@ -8,6 +8,7 @@
 	if(isset($header))
 	    require $header;
 	?>
+	<meta name="csrf-token" content="<?php echo  csrf_token();?>">
 	<meta content="utf-8" http-equiv="encoding">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<meta name="description" content="">

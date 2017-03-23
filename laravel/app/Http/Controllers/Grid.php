@@ -102,7 +102,8 @@ class Grid extends BaseController{
                       "token" => $token,
                       "header" => "header.php",
                       "content" => "gridView.php",
-                      "security" => $security
+                      "security" => $security,
+                      "PartsPath" => $model_path . "/"
                     ]);
     }
 
@@ -134,6 +135,14 @@ class Grid extends BaseController{
         $data->deleteItem($item);
         header('Content-Type: application/json');
         echo "{ \"message\" : \"ok\"}";
+    }
+
+    public function procedure(Request $request, $folder, $subfolder, $page, $name){
+        require __DIR__ . "/../Models/menuIdToHref.php";
+        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
+        $data = new \App\Models\gridData();
+
+        return $data->$name();
     }
 }
 ?>

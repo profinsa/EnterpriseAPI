@@ -78,7 +78,7 @@
  <?php endif; ?>
      console.log('loaded');
      $.ajaxSetup({
-	 headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') }
+	 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
      });
      var table = $('#example23').DataTable( {
 	 buttons: [
