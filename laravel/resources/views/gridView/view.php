@@ -73,3 +73,9 @@
 	</a>
     </div>
 </div>
+<?php
+if(file_exists(__DIR__ . "/../" . $PartsPath . "viewFooter.php"))
+    require __DIR__ . "/../" . $PartsPath . "viewFooter.php";
+if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
+    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
+?>

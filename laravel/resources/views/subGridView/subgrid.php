@@ -7,7 +7,7 @@
 		    <th></th>
 		    <?php
 		    //getting data for table
-		    $rows = $data->getPage(1);
+		    $rows = $data->getPage($scope["item"]);
 		    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 		    if(count($rows)){
 			foreach($rows[0] as $key =>$value)
@@ -80,7 +80,7 @@
 	     $.getJSON("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
 	      .success(function(data) {
 		  onlocation(window.location);
-		  //		  window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
+//		  window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
 	      })
 	      .error(function(err){
 		  console.log('wrong');
@@ -89,4 +89,4 @@
      }
     </script>
 </div>
-
+	

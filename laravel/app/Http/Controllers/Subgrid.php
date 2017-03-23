@@ -1,8 +1,8 @@
 <?php
 /*
-Name of Page: gridController
+Name of Page: subgridController
 
-Method: controller for many grid pages(like General Ledger pages etc), used for rendering page and interacting with it
+Method: controller for many subgrid, embedded in other grid and ordinary pages. Used for rendering page and interacting with it
 
 Date created: Nikita Zaharov, 23.02.2016
 
@@ -47,7 +47,7 @@ class _app{
     public $title = "Integral Accounting New Tech PHP";
 }
 
-class Grid extends BaseController{
+class Subgrid extends BaseController{
     public function show($folder, $subfolder, $page, $mode, $category, $item){
         require __DIR__ . "/../Models/menuIdToHref.php";
         $public_prefix = public_prefix();
@@ -65,6 +65,8 @@ class Grid extends BaseController{
 
         $_perm = new \App\Models\permissionsByFile();
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        preg_match("/(.+)(List|Detail)$/", $model_path, $path);
+        $model_path = $path[1] . 'Detail';
         if(key_exists($filename[1], $_perm->permissions))
             $security = new \App\Models\Security($user["accesspermissions"], $_perm->permissions[$filename[1]]);
         else
@@ -74,7 +76,6 @@ class Grid extends BaseController{
         
         require __DIR__ . "/../Models/" . $model_path .  '.php';
         $data = new \App\Models\gridData();
-
                
         $translation = new \App\Models\translation($user["language"]);
 
@@ -83,7 +84,7 @@ class Grid extends BaseController{
         $app = new _app;
 
         //        preg_match("/(.+)
-        return view(key_exists("partial",$_GET) ? "gridView" : "index",
+        return view(key_exists("partial",$_GET) ? "subGridView" : "index",
                     [ "app" => $app,
                       "public_prefix" => $public_prefix,
                       "translation" => $translation,
@@ -101,7 +102,7 @@ class Grid extends BaseController{
                       ],
                       "token" => $token,
                       "header" => "header.php",
-                      "content" => "gridView.php",
+                      "content" => "subGridView.php",
                       "security" => $security,
                       "PartsPath" => $model_path . "/"
                     ]);
@@ -109,7 +110,10 @@ class Grid extends BaseController{
 
     public function update($folder, $subfolder, $page){
         require __DIR__ . "/../Models/menuIdToHref.php";
-        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
+        $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
+        preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        $model_path = $filename[1] . 'Detail';
+        require __DIR__ . "/../Models/" . $model_path .  '.php';
         $data = new \App\Models\gridData();
         
         $data->updateItem($_POST["id"], $_POST["category"], $_POST);
@@ -119,7 +123,10 @@ class Grid extends BaseController{
     
     public function insert($folder, $subfolder, $page){
         require __DIR__ . "/../Models/menuIdToHref.php";
-        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
+        $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
+        preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        $model_path = $filename[1] . 'Detail';
+        require __DIR__ . "/../Models/" . $model_path .  '.php';
         $data = new \App\Models\gridData();
         
         $data->insertItem($_POST);
@@ -129,7 +136,11 @@ class Grid extends BaseController{
 
     public function delete($folder, $subfolder, $page, $item){
         require __DIR__ . "/../Models/menuIdToHref.php";
-        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
+        $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
+        preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        $model_path = $filename[1] . 'Detail';
+        require __DIR__ . "/../Models/" . $model_path .  '.php';
+
         $data = new \App\Models\gridData();
         
         $data->deleteItem($item);
@@ -139,7 +150,11 @@ class Grid extends BaseController{
 
     public function procedure(Request $request, $folder, $subfolder, $page, $name){
         require __DIR__ . "/../Models/menuIdToHref.php";
-        require __DIR__ . "/../Models/" . $menuIdToPath[$folder . '/' . $subfolder .'/' . $page] .  '.php';
+        $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
+        preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        $model_path = $filename[1] . 'Detail';
+        require __DIR__ . "/../Models/" . $model_path .  '.php';
+        
         $data = new \App\Models\gridData();
 
         return $data->$name();

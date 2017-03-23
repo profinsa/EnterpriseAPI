@@ -37,3 +37,10 @@ Route::post('/grid/{folder}/{subfolder}/{page}/update', "Grid@update");
 Route::post('/grid/{folder}/{subfolder}/{page}/insert', "Grid@insert");
 Route::get('/grid/{folder}/{subfolder}/{page}/delete/{item}', "Grid@delete");
 Route::post('/grid/{folder}/{subfolder}/{page}/procedure/{name}', "Grid@procedure");
+
+//subgrid pages
+Route::get('/subgrid/{folder}/{subfolder}/{page}/{action}/{category}/{item}', "Subgrid@show");
+Route::post('/subgrid/{folder}/{subfolder}/{page}/update', "Subgrid@update");
+Route::post('/subgrid/{folder}/{subfolder}/{page}/insert', "Subgrid@insert");
+Route::get('/subgrid/{folder}/{subfolder}/{page}/delete/{item}', "Subgrid@delete");
+Route::post('/subgrid/{folder}/{subfolder}/{page}/procedure/{name}', "Subgrid@procedure");
