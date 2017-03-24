@@ -49,8 +49,8 @@ public $editCategories = [
 ],
 "IsActive" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ItemTypeID" => [
 "dbType" => "varchar(36)",
@@ -259,8 +259,8 @@ public $editCategories = [
 ],
 "Taxable" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "VendorID" => [
 "dbType" => "varchar(50)",
@@ -329,8 +329,8 @@ public $editCategories = [
 ],
 "IsAssembly" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ItemAssembly" => [
 "dbType" => "varchar(36)",
@@ -429,8 +429,8 @@ public $editCategories = [
 ],
 "Commissionable" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "CommissionType" => [
 "dbType" => "smallint(6)",
@@ -444,8 +444,8 @@ public $editCategories = [
 ],
 "Approved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",

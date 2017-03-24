@@ -19,13 +19,13 @@ public $editCategories = [
 
 "UsePricingCodes" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "UseCustomerSpecificPricing" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "DefaultPricingCode" => [
 "dbType" => "varchar(36)",

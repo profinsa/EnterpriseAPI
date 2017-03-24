@@ -152,8 +152,8 @@ public $editCategories = [
 ],
 "TransitShipped" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "TransitShipDate" => [
 "dbType" => "datetime",
@@ -187,8 +187,8 @@ public $editCategories = [
 ],
 "TransitReceived" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "TransitReceivedDate" => [
 "dbType" => "datetime",
@@ -252,13 +252,13 @@ public $editCategories = [
 ],
 "Memorized" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Approved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",

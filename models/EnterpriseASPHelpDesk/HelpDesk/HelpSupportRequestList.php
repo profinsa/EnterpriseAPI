@@ -60,8 +60,8 @@ public $editCategories = [
 ],
 "SupportAssigned" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "SupportAssignedTo" => [
 "dbType" => "varchar(36)",
@@ -140,8 +140,8 @@ public $editCategories = [
 ],
 "SupportApproved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "SupportApprovedBy" => [
 "dbType" => "varchar(26)",

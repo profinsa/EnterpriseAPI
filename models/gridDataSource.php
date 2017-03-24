@@ -92,6 +92,13 @@ class gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
+        if(property_exists($this, "gridConditions")){
+            if($keyFields != "")
+                $keyFields .= " AND " . $this->gridConditions;
+            else
+                $keyFields = $this->gridConditions;
+        }
+        
         $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true);

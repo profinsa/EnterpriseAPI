@@ -116,13 +116,13 @@ public $editCategories = [
 ],
 "ApplyItem" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Employer" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EmployerItemAmount" => [
 "dbType" => "decimal(19,4)",

@@ -324,7 +324,6 @@ class gridData extends gridDataSource{
         ]
     ];
     public $columnNames = [
-
         "GLBudgetID" => "GL Budget ID",
         "GLAccountNumber" => "GL Account Number",
         "GLAccountName" => "GL Account Name",
@@ -374,6 +373,7 @@ class gridData extends gridDataSource{
         "GLBudgetPeriod13Reason" => "Period 13 Reason",
         "GLBudgetPeriod14" => "Period 14",
         "GLBudgetPeriod14Variance" => "Period 14 Variance",
-        "GLBudgetPeriod14Reason" => "Period 14 Reason"];
+        "GLBudgetPeriod14Reason" => "Period 14 Reason"
+    ];
 }
 ?>

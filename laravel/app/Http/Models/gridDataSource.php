@@ -22,7 +22,7 @@ inherited by models/GeneralLedger/*
 Calls:
 sql
 
-Last Modified: 23.02.2016
+Last Modified: 24.02.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -157,6 +157,13 @@ class gridDataSource{
         }
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
+
+        if(property_exists($this, "gridConditions")){
+            if($keyFields != "")
+                $keyFields .= " AND " . $this->gridConditions;
+            else
+                $keyFields = $this->gridConditions;
+        }
         
         $result = DB::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 

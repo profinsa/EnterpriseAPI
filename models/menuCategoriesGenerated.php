@@ -1158,6 +1158,12 @@ $menuCategories["GeneralLedger"] = [
     "full" => $translation->translateLabel('Fixed Assets'),
     "short" => "Fi",
     "data" => [
+        [
+        "id" => "GeneralLedger/FixedAssets/ViewAssets",
+        "full" => $translation->translateLabel('View Assets '),
+        "href"=> "EnterpriseASPGL/FixedAssets/FixedAssetsList",
+        "short" => "Vi"
+        ]
     ]
     ],
     [

@@ -157,8 +157,8 @@ public $editCategories = [
 ],
 "ContactPasswordExpires" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ContactPasswordExpiresDate" => [
 "dbType" => "int(11)",

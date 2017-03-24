@@ -72,8 +72,8 @@ public $editCategories = [
 ],
 "CheckPrinted" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Amount" => [
 "dbType" => "decimal(19,4)",
@@ -102,8 +102,8 @@ public $editCategories = [
 ],
 "Apply" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ]
 ]];
 public $columnNames = [

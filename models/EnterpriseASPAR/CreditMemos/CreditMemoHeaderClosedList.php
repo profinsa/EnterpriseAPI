@@ -65,8 +65,8 @@ public $editCategories = [
 ],
 "TransOpen" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "InvoiceDate" => [
 "dbType" => "timestamp",
@@ -95,8 +95,8 @@ public $editCategories = [
 ],
 "Memorize" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PurchaseOrderNumber" => [
 "dbType" => "varchar(36)",
@@ -170,8 +170,8 @@ public $editCategories = [
 ],
 "TaxFreight" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Handling" => [
 "dbType" => "decimal(19,4)",
@@ -195,13 +195,13 @@ public $editCategories = [
 ],
 "CommissionPaid" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "CommissionSelectToPay" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Commission" => [
 "dbType" => "decimal(19,4)",
@@ -220,8 +220,8 @@ public $editCategories = [
 ],
 "CustomerDropShipment" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ShipMethodID" => [
 "dbType" => "varchar(36)",
@@ -385,8 +385,8 @@ public $editCategories = [
 ],
 "Picked" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PickedDate" => [
 "dbType" => "datetime",
@@ -395,8 +395,8 @@ public $editCategories = [
 ],
 "Printed" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PrintedDate" => [
 "dbType" => "datetime",
@@ -405,8 +405,8 @@ public $editCategories = [
 ],
 "Shipped" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ShipDate" => [
 "dbType" => "datetime",
@@ -420,8 +420,8 @@ public $editCategories = [
 ],
 "Billed" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "BilledDate" => [
 "dbType" => "datetime",
@@ -430,13 +430,13 @@ public $editCategories = [
 ],
 "Backordered" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Posted" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PostedDate" => [
 "dbType" => "datetime",
@@ -520,8 +520,8 @@ public $editCategories = [
 ],
 "Approved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",
@@ -570,8 +570,8 @@ public $editCategories = [
 ],
 "IncomeCreditMemo" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ]
 ]];
 public $columnNames = [

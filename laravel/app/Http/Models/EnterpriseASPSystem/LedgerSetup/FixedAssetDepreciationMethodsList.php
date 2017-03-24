@@ -46,6 +46,7 @@ class gridData extends gridDataSource{
     public $columnNames = [
         "AssetDepreciationMethodID" => "Asset Depreciation Method ID",
         "DepreciationMethodDescription" => "Depreciation Method Description",
-        "DepreciationFormula" => "Depreciation Formula"];
+        "DepreciationFormula" => "Depreciation Formula"
+    ];
 }
 ?>

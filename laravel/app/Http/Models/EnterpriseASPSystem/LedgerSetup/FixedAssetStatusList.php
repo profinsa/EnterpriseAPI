@@ -36,6 +36,7 @@ class gridData extends gridDataSource{
     ];
     public $columnNames = [
         "AssetStatusID" => "Asset Status ID",
-        "AssetStatusDescription" => "Asset Status Description"];
+        "AssetStatusDescription" => "Asset Status Description"
+    ];
 }
 ?>

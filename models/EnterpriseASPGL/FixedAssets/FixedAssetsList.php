@@ -1,9 +1,5 @@
 <?php
-namespace App\Models;
-require __DIR__ . "/../../../Models/gridDataSource.php";
-
-use Illuminate\Support\Facades\DB;
-use Session;
+require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "fixedassets";
@@ -244,9 +240,9 @@ class gridData extends gridDataSource{
 
     //getting list of available fixed asset types 
     public function getFixedAssetTypes(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         $res = [];
-        $result = DB::select("SELECT AssetTypeID,AssetTypeDescription from fixedassettype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = $GLOBALS["capsule"]::select("SELECT AssetTypeID,AssetTypeDescription from fixedassettype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         foreach($result as $key=>$value)
             $res[$value->AssetTypeID] = [
@@ -258,9 +254,9 @@ class gridData extends gridDataSource{
     }
     //getting list of available fixed asset depreciation methos 
     public function getFixedAssetDepreciationMethods(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         $res = [];
-        $result = DB::select("SELECT AssetDepreciationMethodID,DepreciationMethodDescription from fixedassetdepreciationmethods WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = $GLOBALS["capsule"]::select("SELECT AssetDepreciationMethodID,DepreciationMethodDescription from fixedassetdepreciationmethods WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         foreach($result as $key=>$value)
             $res[$value->AssetDepreciationMethodID] = [

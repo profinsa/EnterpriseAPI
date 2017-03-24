@@ -75,7 +75,8 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ]
-        ]];
+        ]
+    ];
     public $columnNames = [
         "CurrencyID" => "Currency ID",
         "CurrencyType" => "Currency Type",

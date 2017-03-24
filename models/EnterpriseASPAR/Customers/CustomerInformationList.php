@@ -140,8 +140,8 @@ public $editCategories = [
 ],
 "CustomerPasswordExpires" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "CustomerPasswordExpiresDate" => [
 "dbType" => "int(11)",
@@ -265,18 +265,18 @@ public $editCategories = [
 ],
 "SendCreditMemos" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "SendDebitMemos" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Statements" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "StatementCycleCode" => [
 "dbType" => "varchar(10)",
@@ -335,43 +335,43 @@ public $editCategories = [
 ],
 "PickTicketsNeeded" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PackingListNeeded" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "SpecialLabelsNeeded" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "CustomerItemCodes" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ConfirmBeforeShipping" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Backorders" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "UseStoreNumbers" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "UseDepartmentNumbers" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "SpecialShippingInstructions" => [
 "dbType" => "varchar(250)",
@@ -385,8 +385,8 @@ public $editCategories = [
 ],
 "ApplyRebate" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "RebateAmount" => [
 "dbType" => "float",
@@ -405,8 +405,8 @@ public $editCategories = [
 ],
 "ApplyNewStore" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "NewStoreDiscount" => [
 "dbType" => "float",
@@ -425,8 +425,8 @@ public $editCategories = [
 ],
 "ApplyWarehouse" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "WarehouseAllowance" => [
 "dbType" => "float",
@@ -445,8 +445,8 @@ public $editCategories = [
 ],
 "ApplyAdvertising" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "AdvertisingDiscount" => [
 "dbType" => "float",
@@ -465,8 +465,8 @@ public $editCategories = [
 ],
 "ApplyManualAdvert" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ManualAdvertising" => [
 "dbType" => "float",
@@ -485,8 +485,8 @@ public $editCategories = [
 ],
 "ApplyTrade" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "TradeDiscount" => [
 "dbType" => "float",
@@ -550,33 +550,33 @@ public $editCategories = [
 ],
 "EDIPurchaseOrders" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EDIInvoices" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EDIPayments" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EDIOrderStatus" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "EDIShippingNotices" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "Approved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ApprovedBy" => [
 "dbType" => "varchar(36)",
@@ -595,13 +595,13 @@ public $editCategories = [
 ],
 "ConvertedFromVendor" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ConvertedFromLead" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "CustomerRegionID" => [
 "dbType" => "varchar(36)",
@@ -620,8 +620,8 @@ public $editCategories = [
 ],
 "Confirmed" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "FirstContacted" => [
 "dbType" => "datetime",
@@ -640,8 +640,8 @@ public $editCategories = [
 ],
 "ReferedByExistingCustomer" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ReferedBy" => [
 "dbType" => "varchar(15)",
@@ -660,8 +660,8 @@ public $editCategories = [
 ],
 "Hot" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "PrimaryInterest" => [
 "dbType" => "varchar(80)",

@@ -125,8 +125,8 @@ public $editCategories = [
 ],
 "LockerStock" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "LockerStockQty" => [
 "dbType" => "float",

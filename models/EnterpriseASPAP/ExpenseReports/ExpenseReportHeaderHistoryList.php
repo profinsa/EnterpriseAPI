@@ -95,8 +95,8 @@ public $editCategories = [
 ],
 "ExpenseReportPaid" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ExpenseReportPaidDate" => [
 "dbType" => "datetime",
@@ -110,8 +110,8 @@ public $editCategories = [
 ],
 "ExpenseReportApproved" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "ExpenseReportApprovedBy" => [
 "dbType" => "varchar(36)",

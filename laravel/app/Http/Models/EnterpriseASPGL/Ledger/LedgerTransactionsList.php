@@ -12,6 +12,7 @@ class gridData extends gridDataSource{
     public $idField ="GLTransactionNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
     public $modes = ["grid", "view", "edit", "new"];
+    protected $gridConditions = "GLTransactionPostedYN='0'";
     public $gridFields = [
         "GLTransactionNumber" => [
             "dbType" => "varchar(36)",

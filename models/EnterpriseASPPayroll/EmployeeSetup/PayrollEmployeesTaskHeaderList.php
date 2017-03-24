@@ -75,8 +75,8 @@ public $editCategories = [
 ],
 "Completed" => [
 "dbType" => "tinyint(1)",
-"inputType" => "text",
-"defaultValue" => ""
+"inputType" => "checkbox",
+"defaultValue" => "0"
 ],
 "CompletedDate" => [
 "dbType" => "datetime",

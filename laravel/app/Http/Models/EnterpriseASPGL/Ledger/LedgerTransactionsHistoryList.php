@@ -66,11 +66,6 @@ class gridData extends gridDataSource{
                 "inputType" => "datetime",
                 "defaultValue" => "now"
             ],
-            /*            "SystemDate" => [
-                "dbType" => "timestamp",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-                ],*/
             "GLTransactionDescription" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
@@ -103,13 +98,6 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
-            /*            "GLTransactionBalance" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => "",
-                "currencyField" => "CurrencyID",
-                "formatFunction" => "currencyFormat"
-                ],*/
             "GLTransactionPostedYN" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
@@ -130,77 +118,13 @@ class gridData extends gridDataSource{
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
-            /*            "Reversal" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "Approved" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "ApprovedBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ApprovedDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "EnteredBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "BatchControlNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "BatchControlTotal" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Signature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SignaturePassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-                ],*/
             "Memorize" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ]
-        ]];
+        ]
+    ];
     public $columnNames = [
         "GLTransactionNumber" => "Transaction Number",
         "GLTransactionTypeID" => "Type",
