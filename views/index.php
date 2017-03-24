@@ -17,6 +17,9 @@
 	    require 'nav/left.php';
 	    ?>
 	    <!-- /#wrapper -->
+	    <?php
+	    require 'footer.php';
+	    ?>
 	    <div id="page-wrapper">
 		<?php
 		if(key_exists("page", $_GET) && $_GET["page"] == "index")
@@ -26,9 +29,6 @@
 	</div>
 	<?php 
 	require 'uiItems/footer.php';
-	?>
-	<?php
-	require 'footer.php';
 	?>
 	<script>
 	 var menuCategories = <?php echo json_encode($menuCategories); ?>;

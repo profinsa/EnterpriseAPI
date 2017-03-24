@@ -32,6 +32,66 @@ class gridDataSource{
 
     public $idField = "";
     
+    //getting list of available contact regions 
+    public function getContactRegions(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["capsule"]::select("SELECT ContactRegionID,ContactRegionDescription from contactregions WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ContactRegionID] = [
+                "title" => $value->ContactRegionID,
+                "value" => $value->ContactRegionID
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available contact types 
+    public function getContactTypes(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["capsule"]::select("SELECT ContactType,ContactTypeDescription from contacttype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ContactType] = [
+                "title" => $value->ContactType,
+                "value" => $value->ContactType
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available ledger transaction types 
+    public function getLedgerTransactionTypes(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["capsule"]::select("SELECT TransactionTypeID,TransactionTypeDescription from ledgertransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->TransactionTypeID] = [
+                "title" => $value->TransactionTypeID,
+                "value" => $value->TransactionTypeID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available transaction types 
+    public function getBankTransactionTypes(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["capsule"]::select("SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->BankTransactionTypeID] = [
+                "title" => $value->BankTransactionTypeID,
+                "value" => $value->BankTransactionTypeID
+            ];
+        
+        return $res;
+    }
+    
     //getting list of available transaction types 
     public function getAccounts(){
         $user = $_SESSION["user"];
