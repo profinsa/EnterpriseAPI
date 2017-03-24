@@ -66,11 +66,11 @@ class gridData extends gridDataSource{
         ],
         "Posted" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ],
         "Cleared" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ]
     ];
 
