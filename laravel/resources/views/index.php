@@ -179,8 +179,8 @@
 		     }else if(items[iind].type == "submenu"){
 			 submenu = items[iind].data;
 			 for(sind in submenu){
-//			     console.log(href);
-//			     console.log(submenu[sind].id);
+			     //			     console.log(href);
+			     //			     console.log(submenu[sind].id);
 			     if(href.match("/" + submenu[sind].id + "/"))
 				 return {
 				     menu : menuCategories[ind],
@@ -196,14 +196,14 @@
 	 //	 console.log(JSON.stringify(menuCategories, null, 3));
 	 /*
 	    parsing window.location, loading page and insert to content section. Main entry point of SAP
-	 */
+	  */
 	 function onlocation(location){
 	     var path = new String(location);
 	     var match;
 	     if(path.search(/index\#\//) != -1){
 		 path = path.replace(/index\#\//, "");
 		 match = path.match(/grid\/(\w+)\/\w+\/(\w+)\//);
-//		 console.log();
+		 //		 console.log();
 		 if(match)
 		     sideBarSelectItem(findMenuItem(path));//match[1], match[2]);
 		 else{
