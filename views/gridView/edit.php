@@ -100,9 +100,11 @@
 	    <!--
 		 renders buttons translated Save and Cancel using translation model
 	       -->
-	    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope->mode == "edit" ? "saveItem()" : "createItem()"); ?>">
-		<?php echo $translation->translateLabel("Save"); ?>
-	    </a>
+	    <?php if($security->can("update")): ?>
+		<a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope->mode == "edit" ? "saveItem()" : "createItem()"); ?>">
+		    <?php echo $translation->translateLabel("Save"); ?>
+		</a>
+	    <?php endif; ?>
 	    <a class="btn btn-inverse waves-effect waves-light" href="index.php#/?page=<?php echo $app->page . "&action=" . $scope->action .  ( $scope->mode != "new" ? "&mode=view&category=" . $scope->category . "&item=" . $scope->item : "") ; ?>">
 		<?php echo $translation->translateLabel("Cancel"); ?>
 	    </a>

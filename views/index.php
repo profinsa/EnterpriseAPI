@@ -18,6 +18,10 @@
 	    ?>
 	    <!-- /#wrapper -->
 	    <div id="page-wrapper">
+		<?php
+		if(key_exists("page", $_GET) && $_GET["page"] == "index")
+		    require 'main.php';
+		?>
 	    </div>
 	</div>
 	<?php 
@@ -83,7 +87,7 @@
 		  })
 		  .error(function(xhr){
 		      if(xhr.status == 401)
-			  window.location = "<?php echo $public_prefix; ?>/login";
+			  window.location = "index.php?page=login";
 		      else
 			  alert("Unable to load page");
 		  });

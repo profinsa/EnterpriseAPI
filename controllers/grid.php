@@ -30,6 +30,8 @@ Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
+require 'models/security.php';
+require 'models/permissionsGenerated.php';
 
 class controller{
     public $user = false;
@@ -43,15 +45,24 @@ class controller{
     public function process($app){
         if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
             $_SESSION["user"] = false;
-            header("Location: index.php?page=login");
+            http_response_code(401);
+            echo "wrong session";
             exit;
         }
 
         require 'models/menuIdToHref.php';
         $this->action = $_GET["action"];
-        if(!file_exists('models/' . $menuIdToPath[$_GET["action"]] . '.php'))
-            throw new Exception("model " . 'models/' . $menuIdToPath[$_GET["action"]] . '.php' . " is not found");
+        $model_path = $menuIdToPath[$_GET["action"]];
+        if(!file_exists('models/' . $model_path . '.php'))
+            throw new Exception("model " . 'models/' . $model_path . '.php' . " is not found");
         require 'models/' . $menuIdToPath[$_GET["action"]] . '.php';
+        
+        $_perm = new permissionsByFile();
+        preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        if(key_exists($filename[1], $_perm->permissions))
+            $security = new Security($_SESSION["user"]["accesspermissions"], $_perm->permissions[$filename[1]]);
+        else
+            return response('permissions not found', 500)->header('Content-Type', 'text/plain');
 
         $this->user = $_SESSION["user"];
                

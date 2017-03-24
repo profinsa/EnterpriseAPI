@@ -31,6 +31,7 @@ Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
+require 'models/security.php';
 
 class controller{
     public $user = false;
@@ -48,6 +49,7 @@ class controller{
             
             $this->user = $_SESSION["user"];
                
+            $security = new Security($this->user["accesspermissions"], []);
             $translation = new translation($this->user["language"]);
             $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
             $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);

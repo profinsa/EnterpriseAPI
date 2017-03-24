@@ -57,9 +57,9 @@
 			}
 			$keyString = substr($keyString, 0, -2);
 			echo "<tr><td>";
-			if($scope->user["accesspermissions"]["GLEdit"])
+			if($security->can("select"))
 			    echo "<a href=\"index.php#/?page=" . $app->page . "&action=" . $scope->action . "&mode=view&category=Main&item=" . $keyString ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
-			if($scope->user["accesspermissions"]["GLDelete"])
+			if($security->can("delete"))
 			    echo "<span onclick=\"deleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
 			echo "</td>";
 			foreach($row as $key=>$value)
@@ -93,9 +93,11 @@
 	</table>
     </div>
     <div>
+	<?php if($security->can("insert")): ?>
 	<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page; ?>&action=<?php echo $scope->action ?>&mode=new&category=Main">
 	    <?php echo $translation->translateLabel("New"); ?>
 	</a>
+	<?php endif; ?>
     </div>
     <script>
      //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success

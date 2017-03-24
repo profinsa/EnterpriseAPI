@@ -28,7 +28,7 @@
 	    foreach ($menuCategories as $key=>$item){
 		if($item["type"] == "item")
 		    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") ."\"  class=\"not-in-more\"><a href=\"" . $item["data"]["id"] . "\" class=\"nav-link nav-item-level1\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li></ul></li>";
-		else if($item["type"] == "submenu"){			
+		else if($item["type"] == "submenu" && $security->checkMenu($item["id"])){			
 		    echo "<li  id=\"list" . $item["id"] . "\"><a href=\"javascript:void(0);\" class=\"waves-effect\"><i class=\"icon-people fa-fw\"></i> <span class=\"hide-menu\">" . $item["full"] . "<span class=\"fa arrow\"></span></span></a>";
 		    echo "<ul class=\"nav nav-second-level\">";
 		    foreach($item["data"] as $key=>$subitem){
