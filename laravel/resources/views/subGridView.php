@@ -34,7 +34,7 @@
    -->
 
 <!-- Page Content -->
-<div class="">
+<div class="" style="margin-top:20px;">
     <!--
 	 This is conditional page generation.
 	 Contains four pages:
@@ -53,8 +53,6 @@
     <?php require "format.php"; ?>
     <?php if($scope["mode"] == 'subgrid'): ?>
 	<?php require "subGridView/subgrid.php"; ?>
-    <?php elseif($scope["mode"] == 'view'): ?>
-	<?php require "subGridView/view.php"; ?>
     <?php elseif($scope["mode"] == 'edit' || $scope["mode"] == 'new'): ?>
 	<?php require "subGridView/edit.php"; ?>
     <?php endif; ?>
@@ -81,20 +79,20 @@
 	 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
      });
      var table = $('#example23').DataTable( {
-	 buttons: [
-	     'copy', 'csv', 'excel', 'pdf', 'print'
-	 ]
+//	 buttons: [
+//	     'copy', 'csv', 'excel', 'pdf', 'print'
+//	 ]
      });
 
-     var buttons = $('.dt-buttons-container');
-     var dtbuttons = table.buttons().container();
-     dtbuttons.prepend($(".new-button-action"));
-     dtbuttons.addClass("col-md-12");
-     buttons.append(dtbuttons);
+  //   var buttons = $('.dt-buttons-container');
+  //   var dtbuttons = table.buttons().container();
+    // dtbuttons.prepend($(".new-button-action"));
+   //  dtbuttons.addClass("col-md-12");
+   //  buttons.append(dtbuttons);
      
-     $('.dt-button').addClass("btn btn-info");
-     $('.dt-button').css("margin-left", "3px");
-     $('.dt-button').removeClass("dt-button buttons-html5");
+ //    $('.dt-button').addClass("btn btn-info");
+   //  $('.dt-button').css("margin-left", "3px");
+    // $('.dt-button').removeClass("dt-button buttons-html5");
 
      // Order by the grouping
      $('#example tbody').on( 'click', 'tr.group', function () {

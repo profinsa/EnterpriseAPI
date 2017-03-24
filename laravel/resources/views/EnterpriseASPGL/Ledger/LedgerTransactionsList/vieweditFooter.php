@@ -6,7 +6,7 @@
     <script>
      var path = new String(window.location);
      path = path.replace(/index\#\//, "");
-     path = path.replace(/grid|view|edit|new/g, "subgrid")
+     path = path.replace(/grid|view|edit|new/g, "subgrid");
      $.get(path + "?partial=true")
       .done(function(data){
 	  setTimeout(function(){

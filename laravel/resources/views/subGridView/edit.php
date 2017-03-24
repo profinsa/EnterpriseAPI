@@ -29,10 +29,10 @@
 			}
 			$keyString = substr($keyString, 0, -2);
 			echo "<tr><td>";
-			if($security->can("update"))
-			    echo "<span onclick=\"changeItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>";
+			if($security->can("select"))
+			    echo "<a href=\"" . $public_prefix ."/index#/grid/" . $scope["path"] . "/view/Main/" . $keyString ."\"><span class=\"grid-action-button glyphicon glyphicon-floppy-disk\" aria-hidden=\"true\"></span></a>";
 			if($security->can("delete"))
-			    echo "<span onclick=\"deleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
+			    echo "<span onclick=\"deleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-step-backward\" aria-hidden=\"true\"></span>";
 			echo "</td>";
 			foreach($row as $key=>$value)
 			    if(key_exists($key, $data->gridFields)){
@@ -73,27 +73,11 @@
 	<?php endif; ?>
     </div>
     <script>
-     //handler change button from rows. Does xhr request and replace grid content
-     function changeItem(item){
-	 var itemData = $("#itemData");
-	 $.get("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope["path"] ;  ?>/edit/Main/" + item + "?partial=true")
-	  .done(function(data){
-	      setTimeout(function(){
-		  $("#subgrid").html(data);
-	      },0);
-	  })
-	  .error(function(xhr){
-	      if(xhr.status == 401)
-		  window.location = "<?php echo $public_prefix; ?>/login";
-	      else
-		  alert("Unable to load page");
-	  });
-     }
-     //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
+     //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
      function deleteItem(item){
 	 if(confirm("Are you sure?")){
 	     var itemData = $("#itemData");
-	     $.getJSON("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
+	     $.getJSON("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
 	      .success(function(data) {
 		  onlocation(window.location);
 		  //		  window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
@@ -105,4 +89,3 @@
      }
     </script>
 </div>
-
