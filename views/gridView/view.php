@@ -30,7 +30,7 @@
 	//render tabs like Main, Current etc
 	//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 	foreach($data->editCategories as $key =>$value)
-	    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=" . $app->page . "&action=" . $scope->action .  "&mode=view&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
+	    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php#/?page=" . $app->page . "&action=" . $scope->action .  "&mode=view&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
 	?>
     </ul>
     <div class="table-responsive">
@@ -83,10 +83,10 @@
 	     for translation uses translation model
 	     for category(which tab is activated) uses $scope of controller
 	   -->
-	<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php?page=<?php echo  $app->page .  "&action=" . $scope->action;  ?>&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
+	<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page .  "&action=" . $scope->action;  ?>&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
 	    <?php echo $translation->translateLabel("Edit"); ?>
 	</a>
-	<a class="btn btn-inverse waves-effect waves-light" href="index.php?page=<?php echo $app->page . "&action=" . $scope->action; ?>&mode=grid">
+	<a class="btn btn-inverse waves-effect waves-light" href="index.php#/?page=<?php echo $app->page . "&action=" . $scope->action; ?>&mode=grid">
 	    <?php echo $translation->translateLabel("Cancel"); ?>
 	</a>
     </div>

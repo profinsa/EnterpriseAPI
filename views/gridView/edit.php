@@ -31,7 +31,7 @@
 	//render tabs like Main, Current etc
 	//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 	foreach($data->editCategories as $key =>$value)
-	    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php?page=" . $app->page . "&action=" . $scope->action .  "&mode=" . $scope->mode ."&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
+	    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "")  ."><a href=\"index.php#/?page=" . $app->page . "&action=" . $scope->action .  "&mode=" . $scope->mode ."&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
 	?>
     </ul>
     <form id="itemData" class="form-material form-horizontal m-t-30">
@@ -103,7 +103,7 @@
 	    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope->mode == "edit" ? "saveItem()" : "createItem()"); ?>">
 		<?php echo $translation->translateLabel("Save"); ?>
 	    </a>
-	    <a class="btn btn-inverse waves-effect waves-light" href="index.php?page=<?php echo $app->page . "&action=" . $scope->action .  ( $scope->mode != "new" ? "&mode=view&category=" . $scope->category . "&item=" . $scope->item : "") ; ?>">
+	    <a class="btn btn-inverse waves-effect waves-light" href="index.php#/?page=<?php echo $app->page . "&action=" . $scope->action .  ( $scope->mode != "new" ? "&mode=view&category=" . $scope->category . "&item=" . $scope->item : "") ; ?>">
 		<?php echo $translation->translateLabel("Cancel"); ?>
 	    </a>
 	</div>
@@ -115,7 +115,7 @@
 	 $.post("index.php?page=<?php  echo $app->page . "&action=" . $scope->action; ?>&new=true", itemData.serialize(), null, 'json')
 	  .success(function(data) {
 	      console.log('ok');
-	      window.location = "index.php?page=<?php  echo $app->page . "&action=" . $scope->action; ?>";
+	      window.location = "index.php#/?page=<?php  echo $app->page . "&action=" . $scope->action; ?>";
 	  })
 	  .error(function(err){
 	      console.log('wrong');
@@ -127,7 +127,7 @@
 	 $.post("index.php?page=<?php  echo $app->page .  "&action=" . $scope->action; ?>&update=true", itemData.serialize(), null, 'json')
 	  .success(function(data) {
 	      console.log('ok');
-	      window.location = "index.php?page=<?php  echo $app->page .  "&action=" . $scope->action; ?>&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>";
+	      window.location = "index.php#/?page=<?php  echo $app->page .  "&action=" . $scope->action; ?>&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>";
 	  })
 	  .error(function(err){
 	      console.log('wrong');

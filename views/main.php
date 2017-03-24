@@ -322,7 +322,4 @@
     <!-- /.right-sidebar -->
 </div>
 
-<?php 
-require 'uiItems/footer.php';
-?>
 

@@ -58,7 +58,7 @@
 			$keyString = substr($keyString, 0, -2);
 			echo "<tr><td>";
 			if($scope->user["accesspermissions"]["GLEdit"])
-			    echo "<a href=\"index.php?page=" . $app->page . "&action=" . $scope->action . "&mode=view&category=Main&item=" . $keyString ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+			    echo "<a href=\"index.php#/?page=" . $app->page . "&action=" . $scope->action . "&mode=view&category=Main&item=" . $keyString ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
 			if($scope->user["accesspermissions"]["GLDelete"])
 			    echo "<span onclick=\"deleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
 			echo "</td>";
@@ -93,7 +93,7 @@
 	</table>
     </div>
     <div>
-	<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php?page=<?php echo  $app->page; ?>&action=<?php echo $scope->action ?>&mode=new&category=Main">
+	<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page; ?>&action=<?php echo $scope->action ?>&mode=new&category=Main">
 	    <?php echo $translation->translateLabel("New"); ?>
 	</a>
     </div>
@@ -104,7 +104,7 @@
 	     var itemData = $("#itemData");
 	     $.getJSON("index.php?page=<?php  echo $app->page . "&action=" . $scope->action ;  ?>&delete=true&id=" + item)
 	      .success(function(data) {
-		  window.location = "index.php?page=<?php  echo $app->page .  "&action=" . $scope->action; ?>";
+		  onlocation(window.location);
 	      })
 	      .error(function(err){
 		  console.log('wrong');

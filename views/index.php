@@ -18,11 +18,11 @@
 	    ?>
 	    <!-- /#wrapper -->
 	    <div id="page-wrapper">
-		<?php
-		require 'main.php';
-		?>
 	    </div>
 	</div>
+	<?php 
+	require 'uiItems/footer.php';
+	?>
 	<?php
 	require 'footer.php';
 	?>
