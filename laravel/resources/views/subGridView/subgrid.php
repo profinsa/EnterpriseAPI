@@ -30,9 +30,9 @@
 			$keyString = substr($keyString, 0, -2);
 			echo "<tr><td>";
 			if($security->can("update"))
-			    echo "<span onclick=\"changeItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>";
+			    echo "<span onclick=\"changeSubgridItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>";
 			if($security->can("delete"))
-			    echo "<span onclick=\"deleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
+			    echo "<span onclick=\"deleteSubgridItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
 			echo "</td>";
 			foreach($row as $key=>$value)
 			    if(key_exists($key, $data->gridFields)){
@@ -74,13 +74,13 @@
     </div>
     <script>
      //handler change button from rows. Does xhr request and replace grid content
-     function changeItem(item){
+     function changeSubgridItem(item){
 	 var itemData = $("#itemData");
 	 $.get("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope["path"] ;  ?>/edit/Main/" + item + "?partial=true")
 	  .done(function(data){
-	      setTimeout(function(){
+          //	      setTimeout(function(){
 		  $("#subgrid").html(data);
-	      },0);
+              //    },0);
 	  })
 	  .error(function(xhr){
 	      if(xhr.status == 401)
@@ -90,7 +90,7 @@
 	  });
      }
      //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
-     function deleteItem(item){
+     function deleteSubgridItem(item){
 	 if(confirm("Are you sure?")){
 	     var itemData = $("#itemData");
 	     $.getJSON("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope["path"] ;  ?>/delete/" + item)

@@ -28,31 +28,59 @@
 			    $keyString .= $row[$key] . "__";
 			}
 			$keyString = substr($keyString, 0, -2);
-			echo "<tr><td>";
+			echo "<tr><td style=\"text-align:center\">";
 			if($security->can("select"))
-			    echo "<a href=\"" . $public_prefix ."/index#/grid/" . $scope["path"] . "/view/Main/" . $keyString ."\"><span class=\"grid-action-button glyphicon glyphicon-floppy-disk\" aria-hidden=\"true\"></span></a>";
+			    echo "<span style=\"font-size:14pt\" class=\"grid-action-button glyphicon glyphicon-floppy-disk\" aria-hidden=\"true\" onclick=\"saveSubgridItem('" . $keyString . "')\"></span>";
 			if($security->can("delete"))
-			    echo "<span onclick=\"deleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-step-backward\" aria-hidden=\"true\"></span>";
+			    echo "<span  style=\"font-size:14pt\" onclick=\"cancelSubgridItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-step-backward\" aria-hidden=\"true\"  onclick=\"cancelsaveItem()\"></span>";
 			echo "</td>";
 			foreach($row as $key=>$value)
 			    if(key_exists($key, $data->gridFields)){
 				echo "<td>\n";
 				switch($data->gridFields[$key]["inputType"]){
-				    case "checkbox" :
-					echo $value ? "True" : "False";
-					break;
-				    case "timestamp" :
-				    case "datetime" :
-					echo date("m/d/y", strtotime($value));
-					break;
-				    case "text":
-				    case "dropdown":
+				    case "text" :
+					//renders text input with label
+					echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
 					if(key_exists("formatFunction", $data->gridFields[$key])){
 					    $formatFunction = $data->gridFields[$key]["formatFunction"];
 					    echo $data->$formatFunction($row, "gridFields", $key, $value, false);
 					}
 					else
 					    echo formatField($data->gridFields[$key], $value);
+
+					echo"\" " . ( (key_exists("disabledEdit", $data->gridFields[$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->gridFields[$key]) && $scope["mode"] == "new") ? "readonly" : "")
+					   .">";
+					break;
+					
+				    case "datetime" :
+					//renders text input with label
+					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+					     ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
+					    ."></div></div>";
+					break;
+
+				    case "checkbox" :
+					//renders checkbox input with label
+					echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+					     ( (key_exists("disabledEdit", $data->gridFields[$key]) && $scope["mode"] == "edit") || (key_exists("disabledNew", $data->gridFields[$key]) && $scope["mode"] == "new") ? "disabled" : "")
+					    ."></div></div>";
+					break;
+					
+				    case "dropdown" :
+					//renders select with available values as dropdowns with label
+					echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
+					$method = $data->gridFields[$key]["dataProvider"];
+					$types = $data->$method();
+					if($value)
+					    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
+					else
+					    echo "<option></option>";
+
+					foreach($types as $type)
+					    if(!$value || $type["value"] != $value)
+						echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+					echo"</select></div></div>";
 					break;
 				}
 				echo "</td>\n";
@@ -73,19 +101,20 @@
 	<?php endif; ?>
     </div>
     <script>
-     //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
-     function deleteItem(item){
-	 if(confirm("Are you sure?")){
-	     var itemData = $("#itemData");
-	     $.getJSON("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
-	      .success(function(data) {
-		  onlocation(window.location);
-		  //		  window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
-	      })
-	      .error(function(err){
-		  console.log('wrong');
-	      });
-	 }
+     //handler of save button if we in edit mode. Just doing XHR request to save data
+     function saveSubgridItem(){
+	 var itemData = $("#itemData");
+	 $.post("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope["path"]; ?>/update", itemData.serialize(), null, 'json')
+	  .success(function(data) {
+	      subgridView();
+	  })
+	  .error(function(err){
+	      console.log('wrong');
+	  });
+     }
+     
+     function cancelSubgridItem(item){
+	 subgridView();
      }
     </script>
 </div>
