@@ -10,7 +10,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle ="Ledger Transactions Detail";
     public $breadCrumbTitle ="Ledger Transactions Detail";
     public $idField ="GLTransactionNumber";
-    public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber","GLTransactionNumberDetail"];
     public $modes = ["grid", "view", "edit", "new"];
     public $gridFields = [
         "GLTransactionAccount" => [
@@ -135,7 +135,8 @@ class gridData extends gridDataSource{
         $keyFields = "";
         $fcount = 0;
         foreach($this->idFields as $key)
-            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+            if(count($keyValues))
+                $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 

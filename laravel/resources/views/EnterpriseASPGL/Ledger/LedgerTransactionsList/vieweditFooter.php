@@ -4,7 +4,7 @@
     </div>
 
     <script>
-     function subgridView(){
+     function subgridView(cb){
 	 var path = new String(window.location);
 	 path = path.replace(/index\#\//, "");
 	 path = path.replace(/grid|view|edit|new/g, "subgrid");
@@ -12,7 +12,8 @@
 	  .done(function(data){
 	      setTimeout(function(){
 		  $("#subgrid").html(data);
-		  window.scrollTo(0,0);
+		  if(cb)
+		      cb();
 	      },0);
 	  })
 	  .error(function(xhr){
@@ -22,6 +23,8 @@
 		  alert("Unable to load page");
 	  });
      }
-     subgridView();
+     subgridView(function(){
+	 window.scrollTo(0,0);
+     });
     </script>
 </div>
