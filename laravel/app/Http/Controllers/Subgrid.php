@@ -111,12 +111,14 @@ class Subgrid extends BaseController{
     public function update($folder, $subfolder, $page){
         require __DIR__ . "/../Models/menuIdToHref.php";
         $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
+        $_perm = new \App\Models\permissionsByFile();
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
-        $model_path = $filename[1] . 'Detail';
+        preg_match("/(.+)(List|Detail)$/", $model_path, $path);
+        $model_path = $path[1] . 'Detail';
         require __DIR__ . "/../Models/" . $model_path .  '.php';
         $data = new \App\Models\gridData();
         
-        $data->updateItem($_POST["id"], $_POST["category"], $_POST);
+        $data->updateItem($_POST["id"], false, $_POST);
         header('Content-Type: application/json');
         echo "{ \"message\" : \"ok\"}";
     }
@@ -125,6 +127,7 @@ class Subgrid extends BaseController{
         require __DIR__ . "/../Models/menuIdToHref.php";
         $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        preg_match("/(.+)(List|Detail)$/", $model_path, $path);
         $model_path = $filename[1] . 'Detail';
         require __DIR__ . "/../Models/" . $model_path .  '.php';
         $data = new \App\Models\gridData();
@@ -138,6 +141,7 @@ class Subgrid extends BaseController{
         require __DIR__ . "/../Models/menuIdToHref.php";
         $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        preg_match("/(.+)(List|Detail)$/", $model_path, $path);
         $model_path = $filename[1] . 'Detail';
         require __DIR__ . "/../Models/" . $model_path .  '.php';
 
@@ -152,6 +156,7 @@ class Subgrid extends BaseController{
         require __DIR__ . "/../Models/menuIdToHref.php";
         $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        preg_match("/(.+)(List|Detail)$/", $model_path, $path);
         $model_path = $filename[1] . 'Detail';
         require __DIR__ . "/../Models/" . $model_path .  '.php';
         
