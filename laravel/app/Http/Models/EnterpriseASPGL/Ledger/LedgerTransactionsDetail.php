@@ -15,7 +15,8 @@ class gridData extends gridDataSource{
     public $gridFields = [
         "GLTransactionAccount" => [
             "dbType" => "varchar(36)",
-            "inputType" => "text",
+            "inputType" => "dropdown",
+            "dataProvider" => "getAccounts",
             "defaultValue" => ""
         ],
         "GLDebitAmount" => [
@@ -35,35 +36,16 @@ class gridData extends gridDataSource{
         ],
         "ProjectID" => [
             "dbType" => "varchar(36)",
-            "inputType" => "text",
+            "inputType" => "dropdown",
+            "dataProvider" => "getProjects",
             "defaultValue" => ""
         ]
     ];
 
     public $editCategories = [
         "Main" => [
-            "GLTransactionNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "GLTransactionNumberDetail" => [
-                "dbType" => "bigint(20)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
             "GLTransactionAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-             "CurrencyID" => [
-                "dbType" => "varchar(3)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CurrencyExchangeRate" => [
-                "dbType" => "float",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
@@ -71,6 +53,7 @@ class gridData extends gridDataSource{
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
                 "defaultValue" => "",
+                "addFields" => "CurrencyID",
                 "currencyField" => "CurrencyID",
                 "formatFunction" => "currencyFormat"
             ],
@@ -145,6 +128,42 @@ class gridData extends gridDataSource{
         $result = json_decode(json_encode($result), true);
         
         return $result;        
+    }
+
+        //add row to table
+    public function insertSubgridItem($values, $items){
+        $user = Session::get("user");
+        
+        $insert_fields = "";
+        $insert_values = "";
+        foreach($this->editCategories as $category=>$arr){
+            foreach($this->editCategories[$category] as $name=>$value){
+                if(key_exists($name, $values)){
+                    if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
+                        $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                    else if(key_exists("formatFunction", $value)){
+                        $formatFunction = $value["formatFunction"];
+                        $values[$name] = $this->$formatFunction($values, "editCategories", $name, $values[$name], true);
+                    }
+                    if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                        $values[$name] = str_replace(",", "", $values[$name]);
+
+                    if($insert_fields == ""){
+                        $insert_fields = $name;
+                        $insert_values = "'" . $values[$name] . "'";
+                    }else{
+                        $insert_fields .= "," . $name;
+                        $insert_values .= ",'" . $values[$name] . "'";
+                    }
+                }
+            }
+        }
+
+        $keyValues = explode("__", $items);
+        
+        $insert_fields .= ',CompanyID,DivisionID,DepartmentID,GLTransactionNumber';
+        $insert_values .= ",'" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $keyValues[3] . "'";
+        DB::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")");
     }
 }
 ?>

@@ -7,7 +7,7 @@
 		    <th></th>
 		    <?php
 		    //getting data for table
-		    $rows = $data->getPage($scope["item"]);
+		    $rows = $data->getPage($scope["items"]);
 		    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 		    if(count($rows)){
 			foreach($rows[0] as $key =>$value)
@@ -67,19 +67,36 @@
     <div class="dt-buttons-container row col-md-12">
 	<br/>
 	<?php if((!property_exists($data, "modes") || in_array("new", $data->modes)) && $security->can("insert")): ?>
-	    <a class="btn btn-info new-button-action dt-button" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] ?>/new/Main/new">
+	    <a class="btn btn-info new-button-action dt-button" onclick="newSubgridItem()">
 		<?php echo $translation->translateLabel("New"); ?>
 	    </a>
 	<?php endif; ?>
     </div>
     <script>
+     //handler new button. Does xhr request and replace grid content
+     function newSubgridItem(){
+	 var itemData = $("#itemData");
+	 $.get("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope["path"] ;  ?>/new/Main/<?php echo $scope["items"]; ?>/new?partial=true")
+	  .done(function(data){
+              //	      setTimeout(function(){
+	      $("#subgrid").html(data);
+              //    },0);
+	  })
+	  .error(function(xhr){
+	      if(xhr.status == 401)
+		  window.location = "<?php echo $public_prefix; ?>/login";
+	      else
+		  alert("Unable to load page");
+	  });
+     }
+     
      //handler change button from rows. Does xhr request and replace grid content
      function changeSubgridItem(item){
 	 var itemData = $("#itemData");
-	 $.get("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope["path"] ;  ?>/edit/Main/" + item + "?partial=true")
+	 $.get("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope["path"] ;  ?>/edit/Main/<?php echo $scope["items"]; ?>/" + item + "?partial=true")
 	  .done(function(data){
-          //	      setTimeout(function(){
-		  $("#subgrid").html(data);
+              //	      setTimeout(function(){
+	      $("#subgrid").html(data);
               //    },0);
 	  })
 	  .error(function(xhr){
@@ -96,7 +113,6 @@
 	     $.getJSON("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope["path"] ;  ?>/delete/" + item)
 	      .success(function(data) {
 		  onlocation(window.location);
-		  //		  window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"]; ?>/grid/Main/all";
 	      })
 	      .error(function(err){
 		  console.log('wrong');

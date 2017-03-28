@@ -38,6 +38,36 @@ class gridDataSource{
 
     public $idField = "";
 
+    //getting list of available transaction accounts
+    public function getTransactionAccounts(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT GLAccountNumber from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->GLAccountNumber] = [
+                "title" => $value->GLAccountNumber,
+                "value" => $value->GLAccountNumber
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available projects
+    public function getProjects(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT ProjectID from projects WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ProjectID] = [
+                "title" => $value->ProjectID,
+                "value" => $value->ProjectID
+            ];
+        
+        return $res;
+    }
+    
     //getting list of available contact regions 
     public function getContactRegions(){
         $user = Session::get("user");

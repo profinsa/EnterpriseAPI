@@ -117,3 +117,7 @@
      }
     </script>
 </div>
+<?php
+if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
+    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
+?>

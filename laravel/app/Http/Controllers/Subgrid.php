@@ -48,7 +48,7 @@ class _app{
 }
 
 class Subgrid extends BaseController{
-    public function show($folder, $subfolder, $page, $mode, $category, $item){
+    public function show($folder, $subfolder, $page, $mode, $category, $items, $item = false){
         require __DIR__ . "/../Models/menuIdToHref.php";
         $public_prefix = public_prefix();
         if(!Session::has("user") || !key_exists("EmployeeUserName", Session::get("user"))){//redirect to prevent access un logined users
@@ -98,6 +98,7 @@ class Subgrid extends BaseController{
                           "pathPage" => $page,
                           "mode" => $mode,
                           "category" => $category,
+                          "items" => $items,
                           "item" => $item                          
                       ],
                       "token" => $token,
@@ -111,7 +112,6 @@ class Subgrid extends BaseController{
     public function update($folder, $subfolder, $page){
         require __DIR__ . "/../Models/menuIdToHref.php";
         $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
-        $_perm = new \App\Models\permissionsByFile();
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
         preg_match("/(.+)(List|Detail)$/", $model_path, $path);
         $model_path = $path[1] . 'Detail';
@@ -123,16 +123,16 @@ class Subgrid extends BaseController{
         echo "{ \"message\" : \"ok\"}";
     }
     
-    public function insert($folder, $subfolder, $page){
+    public function insert($folder, $subfolder, $page, $items){
         require __DIR__ . "/../Models/menuIdToHref.php";
         $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
         preg_match("/(.+)(List|Detail)$/", $model_path, $path);
-        $model_path = $filename[1] . 'Detail';
+        $model_path = $path[1] . 'Detail';
         require __DIR__ . "/../Models/" . $model_path .  '.php';
         $data = new \App\Models\gridData();
         
-        $data->insertItem($_POST);
+        $data->insertSubgridItem($_POST, $items);
         header('Content-Type: application/json');
         echo "{ \"message\" : \"ok\"}";
     }
@@ -142,7 +142,7 @@ class Subgrid extends BaseController{
         $model_path = $menuIdToPath[$folder . '/' . $subfolder .'/' . $page];
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
         preg_match("/(.+)(List|Detail)$/", $model_path, $path);
-        $model_path = $filename[1] . 'Detail';
+        $model_path = $path[1] . 'Detail';
         require __DIR__ . "/../Models/" . $model_path .  '.php';
 
         $data = new \App\Models\gridData();
