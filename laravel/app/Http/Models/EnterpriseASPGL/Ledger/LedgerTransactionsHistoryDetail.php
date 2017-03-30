@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Session;
 
 class gridData extends gridDataSource{
-    protected $tableName = "ledgertransactionsdetail";
+    protected $tableName = "ledgertransactionsdetailhistory";
     public $dashboardTitle ="Ledger Transactions Detail";
     public $breadCrumbTitle ="Ledger Transactions Detail";
     public $idField ="GLTransactionNumber";
