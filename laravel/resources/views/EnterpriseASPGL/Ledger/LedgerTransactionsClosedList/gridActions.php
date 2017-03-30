@@ -7,32 +7,25 @@
      var transactionNumbers = [], ind;
      for(ind in gridItemsSelected)
          transactionNumbers.push(gridItemsSelected[ind].GLTransactionNumber);
-     alert('selected: ' + JSON.stringify(transactionNumbers));
-/*     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/Memorize",{
-	 "GLTransactionNumber" : "haha",
-	 lom : 12
-     })
-      .success(function(data) {
-	  onlocation(window.location);
-	  //	  alert("Memorized");
+
+     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/CopyToHistory",{
+             "GLTransactionNumbers" : transactionNumbers.join(',')
       })
-      .error(function(err){
-	  console.log('wrong');
-      });*/
+           .success(function(data) {
+               onlocation(window.location);
+           })
+           .error(function(err){
+               alert('Something goes wrong');
+           });
  }
  function copyAllToHistory(){
-     alert('Copy all');
-/*     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/Memorize",{
-	 "GLTransactionNumber" : "haha",
-	 lom : 12
-     })
-      .success(function(data) {
-	  onlocation(window.location);
-	  //	  alert("Memorized");
-      })
-      .error(function(err){
-	  console.log('wrong');
-      });*/
+     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/CopyAllToHistory",{})
+           .success(function(data) {
+               onlocation(window.location);
+           })
+           .error(function(err){
+               alert('Something goes wrong');
+           });
  }
 </script>
 <a class="btn btn-info grid-actions-button" href="javascript:;" onclick="copySelectedToHistory()">

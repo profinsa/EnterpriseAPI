@@ -2,6 +2,9 @@
 namespace App\Models;
 require __DIR__ . "/../../../Models/gridDataSource.php";
 
+use Illuminate\Support\Facades\DB;
+use Session;
+
 class gridData extends gridDataSource{
     protected $tableName = "ledgertransactions";
     public $dashboardTitle ="Closed Ledger Transactions";
@@ -168,5 +171,35 @@ class gridData extends gridDataSource{
         "ManagerPassword" => "ManagerPassword",
         "Memorize" => "Memorize"
     ];
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["GLTransactionNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL LedgerTransactions_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL LedgerTransactions_CopyAllToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1){
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        } else
+            return response(json_encode($result), 400)->header('Content-Type', 'text/plain');
+    }
 }
 ?>
