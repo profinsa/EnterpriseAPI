@@ -9,6 +9,7 @@ class gridData extends gridDataSource{
     public $idField ="GLTransactionNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
     public $modes = ["grid", "view", "edit"];
+    public $features = ["selecting"];
     protected $gridConditions = "GLTransactionPostedYN='1'";
     public $gridFields = [
         "GLTransactionNumber" => [

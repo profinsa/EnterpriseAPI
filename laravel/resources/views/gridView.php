@@ -89,11 +89,13 @@
      var buttons = $('.dt-buttons-container');
      var dtbuttons = table.buttons().container();
      dtbuttons.prepend($(".new-button-action"));
+     dtbuttons.prepend($(".grid-actions-button"));
      dtbuttons.addClass("col-md-12");
      buttons.append(dtbuttons);
      
      $('.dt-button').addClass("btn btn-info");
      $('.dt-button').css("margin-left", "3px");
+     $('.grid-actions-button').css("margin-left", "3px");
      $('.dt-button').removeClass("dt-button buttons-html5");
 
      // Order by the grouping

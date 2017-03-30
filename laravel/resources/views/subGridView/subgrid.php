@@ -4,7 +4,9 @@
 	<table id="example23" class="table table-striped table-bordered">
 	    <thead>
 		<tr>
-		    <th></th>
+		    <?php if(!property_exists($data, "modes") || in_array("edit", $data->modes)): ?>
+			<th></th>
+		    <?php endif; ?>
 		    <?php
 		    //getting data for table
 		    $rows = $data->getPage($scope["items"]);
@@ -28,12 +30,15 @@
 			    $keyString .= $row[$key] . "__";
 			}
 			$keyString = substr($keyString, 0, -2);
-			echo "<tr><td>";
-			if($security->can("update"))
-			    echo "<span onclick=\"changeSubgridItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>";
-			if($security->can("delete"))
-			    echo "<span onclick=\"deleteSubgridItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
-			echo "</td>";
+			echo "<tr>";
+			if(!property_exists($data, "modes") || in_array("edit", $data->modes)){
+			    echo "<td>";
+			    if($security->can("update"))
+				echo "<span onclick=\"changeSubgridItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span>";
+			    if($security->can("delete"))
+				echo "<span onclick=\"deleteSubgridItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
+			    echo "</td>";
+			}
 			foreach($row as $key=>$value)
 			    if(key_exists($key, $data->gridFields)){
 				echo "<td>\n";
@@ -77,7 +82,6 @@
 	 var buttons = $('.subgrid-buttons');
 	 var tableFooter = $('.subgrid-table-footer');
 	 tableFooter.prepend(buttons);
-	 console.log(tableFooter, buttons);
      },300);
      //handler new button. Does xhr request and replace grid content
      function newSubgridItem(){

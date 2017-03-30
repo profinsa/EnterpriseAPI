@@ -11,7 +11,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Ledger Transactions";
     public $idField ="GLTransactionNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
-    public $modes = ["grid", "view", "edit", "new"];
+    public $modes = ["grid", "view", "edit", "new", "delete"];
     protected $gridConditions = "GLTransactionPostedYN='0'";
     public $gridFields = [
         "GLTransactionNumber" => [
