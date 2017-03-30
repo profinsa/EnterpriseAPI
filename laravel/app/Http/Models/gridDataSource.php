@@ -22,7 +22,7 @@ inherited by models/GeneralLedger/*
 Calls:
 sql
 
-Last Modified: 27.02.2016
+Last Modified: 30.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -37,6 +37,51 @@ class gridDataSource{
     protected $gridFields = [];
 
     public $idField = "";
+
+    //getting list of available ledger balance types
+    public function getLedgerBalanceTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT GLBalanceType from ledgerbalancetype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->GLBalanceType] = [
+                "title" => $value->GLBalanceType,
+                "value" => $value->GLBalanceType
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available ledger budget ids
+    public function getLedgerBudgetId(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT GLBudgetID from ledgerchartofaccountsbudgets WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->GLBudgetID] = [
+                "title" => $value->GLBudgetID,
+                "value" => $value->GLBudgetID
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available ledger account types
+    public function getLedgerAccountTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT GLAccountType from ledgeraccounttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->GLAccountType] = [
+                "title" => $value->GLAccountType,
+                "value" => $value->GLAccountType
+            ];
+        
+        return $res;
+    }
 
     //getting list of available transaction accounts
     public function getTransactionAccounts(){

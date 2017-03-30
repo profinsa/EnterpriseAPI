@@ -33,7 +33,7 @@
 	echo $translation->translateLabel("Copy Selected To History");
     ?>
 </a>
-<a class="btn btn-info grid-actions-button" href="javascript:;" onclick="copyAllToHistory()">
+<a class="btn btn-info grid-actions-button grid-last-actions-button" href="javascript:;" onclick="copyAllToHistory()">
     <?php
 	echo $translation->translateLabel("Copy All To History");
     ?>

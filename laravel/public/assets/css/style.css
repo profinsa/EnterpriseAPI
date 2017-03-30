@@ -207,4 +207,9 @@ body.minimized .nav-item-level1{
     .new-button-action{
 	margin-right : 150px;
     }
+
+    /*actions buttons gridView*/
+    .grid-last-actions-button{
+	margin-right : 150px;
+    }
 }
