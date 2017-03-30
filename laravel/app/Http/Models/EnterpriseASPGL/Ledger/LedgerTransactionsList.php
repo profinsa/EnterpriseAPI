@@ -88,7 +88,8 @@ class gridData extends gridDataSource{
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
@@ -118,6 +119,8 @@ class gridData extends gridDataSource{
             "GLTransactionPostedYN" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ],
             "GLTransactionSource" => [
@@ -128,82 +131,23 @@ class gridData extends gridDataSource{
             "GLTransactionSystemGenerated" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ],
             "GLTransactionRecurringYN" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ],
-            /*            "Reversal" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "Approved" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "ApprovedBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ApprovedDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "EnteredBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "BatchControlNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "BatchControlTotal" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Signature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SignaturePassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],*/
             "Memorize" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "text",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ]
         ]];

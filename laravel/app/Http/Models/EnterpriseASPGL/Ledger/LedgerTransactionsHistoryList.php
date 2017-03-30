@@ -78,7 +78,8 @@ class gridData extends gridDataSource{
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
@@ -101,6 +102,8 @@ class gridData extends gridDataSource{
             "GLTransactionPostedYN" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ],
             "GLTransactionSource" => [
@@ -111,16 +114,22 @@ class gridData extends gridDataSource{
             "GLTransactionSystemGenerated" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ],
             "GLTransactionRecurringYN" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ],
             "Memorize" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ]
         ]
