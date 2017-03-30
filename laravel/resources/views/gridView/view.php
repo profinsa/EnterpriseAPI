@@ -51,7 +51,14 @@
 	    </tbody>
 	</table>
     </div>
-    <div class="pull-right">
+    <?php
+    if(file_exists(__DIR__ . "/../" . $PartsPath . "viewFooter.php"))
+	require __DIR__ . "/../" . $PartsPath . "viewFooter.php";
+    if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
+	require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
+    ?>
+
+    <div style="margin-top:10px" class="pull-right">
 	<!--
 	     buttons Edit and Cancel
 	     for translation uses translation model
@@ -73,9 +80,3 @@
 	</a>
     </div>
 </div>
-<?php
-if(file_exists(__DIR__ . "/../" . $PartsPath . "viewFooter.php"))
-    require __DIR__ . "/../" . $PartsPath . "viewFooter.php";
-if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
-    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
-?>

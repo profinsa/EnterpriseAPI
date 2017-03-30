@@ -71,7 +71,14 @@
 	    }
 	}
 	?>
-	<div class="pull-right">
+	<?php
+	if(file_exists(__DIR__ . "/../" . $PartsPath . "editFooter.php"))
+	    require __DIR__ . "/../" . $PartsPath . "editFooter.php";
+	if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
+	    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
+	?>
+	
+	<div  style="margin-top:10px" class="pull-right">
 	    <!--
 		 renders buttons translated Save and Cancel using translation model
 	       -->
@@ -117,7 +124,3 @@
      }
     </script>
 </div>
-<?php
-if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
-    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
-?>

@@ -79,20 +79,21 @@
 	 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
      });
      var table = $('#example23').DataTable( {
+	 dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
 //	 buttons: [
 //	     'copy', 'csv', 'excel', 'pdf', 'print'
 //	 ]
      });
 
-  //   var buttons = $('.dt-buttons-container');
-  //   var dtbuttons = table.buttons().container();
-    // dtbuttons.prepend($(".new-button-action"));
-   //  dtbuttons.addClass("col-md-12");
-   //  buttons.append(dtbuttons);
+     //   var buttons = $('.dt-buttons-container');
+     //   var dtbuttons = table.buttons().container();
+     // dtbuttons.prepend($(".new-button-action"));
+     //  dtbuttons.addClass("col-md-12");
+     //  buttons.append(dtbuttons);
      
- //    $('.dt-button').addClass("btn btn-info");
-   //  $('.dt-button').css("margin-left", "3px");
-    // $('.dt-button').removeClass("dt-button buttons-html5");
+     //    $('.dt-button').addClass("btn btn-info");
+     //  $('.dt-button').css("margin-left", "3px");
+     // $('.dt-button').removeClass("dt-button buttons-html5");
 
      // Order by the grouping
      $('#example tbody').on( 'click', 'tr.group', function () {

@@ -64,15 +64,21 @@
 	    </tbody>
 	</table>
     </div>
-    <div class="dt-buttons-container row col-md-12">
-	<br/>
+    <div class="subgrid-buttons col-md-1">
 	<?php if((!property_exists($data, "modes") || in_array("new", $data->modes)) && $security->can("insert")): ?>
-	    <a class="btn btn-info new-button-action dt-button" onclick="newSubgridItem()">
+	    <a class="btn btn-info" onclick="newSubgridItem()">
 		<?php echo $translation->translateLabel("New"); ?>
 	    </a>
 	<?php endif; ?>
     </div>
     <script>
+     //adding buttons to table footer
+     setTimeout(function(){
+	 var buttons = $('.subgrid-buttons');
+	 var tableFooter = $('.subgrid-table-footer');
+	 tableFooter.prepend(buttons);
+	 console.log(tableFooter, buttons);
+     },300);
      //handler new button. Does xhr request and replace grid content
      function newSubgridItem(){
 	 var itemData = $("#itemData");
