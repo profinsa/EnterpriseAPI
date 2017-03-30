@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/chartOfAccounts.php
 Calls:
 sql
 
-Last Modified: 16.03.2016
+Last Modified: 30.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -90,7 +90,7 @@ class gridData extends gridDataSource{
         "Main" => [
             "GLAccountNumber" => [
                 "dbType" => "varchar(36)",
-                "disableEdit" => true,
+                "disabledEdit" => true,
                 "inputType" => "text",
                 "defaultValue" => ""
             ],

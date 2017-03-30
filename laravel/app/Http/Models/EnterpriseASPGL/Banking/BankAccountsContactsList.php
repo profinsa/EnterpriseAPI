@@ -44,13 +44,13 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => "",
-                "disableEdit" => true
+                "disabledEdit" => true
             ],
             "ContactID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => "",
-                "disableEdit" => true
+                "disabledEdit" => true
             ],
             "ContactTypeID" => [
                 "dbType" => "varchar(36)",

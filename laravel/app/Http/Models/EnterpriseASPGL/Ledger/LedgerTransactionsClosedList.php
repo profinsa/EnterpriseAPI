@@ -59,6 +59,7 @@ class gridData extends gridDataSource{
             "GLTransactionNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
             ],
             "GLTransactionTypeID" => [

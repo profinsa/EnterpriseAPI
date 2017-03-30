@@ -46,7 +46,7 @@ class gridData extends gridDataSource{
             "AssetID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "disableEdit" => true,
+                "disabledEdit" => true,
                 "defaultValue" => ""
             ],
             "AssetName" => [
