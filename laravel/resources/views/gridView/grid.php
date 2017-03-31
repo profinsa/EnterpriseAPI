@@ -83,7 +83,7 @@
     <div class="dt-buttons-container row col-md-12">
 	<br/>
 	<?php if((!property_exists($data, "modes") || in_array("new", $data->modes)) && $security->can("insert")): ?>
-	    <a class="btn btn-info new-button-action dt-button" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] ?>/new/Main/new">
+	    <a class="btn btn-info new-button-action dt-button pull-left" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] ?>/new/Main/new">
 		<?php echo $translation->translateLabel("New"); ?>
 	    </a>
 	<?php endif; ?>

@@ -95,34 +95,37 @@
      $.ajaxSetup({
 	 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
      });
-     var table = $('#example23').DataTable( {
-	 buttons: [
-	     'copy', 'csv', 'excel', 'pdf', 'print'
-	 ]
-     });
-
-     var buttons = $('.dt-buttons-container');
-     var dtbuttons = table.buttons().container();
-     dtbuttons.prepend($(".new-button-action"));
-     dtbuttons.prepend($(".grid-actions-button"));
-     dtbuttons.addClass("col-md-12");
-     buttons.append(dtbuttons);
      
-     $('.dt-button').addClass("btn btn-info");
-     $('.dt-button').css("margin-left", "3px");
-     $('.grid-actions-button').css("margin-left", "3px");
-     $('.dt-button').removeClass("dt-button buttons-html5");
+     if(!$.fn.DataTable.isDataTable("#example23")){
+	 var table = $('#example23').DataTable( {
+	     buttons: [
+		 'copy', 'csv', 'excel', 'pdf', 'print'
+	     ]
+	 });
 
-     // Order by the grouping
-     $('#example tbody').on( 'click', 'tr.group', function () {
-	 var currentOrder = table.order()[0];
-	 if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
-	     table.order( [ 2, 'desc' ] ).draw();
-	 }
-	 else {
-	     table.order( [ 2, 'asc' ] ).draw();
-	 }
-     });
+	 var buttons = $('.dt-buttons-container');
+	 var dtbuttons = table.buttons().container();
+	 dtbuttons.prepend($(".new-button-action"));
+	 dtbuttons.prepend($(".grid-actions-button"));
+	 dtbuttons.addClass("col-md-12 pull-right");
+	 buttons.append(dtbuttons);
+	 
+	 $('.dt-button').addClass("btn btn-info");
+	 $('.dt-button').css("margin-left", "3px");
+	 $('.grid-actions-button').css("margin-left", "3px");
+	 $('.dt-button').removeClass("dt-button buttons-html5");
+
+	 // Order by the grouping
+	 $('#example tbody').on( 'click', 'tr.group', function () {
+	     var currentOrder = table.order()[0];
+	     if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+		 table.order( [ 2, 'desc' ] ).draw();
+	     }
+	     else {
+		 table.order( [ 2, 'asc' ] ).draw();
+	     }
+	 });
+     }
      <?php  if(!key_exists("partial", $_GET)):?>
  });
      <?php endif; ?>
