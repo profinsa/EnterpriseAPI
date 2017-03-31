@@ -36,16 +36,19 @@ class gridData extends gridDataSource{
             "BankRecID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
             ],
             "GLBankAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
@@ -74,7 +77,8 @@ class gridData extends gridDataSource{
             ],
             "GLServiceChargeAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "BankRecIntrest" => [
@@ -86,7 +90,8 @@ class gridData extends gridDataSource{
             ],
             "GLInterestAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "BankRecOtherCharges" => [
@@ -98,7 +103,8 @@ class gridData extends gridDataSource{
             ],
             "GLOtherChargesAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "BankRecAdjustment" => [
@@ -110,7 +116,8 @@ class gridData extends gridDataSource{
             ],
             "GLAdjustmentAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "BankRecCreditTotal" => [

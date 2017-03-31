@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/backAccounts.php
 Calls:
 DB
 
-Last Modified: 15.03.2016
+Last Modified: 31.03.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -198,6 +198,19 @@ class gridData extends gridDataSource{
             ];
         
         return $res;
+    }
+    
+    public function Post(){
+        $user = Session::get("user");
+
+        DB::statement("CALL BankTransaction_Control('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["BankTransactionID"] . "',@SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+
+        if($result[0]->SWP_RET_VALUE != -1)
+            header('Content-Type: application/json');
+        else
+            return response(json_encode($result), 400)->header('Content-Type', 'text/plain');
     }
 }
 ?>

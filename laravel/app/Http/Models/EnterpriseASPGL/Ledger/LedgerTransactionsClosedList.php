@@ -181,6 +181,7 @@ class gridData extends gridDataSource{
         "ManagerPassword" => "ManagerPassword",
         "Memorize" => "Memorize"
     ];
+    
     public function CopyToHistory(){
         $user = Session::get("user");
 
@@ -199,6 +200,7 @@ class gridData extends gridDataSource{
         else
             return response("failed", 400)->header('Content-Type', 'text/plain');
     }
+    
     public function CopyAllToHistory(){
         $user = Session::get("user");
 
