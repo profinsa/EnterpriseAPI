@@ -213,5 +213,18 @@ class gridData extends gridDataSource{
         } else
             return response(json_encode($result), 400)->header('Content-Type', 'text/plain');
     }
+    
+    public function Memorize(){
+        $user = Session::get("user");
+        $keyValues = explode("__", $_POST["id"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
+        echo "ok";
+    }
 }
 ?>

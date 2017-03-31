@@ -1,17 +1,15 @@
 <script>
  function memorizeClicked(){
-     alert('memorized');
-     /*     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/Memorize",{
-	"GLTransactionNumber" : "haha",
-	lom : 12
-	})
-	.success(function(data) {
-	onlocation(window.location);
-	//	  alert("Memorized");
-	})
-	.error(function(err){
-	console.log('wrong');
-	});*/
+     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/Memorize",{
+	 "id" : "<?php echo $scope["item"]; ?>",
+      "Memorize" : "<?php echo $item["Memorize"]; ?>"
+      })
+         .success(function(data) {
+             onlocation(window.location);
+         })
+         .error(function(xhr){
+             alert(xhr.responseText);
+         });
  }
 </script>
 <a class="btn btn-info" href="javascript:;" onclick="memorizeClicked()">

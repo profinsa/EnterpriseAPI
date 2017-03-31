@@ -18,6 +18,7 @@
                alert('Something goes wrong');
            });
  }
+
  function copyAllToHistory(){
      $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/CopyAllToHistory",{})
            .success(function(data) {
