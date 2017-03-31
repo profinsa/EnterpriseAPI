@@ -1,7 +1,7 @@
 <script>
  function postClicked(){
      $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/PostManual",{
-	 "GLTransactionNumber" : "<?php echo $item["GLTransactionNumber"]; ?>"
+             "GLTransactionNumber" : "<?php echo $item["GLTransactionNumber"]; ?>"
      })
       .success(function(data) {
 	  onlocation(window.location);
