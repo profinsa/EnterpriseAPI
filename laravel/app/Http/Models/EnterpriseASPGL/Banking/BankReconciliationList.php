@@ -41,6 +41,7 @@ class gridData extends gridDataSource{
             "BankID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
             ],
             "BankRecStartDate" => [
@@ -55,7 +56,8 @@ class gridData extends gridDataSource{
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
@@ -65,7 +67,8 @@ class gridData extends gridDataSource{
             ],
             "GLBankAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "BankRecEndingBalance" => [
@@ -80,7 +83,8 @@ class gridData extends gridDataSource{
             ],
             "GLServiceChargeAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "BankRecIntrest" => [
@@ -90,7 +94,8 @@ class gridData extends gridDataSource{
             ],
             "GLInterestAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "BankRecOtherCharges" => [
@@ -100,7 +105,8 @@ class gridData extends gridDataSource{
             ],
             "GLOtherChargesAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "BankRecAdjustment" => [
@@ -110,42 +116,29 @@ class gridData extends gridDataSource{
             ],
             "GLAdjustmentAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "BankRecNotes" => [
                 "dbType" => "varchar(255)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
-            "Signature" => [
+            ]
+        ],
+        "Credits" => [
+            "BankID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
-            ],
-            "SignaturePassword" => [
+            ]
+        ],
+        "Debits" => [
+            "BankID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
             ]
         ]
@@ -154,19 +147,19 @@ class gridData extends gridDataSource{
         "BankID" => "Bank ID",
         "BankRecStartDate" => "Start Date",
         "BankRecEndDate" => "End Date",
-        "GLBankAccount" => "GL Account",
+        "GLBankAccount" => "GL Bank Account",
         "BankRecEndingBalance" => "Balance",
-        "CurrencyID" => "CurrencyID",
-        "CurrencyExchangeRate" => "CurrencyExchangeRate",
-        "BankRecServiceCharge" => "BankRecServiceCharge",
-        "GLServiceChargeAccount" => "GLServiceChargeAccount",
-        "BankRecIntrest" => "BankRecIntrest",
-        "GLInterestAccount" => "GLInterestAccount",
-        "BankRecOtherCharges" => "BankRecOtherCharges",
-        "GLOtherChargesAccount" => "GLOtherChargesAccount",
-        "BankRecAdjustment" => "BankRecAdjustment",
-        "GLAdjustmentAccount" => "GLAdjustmentAccount",
-        "BankRecNotes" => "BankRecNotes",
+        "CurrencyID" => "Currency ID",
+        "CurrencyExchangeRate" => "Currency Exchange Rate",
+        "BankRecServiceCharge" => "Service Charge",
+        "GLServiceChargeAccount" => "GL Service Charge Account",
+        "BankRecIntrest" => "Bank RecI ntrest",
+        "GLInterestAccount" => "GL Interest Account",
+        "BankRecOtherCharges" => "Other Charges",
+        "GLOtherChargesAccount" => "GL Other Charges Account",
+        "BankRecAdjustment" => "Adjustment",
+        "GLAdjustmentAccount" => "GL Adjustment Account",
+        "BankRecNotes" => "Notes",
         "Signature" => "Signature",
         "SignaturePassword" => "SignaturePassword",
         "SupervisorSignature" => "SupervisorSignature",
