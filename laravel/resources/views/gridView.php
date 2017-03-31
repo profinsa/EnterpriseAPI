@@ -29,7 +29,7 @@
      grid model
      app as model
 
-     Last Modified: 20.03.2016
+     Last Modified: 31.03.2016
      Last Modified by: Nikita Zaharov
    -->
 
@@ -52,11 +52,26 @@
        -->
     <?php require "format.php"; ?>
     <?php if($scope["mode"] == 'grid'): ?>
-	<?php require "gridView/grid.php"; ?>
+	<?php
+	if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewGrid.php"))
+	    require __DIR__ . "/" . $PartsPath . "gridViewGrid.php";
+	else
+	    require "gridView/grid.php";
+	?>
     <?php elseif($scope["mode"] == 'view'): ?>
-	<?php require "gridView/view.php"; ?>
+	<?php
+	if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewView.php"))
+	    require __DIR__ . "/" . $PartsPath . "gridViewView.php";
+	else
+	    require "gridView/view.php";
+	?>
     <?php elseif($scope["mode"] == 'edit' || $scope["mode"] == 'new'): ?>
-	<?php require "gridView/edit.php"; ?>
+	<?php
+	if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewEdit.php"))
+	    require __DIR__ . "/" . $PartsPath . "gridViewEdit.php";
+	else
+	    require "gridView/edit.php";
+	?>
     <?php endif; ?>
 </div>
 <script>

@@ -2,6 +2,9 @@
 namespace App\Models;
 require __DIR__ . "/../../../Models/gridDataSource.php";
 
+use Illuminate\Support\Facades\DB;
+use Session;
+
 class gridData extends gridDataSource{
     protected $tableName = "companies";
     public $dashboardTitle ="Year Close ";
@@ -299,5 +302,18 @@ class gridData extends gridDataSource{
         "Period13Closed" => "Period13 Closed",
         "Period14Closed" => "Period14 Closed"
     ];
+
+    public function CloseYear(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Ledger_YearEndClose('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1){
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        } else
+            return response(json_encode($result), 400)->header('Content-Type', 'text/plain');
+    }
 }
 ?>

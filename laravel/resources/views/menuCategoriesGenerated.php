@@ -1182,7 +1182,7 @@ $menuCategories["GeneralLedger"] = [
         [
             "id" => "GeneralLedger/LedgerSetup/CloseYear",
             "full" => $translation->translateLabel('Close Year'),
-            "href_ended" => "GeneralLedger/LedgerSetup/CloseYear/edit/Main/" . $keyString,
+            "href_ended" => "GeneralLedger/LedgerSetup/CloseYear/view/Main/" . $keyString,
             "href"=> "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",
             "short" => "Cl"
         ],
