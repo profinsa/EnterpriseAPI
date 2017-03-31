@@ -4,7 +4,7 @@
   only client side logic. Sending request to stored procedures and handling result
  */
  function depreciateAll(){
-     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/depreciateAll",{})
+     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/Depreciation_PostAll",{})
       .success(function(data) {
           onlocation(window.location);
       })

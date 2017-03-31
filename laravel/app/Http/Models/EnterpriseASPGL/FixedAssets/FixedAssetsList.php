@@ -277,7 +277,7 @@ class gridData extends gridDataSource{
         DB::statement("CALL FixedAssetDisposal_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
 
         $result = DB::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
-        if($result[0]->SWP_RET_VALUE > -1){
+        if($result[0]->SWP_RET_VALUE > -1 || $result[0]->SWP_RET_VALUE == NULL){
             header('Content-Type: application/json');
             echo json_encode($result);
         } else
@@ -290,19 +290,33 @@ class gridData extends gridDataSource{
         DB::statement("CALL FixedAssetDepreciation_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
 
         $result = DB::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
-        if($result[0]->SWP_RET_VALUE > -1){
+        if($result[0]->SWP_RET_VALUE > -1 || $result[0]->SWP_RET_VALUE == NULL){
             header('Content-Type: application/json');
             echo json_encode($result);
         } else
             return response(json_encode($result), 400)->header('Content-Type', 'text/plain');
     }
+    
+    public function Depreciation_PostAll(){
+        $user = Session::get("user");
+
+        DB::statement("CALL FixedAssetDepreciation_PostAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@v_Result, @SWP_RET_VALUE)");
+
+        $result = DB::select('select @v_Result as v_Result ,@SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1 || $result[0]->SWP_RET_VALUE == NULL){
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        } else
+            return response(json_encode($result), 400)->header('Content-Type', 'text/plain');
+    }
+
     public function FixedAsset_Post(){
         $user = Session::get("user");
 
         DB::statement("CALL FixedAsset_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
 
         $result = DB::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
-        if($result[0]->SWP_RET_VALUE > -1){
+        if($result[0]->SWP_RET_VALUE > -1 || $result[0]->SWP_RET_VALUE == NULL){
             header('Content-Type: application/json');
             echo json_encode($result);
         } else

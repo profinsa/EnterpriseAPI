@@ -4,7 +4,7 @@
 	 "AssetID" : "<?php echo $item["AssetID"]; ?>"
      })
       .success(function(data) {
-	  //	  onlocation(window.location);
+	  onlocation(window.location);
       })
       .error(function(err){
 	  alert("Something goes wrong");
@@ -15,25 +15,22 @@
 	 "AssetID" : "<?php echo $item["AssetID"]; ?>"
      })
       .success(function(data) {
-	  //	  onlocation(window.location);
+	  onlocation(window.location);
       })
       .error(function(err){
 	  alert("Something goes wrong");
       });
  }
  function bookassetClicked(){
-     alert('depreciate');
-     /*     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/Memorize",{
-	"GLTransactionNumber" : "haha",
-	lom : 12
-	})
-	.success(function(data) {
-	onlocation(window.location);
-	//	  alert("Memorized");
-	})
-	.error(function(err){
-	console.log('wrong');
-	});*/
+     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/FixedAsset_Post",{
+	 "AssetID" : "<?php echo $item["AssetID"]; ?>"
+     })
+      .success(function(data) {
+	  onlocation(window.location);
+      })
+      .error(function(err){
+	  alert("Something goes wrong");
+      });
  }
 </script>
 <a class="btn btn-info" href="javascript:;" onclick="disposeClicked()">
