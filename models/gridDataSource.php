@@ -31,7 +31,82 @@ class gridDataSource{
     protected $gridFields = [];
 
     public $idField = "";
+
+    //getting list of available ledger balance types
+    public function getLedgerBalanceTypes(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["capsule"]::select("SELECT GLBalanceType from ledgerbalancetype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->GLBalanceType] = [
+                "title" => $value->GLBalanceType,
+                "value" => $value->GLBalanceType
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available ledger budget ids
+    public function getLedgerBudgetId(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["capsule"]::select("SELECT GLBudgetID from ledgerchartofaccountsbudgets WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->GLBudgetID] = [
+                "title" => $value->GLBudgetID,
+                "value" => $value->GLBudgetID
+            ];
+        
+        return $res;
+    }
     
+    //getting list of available ledger account types
+    public function getLedgerAccountTypes(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["capsule"]::select("SELECT GLAccountType from ledgeraccounttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->GLAccountType] = [
+                "title" => $value->GLAccountType,
+                "value" => $value->GLAccountType
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available transaction accounts
+    public function getTransactionAccounts(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["capsule"]::select("SELECT GLAccountNumber from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->GLAccountNumber] = [
+                "title" => $value->GLAccountNumber,
+                "value" => $value->GLAccountNumber
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available projects
+    public function getProjects(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["capsule"]::select("SELECT ProjectID from projects WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ProjectID] = [
+                "title" => $value->ProjectID,
+                "value" => $value->ProjectID
+            ];
+        
+        return $res;
+    }
+
     //getting list of available contact regions 
     public function getContactRegions(){
         $user = $_SESSION["user"];

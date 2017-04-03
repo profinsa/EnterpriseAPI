@@ -76,29 +76,31 @@
  }
 </style>
 <script language="javascript" type="text/javascript">
- $('#example23').DataTable( {
-     dom : "Bfrt<\"grid-footer row col-md-12\"<\"col-md-3 grid-length\"l><\"col-md-3\"i><\"col-md-6\"p>>",
-     buttons: [
-	 'copy', 'csv', 'excel', 'pdf', 'print'
-     ]
- });
+ if(!$.fn.DataTable.isDataTable("#example23")){
+     $('#example23').DataTable( {
+	 dom : "Bfrt<\"grid-footer row col-md-12\"<\"col-md-3 grid-length\"l><\"col-md-3\"i><\"col-md-6\"p>>",
+	 buttons: [
+	     'copy', 'csv', 'excel', 'pdf', 'print'
+	 ]
+     });
 
- jQuery('.fdatetime').datepicker({
-     autoclose : true,
-     format: {
-	 toDisplay: function (date, format, language) {
-	     //console.log(date,' eee');
-	     var d = new Date(date);
-	     return (d.getMonth() + 1) + 
-		   "/" +  d.getDate() +
-		   "/" +  d.getFullYear();
-	 },
-	 toValue: function (date, format, language) {
-	     var d = new Date(date);
-	     return (d.getMonth() + 1) + 
-		   "/" +  d.getDate() +
-		   "/" +  d.getFullYear();
+     jQuery('.fdatetime').datepicker({
+	 autoclose : true,
+	 format: {
+	     toDisplay: function (date, format, language) {
+		 //console.log(date,' eee');
+		 var d = new Date(date);
+		 return (d.getMonth() + 1) + 
+		       "/" +  d.getDate() +
+		       "/" +  d.getFullYear();
+	     },
+	     toValue: function (date, format, language) {
+		 var d = new Date(date);
+		 return (d.getMonth() + 1) + 
+		       "/" +  d.getDate() +
+		       "/" +  d.getFullYear();
+	     }
 	 }
-     }
- });
+     });
+ }
  </script>

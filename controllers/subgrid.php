@@ -1,10 +1,10 @@
 <?php
 /*
-Name of Page: gridController
+Name of Page: subgridController
 
-Method: controller for many grid pages(like General Ledger pages etc), used for rendering page and interacting with it
+Method: controller for pages with subgrid (like Ledger Transactions Detail etc), used for rendering page and interacting with it
 
-Date created: Nikita Zaharov, 21.02.2016
+Date created: Nikita Zaharov, 3.04.2016
 
 Use: The controller is responsible for:
 - page rendering using view
@@ -25,7 +25,7 @@ models/translation.php
 models/gridDataSource derevatives -- models who inherits from gridDataSource
 app from index.php
 
-Last Modified: 21.02.2016
+Last Modified: 03.04.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -36,12 +36,11 @@ require 'models/permissionsGenerated.php';
 class controller{
     public $user = false;
     public $action = "";
-    public $mode = "grid";
+    public $mode = "subgrid";
     public $category = "Main";
     public $item = "0";
     public $dashboardTitle = "";
     public $breadCrumbTitle = "";
-    public $path;
 
     public function process($app){
         if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
@@ -52,15 +51,17 @@ class controller{
         }
 
         require 'models/menuIdToHref.php';
-        $this->action = $this->path =  $_GET["action"];
+        $this->action = $_GET["action"];
         $model_path = $menuIdToPath[$_GET["action"]];
         if(!file_exists('models/' . $model_path . '.php'))
             throw new Exception("model " . 'models/' . $model_path . '.php' . " is not found");
-        require 'models/' . $menuIdToPath[$_GET["action"]] . '.php';
         
         $PartsPath = $model_path . "/";
         $_perm = new permissionsByFile();
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        preg_match("/(.+)(List|Detail)$/", $model_path, $path);
+        $model_path = $path[1] . 'Detail';
+        require 'models/' . $model_path . '.php';
         if(key_exists($filename[1], $_perm->permissions))
             $security = new Security($_SESSION["user"]["accesspermissions"], $_perm->permissions[$filename[1]]);
         else
@@ -97,11 +98,17 @@ class controller{
                     $this->mode = $_GET["mode"];
                 if(key_exists("category", $_GET))
                     $this->category = $_GET["category"];
+                if(!key_exists("items", $_GET))
+                    $this->items = $_GET["items"];
+                if(key_exists("items", $_GET))
+                    $this->items = $_GET["items"];
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
+                if(!key_exists("items", $_GET))
+                    $this->items = $_GET["item"];
 
                 require 'models/menuCategoriesGenerated.php';
-                require 'views/gridView.php';
+                require 'views/subGridView.php';
             }
         }
     }

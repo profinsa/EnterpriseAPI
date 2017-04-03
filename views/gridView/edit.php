@@ -96,6 +96,12 @@
 	    }
 	}
 	?>
+	<?php
+	if(file_exists(__DIR__ . "/../" . $PartsPath . "editFooter.php"))
+	    require __DIR__ . "/../" . $PartsPath . "editFooter.php";
+	if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
+	    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
+	?>
 	<div class="pull-right">
 	    <!--
 		 renders buttons translated Save and Cancel using translation model
@@ -104,6 +110,12 @@
 		<a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope->mode == "edit" ? "saveItem()" : "createItem()"); ?>">
 		    <?php echo $translation->translateLabel("Save"); ?>
 		</a>
+		<?php 
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "editActions.php";
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
+		?>
 	    <?php endif; ?>
 	    <a class="btn btn-inverse waves-effect waves-light" href="index.php#/?page=<?php echo $app->page . "&action=" . $scope->action .  ( $scope->mode != "new" ? "&mode=view&category=" . $scope->category . "&item=" . $scope->item : "") ; ?>">
 		<?php echo $translation->translateLabel("Cancel"); ?>

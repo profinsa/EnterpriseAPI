@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/chartOfAccounts.php
 Calls:
 sql
 
-Last Modified: 16.03.2016
+Last Modified: 3.04.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -86,7 +86,7 @@ class gridData extends gridDataSource{
         "Main" => [
             "GLAccountNumber" => [
                 "dbType" => "varchar(36)",
-                "disableEdit" => true,
+                "disabledEdit" => true,
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
@@ -551,7 +551,7 @@ class gridData extends gridDataSource{
             ]
         ]
     ];
-
+    
     /* table column to translation/ObjID
        many columns not translated by them names. For that column must be converted to displayed title. This is table contains column names and their displaed titles.
      */

@@ -95,7 +95,7 @@ class gridData extends gridDataSource{
             "GLReportingAccount" => [
                 "dbType" => "tinyint(1)",
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
             "GLReportLevel" => [
