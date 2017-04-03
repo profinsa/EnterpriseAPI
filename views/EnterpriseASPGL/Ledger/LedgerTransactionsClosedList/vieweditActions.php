@@ -1,8 +1,8 @@
 <script>
  function memorizeClicked(){
-     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/Memorize",{
-	 "id" : "<?php echo $scope["item"]; ?>",
-      "Memorize" : "<?php echo $item["Memorize"]; ?>"
+     $.post("index.php?page=grid&action<?php  echo $scope->action ;  ?>&procedure=true&name=Memorize",{
+         "id" : "<?php echo $scope->item; ?>",
+	 "Memorize" : "<?php echo $item["Memorize"]; ?>"
       })
          .success(function(data) {
              onlocation(window.location);

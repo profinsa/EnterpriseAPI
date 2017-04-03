@@ -179,7 +179,8 @@
      //handler of save button if we in edit or insert mode. Just doing XHR request to save data
      function saveSubgridItem(mode){
 	 var itemData = $("#itemData");
-	 $.post("<?php echo $public_prefix; ?>/subgrid/<?php  echo $scope->path; ?>/" + (mode == "edit" ? "update" : "insert"  + "/<?php echo $scope->items;  ?>"), itemData.serialize(), null, 'json')
+
+	 $.post("index.php?page=subgrid&action=<?php  echo $scope->action; ?>&" + (mode == "edit" ? "update=true" : "new=true"  + "&items=<?php echo $scope->items;  ?>"), itemData.serialize(), null, 'json')
 	  .success(function(data) {
 	      subgridView();
 	  })
@@ -189,7 +190,6 @@
      }
      
      function cancelSubgridItem(item){
-	 console.log('dddd');
 	 subgridView();
      }
     </script>

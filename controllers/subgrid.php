@@ -77,7 +77,7 @@ class controller{
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }else if(key_exists("new", $_GET)){
-                $data->insertItem($_POST);
+                $data->insertSubgridItem($_POST, $_GET["items"]);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }

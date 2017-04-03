@@ -6,9 +6,9 @@
     <script>
      function subgridView(cb){
 	 var path = new String(window.location);
-	 path = path.replace(/index\#\//, "");
+	 path = path.replace(/index.php\#\//, "index.php");
 	 path = path.replace(/grid|view|edit|new/g, "subgrid");
-	 $.get(path + "?partial=true")
+	 $.get(path)
 	  .done(function(data){
 	      setTimeout(function(){
 		  $("#subgrid").html(data);
@@ -18,7 +18,7 @@
 	  })
 	  .error(function(xhr){
 	      if(xhr.status == 401)
-		  window.location = "<?php echo $public_prefix; ?>/login";
+		  window.location = "index.php?page=login";
 	      else
 		  alert("Unable to load page");
 	  });

@@ -8,6 +8,7 @@ class gridData extends gridDataSource{
     public $idField ="GLTransactionNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
     public $modes = ["grid", "view", "edit"];
+    public $features = ["selecting"];
     protected $gridConditions = "GLTransactionPostedYN='1'";
     public $gridFields = [
         "GLTransactionNumber" => [
@@ -54,11 +55,12 @@ class gridData extends gridDataSource{
             "GLTransactionNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
             ],
             "GLTransactionTypeID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "dropwdown",
+                "inputType" => "dropdown",
                 "dataProvider" => "getLedgerTransactionTypes",
                 "defaultValue" => ""
             ],
@@ -79,7 +81,8 @@ class gridData extends gridDataSource{
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
@@ -111,6 +114,8 @@ class gridData extends gridDataSource{
             "GLTransactionPostedYN" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ],
             "GLTransactionSource" => [
@@ -121,16 +126,22 @@ class gridData extends gridDataSource{
             "GLTransactionSystemGenerated" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ],
             "GLTransactionRecurringYN" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ],
             "Memorize" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => "0"
             ]
         ]
@@ -166,5 +177,51 @@ class gridData extends gridDataSource{
         "ManagerPassword" => "ManagerPassword",
         "Memorize" => "Memorize"
     ];
+    
+    public function CopyToHistory(){
+        $user = $_SESSION["user"];
+
+        $numbers = explode(",", $_POST["GLTransactionNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            $GLOBALS["capsule"]::statement("CALL LedgerTransactions_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function CopyAllToHistory(){
+        $user = $_SESSION["user"];
+
+        $GLOBALS["capsule"]::statement("CALL LedgerTransactions_CopyAllToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = $GLOBALS["capsule"]::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1){
+            header('Content-Type: application/json');
+            echo json_encode($result);
+        } else
+            return response(json_encode($result), 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function Memorize(){
+        $user = $_SESSION["user"];
+        
+        $keyValues = explode("__", $_POST["id"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        $GLOBALS["capsule"]::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
+        echo "ok";
+    }
 }
 ?>

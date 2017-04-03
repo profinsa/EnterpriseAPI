@@ -11,8 +11,6 @@
 	 $.get(path)
 	  .done(function(data){
 	      setTimeout(function(){
-		  console.log(data);
-		  console.log($("#subgrid"));
 		  $("#subgrid").html(data);
 		  if(cb)
 		      cb();
@@ -20,7 +18,7 @@
 	  })
 	  .error(function(xhr){
 	      if(xhr.status == 401)
-		  window.location = "<?php echo $public_prefix; ?>/login";
+		  window.location = "index.php?page=login";
 	      else
 		  alert("Unable to load page");
 	  });

@@ -152,7 +152,7 @@
      function deleteSubgridItem(item){
 	 if(confirm("Are you sure?")){
 	     var itemData = $("#itemData");
-	     $.getJSON("index.php?page=subgrid&action=<?php  echo $scope->action ;  ?>&delete=true" + item)
+	     $.getJSON("index.php?page=subgrid&action=<?php  echo $scope->action ;  ?>&delete=true&id=" + item)
 	      .success(function(data) {
 		  onlocation(window.location);
 	      })
