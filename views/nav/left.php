@@ -17,10 +17,10 @@
 	    
 	    <li> <a href="index.php?page=index#tasks" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Tasks');  ?> </span></a></li>
 	    
-	    <li>
+<!-- 	    <li>
 		<a href="index.php?page=index#chat" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Chat');  ?> </span>
 		</a>
-	    </li>
+	    </li> -->
 
 	    <li class="nav-small-cap">--- Main Menu</li>
 

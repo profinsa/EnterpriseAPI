@@ -54,7 +54,6 @@ class controller{
             $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
             $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
             $scope = $this;
-            require 'models/menuCategories.php';
             require 'models/menuCategoriesGenerated.php';
             require 'views/index.php';
         }

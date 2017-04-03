@@ -98,7 +98,6 @@ class controller{
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
 
-                require 'models/menuCategories.php';
                 require 'models/menuCategoriesGenerated.php';
                 require 'views/gridView.php';
             }
