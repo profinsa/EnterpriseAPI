@@ -25,7 +25,7 @@ used as model by views/GeneralLedger/backAccounts.php
 Calls:
 sql
 
-Last Modified: 16.03.2016
+Last Modified: 4.04.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -62,11 +62,11 @@ class gridData extends gridDataSource{
         ],
         "Posted" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ],
         "Cleared" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ]
     ];
 
@@ -134,7 +134,7 @@ class gridData extends gridDataSource{
             "BeginningBalance" =>  [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
-                "defaultValue" => "false"
+                "defaultValue" => "0"
             ],	
             "Reference" =>  [
                 "dbType" => "varchar(50)",
@@ -184,6 +184,7 @@ class gridData extends gridDataSource{
     //getting list of available transaction types 
     public function getTransactionTypes(){
         $user = $_SESSION["user"];
+
         $res = [];
         $result = $GLOBALS["capsule"]::select("SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
@@ -194,6 +195,20 @@ class gridData extends gridDataSource{
             ];
         
         return $res;
+    }
+    
+    public function Post(){
+        $user = $_SESSION["user"];
+
+
+        $result = $GLOBALS["capsule"]::select("select BankTransaction_Control('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["BankTransactionID"] . "')");
+
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->PostingResult;
+        else {
+            http_response_code(400);
+            echo $result[0]->PostingResult;
+        }
     }
 }
 ?>

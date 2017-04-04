@@ -4,7 +4,7 @@
   only client side logic. Sending request to stored procedures and handling result
  */
  function post(){
-     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/Post",{
+     $.post("index.php?page=grid&action=<?php echo $scope->action ;  ?>&procedure=Post",{
              "BankTransactionID" : "<?php echo $item["BankTransactionID"]; ?>"
       })
          .success(function(data) {

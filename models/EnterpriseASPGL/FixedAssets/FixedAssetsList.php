@@ -266,5 +266,64 @@ class gridData extends gridDataSource{
         
         return $res;
     }
+
+    public function DisposalPost(){
+        $user = $_SESSION["user"];
+
+        $GLOBALS["capsule"]::statement("CALL FixedAssetDisposal_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
+
+        $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
+
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo json_encode($result);
+        else {
+            http_response_code(400);
+            echo json_encode($result);
+        }
+    }
+    
+    public function DepreciationPost(){
+        $user = $_SESSION["user"];
+
+        $GLOBALS["capsule"]::statement("CALL FixedAssetDepreciation_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
+
+        $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
+
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo json_encode($result);
+        else {
+            http_response_code(400);
+            echo json_encode($result);
+        }
+    }
+    
+    public function Depreciation_PostAll(){
+        $user = $_SESSION["user"];
+
+        $GLOBALS["capsule"]::statement("CALL FixedAssetDepreciation_PostAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@v_Result, @SWP_RET_VALUE)");
+
+        $result = $GLOBALS["capsule"]::select('select @v_Result as v_Result ,@SWP_RET_VALUE as SWP_RET_VALUE');
+        
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo json_encode($result);
+        else {
+            http_response_code(400);
+            echo json_encode($result);
+        }
+    }
+
+    public function FixedAsset_Post(){
+        $user = $_SESSION["user"];
+
+        $GLOBALS["capsule"]::statement("CALL FixedAsset_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
+
+        $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo json_encode($result);
+        else {
+            http_response_code(400);
+            echo json_encode($result);
+        }
+    }
 }
 ?>

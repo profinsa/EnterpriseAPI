@@ -1,6 +1,6 @@
 <script>
  function disposeClicked(){
-     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/DisposalPost",{
+     $.post("index.php?page=grid&action=<?php echo $scope->action;  ?>&procedure=DisposalPost",{
 	 "AssetID" : "<?php echo $item["AssetID"]; ?>"
      })
       .success(function(data) {
@@ -11,7 +11,7 @@
       });
  }
  function depreciateClicked(){
-     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/DepreciationPost",{
+     $.post("index.php?page=grid&action=<?php echo $scope->action;  ?>&procedure=DepreciationPost",{
 	 "AssetID" : "<?php echo $item["AssetID"]; ?>"
      })
       .success(function(data) {
@@ -22,7 +22,7 @@
       });
  }
  function bookassetClicked(){
-     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/FixedAsset_Post",{
+     $.post("index.php?page=grid&action=<?php echo $scope->action;  ?>&procedure=FixedAsset_Post",{
 	 "AssetID" : "<?php echo $item["AssetID"]; ?>"
      })
       .success(function(data) {
