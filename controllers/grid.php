@@ -79,6 +79,9 @@ class controller{
                 $data->insertItem($_POST);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
+            }else if(key_exists("procedure", $_GET)){
+                $name = $_GET["procedure"];
+                $data->$name();
             }
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
             if(key_exists("getItem", $_GET)){

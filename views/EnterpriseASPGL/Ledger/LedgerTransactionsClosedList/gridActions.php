@@ -8,7 +8,7 @@
      for(ind in gridItemsSelected)
          transactionNumbers.push(gridItemsSelected[ind].GLTransactionNumber);
 
-     $.post("index.php?page=grid&action=<?php  echo $scope->action;  ?>&procedure=true&name=CopyToHistory",{
+     $.post("index.php?page=grid&action=<?php  echo $scope->action;  ?>&procedure=CopyToHistory",{
              "GLTransactionNumbers" : transactionNumbers.join(',')
       })
            .success(function(data) {
@@ -20,7 +20,7 @@
  }
 
  function copyAllToHistory(){
-     $.post("index.php?page=grid&action=<?php  echo $scope->action;  ?>&procedure=true&name=CopyAllToHistory",{})
+     $.post("index.php?page=grid&action=<?php  echo $scope->action;  ?>&procedure=CopyAllToHistory",{})
            .success(function(data) {
                onlocation(window.location);
            })

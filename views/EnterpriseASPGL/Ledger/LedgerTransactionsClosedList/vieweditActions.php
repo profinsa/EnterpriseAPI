@@ -1,6 +1,6 @@
 <script>
  function memorizeClicked(){
-     $.post("index.php?page=grid&action<?php  echo $scope->action ;  ?>&procedure=true&name=Memorize",{
+     $.post("index.php?page=grid&action=<?php  echo $scope->action ;  ?>&procedure=Memorize",{
          "id" : "<?php echo $scope->item; ?>",
 	 "Memorize" : "<?php echo $item["Memorize"]; ?>"
       })

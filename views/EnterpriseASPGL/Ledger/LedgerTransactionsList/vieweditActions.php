@@ -1,6 +1,6 @@
 <script>
  function postClicked(){
-     $.post("index.php?page=grid&action&mode=<?php  echo $scope->path ;  ?>&procedure=PostManual",{
+     $.post("index.php?page=grid&action=<?php  echo $scope->path ;  ?>&procedure=PostManual",{
          "GLTransactionNumber" : "<?php echo $item["GLTransactionNumber"]; ?>"
      })
       .success(function(data) {
@@ -12,7 +12,7 @@
  }
  
  function memorizeClicked(){
-     $.post("index.php?page=grid&action&mode=<?php  echo $scope->path ;  ?>&procedure=Memorize",{
+     $.post("index.php?page=grid&action=<?php  echo $scope->path ;  ?>&procedure=Memorize",{
 	 "id" : "<?php echo $scope->item; ?>",
          "Memorize" : "<?php echo $item["Memorize"]; ?>"
      })

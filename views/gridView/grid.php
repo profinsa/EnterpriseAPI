@@ -60,6 +60,7 @@
 		//renders table rows using rows, getted in previous block
 		//also renders buttons like edit, delete of row
 		if(count($rows)){
+		    $current_row = 0;
 		    foreach($rows as $row){
 			$keyString = '';
 			foreach($data->idFields as $key){
@@ -101,6 +102,7 @@
 				echo "</td>\n";
 			    }
 			echo "</tr>";
+			$current_row++;
 		    }
 		}
 		?>
