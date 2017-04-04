@@ -33,12 +33,12 @@
 		    echo "<ul class=\"nav nav-second-level\">";
 		    foreach($item["data"] as $key=>$subitem){
 			if($subitem["type"] == "item")
-			    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"index.php?page=grid&action=" . $subitem["id"] . "\">" . $subitem["full"] . "</a></li>";
+			    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"index.php?page=grid&action=" . (key_exists("href_ended", $subitem) ? $subitem["href_ended"] : $subitem["id"]) . "\">" . $subitem["full"] . "</a></li>";
 			else if($subitem["type"] == "submenu"){
 			    echo "<li> <a href=\"javascript:void(0)\" class=\"waves-effect\">" . $subitem["full"] . "<span class=\"fa arrow\"></span></a>";
 			    echo "<ul class=\"nav nav-third-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
 			    foreach($subitem["data"] as $skey=>$ssubitem)
-				echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\"><a href=\"index.php#/?page=grid&action=" . $ssubitem["id"] . "\">" . $ssubitem["full"] . "</a></li>";
+				echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\"><a href=\"index.php#/?page=grid&action=" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"]) . "\">" . $ssubitem["full"] . "</a></li>";
 			    
 			    echo "</ul>";
 			}

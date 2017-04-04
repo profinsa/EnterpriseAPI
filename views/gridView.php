@@ -55,15 +55,27 @@
 	       -->
 	    <!-- formating staff -->
 	    <?php require "format.php"; ?>
-	    <!-- grid -->
 	    <?php if($scope->mode == 'grid'): ?>
-		<?php  require "views/gridView/grid.php";?>
-		<!-- view -->
+		<?php
+		if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewGrid.php"))
+		    require __DIR__ . "/" . $PartsPath . "gridViewGrid.php";
+		else
+		    require "views/gridView/grid.php";
+		?>
 	    <?php elseif($scope->mode == 'view'): ?>
-		<?php  require "views/gridView/view.php";?>
-		<!-- edit and new -->
+		<?php
+		if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewView.php"))
+		    require __DIR__ . "/" . $PartsPath . "gridViewView.php";
+		else
+		    require "views/gridView/view.php";
+		?>
 	    <?php elseif($scope->mode == 'edit' || $scope->mode == 'new'): ?>
-		<?php  require "views/gridView/edit.php";?>
+		<?php
+		if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewEdit.php"))
+		    require __DIR__ . "/" . $PartsPath . "gridViewEdit.php";
+		else
+		    require "views/gridView/edit.php";
+		?>
 	    <?php endif; ?>
 	</div>
     </div>

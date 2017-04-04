@@ -54,6 +54,7 @@ class controller{
             $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
             $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
             $scope = $this;
+            $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
             require 'models/menuCategoriesGenerated.php';
             require 'views/index.php';
         }

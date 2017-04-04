@@ -138,12 +138,14 @@ $menuCategories["GeneralLedger"] = [
         [
         "id" => "GeneralLedger/LedgerSetup/ClosePeriod",
         "full" => $translation->translateLabel('Close Period'),
+        "href_ended" => "GeneralLedger/LedgerSetup/ClosePeriod&mode=edit&category=Main&item=" . $keyString,
         "href"=> "EnterpriseASPSystem/LedgerSetup/LedgerPeriodCloseDetail",
         "short" => "Cl"
         ],
         [
         "id" => "GeneralLedger/LedgerSetup/CloseYear",
         "full" => $translation->translateLabel('Close Year'),
+        "href_ended" => "GeneralLedger/LedgerSetup/CloseYear&mode=edit&category=Main&item=" . $keyString,
         "href"=> "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",
         "short" => "Cl"
         ],
@@ -2382,12 +2384,14 @@ $menuCategories["SystemSetup"] = [
         [
         "id" => "SystemSetup/LedgerSetup/ClosePeriod",
         "full" => $translation->translateLabel('Close Period'),
+        "href_ended" => "SystemSetup/LedgerSetup/ClosePeriod&mode=edit&category=Main&item=" . $keyString,
         "href"=> "EnterpriseASPSystem/LedgerSetup/LedgerPeriodCloseDetail",
         "short" => "Cl"
         ],
         [
         "id" => "SystemSetup/LedgerSetup/CloseYear",
         "full" => $translation->translateLabel('Close Year'),
+        "href_ended" => "SystemSetup/LedgerSetup/CloseYear&mode=edit&category=Main&item=" . $keyString,
         "href"=> "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",
         "short" => "Cl"
         ],
