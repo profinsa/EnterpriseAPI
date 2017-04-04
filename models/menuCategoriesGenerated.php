@@ -145,7 +145,7 @@ $menuCategories["GeneralLedger"] = [
         [
         "id" => "GeneralLedger/LedgerSetup/CloseYear",
         "full" => $translation->translateLabel('Close Year'),
-        "href_ended" => "GeneralLedger/LedgerSetup/CloseYear&mode=edit&category=Main&item=" . $keyString,
+        "href_ended" => "GeneralLedger/LedgerSetup/CloseYear&mode=view&category=Main&item=" . $keyString,
         "href"=> "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",
         "short" => "Cl"
         ],
@@ -1602,6 +1602,7 @@ $menuCategories["MRP"] = [
     ]
 ]
 ];
+/*
 $menuCategories["FundAccounting"] = [
 "type" => "submenu",
 "id" => "FundAccounting",
@@ -1635,6 +1636,7 @@ $menuCategories["FundAccounting"] = [
     ]
 ]
 ];
+
 $menuCategories["CRM&HelpDesk"] = [
 "type" => "submenu",
 "id" => "CRMHelpDesk",
@@ -1775,11 +1777,11 @@ $menuCategories["CRM&HelpDesk"] = [
     ]
     ]
 ]
-];
+];*/
 $menuCategories["Payroll"] = [
 "type" => "submenu",
 "id" => "Payroll",
-"full" => $translation->translateLabel('Payroll'),
+"full" => $translation->translateLabel('Human Resources'),
 "short" => "Pa",
 "data" => [
 
@@ -2391,7 +2393,7 @@ $menuCategories["SystemSetup"] = [
         [
         "id" => "SystemSetup/LedgerSetup/CloseYear",
         "full" => $translation->translateLabel('Close Year'),
-        "href_ended" => "SystemSetup/LedgerSetup/CloseYear&mode=edit&category=Main&item=" . $keyString,
+        "href_ended" => "SystemSetup/LedgerSetup/CloseYear&mode=view&category=Main&item=" . $keyString,
         "href"=> "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",
         "short" => "Cl"
         ],

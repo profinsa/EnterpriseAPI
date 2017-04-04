@@ -8,7 +8,7 @@
 	//render tabs like Main, Current etc
 	//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 	foreach($data->editCategories as $key =>$value)
-	    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"" . $public_prefix ."/index#/grid/" . $scope["path"] .  "/view/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
+	    echo "<li role=\"presentation\"". ( $scope->category == $key ? " class=\"active\"" : "") . "><a href=\"index.php#/?page=grid&action=" . $scope->action .  "&mode=view&category=" . $key . "&item=" . $scope->item . "\">" . $translation->translateLabel($key) . "</a></li>";
 	?>
     </ul>
     <div class="table-responsive">
@@ -26,11 +26,11 @@
 	    <tbody id="row_viewer_tbody">
 		<?php
 		//renders table, contains record data using getEditItem from model
-		$item = $data->getEditItem($scope["item"], $scope["category"]);
+		$item = $data->getEditItem($scope->item, $scope->category);
 		foreach($item as $key =>$value){
-		    if(key_exists($key, $data->editCategories[$scope["category"]])){
+		    if(key_exists($key, $data->editCategories[$scope->category])){
 			echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
-			switch($data->editCategories[$scope["category"]][$key]["inputType"]){
+			switch($data->editCategories[$scope->category][$key]["inputType"]){
 			    case "checkbox" :
 				echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
 				break;
@@ -40,12 +40,12 @@
 				break;
 			    case "text":
 			    case "dropdown":
-				if(key_exists("formatFunction", $data->editCategories[$scope["category"]][$key])){
-				    $formatFunction = $data->editCategories[$scope["category"]][$key]["formatFunction"];
+				if(key_exists("formatFunction", $data->editCategories[$scope->category][$key])){
+				    $formatFunction = $data->editCategories[$scope->category][$key]["formatFunction"];
 				    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
 				}
 				else
-				    echo formatField($data->editCategories[$scope["category"]][$key], $value);						    break;
+				    echo formatField($data->editCategories[$scope->category][$key], $value);						    break;
 			}
 			echo "</td></tr>";
 		    }
@@ -75,7 +75,7 @@
 		    require __DIR__ . "/" . "vieweditActions.php";
 		?>
 	<?php endif; ?>
-	<a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/grid/Main/all"; ?>">
+	<a class="btn btn-info" href="index.php#/?page=grid&action=<?php echo $scope->action . "&mode=grid"; ?>">
 	    <?php echo $translation->translateLabel("Cancel"); ?>
 	</a>
     </div>

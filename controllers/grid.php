@@ -103,6 +103,7 @@ class controller{
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
 
+                $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
                 require 'models/menuCategoriesGenerated.php';
                 require 'views/gridView.php';
             }

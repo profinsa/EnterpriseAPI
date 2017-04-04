@@ -298,5 +298,19 @@ class gridData extends gridDataSource{
         "Period13Closed" => "Period13 Closed",
         "Period14Closed" => "Period14 Closed"
     ];
+
+    public function CloseYear(){
+        $user = $_SESSION["user"];
+
+        $GLOBALS["capsule"]::statement("CALL Ledger_YearEndClose('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = $GLOBALS["capsule"]::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
 }
 ?>

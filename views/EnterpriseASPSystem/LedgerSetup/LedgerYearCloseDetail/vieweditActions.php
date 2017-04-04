@@ -1,6 +1,6 @@
 <script>
  function closeYear(){
-     $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/CloseYear",{})
+     $.post("index.php?page=grid&action=<?php  echo $scope->action ;  ?>&procedure=CloseYear",{})
          .success(function(data) {
              onlocation(window.location);
          })
