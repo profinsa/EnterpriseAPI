@@ -54,7 +54,7 @@ $menuCategories["GeneralLedger"] = [
         "full" => $translation->translateLabel('View Prior Fiscal Year'),
         "href"=> "EnterpriseASPGL/Ledger/LedgerChartOfAccountsPriorYearsList",
         "short" => "Vi"
-        ],
+        ]/*,
         [
         "id" => "GeneralLedger/Ledger/LedgerTreeviewSample1",
         "full" => $translation->translateLabel('Ledger Treeview Sample1'),
@@ -66,7 +66,7 @@ $menuCategories["GeneralLedger"] = [
         "full" => $translation->translateLabel('Ledger Treeview Sample2'),
         "href"=> "EnterpriseASPGL/Ledger/GLCOATreeViewSample2",
         "short" => "Le"
-        ]
+        ]*/
     ]
     ],
     [

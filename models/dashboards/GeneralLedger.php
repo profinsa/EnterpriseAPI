@@ -26,43 +26,112 @@ Last Modified: 05.04.2016
 Last Modified by: Nikita Zaharov
 */
 
+/*        $db = $GLOBALS["capsule"]::connection()->getPdo();
+
+// if any params are present, add them
+/*        $sParamsIn = '';
+if(isset($aParams) && is_array($aParams) && count($aParams)>0) {
+// loop through params and set
+foreach($aParams as $sParam) {
+$sParamsIn .= '?,';
+}
+
+// trim the last comma from the params in string
+$sParamsIn = substr($sParamsIn, 0, strlen($sParamsIn)-1);
+}
+
+// create initial stored procedure call
+$stmt = $db->prepare("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)");
+
+/*        // if any params are present, add them
+if(isset($aParams) && is_array($aParams) && count($aParams)>0) {
+$iParamCount = 1;
+
+// loop through params and bind value to the prepare statement
+foreach ($aParams as &$value) {
+$stmt->bindParam($iParamCount, $value);
+$iParamCount++;
+}
+}
+
+// execute the stored procedure
+$stmt->execute();
+
+// loop through results and place into array if found
+$results = $stmt->fetchAll(PDO::FETCH_CLASS, 'stdClass');
+echo json_encode($results);*/
+
 class dashboardData{
+    public function CompanyAccountsStatus(){
+        $user = $_SESSION["user"];
+
+        $results = $GLOBALS["capsule"]::select("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        return $results;
+    }
+
     public function CollectionAlerts(){
         $user = $_SESSION["user"];
 
-        $GLOBALS["capsule"]::statement("CALL LedgerTransactions_PostManual('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["GLTransactionNumber"] . "',@PostingResult,@DisbalanceAmount,@IsValid,@SWP_RET_VALUE)");
+        $results = $GLOBALS["capsule"]::select("CALL spCollectionAlerts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
 
-        $results = $GLOBALS["capsule"]::select('select @PostingResult as PostingResult, @DisbalanceAmount as DisbalanceAmount, @IsValid as IsValid, @SWP_RET_VALUE as SWP_RET_VALUE');
-        if($results[0]->SWP_RET_VALUE > -1)
-            echo $results[0]->PostingResult;
-        else {
-            http_response_code(400);
-            echo $results[0]->PostingResult;
-        }
+        return $results;
     }
 
     public function CompanyDailyActivity(){
+        $user = $_SESSION["user"];
+
+        $results = $GLOBALS["capsule"]::select("CALL spCompanyDailyActivity('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        return $results;
     }
 
-    public function CompaniIncomeStatement(){
-    }
+    public function CompanyIncomeStatement(){
+        $user = $_SESSION["user"];
 
-    public function CompanyAccountsStatus(){
+        $results = $GLOBALS["capsule"]::select("CALL spCompanyIncomeStatement('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        return $results;
     }
 
     public function CompanySystemWideMessage(){
+        $user = $_SESSION["user"];
+
+        $results = $GLOBALS["capsule"]::select("CALL spCompanySystemWideMessage('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        return $results;
     }
 
     public function InventoryLowStockAlert(){
+        $user = $_SESSION["user"];
+
+        $results = $GLOBALS["capsule"]::select("CALL spInventoryLowStockAlert('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        return $results;
     }
 
     public function LeadFollowUp(){
+        $user = $_SESSION["user"];
+
+        $results = $GLOBALS["capsule"]::select("CALL spInventoryLowStockAlert('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        return $results; //employee
     }
 
     public function TodaysTasks(){
+        $user = $_SESSION["user"];
+
+        $results = $GLOBALS["capsule"]::select("CALL spInventoryLowStockAlert('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        return $results; // employee
     }
 
     public function TopOrdersReceipts(){
+        $user = $_SESSION["user"];
+
+        $results = $GLOBALS["capsule"]::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        return $results;
     }
 }
 ?>
