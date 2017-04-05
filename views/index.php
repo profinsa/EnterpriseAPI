@@ -23,7 +23,7 @@
 	    <div id="page-wrapper">
 		<?php
 		if(key_exists("page", $_GET) && $_GET["page"] == "index")
-		    require 'main.php';
+		    require 'dashboards/GeneralLedger.php';
 		?>
 	    </div>
 	</div>
