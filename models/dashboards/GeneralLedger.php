@@ -113,7 +113,7 @@ class dashboardData{
     public function LeadFollowUp(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spInventoryLowStockAlert('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results = $GLOBALS["capsule"]::select("CALL spLeadFollowUp('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
 
         return $results; //employee
     }
@@ -121,7 +121,7 @@ class dashboardData{
     public function TodaysTasks(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spInventoryLowStockAlert('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results = $GLOBALS["capsule"]::select("CALL spTodaysTasks('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
 
         return $results; // employee
     }
