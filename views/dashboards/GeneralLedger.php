@@ -1,6 +1,7 @@
 <div class="container-fluid">
     <?php
     require __DIR__ . '/../uiItems/dashboard.php';
+    require __DIR__ . '/../format.php';
     ?>
     
     <?php
@@ -27,7 +28,7 @@
 			    <tbody>
 				<?php
 				foreach($companyStatus as $row)
-				    echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $row->GLAccountName . "</td><td>" . $row->Totals . "</td></tr>";
+				    echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $row->GLAccountName . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -44,7 +45,7 @@
 			$colorInd = 0;
 			
 			foreach($companyStatus as $row)
-			    echo "<li class=\"p-r-20\"><h5 class=\"text-muted\"><i class=\"fa fa-circle\" style=\"color: " . $colors[$colorInd++] . ";\"></i>" . $row->GLAccountName  ."</h5><h4 class=\"m-b-0\">" . $row->Totals . "</h4></li>";
+			    echo "<li class=\"p-r-20\"><h5 class=\"text-muted\"><i class=\"fa fa-circle\" style=\"color: " . $colors[$colorInd++] . ";\"></i>" . $row->GLAccountName  ."</h5><h4 class=\"m-b-0\">" . formatField(["format"=>"{0:n}"], $row->Totals) . "</h4></li>";
 
 			?>
 		    </ul>
@@ -56,7 +57,7 @@
 		 data: [
 		     <?php
 		     foreach($companyStatus as $row)
-			 echo "{ label : \"" . $row->GLAccountName . "\", value : \"" . $row->Totals . "\"},";
+			 echo "{ label : \"" . $row->GLAccountName . "\", value : \"" .  $row->Totals . "\"},";
 		     ?>
 		 ],
 		 resize: true,
@@ -109,7 +110,7 @@
 			    <tbody>
 				<?php
 				foreach($topOrdersReceipts as $row)
-				    echo "<tr><td>" . $row->OrderNumber . "</td><td>" . $row->CustomerID . "</td><td>" . $row->OrderShipDate . "</td><td>" . $row->OrderTotal . "</td></tr>";
+				    echo "<tr><td>" . $row->OrderNumber . "</td><td>" . $row->CustomerID . "</td><td>" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -137,7 +138,7 @@
 			    <tbody>
 				<?php
 				foreach($collectionAlerts as $row)
-				    echo "<tr><td>" . $row->CustomerID . "</td><td>" . $row->Overdue . "</td></tr>";
+				    echo "<tr><td>" . $row->CustomerID . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Overdue) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -162,7 +163,7 @@
 			    <tbody>
 				<?php
 				foreach($todaysTasks as $row)
-				    echo "<tr><td>" . $row->DueDate . "</td><td>" . $row->Task . "</td></tr>";
+				    echo "<tr><td>" . date("m/d/y", strtotime($row->DueDate)) . "</td><td>" . $row->Task . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
