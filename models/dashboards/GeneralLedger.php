@@ -62,6 +62,8 @@ $results = $stmt->fetchAll(PDO::FETCH_CLASS, 'stdClass');
 echo json_encode($results);*/
 
 class dashboardData{
+    public $breadCrumbTitle = "General Ledger";
+    public $dashboardTitle = "General Ledger";
     public function CompanyAccountsStatus(){
         $user = $_SESSION["user"];
 

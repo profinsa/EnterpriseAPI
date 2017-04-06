@@ -13,7 +13,7 @@
 	<div class="col-md-8">
             <div>
 		<div class="white-box">
-		    <h3 class="box-title">Company Status</h3>
+		    <h3 class="box-title"><?php echo $translation->translateLabel("Company Status"); ?></h3>
 		    <div id="morris-donut-chart" class="ecomm-donute" style="height: 317px;"></div>
 		    <ul class="list-inline m-t-30 text-center">
 			<?php
@@ -43,15 +43,15 @@
 
 	    <div>
 		<div class="white-box">
-		    <h3 class="box-title m-b-0">Company Status</h3>
-		    <p class="text-muted">this is the sample data</p>
+		    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Company Status"); ?></h3>
+		    <!-- 		    <p class="text-muted">this is the sample data</p> --> 
 		    <div class="table-responsive">
 			<table class="table">
 			    <thead>
 				<tr>
-				    <th>Account Type</th>
-				    <th>Account Name</th>
-				    <th>Account Totals</th>
+				    <th><?php echo $translation->translateLabel("Account Type"); ?></th>
+				    <th><?php echo $translation->translateLabel("Account Name"); ?></th>
+				    <th><?php echo $translation->translateLabel("Account Totals"); ?></th>
 				</tr>
 			    </thead>
 			    <tbody>
@@ -70,13 +70,13 @@
 	    ?>
 	    <div>
 		<div class="white-box">
-		    <h3 class="box-title m-b-0">System Wide Messages</h3>
+		    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("System Wide Messages"); ?></h3>
 		    <!-- 	<p class="text-muted">this is the sample data</p> -->
 		    <div class="table-responsive">
 			<table class="table">
  			    <thead>
 				<tr>
-				    <th>Message</th>
+				    <th><?php echo $translation->translateLabel("Message"); ?></th>
 				</tr>
 			    </thead>
 			    <tbody>
@@ -95,16 +95,16 @@
 	    ?>
 	    <div>
 		<div class="white-box">
-		    <h3 class="box-title m-b-0">Top 5 Open Orders & Receivings</h3>
-		    <p class="text-muted">this is the sample data</p>
+		    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Top 5 Open Orders & Receivings"); ?></h3>
+		    <!--  <p class="text-muted">this is the sample data</p> -->
 		    <div class="table-responsive">
 			<table class="table">
 			    <thead>
 				<tr>
-				    <th>Order Number</th>
-				    <th>Customer</th>
-				    <th>Ship Date</th>
-				    <th>Amount</th>
+				    <th><?php echo $translation->translateLabel("Order Number"); ?></th>
+				    <th><?php echo $translation->translateLabel("Customer"); ?></th>
+				    <th><?php echo $translation->translateLabel("Ship Date"); ?></th>
+				    <th><?php echo $translation->translateLabel("Amount"); ?></th>
 				</tr>
 			    </thead>
 			    <tbody>
@@ -125,14 +125,14 @@
 	    ?>
 	    <div>
 		<div class="white-box">
-		    <h3 class="box-title m-b-0">Collections Alerts</h3>
-		    <p class="text-muted">this is the sample data</p>
+		    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Collections Alerts"); ?></h3>
+		    <!-- <p class="text-muted">this is the sample data</p> -->
 		    <div class="table-responsive">
 			<table class="table table-hover">
 			    <thead>
 				<tr>
-				    <th>Customer ID</th>
-				    <th>Overdue</th>
+				    <th><?php echo $translation->translateLabel("Customer ID"); ?></th>
+				    <th><?php echo $translation->translateLabel("Overdue"); ?></th>
 				</tr>
 			    </thead>
 			    <tbody>
@@ -150,14 +150,14 @@
 	    ?>
 	    <div>
 		<div class="white-box">
-		    <h3 class="box-title m-b-0">Todays Tasks</h3>
-		    <p class="text-muted">this is the sample data</p>
+		    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Today Tasks"); ?></h3>
+		    <!-- <p class="text-muted">this is the sample data</p> -->
 		    <div class="table-responsive">
 			<table class="table table-hover">
 			    <thead>
 				<tr>
-				    <th>Due Date</th>
-				    <th>Task</th>
+				    <th><?php echo $translation->translateLabel("Due Date"); ?></th>
+				    <th><?php echo $translation->translateLabel("Task"); ?></th>
 				</tr>
 			    </thead>
 			    <tbody>
@@ -175,14 +175,14 @@
 	    ?>
 	    <div>
 		<div class="white-box">
-		    <h3 class="box-title m-b-0">Follow Up Today</h3>
-		    <p class="text-muted">this is the sample data</p>
+		    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Follow Up Today"); ?></h3>
+		    <!-- <p class="text-muted">this is the sample data</p> -->
 		    <div class="table-responsive">
 			<table class="table table-hover">
 			    <thead>
 				<tr>
-				    <th>Lead ID</th>
-				    <th>Email</th>
+				    <th><?php echo $translation->translateLabel("Lead ID"); ?></th>
+				    <th><?php echo $translation->translateLabel("Email"); ?></th>
 				</tr>
 			    </thead>
 			    <tbody>
@@ -202,15 +202,15 @@
 	//	echo json_encode($data->CompanyAccountsStatus());
 	//	echo "<br/>";
 	//	echo json_encode($data->CollectionAlerts());
-/*	echo "<br/>";
-	echo "CompanyDailyActivity" .  json_encode($data->CompanyDailyActivity());
-	echo "<br/>";
-	echo "<br/>";
-	echo "CompanyIncomeStatement" . json_encode($data->CompanyIncomeStatement());
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-		echo "Company System Wide Message" . json_encode($data->CompanySystemWideMessage());
+	/*	echo "<br/>";
+	   echo "CompanyDailyActivity" .  json_encode($data->CompanyDailyActivity());
+	   echo "<br/>";
+	   echo "<br/>";
+	   echo "CompanyIncomeStatement" . json_encode($data->CompanyIncomeStatement());
+	   echo "<br/>";
+	   echo "<br/>";
+	   echo "<br/>";
+	   echo "Company System Wide Message" . json_encode($data->CompanySystemWideMessage());
 	   echo "<br/>";
 	   echo "<br/>";
 	   echo "<br/>";
@@ -226,7 +226,7 @@
 	   echo "<br/>";
 	   echo "<br/>";
 	   echo "<br/>";
-	echo "TopOrdersReceipts" . json_encode($data->TopOrdersReceipts());*/
+	   echo "TopOrdersReceipts" . json_encode($data->TopOrdersReceipts());*/
 	?>
     </div>
 </div>

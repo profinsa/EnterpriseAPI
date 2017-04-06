@@ -64,7 +64,9 @@ class controller{
             }
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
             $translation = new translation($this->user["language"]);
-            
+            $this->dashboardTitle = $translation->translateLabel($data->dashboardTitle);
+            $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
+          
             $scope = $this;
             if(key_exists("mode", $_GET))
                 $this->mode = $_GET["mode"];

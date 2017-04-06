@@ -4,7 +4,7 @@
     </div>
     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 	<ol class="breadcrumb">
-	    <li><a href="index.php?page=index">Dashboard</a></li>
+	    <li><a href="index.php#/?page=dashboard&category=GeneralLedger">Dashboard</a></li>
 	    <li class="active"><?php echo $scope->breadCrumbTitle ?></li>
 	</ol>
     </div>
