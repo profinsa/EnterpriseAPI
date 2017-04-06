@@ -26,7 +26,7 @@ Calls:
 models/users.php
 app from index.php
 
-Last Modified: 13.02.2016
+Last Modified: 07.04.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -51,7 +51,7 @@ class controller{
             $user["language"] = $defaultUser["Language"];
             $_SESSION["user"] = $user;
 
-            header("Location: index.php?page=index");
+            header("Location: index.php#/?page=dashboard&category=GeneralLedger");
             exit;
         }
     }

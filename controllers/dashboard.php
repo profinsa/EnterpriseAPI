@@ -76,7 +76,7 @@ class controller{
                 $this->item = $_GET["item"];
 
             $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
-            require 'views/dashboard.php';
+            require 'views/dashboards/' . $_GET["category"] .  '.php';
         }
     }
 }
