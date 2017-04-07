@@ -83,8 +83,72 @@
 				</thead>
 				<tbody>
 				    <?php
-				    foreach($companyDailyActivity as $row)
+				    foreach($companyDailyActivity["quotes"] as $row)
 					echo "<tr><td>" . $row->Quotes . "</td><td>" . formatField(["format"=>"{0:n}"], $row->QuoteTotals) . "</td></tr>";
+				    ?>
+				</tbody>
+			    </table>
+			</div>
+			<div class="table-responsive">
+			    <table class="table">
+				<thead>
+				    <tr>
+					<th><?php echo $translation->translateLabel("New Orders"); ?></th>
+					<th><?php echo $translation->translateLabel("Order Totals"); ?></th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <?php
+				    foreach($companyDailyActivity["orders"] as $row)
+					echo "<tr><td>" . $row->Orders . "</td><td>" . formatField(["format"=>"{0:n}"], $row->OrdersTotals) . "</td></tr>";
+				    ?>
+				</tbody>
+			    </table>
+			</div>
+			<div class="table-responsive">
+			    <table class="table">
+				<thead>
+				    <tr>
+					<th><?php echo $translation->translateLabel("Shipments Today"); ?></th>
+					<th><?php echo $translation->translateLabel("Shipment Totals"); ?></th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <?php
+				    foreach($companyDailyActivity["shipments"] as $row)
+					echo "<tr><td>" . $row->Shipments . "</td><td>" . formatField(["format"=>"{0:n}"], $row->ShipTotals) . "</td></tr>";
+				    ?>
+				</tbody>
+			    </table>
+			</div>
+			<div class="table-responsive">
+			    <table class="table">
+				<thead>
+				    <tr>
+					<th><?php echo $translation->translateLabel("New Purchases"); ?></th>
+					<th><?php echo $translation->translateLabel("Purchase Totals"); ?></th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <?php
+				    foreach($companyDailyActivity["purchases"] as $row)
+					echo "<tr><td>" . $row->Purchases . "</td><td>" . formatField(["format"=>"{0:n}"], $row->PurchaseTotals) . "</td></tr>";
+				    ?>
+				</tbody>
+			    </table>
+			</div>
+			<div class="table-responsive">
+			    <table class="table">
+				<thead>
+				    <tr>
+					<th><?php echo $translation->translateLabel("Receivings Today"); ?></th>
+					<th><?php echo $translation->translateLabel("Receipt Totals"); ?></th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <?php
+				    foreach($companyDailyActivity["receivings"] as $row)
+					echo "<tr><td>" . $row->Receivings . "</td><td>" . formatField(["format"=>"{0:n}"], $row->ReceiptTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
