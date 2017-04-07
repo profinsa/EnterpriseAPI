@@ -85,6 +85,12 @@ class dashboardData{
 
         $results = $GLOBALS["capsule"]::select("CALL spCompanyDailyActivity('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
+        //        $pdo = $GLOBALS["capsule"]::connection()->getPdo();
+        // $sth = $pdo->query("CALL spCompanyDailyActivity('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)");
+        //$rowset1 = $sth->fetchAll();
+        //        echo "first" . json_encode($rowset1);
+        // echo json_encode($sth->nextRowset());
+        //$rowset2 = $sth->fetchAll();
         return $results;
     }
 
@@ -132,6 +138,8 @@ class dashboardData{
         $user = $_SESSION["user"];
 
         $results = $GLOBALS["capsule"]::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        //echo "second" . json_encode($rowset2);
 
         return $results;
     }

@@ -65,6 +65,33 @@
 	     });
 	    </script>
 	    
+	    <div>
+		<?php
+		$companyDailyActivity = $data->CompanyDailyActivity();
+		?>
+		<div>
+		    <div class="white-box">
+			<h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Today's Activity"); ?></h3>
+			<!-- 		    <p class="text-muted">this is the sample data</p> --> 
+			<div class="table-responsive">
+			    <table class="table">
+				<thead>
+				    <tr>
+					<th><?php echo $translation->translateLabel("New Quotes"); ?></th>
+					<th><?php echo $translation->translateLabel("Quote Totals"); ?></th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <?php
+				    foreach($companyDailyActivity as $row)
+					echo "<tr><td>" . $row->Quotes . "</td><td>" . formatField(["format"=>"{0:n}"], $row->QuoteTotals) . "</td></tr>";
+				    ?>
+				</tbody>
+			    </table>
+			</div>
+		    </div>
+		</div>
+	    </div>
 	    <?php
 	    $systemWideMessages = $data->CompanySystemWideMessage();
 	    ?>
@@ -202,8 +229,8 @@
 	//	echo json_encode($data->CompanyAccountsStatus());
 	//	echo "<br/>";
 	//	echo json_encode($data->CollectionAlerts());
-	/*	echo "<br/>";
-	   echo "CompanyDailyActivity" .  json_encode($data->CompanyDailyActivity());
+	/*	echo "<br/>";*/
+/*	   echo "CompanyDailyActivity" .  json_encode($data->CompanyDailyActivity());
 	   echo "<br/>";
 	   echo "<br/>";
 	   echo "CompanyIncomeStatement" . json_encode($data->CompanyIncomeStatement());
@@ -225,8 +252,8 @@
 	   echo "LeadFollowUp" . json_encode($data->LeadFollowUp());
 	   echo "<br/>";
 	   echo "<br/>";
-	   echo "<br/>";
-	   echo "TopOrdersReceipts" . json_encode($data->TopOrdersReceipts());*/
+	   echo "<br/>";*/
+//	   echo "TopOrdersReceipts" . json_encode($data->TopOrdersReceipts());
 	?>
     </div>
 </div>
