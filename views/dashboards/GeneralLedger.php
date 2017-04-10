@@ -100,7 +100,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["orders"] as $row)
-					echo "<tr><td>" . $row->Orders . "</td><td>" . formatField(["format"=>"{0:n}"], $row->OrdersTotals) . "</td></tr>";
+					echo "<tr><td>" . $row->Orders . "</td><td>" . formatField(["format"=>"{0:n}"], $row->OrderTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
