@@ -136,9 +136,9 @@ class dashboardData{
     public function TopOrdersReceipts(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
-
-        //echo "second" . json_encode($rowset2);
+        $results = [];
+        $results["orders"] = $GLOBALS["capsule"]::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results["purchases"] = $GLOBALS["capsule"]::select("CALL spTopOrdersReceiptsPurchases('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
         return $results;
     }

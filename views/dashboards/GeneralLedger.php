@@ -200,8 +200,26 @@
 			    </thead>
 			    <tbody>
 				<?php
-				foreach($topOrdersReceipts as $row)
+				foreach($topOrdersReceipts["orders"] as $row)
 				    echo "<tr><td>" . $row->OrderNumber . "</td><td>" . $row->CustomerID . "</td><td>" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
+				?>
+			    </tbody>
+			</table>
+		    </div>
+		    <div class="table-responsive">
+			<table class="table">
+			    <thead>
+				<tr>
+				    <th><?php echo $translation->translateLabel("Receiving"); ?></th>
+				    <th><?php echo $translation->translateLabel("Vendor"); ?></th>
+				    <th><?php echo $translation->translateLabel("Arrival Date"); ?></th>
+				    <th><?php echo $translation->translateLabel("Amount"); ?></th>
+				</tr>
+			    </thead>
+			    <tbody>
+				<?php
+				foreach($topOrdersReceipts["purchases"] as $row)
+				    echo "<tr><td>" . $row->PurchaseNumber . "</td><td>" . $row->VendorID . "</td><td>" . date("m/d/y", strtotime($row->PurchaseDueDate)) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->ReceiptTotal) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
