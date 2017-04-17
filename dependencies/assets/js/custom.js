@@ -65,8 +65,13 @@ $(document).ready(function () {
 	element.addClass('active');
 	element = element.parent().parent();
 	var firstLevel = element.parent().parent();
+	var zeroLevel =  firstLevel.parent().parent();
 	if(firstLevel.hasClass('collapse'))
 	    firstLevel.collapse();
+	
+	if(zeroLevel.hasClass('collapse'))
+	    zeroLevel.collapse();
+
 	var twoLevel = element;
 	twoLevel.collapse();
 	var onlyOne = true;
@@ -84,10 +89,17 @@ $(document).ready(function () {
 //		    console.log(twoLevel.collapse());
 		    onlyOne = false;
 		}
+
+		var sidebarHeight = parseInt($(".sidebar").css("height").match(/(\d+)/)[1]),
+		    contentHeight = parseInt($("#page-wrapper").css("height").match(/(\d+)/)[1]);
+		console.log(sidebarHeight, contentHeight, sidebarHeight + "px");
+		if(sidebarHeight > contentHeight)
+		    $("#page-wrapper").css("min-height", (sidebarHeight + 500) + "px");
 	    }, 700);
 	});
 	
 	element = element.parent();
+	
         if(element.is('li'))
 	    element.addClass('active');
     });

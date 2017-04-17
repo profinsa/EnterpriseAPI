@@ -64,22 +64,19 @@ class controller{
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
-            if(key_exists("getItem", $_GET)){
-                echo json_encode($data->getItem($_GET["getItem"]));
-            }else{
-                $translation = new translation($this->user["language"]);
-                $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Reports");
+            $translation = new translation($this->user["language"]);
+            if(key_exists("title", $_GET))
+                $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Report: " ) . $translation->translateLabel($_GET["title"]);
             
-                $scope = $this;
+               $scope = $this;
 
-                $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
-                require 'models/menuCategoriesGenerated.php';
-                if(key_exists("getreport", $_GET)){
-                    $content = $_GET["type"];
+               $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
+               require 'models/menuCategoriesGenerated.php';
+               if(key_exists("getreport", $_GET)){
+                   $content = $_GET["type"];
                    require 'views/autoreports/container.php';
-                }else
-                    require 'views/autoreports.php';
-            }
+               }else
+                   require 'views/autoreports.php';
         }
     }
 }

@@ -39,12 +39,12 @@
 	<?php if(!$columns): ?>
 	    <?php  echo "<h2>" . $translation->translateLabel("No data for report") . "</h2>";?>
 	<?php  else:?>
-	    <div class="col-md-12">
+	    <!-- <div class="col-md-12">
 		<h3 class="pull-left">
-		    <?php echo $translation->translateLabel("Selected Report" ); ?>:
-		    <?php echo $_GET["title"]; ?>
+		 <?php echo $translation->translateLabel("Selected Report" ); ?>:
+		 <?php echo $_GET["title"]; ?>
 		</h3>
-	    </div>
+		 </div> -->
 
 	    <h3 class="pull-left col-md-12" style="margin-top:20px;">
 		<?php echo $translation->translateLabel("Report Parameters"); ?>
