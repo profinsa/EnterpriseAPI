@@ -38,12 +38,27 @@
 			    echo "<li> <a href=\"javascript:void(0)\" class=\"waves-effect\">" . $subitem["full"] . "<span class=\"fa arrow\"></span></a>";
 			    echo "<ul class=\"nav nav-third-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
 			    foreach($subitem["data"] as $skey=>$ssubitem){
-				if(key_exists("type", $ssubitem) && $ssubitem["type"] == "relativeLink")
-				    $href = "index.php#/?" . $ssubitem["href"];
-				else
-				    $href = "index.php#/?page=grid&action=" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"]);
-				
-				echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\"><a href=\"" . $href . "\">" . $ssubitem["full"] . "</a></li>";
+				if(key_exists("type", $ssubitem) && $ssubitem["type"] == "submenu"){
+				    //				    echo "<li> <a href=\"javascript:void(0)\" class=\"waves-effect\">--" . $ssubitem["full"] . "<span class=\"fa arrow\"></span></a>";
+				    //				    echo "<ul class=\"nav nav-third-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
+				    foreach($ssubitem["data"] as $sskey=>$sssubitem){
+					if(key_exists("type", $sssubitem) && $sssubitem["type"] == "relativeLink")
+					    $href = "index.php#/?" . $sssubitem["href"];
+					else
+					    $href = "index.php#/?page=grid&action=" . (key_exists("href_ended", $sssubitem) ? $sssubitem["href_ended"] : $sssubitem["id"]);
+					
+					echo "<li id=\"" . ( key_exists("id", $sssubitem) ? $sssubitem["id"] : "") . "\"><a href=\"" . $href . "\">" . $sssubitem["full"] . "</a></li>";
+				    }
+				    //				    echo "</ul>";
+				}else{
+				    if(key_exists("type", $ssubitem) && $ssubitem["type"] == "relativeLink")
+					$href = "index.php#/?" . $ssubitem["href"];
+				    else
+					$href = "index.php#/?page=grid&action=" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"]);
+				    
+				    echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\"><a href=\"" . $href . "\">" . $ssubitem["full"] . "</a></li>";
+				    
+				}
 			    }
 			    echo "</ul>";
 			}

@@ -81,13 +81,13 @@ foreach($allcolumns as $key=>$column)
 		</div>
 		<div class="radio">
 		    <label>
-			<input type="radio" name="charttype" id="Radios1" value="pie" <?php echo $choosedChartType == "pie" ? "checked" : ""; ?> onchange="chooseChartType(event);">
+			<input type="radio" name="charttype" value="pie" <?php echo $choosedChartType == "pie" ? "checked" : ""; ?> onchange="chooseChartType(event);">
 			Pie
 		    </label>
 		</div>
 		<div class="radio">
 		    <label>
-			<input type="radio" name="charttype" id="Radios2" value="bar" <?php echo $choosedChartType == "bar" ? "checked" : ""; ?> onchange="chooseChartType(event);">
+			<input type="radio" name="charttype" value="bar" <?php echo $choosedChartType == "bar" ? "checked" : ""; ?> onchange="chooseChartType(event);">
 			Bar
 		    </label>
 		</div>
