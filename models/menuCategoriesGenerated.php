@@ -1491,41 +1491,6 @@ $menuCategories["Reports"] = [
         "short" => "Ta"
         ],
         [
-        "id" => "Reports/SetupReports/OtherSetupReports/EDISetup",
-        "type" => "relativeLink",
-        "full" => $translation->translateLabel('EDI Setup'),
-        "href"=> "page=autoreports&source=RptListEDISetup&id=1394976196&title=EDI Setup",
-        "short" => "ED"
-        ],
-        [
-        "id" => "Reports/SetupReports/OtherSetupReports/EDIDirections",
-        "type" => "relativeLink",
-        "full" => $translation->translateLabel('EDI Directions'),
-        "href"=> "page=autoreports&source=RptListEDIDirection&id=1330975968&title=EDI Directions",
-        "short" => "ED"
-        ],
-        [
-        "id" => "Reports/SetupReports/OtherSetupReports/EDIDocumentTypes",
-        "type" => "relativeLink",
-        "full" => $translation->translateLabel('EDI Document Types'),
-        "href"=> "page=autoreports&source=RptListEDIDocumentTypes&id=1346976025&title=EDI Document Types",
-        "short" => "ED"
-        ],
-        [
-        "id" => "Reports/SetupReports/OtherSetupReports/EDIExceptions",
-        "type" => "relativeLink",
-        "full" => $translation->translateLabel('EDI Exceptions'),
-        "href"=> "page=autoreports&source=RptListEDIExceptions&id=1378976139&title=EDI Exceptions",
-        "short" => "ED"
-        ],
-        [
-        "id" => "Reports/SetupReports/OtherSetupReports/EDIExceptionTypes",
-        "type" => "relativeLink",
-        "full" => $translation->translateLabel('EDI Exception Types'),
-        "href"=> "page=autoreports&source=RptListEDIExceptionTypes&id=1362976082&title=EDI Exception Types",
-        "short" => "ED"
-        ],
-        [
         "id" => "Reports/SetupReports/OtherSetupReports/Projects",
         "type" => "relativeLink",
         "full" => $translation->translateLabel('Projects'),

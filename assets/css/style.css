@@ -31,3 +31,11 @@ adoptation for screen sizes
 	margin-top: 10px;
     }
 }
+
+.sidebar .nav-fourth-level li {
+  border-bottom: none !important;
+}
+
+.sidebar .nav-fourth-level li a {
+  padding-left: 62px;
+}

@@ -39,8 +39,8 @@
 			    echo "<ul class=\"nav nav-third-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
 			    foreach($subitem["data"] as $skey=>$ssubitem){
 				if(key_exists("type", $ssubitem) && $ssubitem["type"] == "submenu"){
-				    //				    echo "<li> <a href=\"javascript:void(0)\" class=\"waves-effect\">--" . $ssubitem["full"] . "<span class=\"fa arrow\"></span></a>";
-				    //				    echo "<ul class=\"nav nav-third-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
+				    echo "<li> <a href=\"javascript:void(0)\" class=\"waves-effect\">" . $ssubitem["full"] . "<span class=\"fa arrow\"></span></a>";
+				    echo "<ul class=\"nav nav-fourth-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
 				    foreach($ssubitem["data"] as $sskey=>$sssubitem){
 					if(key_exists("type", $sssubitem) && $sssubitem["type"] == "relativeLink")
 					    $href = "index.php#/?" . $sssubitem["href"];
@@ -49,7 +49,7 @@
 					
 					echo "<li id=\"" . ( key_exists("id", $sssubitem) ? $sssubitem["id"] : "") . "\"><a href=\"" . $href . "\">" . $sssubitem["full"] . "</a></li>";
 				    }
-				    //				    echo "</ul>";
+				    echo "</ul>";
 				}else{
 				    if(key_exists("type", $ssubitem) && $ssubitem["type"] == "relativeLink")
 					$href = "index.php#/?" . $ssubitem["href"];
