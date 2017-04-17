@@ -59,7 +59,8 @@ class controller{
 
         $this->user = $_SESSION["user"];
                
-        $data = new autoreportsData($_GET["source"]);
+        $data = new autoreportsData(key_exists("source", $_GET) ? $_GET["source"] : $_GET["getreport"]);
+        $source = $_GET["source"];
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
@@ -73,7 +74,11 @@ class controller{
 
                 $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
                 require 'models/menuCategoriesGenerated.php';
-                require 'views/autoreports.php';
+                if(key_exists("getreport", $_GET)){
+                    $content = $_GET["type"];
+                   require 'views/autoreports/container.php';
+                }else
+                    require 'views/autoreports.php';
             }
         }
     }
