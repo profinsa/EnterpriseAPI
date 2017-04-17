@@ -4,7 +4,6 @@
    // require __DIR__ . '/format.php';
     ?>
     
-    <!-- <?php echo json_encode($data->getParameters()); ?> -->
     <?php
     /*
        Name of Page: autoreports view
@@ -33,19 +32,16 @@
        Last Modified: 17.04.2016
        Last Modified by: Nikita Zaharov
      */
-    $columns = $data->getColumns();
-    ?>
-    <div class="col-sm-12 white-box">
-	<?php if(!$columns): ?>
-	    <?php  echo "<h2>" . $translation->translateLabel("No data for report") . "</h2>";?>
-	<?php  else:?>
-	    <!-- <div class="col-md-12">
-		<h3 class="pull-left">
-		 <?php echo $translation->translateLabel("Selected Report" ); ?>:
-		 <?php echo $_GET["title"]; ?>
-		</h3>
-		 </div> -->
+    $params = $data->getParametersForEnter();
+    //echo json_encode($params);
 
+    if(!count($params) || key_exists($params[0]->PARAMETER_NAME, $_GET))
+	$columns = $data->getColumns();
+
+    ?>
+    
+    <div class="col-sm-12 white-box">
+	<?php if(count($params)): ?>
 	    <h3 class="pull-left col-md-12" style="margin-top:20px;">
 		<?php echo $translation->translateLabel("Report Parameters"); ?>
 	    </h3>
@@ -53,19 +49,50 @@
 		<table class="table table-bordered">
 		    <thead>
 			<tr>
-			    <th></th>
 			    <th><?php echo $translation->translateLabel("Parameter Name"); ?></th>
 			    <th><?php echo $translation->translateLabel("Value"); ?></th>
 			</tr>
 		    </thead>
 		    <tbody>
+			<?php
+			foreach($params as $param){
+			    echo "<tr><td>" . $param->PARAMETER_NAME . "</td><td><input type=\"text\" onchange=\"autoreportsFillParameter('" . $param->PARAMETER_NAME . "', event);\" value=\"" . (key_exists($param->PARAMETER_NAME, $_GET) ? $_GET[$param->PARAMETER_NAME] : "") . "\"></td></tr>";
+			}
+			?>
 		    </tbody>
 		</table>
 	    </div>
 	    <div class="col-md-12" style="color:blue; border:1px">
-		Some reports don't have parameters! If the report does have a parameter, you have to enter parameter values for it to execute properly. To enter a report Parameter, Click Edit, Edit the Parameter you wish, then click update. Press one of the buttons below to run a report.h
+		To enter a report Parameter just fill input in Value column!
 	    </div>
-
+	    <script>
+	     var params = {
+		 <?php
+		 $strparams = "";
+		 foreach($params as $param)
+		     $strparams .= $param->PARAMETER_NAME . " : null,";
+		 echo substr($strparams, 0, -1);
+		 ?>
+	     };
+	     function autoreportsFillParameter(param, event){
+		 params[param] = event.target.value;
+		 var filled = 0, plength = 0, ind;
+		 for(ind in params){
+		     if(params[ind] != null)
+			 filled++;
+		     plength++;
+		 }
+		 if(filled == plength){
+		     window.location = window.location.href + "&" + $.param(params);
+		 }
+//		     console.log(JSON.stringify(params, null, 3));
+		 console.log(filled, plength);
+	     }
+	    </script>
+	<?php endif; ?>
+	<?php if(!$columns): ?>
+	    <?php  echo "<h2>" . $translation->translateLabel("No data for report") . "</h2>";?>
+	<?php  else:?>
 	    <h3 class="pull-left col-md-12" style="margin-top:20px;">
 		<?php echo $translation->translateLabel("Report Columns"); ?>
 	    </h3>

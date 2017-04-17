@@ -54,16 +54,37 @@ class autoreportsData{
                 $params[] = $value;
         return $params;
     }
+
+    public function getParametersForEnter(){
+        $user = $_SESSION["user"];
+        $dbname = $GLOBALS["capsule"]::connection()->getDatabaseName();
+        $result = $GLOBALS["capsule"]::select("SELECT * FROM information_schema.parameters WHERE SPECIFIC_NAME = '" . $this->reportName . "'");
+        $params = [];
+        $count = 0;
+        foreach($result as $value){
+            if($value->SPECIFIC_SCHEMA == $dbname){
+                if($count > 2 && $value->PARAMETER_MODE == "IN")
+                    $params[] = $value;
+                $count++;
+            }
+        }
+        return $params;
+    }
     
     public function getColumns(){
         $user = $_SESSION["user"];
         $params = $this->getParameters();
         $optional = "";
         $paramsCount = count($params);
-        if($paramsCount > 3 && $params[3]->PARAMETER_MODE == "INOUT"){
+        if($paramsCount > 3){
             $pcount = 0;
-            while($pcount + 3 < $paramsCount)
-                $optional .= ", @PARAM" . $pcount++;
+            array_splice($params, 0, 3);
+            foreach($params as $param){
+                if($param->PARAMETER_MODE == "INOUT" || $param->PARAMETER_MODE == "INOUT")
+                    $optional .= ", @PARAM" . $pcount++;
+                else
+                    $optional .= ", '" . $_GET[$param->PARAMETER_NAME] . "'";
+            }
         }
         
         $conn =  $GLOBALS["capsule"]::connection()->getPdo();
@@ -104,10 +125,15 @@ class autoreportsData{
         $params = $this->getParameters();
         $optional = "";
         $paramsCount = count($params);
-        if($paramsCount > 3 && $params[3]->PARAMETER_MODE == "INOUT"){
+        if($paramsCount > 3){
             $pcount = 0;
-            while($pcount + 3 < $paramsCount)
-                $optional .= ", @PARAM" . $pcount++;
+            array_splice($params, 0, 3);
+            foreach($params as $param){
+                if($param->PARAMETER_MODE == "INOUT" || $param->PARAMETER_MODE == "INOUT")
+                    $optional .= ", @PARAM" . $pcount++;
+                else
+                    $optional .= ", '" . $_GET[$param->PARAMETER_NAME] . "'";
+            }
         }
         
         $columns = $this->getColumns();
