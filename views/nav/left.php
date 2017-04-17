@@ -37,9 +37,14 @@
 			else if($subitem["type"] == "submenu"){
 			    echo "<li> <a href=\"javascript:void(0)\" class=\"waves-effect\">" . $subitem["full"] . "<span class=\"fa arrow\"></span></a>";
 			    echo "<ul class=\"nav nav-third-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
-			    foreach($subitem["data"] as $skey=>$ssubitem)
-				echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\"><a href=\"index.php#/?page=grid&action=" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"]) . "\">" . $ssubitem["full"] . "</a></li>";
-			    
+			    foreach($subitem["data"] as $skey=>$ssubitem){
+				if(key_exists("type", $ssubitem) && $ssubitem["type"] == "relativeLink")
+				    $href = "index.php#/?" . $ssubitem["href"];
+				else
+				    $href = "index.php#/?page=grid&action=" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"]);
+				
+				echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\"><a href=\"" . $href . "\">" . $ssubitem["full"] . "</a></li>";
+			    }
 			    echo "</ul>";
 			}
 		    }

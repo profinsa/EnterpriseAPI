@@ -1,0 +1,81 @@
+<?php
+/*
+Name of Page: autoreports controller
+
+Method: controller for autoreports pages
+
+Date created: Nikita Zaharov, 14.02.2016
+
+Use: The controller is responsible for:
+- page rendering using view
+
+Input parameters:
+$app : application instance, object
+
+Output parameters:
+$scope: object, used by view, most like model
+$translation: model, it is responsible for translation in view
+
+Called from:
++ index.php
+
+Calls:
+models/translation.php
+models/autoreports.php
+app from index.php
+
+Last Modified: 17.02.2016
+Last Modified by: Nikita Zaharov
+*/
+
+require 'models/translation.php';
+require 'models/security.php';
+require 'models/permissionsGenerated.php';
+
+class controller{
+    public $user = false;
+    public $action = "";
+    public $mode = "autoreports";
+    public $dashboardTitle = "";
+    public $breadCrumbTitle = "";
+    public $path;
+
+    public function process($app){
+        if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
+            $_SESSION["user"] = false;
+            http_response_code(401);
+            echo "wrong session";
+            exit;
+        }
+
+        require 'models/autoreports.php';
+        
+        //$_perm = new permissionsByFile();
+        //preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+        // if(key_exists($filename[1], $_perm->permissions))
+        //  $security = new Security($_SESSION["user"]["accesspermissions"], $_perm->permissions[$filename[1]]);
+        // else
+        //  return response('permissions not found', 500)->header('Content-Type', 'text/plain');
+
+        $this->user = $_SESSION["user"];
+               
+        $data = new autoreportsData($_GET["source"]);
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
+            if(key_exists("getItem", $_GET)){
+                echo json_encode($data->getItem($_GET["getItem"]));
+            }else{
+                $translation = new translation($this->user["language"]);
+                $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Reports");
+            
+                $scope = $this;
+
+                $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
+                require 'models/menuCategoriesGenerated.php';
+                require 'views/autoreports.php';
+            }
+        }
+    }
+}
+?>

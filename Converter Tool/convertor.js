@@ -22,7 +22,7 @@
  Calls:
  mysql
 
- Last Modified: 09.03.2016
+ Last Modified: 11.04.2016
  Last Modified by: Nikita Zaharov
  */
 
@@ -196,6 +196,9 @@ function process_model(file, title, menuTitle, cb){
 	    if(fields[ind].Type == 'datetime' || fields[ind].Type == 'timestamp'){
 		group[ind].inputType = 'datetime';
 		group[ind].defaultValue = 'now';
+	    }else if(group[ind].dbType == "tinyint(1)"){
+		group[ind].inputType = 'checkbox';
+		group[ind].defaultValue = '0';		
 	    }else
 		group[ind].inputType = "text";
 	}
@@ -238,7 +241,7 @@ function parse_list(content, file){
 	    var format;
 	    if(format = match[3].match(/DataFormatString\=\"([^\"]+)\"/)){
 		file.gridFields[match[2]].format = format[1];
-		console.log(format[1], file);
+		//console.log(format[1], file);
 	    }
 	}
 	file.columnNames[match[2]] = match[1].replace(/\s*$/, "");
@@ -332,7 +335,7 @@ function main(){
 //main();
 
 function make_all(){
-    var menu = require("./menu.js").Node, ind, smenu, sind, items, iind;
+    var menu = require("./menu.js").Node, ind, smenu, sind, items, iind, iitems, iiind;
     var files = [];
     var menuCategories = "<?php \n ";
     var menuIdToPath = "<?php\n $menuIdToPath = [\n ";
@@ -357,8 +360,10 @@ function make_all(){
 		"    \"data\" => [\n";
 	    for(iind in items){
 		if(items[iind]._NavigateUrl){
+		    //grid
 		    var parts = items[iind]._NavigateUrl.match(/\~\/(.+)\/(.+)\/(.+)/),
 			path;
+		    var _id, _href;
 		    if(parts){
 			if(!fs.existsSync('models/' + parts[1]))
 			    fs.mkdirSync('models/' + parts[1]);
@@ -374,8 +379,8 @@ function make_all(){
 				list : true
 			    });
 			}
-			var _id = menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"");
-			var _href = parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1];
+			_id = menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"");
+			_href = parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1];
 			menuCategories += "\n        [\n" +
 			    "        \"id\" => \"" + _id + "\",\n" +
 			    "        \"full\" => $translation->translateLabel('" + items[iind]._Text.replace("\'","\\'") + "'),\n" +
@@ -383,7 +388,88 @@ function make_all(){
 			    "        \"short\" => \"" + (items[iind]._Text? items[iind]._Text.substring(0,2) : "") + "\"\n        ],";
 			menuIdToPath += "\n    \"" + _id  + "\" => \"" + _href + "\",";
 			//	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
+		    }else{
+		    //reports
+			parts = items[iind]._NavigateUrl.match(/reports\/Main.aspx\?ReportID\=(.+)\*(.+)\*(.+)/);
+			if(parts){
+			    _id = menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"");
+			    if(outputFormat == "newtech")
+				_href = "/autoreports/" + parts[2] + "?id=" + parts[1] + "&title=" + parts[3];
+			    else
+				_href = "page=autoreports&source=" + parts[2] + "&id=" + parts[1] + "&title=" + parts[3];
+				
+			    menuCategories += "\n        [\n" +
+				"        \"id\" => \"" + _id + "\",\n" +
+				"        \"type\" => \"relativeLink\",\n" +
+				 "        \"full\" => $translation->translateLabel('" + items[iind]._Text.replace("\'","\\'") + "'),\n" +
+				"        \"href\"=> \"" + _href  + "\",\n" +
+				"        \"short\" => \"" + (items[iind]._Text? items[iind]._Text.substring(0,2) : "") + "\"\n        ],";
+			    menuIdToPath += "\n    \"" + _id  + "\" => \"" + _href + "\",";
+			    //	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
+			}
 		    }
+		}else if(items[iind].hasOwnProperty("_Text")){
+		    //console.log('  ', smenu[sind]._ObjectName, smenu[sind]._Text); 
+		    iitems = items[iind].Node;
+		    console.log(smenu[sind].Node, 'ddd');
+		    menuCategories += "\n    [\n" +
+			"    \"type\" => \"submenu\",\n" +
+			"    \"id\" => \"" + menu[ind]._Text.replace(/[\'\s\W"]/g,"")  + "/" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"") + "\",\n" +
+			"    \"full\" => $translation->translateLabel('" + items[iind]._Text.replace("\'","\\'") + "'),\n" +
+			"    \"short\" => \"" + items[iind]._Text.substring(0, 2) + "\",\n"+
+			"    \"data\" => [\n";
+		    for(iiind in iitems){
+			if(iitems[iiind]._NavigateUrl){
+			    //grid
+			    parts = iitems[iiind]._NavigateUrl.match(/\~\/(.+)\/(.+)\/(.+)/);
+			    if(parts){
+				if(!fs.existsSync('models/' + parts[1]))
+				    fs.mkdirSync('models/' + parts[1]);
+				if(!fs.existsSync('models/' + parts[1] + '/' + parts[2]))
+				    fs.mkdirSync('models/' + parts[1] + '/' + parts[2]);
+				//if(!fs.existsSync('models/' + parts[1] + '/' + parts[2] + '/' + parts[3]))
+				//  fs.mkdirSync('models/' + parts[1] + '/' + parts[2] + '/' + parts[3]);
+				path = parts[1] + "/" + parts[2] + "/" + parts[3];
+				if(fs.existsSync(path)){
+				    files.push({
+					outFile : path.match(/(.+)\.aspx/)[1],
+					path : path,
+					list : true
+				    });
+				}
+				_id = menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"") + "/" + iitems[iiind]._Text.replace(/[\'\s\W"]/g,"");
+				_href = parts[1] + "/" + parts[2] + "/" + parts[3].match(/(.+)\.aspx/)[1];
+				menuCategories += "\n        [\n" +
+				    "        \"id\" => \"" + _id + "\",\n" +
+				    "        \"full\" => $translation->translateLabel('" + iitems[iiind]._Text.replace("\'","\\'") + "'),\n" +
+				    "        \"href\"=> \"" + _href  + "\",\n" +
+				    "        \"short\" => \"" + (iitems[iiind]._Text? iitems[iiind]._Text.substring(0,2) : "") + "\"\n        ],";
+				menuIdToPath += "\n    \"" + _id  + "\" => \"" + _href + "\",";
+				//	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
+			    }else{
+				//reports
+				parts = iitems[iiind]._NavigateUrl.match(/reports\/Main.aspx\?ReportID\=(.+)\*(.+)\*(.+)/);
+				if(parts){
+				    _id = menu[ind]._Text.replace(/[\'\s\W"]/g,"") + "/" + smenu[sind]._Text.replace(/[\'\s\W"]/g,"") + "/" + items[iind]._Text.replace(/[\'\s\W"]/g,"") + "/" + iitems[iiind]._Text.replace(/[\'\s\W"]/g,"");
+				    if(outputFormat == "newtech")
+					_href = "/autoreports/" + parts[2] + "?id=" + parts[1] + "&title=" + parts[3];
+				    else
+					_href = "page=autoreports&source=" + parts[2] + "&id=" + parts[1] + "&title=" + parts[3];
+				    menuCategories += "\n        [\n" +
+					"        \"id\" => \"" + _id + "\",\n" +
+					"        \"type\" => \"relativeLink\",\n" +
+					"        \"full\" => $translation->translateLabel('" + iitems[iiind]._Text.replace("\'","\\'") + "'),\n" +
+					"        \"href\"=> \"" + _href  + "\",\n" +
+					"        \"short\" => \"" + (iitems[iiind]._Text? iitems[iiind]._Text.substring(0,2) : "") + "\"\n        ],";
+				    menuIdToPath += "\n    \"" + _id  + "\" => \"" + _href + "\",";
+				    //	console.log('    ', items[iind]);//items[iind]._NavigateUrl, items[iind]._Text); 
+				}
+			    }
+			}else{
+			}
+		    }
+		    menuCategories = menuCategories.substring(0, menuCategories.length - 1);
+		    menuCategories += "\n    ]\n    ],";
 		}
 	    }
 	    menuCategories = menuCategories.substring(0, menuCategories.length - 1);
@@ -395,7 +481,8 @@ function make_all(){
     menuCategories += "?>";
     menuIdToPath = menuIdToPath.substring(0, menuIdToPath.length - 1);
     menuIdToPath += "\n];\n?>";
-    
+
+    console.log(files);
     parse_files(files, true);
     generate_models(files, 'general', files.length, true);
     fs.writeFileSync('models/menuCategoriesGenerated.php', menuCategories);
