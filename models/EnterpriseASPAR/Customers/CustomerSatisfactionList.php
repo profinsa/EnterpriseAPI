@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: CustomerSatisfactionList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerSatisfactionList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/CustomerSatisfactionList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerSatisfactionList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerSatisfactionList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customersatisfaction";
@@ -202,35 +232,35 @@ public $columnNames = [
 "CustomerID" => "Customer ID",
 "ItemID" => "Item ID",
 "SurveyDate" => "Survey Date",
-"QuestionOne" => "QuestionOne",
-"QuestionOneMetric" => "QuestionOneMetric",
-"QuestionTwo" => "QuestionTwo",
-"QuestionTwoMetric" => "QuestionTwoMetric",
-"QuestionThree" => "QuestionThree",
-"QuestionThreeMetric" => "QuestionThreeMetric",
-"QuestionFour" => "QuestionFour",
-"QuestionFourMetric" => "QuestionFourMetric",
-"QuestionFive" => "QuestionFive",
-"QuestionFiveMetric" => "QuestionFiveMetric",
-"QuestionSix" => "QuestionSix",
-"QuestionSixMetric" => "QuestionSixMetric",
-"QuestionSeven" => "QuestionSeven",
-"QuestionSevenMetric" => "QuestionSevenMetric",
-"QuestionEight" => "QuestionEight",
-"QuestionEightMetric" => "QuestionEightMetric",
-"QuestionNine" => "QuestionNine",
-"QuestionNineMetric" => "QuestionNineMetric",
-"QuestionTen" => "QuestionTen",
-"QuestionTenMetric" => "QuestionTenMetric",
-"QuestionEleven" => "QuestionEleven",
-"QuestionElevenMetric" => "QuestionElevenMetric",
-"QuestionTwelve" => "QuestionTwelve",
-"QuestionTwelveMetric" => "QuestionTwelveMetric",
-"QuestionThirteen" => "QuestionThirteen",
-"QuestionThirteenMetric" => "QuestionThirteenMetric",
-"QuestionFourteen" => "QuestionFourteen",
-"QuestionFourteenMetric" => "QuestionFourteenMetric",
-"QuestionFifteen" => "QuestionFifteen",
-"QuestionFifteenMetric" => "QuestionFifteenMetric",
-"FreeForm" => "FreeForm"];
+"QuestionOne" => "Question One",
+"QuestionOneMetric" => "Question One Metric",
+"QuestionTwo" => "Question Two",
+"QuestionTwoMetric" => "Question Two Metric",
+"QuestionThree" => "Question Three",
+"QuestionThreeMetric" => "Question Three Metric",
+"QuestionFour" => "Question Four",
+"QuestionFourMetric" => "Question Four Metric",
+"QuestionFive" => "Question Five",
+"QuestionFiveMetric" => "Question Five Metric",
+"QuestionSix" => "Question Six",
+"QuestionSixMetric" => "Question Six Metric",
+"QuestionSeven" => "Question Seven",
+"QuestionSevenMetric" => "Question Seven Metric",
+"QuestionEight" => "Question Eight",
+"QuestionEightMetric" => "Question Eight Metric",
+"QuestionNine" => "Question Nine",
+"QuestionNineMetric" => "Question Nine Metric",
+"QuestionTen" => "Question Ten",
+"QuestionTenMetric" => "Question Ten Metric",
+"QuestionEleven" => "Question Eleven",
+"QuestionElevenMetric" => "Question Eleven Metric",
+"QuestionTwelve" => "Question Twelve",
+"QuestionTwelveMetric" => "Question Twelve Metric",
+"QuestionThirteen" => "Question Thirteen",
+"QuestionThirteenMetric" => "Question Thirteen Metric",
+"QuestionFourteen" => "Question Fourteen",
+"QuestionFourteenMetric" => "Question Fourteen Metric",
+"QuestionFifteen" => "Question Fifteen",
+"QuestionFifteenMetric" => "Question Fifteen Metric",
+"FreeForm" => "Free Form"];
 }?>

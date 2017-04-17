@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: PaymentsHeaderHistoryList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Payments\PaymentsHeaderHistoryList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/PaymentsHeaderHistoryList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Payments\PaymentsHeaderHistoryList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Payments\PaymentsHeaderHistoryList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/13/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "paymentsheaderhistory";
@@ -283,35 +313,35 @@ public $columnNames = [
 "Cleared" => "Cleared",
 "Posted" => "Posted",
 "Reconciled" => "Reconciled",
-"CheckPrinted" => "CheckPrinted",
-"CheckDate" => "CheckDate",
+"CheckPrinted" => "Check Printed",
+"CheckDate" => "Check Date",
 "Paid" => "Paid",
 "Memorize" => "Memorize",
-"PaymentClassID" => "PaymentClassID",
-"SystemDate" => "SystemDate",
-"DueToDate" => "DueToDate",
-"PurchaseDate" => "PurchaseDate",
-"UnAppliedAmount" => "UnAppliedAmount",
-"GLBankAccount" => "GLBankAccount",
-"PaymentStatus" => "PaymentStatus",
+"PaymentClassID" => "Payment Class ID",
+"SystemDate" => "System Date",
+"DueToDate" => "Due To Date",
+"PurchaseDate" => "Purchase Date",
+"UnAppliedAmount" => "UnApplied Amount",
+"GLBankAccount" => "GL Bank Account",
+"PaymentStatus" => "Payment Status",
 "Void" => "Void",
 "Notes" => "Notes",
-"CurrencyExchangeRate" => "CurrencyExchangeRate",
-"CreditAmount" => "CreditAmount",
-"SelectedForPayment" => "SelectedForPayment",
-"SelectedForPaymentDate" => "SelectedForPaymentDate",
-"ApprovedForPayment" => "ApprovedForPayment",
-"ApprovedForPaymentDate" => "ApprovedForPaymentDate",
+"CurrencyExchangeRate" => "Currency Exchange Rate",
+"CreditAmount" => "Credit Amount",
+"SelectedForPayment" => "Selected For Payment",
+"SelectedForPaymentDate" => "Selected For Payment Date",
+"ApprovedForPayment" => "Approved For Payment",
+"ApprovedForPaymentDate" => "Approved For Payment Date",
 "Credit" => "Credit",
-"ApprovedBy" => "ApprovedBy",
-"EnteredBy" => "EnteredBy",
-"BatchControlNumber" => "BatchControlNumber",
-"BatchControlTotal" => "BatchControlTotal",
+"ApprovedBy" => "Approved By",
+"EnteredBy" => "Entered By",
+"BatchControlNumber" => "Batch Control Number",
+"BatchControlTotal" => "Batch Control Total",
 "Signature" => "Signature",
-"SignaturePassword" => "SignaturePassword",
-"SupervisorSignature" => "SupervisorSignature",
-"SupervisorPassword" => "SupervisorPassword",
-"ManagerSignature" => "ManagerSignature",
-"ManagerPassword" => "ManagerPassword",
-"VendorInvoiceNumber" => "VendorInvoiceNumber"];
+"SignaturePassword" => "Signature Password",
+"SupervisorSignature" => "Supervisor Signature",
+"SupervisorPassword" => "Supervisor Password",
+"ManagerSignature" => "Manager Signature",
+"ManagerPassword" => "Manager Password",
+"VendorInvoiceNumber" => "Vendor Invoice Number"];
 }?>

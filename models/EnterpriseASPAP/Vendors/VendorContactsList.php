@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: VendorContactsList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorContactsList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/VendorContactsList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorContactsList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorContactsList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/13/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "vendorcontacts";
@@ -186,22 +216,22 @@ public $columnNames = [
 "ContactPhone" => "Phone",
 "ContactEmail" => "Email",
 "ContactWebPage" => "Web Page",
-"ContactDescription" => "ContactDescription",
-"ContactAddress1" => "ContactAddress1",
-"ContactAddress2" => "ContactAddress2",
-"ContactAddress3" => "ContactAddress3",
-"ContactCity" => "ContactCity",
-"ContactState" => "ContactState",
-"ContactZip" => "ContactZip",
-"ContactFax" => "ContactFax",
-"ContactCellular" => "ContactCellular",
-"ContactPager" => "ContactPager",
-"ContactLogin" => "ContactLogin",
-"ContactPassword" => "ContactPassword",
-"ContactPasswordOld" => "ContactPasswordOld",
-"ContactPasswordDate" => "ContactPasswordDate",
-"ContactPasswordExpires" => "ContactPasswordExpires",
-"ContactPasswordExpiresDate" => "ContactPasswordExpiresDate",
-"ContactRegion" => "ContactRegion",
-"ContactNotes" => "ContactNotes"];
+"ContactDescription" => "Contact Description",
+"ContactAddress1" => "Contact Address 1",
+"ContactAddress2" => "Contact Address 2",
+"ContactAddress3" => "Contact Address 3",
+"ContactCity" => "Contact City",
+"ContactState" => "Contact State",
+"ContactZip" => "Contact Zip",
+"ContactFax" => "Contact Fax",
+"ContactCellular" => "Contact Cellular",
+"ContactPager" => "Contact Pager",
+"ContactLogin" => "Contact Login",
+"ContactPassword" => "Contact Password",
+"ContactPasswordOld" => "Contact Password Old",
+"ContactPasswordDate" => "Contact Password Date",
+"ContactPasswordExpires" => "Contact Password Expires",
+"ContactPasswordExpiresDate" => "Contact Password Expires Date",
+"ContactRegion" => "Contact Region",
+"ContactNotes" => "Contact Notes"];
 }?>

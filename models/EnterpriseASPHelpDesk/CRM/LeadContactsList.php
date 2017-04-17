@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: LeadContactsList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPHelpDesk\CRM\LeadContactsList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/LeadContactsList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPHelpDesk\CRM\LeadContactsList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPHelpDesk\CRM\LeadContactsList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/12/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "leadcontacts";
@@ -231,31 +261,31 @@ public $columnNames = [
 "ContactFirstName" => "First Name",
 "ContactTitle" => "Title",
 "ContactPhone" => "Phone",
-"ContactDepartment" => "ContactDepartment",
-"ContactSalutation" => "ContactSalutation",
-"ContactAddress1" => "ContactAddress1",
-"ContactAddress2" => "ContactAddress2",
-"ContactAddress3" => "ContactAddress3",
-"ContactCity" => "ContactCity",
-"ContactState" => "ContactState",
-"ContactZip" => "ContactZip",
-"ContactCountry" => "ContactCountry",
-"ContactPhone2" => "ContactPhone2",
-"ContactPhone3" => "ContactPhone3",
-"ContactFax" => "ContactFax",
-"ContactCellular" => "ContactCellular",
-"ContactPager" => "ContactPager",
-"ContactEmail" => "ContactEmail",
-"ContactWebPage" => "ContactWebPage",
-"ContactLogin" => "ContactLogin",
-"ContactPassword" => "ContactPassword",
-"ContactPasswordOld" => "ContactPasswordOld",
-"ContactPasswordDate" => "ContactPasswordDate",
-"ContactPasswordExpires" => "ContactPasswordExpires",
-"ContactPasswordExpiresDate" => "ContactPasswordExpiresDate",
-"ContactSource" => "ContactSource",
-"ContactIndustry" => "ContactIndustry",
-"ContactRegion" => "ContactRegion",
-"ContactNotes" => "ContactNotes",
-"ContactCallingRestrictions" => "ContactCallingRestrictions"];
+"ContactDepartment" => "Contact Department",
+"ContactSalutation" => "Contact Salutation",
+"ContactAddress1" => "Contact Address 1",
+"ContactAddress2" => "Contact Address 2",
+"ContactAddress3" => "Contact Address 3",
+"ContactCity" => "Contact City",
+"ContactState" => "Contact State",
+"ContactZip" => "Contact Zip",
+"ContactCountry" => "Contact Country",
+"ContactPhone2" => "Contact Phone 2",
+"ContactPhone3" => "Contact Phone 3",
+"ContactFax" => "Contact Fax",
+"ContactCellular" => "Contact Cellular",
+"ContactPager" => "Contact Pager",
+"ContactEmail" => "Contact Email",
+"ContactWebPage" => "Contact Web Page",
+"ContactLogin" => "Contact Login",
+"ContactPassword" => "Contact Password",
+"ContactPasswordOld" => "Contact Password Old",
+"ContactPasswordDate" => "Contact Password Date",
+"ContactPasswordExpires" => "Contact Password Expires",
+"ContactPasswordExpiresDate" => "Contact Password Expires Date",
+"ContactSource" => "Contact Source",
+"ContactIndustry" => "Contact Industry",
+"ContactRegion" => "Contact Region",
+"ContactNotes" => "Contact Notes",
+"ContactCallingRestrictions" => "Contact Calling Restrictions"];
 }?>

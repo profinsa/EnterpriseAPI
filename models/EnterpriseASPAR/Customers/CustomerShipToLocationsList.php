@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: CustomerShipToLocationsList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerShipToLocationsList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/CustomerShipToLocationsList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerShipToLocationsList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerShipToLocationsList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customershiptolocations";
@@ -106,14 +136,14 @@ public $columnNames = [
 "ShipToID" => "Ship To ID",
 "ShipToName" => "Ship To Name",
 "ShipToAttention" => "Ship To Attention",
-"ShipToAddress1" => "ShipToAddress1",
-"ShipToAddress2" => "ShipToAddress2",
-"ShipToAddress3" => "ShipToAddress3",
-"ShipToCity" => "ShipToCity",
-"ShipToState" => "ShipToState",
-"ShipToZip" => "ShipToZip",
-"ShipToCountry" => "ShipToCountry",
-"ShipToEmail" => "ShipToEmail",
-"ShipToWebPage" => "ShipToWebPage",
-"ShipToNotes" => "ShipToNotes"];
+"ShipToAddress1" => "Ship To Address 1",
+"ShipToAddress2" => "Ship To Address 2",
+"ShipToAddress3" => "Ship To Address 3",
+"ShipToCity" => "Ship To City",
+"ShipToState" => "Ship To State",
+"ShipToZip" => "Ship To Zip",
+"ShipToCountry" => "Ship To Country",
+"ShipToEmail" => "Ship To Email",
+"ShipToWebPage" => "Ship To Web Page",
+"ShipToNotes" => "Ship To Notes"];
 }?>

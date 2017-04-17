@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: DivisionsList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\DivisionsList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/DivisionsList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\DivisionsList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\DivisionsList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/07/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "divisions";
@@ -97,14 +127,14 @@ public $columnNames = [
 "DivisionName" => "Division Name",
 "DivisionDescription" => "Division Description",
 "DivisionPhone" => "Division Phone",
-"DivisionAddress1" => "DivisionAddress1",
-"DivisionAddress2" => "DivisionAddress2",
-"DivisionCity" => "DivisionCity",
-"DivisionState" => "DivisionState",
-"DivisionZip" => "DivisionZip",
-"DivisionCountry" => "DivisionCountry",
-"DivisionFax" => "DivisionFax",
-"DivisionEmail" => "DivisionEmail",
-"DivisionWebAddress" => "DivisionWebAddress",
-"DivisionNotes" => "DivisionNotes"];
+"DivisionAddress1" => "Division Address 1",
+"DivisionAddress2" => "Division Address 2",
+"DivisionCity" => "Division City",
+"DivisionState" => "Division State",
+"DivisionZip" => "Division Zip",
+"DivisionCountry" => "Division Country",
+"DivisionFax" => "Division Fax",
+"DivisionEmail" => "Division Email",
+"DivisionWebAddress" => "Division Web Address",
+"DivisionNotes" => "Division Notes"];
 }?>

@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: CustomerReferencesList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerReferencesList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/CustomerReferencesList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerReferencesList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerReferencesList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customerreferences";
@@ -312,46 +342,46 @@ public $columnNames = [
 "LastName" => "Last Name",
 "MiddleName" => "Middle Name",
 "Permission" => "Permission",
-"PerferedLanguage" => "PerferedLanguage",
-"AddressLine1" => "AddressLine1",
-"AddressLine2" => "AddressLine2",
-"AddressLine3" => "AddressLine3",
+"PerferedLanguage" => "Perfered Language",
+"AddressLine1" => "Address Line 1",
+"AddressLine2" => "Address Line 2",
+"AddressLine3" => "Address Line 3",
 "City" => "City",
 "State" => "State",
 "Zip" => "Zip",
-"AdditionalLastName" => "AdditionalLastName",
+"AdditionalLastName" => "Additional Last Name",
 "Title" => "Title",
 "Salutation" => "Salutation",
 "Email" => "Email",
-"PhoneCountry" => "PhoneCountry",
-"PhoneArea" => "PhoneArea",
-"PhoneNumber" => "PhoneNumber",
-"PhoneExt" => "PhoneExt",
-"VertConsumerBusinessMfg" => "VertConsumerBusinessMfg",
-"VertEducation" => "VertEducation",
-"VertFinancial" => "VertFinancial",
-"VertGeneral" => "VertGeneral",
-"VertGovernment" => "VertGovernment",
-"VertHealthcare" => "VertHealthcare",
-"VertIndustrialManagement" => "VertIndustrialManagement",
-"VertMedia" => "VertMedia",
-"VertNonProfit" => "VertNonProfit",
-"VertProfessional" => "VertProfessional",
-"VertRetail" => "VertRetail",
-"VertTelecommunications" => "VertTelecommunications",
-"ImplementedCompanyWide" => "ImplementedCompanyWide",
-"ImplementedWithinDepartments" => "ImplementedWithinDepartments",
-"DeptHumanResources" => "DeptHumanResources",
-"DeptInformationTechnology" => "DeptInformationTechnology",
-"DeptAccountingFinance" => "DeptAccountingFinance",
-"DeptResearch" => "DeptResearch",
-"DeptMarketing" => "DeptMarketing",
-"DeptTravel" => "DeptTravel",
-"DeptSales" => "DeptSales",
-"DeptDistributionWarehouse" => "DeptDistributionWarehouse",
-"DeptOther" => "DeptOther",
-"NumberOfEmployees" => "NumberOfEmployees",
-"NumberOfUsers" => "NumberOfUsers",
-"DescribeProject" => "DescribeProject",
-"DescriptSolution" => "DescriptSolution"];
+"PhoneCountry" => "Phone Country",
+"PhoneArea" => "Phone Area",
+"PhoneNumber" => "Phone Number",
+"PhoneExt" => "Phone Ext",
+"VertConsumerBusinessMfg" => "Vert Consumer Business Mfg",
+"VertEducation" => "Vert Education",
+"VertFinancial" => "Vert Financial",
+"VertGeneral" => "Vert General",
+"VertGovernment" => "Vert Government",
+"VertHealthcare" => "Vert Healthcare",
+"VertIndustrialManagement" => "Vert Industrial Management",
+"VertMedia" => "Vert Media",
+"VertNonProfit" => "Vert Non Profit",
+"VertProfessional" => "Vert Professional",
+"VertRetail" => "Vert Retail",
+"VertTelecommunications" => "Vert Telecommunications",
+"ImplementedCompanyWide" => "Implemented Company Wide",
+"ImplementedWithinDepartments" => "Implemented Within Departments",
+"DeptHumanResources" => "Dept Human Resources",
+"DeptInformationTechnology" => "Dept Information Technology",
+"DeptAccountingFinance" => "Dept Accounting Finance",
+"DeptResearch" => "Dept Research",
+"DeptMarketing" => "Dept Marketing",
+"DeptTravel" => "Dept Travel",
+"DeptSales" => "Dept Sales",
+"DeptDistributionWarehouse" => "Dept Distribution Warehouse",
+"DeptOther" => "Dept Other",
+"NumberOfEmployees" => "Number Of Employees",
+"NumberOfUsers" => "Number Of Users",
+"DescribeProject" => "Describe Project",
+"DescriptSolution" => "Descript Solution"];
 }?>

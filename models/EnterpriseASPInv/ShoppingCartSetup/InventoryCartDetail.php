@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: InventoryCartDetail model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ShoppingCartSetup\InventoryCartDetail.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/InventoryCartDetail for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ShoppingCartSetup\InventoryCartDetail.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ShoppingCartSetup\InventoryCartDetail.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventorycart";
@@ -179,28 +209,28 @@ public $columnNames = [
 "RestockingFee" => "Restocking Fee",
 "MinimumOrderAmount" => "Minimum Order Amount",
 "ApprovedDate" => "Approved Date",
-"UsePricingCodes" => "UsePricingCodes",
-"UseCustomerSpecificPricing" => "UseCustomerSpecificPricing",
-"ItemOrDefaultWarehouse" => "ItemOrDefaultWarehouse",
-"DefaultWarehouse" => "DefaultWarehouse",
-"DefaultBin" => "DefaultBin",
-"CheckStock" => "CheckStock",
-"ShowStock" => "ShowStock",
-"HideOutOfStockItems" => "HideOutOfStockItems",
-"OfferSubstitute" => "OfferSubstitute",
-"ShowFeatures" => "ShowFeatures",
-"ShowSales" => "ShowSales",
-"ShowCrossSell" => "ShowCrossSell",
-"ShowRelations" => "ShowRelations",
-"ShowReviews" => "ShowReviews",
-"ShowWishList" => "ShowWishList",
-"ShowItemNotifications" => "ShowItemNotifications",
-"ShowRMA" => "ShowRMA",
-"ChargeRestockingFee" => "ChargeRestockingFee",
-"MinimumOrder" => "MinimumOrder",
-"MultiCurrency" => "MultiCurrency",
-"MultiLanguage" => "MultiLanguage",
-"GiftsOrCoupons" => "GiftsOrCoupons",
+"UsePricingCodes" => "Use Pricing Codes",
+"UseCustomerSpecificPricing" => "Use Customer Specific Pricing",
+"ItemOrDefaultWarehouse" => "Item Or Default Warehouse",
+"DefaultWarehouse" => "Default Warehouse",
+"DefaultBin" => "Default Bin",
+"CheckStock" => "Check Stock",
+"ShowStock" => "Show Stock",
+"HideOutOfStockItems" => "Hide Out Of Stock Items",
+"OfferSubstitute" => "Offer Substitute",
+"ShowFeatures" => "Show Features",
+"ShowSales" => "Show Sales",
+"ShowCrossSell" => "Show Cross Sell",
+"ShowRelations" => "Show Relations",
+"ShowReviews" => "Show Reviews",
+"ShowWishList" => "Show Wish List",
+"ShowItemNotifications" => "Show Item Notifications",
+"ShowRMA" => "Show RMA",
+"ChargeRestockingFee" => "Charge Restocking Fee",
+"MinimumOrder" => "Minimum Order",
+"MultiCurrency" => "Multi Currency",
+"MultiLanguage" => "Multi Language",
+"GiftsOrCoupons" => "Gifts Or Coupons",
 "Approved" => "Approved",
-"ApprovedBy" => "ApprovedBy"];
+"ApprovedBy" => "Approved By"];
 }?>

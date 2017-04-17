@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: AuditTablesDescriptionList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AuditTablesDescriptionList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/AuditTablesDescriptionList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AuditTablesDescriptionList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AuditTablesDescriptionList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/07/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "audittablesdescription";
@@ -66,6 +96,6 @@ public $columnNames = [
 "DocumentType" => "Document Type",
 "TransactionNumberField" => "Transaction Number Field",
 "TransactionLineNumberField" => "Transaction LineNumber Field",
-"ComplexObject" => "ComplexObject",
-"ApplyAudit" => "ApplyAudit"];
+"ComplexObject" => "Complex Object",
+"ApplyAudit" => "Apply Audit"];
 }?>

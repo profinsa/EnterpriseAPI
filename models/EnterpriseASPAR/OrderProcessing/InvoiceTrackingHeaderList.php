@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: InvoiceTrackingHeaderList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\InvoiceTrackingHeaderList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/InvoiceTrackingHeaderList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\InvoiceTrackingHeaderList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\InvoiceTrackingHeaderList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "invoicetrackingheader";
@@ -81,11 +111,11 @@ public $columnNames = [
 "InvoiceNumber" => "Invoice Number",
 "InvoiceDescription" => "Invoice Description",
 "EnteredBy" => "Entered By",
-"InvoiceLongDescription" => "InvoiceLongDescription",
-"PaymentExpectedBy" => "PaymentExpectedBy",
-"PaymentProblem" => "PaymentProblem",
-"PaymentProblemReason" => "PaymentProblemReason",
+"InvoiceLongDescription" => "Invoice Long Description",
+"PaymentExpectedBy" => "Payment Expected By",
+"PaymentProblem" => "Payment Problem",
+"PaymentProblemReason" => "Payment Problem Reason",
 "Approved" => "Approved",
-"ApprovedBy" => "ApprovedBy",
-"ApprovedDate" => "ApprovedDate"];
+"ApprovedBy" => "Approved By",
+"ApprovedDate" => "Approved Date"];
 }?>

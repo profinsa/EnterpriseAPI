@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: PayrollSetupList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollSetup\PayrollSetupList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/PayrollSetupList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollSetup\PayrollSetupList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollSetup\PayrollSetupList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/08/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollsetup";
@@ -315,27 +345,27 @@ public $columnNames = [
 "CreatePayroll" => "CreatePayroll",
 "PayCommissions" => "PayCommissions",
 "OTAfter" => "OTAfter",
-"GLFITPayrollAccount" => "GLFITPayrollAccount",
-"GLFITExpenseAccount" => "GLFITExpenseAccount",
-"GLFICAPayrollAccount" => "GLFICAPayrollAccount",
-"GLFICAExpenseAccount" => "GLFICAExpenseAccount",
-"GLFUTAPayrollAccount" => "GLFUTAPayrollAccount",
-"GLFUTAExpenseAccount" => "GLFUTAExpenseAccount",
-"GLSUTAPayrollAccount" => "GLSUTAPayrollAccount",
-"GLSUTAExpenseAccount" => "GLSUTAExpenseAccount",
-"GLSITPayrollAccount" => "GLSITPayrollAccount",
-"GLSITExpenseAccount" => "GLSITExpenseAccount",
-"GLSDIPayrollAccount" => "GLSDIPayrollAccount",
-"GLSDIExpenseAccount" => "GLSDIExpenseAccount",
-"GLFICAMedPayrollAccount" => "GLFICAMedPayrollAccount",
-"GLFICAMedExpenseAccount" => "GLFICAMedExpenseAccount",
-"GLLocalPayrollAccount" => "GLLocalPayrollAccount",
-"GLSalesPayrollExpenseAccount" => "GLSalesPayrollExpenseAccount",
-"GLOfficePayrollExpenseAccount" => "GLOfficePayrollExpenseAccount",
-"GLWarehousePayrollExpenseAccount" => "GLWarehousePayrollExpenseAccount",
-"GLProductionPayrollExpenseAccount" => "GLProductionPayrollExpenseAccount",
-"GLOvertimePayrollExpenseAccount" => "GLOvertimePayrollExpenseAccount",
-"GLWagesPayrollAccount" => "GLWagesPayrollAccount",
-"GLPayrollTaxExpenseAccount" => "GLPayrollTaxExpenseAccount",
-"GLBonusPayrollAccount" => "GLBonusPayrollAccount"];
+"GLFITPayrollAccount" => "GLFIT Payroll Account",
+"GLFITExpenseAccount" => "GLFIT Expense Account",
+"GLFICAPayrollAccount" => "GLFICA Payroll Account",
+"GLFICAExpenseAccount" => "GLFICA Expense Account",
+"GLFUTAPayrollAccount" => "GLFUTA Payroll Account",
+"GLFUTAExpenseAccount" => "GLFUTA Expense Account",
+"GLSUTAPayrollAccount" => "GLSUTA Payroll Account",
+"GLSUTAExpenseAccount" => "GLSUTA Expense Account",
+"GLSITPayrollAccount" => "GLSIT Payroll Account",
+"GLSITExpenseAccount" => "GLSIT Expense Account",
+"GLSDIPayrollAccount" => "GLSDI Payroll Account",
+"GLSDIExpenseAccount" => "GLSDI Expense Account",
+"GLFICAMedPayrollAccount" => "GLFICA Med Payroll Account",
+"GLFICAMedExpenseAccount" => "GLFICA Med Expense Account",
+"GLLocalPayrollAccount" => "GL Local Payroll Account",
+"GLSalesPayrollExpenseAccount" => "GL Sales Payroll Expense Account",
+"GLOfficePayrollExpenseAccount" => "GL Office Payroll Expense Account",
+"GLWarehousePayrollExpenseAccount" => "GL Warehouse Payroll ExpenseAccount",
+"GLProductionPayrollExpenseAccount" => "GL Production Payroll ExpenseAccount",
+"GLOvertimePayrollExpenseAccount" => "GL Overtime Payroll ExpenseAccount",
+"GLWagesPayrollAccount" => "GL Wages Payroll Account",
+"GLPayrollTaxExpenseAccount" => "GL Payroll Tax Expense Account",
+"GLBonusPayrollAccount" => "GL Bonus Payroll Account"];
 }?>

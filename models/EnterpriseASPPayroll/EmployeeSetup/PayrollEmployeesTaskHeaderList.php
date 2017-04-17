@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: PayrollEmployeesTaskHeaderList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesTaskHeaderList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/PayrollEmployeesTaskHeaderList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesTaskHeaderList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesTaskHeaderList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/08/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollemployeestaskheader";
@@ -139,12 +169,12 @@ public $columnNames = [
 "LeadID" => "Lead ID",
 "CustomerID" => "Customer ID",
 "VendorID" => "Vendor ID",
-"EmployeeID" => "EmployeeID",
-"EmployeeTaskID" => "EmployeeTaskID",
+"EmployeeID" => "Employee ID",
+"EmployeeTaskID" => "Employee Task ID",
 "Completed" => "Completed",
-"RelatedDocumentType" => "RelatedDocumentType",
-"RelatedDocumentNumber" => "RelatedDocumentNumber",
+"RelatedDocumentType" => "Related Document Type",
+"RelatedDocumentNumber" => "Related Document Number",
 "Description" => "Description",
-"DelegatedTo" => "DelegatedTo",
-"DelegatedDate" => "DelegatedDate"];
+"DelegatedTo" => "Delegated To",
+"DelegatedDate" => "Delegated Date"];
 }?>

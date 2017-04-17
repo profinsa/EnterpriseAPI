@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: InventoryItemsList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryItemsList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/InventoryItemsList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryItemsList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryItemsList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventoryitems";
@@ -482,83 +512,83 @@ public $columnNames = [
 "ItemDescription" => "Item Description",
 "ItemUPCCode" => "Item UPC Code",
 "Price" => "Price",
-"ItemLongDescription" => "ItemLongDescription",
-"ItemCategoryID" => "ItemCategoryID",
-"ItemFamilyID" => "ItemFamilyID",
-"SalesDescription" => "SalesDescription",
-"PurchaseDescription" => "PurchaseDescription",
-"PictureURL" => "PictureURL",
-"LargePictureURL" => "LargePictureURL",
-"ItemWeight" => "ItemWeight",
-"ItemWeightMetric" => "ItemWeightMetric",
-"ItemShipWeight" => "ItemShipWeight",
-"ItemEPCCode" => "ItemEPCCode",
-"ItemRFID" => "ItemRFID",
-"ItemSize" => "ItemSize",
-"ItemSizeCmm" => "ItemSizeCmm",
-"ItemDimentions" => "ItemDimentions",
-"ItemDimentionsCmm" => "ItemDimentionsCmm",
-"ItemColor" => "ItemColor",
-"ItemNRFColor" => "ItemNRFColor",
-"ItemStyle" => "ItemStyle",
-"ItemNRFStyle" => "ItemNRFStyle",
-"ItemCareInstructions" => "ItemCareInstructions",
-"ItemDefaultWarehouse" => "ItemDefaultWarehouse",
-"ItemDefaultWarehouseBin" => "ItemDefaultWarehouseBin",
-"ItemLocationX" => "ItemLocationX",
-"ItemLocationY" => "ItemLocationY",
-"ItemLocationZ" => "ItemLocationZ",
-"DownloadLocation" => "DownloadLocation",
-"DownloadPassword" => "DownloadPassword",
-"ItemUOM" => "ItemUOM",
-"GLItemSalesAccount" => "GLItemSalesAccount",
-"GLItemCOGSAccount" => "GLItemCOGSAccount",
-"GLItemInventoryAccount" => "GLItemInventoryAccount",
-"CurrencyID" => "CurrencyID",
-"CurrencyExchangeRate" => "CurrencyExchangeRate",
-"ItemPricingCode" => "ItemPricingCode",
-"PricingMethods" => "PricingMethods",
+"ItemLongDescription" => "Item Long Description",
+"ItemCategoryID" => "Item Category ID",
+"ItemFamilyID" => "Item Family ID",
+"SalesDescription" => "Sales Description",
+"PurchaseDescription" => "Purchase Description",
+"PictureURL" => "Picture URL",
+"LargePictureURL" => "Large Picture URL",
+"ItemWeight" => "Item Weight",
+"ItemWeightMetric" => "Item Weight Metric",
+"ItemShipWeight" => "Item Ship Weight",
+"ItemEPCCode" => "Item EPC Code",
+"ItemRFID" => "Item RFID",
+"ItemSize" => "Item Size",
+"ItemSizeCmm" => "Item Size Cmm",
+"ItemDimentions" => "Item Dimentions",
+"ItemDimentionsCmm" => "Item Dimentions Cmm",
+"ItemColor" => "Item Color",
+"ItemNRFColor" => "Item NRF Color",
+"ItemStyle" => "Item Style",
+"ItemNRFStyle" => "Item NRF Style",
+"ItemCareInstructions" => "Item Care Instructions",
+"ItemDefaultWarehouse" => "Item Default Warehouse",
+"ItemDefaultWarehouseBin" => "Item Default Warehouse Bin",
+"ItemLocationX" => "Item Location X",
+"ItemLocationY" => "Item Location Y",
+"ItemLocationZ" => "Item Location Z",
+"DownloadLocation" => "Download Location",
+"DownloadPassword" => "Download Password",
+"ItemUOM" => "Item UOM",
+"GLItemSalesAccount" => "GL Item Sales Account",
+"GLItemCOGSAccount" => "GL Item COGS Account",
+"GLItemInventoryAccount" => "GL Item Inventory Account",
+"CurrencyID" => "Currency ID",
+"CurrencyExchangeRate" => "Currency Exchange Rate",
+"ItemPricingCode" => "Item Pricing Code",
+"PricingMethods" => "Pricing Methods",
 "Taxable" => "Taxable",
-"VendorID" => "VendorID",
-"LeadTime" => "LeadTime",
-"LeadTimeUnit" => "LeadTimeUnit",
-"ReOrderLevel" => "ReOrderLevel",
-"ReOrderQty" => "ReOrderQty",
-"BuildTime" => "BuildTime",
-"BuildTimeUnit" => "BuildTimeUnit",
-"UseageRate" => "UseageRate",
-"UseageRateUnit" => "UseageRateUnit",
-"SalesForecast" => "SalesForecast",
-"SalesForecastUnit" => "SalesForecastUnit",
-"CalculatedCover" => "CalculatedCover",
-"CalculatedCoverUnits" => "CalculatedCoverUnits",
-"IsAssembly" => "IsAssembly",
-"ItemAssembly" => "ItemAssembly",
+"VendorID" => "Vendor ID",
+"LeadTime" => "Lead Time",
+"LeadTimeUnit" => "Lead Time Unit",
+"ReOrderLevel" => "Re Order Level",
+"ReOrderQty" => "Re Order Qty",
+"BuildTime" => "Build Time",
+"BuildTimeUnit" => "Build Time Unit",
+"UseageRate" => "Useage Rate",
+"UseageRateUnit" => "Useage Rate Unit",
+"SalesForecast" => "Sales Forecast",
+"SalesForecastUnit" => "Sales Forecast Unit",
+"CalculatedCover" => "Calculated Cover",
+"CalculatedCoverUnits" => "Calculated Cover Units",
+"IsAssembly" => "Is Assembly",
+"ItemAssembly" => "Item Assembly",
 "LIFO" => "LIFO",
-"LIFOValue" => "LIFOValue",
-"LIFOCost" => "LIFOCost",
+"LIFOValue" => "LIFO Value",
+"LIFOCost" => "LIFO Cost",
 "Average" => "Average",
-"AverageValue" => "AverageValue",
-"AverageCost" => "AverageCost",
+"AverageValue" => "Average Value",
+"AverageCost" => "Average Cost",
 "FIFO" => "FIFO",
-"FIFOValue" => "FIFOValue",
-"FIFOCost" => "FIFOCost",
+"FIFOValue" => "FIFO Value",
+"FIFOCost" => "FIFO Cost",
 "Expected" => "Expected",
-"ExpectedValue" => "ExpectedValue",
-"ExpectedCost" => "ExpectedCost",
+"ExpectedValue" => "Expected Value",
+"ExpectedCost" => "Expected Cost",
 "Landed" => "Landed",
-"LandedValue" => "LandedValue",
-"LandedCost" => "LandedCost",
+"LandedValue" => "Landed Value",
+"LandedCost" => "Landed Cost",
 "Other" => "Other",
-"OtherValue" => "OtherValue",
-"OtherCost" => "OtherCost",
+"OtherValue" => "Other Value",
+"OtherCost" => "Other Cost",
 "Commissionable" => "Commissionable",
-"CommissionType" => "CommissionType",
-"CommissionPerc" => "CommissionPerc",
+"CommissionType" => "Commission Type",
+"CommissionPerc" => "Commission Perc",
 "Approved" => "Approved",
-"ApprovedBy" => "ApprovedBy",
-"ApprovedDate" => "ApprovedDate",
-"EnteredBy" => "EnteredBy",
-"TaxGroupID" => "TaxGroupID",
-"TaxPercent" => "TaxPercent"];
+"ApprovedBy" => "Approved By",
+"ApprovedDate" => "Approved Date",
+"EnteredBy" => "Entered By",
+"TaxGroupID" => "Tax Group ID",
+"TaxPercent" => "Tax Percent"];
 }?>

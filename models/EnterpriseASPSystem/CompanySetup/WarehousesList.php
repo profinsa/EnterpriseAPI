@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: WarehousesList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\WarehousesList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/WarehousesList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\WarehousesList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\WarehousesList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/07/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "warehouses";
@@ -121,19 +151,19 @@ public $columnNames = [
 "WarehouseID" => "Warehouse ID",
 "WarehouseName" => "Warehouse Name",
 "WarehousePhone" => "Warehouse Phone",
-"WarehouseAddress1" => "WarehouseAddress1",
-"WarehouseAddress2" => "WarehouseAddress2",
-"WarehouseAddress3" => "WarehouseAddress3",
-"WarehouseCity" => "WarehouseCity",
-"WarehouseState" => "WarehouseState",
-"WarehouseZip" => "WarehouseZip",
-"WarehouseFax" => "WarehouseFax",
-"WarehouseEmail" => "WarehouseEmail",
-"WarehouseWebPage" => "WarehouseWebPage",
-"WarehouseAttention" => "WarehouseAttention",
-"RoutingContactName" => "RoutingContactName",
-"RoutingAddressd" => "RoutingAddressd",
-"RoutingContactPhone" => "RoutingContactPhone",
-"RoutingContactFax" => "RoutingContactFax",
-"RoutingContactEmail" => "RoutingContactEmail"];
+"WarehouseAddress1" => "Warehouse Address 1",
+"WarehouseAddress2" => "Warehouse Address 2",
+"WarehouseAddress3" => "Warehouse Address 3",
+"WarehouseCity" => "Warehouse City",
+"WarehouseState" => "Warehouse State",
+"WarehouseZip" => "Warehouse Zip",
+"WarehouseFax" => "Warehouse Fax",
+"WarehouseEmail" => "Warehouse Email",
+"WarehouseWebPage" => "Warehouse Web Page",
+"WarehouseAttention" => "Warehouse Attention",
+"RoutingContactName" => "Routing Contact Name",
+"RoutingAddressd" => "Routing Addressd",
+"RoutingContactPhone" => "Routing Contact Phone",
+"RoutingContactFax" => "Routing Contact Fax",
+"RoutingContactEmail" => "Routing Contact Email"];
 }?>

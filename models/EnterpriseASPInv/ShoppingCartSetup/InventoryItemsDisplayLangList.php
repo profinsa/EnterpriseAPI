@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: InventoryItemsDisplayLangList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ShoppingCartSetup\InventoryItemsDisplayLangList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/InventoryItemsDisplayLangList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ShoppingCartSetup\InventoryItemsDisplayLangList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ShoppingCartSetup\InventoryItemsDisplayLangList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventoryitemsdisplaylang";
@@ -126,18 +156,18 @@ public $columnNames = [
 "DisplayLang" => "Display Lang",
 "ItemName" => "Item Name",
 "ItemDescription" => "Item Description",
-"IsActive" => "IsActive",
-"ItemLongDescription" => "ItemLongDescription",
-"ItemCategoryID" => "ItemCategoryID",
-"SalesDescription" => "SalesDescription",
-"PurchaseDescription" => "PurchaseDescription",
-"PictureURL" => "PictureURL",
-"LargePictureURL" => "LargePictureURL",
-"ItemColor" => "ItemColor",
-"ItemStyle" => "ItemStyle",
-"ItemCareInstructions" => "ItemCareInstructions",
+"IsActive" => "Is Active",
+"ItemLongDescription" => "Item Long Description",
+"ItemCategoryID" => "Item Category ID",
+"SalesDescription" => "Sales Description",
+"PurchaseDescription" => "Purchase Description",
+"PictureURL" => "Picture URL",
+"LargePictureURL" => "Large Picture URL",
+"ItemColor" => "Item Color",
+"ItemStyle" => "Item Style",
+"ItemCareInstructions" => "Item Care Instructions",
 "Approved" => "Approved",
-"ApprovedBy" => "ApprovedBy",
-"ApprovedDate" => "ApprovedDate",
-"EnteredBy" => "EnteredBy"];
+"ApprovedBy" => "Approved By",
+"ApprovedDate" => "Approved Date",
+"EnteredBy" => "Entered By"];
 }?>

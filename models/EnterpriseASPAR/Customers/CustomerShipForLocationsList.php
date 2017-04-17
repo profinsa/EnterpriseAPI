@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: CustomerShipForLocationsList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerShipForLocationsList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/CustomerShipForLocationsList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerShipForLocationsList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerShipForLocationsList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customershipforlocations";
@@ -116,14 +146,14 @@ public $columnNames = [
 "ShipForID" => "Ship For ID",
 "ShipForName" => "Ship For Name",
 "ShipForAttention" => "Ship For Attention",
-"ShipForAddress1" => "ShipForAddress1",
-"ShipForAddress2" => "ShipForAddress2",
-"ShipForAddress3" => "ShipForAddress3",
-"ShipForCity" => "ShipForCity",
-"ShipForState" => "ShipForState",
-"ShipForZip" => "ShipForZip",
-"ShipForeCountry" => "ShipForeCountry",
-"ShipForEmail" => "ShipForEmail",
-"ShipForWebPage" => "ShipForWebPage",
-"ShipForNotes" => "ShipForNotes"];
+"ShipForAddress1" => "Ship For Address 1",
+"ShipForAddress2" => "Ship For Address 2",
+"ShipForAddress3" => "Ship For Address 3",
+"ShipForCity" => "Ship For City",
+"ShipForState" => "Ship For State",
+"ShipForZip" => "Ship For Zip",
+"ShipForeCountry" => "Ship Fore Country",
+"ShipForEmail" => "Ship For Email",
+"ShipForWebPage" => "Ship For Web Page",
+"ShipForNotes" => "Ship For Notes"];
 }?>

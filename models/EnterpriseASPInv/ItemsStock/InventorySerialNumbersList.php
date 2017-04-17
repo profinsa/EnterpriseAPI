@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: InventorySerialNumbersList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventorySerialNumbersList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/InventorySerialNumbersList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventorySerialNumbersList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventorySerialNumbersList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventoryserialnumbers";
@@ -144,9 +174,9 @@ public $columnNames = [
 "OriginalLotOrderQty" => "Original Lot Order Qty",
 "CurrentLotOrderQty" => "Current Lot Order Qty",
 "LotExpirationDate" => "Lot Expiration Date",
-"OrderNumber" => "OrderNumber",
-"OrderLineNumber" => "OrderLineNumber",
-"InvoiceNumber" => "InvoiceNumber",
-"InvoiceLineNumber" => "InvoiceLineNumber",
-"SerialNumberComment" => "SerialNumberComment"];
+"OrderNumber" => "Order Number",
+"OrderLineNumber" => "Order Line Number",
+"InvoiceNumber" => "Invoice Number",
+"InvoiceLineNumber" => "Invoice Line Number",
+"SerialNumberComment" => "Serial Number Comment"];
 }?>

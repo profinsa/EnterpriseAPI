@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: PayrollEmployeesList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/PayrollEmployeesList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/08/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollemployees";
@@ -332,55 +362,55 @@ public $columnNames = [
 "ActiveYN" => "Active",
 "EmployeeUserName" => "User Name",
 "HireDate" => "Hire Date",
-"EmployeePassword" => "EmployeePassword",
-"EmployeePasswordOld" => "EmployeePasswordOld",
-"EmployeePasswordDate" => "EmployeePasswordDate",
-"EmployeePasswordExpires" => "EmployeePasswordExpires",
-"EmployeePasswordExpiresDate" => "EmployeePasswordExpiresDate",
-"EmployeeAddress1" => "EmployeeAddress1",
-"EmployeeAddress2" => "EmployeeAddress2",
-"EmployeeCity" => "EmployeeCity",
-"EmployeeState" => "EmployeeState",
-"EmployeeZip" => "EmployeeZip",
-"EmployeeCountry" => "EmployeeCountry",
-"EmployeePhone" => "EmployeePhone",
-"EmployeeFax" => "EmployeeFax",
-"EmployeeSSNumber" => "EmployeeSSNumber",
-"EmployeeEmailAddress" => "EmployeeEmailAddress",
-"EmployeeDepartmentID" => "EmployeeDepartmentID",
-"PictureURL" => "PictureURL",
+"EmployeePassword" => "Employee Password",
+"EmployeePasswordOld" => "Employee Password Old",
+"EmployeePasswordDate" => "Employee Password Date",
+"EmployeePasswordExpires" => "Employee Password Expires",
+"EmployeePasswordExpiresDate" => "Employee Password Expires Date",
+"EmployeeAddress1" => "Employee Address 1",
+"EmployeeAddress2" => "Employee Address 2",
+"EmployeeCity" => "Employee City",
+"EmployeeState" => "Employee State",
+"EmployeeZip" => "Employee Zip",
+"EmployeeCountry" => "Employee Country",
+"EmployeePhone" => "Employee Phone",
+"EmployeeFax" => "Employee Fax",
+"EmployeeSSNumber" => "Employee SSNumber",
+"EmployeeEmailAddress" => "Employee Email Address",
+"EmployeeDepartmentID" => "Employee Department ID",
+"PictureURL" => "Picture URL",
 "Birthday" => "Birthday",
 "Commissionable" => "Commissionable",
-"CommissionPerc" => "CommissionPerc",
-"CommissionCalcMethod" => "CommissionCalcMethod",
-"EmployeeManager" => "EmployeeManager",
-"EmployeeRegionID" => "EmployeeRegionID",
-"EmployeeSourceID" => "EmployeeSourceID",
-"EmployeeIndustryID" => "EmployeeIndustryID",
+"CommissionPerc" => "Commission Perc",
+"CommissionCalcMethod" => "Commission Calc Method",
+"EmployeeManager" => "Employee Manager",
+"EmployeeRegionID" => "Employee Region ID",
+"EmployeeSourceID" => "Employee Source ID",
+"EmployeeIndustryID" => "Employee Industry ID",
 "Notes" => "Notes",
-"NextOfKinName" => "NextOfKinName",
-"NextOfKinNumber" => "NextOfKinNumber",
-"MonthToDateGross" => "MonthToDateGross",
-"MonthToDateFICA" => "MonthToDateFICA",
-"MonthToDateFederal" => "MonthToDateFederal",
-"MonthToDateState" => "MonthToDateState",
-"MonthToDateLocal" => "MonthToDateLocal",
-"MonthToDateOther" => "MonthToDateOther",
-"QuarterToDateGross" => "QuarterToDateGross",
-"QuarterToDateFICA" => "QuarterToDateFICA",
-"QuarterToDateFederal" => "QuarterToDateFederal",
-"QuarterToDateState" => "QuarterToDateState",
-"QuarterToDateLocal" => "QuarterToDateLocal",
-"QuarterToDateOther" => "QuarterToDateOther",
-"YearToDateGross" => "YearToDateGross",
-"YearToDateFICA" => "YearToDateFICA",
-"YearToDateFederal" => "YearToDateFederal",
-"YearToDateState" => "YearToDateState",
-"YearToDateLocal" => "YearToDateLocal",
-"YearToDateOther" => "YearToDateOther",
-"EmployeeCounty" => "EmployeeCounty",
+"NextOfKinName" => "Next Of Kin Name",
+"NextOfKinNumber" => "Next Of Kin Number",
+"MonthToDateGross" => "Month To Date Gross",
+"MonthToDateFICA" => "Month To Date FICA",
+"MonthToDateFederal" => "Month To Date Federal",
+"MonthToDateState" => "Month To Date State",
+"MonthToDateLocal" => "Month To Date Local",
+"MonthToDateOther" => "Month To Date Other",
+"QuarterToDateGross" => "Quarter To Date Gross",
+"QuarterToDateFICA" => "Quarter To Date FICA",
+"QuarterToDateFederal" => "Quarter To Date Federal",
+"QuarterToDateState" => "Quarter To Date State",
+"QuarterToDateLocal" => "Quarter To Date Local",
+"QuarterToDateOther" => "Quarter To Date Other",
+"YearToDateGross" => "Year To Date Gross",
+"YearToDateFICA" => "Year To Date FICA",
+"YearToDateFederal" => "Year To Date Federal",
+"YearToDateState" => "Year To Dat eState",
+"YearToDateLocal" => "Year To Date Local",
+"YearToDateOther" => "Year To Date Other",
+"EmployeeCounty" => "Employee County",
 "Approved" => "Approved",
-"ApprovedBy" => "ApprovedBy",
-"ApprovedDate" => "ApprovedDate",
-"EnteredBy" => "EnteredBy"];
+"ApprovedBy" => "Approved By",
+"ApprovedDate" => "Approved Date",
+"EnteredBy" => "Entered By"];
 }?>

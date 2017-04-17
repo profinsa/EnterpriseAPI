@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: AccessPermissionsList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AccessPermissionsList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/AccessPermissionsList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AccessPermissionsList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AccessPermissionsList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/07/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     protected $tableName = "accesspermissions";
@@ -688,20 +718,20 @@ class gridData extends gridDataSource{
         "PRChecks" => "PR Checks",
         "PRReports" => "PR Reports",
         "PRSetup" => "PR Setup",
-        "WHPick" => "WHPick",
-        "WHPack" => "WHPack",
-        "WHShip" => "WHShip",
-        "WHPrint" => "WHPrint",
-        "WHReceive" => "WHReceive",
-        "WHTransfer" => "WHTransfer",
-        "WHAdjust" => "WHAdjust",
+        "WHPick" => "WH Pick",
+        "WHPack" => "WH Pack",
+        "WHShip" => "WH Ship",
+        "WHPrint" => "WH Print",
+        "WHReceive" => "WH Receive",
+        "WHTransfer" => "WH Transfer",
+        "WHAdjust" => "WH Adjust",
         "WHSetup" => "WH Setup",
-        "WOView" => "WOView",
-        "WOAdd" => "WOAdd",
-        "WOEdit" => "WOEdit",
-        "WODelete" => "WODelete",
-        "WOReports" => "WOReports",
-        "WOForecast" => "WOForecast",
+        "WOView" => "WO View",
+        "WOAdd" => "WO Add",
+        "WOEdit" => "WO Edit",
+        "WODelete" => "WO Delete",
+        "WOReports" => "WO Reports",
+        "WOForecast" => "WO Forecast",
         "WOSetup" => "WO Setup",
         "ADView" => "AD View",
         "ADSetup" => "AD Setup",
@@ -734,24 +764,24 @@ class gridData extends gridDataSource{
         "ApproveContract" => "Approve Contract",
         "ApproveReturns" => "Approve Returns",
         "ApproveRMA" => "Approve RMA",
-        "MTARView" => "MTAR View",
-        "MTAPView" => "MTAP View",
-        "MTGLView" => "MTGL View",
-        "MTInventoryView" => "MTInventory View",
-        "MTMRPView" => "MTMRP View",
-        "MTFundView" => "MTFund View",
-        "MTCRMView" => "MTCRM View",
-        "MTPayrollView" => "MTPayroll View",
-        "MTSystemView" => "MTSystem View",
-        "MTReportsView" => "MTReports View",
-        "RTFinancialView" => "RTFinancial View",
-        "RTARView" => "RTAR View",
-        "RTAPView" => "RTAP View",
-        "RTGLView" => "RTGL View",
-        "RTInventoryView" => "RTInventory View",
-        "RTCRMView" => "RTCRM View",
-        "RTPayrollView" => "RTPayroll View",
-        "RTSystemView" => "RTSystem View"
+        "MTARView" => "MT AR View",
+        "MTAPView" => "MT AP View",
+        "MTGLView" => "MT GL View",
+        "MTInventoryView" => "MT Inventory View",
+        "MTMRPView" => "MT MRP View",
+        "MTFundView" => "MT Fund View",
+        "MTCRMView" => "MT CRM View",
+        "MTPayrollView" => "MT Payroll View",
+        "MTSystemView" => "MT System View",
+        "MTReportsView" => "MT Reports View",
+        "RTFinancialView" => "RT Financial View",
+        "RTARView" => "RT AR View",
+        "RTAPView" => "RT AP View",
+        "RTGLView" => "RT GL View",
+        "RTInventoryView" => "RT Inventory View",
+        "RTCRMView" => "RT CRM View",
+        "RTPayrollView" => "RT Payroll View",
+        "RTSystemView" => "RT System View"
     ];
 }
 ?>

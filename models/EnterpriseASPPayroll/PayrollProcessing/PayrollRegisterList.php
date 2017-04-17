@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: PayrollRegisterList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollProcessing\PayrollRegisterList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/PayrollRegisterList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollProcessing\PayrollRegisterList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollProcessing\PayrollRegisterList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/08/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollregister";
@@ -261,20 +291,20 @@ public $columnNames = [
 "PayrollCheckDate" => "Check Date",
 "CheckNumber" => "Check Number",
 "NetPay" => "Net Pay",
-"PaidThrough" => "PaidThrough",
-"SystemDate" => "SystemDate",
-"PreTax" => "PreTax",
-"YTDGross" => "YTDGross",
+"PaidThrough" => "Paid Through",
+"SystemDate" => "System Date",
+"PreTax" => "Pre Tax",
+"YTDGross" => "YTD Gross",
 "Gross" => "Gross",
 "AGI" => "AGI",
 "FICA" => "FICA",
 "FICAER" => "FICAER",
 "FIT" => "FIT",
 "FUTA" => "FUTA",
-"StateTax" => "StateTax",
-"CountyTax" => "CountyTax",
-"CityTax" => "CityTax",
-"FICAMed" => "FICAMed",
+"StateTax" => "State Tax",
+"CountyTax" => "County Tax",
+"CityTax" => "City Tax",
+"FICAMed" => "FICA Med",
 "SUTA" => "SUTA",
 "SIT" => "SIT",
 "SDI" => "SDI",
@@ -285,10 +315,10 @@ public $columnNames = [
 "Voided" => "Voided",
 "Reconciled" => "Reconciled",
 "Printed" => "Printed",
-"RegularHours" => "RegularHours",
-"OvertimeHours" => "OvertimeHours",
-"OvertimeRate" => "OvertimeRate",
-"HourlyRate" => "HourlyRate",
+"RegularHours" => "Regular Hours",
+"OvertimeHours" => "Overtime Hours",
+"OvertimeRate" => "Overtime Rate",
+"HourlyRate" => "Hourly Rate",
 "Amount" => "Amount",
 "Posted" => "Posted"];
 }?>

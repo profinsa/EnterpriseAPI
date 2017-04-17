@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: LedgerPeriodCloseDetail model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\LedgerSetup\LedgerPeriodCloseDetail.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/LedgerPeriodCloseDetail for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\LedgerSetup\LedgerPeriodCloseDetail.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\LedgerSetup\LedgerPeriodCloseDetail.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/07/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
@@ -264,39 +294,39 @@ class gridData extends gridDataSource{
         ]
     ];
     public $columnNames = [
-        "FiscalStartDate" => "FiscalStartDate",
-        "FiscalEndDate" => "FiscalEndDate",
+        "FiscalStartDate" => "Fiscal Start Date",
+        "FiscalEndDate" => "Fiscal End Date",
         "CurrentFiscalYear" => "Current Fiscal Year",
         "CurrentPeriod" => "Current Period",
-        "Period1Date" => "Period1 Date",
-        "Period2Date" => "Period2 Date",
-        "Period3Date" => "Period3 Date",
-        "Period4Date" => "Period4 Date",
-        "Period5Date" => "Period5 Date",
-        "Period6Date" => "Period6 Date",
-        "Period7Date" => "Period7 Date",
-        "Period8Date" => "Period8 Date",
-        "Period9Date" => "Period9 Date",
-        "Period10Date" => "Period10 Date",
-        "Period11Date" => "Period11 Date",
-        "Period12Date" => "Period12 Date",
-        "Period13Date" => "Period13 Date",
-        "Period14Date" => "Period14 Date",
+        "Period1Date" => "Period 1 Date",
+        "Period2Date" => "Period 2 Date",
+        "Period3Date" => "Period 3 Date",
+        "Period4Date" => "Period 4 Date",
+        "Period5Date" => "Period 5 Date",
+        "Period6Date" => "Period 6 Date",
+        "Period7Date" => "Period 7 Date",
+        "Period8Date" => "Period 8 Date",
+        "Period9Date" => "Period 9 Date",
+        "Period10Date" => "Period 10 Date",
+        "Period11Date" => "Period 11 Date",
+        "Period12Date" => "Period 12 Date",
+        "Period13Date" => "Period 13 Date",
+        "Period14Date" => "Period 14 Date",
 
-        "Period1Closed" => "Period1 Closed",
-        "Period2Closed" => "Period2 Closed",
-        "Period3Closed" => "Period3 Closed",
-        "Period4Closed" => "Period4 Closed",
-        "Period5Closed" => "Period5 Closed",
-        "Period6Closed" => "Period6 Closed",
-        "Period7Closed" => "Period7 Closed",
-        "Period8Closed" => "Period8 Closed",
-        "Period9Closed" => "Period9 Closed",
-        "Period10Closed" => "Period10 Closed",
-        "Period11Closed" => "Period11 Closed",
-        "Period12Closed" => "Period12 Closed",
-        "Period13Closed" => "Period13 Closed",
-        "Period14Closed" => "Period14 Closed"
+        "Period1Closed" => "Period 1 Closed",
+        "Period2Closed" => "Period 2 Closed",
+        "Period3Closed" => "Period 3 Closed",
+        "Period4Closed" => "Period 4 Closed",
+        "Period5Closed" => "Period 5 Closed",
+        "Period6Closed" => "Period 6 Closed",
+        "Period7Closed" => "Period 7 Closed",
+        "Period8Closed" => "Period 8 Closed",
+        "Period9Closed" => "Period 9 Closed",
+        "Period10Closed" => "Period 10 Closed",
+        "Period11Closed" => "Period 11 Closed",
+        "Period12Closed" => "Period 12 Closed",
+        "Period13Closed" => "Period 13 Closed",
+        "Period14Closed" => "Period 14 Closed"
     ];
     
     public function ClosePeriod(){

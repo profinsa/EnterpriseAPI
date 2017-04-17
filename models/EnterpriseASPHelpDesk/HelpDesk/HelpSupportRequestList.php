@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: HelpSupportRequestList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPHelpDesk\HelpDesk\HelpSupportRequestList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/HelpSupportRequestList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPHelpDesk\HelpDesk\HelpSupportRequestList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPHelpDesk\HelpDesk\HelpSupportRequestList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/12/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "helpsupportrequest";
@@ -156,22 +186,22 @@ public $columnNames = [
 "ContactId" => "Contact Id",
 "ProductId" => "Product Id",
 "SupportQuestion" => "Question",
-"SupportManager" => "SupportManager",
-"SupportAssigned" => "SupportAssigned",
-"SupportAssignedTo" => "SupportAssignedTo",
-"SupportRequestMethod" => "SupportRequestMethod",
-"SupportStatus" => "SupportStatus",
-"SupportPriority" => "SupportPriority",
-"SupportType" => "SupportType",
-"SupportVersion" => "SupportVersion",
-"SupportDate" => "SupportDate",
-"SupportKeywords" => "SupportKeywords",
-"SupportDescription" => "SupportDescription",
-"SupportScreenShotURL" => "SupportScreenShotURL",
-"SupportResolution" => "SupportResolution",
-"SupportResolutionDate" => "SupportResolutionDate",
-"SupportTimeSpentFixing" => "SupportTimeSpentFixing",
-"SuportNotesPrivate" => "SuportNotesPrivate",
-"SupportApproved" => "SupportApproved",
-"SupportApprovedBy" => "SupportApprovedBy"];
+"SupportManager" => "Support Manager",
+"SupportAssigned" => "Support Assigned",
+"SupportAssignedTo" => "Support Assigned To",
+"SupportRequestMethod" => "Support Request Method",
+"SupportStatus" => "Support Status",
+"SupportPriority" => "Support Priority",
+"SupportType" => "Support Type",
+"SupportVersion" => "Support Version",
+"SupportDate" => "Support Date",
+"SupportKeywords" => "Support Keywords",
+"SupportDescription" => "Support Description",
+"SupportScreenShotURL" => "Support Screen Shot URL",
+"SupportResolution" => "Support Resolution",
+"SupportResolutionDate" => "Support Resolution Date",
+"SupportTimeSpentFixing" => "Support Time Spent Fixing",
+"SuportNotesPrivate" => "Suport Notes Private",
+"SupportApproved" => "Support Approved",
+"SupportApprovedBy" => "Support Approved By"];
 }?>

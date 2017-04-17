@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: ProjectsList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Projects\ProjectsList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/ProjectsList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Projects\ProjectsList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Projects\ProjectsList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "projects";
@@ -142,15 +172,15 @@ public $columnNames = [
 "EmployeeID" => "Employee ID",
 "ProjectStartDate" => "Start Date",
 "ProjectOpen" => "Open",
-"ProjectDescription" => "ProjectDescription",
-"ProjectCompleteDate" => "ProjectCompleteDate",
-"CurrencyID" => "CurrencyID",
-"CurrencyExchangeRate" => "CurrencyExchangeRate",
-"ProjectEstRevenue" => "ProjectEstRevenue",
-"ProjectActualRevenue" => "ProjectActualRevenue",
-"ProjectEstCost" => "ProjectEstCost",
-"ProjectActualCost" => "ProjectActualCost",
-"ProjectNotes" => "ProjectNotes",
-"GLSalesAccount" => "GLSalesAccount",
+"ProjectDescription" => "Project Description",
+"ProjectCompleteDate" => "Project Complete Date",
+"CurrencyID" => "Currency ID",
+"CurrencyExchangeRate" => "Currency Exchange Rate",
+"ProjectEstRevenue" => "Project Est Revenue",
+"ProjectActualRevenue" => "Project Actual Revenue",
+"ProjectEstCost" => "Project Est Cost",
+"ProjectActualCost" => "Project Actual Cost",
+"ProjectNotes" => "Project Notes",
+"GLSalesAccount" => "GL Sales Account",
 "Memorize" => "Memorize"];
 }?>

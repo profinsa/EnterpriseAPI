@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: InventoryWorkOrderHeaderClosedList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\WorkOrders\InventoryWorkOrderHeaderClosedList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/InventoryWorkOrderHeaderClosedList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\WorkOrders\InventoryWorkOrderHeaderClosedList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\WorkOrders\InventoryWorkOrderHeaderClosedList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "workorderheader";
@@ -265,37 +295,37 @@ public $columnNames = [
 "WorkOrderCompletedDate" => "Completed Date",
 "WorkOrderReference" => "Reference",
 "WorkOrderTotalCost" => "Total Cost",
-"WorkOrderExpectedDate" => "WorkOrderExpectedDate",
-"WorkOrderCompleted" => "WorkOrderCompleted",
-"WorkOrderCancelDate" => "WorkOrderCancelDate",
-"WorkOrderReferenceDate" => "WorkOrderReferenceDate",
-"WorkOrderRequestedBy" => "WorkOrderRequestedBy",
-"WorkOrderAssignedTo" => "WorkOrderAssignedTo",
-"WorkOrderApprovedBy" => "WorkOrderApprovedBy",
-"WorkOrderApprovedByDate" => "WorkOrderApprovedByDate",
-"WorkOrderForCompanyID" => "WorkOrderForCompanyID",
-"WorkOrderForDivisionID" => "WorkOrderForDivisionID",
-"WorkOrderForDepartmentID" => "WorkOrderForDepartmentID",
-"WorkOrderReason" => "WorkOrderReason",
-"WorkOrderDescription" => "WorkOrderDescription",
-"WorkOrderStatus" => "WorkOrderStatus",
-"WorkOrderPriority" => "WorkOrderPriority",
-"WorkOrderInProgress" => "WorkOrderInProgress",
-"WorkOrderProgressNotes" => "WorkOrderProgressNotes",
-"WorkOrderMemo1" => "WorkOrderMemo1",
-"WorkOrderMemo2" => "WorkOrderMemo2",
-"WorkOrderMemo3" => "WorkOrderMemo3",
-"WorkOrderMemo4" => "WorkOrderMemo4",
-"WorkOrderMemo5" => "WorkOrderMemo5",
-"WorkOrderMemo6" => "WorkOrderMemo6",
-"WorkOrderMemo7" => "WorkOrderMemo7",
-"WorkOrderMemo8" => "WorkOrderMemo8",
-"WorkOrderMemo9" => "WorkOrderMemo9",
+"WorkOrderExpectedDate" => "Work Order Expected Date",
+"WorkOrderCompleted" => "Work Order Completed",
+"WorkOrderCancelDate" => "Work Order Cancel Date",
+"WorkOrderReferenceDate" => "Work Order Reference Date",
+"WorkOrderRequestedBy" => "Work Order Requested By",
+"WorkOrderAssignedTo" => "Work Order Assigned To",
+"WorkOrderApprovedBy" => "Work Order Approved By",
+"WorkOrderApprovedByDate" => "Work Order Approved By Date",
+"WorkOrderForCompanyID" => "Work Order For Company ID",
+"WorkOrderForDivisionID" => "Work Order For Division ID",
+"WorkOrderForDepartmentID" => "Work Order For Department ID",
+"WorkOrderReason" => "Work Order Reason",
+"WorkOrderDescription" => "Work Order Description",
+"WorkOrderStatus" => "Work Order Status",
+"WorkOrderPriority" => "Work Order Priority",
+"WorkOrderInProgress" => "Work Order In Progress",
+"WorkOrderProgressNotes" => "Work Order Progress Notes",
+"WorkOrderMemo1" => "Work Order Memo 1",
+"WorkOrderMemo2" => "Work Order Memo 2",
+"WorkOrderMemo3" => "Work Order Memo 3",
+"WorkOrderMemo4" => "Work Order Memo 4",
+"WorkOrderMemo5" => "Work Order Memo 5",
+"WorkOrderMemo6" => "Work Order Memo 6",
+"WorkOrderMemo7" => "Work Order Memo 7",
+"WorkOrderMemo8" => "Work Order Memo 8",
+"WorkOrderMemo9" => "Work Order Memo 9",
 "Signature" => "Signature",
-"SignaturePassword" => "SignaturePassword",
-"SupervisorSignature" => "SupervisorSignature",
-"SupervisorSignaturePassword" => "SupervisorSignaturePassword",
-"ManagerSignature" => "ManagerSignature",
-"ManagerSignaturePassword" => "ManagerSignaturePassword",
+"SignaturePassword" => "Signature Password",
+"SupervisorSignature" => "Supervisor Signature",
+"SupervisorSignaturePassword" => "Supervisor Signature Password",
+"ManagerSignature" => "Manager Signature",
+"ManagerSignaturePassword" => "Manager Signature Password",
 "Memorize" => "Memorize"];
 }?>

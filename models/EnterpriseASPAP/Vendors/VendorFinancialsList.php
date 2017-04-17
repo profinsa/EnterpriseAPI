@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: VendorFinancialsList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorFinancialsList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/VendorFinancialsList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorFinancialsList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorFinancialsList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/13/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "vendorfinancials";
@@ -236,35 +266,35 @@ public $columnNames = [
 "PurchaseYTD" => "Purchase YTD",
 "PaymentsYTD" => "Payments YTD",
 "LastPurchaseDate" => "Last Purchase Date",
-"LateDays" => "LateDays",
-"AverageDaytoPay" => "AverageDaytoPay",
-"LastPaymentDate" => "LastPaymentDate",
-"LastPaymentAmount" => "LastPaymentAmount",
-"HighestCredit" => "HighestCredit",
-"HighestBalance" => "HighestBalance",
-"AvailableCredit" => "AvailableCredit",
-"PromptPerc" => "PromptPerc",
-"AdvertisingDollars" => "AdvertisingDollars",
-"TotalAP" => "TotalAP",
-"Under30" => "Under30",
-"Over30" => "Over30",
-"Over60" => "Over60",
-"Over90" => "Over90",
-"Over120" => "Over120",
-"Over150" => "Over150",
-"Over180" => "Over180",
-"PurchaseLastYear" => "PurchaseLastYear",
-"PurchaseLifetime" => "PurchaseLifetime",
-"PaymentsLastYear" => "PaymentsLastYear",
-"PaymentsLifetime" => "PaymentsLifetime",
-"DebitMemos" => "DebitMemos",
-"LastDebitMemoDate" => "LastDebitMemoDate",
-"DebitMemosYTD" => "DebitMemosYTD",
-"DebitMemosLastYear" => "DebitMemosLastYear",
-"DebitMemosLifetime" => "DebitMemosLifetime",
-"VendorReturns" => "VendorReturns",
-"LastReturnDate" => "LastReturnDate",
-"ReturnsYTD" => "ReturnsYTD",
-"ReturnsLastYear" => "ReturnsLastYear",
-"ReturnsLifetime" => "ReturnsLifetime"];
+"LateDays" => "Late Days",
+"AverageDaytoPay" => "Average Day to Pay",
+"LastPaymentDate" => "Last Payment Date",
+"LastPaymentAmount" => "Last Payment Amount",
+"HighestCredit" => "Highest Credit",
+"HighestBalance" => "Highest Balance",
+"AvailableCredit" => "Available Credit",
+"PromptPerc" => "Prompt Perc",
+"AdvertisingDollars" => "Advertising Dollars",
+"TotalAP" => "Total AP",
+"Under30" => "Under 30",
+"Over30" => "Over 30",
+"Over60" => "Over 60",
+"Over90" => "Over 90",
+"Over120" => "Over 120",
+"Over150" => "Over 150",
+"Over180" => "Over 180",
+"PurchaseLastYear" => "Purchase Last Year",
+"PurchaseLifetime" => "Purchase Lifetime",
+"PaymentsLastYear" => "Payments Last Year",
+"PaymentsLifetime" => "Payments Lifetime",
+"DebitMemos" => "Debit Memos",
+"LastDebitMemoDate" => "Last Debit Memo Date",
+"DebitMemosYTD" => "Debit Memos YTD",
+"DebitMemosLastYear" => "Debit Memos Last Year",
+"DebitMemosLifetime" => "Debit Memos Lifetime",
+"VendorReturns" => "Vendor Returns",
+"LastReturnDate" => "Last Return Date",
+"ReturnsYTD" => "Returns YTD",
+"ReturnsLastYear" => "Returns Last Year",
+"ReturnsLifetime" => "Returns Lifetime"];
 }?>

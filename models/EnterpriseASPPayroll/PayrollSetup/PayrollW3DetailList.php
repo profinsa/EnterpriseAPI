@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: PayrollW3DetailList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollSetup\PayrollW3DetailList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/PayrollW3DetailList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollSetup\PayrollW3DetailList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollSetup\PayrollW3DetailList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/08/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollw3detail";
@@ -156,24 +186,24 @@ public $columnNames = [
 "TotalNoStatements" => "Total No Statements",
 "EstablishmentNo" => "Establishment No",
 "EmployerIdentifyicationNumber" => "Employer Identifyication Number",
-"OtherEmployerIdentifyicationNumber" => "OtherEmployerIdentifyicationNumber",
-"Box1" => "Box1",
-"Box2" => "Box2",
-"Box3" => "Box3",
-"Box4" => "Box4",
-"Box5" => "Box5",
-"Box6" => "Box6",
-"Box7" => "Box7",
-"Box8" => "Box8",
-"Box9" => "Box9",
-"Box10" => "Box10",
-"Box11" => "Box11",
-"Box12" => "Box12",
-"Box15" => "Box15",
+"OtherEmployerIdentifyicationNumber" => "Other Employer Identifyication Number",
+"Box1" => "Box 1",
+"Box2" => "Box 2",
+"Box3" => "Box 3",
+"Box4" => "Box 4",
+"Box5" => "Box 5",
+"Box6" => "Box 6",
+"Box7" => "Box 7",
+"Box8" => "Box 8",
+"Box9" => "Box 9",
+"Box10" => "Box 10",
+"Box11" => "Box 11",
+"Box12" => "Box 12",
+"Box15" => "Box 15",
 "_941" => "_941",
 "Military" => "Military",
 "_943" => "_943",
 "CT1" => "CT1",
 "Hshld" => "Hshld",
-"MedicareGovtEmp" => "MedicareGovtEmp"];
+"MedicareGovtEmp" => "Medicare Govt Emp"];
 }?>

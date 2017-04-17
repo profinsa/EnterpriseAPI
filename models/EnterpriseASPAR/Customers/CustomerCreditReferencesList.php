@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: CustomerCreditReferencesList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerCreditReferencesList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/CustomerCreditReferencesList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerCreditReferencesList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerCreditReferencesList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "customercreditreferences";
@@ -139,16 +169,16 @@ public $columnNames = [
 "ReferenceDate" => "Reference Date",
 "ReferenceSoldSince" => "Reference Sold Since",
 "ReferenceHighCredit" => "Reference High Credit",
-"ReferenceFactor" => "ReferenceFactor",
-"ReferenceLastSale" => "ReferenceLastSale",
-"ReferenceCurrentBalance" => "ReferenceCurrentBalance",
-"ReferencePastDue" => "ReferencePastDue",
-"ReferencePromptPerc" => "ReferencePromptPerc",
-"ReferenceLateDays" => "ReferenceLateDays",
-"ReferenceFutures" => "ReferenceFutures",
-"ReferenceComments" => "ReferenceComments",
+"ReferenceFactor" => "Reference Factor",
+"ReferenceLastSale" => "Reference Last Sale",
+"ReferenceCurrentBalance" => "Reference Current Balance",
+"ReferencePastDue" => "Reference Past Due",
+"ReferencePromptPerc" => "Reference Prompt Perc",
+"ReferenceLateDays" => "Reference Late Days",
+"ReferenceFutures" => "Reference Futures",
+"ReferenceComments" => "Reference Comments",
 "Approved" => "Approved",
-"ApprovedBy" => "ApprovedBy",
-"ApprovedDate" => "ApprovedDate",
-"EnteredBy" => "EnteredBy"];
+"ApprovedBy" => "Approved By",
+"ApprovedDate" => "Approved Date",
+"EnteredBy" => "Entered By"];
 }?>

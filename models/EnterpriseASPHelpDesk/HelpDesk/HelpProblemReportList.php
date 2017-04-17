@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: HelpProblemReportList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPHelpDesk\HelpDesk\HelpProblemReportList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/HelpProblemReportList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPHelpDesk\HelpDesk\HelpProblemReportList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPHelpDesk\HelpDesk\HelpProblemReportList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/12/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "helpproblemreport";
@@ -166,24 +196,24 @@ public $columnNames = [
 "ProductId" => "Product Id",
 "ProblemType" => "Type",
 "ProblemShortDescription" => "Short Description",
-"ProblemManager" => "ProblemManager",
-"ProblemAssigned" => "ProblemAssigned",
-"ProblemAssignedTo" => "ProblemAssignedTo",
-"ProblemRequestMethod" => "ProblemRequestMethod",
-"ProblemStatus" => "ProblemStatus",
-"ProblemPriority" => "ProblemPriority",
-"ProblemVersion" => "ProblemVersion",
-"ProblemDate" => "ProblemDate",
-"ProblemKeywords" => "ProblemKeywords",
-"ProblemLongDescription" => "ProblemLongDescription",
-"ProblemExactErrorMessage" => "ProblemExactErrorMessage",
-"ProblemStepsToReproduce" => "ProblemStepsToReproduce",
-"ProblemScreenShotURL" => "ProblemScreenShotURL",
-"ProblemFixed" => "ProblemFixed",
-"ProblemFixDate" => "ProblemFixDate",
-"ProblemFix" => "ProblemFix",
-"ProblemTimeSpentFixing" => "ProblemTimeSpentFixing",
-"ProblemNotesPrivate" => "ProblemNotesPrivate",
-"ProblemApproved" => "ProblemApproved",
-"ProblemApprovedBy" => "ProblemApprovedBy"];
+"ProblemManager" => "Problem Manager",
+"ProblemAssigned" => "Problem Assigned",
+"ProblemAssignedTo" => "Problem Assigned To",
+"ProblemRequestMethod" => "Problem Request Method",
+"ProblemStatus" => "Problem Status",
+"ProblemPriority" => "Problem Priority",
+"ProblemVersion" => "Problem Version",
+"ProblemDate" => "Problem Date",
+"ProblemKeywords" => "Problem Keywords",
+"ProblemLongDescription" => "Problem Long Description",
+"ProblemExactErrorMessage" => "Problem Exact Error Message",
+"ProblemStepsToReproduce" => "Problem Steps To Reproduce",
+"ProblemScreenShotURL" => "Problem Screen Shot URL",
+"ProblemFixed" => "Problem Fixed",
+"ProblemFixDate" => "Problem Fix Date",
+"ProblemFix" => "Problem Fix",
+"ProblemTimeSpentFixing" => "Problem Time Spent Fixing",
+"ProblemNotesPrivate" => "Problem Notes Private",
+"ProblemApproved" => "Problem Approved",
+"ProblemApprovedBy" => "Problem Approved By"];
 }?>

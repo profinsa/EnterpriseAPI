@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: PayrollW2DetailList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollSetup\PayrollW2DetailList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/PayrollW2DetailList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollSetup\PayrollW2DetailList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\PayrollSetup\PayrollW2DetailList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/08/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "payrollw2detail";
@@ -236,38 +266,38 @@ public $columnNames = [
 "W2ControlNumber" => "W2 Control Number",
 "EmployeeName" => "Employee Name",
 "EmployeeSSNumber" => "Employee SS Number",
-"EmployeeAddress1" => "EmployeeAddress1",
-"EmployeeAddress2" => "EmployeeAddress2",
-"EmployeeCity" => "EmployeeCity",
-"EmployeeState" => "EmployeeState",
-"EmployeeZip" => "EmployeeZip",
-"EmployeeCountry" => "EmployeeCountry",
-"Box1" => "Box1",
-"Box2" => "Box2",
-"Box3" => "Box3",
-"Box4" => "Box4",
-"Box5" => "Box5",
-"Box6" => "Box6",
-"Box7" => "Box7",
-"Box8" => "Box8",
-"Box9" => "Box9",
-"Box10" => "Box10",
-"Box11" => "Box11",
-"Box12" => "Box12",
-"Box13" => "Box13",
-"Box13b" => "Box13b",
-"Box14" => "Box14",
-"Box15" => "Box15",
-"Box15Check1" => "Box15Check1",
-"Box15Check2" => "Box15Check2",
-"Box15Check3" => "Box15Check3",
-"Box15Check4" => "Box15Check4",
-"Box15Check5" => "Box15Check5",
-"Box15Check6" => "Box15Check6",
-"Box15Check7" => "Box15Check7",
-"Box17" => "Box17",
-"Box18" => "Box18",
-"Box19" => "Box19",
-"Box20" => "Box20",
-"Box21" => "Box21"];
+"EmployeeAddress1" => "Employee Address 1",
+"EmployeeAddress2" => "Employee Address 2",
+"EmployeeCity" => "Employee City",
+"EmployeeState" => "Employee State",
+"EmployeeZip" => "Employee Zip",
+"EmployeeCountry" => "Employee Country",
+"Box1" => "Box 1",
+"Box2" => "Box 2",
+"Box3" => "Box 3",
+"Box4" => "Box 4",
+"Box5" => "Box 5",
+"Box6" => "Box 6",
+"Box7" => "Box 7",
+"Box8" => "Box 8",
+"Box9" => "Box 9",
+"Box10" => "Box 10",
+"Box11" => "Box 11",
+"Box12" => "Box 12",
+"Box13" => "Box 13",
+"Box13b" => "Box 13b",
+"Box14" => "Box 14",
+"Box15" => "Box 15",
+"Box15Check1" => "Box 15 Check 1",
+"Box15Check2" => "Box 15 Check 2",
+"Box15Check3" => "Box 15 Check 3",
+"Box15Check4" => "Box 15 Check 4",
+"Box15Check5" => "Box 15 Check 5",
+"Box15Check6" => "Box 15 Check 6",
+"Box15Check7" => "Box 15 Check 7",
+"Box17" => "Box 17",
+"Box18" => "Box 18",
+"Box19" => "Box 19",
+"Box20" => "Box 20",
+"Box21" => "Box 21"];
 }?>

@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: ExpenseReportHeaderHistoryList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\ExpenseReports\ExpenseReportHeaderHistoryList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/ExpenseReportHeaderHistoryList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\ExpenseReports\ExpenseReportHeaderHistoryList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\ExpenseReports\ExpenseReportHeaderHistoryList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/13/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "expensereportheaderhistory";
@@ -214,27 +244,27 @@ public $columnNames = [
 "ExpenseReportTotal" => "Total",
 "ExpenseReportDueEmployee" => "Due Employee",
 "ExpenseReportPaymentID" => "Payment ID",
-"ExpenseReportDescription" => "ExpenseReportDescription",
-"ExpenseReportAdvances" => "ExpenseReportAdvances",
-"ExpenseReportPaid" => "ExpenseReportPaid",
-"ExpenseReportPaidDate" => "ExpenseReportPaidDate",
-"ExpenseReportApproved" => "ExpenseReportApproved",
-"ExpenseReportApprovedBy" => "ExpenseReportApprovedBy",
-"ExpenseReportApprovedDate" => "ExpenseReportApprovedDate",
-"ExpenseReportMemo1" => "ExpenseReportMemo1",
-"ExpenseReportMemo2" => "ExpenseReportMemo2",
-"ExpenseReportMemo3" => "ExpenseReportMemo3",
-"ExpenseReportMemo4" => "ExpenseReportMemo4",
-"ExpenseReportMemo5" => "ExpenseReportMemo5",
-"ExpenseReportMemo6" => "ExpenseReportMemo6",
-"ExpenseReportMemo7" => "ExpenseReportMemo7",
-"ExpenseReportMemo8" => "ExpenseReportMemo8",
-"ExpenseReportMemo9" => "ExpenseReportMemo9",
-"ExpenseReportMemo10" => "ExpenseReportMemo10",
+"ExpenseReportDescription" => "Expense Report Description",
+"ExpenseReportAdvances" => "Expense Report Advances",
+"ExpenseReportPaid" => "Expense Report Paid",
+"ExpenseReportPaidDate" => "Expense Report Paid Date",
+"ExpenseReportApproved" => "Expense Report Approved",
+"ExpenseReportApprovedBy" => "Expense Report Approved By",
+"ExpenseReportApprovedDate" => "Expense Report Approved Date",
+"ExpenseReportMemo1" => "Expense Report Memo 1",
+"ExpenseReportMemo2" => "Expense Report Memo 2",
+"ExpenseReportMemo3" => "Expense Report Memo 3",
+"ExpenseReportMemo4" => "Expense Report Memo 4",
+"ExpenseReportMemo5" => "Expense Report Memo 5",
+"ExpenseReportMemo6" => "Expense Report Memo 6",
+"ExpenseReportMemo7" => "Expense Report Memo 7",
+"ExpenseReportMemo8" => "Expense Report Memo 8",
+"ExpenseReportMemo9" => "Expense Report Memo 9",
+"ExpenseReportMemo10" => "Expense Report Memo 10",
 "Signature" => "Signature",
-"SignaturePassword" => "SignaturePassword",
-"SupervisorSignature" => "SupervisorSignature",
-"SupervisorPassword" => "SupervisorPassword",
-"ManagerSignature" => "ManagerSignature",
-"ManagerPassword" => "ManagerPassword"];
+"SignaturePassword" => "Signature Password",
+"SupervisorSignature" => "Supervisor Signature",
+"SupervisorPassword" => "Supervisor Password",
+"ManagerSignature" => "Manager Signature",
+"ManagerPassword" => "Manager Password"];
 }?>

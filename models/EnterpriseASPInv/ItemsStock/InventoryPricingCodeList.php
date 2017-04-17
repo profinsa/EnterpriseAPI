@@ -1,4 +1,34 @@
 <?php
+
+/*
+Name of Page: InventoryPricingCodeList model
+ 
+Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryPricingCodeList.php It provides data from database and default values, column names and categories
+ 
+Date created: 02/16/2017  Kenna Fetterman
+ 
+Use: this model used by views/InventoryPricingCodeList for:
+- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+- for loading data from tables, updating, inserting and deleting
+ 
+Input parameters:
+$db: database instance
+methods have their own parameters
+ 
+Output parameters:
+- dictionaries as public properties
+- methods have their own output
+ 
+Called from:
+created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryPricingCodeList.php
+used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryPricingCodeList.php
+ 
+Calls:
+MySql Database
+ 
+Last Modified: 04/09/2017
+Last Modified by: Kenna Fetterman
+*/
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "inventorypricingcode";
@@ -130,14 +160,14 @@ public $columnNames = [
 "SalesPrice" => "Sales Price",
 "SaleStartDate" => "Sale Start Date",
 "SaleEndDate" => "Sale End Date",
-"CurrencyID" => "CurrencyID",
-"CurrencyExchangeRate" => "CurrencyExchangeRate",
+"CurrencyID" => "Currency ID",
+"CurrencyExchangeRate" => "Currency Exchange Rate",
 "MSRP" => "MSRP",
-"HotItem" => "HotItem",
-"FeaturedItem" => "FeaturedItem",
-"SaleItem" => "SaleItem",
+"HotItem" => "Hot Item",
+"FeaturedItem" => "Featured Item",
+"SaleItem" => "Sale Item",
 "Approved" => "Approved",
-"ApprovedBy" => "ApprovedBy",
-"ApprovedDate" => "ApprovedDate",
-"EnteredBy" => "EnteredBy"];
+"ApprovedBy" => "Approved By",
+"ApprovedDate" => "Approved Date",
+"EnteredBy" => "Entered By"];
 }?>
