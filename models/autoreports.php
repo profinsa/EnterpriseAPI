@@ -76,6 +76,7 @@ class autoreportsData{
         $params = $this->getParameters();
         $optional = "";
         $paramsCount = count($params);
+
         if($paramsCount > 3){
             $pcount = 0;
             array_splice($params, 0, 3);
@@ -125,6 +126,7 @@ class autoreportsData{
         $params = $this->getParameters();
         $optional = "";
         $paramsCount = count($params);
+
         if($paramsCount > 3){
             $pcount = 0;
             array_splice($params, 0, 3);

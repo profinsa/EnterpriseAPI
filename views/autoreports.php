@@ -37,6 +37,8 @@
 
     if(!count($params) || key_exists($params[0]->PARAMETER_NAME, $_GET))
 	$columns = $data->getColumns();
+    else
+	$columns = false;
 
     ?>
     
@@ -85,13 +87,13 @@
 		 if(filled == plength){
 		     window.location = window.location.href + "&" + $.param(params);
 		 }
-//		     console.log(JSON.stringify(params, null, 3));
+		 //		     console.log(JSON.stringify(params, null, 3));
 		 console.log(filled, plength);
 	     }
 	    </script>
 	<?php endif; ?>
 	<?php if(!$columns): ?>
-	    <?php  echo "<h2>" . $translation->translateLabel("No data for report") . "</h2>";?>
+	    <?php  echo "<h2 style=\"margin-top:50px; text-align:center\">" . $translation->translateLabel("No data for the report") . "</h2>";?>
 	<?php  else:?>
 	    <h3 class="pull-left col-md-12" style="margin-top:20px;">
 		<?php echo $translation->translateLabel("Report Columns"); ?>
