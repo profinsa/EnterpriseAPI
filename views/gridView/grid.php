@@ -68,15 +68,44 @@
 			}
 			$keyString = substr($keyString, 0, -2);
 			echo "<tr>";
+			//disabling or enabling selecting feature in grid(used by grid actions, for example in General Ledger-> Ledger -> Transactions Closed for selecting transactions and click on Copy Selected to History)
+			//this feature enabled in data model, if model has features propery
 			if(property_exists($data, "features") && in_array("selecting", $data->features))
 			    echo "<td><input type=\"checkbox\" onchange=\"gridSelectItem(event, '" . $current_row . "')\"></td>";
 			echo "<td>";
+			/*
+			   this column contains row actions like edit, remove, print etc.
+			   Each action may be any html code. For now usually we have two type actions:
+			   - action link
+			   just link, no javascript login. Example - edit action is just link to edit page. Link contains $keyString for accurate pointing to edited item
+			   - javascript action
+			   some code react on click and does job. Example - delete button. In end of this file we have
+			   ngridDeleteItem function which called on click and just does XHR delete request and reload
+			   page content after receiving result
+			 */
 			if($security->can("select"))
 			    echo "<a href=\"index.php#/?page=" . $app->page . "&action=" . $scope->action . "&mode=view&category=Main&item=" . $keyString ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+			/*delete action, call javascript function with keyString as parameter then function call XHR 
+			   delete request on server
+			   It is showed only if not disabled by modes property of data model and user has delete permission
+			 */
 			if(!property_exists($data, "modes") || in_array("delete", $data->modes)){
 			    if($security->can("delete"))
 				echo "<span onclick=\"gridDeleteItem('" . $keyString . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
 			}
+			/*
+			   Each grid page(each screen) can have own row actions.
+			   Like actions above it is just a html. It can have javascript or not
+			   $PartsPath is path part what depends of current screen on which the user is located
+			   For example, we want to add some actions to Account Receivable -> Order Processing -> View Orders
+			   then we need create file gridRowActions on that path: resources/view/EnterpriseASPAR/OrderProcessing/OrderHeaderList/gridRowActions.php and add to it some html
+			 */
+			//including custom row actions
+			if(file_exists(__DIR__ . "/../" . $PartsPath . "gridRowActions.php"))
+			    require __DIR__ . "/../" . $PartsPath . "gridRowActions.php";
+
+			echo "</td>";
+
 			echo "</td>";
 			foreach($row as $key=>$value)
 			    if(key_exists($key, $data->gridFields)){

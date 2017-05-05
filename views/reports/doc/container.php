@@ -1,20 +1,56 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title><?php echo $app->title; ?></title>
- 	<?php
-	if(isset($header))
-	    require __DIR__ . "/../../header.php";
-	?>
-	<meta name="csrf-token" content="<?php echo  csrf_token();?>">
-	<meta content="utf-8" http-equiv="encoding">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
-	<meta name="mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="author" content="">
+	<link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
+	<title><?php echo $app->title; ?></title>
+	<!-- Bootstrap Core CSS -->
+	<link href="dependencies/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- jQuery -->
+	<script src="dependencies/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="dependencies/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+	<title><?php echo $app->title; ?></title>
+	<style>
+	 .invoice-table-ship {
+	     margin-top: 20px; 
+	     border:2px solid black;
+	 }
+
+	 .invoice-table-ship tr{
+	     border:2px solid black;
+	 }
+
+	 .invoice-table-ship .row-header{
+	     background-color:black;
+	     color:white;
+	 }
+
+	 .invoice-table-ship td {
+	     border:2px solid black;
+	     font-weight : bold;
+	 }
+
+	 .invoice-table-detail .row-header{
+	     background-color:black;
+	     color:white;
+	     style:height:10px;
+	 }
+
+	 .invoice-table-summary td {
+	     font-weight : 600;
+	     padding-left : 5px;
+	 }
+	 .invoice-table-summary .summ {
+	     text-align : right;
+	 }
+	</style>
     </head>
-    <body style="padding-top:10px; font-family: Arial;">
+    <body style="padding-left:2px; padding-top:10px; font-family: Arial;">
 	<?php require __DIR__ . "/../../footer.php"; ?>
 	<div id="content" class="container-fluid" style="background: #ffffff; padding-bottom:10px;">
 	    <?php
