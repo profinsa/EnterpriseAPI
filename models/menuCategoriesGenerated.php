@@ -301,7 +301,7 @@ $menuCategories["Reports"] = [
     ]
     ],
         [
-        "id" => "Reports/Financials/ExcelWorksheets",
+        "id" => "Reports/Financials/Worksheets",
         "full" => $translation->translateLabel('Excel Worksheets'),
         "href"=> "reports/Worksheets/Worksheet",
         "short" => "Ex"
@@ -1643,12 +1643,6 @@ $menuCategories["AccountsReceivable"] = [
         "short" => "Vi"
         ],
         [
-        "id" => "AccountsReceivable/OrderScreens/StoreInvoices",
-        "full" => $translation->translateLabel('Store Invoices'),
-        "href"=> "EnterpriseASPAR/OrderProcessing/InvoiceHeaderStoreList",
-        "short" => "St"
-        ],
-        [
         "id" => "AccountsReceivable/OrderScreens/ViewQuotes",
         "full" => $translation->translateLabel('View Quotes'),
         "href"=> "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
@@ -1733,12 +1727,6 @@ $menuCategories["AccountsReceivable"] = [
         "short" => "Se"
         ],
         [
-        "id" => "AccountsReceivable/ServiceScreens/StoreServiceOrders",
-        "full" => $translation->translateLabel('Store Service Orders'),
-        "href"=> "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderStoreList",
-        "short" => "St"
-        ],
-        [
         "id" => "AccountsReceivable/ServiceScreens/FulfillServiceOrders",
         "full" => $translation->translateLabel('Fulfill Service Orders'),
         "href"=> "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderPickList",
@@ -1774,12 +1762,6 @@ $menuCategories["AccountsReceivable"] = [
         "href"=> "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderHistoryList",
         "short" => "Se"
         ],
-        [
-        "id" => "AccountsReceivable/ServiceScreens/StoreServiceInvoices",
-        "full" => $translation->translateLabel('Store Service Invoices'),
-        "href"=> "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderStoreList",
-        "short" => "St"
-        ]
     ]
     ],
     [
@@ -1827,12 +1809,6 @@ $menuCategories["AccountsReceivable"] = [
         "full" => $translation->translateLabel('View Credit Memo History'),
         "href"=> "EnterpriseASPAR/CreditMemos/CreditMemoHeaderHistoryList",
         "short" => "Vi"
-        ],
-        [
-        "id" => "AccountsReceivable/CreditMemos/StoreCreditMemos",
-        "full" => $translation->translateLabel('Store Credit Memos'),
-        "href"=> "EnterpriseASPAR/CreditMemos/CreditMemoHeaderStoreList",
-        "short" => "St"
         ],
         [
         "id" => "AccountsReceivable/CreditMemos/IssuePaymentsforCreditMemos",
@@ -1901,12 +1877,6 @@ $menuCategories["AccountsReceivable"] = [
         "short" => "Vi"
         ],
         [
-        "id" => "AccountsReceivable/RMAScreens/StoreRMAs",
-        "full" => $translation->translateLabel('Store RMA\'s'),
-        "href"=> "EnterpriseASPAR/RMA/RMAHeaderStoreList",
-        "short" => "St"
-        ],
-        [
         "id" => "AccountsReceivable/RMAScreens/ApproveRMA",
         "full" => $translation->translateLabel('Approve RMA'),
         "href"=> "EnterpriseASPAR/RMA/RMAHeaderApproveList",
@@ -1971,12 +1941,6 @@ $menuCategories["AccountsReceivable"] = [
         "full" => $translation->translateLabel('View Cash Receipts History'),
         "href"=> "EnterpriseASPAR/CashReceipts/ReceiptsHeaderHistoryList",
         "short" => "Vi"
-        ],
-        [
-        "id" => "AccountsReceivable/CashReceiptsScreens/StoreCashReceipts",
-        "full" => $translation->translateLabel('Store Cash Receipts'),
-        "href"=> "EnterpriseASPAR/CashReceipts/ReceiptsHeaderStoreList",
-        "short" => "St"
         ],
         [
         "id" => "AccountsReceivable/CashReceiptsScreens/ProcessCashReceipts",
@@ -2153,12 +2117,6 @@ $menuCategories["AccountsPayable"] = [
         "short" => "Vi"
         ],
         [
-        "id" => "AccountsPayable/PurchaseScreens/StorePurchases",
-        "full" => $translation->translateLabel('Store Purchases'),
-        "href"=> "EnterpriseASPAP/Purchases/PurchaseHeaderStoreList",
-        "short" => "St"
-        ],
-        [
         "id" => "AccountsPayable/PurchaseScreens/ApprovePurchases",
         "full" => $translation->translateLabel('Approve Purchases'),
         "href"=> "EnterpriseASPAP/Purchases/PurchaseHeaderApproveList",
@@ -2294,12 +2252,6 @@ $menuCategories["AccountsPayable"] = [
         "short" => "Vi"
         ],
         [
-        "id" => "AccountsPayable/VoucherScreens/StoreVocuhers",
-        "full" => $translation->translateLabel('Store Vocuhers'),
-        "href"=> "EnterpriseASPAP/Payments/PaymentsHeaderStoreList",
-        "short" => "St"
-        ],
-        [
         "id" => "AccountsPayable/VoucherScreens/ApproveVouchers",
         "full" => $translation->translateLabel('Approve Vouchers'),
         "href"=> "EnterpriseASPAP/Payments/PaymentsHeaderApproveList",
@@ -2336,12 +2288,6 @@ $menuCategories["AccountsPayable"] = [
         "id" => "AccountsPayable/DebitMemos/ViewClosedDebitMemo",
         "full" => $translation->translateLabel('View Closed Debit Memo'),
         "href"=> "EnterpriseASPAP/DebitMemos/DebitMemoHeaderClosedList",
-        "short" => "Vi"
-        ],
-        [
-        "id" => "AccountsPayable/DebitMemos/ViewStoreDebitMemo",
-        "full" => $translation->translateLabel('View Store Debit Memo'),
-        "href"=> "EnterpriseASPAP/DebitMemos/DebitMemoHeaderStoreList",
         "short" => "Vi"
         ],
         [
@@ -2441,12 +2387,6 @@ $menuCategories["AccountsPayable"] = [
         "short" => "Vi"
         ],
         [
-        "id" => "AccountsPayable/ReturntoVendorScreens/ViewStoreReturns",
-        "full" => $translation->translateLabel('View Store Returns'),
-        "href"=> "EnterpriseASPAP/ReturnToVendor/ReturnHeaderStoreList",
-        "short" => "Vi"
-        ],
-        [
         "id" => "AccountsPayable/ReturntoVendorScreens/PickPackReturns",
         "full" => $translation->translateLabel('Pick & Pack Returns'),
         "href"=> "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList",
@@ -2468,12 +2408,6 @@ $menuCategories["AccountsPayable"] = [
         "id" => "AccountsPayable/ReturntoVendorScreens/ViewReturnInvoices",
         "full" => $translation->translateLabel('View Return Invoices'),
         "href"=> "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList",
-        "short" => "Vi"
-        ],
-        [
-        "id" => "AccountsPayable/ReturntoVendorScreens/ViewStoreReturnInvoices",
-        "full" => $translation->translateLabel('View Store Return Invoices'),
-        "href"=> "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderStoreList",
         "short" => "Vi"
         ],
         [
@@ -2792,12 +2726,6 @@ $menuCategories["MRP"] = [
         "full" => $translation->translateLabel('View Work Orders History'),
         "href"=> "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderHistoryList",
         "short" => "Vi"
-        ],
-        [
-        "id" => "MRP/WorkOrders/StoreWorkOrders",
-        "full" => $translation->translateLabel('Store Work Orders'),
-        "href"=> "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderStoreList",
-        "short" => "St"
         ]
     ]
     ],

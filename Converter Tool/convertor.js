@@ -22,7 +22,7 @@
  Calls:
  mysql
 
- Last Modified: 11.04.2016
+ Last Modified: 24.04.2016
  Last Modified by: Nikita Zaharov
  */
 
@@ -174,7 +174,23 @@ function generate_models(files, menuTitle, fcounter, notGenerateMenu){
 
 function process_model(file, title, menuTitle, cb){
     var group;
-//    if(!file.detail || isEmpty(file.groups)){
+    //    if(!file.detail || isEmpty(file.groups)){
+    var realNames = {
+	"rmaheader" : "purchaseheader",
+	"rmaheaderhistory" : "purchaseheaderhistory",
+	"returncashreceiptinvoice" : "invoiceheader",
+	"returncashreceiptvendor" : "vendorinformation",
+	"returncashreceiptheader" : "receiptsheader",
+	"returnheader" : "orderheader",
+	"returnheaderhistory" : "orderheaderhistory",
+	"returninvoiceheader" : "invoiceheader",
+	"returninvoiceheaderhistory" : "invoiceheaderhistory",
+	"cashreceiptcustomer" : "customerinformation",
+	"debitmemoheaderpayments" : "purchaseheader"
+    };
+//    console.log(file.tableName);
+    if(realNames.hasOwnProperty(file.tableName))
+	file.tableName = realNames[file.tableName];
     getFieldsFromTable(file.tableName, function(err, fields){
 	if(err){
 	    cb(err);
