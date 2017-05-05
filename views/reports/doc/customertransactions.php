@@ -67,7 +67,7 @@ $invoices = $data->getInvoices();
 		    <?php 
 		    foreach($orders as $row){
 			echo "<tr style=\"height:10px;\">";
-			echo "<td><a href=\"" . $public_prefix . "/docreports/order/" . $row["OrderNumber"]  . "\" target=\"_Blank\">" . $row["OrderDate"] . "</a></td>";
+			echo "<td><a href=\"index.php?page=docreports&type=order&id=" . $row["OrderNumber"]  . "\" target=\"_Blank\">" . $row["OrderDate"] . "</a></td>";
 			echo "<td>" . $row["OrderNumber"] . "</td>";
 			echo "<td>" . $row["TransactionTypeID"] . "</td>";
 			echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["Total"] . "</td>";
@@ -118,7 +118,7 @@ $invoices = $data->getInvoices();
 		    <?php 
 		    foreach($invoices as $row){
 			echo "<tr style=\"height:10px;\">";
-			echo "<td><a href=\"" . $public_prefix . "/docreports/invoice/" . $row["InvoiceNumber"]  . "\" target=\"_Blank\">" . $row["InvoiceDate"] . "</a></td>";
+			echo "<td><a href=\"index.php?page=docreports&type=invoice&id=" . $row["InvoiceNumber"]  . "\" target=\"_Blank\">" . $row["InvoiceDate"] . "</a></td>";
 			echo "<td>" . $row["InvoiceNumber"] . "</td>";
 			echo "<td>" . $row["TransactionTypeID"] . "</td>";
 			echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["Total"] . "</td>";

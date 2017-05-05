@@ -22,14 +22,9 @@
    Calls:
    sql
 
-   Last Modified: 24.04.2016
+   Last Modified: 05.05.2016
    Last Modified by: Nikita Zaharov
  */
-
-namespace App\Models;
-
-use Illuminate\Support\Facades\DB;
-use Session;
 
 function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
@@ -43,9 +38,9 @@ class docReportsData{
     }
 
     public function getCurrencySymbol(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
 
-        $result =  DB::select("select I.CurrencyID, C.CurrenycySymbol from PurchaseHeader I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.PurchaseNumber='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result =  $GLOBALS["capsule"]::select("select I.CurrencyID, C.CurrenycySymbol from PurchaseHeader I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.PurchaseNumber='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         return [
             "id" => count($result) ? $result[0]->CurrencyID : "USD",
@@ -54,16 +49,17 @@ class docReportsData{
     }
 
     public function getUser(){
-        $user = Session::get("user");
-        $user["company"] = DB::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
+        $user = $_SESSION["user"];
+
+        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
         
         return $user;
     }
 
     public function getHeaderData(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         
-        $conn =  DB::connection()->getPdo();
+        $conn =  $GLOBALS["capsule"]::connection()->getPdo();
         $stmt = $conn->prepare("CALL RptDocRMAPurchaseOrderHeaderSingle('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "', '" . $this->id . "')");
         $rs = $stmt->execute();
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);
@@ -93,9 +89,9 @@ class docReportsData{
     }
 
     public function getDetailData(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         
-        $conn =  DB::connection()->getPdo();
+        $conn =  $GLOBALS["capsule"]::connection()->getPdo();
         $stmt = $conn->prepare("CALL RptDocPurchaseOrderDetailSingle('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "', '" . $this->id . "')");
         $rs = $stmt->execute();
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);

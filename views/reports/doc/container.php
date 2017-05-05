@@ -50,7 +50,7 @@
 	 }
 	</style>
     </head>
-    <body style="padding-left:2px; padding-top:10px; font-family: Arial;">
+    <body style="padding:10px; font-family: Arial;">
 	<?php require __DIR__ . "/../../footer.php"; ?>
 	<div id="content" class="container-fluid" style="background: #ffffff; padding-bottom:10px;">
 	    <?php

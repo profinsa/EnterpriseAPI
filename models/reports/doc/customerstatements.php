@@ -22,14 +22,9 @@ controllers/docreports
 Calls:
 sql
 
-Last Modified: 24.04.2016
+Last Modified: 05.05.2016
 Last Modified by: Nikita Zaharov
 */
-
-namespace App\Models;
-
-use Illuminate\Support\Facades\DB;
-use Session;
 
 function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
@@ -43,9 +38,9 @@ class docReportsData{
     }
 
     public function getCurrencySymbol(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
 
-        //        $result =  DB::select("select I.CurrencyID, C.CurrencySymbol from CustomerInformation I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CustomerID='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
+        //        $result =  $GLOBALS["capsule"]::select("select I.CurrencyID, C.CurrencySymbol from CustomerInformation I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CustomerID='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
         $result = [];
         
         return [
@@ -55,29 +50,20 @@ class docReportsData{
     }
 
     public function getUser(){
-        $user = Session::get("user");
-        $user["company"] = DB::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
+        $user = $_SESSION["user"];
+
+        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
         
         return $user;
     }
 
     public function getData(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         
-        $conn =  DB::connection()->getPdo();
-        //        $stmt = $conn->prepare("CALL RptCustomerStatement('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', '" . $this->id . "', :name, :addr1, :addr2, :addr3, :city, :state, :zip, :country, :Balance, :Ret)",array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
+        $conn =  $GLOBALS["capsule"]::connection()->getPdo();
+
         $stmt = $conn->prepare("CALL RptCustomerStatement('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', '" . $this->id . "', @name, @addr1, @addr2, @addr3, @city, @state, @zip, @country, @balance, @Ret)",array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
 
-        /*        $stmt->bindParam("1", $name, $conn::PARAM_INPUT_OUTPUT);
-        $stmt->bindParam("2", $Address1, $conn::PARAM_STR|$conn::PARAM_INPUT_OUTPUT, 4000);
-        $stmt->bindParam("3", $Address2, $conn::PARAM_STR|$conn::PARAM_INPUT_OUTPUT, 4000);
-        $stmt->bindParam("4", $Address3, $conn::PARAM_STR|$conn::PARAM_INPUT_OUTPUT, 4000);
-        $stmt->bindParam("5", $City, $conn::PARAM_STR|$conn::PARAM_INPUT_OUTPUT, 4000);
-        $stmt->bindParam("6", $State, $conn::PARAM_STR|$conn::PARAM_INPUT_OUTPUT, 4000);
-        $stmt->bindParam("7", $Zip, $conn::PARAM_STR|$conn::PARAM_INPUT_OUTPUT, 4000);
-        $stmt->bindParam("8", $country, $conn::PARAM_STR|$conn::PARAM_INPUT_OUTPUT, 4000);
-        $stmt->bindParam("9", $balance, $conn::PARAM_INPUT_OUTPUT);
-        $stmt->bindParam("10", $retu, $conn::PARAM_INPUT_OUTPUT);*/
         $rs = $stmt->execute();
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);
         //        $stmt->closeCursor();
