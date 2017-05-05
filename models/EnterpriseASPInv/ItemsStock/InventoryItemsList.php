@@ -31,564 +31,570 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "inventoryitems";
-public $dashboardTitle ="Inventory Items";
-public $breadCrumbTitle ="Inventory Items";
-public $idField ="ItemID";
-public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
-public $gridFields = [
+	protected $tableName = "inventoryitems";
+	public $dashboardTitle ="Inventory Items";
+	public $breadCrumbTitle ="Inventory Items";
+	public $idField ="ItemID";
+	public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
+	public $gridFields = [
 
-"ItemID" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-],
-"IsActive" => [
-    "dbType" => "tinyint(1)",
-    "inputType" => "text"
-],
-"ItemTypeID" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-],
-"ItemName" => [
-    "dbType" => "varchar(50)",
-    "inputType" => "text"
-],
-"ItemDescription" => [
-    "dbType" => "varchar(80)",
-    "inputType" => "text"
-],
-"ItemUPCCode" => [
-    "dbType" => "varchar(12)",
-    "inputType" => "text"
-],
-"Price" => [
-    "dbType" => "decimal(19,4)",
-    "format" => "{0:n}",
-    "inputType" => "text"
-]
+		"ItemID" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		],
+		"IsActive" => [
+			"dbType" => "tinyint(1)",
+			"inputType" => "text"
+		],
+		"ItemTypeID" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		],
+		"ItemName" => [
+			"dbType" => "varchar(50)",
+			"inputType" => "text"
+		],
+		"ItemDescription" => [
+			"dbType" => "varchar(80)",
+			"inputType" => "text"
+		],
+		"ItemUPCCode" => [
+			"dbType" => "varchar(12)",
+			"inputType" => "text"
+		],
+		"Price" => [
+			"dbType" => "decimal(19,4)",
+			"format" => "{0:n}",
+			"inputType" => "text"
+		]
+	];
+
+	public $editCategories = [
+		"Main" => [
+			"ItemID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"IsActive" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"ItemTypeID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemName" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemDescription" => [
+				"dbType" => "varchar(80)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemLongDescription" => [
+				"dbType" => "varchar(255)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemCategoryID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemFamilyID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"SalesDescription" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"PurchaseDescription" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"PictureURL" => [
+				"dbType" => "varchar(80)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LargePictureURL" => [
+				"dbType" => "varchar(80)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+				"DownloadLocation" => [
+				"dbType" => "varchar(120)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"DownloadPassword" => [
+				"dbType" => "varchar(20)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			]
+		],
+		"Item Details" => [
+			"ItemWeight" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemWeightMetric" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemShipWeight" => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemUPCCode" => [
+				"dbType" => "varchar(12)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemEPCCode" => [
+				"dbType" => "varchar(12)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemRFID" => [
+				"dbType" => "varchar(80)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemSize" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemSizeCmm" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemDimentions" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemDimentionsCmm" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemColor" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemNRFColor" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemStyle" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemNRFStyle" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemCareInstructions" => [
+				"dbType" => "varchar(80)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemDefaultWarehouse" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemDefaultWarehouseBin" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemLocationX" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemLocationY" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemLocationZ" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemUOM" => [
+				"dbType" => "varchar(15)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+				"LeadTime" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LeadTimeUnit" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			]
+		],
+		"Price & Cost" => [
+			"GLItemSalesAccount" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"GLItemCOGSAccount" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"GLItemInventoryAccount" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CurrencyID" => [
+				"dbType" => "varchar(3)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CurrencyExchangeRate" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Price" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemPricingCode" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"PricingMethods" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Taxable" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"VendorID" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ReOrderLevel" => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ReOrderQty" => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"BuildTime" => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"BuildTimeUnit" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"UseageRate" => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"UseageRateUnit" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"SalesForecast" => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"SalesForecastUnit" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CalculatedCover" => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CalculatedCoverUnits" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"IsAssembly" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"ItemAssembly" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LIFO" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LIFOValue" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LIFOCost" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Average" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"AverageValue" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"AverageCost" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"FIFO" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"FIFOValue" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"FIFOCost" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Expected" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ExpectedValue" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ExpectedCost" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Landed" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LandedValue" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LandedCost" => [
+				"dbType" => "char(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Other" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"OtherValue" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"OtherCost" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Commissionable" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"CommissionType" => [
+				"dbType" => "smallint(6)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CommissionPerc" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Approved" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"ApprovedBy" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ApprovedDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"EnteredBy" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"TaxGroupID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"TaxPercent" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			]
+		]
 ];
+	public $columnNames = [
+		"ItemID" => "Item ID",
+		"IsActive" => "Is Active",
+		"ItemTypeID" => "Item Type ID",
+		"ItemName" => "Item Name",
+		"ItemDescription" => "Item Description",
+		"ItemUPCCode" => "Item UPC Code",
+		"Price" => "Price",
+		"ItemLongDescription" => "Item Long Description",
+		"ItemCategoryID" => "Item Category ID",
+		"ItemFamilyID" => "Item Family ID",
+		"SalesDescription" => "Sales Description",
+		"PurchaseDescription" => "Purchase Description",
+		"PictureURL" => "Picture URL",
+		"LargePictureURL" => "Large Picture URL",
+		"ItemWeight" => "Item Weight",
+		"ItemWeightMetric" => "Item Weight Metric",
+		"ItemShipWeight" => "Item Ship Weight",
+		"ItemEPCCode" => "Item EPC Code",
+		"ItemRFID" => "Item RFID",
+		"ItemSize" => "Item Size",
+		"ItemSizeCmm" => "Item Size Cmm",
+		"ItemDimentions" => "Item Dimentions",
+		"ItemDimentionsCmm" => "Item Dimentions Cmm",
+		"ItemColor" => "Item Color",
+		"ItemNRFColor" => "Item NRF Color",
+		"ItemStyle" => "Item Style",
+		"ItemNRFStyle" => "Item NRF Style",
+		"ItemCareInstructions" => "Item Care Instructions",
+		"ItemDefaultWarehouse" => "Item Default Warehouse",
+		"ItemDefaultWarehouseBin" => "Item Default Warehouse Bin",
+		"ItemLocationX" => "Item Location X",
+		"ItemLocationY" => "Item Location Y",
+		"ItemLocationZ" => "Item Location Z",
+		"DownloadLocation" => "Download Location",
+		"DownloadPassword" => "Download Password",
+		"ItemUOM" => "Item UOM",
+		"GLItemSalesAccount" => "GL Item Sales Account",
+		"GLItemCOGSAccount" => "GL Item COGS Account",
+		"GLItemInventoryAccount" => "GL Item Inventory Account",
+		"CurrencyID" => "Currency ID",
+		"CurrencyExchangeRate" => "Currency Exchange Rate",
+		"ItemPricingCode" => "Item Pricing Code",
+		"PricingMethods" => "Pricing Methods",
+		"Taxable" => "Taxable",
+		"VendorID" => "Vendor ID",
+		"LeadTime" => "Lead Time",
+		"LeadTimeUnit" => "Lead Time Unit",
+		"ReOrderLevel" => "Re Order Level",
+		"ReOrderQty" => "Re Order Qty",
+		"BuildTime" => "Build Time",
+		"BuildTimeUnit" => "Build Time Unit",
+		"UseageRate" => "Useage Rate",
+		"UseageRateUnit" => "Useage Rate Unit",
+		"SalesForecast" => "Sales Forecast",
+		"SalesForecastUnit" => "Sales Forecast Unit",
+		"CalculatedCover" => "Calculated Cover",
+		"CalculatedCoverUnits" => "Calculated Cover Units",
+		"IsAssembly" => "Is Assembly",
+		"ItemAssembly" => "Item Assembly",
+		"LIFO" => "LIFO",
+		"LIFOValue" => "LIFO Value",
+		"LIFOCost" => "LIFO Cost",
+		"Average" => "Average",
+		"AverageValue" => "Average Value",
+		"AverageCost" => "Average Cost",
+		"FIFO" => "FIFO",
+		"FIFOValue" => "FIFO Value",
+		"FIFOCost" => "FIFO Cost",
+		"Expected" => "Expected",
+		"ExpectedValue" => "Expected Value",
+		"ExpectedCost" => "Expected Cost",
+		"Landed" => "Landed",
+		"LandedValue" => "Landed Value",
+		"LandedCost" => "Landed Cost",
+		"Other" => "Other",
+		"OtherValue" => "Other Value",
+		"OtherCost" => "Other Cost",
+		"Commissionable" => "Commissionable",
+		"CommissionType" => "Commission Type",
+		"CommissionPerc" => "Commission Perc",
+		"Approved" => "Approved",
+		"ApprovedBy" => "Approved By",
+		"ApprovedDate" => "Approved Date",
+		"EnteredBy" => "Entered By",
+		"TaxGroupID" => "Tax Group ID",
+		"TaxPercent" => "Tax Percent"
+	];
+}
+?>
 
-public $editCategories = [
-"Main" => [
-
-"ItemID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"IsActive" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"ItemTypeID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemName" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemDescription" => [
-"dbType" => "varchar(80)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemLongDescription" => [
-"dbType" => "varchar(255)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemCategoryID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemFamilyID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SalesDescription" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"PurchaseDescription" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"PictureURL" => [
-"dbType" => "varchar(80)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LargePictureURL" => [
-"dbType" => "varchar(80)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemWeight" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemWeightMetric" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemShipWeight" => [
-"dbType" => "int(11)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemUPCCode" => [
-"dbType" => "varchar(12)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemEPCCode" => [
-"dbType" => "varchar(12)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemRFID" => [
-"dbType" => "varchar(80)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemSize" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemSizeCmm" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemDimentions" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemDimentionsCmm" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemColor" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemNRFColor" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemStyle" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemNRFStyle" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemCareInstructions" => [
-"dbType" => "varchar(80)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemDefaultWarehouse" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemDefaultWarehouseBin" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemLocationX" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemLocationY" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemLocationZ" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"DownloadLocation" => [
-"dbType" => "varchar(120)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"DownloadPassword" => [
-"dbType" => "varchar(20)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemUOM" => [
-"dbType" => "varchar(15)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"GLItemSalesAccount" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"GLItemCOGSAccount" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"GLItemInventoryAccount" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CurrencyID" => [
-"dbType" => "varchar(3)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CurrencyExchangeRate" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Price" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ItemPricingCode" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"PricingMethods" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Taxable" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"VendorID" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LeadTime" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LeadTimeUnit" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReOrderLevel" => [
-"dbType" => "int(11)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ReOrderQty" => [
-"dbType" => "int(11)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"BuildTime" => [
-"dbType" => "int(11)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"BuildTimeUnit" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"UseageRate" => [
-"dbType" => "int(11)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"UseageRateUnit" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SalesForecast" => [
-"dbType" => "int(11)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SalesForecastUnit" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CalculatedCover" => [
-"dbType" => "int(11)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CalculatedCoverUnits" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"IsAssembly" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"ItemAssembly" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LIFO" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LIFOValue" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LIFOCost" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Average" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"AverageValue" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"AverageCost" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"FIFO" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"FIFOValue" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"FIFOCost" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Expected" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ExpectedValue" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ExpectedCost" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Landed" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LandedValue" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"LandedCost" => [
-"dbType" => "char(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Other" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"OtherValue" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"OtherCost" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Commissionable" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"CommissionType" => [
-"dbType" => "smallint(6)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CommissionPerc" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Approved" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"ApprovedBy" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ApprovedDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"EnteredBy" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TaxGroupID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TaxPercent" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-]
-]];
-public $columnNames = [
-
-"ItemID" => "Item ID",
-"IsActive" => "Is Active",
-"ItemTypeID" => "Item Type ID",
-"ItemName" => "Item Name",
-"ItemDescription" => "Item Description",
-"ItemUPCCode" => "Item UPC Code",
-"Price" => "Price",
-"ItemLongDescription" => "Item Long Description",
-"ItemCategoryID" => "Item Category ID",
-"ItemFamilyID" => "Item Family ID",
-"SalesDescription" => "Sales Description",
-"PurchaseDescription" => "Purchase Description",
-"PictureURL" => "Picture URL",
-"LargePictureURL" => "Large Picture URL",
-"ItemWeight" => "Item Weight",
-"ItemWeightMetric" => "Item Weight Metric",
-"ItemShipWeight" => "Item Ship Weight",
-"ItemEPCCode" => "Item EPC Code",
-"ItemRFID" => "Item RFID",
-"ItemSize" => "Item Size",
-"ItemSizeCmm" => "Item Size Cmm",
-"ItemDimentions" => "Item Dimentions",
-"ItemDimentionsCmm" => "Item Dimentions Cmm",
-"ItemColor" => "Item Color",
-"ItemNRFColor" => "Item NRF Color",
-"ItemStyle" => "Item Style",
-"ItemNRFStyle" => "Item NRF Style",
-"ItemCareInstructions" => "Item Care Instructions",
-"ItemDefaultWarehouse" => "Item Default Warehouse",
-"ItemDefaultWarehouseBin" => "Item Default Warehouse Bin",
-"ItemLocationX" => "Item Location X",
-"ItemLocationY" => "Item Location Y",
-"ItemLocationZ" => "Item Location Z",
-"DownloadLocation" => "Download Location",
-"DownloadPassword" => "Download Password",
-"ItemUOM" => "Item UOM",
-"GLItemSalesAccount" => "GL Item Sales Account",
-"GLItemCOGSAccount" => "GL Item COGS Account",
-"GLItemInventoryAccount" => "GL Item Inventory Account",
-"CurrencyID" => "Currency ID",
-"CurrencyExchangeRate" => "Currency Exchange Rate",
-"ItemPricingCode" => "Item Pricing Code",
-"PricingMethods" => "Pricing Methods",
-"Taxable" => "Taxable",
-"VendorID" => "Vendor ID",
-"LeadTime" => "Lead Time",
-"LeadTimeUnit" => "Lead Time Unit",
-"ReOrderLevel" => "Re Order Level",
-"ReOrderQty" => "Re Order Qty",
-"BuildTime" => "Build Time",
-"BuildTimeUnit" => "Build Time Unit",
-"UseageRate" => "Useage Rate",
-"UseageRateUnit" => "Useage Rate Unit",
-"SalesForecast" => "Sales Forecast",
-"SalesForecastUnit" => "Sales Forecast Unit",
-"CalculatedCover" => "Calculated Cover",
-"CalculatedCoverUnits" => "Calculated Cover Units",
-"IsAssembly" => "Is Assembly",
-"ItemAssembly" => "Item Assembly",
-"LIFO" => "LIFO",
-"LIFOValue" => "LIFO Value",
-"LIFOCost" => "LIFO Cost",
-"Average" => "Average",
-"AverageValue" => "Average Value",
-"AverageCost" => "Average Cost",
-"FIFO" => "FIFO",
-"FIFOValue" => "FIFO Value",
-"FIFOCost" => "FIFO Cost",
-"Expected" => "Expected",
-"ExpectedValue" => "Expected Value",
-"ExpectedCost" => "Expected Cost",
-"Landed" => "Landed",
-"LandedValue" => "Landed Value",
-"LandedCost" => "Landed Cost",
-"Other" => "Other",
-"OtherValue" => "Other Value",
-"OtherCost" => "Other Cost",
-"Commissionable" => "Commissionable",
-"CommissionType" => "Commission Type",
-"CommissionPerc" => "Commission Perc",
-"Approved" => "Approved",
-"ApprovedBy" => "Approved By",
-"ApprovedDate" => "Approved Date",
-"EnteredBy" => "Entered By",
-"TaxGroupID" => "Tax Group ID",
-"TaxPercent" => "Tax Percent"];
-}?>
