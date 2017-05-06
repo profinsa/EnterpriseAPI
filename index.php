@@ -44,6 +44,17 @@ $capsule->addConnection([
 ]);
 $capsule->setAsGlobal();
 
+function errorHandler($message){
+    echo <<<EOT
+<html>
+    <body>
+        <b style="text-align:center; padding-top:50px;">Fatal error: </b> . $message;
+    </body>
+</html>
+EOT;
+}
+
+
 class app{
     public $controller = false;
     public $title = 'Integral Accounting X';
@@ -56,17 +67,27 @@ class app{
         }
         if(!file_exists('controllers/' . $this->page . '.php'))
             throw new Exception("controller ". 'controllers/' . $this->page . '.php' . "is not found");
-        include 'controllers/' . $this->page . '.php';
+        require 'controllers/' . $this->page . '.php';
         $this->controller = new controller();
     }
 }
 
+function fatal_handler() {
+  $error = error_get_last();
+  $message;
+  if( $error !== NULL){ 
+      $message = "{$error["message"]} in {$error["file"]} on line {$error["line"]}";
+      errorHandler($message);
+  }
+}
+
+register_shutdown_function("fatal_handler");
 try{
     session_start();
 
     $_app = new app();
     $_app->controller->process($_app);
 }catch(Exception $e){
-    echo '<b>Fatal error: </b>' . $e->getMessage();
+    errorHandler($e->getMessage());
 }
 ?>

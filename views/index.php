@@ -88,8 +88,11 @@
 		  .error(function(xhr){
 		      if(xhr.status == 401)
 			  window.location = "index.php?page=login";
-		      else
-			  alert("Unable to load page");
+		      else{
+			  $("#page-wrapper").html(xhr.responseText);
+			  window.scrollTo(0,0);
+//			  alert("Unable to load page");
+		      }
 		  });
 	     }
 	 }
