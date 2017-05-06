@@ -59,7 +59,7 @@ class controller{
 
         $this->user = $_SESSION["user"];
                
-        $data = new autoreportsData(key_exists("source", $_GET) ? $_GET["source"] : $_GET["getreport"]);
+        $data = new autoreportsData($source = (key_exists("source", $_GET) ? $_GET["source"] : $_GET["getreport"]));
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            

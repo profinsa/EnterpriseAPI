@@ -74,8 +74,8 @@ class app{
 
 function fatal_handler() {
   $error = error_get_last();
-  $message;
-  if( $error !== NULL){ 
+  if( $error !== NULL && $error["type"] <= 16){ 
+      http_response_code(401);
       $message = "{$error["message"]} in {$error["file"]} on line {$error["line"]}";
       errorHandler($message);
   }

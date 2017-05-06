@@ -86,7 +86,7 @@ class controller{
                 );
                 if($wrong_captcha)
                     $response["wrong_captcha"] = true;
-                if(!$user)
+                if(!isset($user))
                     $response["wrong_user"] = true;
                 
                 echo json_encode($response);

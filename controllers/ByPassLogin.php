@@ -35,7 +35,7 @@ require 'models/users.php';
 class controller{
     public $user = false;
     
-    public function __construct($db){
+    public function __construct(){
     }
     
     public function process($app){
