@@ -9,7 +9,7 @@
 		 <li role="separator" class="divider"></li>
 		 <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
 		 <li role="separator" class="divider"></li>- -->
-            <!-- <li><a href="#"><i class="fa fa-language"></i><?php echo $translation->translateLabel("Language"); ?></a></li> -->
+            <!-- <li><a href="#"><i class="fa fa-language"></i><?php echo $translation->translateLabel("Language"); ?></a></li>
 	    <li>
 		<select class="form-control" onclick="event.stopPropagation();" onchange="changeLanguage(event);">
 		    <option><?php echo $scope->user["language"]; ?></option>
@@ -19,7 +19,7 @@
 			    echo "<option>" . $value . "</option>";
 		    ?>
 		</select>
-	    </li>
+	    </li> -->
 
 	    <li><a href="index.php?page=index&logout=true"><i class="fa fa-power-off"></i><?php echo $translation->translateLabel("Log out"); ?></a></li>
 	</ul>

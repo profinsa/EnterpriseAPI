@@ -19,7 +19,16 @@
 	    </li>
 	</ul>
 	<ul class="nav navbar-top-links navbar-right pull-right">
-	    
+	    <li>
+		<select  style="margin-top:10px; width:100px; background-color:inherit; color:#ffffff; border:0px" class="form-control" onclick="event.stopPropagation();" onchange="changeLanguage(event);">
+		    <option style="color:black;"><?php echo $scope->user["language"]; ?></option>
+		    <?php
+		    foreach($translation->languages as $value)
+			if($value != $scope->user["language"])
+			    echo "<option style=\"color:black;\">" . $value . "</option>";
+		    ?>
+		</select>
+	    </li>
 	    <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-settings"></i></a></li>
 	    <!-- /.dropdown -->
 	</ul>

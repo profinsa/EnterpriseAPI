@@ -1,5 +1,5 @@
 <!-- Left navbar-header -->
-<div class="navbar-default sidebar" role="navigation" style="position:absolute; top:-50px; z-index:5000">
+<div class="navbar-default sidebar sidebar-lift" role="navigation">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
 	<?php include './views/nav/leftUser.php'; ?>
 	<ul class="nav" id="side-menu">	    

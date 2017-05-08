@@ -32,6 +32,14 @@ adoptation for screen sizes
     }
 }
 
+@media (min-width: 700px){
+    .sidebar-lift {
+	position:absolute;
+	top:-50px;
+	z-index:5000;
+    }
+}
+
 .sidebar .nav-fourth-level li {
   border-bottom: none !important;
 }
