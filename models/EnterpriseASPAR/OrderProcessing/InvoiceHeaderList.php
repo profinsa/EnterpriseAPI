@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	protected $tableName = "invoiceheader";
+	protected $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0))";
 	public $dashboardTitle ="Invoices";
 	public $breadCrumbTitle ="Invoices";
 	public $idField ="InvoiceNumber";
