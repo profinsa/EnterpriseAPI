@@ -24,9 +24,19 @@ controls
 
 
 /*topbar*/
+.lang-chooser-container {
+    background-color:inherit;
+    margin-top:17px;
+}
+
+.lang-chooser-container select {
+    padding:0px;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+}
+
 .lang-chooser {
-    margin-top:9px;
-/*    width:100px;*/
     background-color:inherit;
     color:#ffffff;
     border:0px; 
