@@ -23,6 +23,19 @@ controls
 }
 
 
+/*topbar*/
+.lang-chooser {
+    margin-top:9px;
+/*    width:100px;*/
+    background-color:inherit;
+    color:#ffffff;
+    border:0px; 
+}
+
+.lang-chooser option {
+    color:black;
+}
+
 /*
 adoptation for screen sizes
 */
@@ -32,7 +45,7 @@ adoptation for screen sizes
     }
 }
 
-@media (min-width: 700px){
+@media (min-width: 768px){
     .sidebar-lift {
 	position:absolute;
 	top:-50px;
