@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	protected $tableName = "orderheader";
+	protected $gridConditions = "LOWER(OrderTypeID) = LOWER('Quote')";
 	public $dashboardTitle ="Quotes";
 	public $breadCrumbTitle ="Quotes";
 	public $idField ="OrderNumber";
