@@ -43,6 +43,17 @@
 <!-- End Top Navigation -->
 
 <script>
+ function changeLanguage(event){
+     var current = "<?php echo $scope->user["language"]; ?>";
+     if(event.target.value != current)
+	 $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
+	     .success(function(data) {
+		 location.reload();
+	     })
+	     .error(function(err){
+		 console.log('something going wrong');
+	     });
+ }
  (function($, window){
      var arrowWidth = 20;
 

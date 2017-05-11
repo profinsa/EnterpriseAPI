@@ -91,16 +91,5 @@
 	    
 	</ul>
     </div>
-    <script>
-     function changeLanguage(event){
-	 $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
-	  .success(function(data) {
-	      location.reload();
-	  })
-	  .error(function(err){
-	      console.log('something going wrong');
-	  });
-     }
-    </script>
 </div>
 <!-- Left navbar-header end -->
