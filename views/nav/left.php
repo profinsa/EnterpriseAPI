@@ -43,20 +43,20 @@
 				    echo "<ul class=\"nav nav-fourth-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
 				    foreach($ssubitem["data"] as $sskey=>$sssubitem){
 					if(key_exists("type", $sssubitem) && $sssubitem["type"] == "relativeLink")
-					    $href = "index.php#/?" . $sssubitem["href"];
+					    $href = "index.php" . (key_exists("target", $sssubitem) && $sssubitem["target"] == "_blank" ? "" : "/#") . "?" . $sssubitem["href"];
 					else
 					    $href = "index.php#/?page=grid&action=" . (key_exists("href_ended", $sssubitem) ? $sssubitem["href_ended"] : $sssubitem["id"]);
 					
-					echo "<li id=\"" . ( key_exists("id", $sssubitem) ? $sssubitem["id"] : "") . "\"><a href=\"" . $href . "\">" . $sssubitem["full"] . "</a></li>";
+					echo "<li id=\"" . ( key_exists("id", $sssubitem) ? $sssubitem["id"] : "") . "\"><a href=\"" . $href . "\" " . (key_exists("target", $sssubitem) && $sssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $sssubitem["full"] . "</a></li>";
 				    }
 				    echo "</ul>";
 				}else{
 				    if(key_exists("type", $ssubitem) && $ssubitem["type"] == "relativeLink")
-					$href = "index.php#/?" . $ssubitem["href"];
+					$href = "index.php" . (key_exists("target", $ssubitem) && $ssubitem["target"] == "_blank" ? "" : "/#") . "?" . $ssubitem["href"];
 				    else
 					$href = "index.php#/?page=grid&action=" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"]);
 				    
-				    echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\"><a href=\"" . $href . "\">" . $ssubitem["full"] . "</a></li>";
+				    echo "<li id=\"" . ( key_exists("id", $ssubitem) ? $ssubitem["id"] : "") . "\"><a href=\"" . $href . "\" " . (key_exists("target", $ssubitem) && $ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $ssubitem["full"] . "</a></li>";
 				    
 				}
 			    }

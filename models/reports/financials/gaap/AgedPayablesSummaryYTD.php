@@ -22,14 +22,9 @@ controllers/financials
 Calls:
 sql
 
-Last Modified: 26.04.2016
+Last Modified: 11.05.2016
 Last Modified by: Nikita Zaharov
 */
-
-namespace App\Models;
-
-use Illuminate\Support\Facades\DB;
-use Session;
 
 function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
@@ -71,9 +66,9 @@ class financialsReportData{
     }
 
     public function getCurrencySymbol(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
 
-        //        $result =  DB::select("select I.CurrencyID, C.CurrencySymbol from CustomerInformation I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CustomerID='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
+        //        $result =  $GLOBALS["capsule"]::select("select I.CurrencyID, C.CurrencySymbol from CustomerInformation I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CustomerID='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
         $result = [];
         
         return [
@@ -83,16 +78,16 @@ class financialsReportData{
     }
 
     public function getUser(){
-        $user = Session::get("user");
-        $user["company"] = DB::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
+        $user = $_SESSION["user"];
+        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
         
         return $user;
     }
 
     public function getData(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         
-        $conn =  DB::connection()->getPdo();
+        $conn =  $GLOBALS["capsule"]::connection()->getPdo();
         $conn->setAttribute($conn::ATTR_EMULATE_PREPARES, true);
         $stmt = $conn->prepare("CALL RptGLAgedPayablesDetailYTD('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', @ret)",array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
 
