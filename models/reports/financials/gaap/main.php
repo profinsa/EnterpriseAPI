@@ -22,14 +22,9 @@ controllers/financials
 Calls:
 sql
 
-Last Modified: 26.04.2016
+Last Modified: 10.05.2016
 Last Modified by: Nikita Zaharov
 */
-
-namespace App\Models;
-
-use Illuminate\Support\Facades\DB;
-use Session;
 
 function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
@@ -65,13 +60,13 @@ function gridFormatFields($stmt, $result){
 class financialsReportData{
     protected $id = ""; //customer id
 
-    public $title = "GAAP Aged Payables Summary Report";
+    public $title = "GAAP Reports selector";
     public function __construct($id){
         $this->id = $id;
     }
 
     public function getCurrencySymbol(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
 
         //        $result =  DB::select("select I.CurrencyID, C.CurrencySymbol from CustomerInformation I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CustomerID='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
         $result = [];
@@ -83,39 +78,10 @@ class financialsReportData{
     }
 
     public function getUser(){
-        $user = Session::get("user");
-        $user["company"] = DB::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
+        $user = $_SESSION["user"];
+        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
         
         return $user;
-    }
-
-    public function getData(){
-        $user = Session::get("user");
-        
-        $conn =  DB::connection()->getPdo();
-        $conn->setAttribute($conn::ATTR_EMULATE_PREPARES, true);
-$stmt = $conn->prepare("CALL RptGLAgedPayablesDetail('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', @ret)",array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
-
-        $rs = $stmt->execute();
-
-        $summary = $stmt->fetchAll($conn::FETCH_ASSOC);
-        $summary = gridFormatFields($stmt, $summary);
-
-        $stmt->nextRowset();
-        $totals = $stmt->fetchAll($conn::FETCH_ASSOC);
-        $totals = gridFormatFields($stmt, $totals);
-
-        $stmt->nextRowset();
-        $details = $stmt->fetchAll($conn::FETCH_ASSOC);
-        $details = gridFormatFields($stmt, $details);
-        
-        $stmt = null;        
-        
-        return [
-            "summary" => $summary,
-            "totals" => $totals,
-            "details" => $details
-        ];
     }
 }
 ?>

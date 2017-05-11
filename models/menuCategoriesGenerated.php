@@ -2417,60 +2417,84 @@ $menuCategories["Reports"] = [
 "full" => $translation->translateLabel('Reports'),
 "short" => "Re",
 "data" => [
-
     [
     "type" => "submenu",
     "id" => "Reports/Financials",
     "full" => $translation->translateLabel('Financials'),
     "short" => "Fi",
     "data" => [
-
+	    [
+            "id" => "Reports/Financials/GaapMain",
+            "type" => "relativeLink",
+            "full" => $translation->translateLabel('Gaap Financials'),
+            "href"=> "page=financials&type=gaap&module=main",
+            "short" => "Le"
+        ],
     [
     "type" => "submenu",
     "id" => "Reports/Financials/GaapAgedReports",
     "full" => $translation->translateLabel('Gaap Aged Reports'),
     "short" => "Ga",
     "data" => [
-
         [
         "id" => "Reports/Financials/GaapAgedReports/AgedPayables",
         "full" => $translation->translateLabel('Aged Payables'),
-        "href"=> "reports/GAAPFinancials/RptGAAPAgedPayablesSummary",
+        "type" => "relativeLink",
+        "target" => "_blank",
+        "href"=> "page=financials&type=gaap&module=AgedPayablesSummary",
         "short" => "Ag"
         ],
         [
         "id" => "Reports/Financials/GaapAgedReports/AgedPayablesComparative",
         "full" => $translation->translateLabel('Aged Payables Comparative'),
-        "href"=> "reports/GAAPFinancials/RptGAAPAgedPayablesSummaryComparative",
+        "type" => "relativeLink",
+        "target" => "_blank",
+        "href"=> "page=financials&type=gaap&module=AgedPayablesSummaryComparative",
         "short" => "Ag"
         ],
         [
         "id" => "Reports/Financials/GaapAgedReports/AgedPayablesYTD",
         "full" => $translation->translateLabel('Aged Payables YTD'),
-        "href"=> "reports/GAAPFinancials/RptGAAPAgedPayablesSummaryYTD",
+        "type" => "relativeLink",
+        "target" => "_blank",
+        "href"=> "page=financials&type=gaap&module=AgedPayablesSummaryYTD",
         "short" => "Ag"
         ],
         [
         "id" => "Reports/Financials/GaapAgedReports/AgedReceivables",
         "full" => $translation->translateLabel('Aged Receivables'),
-        "href"=> "reports/GAAPFinancials/RptGAAPAgedReceivablesSummary",
+        "type" => "relativeLink",
+        "target" => "_blank",
+        "href"=> "page=financials&type=gaap&module=AgedReceivablesSummary",
         "short" => "Ag"
         ],
         [
         "id" => "Reports/Financials/GaapAgedReports/AgedReceivablesComparative",
         "full" => $translation->translateLabel('Aged Receivables Comparative'),
-        "href"=> "reports/GAAPFinancials/RptGAAPAgedReceivablesSummaryComparative",
+        "type" => "relativeLink",
+        "target" => "_blank",
+        "href"=> "page=financials&type=gaap&module=AgedReceivablesSummaryComparative",
         "short" => "Ag"
         ],
         [
         "id" => "Reports/Financials/GaapAgedReports/AgedReceivablesYTD",
         "full" => $translation->translateLabel('Aged Receivables YTD'),
-        "href"=> "reports/GAAPFinancials/RptGAAPAgedReceivablesSummaryYTD",
+        "type" => "relativeLink",
+        "target" => "_blank",
+        "href"=> "page=financials&type=gaap&module=AgedReceivablesSummaryYTD",
         "short" => "Ag"
         ]
     ]
     ],
-    [
+	[
+            "id" => "Reports/Financials/GaapWorksheets",
+            "type" => "relativeLink",
+ 	       "target" => "_blank",
+            "full" => $translation->translateLabel('Worksheets'),
+            "href"=> "page=financials&type=common&module=worksheets",
+            "short" => "Le"
+        ]
+    /*[
     "type" => "submenu",
     "id" => "Reports/Financials/IFRSAgedReports",
     "full" => $translation->translateLabel('IFRS Aged Reports'),
@@ -2512,15 +2536,7 @@ $menuCategories["Reports"] = [
         "full" => $translation->translateLabel('Aged Receivables YTD'),
         "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummaryYTD",
         "short" => "Ag"
-        ]
-    ]
-    ],
-        [
-        "id" => "Reports/Financials/Worksheets",
-        "full" => $translation->translateLabel('Excel Worksheets'),
-        "href"=> "reports/Worksheets/Worksheet",
-        "short" => "Ex"
-        ]
+        ]*/
     ]
     ],
     [
