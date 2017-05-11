@@ -22,14 +22,9 @@ controllers/financials
 Calls:
 sql
 
-Last Modified: 28.04.2016
+Last Modified: 11.05.2016
 Last Modified by: Nikita Zaharov
 */
-
-namespace App\Models;
-
-use Illuminate\Support\Facades\DB;
-use Session;
 
 function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
@@ -82,9 +77,9 @@ class financialsReportData{
     }
 
     public function getCurrencySymbol(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
 
-        $result =  DB::select("select I.CurrencyID, C.CurrenycySymbol from Companies I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result =  $GLOBALS["capsule"]::select("select I.CurrencyID, C.CurrenycySymbol from Companies I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
         $result = [];
         
         return [
@@ -94,16 +89,17 @@ class financialsReportData{
     }
 
     public function getUser(){
-        $user = Session::get("user");
-        $user["company"] = DB::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
+        $user = $_SESSION["user"];
+
+        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
         
         return $user;
     }
 
     public function getData(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         
-        $conn =  DB::connection()->getPdo();
+        $conn =  $GLOBALS["capsule"]::connection()->getPdo();
         $conn->setAttribute($conn::ATTR_EMULATE_PREPARES, true);
         $typesToProc = [
             "Standard" => "",
@@ -123,17 +119,13 @@ class financialsReportData{
 
         $rs = $stmt->execute();
 
-        $result = $stmt->fetchAll($conn::FETCH_ASSOC);
-        $result = gridFormatFields($stmt, $result);
+        $rcount = $stmt->rowCount();
+        if($rcount){
+            $result = $stmt->fetchAll($conn::FETCH_ASSOC);
+            $result = gridFormatFields($stmt, $result);
+        }else
+            $result = [];
 
-        /*        $stmt->nextRowset();
-        $totals = $stmt->fetchAll($conn::FETCH_ASSOC);
-        $totals = gridFormatFields($stmt, $totals);
-
-        $stmt->nextRowset();
-        $details = $stmt->fetchAll($conn::FETCH_ASSOC);
-        $details = gridFormatFields($stmt, $details);
-        */
         $stmt = null;
 
         $data = [];
