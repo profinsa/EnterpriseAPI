@@ -25,6 +25,7 @@
   <link href="assets/css/style.css" rel="stylesheet">
   <!-- color CSS -->
   <link href="dependencies/assets/css/colors/gray-dark.css" id="theme"  rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
