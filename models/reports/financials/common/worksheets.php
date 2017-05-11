@@ -22,14 +22,9 @@ controllers/financials
 Calls:
 sql
 
-Last Modified: 03.05.2016
+Last Modified: 11.05.2016
 Last Modified by: Nikita Zaharov
 */
-
-namespace App\Models;
-
-use Illuminate\Support\Facades\DB;
-use Session;
 
 function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
@@ -78,9 +73,9 @@ class financialsReportData{
     }
 
     public function getCurrencySymbol(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
 
-        $result =  DB::select("select I.CurrencyID, C.CurrenycySymbol from Companies I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result =  $GLOBALS["capsule"]::select("select I.CurrencyID, C.CurrenycySymbol from Companies I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
         $result = [];
         
         return [
@@ -90,16 +85,17 @@ class financialsReportData{
     }
 
     public function getUser(){
-        $user = Session::get("user");
-        $user["company"] = DB::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
+        $user = $_SESSION["user"];
+
+        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
         
         return $user;
     }
 
     public function getData(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         
-        $result = DB::select("SELECT GLAccountNumber, GLAccountName, GLAccountType, GLBalanceType, GLAccountBalance FROM LedgerChartOfAccounts WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountNumber ASC",array());
+        $result = $GLOBALS["capsule"]::select("SELECT GLAccountNumber, GLAccountName, GLAccountType, GLBalanceType, GLAccountBalance FROM LedgerChartOfAccounts WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountNumber ASC",array());
         
         $data = [];
 

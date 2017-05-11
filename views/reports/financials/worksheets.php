@@ -191,8 +191,3 @@ if($zip->open($file) === TRUE){
 }
 ?>
 
-<?php
-$user = $data->getUser();
-$currencySymbol = $data->getCurrencySymbol()["symbol"];
-?>
-
