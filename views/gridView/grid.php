@@ -120,13 +120,28 @@
 					break;
 				    case "text":
 				    case "dropdown":
-					if(key_exists("formatFunction", $data->gridFields[$key])){
-					    $formatFunction = $data->gridFields[$key]["formatFunction"];
-					    echo $data->$formatFunction($row, "gridFields", $key, $value, false);
+					switch($key){
+					    case "CustomerID" :
+						echo $drill->getLinkByField($key,$value);
+						break;
+					    case "VendorID" :
+						echo $drill->getLinkByField($key,$value);
+						break;
+					    case "OrderNumber" :
+						echo $drill->getReportLinkByOrderNumber($value, $page);
+						break;
+					    case "InvoiceNumber" :
+						echo $drill->getReportLinkByInvoiceNumber($value, $page);
+						break;
+					    default:
+						if(key_exists("formatFunction", $data->gridFields[$key])){
+						    $formatFunction = $data->gridFields[$key]["formatFunction"];
+						    echo $data->$formatFunction($row, "gridFields", $key, $value, false);
+						}
+						else
+						    echo formatField($data->gridFields[$key], $value);
+						break;
 					}
-					else
-					    echo formatField($data->gridFields[$key], $value);
-					break;
 				}
 				echo "</td>\n";
 			    }

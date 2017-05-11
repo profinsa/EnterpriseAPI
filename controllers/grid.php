@@ -25,13 +25,14 @@ models/translation.php
 models/gridDataSource derevatives -- models who inherits from gridDataSource
 app from index.php
 
-Last Modified: 21.02.2016
+Last Modified: 11.05.2016
 Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
+require 'models/drillDowner.php';
 
 class controller{
     public $user = false;
@@ -52,12 +53,17 @@ class controller{
         }
 
         require 'models/menuIdToHref.php';
+        $drill = new drillDowner();
+        
         $this->action = $this->path =  $_GET["action"];
         $model_path = $menuIdToPath[$_GET["action"]];
         if(!file_exists('models/' . $model_path . '.php'))
             throw new Exception("model " . 'models/' . $model_path . '.php' . " is not found");
         require 'models/' . $menuIdToPath[$_GET["action"]] . '.php';
-        
+
+        preg_match("/\/(\w+)$/", $this->action, $page);
+        $page = $page[1];
+
         $PartsPath = $model_path . "/";
         $_perm = new permissionsByFile();
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
@@ -66,7 +72,7 @@ class controller{
         else
             return response('permissions not found', 500)->header('Content-Type', 'text/plain');
 
-        $this->user = $_SESSION["user"];
+        $this->user = $GLOBALS["user"] = $_SESSION["user"];
                
         $data = new gridData();
         

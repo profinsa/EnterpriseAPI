@@ -39,11 +39,11 @@ class drillDowner{
         switch($name){
         case "VendorID" :
 		$keyString .= "__" . $value;
-            return "<a target=\"_Blank\" href=\"/index#/grid/AccountsPayable/Vendors/ViewVendorFinancials/view/Main/$keyString\">$value</a>";
+            return "<a target=\"_Blank\" href=\"index.php#/?page=grid&action=AccountsPayable/Vendors/ViewVendorFinancials&mode=view&category=Main&item=$keyString\">$value</a>";
             break;
         case "CustomerID" :
             $keyString .= "__" . $value;
-		return "<a target=\"_Blank\" href=\"index#/grid/AccountsReceivable/Customers/ViewCustomerFinancials/view/Main/$keyString\">$value</a>";
+		return "<a target=\"_Blank\" href=\"index.php#/?page=grid&action=AccountsReceivable/Customers/ViewCustomerFinancials&mode=view&category=Main&item=$keyString\">$value</a>";
 		break;
             default:
 		return $value;
@@ -61,7 +61,7 @@ class drillDowner{
         foreach($this->accounts as $value)
             if($value->GLAccountName == $name && $value->GLAccountBalance == $balance){
 		$keyString .= "__" . $value->GLAccountNumber;
-		return "<a target=\"_blank\" href=\"/index#/grid/GeneralLedger/Ledger/ViewChartofAccounts/view/Main/$keyString\">$name</a>";
+		return "<a target=\"_blank\" href=\"index.php#/?page=grid&action=GeneralLedger/Ledger/ViewChartofAccounts&mode=view&category=Main&item=$keyString\">$name</a>";
 	    }
 
         return $name;
@@ -69,7 +69,7 @@ class drillDowner{
 
     public function getLinkByCustomerID($CustomerID){
         if($CustomerID)
-            return "<a target=\"_blank\" href=\"/docreports/customertransactions/$CustomerID\">$CustomerID</a>";
+            return "<a target=\"_blank\" href=\"index.php?page=docreports&type=customertransactions&id=$CustomerID\">$CustomerID</a>";
     }
 
     protected function getPrefixAndPostfixByPage($page){
@@ -135,7 +135,7 @@ class drillDowner{
         if(!$this->checkInvoice($InvoiceNumber, $pfixes))
             return $InvoiceNumber;
         
-        return "<a target=\"_blank\" href=\"/docreports/" . $pfixes["prefix"] . "invoice" . $pfixes["postfix"] . "/$InvoiceNumber\">$InvoiceNumber</a>";
+        return "<a target=\"_blank\" href=\"index.php?page=docreports&type=" . $pfixes["prefix"] . "invoice" . $pfixes["postfix"] . "&id=$InvoiceNumber\">$InvoiceNumber</a>";
     }
     
     public function getReportLinkByOrderNumber($OrderNumber, $page){
@@ -144,7 +144,7 @@ class drillDowner{
         if(!$this->checkOrder($OrderNumber, $pfixes))
             return $OrderNumber;
         
-        return "<a target=\"_blank\" href=\"/docreports/" . $pfixes["prefix"] . "order" . $pfixes["postfix"] . "/$OrderNumber\">$OrderNumber</a>";
+        return "<a target=\"_blank\" href=\"index.php?page=docreports&type=" . $pfixes["prefix"] . "order" . $pfixes["postfix"] . "&id=$OrderNumber\">$OrderNumber</a>";
 
     }
 }
