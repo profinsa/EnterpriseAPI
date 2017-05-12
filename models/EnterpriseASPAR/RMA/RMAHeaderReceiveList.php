@@ -2,6 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "purchaseheader";
+protected $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND (Posted = 1 AND Approved = 1 AND IFNULL(Received,0) = 0 AND PurchaseNumber <> 'DEFAULT')";
 public $dashboardTitle ="Receive RMA's";
 public $breadCrumbTitle ="Receive RMA's";
 public $idField ="PurchaseNumber";

@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 	class gridData extends gridDataSource{
 	protected $tableName = "orderheaderhistory";
+	protected $gridConditions = "(LOWER(IFNULL(OrderHeaderHistory.TransactionTypeID, N'')) = 'service order')";
 	public $dashboardTitle ="Service Orders";
 	public $breadCrumbTitle ="Service Orders";
 	public $idField ="OrderNumber";

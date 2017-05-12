@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	protected $tableName = "orderheader";
+	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N''))='service order') AND (LOWER(OrderHeader.OrderTypeID) = 'hold')";
 	public $dashboardTitle ="Service Orders On Hold";
 	public $breadCrumbTitle ="Service Orders On Hold";
 	public $idField ="OrderNumber";

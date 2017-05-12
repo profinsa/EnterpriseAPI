@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	protected $tableName = "orderheader";
+	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N''))='service order') AND (OrderHeader.Invoiced = 1)";
 	public $dashboardTitle ="Closed Service Orders";
 	public $breadCrumbTitle ="Closed Service Orders";
 	public $idField ="OrderNumber";

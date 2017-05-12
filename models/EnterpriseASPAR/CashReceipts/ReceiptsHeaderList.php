@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "receiptsheader";
+protected $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Customer') AND (ReceiptsHeader.CreditAmount IS NULL OR ReceiptsHeader.CreditAmount <> 0 OR IFNULL(ReceiptsHeader.Posted,0) = 0)";
 public $dashboardTitle ="Receipts";
 public $breadCrumbTitle ="Receipts";
 public $idField ="ReceiptID";

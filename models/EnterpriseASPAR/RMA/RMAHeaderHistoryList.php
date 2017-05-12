@@ -2,6 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "purchaseheaderhistory";
+protected $gridConditions = "(LOWER(IFNULL(PurchaseHeaderHistory.TransactionTypeID,N'')) = 'rma')";
 public $dashboardTitle ="RMA's History";
 public $breadCrumbTitle ="RMA's History";
 public $idField ="PurchaseNumber";
