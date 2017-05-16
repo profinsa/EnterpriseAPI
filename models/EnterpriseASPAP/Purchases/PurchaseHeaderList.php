@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	protected $tableName = "purchaseheader";
+	protected $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND ((IFNULL(Received,0) = 0) OR (IFNULL(PurchaseHeader.Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT')";
 	public $dashboardTitle ="Purchases";
 	public $breadCrumbTitle ="Purchases";
 	public $idField ="PurchaseNumber";

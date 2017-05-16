@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "paymentsheader";
+protected $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND PaymentsHeader.ApprovedForPayment=1 AND IFNULL(PaymentsHeader.Void,0)=0 AND PaymentsHeader.PaymentID <> 'DEFAULT'";
 public $dashboardTitle ="Issue Credit Memo For Payments";
 public $breadCrumbTitle ="Issue Credit Memo For Payments";
 public $idField ="PaymentID";

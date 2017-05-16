@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	protected $tableName = "purchaseheaderhistory";
+	protected $gridConditions = "(LOWER(IFNULL(PurchaseHeaderHistory.TransactionTypeID,N'')) NOT IN('rma','debit memo'))";
 	public $dashboardTitle ="Purchases History";
 	public $breadCrumbTitle ="Purchases History";
 	public $idField ="PurchaseNumber";

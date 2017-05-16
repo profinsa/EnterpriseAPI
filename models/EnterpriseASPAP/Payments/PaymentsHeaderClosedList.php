@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "paymentsheader";
+protected $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=1) AND (IFNULL(PaymentsHeader.Paid,0)=1)";
 public $dashboardTitle ="Closed Payments";
 public $breadCrumbTitle ="Closed Payments";
 public $idField ="PaymentID";

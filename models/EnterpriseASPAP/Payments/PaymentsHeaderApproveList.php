@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "paymentsheader";
+protected $gridConditions = "(IFNULL(ApprovedForPayment,0)=0 AND Posted=1 AND IFNULL(Void,0)=0 AND PaymentID <> 'DEFAULT')";
 public $dashboardTitle ="Approve Payments";
 public $breadCrumbTitle ="Approve Payments";
 public $idField ="PaymentID";

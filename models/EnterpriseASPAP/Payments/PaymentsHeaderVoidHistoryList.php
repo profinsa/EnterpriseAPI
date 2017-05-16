@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "paymentsheader";
+protected $gridConditions = "(IFNULL(PaymentsHeader.Void,0)=1)";
 public $dashboardTitle ="Voided Payments";
 public $breadCrumbTitle ="Voided Payments";
 public $idField ="PaymentID";
