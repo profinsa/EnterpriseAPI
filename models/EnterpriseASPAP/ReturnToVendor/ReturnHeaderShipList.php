@@ -2,6 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "orderheader";
+protected $gridConditions = "(LOWER(OrderHeader.TransactionTypeID) = LOWER('Return')) AND ((IFNULL(OrderHeader.Posted, 0) = 1) AND (IFNULL(OrderHeader.Picked, 0) = 1) AND (IFNULL(OrderHeader.Shipped, 0) = 0) AND (IFNULL(OrderHeader.Invoiced, 0) = 0))";
 public $dashboardTitle ="OrderHeader";
 public $breadCrumbTitle ="OrderHeader";
 public $idField ="OrderNumber";

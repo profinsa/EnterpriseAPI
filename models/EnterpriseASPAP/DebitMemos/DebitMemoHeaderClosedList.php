@@ -32,6 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	protected $tableName = "purchaseheader";
+    protected $gridConditions = "(ABS(IFNULL(PurchaseHeader.BalanceDue, 0)) < 0.005) AND (ABS(IFNULL(PurchaseHeader.Total, 0)) >= 0.005) AND (LOWER(IFNULL(PurchaseHeader.TransactionTypeID, N'')) = 'debit memo') AND (IFNULL(PurchaseHeader.Posted, 0) = 1)"; 
 	public $dashboardTitle ="Closed Debit Memos";
 	public $breadCrumbTitle ="Closed Debit Memos";
 	public $idField ="PurchaseNumber";

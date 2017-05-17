@@ -2,6 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "invoiceheader";
+protected $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return')) AND (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) >= 0.005)";
 public $dashboardTitle ="InvoiceHeader";
 public $breadCrumbTitle ="InvoiceHeader";
 public $idField ="InvoiceNumber";

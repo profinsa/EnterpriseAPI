@@ -2,6 +2,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "invoiceheaderhistory";
+protected $gridConditions = "(LOWER(IFNULL(InvoiceHeaderHistory.TransactionTypeID,N'')) = 'return')";
 public $dashboardTitle ="Return Invoices History";
 public $breadCrumbTitle ="Return Invoices History";
 public $idField ="InvoiceNumber";
