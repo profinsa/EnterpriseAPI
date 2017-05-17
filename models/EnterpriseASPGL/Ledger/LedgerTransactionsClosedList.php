@@ -3,13 +3,13 @@ require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "ledgertransactions";
+    protected $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 1 AND UPPER(GLTransactionNumber) <> 'DEFAULT'";
     public $dashboardTitle ="Closed Ledger Transactions";
     public $breadCrumbTitle ="Closed Ledger Transactions";
     public $idField ="GLTransactionNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
     public $modes = ["grid", "view", "edit"];
     public $features = ["selecting"];
-    protected $gridConditions = "GLTransactionPostedYN='1'";
     public $gridFields = [
         "GLTransactionNumber" => [
             "dbType" => "varchar(36)",
