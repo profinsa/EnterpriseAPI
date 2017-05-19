@@ -154,18 +154,18 @@ class drillDowner{
         
         $typeToView = [
             "Order" => "?page=grid&action=AccountsReceivable/OrderProcessing/ViewOrders&mode=view&category=Main&item=",
-            "Service Order" => "?page=grid&action=AccountsReceivable/ServiceProcessing/ViewServiceOrderss&mode=view&category=Main&item=",
-            "Service Invoice" => "?page=grid&action=AccountsReceivable/ServiceProcessing/ViewServiceInvoicess&mode=view&category=Main&item=",
-            "Invoice" => "?page=grid&action=AccountsReceivable/OrderProcessing/ViewInvoicess&mode=view&category=Main&item=",
-            "Check" => "?page=grid&action=AccountsPayable/VoucherProcessing/ViewVoucherss&mode=view&category=Main&item=",
-            "Purchase Order" => "?page=grid&action=AccountsPayable/PurchaseProcessing/ViewPurchasess&mode=view&category=Main&item=",
-            "Credit Memo" => "?page=grid&action=AccountsReceivable/CreditMemos/ViewCreditMemoss&mode=view&category=Main&item=",
-            "Debit Memo" => "?page=grid&action=AccountsPayable/DebitMemos/ViewDebitMemoss&mode=view&category=Main&item=",
-            "RMA" => "?page=grid&action=AccountsReceivable/RMAScreens/ViewRMAs&mode=view&category=Main&item=",
-            "Return" => "?page=grid&action=AccountsPayable/ReturntoVendorProcessing/ViewReturnss&mode=view&category=Main&item=",
-            "Cash" => "?page=grid&action=AccountsReceivable/CashReceiptsProcessing/ViewCashReceiptss&mode=view&category=Main&item=",
-            "Visa" => "?page=grid&action=AccountsReceivable/CashReceiptsProcessing/ViewCashReceiptss&mode=view&category=Main&item=",
-            "Quote" => "?page=grid&action=AccountsReceivable/OrderScreens/ViewQuotess&mode=view&category=Main&item="
+            "Service Order" => "?page=grid&action=AccountsReceivable/ServiceProcessing/ViewServiceOrders&mode=view&category=Main&item=",
+            "Service Invoice" => "?page=grid&action=AccountsReceivable/ServiceProcessing/ViewServiceInvoices&mode=view&category=Main&item=",
+            "Invoice" => "?page=grid&action=AccountsReceivable/OrderProcessing/ViewInvoices&mode=view&category=Main&item=",
+            "Check" => "?page=grid&action=AccountsPayable/VoucherProcessing/ViewVouchers&mode=view&category=Main&item=",
+            "Purchase Order" => "?page=grid&action=AccountsPayable/PurchaseProcessing/ViewPurchases&mode=view&category=Main&item=",
+            "Credit Memo" => "?page=grid&action=AccountsReceivable/CreditMemos/ViewCreditMemos&mode=view&category=Main&item=",
+            "Debit Memo" => "?page=grid&action=AccountsPayable/DebitMemos/ViewDebitMemos&mode=view&category=Main&item=",
+            "RMA" => "?page=grid&action=AccountsReceivable/RMAScreens/ViewRMA&mode=view&category=Main&item=",
+            "Return" => "?page=grid&action=AccountsPayable/ReturntoVendorProcessing/ViewReturns&mode=view&category=Main&item=",
+            "Cash" => "?page=grid&action=AccountsReceivable/CashReceiptsProcessing/ViewCashReceipss&mode=view&category=Main&item=",
+            "Visa" => "?page=grid&action=AccountsReceivable/CashReceiptsProcessing/ViewCashReceipts&mode=view&category=Main&item=",
+            "Quote" => "?page=grid&action=AccountsReceivable/OrderScreens/ViewQuotes&mode=view&category=Main&item="
         ];
 
         return "index.php#/" . (key_exists($type, $typeToView) ? $typeToView[$type] : "?page=grid&action=AccountsReceivable/OrderProcessing/ViewOrders&mode=view&category=Main&item=") . "$keyString";

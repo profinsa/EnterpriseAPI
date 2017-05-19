@@ -708,10 +708,21 @@ class gridData extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			]
-		]
-];
+		],
+        "Customer Transactions" => [
+            "CustomerID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ],
+        ],
+        "Customer Transactions History" => [
+            "CustomerID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ],
+        ]
+    ];
 	public $columnNames = [
-
 		"CustomerID" => "Customer ID",
 		"CustomerTypeID" => "Customer Type ID",
 		"CustomerName" => "Customer Name",
@@ -838,7 +849,89 @@ class gridData extends gridDataSource{
 		"ReferedDate" => "Refered Date",
 		"ReferalURL" => "Referal URL",
 		"Hot" => "Hot",
-		"PrimaryInterest" => "Primary Interest"
+		"PrimaryInterest" => "Primary Interest",
+        "TransactionType" => "Transaction Type",
+		"TransactionNumber" => "Transaction Number",
+		"TransactionDate" => "Transaction Date",
+		"TransactionAmount" => "Transaction Amount",
+        "CurrencyID" => "Currency ID",
+		"ShipDate" => "Ship Date",
+		"TrackingNumber" => "Tracking Number"
 	];
+
+    public $transactionsIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
+	public $transactionsFields = [
+		"TransactionType" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		],
+		"TransactionNumber" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		],
+		"TransactionDate" => [
+			"dbType" => "datetime",
+			"inputType" => "datetime"
+		],
+		"TransactionAmount" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text"
+		],
+        "CurrencyID" =>	[
+            "dbType" => "varchar(3)",
+            "inputType" => "dropdown",
+        ],
+		"ShipDate" => [
+			"dbType" => "datetime",
+			"inputType" => "datetime"
+		],
+		"TrackingNumber" => [
+			"dbType" => "varchar(50)",
+			"inputType" => "text"
+		]
+	];
+    
+    //getting rows for grid
+    public function getTransactions($CustomerID, $type){
+        $user = $_SESSION["user"];
+        $keyFields = "";
+        $fields = [];
+        foreach($this->transactionsFields as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->transactionsIdFields as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND CustomerID='" . $CustomerID . "'";
+
+        
+        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $fields) . " from " . ($type == "history" ? "customerhistorytransactions " : "customertransactions ") . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
 }
 ?>
