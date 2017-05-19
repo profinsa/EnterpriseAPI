@@ -147,5 +147,46 @@ class drillDowner{
         return "<a target=\"_blank\" href=\"index.php?page=docreports&type=" . $pfixes["prefix"] . "order" . $pfixes["postfix"] . "&id=$OrderNumber\">$OrderNumber</a>";
 
     }
+
+    public function getViewHrefByTransactionNumberAndType($number, $type){
+        $user = $GLOBALS["user"];
+        $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $number;
+        
+        $typeToView = [
+            "Order" => "?page=grid&action=AccountsReceivable/OrderProcessing/ViewOrders&mode=view&category=Main&item=",
+            "Service Order" => "?page=grid&action=AccountsReceivable/ServiceProcessing/ViewServiceOrderss&mode=view&category=Main&item=",
+            "Service Invoice" => "?page=grid&action=AccountsReceivable/ServiceProcessing/ViewServiceInvoicess&mode=view&category=Main&item=",
+            "Invoice" => "?page=grid&action=AccountsReceivable/OrderProcessing/ViewInvoicess&mode=view&category=Main&item=",
+            "Check" => "?page=grid&action=AccountsPayable/VoucherProcessing/ViewVoucherss&mode=view&category=Main&item=",
+            "Purchase Order" => "?page=grid&action=AccountsPayable/PurchaseProcessing/ViewPurchasess&mode=view&category=Main&item=",
+            "Credit Memo" => "?page=grid&action=AccountsReceivable/CreditMemos/ViewCreditMemoss&mode=view&category=Main&item=",
+            "Debit Memo" => "?page=grid&action=AccountsPayable/DebitMemos/ViewDebitMemoss&mode=view&category=Main&item=",
+            "RMA" => "?page=grid&action=AccountsReceivable/RMAScreens/ViewRMAs&mode=view&category=Main&item=",
+            "Return" => "?page=grid&action=AccountsPayable/ReturntoVendorProcessing/ViewReturnss&mode=view&category=Main&item=",
+            "Cash" => "?page=grid&action=AccountsReceivable/CashReceiptsProcessing/ViewCashReceiptss&mode=view&category=Main&item=",
+            "Visa" => "?page=grid&action=AccountsReceivable/CashReceiptsProcessing/ViewCashReceiptss&mode=view&category=Main&item=",
+            "Quote" => "?page=grid&action=AccountsReceivable/OrderScreens/ViewQuotess&mode=view&category=Main&item="
+        ];
+
+        return "index.php#/" . (key_exists($type, $typeToView) ? $typeToView[$type] : "?page=grid&action=AccountsReceivable/OrderProcessing/ViewOrders&mode=view&category=Main&item=") . "$keyString";
+    }
+
+    public function getReportLinkByTransactionNumberAndType($number, $type){
+        $typeToReport = [
+            "Order" => "order",
+            "Service Order" => "serviceorder",
+            "Service Invoice" => "serviceinvoice",
+            "Invoice" => "invoice",
+            "Check" => "purchaseorder",
+            "Purchase Order" => "purchaseorder",
+            "Credit Memo" => "creditmemo",
+            "Debit Memo" => "debitmemo",
+            "RMA" => "rmaorder",
+            "Return" => "returninvoice",
+            "Quote" => "quote"
+        ];
+
+        return "<a target=\"_blank\" href=\"" . "docreports/" . (key_exists($type, $typeToReport) ? $typeToReport[$type] : "order") . "/$number\">$number</a>";
+    }
 }
 ?>
