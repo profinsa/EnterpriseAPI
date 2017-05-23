@@ -313,21 +313,23 @@ class gridDataSource{
         
         $update_fields = "";
         if($category){
-            foreach($this->editCategories[$category] as $name=>$value){
-                if(key_exists($name, $values)){
-                    if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
-                        $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
-                    else if(key_exists("formatFunction", $value)){
-                        $formatFunction = $value["formatFunction"];
-                        $values[$name] = $this->$formatFunction($values, "editCategories", $name, $values[$name], true);
-                    }
-                    if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
-                        $values[$name] = str_replace(",", "", $values[$name]);
+            foreach($this->editCategories as $categ=>$cvalue){
+                foreach($this->editCategories[$categ] as $name=>$value){
+                    if(key_exists($name, $values) && $values[$name] != ""){
+                        if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
+                            $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                        else if(key_exists("formatFunction", $value)){
+                            $formatFunction = $value["formatFunction"];
+                            $values[$name] = $this->$formatFunction($values, "editCategories", $name, $values[$name], true);
+                        }
+                        if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                            $values[$name] = str_replace(",", "", $values[$name]);
 
-                    if($update_fields == "")
-                        $update_fields = $name . "='" . $values[$name] . "'";
-                    else
-                        $update_fields .= "," . $name . "='" . $values[$name] . "'";
+                        if($update_fields == "")
+                            $update_fields = $name . "='" . $values[$name] . "'";
+                        else
+                            $update_fields .= "," . $name . "='" . $values[$name] . "'";
+                    }
                 }
             }
         }else{
@@ -349,33 +351,6 @@ class gridDataSource{
                 }
             }
         }
-        /*        $keyValues = explode("__", $id);
-        $keyFields = "";
-        $fcount = 0;
-        foreach($this->idFields as $key)
-            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-        
-        $update_fields = "";
-        foreach($this->editCategories[$category] as $name=>$value){
-            if(key_exists($name, $values)){
-                if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
-                    $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
-                else if(key_exists("formatFunction", $value)){
-                    $formatFunction = $value["formatFunction"];
-                    $values[$name] = $this->$formatFunction($values, "editCategories", $name, $values[$name], true);
-                }
-                else
-                    if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
-                        $values[$name] = str_replace(",", "", $values[$name]);
-                                      
-                if($update_fields == "")
-                    $update_fields = $name . "='" . $values[$name] . "'";
-                else
-                    $update_fields .= "," . $name . "='" . $values[$name] . "'";
-            }
-            }*/
 
         $GLOBALS["capsule"]::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }

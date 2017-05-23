@@ -102,6 +102,7 @@ class controller{
                 $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
             
                 $scope = $this;
+                $ascope = json_decode(json_encode($scope), true);
                 if(key_exists("mode", $_GET))
                     $this->mode = $_GET["mode"];
                 if(key_exists("category", $_GET))
