@@ -185,8 +185,8 @@ class drillDowner{
             "Return" => "returninvoice",
             "Quote" => "quote"
         ];
-
-        return "<a target=\"_blank\" href=\"" . "docreports/" . (key_exists($type, $typeToReport) ? $typeToReport[$type] : "order") . "/$number\">$number</a>";
+        return "<a target=\"_blank\" href=\"" . "index.php?page=docreports&type=" . (key_exists($type, $typeToReport) ? $typeToReport[$type] : "order") . "&id=" . $number . "\">$number</a>";
+        // return "<a target=\"_blank\" href=\"" . "docreports/" . (key_exists($type, $typeToReport) ? $typeToReport[$type] : "order") . "/$number\">$number</a>";
     }
 }
 ?>
