@@ -9,6 +9,7 @@
     </ul>
     <div class="table-responsive">
 	<?php if($scope->category == "Project Transactions"): ?>
+	    <div style="margin-top:10px;"></div>
 	    <?php
 	    $item = $data->getEditItem($scope->item, $scope->category);
 	    $rows = $data->getTransactions($item["CustomerID"], "normal");
@@ -17,6 +18,7 @@
 	    // echo json_encode($rows);
 	    ?>
 	<?php elseif($scope->category == "Project Transactions History"): ?>
+	    <div style="margin-top:10px;"></div>
 	    <?php
 	    $item = $data->getEditItem($scope->item, $scope->category);
 	    $rows = $data->getTransactions($item["CustomerID"], "history");
@@ -67,34 +69,40 @@
 		</tbody>
 	    </table>
 	<?php endif; ?>
-    </div>
-    <?php
-    if(file_exists(__DIR__ . "/../" . $PartsPath . "viewFooter.php"))
-	require __DIR__ . "/../" . $PartsPath . "viewFooter.php";
-    if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
-	require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
-    ?>
-
-    <div style="margin-top:10px" class="pull-right">
-	<!--
-	     buttons Edit and Cancel
-	     for translation uses translation model
-	     for category(which tab is activated) uses $scope of controller
-	   -->
-	<?php if($security->can("update")): ?>
-	<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page .  "&action=" . $scope->action;  ?>&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
-		<?php echo $translation->translateLabel("Edit"); ?>
-	</a>
-	<?php 
-	if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
-		require __DIR__ . "/../" . $PartsPath . "editActions.php";
-	if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
-		require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
+	<?php
+	if(file_exists(__DIR__ . "/../" . $PartsPath . "viewFooter.php"))
+	    require __DIR__ . "/../" . $PartsPath . "viewFooter.php";
+	if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
+	    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
 	?>
-	<?php endif; ?>
 
-	<a class="btn btn-inverse waves-effect waves-light" href="index.php#/?page=<?php echo $app->page . "&action=" . 	$scope->action; ?>&mode=grid">
+	<div style="margin-top:20px" class="pull-right">
+	    <!--
+		 buttons Edit and Cancel
+		 for translation uses translation model
+		 for category(which tab is activated) uses $scope of controller
+	       -->
+	    <?php if($security->can("update")): ?>
+		<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page .  "&action=" . $scope->action;  ?>&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
+		    <?php echo $translation->translateLabel("Edit"); ?>
+		</a>
+		<?php 
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "editActions.php";
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
+		?>
+	    <?php endif; ?>
+	    <a class="btn btn-inverse waves-effect waves-light" href="index.php#/?page=<?php echo $app->page . "&action=" . 	$scope->action; ?>&mode=grid">
 		<?php echo $translation->translateLabel("Cancel"); ?>
-	</a>
+	    </a>
+	</div>
     </div>
 </div>
+<script>
+ if(!$.fn.DataTable.isDataTable("#example23")){
+     $('#example23').DataTable( {
+	 dom : "frtlip"
+     });
+ }
+</script>
