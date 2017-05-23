@@ -70,3 +70,47 @@ adoptation for screen sizes
 .sidebar .nav-fourth-level li a {
   padding-left: 62px;
 }
+
+/*Order Entry Screens*/
+
+.order-entry-header .row-header td {
+    font-weight : bold;
+    background-color: #4F5467;
+    color : #fff;
+    border-left : 1px solid #fff;
+}
+
+.order-entry-main-table .title {
+    font-weight : bold;
+    color : black;
+}
+
+.order-entry-footer-left div {
+    height : 20px;
+}
+
+.order-entry-footer-table td {
+    padding-left : 3px;
+}
+
+.order-entry-balance-table td {
+    padding-top : 5px;
+}
+
+.order-entry-flagsanddates-table td {
+    padding-top : 2px;
+}
+
+.order-entry-flagsanddates-table {
+    padding : 5px;
+}
+
+.order-entry-flagsanddates-table .date-title {
+     width:1%;
+     white-space:nowrap;
+     padding-right: 20px;
+}
+
+.order-entry-footer-table input{
+    max-width : 110px;
+}

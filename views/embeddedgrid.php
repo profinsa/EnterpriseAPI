@@ -48,7 +48,7 @@
 		}
 
 		if(function_exists("makeRowActions")){
-		    makeRowActions($public_prefix, $scope, $row, $embeddedgridContext);
+		    makeRowActions($linksMaker, $data, $ascope, $row, $embeddedgridContext);
 		}
 		/*
 		   Each grid page(each screen) can have own row actions.

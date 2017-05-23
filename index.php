@@ -30,7 +30,7 @@ require './common.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-$GLOBALS["capsule"] = new Capsule;
+$GLOBALS["capsule"] = $GLOBALS["DB"] = new Capsule;
 $config = config();
 $capsule->addConnection([
     "driver" => "mysql",

@@ -33,6 +33,7 @@ require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
 require 'models/drillDowner.php';
+require 'models/linksMaker.php';
 
 class controller{
     public $user = false;
@@ -54,6 +55,7 @@ class controller{
 
         require 'models/menuIdToHref.php';
         $drill = new drillDowner();
+        $linksMaker = new linksMaker();
         
         $this->action = $this->path =  $_GET["action"];
         $model_path = $menuIdToPath[$_GET["action"]];
@@ -101,14 +103,73 @@ class controller{
                 $this->dashboardTitle = $translation->translateLabel($data->dashboardTitle);
                 $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
             
-                $scope = $this;
-                $ascope = json_decode(json_encode($scope), true);
+                $redirectView = [
+                    "EnterpriseASPAR/OrderProcessing/OrderHeaderClosedList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/OrderProcessing/OrderHeaderHistoryList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/OrderProcessing/OrderHeaderHoldList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/OrderProcessing/OrderHeaderBackList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/OrderProcessing/QuoteHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/OrderProcessing/InvoiceHeaderHistoryList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderHistoryList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/CreditMemos/CreditMemoHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/CreditMemos/CreditMemoHeaderHistoryList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/RMA/RMAHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/RMA/RMAHeaderClosedList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ]
+                ];
                 if(key_exists("mode", $_GET))
                     $this->mode = $_GET["mode"];
                 if(key_exists("category", $_GET))
                     $this->category = $_GET["category"];
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
+                
+                $scope = $this;
+                $ascope = json_decode(json_encode($scope), true);
 
                 $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
                 require 'models/menuCategoriesGenerated.php';

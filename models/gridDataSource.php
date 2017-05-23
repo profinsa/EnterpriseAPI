@@ -32,6 +32,172 @@ class gridDataSource{
 
     public $idField = "";
 
+    //getting list of available tax groups
+    public function getTaxGroups(){
+        $user = Session::get("user");
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT TaxGroupID from taxgroups WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->TaxGroupID] = [
+                "title" => $value->TaxGroupID,
+                "value" => $value->TaxGroupID
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available credit card types
+    public function getCreditCardTypes(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT CreditCardTypeID from creditcardtypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->CreditCardTypeID] = [
+                "title" => $value->CreditCardTypeID,
+                "value" => $value->CreditCardTypeID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available payment methods
+    public function getPaymentMethods(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT PaymentMethodID from paymentmethods WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->PaymentMethodID] = [
+                "title" => $value->PaymentMethodID,
+                "value" => $value->PaymentMethodID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available shipment methods
+    public function getShipToIDS($args){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT ShipToID from customershiptolocations WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CustomerID='" . $args["CustomerID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ShipToID] = [
+                "title" => $value->ShipToID,
+                "value" => $value->ShipToID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available shipment methods
+    public function getShipForIDS($args){
+        $user = $_SESSION["user"];
+        $res = [];
+
+        $result = $GLOBALS["DB"]::select("SELECT ShipForID from customershipforlocations WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CustomerID='" . $args["CustomerID"] . "' AND ShipToID='" . $args["ShipToID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ShipForID] = [
+                "title" => $value->ShipForID,
+                "value" => $value->ShipForID
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available shipment methods
+    public function getShipMethods(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT ShipMethodID from shipmentmethods WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ShipMethodID] = [
+                "title" => $value->ShipMethodID,
+                "value" => $value->ShipMethodID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available terms
+    public function getTerms(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT TermsID from terms WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->TermsID] = [
+                "title" => $value->TermsID,
+                "value" => $value->TermsID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available employees
+    public function getPayrollEmployees(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT EmployeeID from payrollemployees WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->EmployeeID] = [
+                "title" => $value->EmployeeID,
+                "value" => $value->EmployeeID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available warehouses
+    public function getWarehouses(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT WarehouseID from warehouses WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->WarehouseID] = [
+                "title" => $value->WarehouseID,
+                "value" => $value->WarehouseID
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available Accounts Receivable transaction types
+    public function getARTransactionTypes(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT TransactionTypeID from artransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->TransactionTypeID] = [
+                "title" => $value->TransactionTypeID,
+                "value" => $value->TransactionTypeID
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available order types
+    public function getOrderTypes(){
+        $user = $_SESSION["user"];
+        $res = [];
+        $result = $GLOBALS["DB"]::select("SELECT OrderTypeID from ordertypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->OrderTypeID] = [
+                "title" => $value->OrderTypeID,
+                "value" => $value->OrderTypeID
+            ];
+        
+        return $res;
+    }
+    
     //getting list of available ledger balance types
     public function getLedgerBalanceTypes(){
         $user = $_SESSION["user"];
