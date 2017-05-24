@@ -80,7 +80,7 @@
 			?>
 		    </tbody>
 		</table>
-	    </div>
+	</div>
 	<?php endforeach; ?>
 	<?php
 	if(file_exists(__DIR__ . "/../" . $PartsPath . "editFooter.php"))
