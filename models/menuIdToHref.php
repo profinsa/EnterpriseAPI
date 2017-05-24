@@ -3,7 +3,7 @@
     "AccountsReceivable/OrderProcessing/ViewOrdersDetail" => "EnterpriseASPAR/OrderProcessing/OrderDetail",
     "AccountsReceivable/OrderProcessing/ViewOrdersHistoryDetail" => "EnterpriseASPAR/OrderProcessing/OrderHistoryDetail",
     "AccountsReceivable/OrderProcessing/ViewInvoicesDetail" => "EnterpriseASPAR/OrderProcessing/InvoiceDetail",
-    "AccountsReceivable/OrderProcessing/ViewInvoicesHistoryDetail" => "EnterpriseASPAR/OrderProcessing/InvoiceHistoryDetail"
+    "AccountsReceivable/OrderProcessing/ViewInvoicesHistoryDetail" => "EnterpriseASPAR/OrderProcessing/InvoiceHistoryDetail",
     "AccountsReceivable/OrderProcessing/ViewQuotesDetail" => "EnterpriseASPAR/OrderProcessing/QuoteDetail",
     "AccountsReceivable/CreditMemos/ViewCreditMemosDetail" => "EnterpriseASPAR/CreditMemos/CreditMemoDetail",
     "AccountsReceivable/CreditMemos/ViewCreditMemoHistoryDetail" => "EnterpriseASPAR/CreditMemos/CreditMemoHistoryDetail",
