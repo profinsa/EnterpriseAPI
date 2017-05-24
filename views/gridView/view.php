@@ -24,6 +24,15 @@
      Last Modified: 05.24.2016
      Last Modified by: Nikita Zaharov
    -->
+<?php
+if(key_exists("back", $_GET)){
+    $backhref = urldecode($_GET["back"]);
+    $back = "&back=" . urlencode($_GET["back"]);
+}else{
+    $backhref = $linksMaker->makeGridItemViewCancel($ascope["path"]);
+    $back = "";
+}
+?>
 <div id="row_viewer">
     <ul class="nav nav-tabs" role="tablist">
 	<?php
@@ -96,7 +105,7 @@
 		     for category(which tab is activated) uses $scope of controller
 		   -->
 		<?php if($security->can("update")): ?>
-		    <a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page .  "&action=" . $scope->action;  ?>&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
+		    <a class="btn btn-info waves-effect waves-light m-r-10" href="<?php echo $linksMaker->makeGridItemEdit($scope->action, $scope->item) . $back;?>">
 			<?php echo $translation->translateLabel("Edit"); ?>
 		    </a>
  		    <?php 
@@ -106,7 +115,7 @@
 			require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
 		    ?>
 		<?php endif; ?>
-		<a class="btn btn-inverse waves-effect waves-light" href="index.php#/?page=<?php echo $app->page . "&action=" . $scope->action; ?>&mode=grid">
+		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $backhref?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
 	    </div>

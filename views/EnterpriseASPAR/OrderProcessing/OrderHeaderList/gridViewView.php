@@ -229,7 +229,7 @@
      },300);
     </script>
 
-    <div class="panel panel-default order-entry-header col-md-8 col-xs-12" style="margin-top:20px;">
+    <div class="panel panel-default order-entry-header col-md-8 col-xs-12" style="margin-top:20px; border:1px solid gray;">
 	<table class="col-md-12 col-xs-12 order-entry-flagsanddates-table">
 	    <tbody>
 		<tr>

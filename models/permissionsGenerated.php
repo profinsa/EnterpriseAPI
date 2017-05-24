@@ -199,6 +199,18 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "CreditMemo" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "AREdit|ADSetup",
+        "insert" => "ARAdd|ADSetup",
+        "delete" => "ARDelete|ADSetup",
+    ],
+    "CreditMemoHistory" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "CreditMemoHeader" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "AREdit|ADSetup",
@@ -751,6 +763,18 @@ public $permissions = [
         "insert" => "WOAdd|ADSetup",
         "delete" => "WODelete|ADSetup",
     ],
+    "Invoice" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "AREdit|ADSetup",
+        "insert" => "ARAdd|ADSetup",
+        "delete" => "ARDelete|ADSetup",
+    ],
+    "InvoiceHistory" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "AREdit|ADSetup",
+        "insert" => "ARAdd|ADSetup",
+        "delete" => "ARDelete|ADSetup",
+    ],
     "InvoiceHeader" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "AREdit|ADSetup",
@@ -944,6 +968,18 @@ public $permissions = [
         "delete" => "any",
     ],
     "OrderHeader" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "OEEdit|ADSetup",
+        "insert" => "OEAdd|ADSetup",
+        "delete" => "OEDelete|ADSetup",
+    ],
+    "Order" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "OEEdit|ADSetup",
+        "insert" => "OEAdd|ADSetup",
+        "delete" => "OEDelete|ADSetup",
+    ],
+    "OrderHistory" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "OEEdit|ADSetup",
         "insert" => "OEAdd|ADSetup",
@@ -1489,6 +1525,12 @@ public $permissions = [
         "insert" => "OEAdd|ADSetup",
         "delete" => "OEDelete|ADSetup",
     ],
+    "Quote" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "OEEdit|ADSetup",
+        "insert" => "OEAdd|ADSetup",
+        "delete" => "OEDelete|ADSetup",
+    ],
     "QuoteTrackingHeader" => [
         "select" => "any",
         "update" => "any",
@@ -1502,6 +1544,12 @@ public $permissions = [
         "delete" => "any",
     ],
     "RMAHeader" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "AREdit|ADSetup",
+        "insert" => "ARAdd|ADSetup",
+        "delete" => "ARDelete|ADSetup",
+    ],
+    "RMA" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "AREdit|ADSetup",
         "insert" => "ARAdd|ADSetup",
