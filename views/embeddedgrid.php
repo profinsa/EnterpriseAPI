@@ -1,18 +1,18 @@
 <table id="example23" class="table table-striped table-bordered">
     <thead>
-	<tr>
-	    <th></th>
-	    <?php
-	    //getting data for table
-	    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
-	    //we use first row of data for column rendering, each row is object with columnname=>value pairs
-	    if(count($rows)){
-		foreach($rows[0] as $key =>$value)
-		    if(key_exists($key, $gridFields))
-			echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
-	    }
-	    ?>
-	</tr>
+	<?php if(count($rows)): ?>
+		<tr>
+			<th></th>
+			<?php
+			//getting data for table
+			//renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
+			//we use first row of data for column rendering, each row is object with columnname=>value pairs
+			foreach($rows[0] as $key =>$value)
+				if(key_exists($key, $gridFields))
+				echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
+			?>
+		</tr>
+	<?php endif; ?>
     </thead>
     <tbody>
 	<?php
