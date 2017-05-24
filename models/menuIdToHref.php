@@ -1,6 +1,14 @@
 <?php
- $menuIdToPath = [
- 
+ $menuIdToPath = [ 
+    "AccountsReceivable/OrderProcessing/ViewOrdersDetail" => "EnterpriseASPAR/OrderProcessing/OrderDetail",
+    "AccountsReceivable/OrderProcessing/ViewOrdersHistoryDetail" => "EnterpriseASPAR/OrderProcessing/OrderHistoryDetail",
+    "AccountsReceivable/OrderProcessing/ViewInvoicesDetail" => "EnterpriseASPAR/OrderProcessing/InvoiceDetail",
+    "AccountsReceivable/OrderProcessing/ViewInvoicesHistoryDetail" => "EnterpriseASPAR/OrderProcessing/InvoiceHistoryDetail"
+    "AccountsReceivable/OrderProcessing/ViewQuotesDetail" => "EnterpriseASPAR/OrderProcessing/QuoteDetail",
+    "AccountsReceivable/CreditMemos/ViewCreditMemosDetail" => "EnterpriseASPAR/CreditMemos/CreditMemoDetail",
+    "AccountsReceivable/CreditMemos/ViewCreditMemoHistoryDetail" => "EnterpriseASPAR/CreditMemos/CreditMemoHistoryDetail",
+    "AccountsReceivable/RMAProcessing/ViewRMADetail" => "EnterpriseASPAR/RMA/RMADetail",
+
     "AccountsReceivable/OrderProcessing/ViewOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
     "AccountsReceivable/OrderProcessing/PickPackOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderPickList",
     "AccountsReceivable/OrderProcessing/ShipOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderShipList",

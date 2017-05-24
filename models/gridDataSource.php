@@ -34,7 +34,7 @@ class gridDataSource{
 
     //getting list of available tax groups
     public function getTaxGroups(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         $res = [];
         $result = $GLOBALS["DB"]::select("SELECT TaxGroupID from taxgroups WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 

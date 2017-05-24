@@ -25,6 +25,15 @@
      Last Modified: 05.24.2016
      Last Modified by: Nikita Zaharov
    -->
+<?php
+if(key_exists("back", $_GET)){
+    $backhref = urldecode($_GET["back"]);
+    $back = "&back=" . urlencode($_GET["back"]);
+}else{
+    $backhref = $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]);
+    $back = "";
+}
+?>
 <div id="row_editor">
     <div style="background-color:white;">
 	<ul class="nav nav-tabs" role="tablist">
@@ -128,7 +137,7 @@
 			require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
 		    ?>
 		<?php endif; ?>
-		<a class="btn btn-inverse waves-effect waves-light" href="index.php#/?page=<?php echo $app->page . "&action=" . $scope->action .  ( $scope->mode != "new" ? "&mode=view&category=" . $scope->category . "&item=" . $scope->item : "") ; ?>">
+		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $scope->mode != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
 	    </div>
@@ -138,10 +147,10 @@
      //handler of save button if we in new mode. Just doing XHR request to save data
      function createItem(){
 	 var itemData = $("#itemData");
-	 $.post("index.php?page=<?php  echo $app->page . "&action=" . $scope->action; ?>&new=true", itemData.serialize(), null, 'json')
+	 $.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemData.serialize(), null, 'json')
 	  .success(function(data) {
 	      console.log('ok');
-	      window.location = "index.php#/?page=<?php  echo $app->page . "&action=" . $scope->action; ?>";
+	      window.location = "<?php echo $backhref; ?>";
 	  })
 	  .error(function(err){
 	      console.log('wrong');
@@ -150,10 +159,10 @@
      //handler of save button if we in edit mode. Just doing XHR request to save data
      function saveItem(){
 	 var itemData = $("#itemData");
-	 $.post("index.php?page=<?php  echo $app->page .  "&action=" . $scope->action; ?>&update=true", itemData.serialize(), null, 'json')
+	 $.post("<?php echo $linksMaker->makeGridItemSave($ascope["action"]); ?>", itemData.serialize(), null, 'json')
 	  .success(function(data) {
 	      console.log('ok');
-	      window.location = "index.php#/?page=<?php  echo $app->page .  "&action=" . $scope->action; ?>&mode=view&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>";
+	      window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"] . $back); ?>";
 	  })
 	  .error(function(err){
 	      console.log('wrong');
