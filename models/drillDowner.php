@@ -186,7 +186,33 @@ class drillDowner{
             "Quote" => "quote"
         ];
         return "<a target=\"_blank\" href=\"" . "index.php?page=docreports&type=" . (key_exists($type, $typeToReport) ? $typeToReport[$type] : "order") . "&id=" . $number . "\">$number</a>";
-        // return "<a target=\"_blank\" href=\"" . "docreports/" . (key_exists($type, $typeToReport) ? $typeToReport[$type] : "order") . "/$number\">$number</a>";
+    }
+
+    public function getLinkByCVID($transactiontype, $cvid){    
+        $user = $GLOBALS["user"];
+        $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $cvid;
+
+        switch($transactiontype){
+            case "Check" :
+            case "Purchase Order" :
+            case "Debit Memo" :
+            case "Return" :
+                return "<a target=\"_Blank\" href=\"index.php#/?page=grid&action=AccountsPayable/Vendors/ViewVendorFinancials&mode=view&category=Main&item=$keyString\">$cvid</a>";
+                break;
+            case "Order" :
+            case "Invoice" :
+            case "Service Order" :
+            case "Service Invoice" :
+            case "Credit Memo" :
+            case "RMA" :
+            case "Quote" :
+            case "Cash" :
+            case "Visa" :
+                return "<a target=\"_Blank\" href=\"index.php#/?page=grid&action=AccountsReceivable/Customers/ViewCustomerFinancials&mode=view&category=Main&item=$keyString\">$cvid</a>";
+                break;
+            default:
+                return $value;
+        }
     }
 }
 ?>
