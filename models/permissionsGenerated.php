@@ -103,6 +103,12 @@ public $permissions = [
         "insert" => "Always",
         "delete" => "Always",
     ],
+    "CashReceipts" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "Always",
+        "insert" => "Always",
+        "delete" => "Always",
+    ],
     "CommentTypes" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "Always",
@@ -199,6 +205,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "CreditMemoHeader" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "AREdit|ADSetup",
+        "insert" => "ARAdd|ADSetup",
+        "delete" => "ARDelete|ADSetup",
+    ],
     "CreditMemo" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "AREdit|ADSetup",
@@ -210,12 +222,6 @@ public $permissions = [
         "update" => "any",
         "insert" => "any",
         "delete" => "any",
-    ],
-    "CreditMemoHeader" => [
-        "select" => "ARView|GLView|OEView|ADView|ADSetup",
-        "update" => "AREdit|ADSetup",
-        "insert" => "ARAdd|ADSetup",
-        "delete" => "ARDelete|ADSetup",
     ],
     "CreditMemoHeaderClosed" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
@@ -343,6 +349,12 @@ public $permissions = [
         "insert" => "POAdd|ADSetup",
         "delete" => "PODelete|ADSetup",
     ],
+    "DebitMemo" => [
+        "select" => "APView|GLView|POView|ADView|ADSetup",
+        "update" => "POEdit|ADSetup",
+        "insert" => "POAdd|ADSetup",
+        "delete" => "PODelete|ADSetup",
+    ],
     "DebitMemoHeaderApplyToPayment" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "Always",
@@ -356,6 +368,12 @@ public $permissions = [
         "delete" => "any",
     ],
     "DebitMemoHeaderHistory" => [
+        "select" => "APView|GLView|POView|ADView|ADSetup",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "DebitMemoHistory" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "any",
         "insert" => "any",
@@ -763,6 +781,12 @@ public $permissions = [
         "insert" => "WOAdd|ADSetup",
         "delete" => "WODelete|ADSetup",
     ],
+    "InvoiceHeader" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "AREdit|ADSetup",
+        "insert" => "ARAdd|ADSetup",
+        "delete" => "ARDelete|ADSetup",
+    ],
     "Invoice" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "AREdit|ADSetup",
@@ -770,12 +794,6 @@ public $permissions = [
         "delete" => "ARDelete|ADSetup",
     ],
     "InvoiceHistory" => [
-        "select" => "ARView|GLView|OEView|ADView|ADSetup",
-        "update" => "AREdit|ADSetup",
-        "insert" => "ARAdd|ADSetup",
-        "delete" => "ARDelete|ADSetup",
-    ],
-    "InvoiceHeader" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "AREdit|ADSetup",
         "insert" => "ARAdd|ADSetup",
@@ -1465,6 +1483,12 @@ public $permissions = [
         "insert" => "POAdd|ADSetup",
         "delete" => "PODelete|ADSetup",
     ],
+    "Purchase" => [
+        "select" => "APView|GLView|POView|ADView|ADSetup",
+        "update" => "POEdit|ADSetup",
+        "insert" => "POAdd|ADSetup",
+        "delete" => "PODelete|ADSetup",
+    ],
     "PurchaseHeaderApprove" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "APEdit|ADSetup",
@@ -1615,6 +1639,12 @@ public $permissions = [
         "insert" => "ARAdd|ADSetup",
         "delete" => "ARDelete|ADSetup",
     ],
+    "Receipts" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "AREdit|ADSetup",
+        "insert" => "ARAdd|ADSetup",
+        "delete" => "ARDelete|ADSetup",
+    ],
     "ReceiptsHeaderClosed" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "any",
@@ -1657,6 +1687,12 @@ public $permissions = [
         "insert" => "POAdd|ADSetup",
         "delete" => "PODelete|ADSetup",
     ],
+    "Return" => [
+        "select" => "APView|GLView|POView|ADView|ADSetup",
+        "update" => "POEdit|ADSetup",
+        "insert" => "POAdd|ADSetup",
+        "delete" => "PODelete|ADSetup",
+    ],
     "ReturnHeaderInvoice" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "any",
@@ -1682,6 +1718,12 @@ public $permissions = [
         "delete" => "any",
     ],
     "ReturnInvoiceHeader" => [
+        "select" => "APView|GLView|POView|ADView|ADSetup",
+        "update" => "APEdit|ADSetup",
+        "insert" => "APAdd|ADSetup",
+        "delete" => "APDelete|ADSetup",
+    ],
+    "ReturnInvoice" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "APEdit|ADSetup",
         "insert" => "APAdd|ADSetup",
