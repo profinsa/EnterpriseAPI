@@ -294,7 +294,6 @@ class gridData extends gridDataSource{
     public $inventoryitemsIdFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
     public function getItems(){
         $user = $_SESSION["user"];
-        
         $keyFields = "";
         $fields = [];
 
