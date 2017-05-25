@@ -311,7 +311,7 @@
 	    <?php endif; ?>
 	</div>
 	<script>
-	 var table = $('#example23').DataTable( {
+	 var table = $('.datatable').DataTable( {
 	     dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
 	 });
 	 setTimeout(function(){

@@ -66,6 +66,8 @@
 		<?php
 		if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewView.php"))
 		    require __DIR__ . "/" . $PartsPath . "gridViewView.php";
+		else if(key_exists($PartsPath, $redirectView) && file_exists(__DIR__ . "/" . $redirectView[$PartsPath]["view"] . "gridViewView.php"))
+		    require __DIR__ . "/" . $redirectView[$PartsPath]["view"] . "gridViewView.php";
 		else
 		    require "views/gridView/view.php";
 		?>
@@ -73,6 +75,8 @@
 		<?php
 		if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewEdit.php"))
 		    require __DIR__ . "/" . $PartsPath . "gridViewEdit.php";
+		else if(key_exists($PartsPath, $redirectView) && file_exists(__DIR__ . "/" . $redirectView[$PartsPath]["edit"] . "gridViewEdit.php"))
+		    require __DIR__ . "/" . $redirectView[$PartsPath]["edit"] . "gridViewEdit.php";
 		else
 		    require "views/gridView/edit.php";
 		?>
@@ -95,24 +99,28 @@
 	     'copy', 'csv', 'excel', 'pdf', 'print'
 	 ]
      });
-
-     jQuery('.fdatetime').datepicker({
-	 autoclose : true,
-	 format: {
-	     toDisplay: function (date, format, language) {
-		 //console.log(date,' eee');
-		 var d = new Date(date);
-		 return (d.getMonth() + 1) + 
-		       "/" +  d.getDate() +
-		       "/" +  d.getFullYear();
-	     },
-	     toValue: function (date, format, language) {
-		 var d = new Date(date);
-		 return (d.getMonth() + 1) + 
-		       "/" +  d.getDate() +
-		       "/" +  d.getFullYear();
-	     }
-	 }
+ }
+ if(!$.fn.DataTable.isDataTable(".datatable")){
+     $('.datatable').DataTable( {
+	 dom : "frtlip",
      });
  }
- </script>
+ jQuery('.fdatetime').datepicker({
+     autoclose : true,
+     format: {
+	 toDisplay: function (date, format, language) {
+	     //console.log(date,' eee');
+	     var d = new Date(date);
+	     return (d.getMonth() + 1) + 
+		   "/" +  d.getDate() +
+		   "/" +  d.getFullYear();
+	 },
+	 toValue: function (date, format, language) {
+	     var d = new Date(date);
+	     return (d.getMonth() + 1) + 
+		   "/" +  d.getDate() +
+		   "/" +  d.getFullYear();
+	 }
+     }
+ });
+</script>
