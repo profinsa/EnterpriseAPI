@@ -788,7 +788,7 @@ $menuCategories["AccountsPayable"] = [
         ],
         [
         "id" => "AccountsPayable/VoucherScreens/ViewVocuhersHistory",
-        "full" => $translation->translateLabel('View Vocuhers History'),
+        "full" => $translation->translateLabel('View Vouchers History'),
         "href"=> "EnterpriseASPAP/Payments/PaymentsHeaderHistoryList",
         "short" => "Vi"
         ],

@@ -1,0 +1,20 @@
+* system requirements
+   + mysql 5.5 or higher
+   + php 5.6(may be higher, but not tested yet)
+   + iis version 6 or higher
+   + iis php module 5.6 version
+*  installation
+   + unpack in some place which accesable for webserver, for example it may be C:\inetpub\EnterpriseX
+     It means that address in browser will be something like that: localhost\EnterpriseX
+   + create database myenterprise and user for that database with full permissions. 
+     For example this user will be "myenteprise" with password "enterprisepass"
+   + load database from sql/backup_[last date].sql
+     like that mysql -u enteprise -p myenterprise < backup_05_21_2017.sql
+   + change database settings in common.php
+     - change db_host if it need
+     - change db_user to myenterprise
+     - change db_password to enterprisepass
+     - change db_base to myenterprise
+
+   If all steps is done, you can go to browser, type localhost/EnterpriseX/index.php and you will see login page
+   
