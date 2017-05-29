@@ -20,9 +20,51 @@
      Calls:
      model
 
-     Last Modified: 05/18/2017
+     Last Modified: 05/30/2017
      Last Modified by: Zaharov Nikita
    -->
+<?php
+function renderRow($translation, $ascope, $data, $category, $item, $key, $value){
+    $translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
+    echo "<div class=\"form-group col-md-12 col-xs-12\"><label class=\"col-md-6 col-xs-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6 col-xs-6\">";
+    renderInput($ascope, $data, $category, $item, $key, $value);
+    echo "</div></div>";
+}
+
+function renderViewRow($translation, $data, $fieldsDefinition, $values, $key, $value){
+    echo "<tr><td class=\"title\">" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
+    echo formatValue($data, $fieldsDefinition, $values, $key, $value);
+    echo "</td></tr>";
+}
+
+function makeTableItems($values, $fieldsDefinition){
+    $leftItems = [];
+    $rightItems = [];
+    
+    $itemsHalf = 0;
+    $itemsCount = 0;
+    foreach($values as $key =>$value){
+	if(key_exists($key, $fieldsDefinition))
+	    $itemsCount++;
+    }
+    $itemsHalf = $itemsCount/2;
+
+    $itemsCount = 0;
+    foreach($values as $key =>$value){
+	if(key_exists($key, $fieldsDefinition)){
+	    if($itemsCount < $itemsHalf)
+		$leftItems[$key] = $value;
+	    else 
+		$rightItems[$key] = $value;
+	    $itemsCount++;
+	}
+    }
+    return [
+	"leftItems" => $leftItems,
+	"rightItems" => $rightItems
+    ];
+}
+?>
 <div id="row_editor" style="display:table">
     <form id="itemData" class="form-material form-horizontal m-t-30 col-md-12 col-xs-12">
 	<input type="hidden" name="id" value="<?php echo $ascope["item"]; ?>" />
@@ -108,7 +150,7 @@
 	    }
 	    
 	    $headerItem = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], "...fields") :
-					    $data->getNewItem($ascope["item"], "...fields" );
+					     $data->getNewItem($ascope["item"], "...fields" );
 	    ?>
 	    <table class="col-md-12 col-xs-12 table">
 		<tbody>
@@ -128,169 +170,134 @@
 		    </tr>
 		</tbody>
 	    </table>
-	    <table class="col-md-12 col-xs-12 table">
-		<tbody>
-		    <tr class="row-header">
-			<?php foreach($data->headTableTwo as $key=>$value): ?>
-			    <td>
-				<?php echo $translation->translateLabel($key); ?>   
-			    </td>
-			<?php endforeach; ?>
-		    </tr>
-		    <tr>
-			<?php foreach($data->headTableTwo as $key=>$value): ?>
-			    <td>
-				<?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
-			    </td>
-			<?php endforeach; ?>
-		    </tr>
-		</tbody>
-	    </table>
+	    <?php if(property_exists($data, "headTableTwo")): ?>
+		<table class="col-md-12 col-xs-12 table">
+		    <tbody>
+			<tr class="row-header">
+			    <?php foreach($data->headTableTwo as $key=>$value): ?>
+				<td>
+				    <?php echo $translation->translateLabel($key); ?>   
+				</td>
+			    <?php endforeach; ?>
+			</tr>
+			<tr>
+			    <?php foreach($data->headTableTwo as $key=>$value): ?>
+				<td>
+				    <?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+				</td>
+			    <?php endforeach; ?>
+			</tr>
+		    </tbody>
+		</table>
+	    <?php endif; ?>
 	</div>
-	<ul class="nav nav-pills" role="tablist">
-	    <?php
-	    //render tabs like Main, Current etc
-	    //uses $data(charOfAccounts model) as dictionaries which contains list of tab names
-	    foreach($data->editCategories as $key =>$value)
-		if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
-		    echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#$key\" aria-controls=\"$key\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
-	    ?>
-	</ul>
-	<br/>
-	<?php
-	function renderRow($translation, $ascope, $data, $category, $item, $key, $value){
-	    $translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
-	    echo "<div class=\"form-group col-md-12 col-xs-12\"><label class=\"col-md-6 col-xs-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6 col-xs-6\">";
-	    renderInput($ascope, $data, $category, $item, $key, $value);
-	    echo "</div></div>";
-	}
 
-	function renderViewRow($translation, $data, $fieldsDefinition, $values, $key, $value){
-	    echo "<tr><td class=\"title\">" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
-	    echo formatValue($data, $fieldsDefinition, $values, $key, $value);
-	    echo "</td></tr>";
-	}
-
-	function makeTableItems($values, $fieldsDefinition){
-	    $leftItems = [];
-	    $rightItems = [];
-	    
-	    $itemsHalf = 0;
-	    $itemsCount = 0;
-	    foreach($values as $key =>$value){
-		if(key_exists($key, $fieldsDefinition))
-		    $itemsCount++;
-	    }
-	    $itemsHalf = $itemsCount/2;
-
-	    $itemsCount = 0;
-	    foreach($values as $key =>$value){
-		if(key_exists($key, $fieldsDefinition)){
-		    if($itemsCount < $itemsHalf)
-			$leftItems[$key] = $value;
-		    else 
-			$rightItems[$key] = $value;
-		    $itemsCount++;
-		}
-	    }
-	    return [
-		"leftItems" => $leftItems,
-		"rightItems" => $rightItems
-	    ];
-	}
-	?>
-	<div class="tab-content">
-	    <?php foreach($data->editCategories as $key =>$value):  ?>
-		<div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo $key ?>">
-		    <?php
-		    //getting record.
-		    $item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
-					      $data->getNewItem($ascope["item"], $key);
-		    ?>
-		    <?php if($key == "Customer"): ?>
+	<?php if(key_exists("Main", $data->editCategories) && !property_exists($data, "makeTabs")): ?>
+	    <ul class="nav nav-pills" role="tablist">
+		<?php
+		//render tabs like Main, Current etc
+		//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
+		foreach($data->editCategories as $key =>$value)
+		    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
+			echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#$key\" aria-controls=\"$key\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
+		?>
+	    </ul>
+	    <br/>
+	    <div class="tab-content">
+		<?php foreach($data->editCategories as $key =>$value):  ?>
+		    <div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo $key ?>">
 			<?php
-			$customerInfo = $data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : "CustomerID"]);
-			$tableItems = makeTableItems($customerInfo, $data->customerFields);
-			$tableCategories = $data->customerFields;
-			$items = $customerInfo;
+			//getting record.
+			$item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
+						   $data->getNewItem($ascope["item"], $key);
 			?>
-			<div class=" col-md-5 col-xs-5">
-			    <table class="table table-bordered order-entry-main-table ">
-				<tbody id="row_viewer_tbody">
-				    <?php 
-				    foreach($tableItems["leftItems"] as $key =>$value)
-					renderViewRow($translation, $data, $tableCategories, $items, $key, $value);
-				    ?>
-				</tbody>
-			    </table>
-			</div>
-			<div class="col-md-5 col-xs-5">
-			    <table class="table table-bordered order-entry-main-table">
-				<tbody id="row_viewer_tbody">
-				    <?php 
-				    foreach($tableItems["rightItems"] as $key =>$value)
-					renderViewRow($translation, $data, $tableCategories,  $items,$key, $value);
-				    ?>
-				</tbody>
-			    </table>
-			</div>
-		    <?php else: ?>
-			<?php
-			$tableCategories = $data->editCategories[$key];
-			$tableItems = makeTableItems($item, $tableCategories);
-			$items = $item;
-			$category = $key;
-			?>
-			<div class=" col-md-5 col-xs-5">
-			    <table class="table table-bordered order-entry-main-table ">
-				<tbody id="row_viewer_tbody">
-				    <?php
-				    foreach($tableItems["leftItems"] as $key =>$value)
-					renderRow($translation, $ascope, $data, $category, $items, $key, $value);
-				    ?>
-				</tbody>
-			    </table>
-			</div>
-			<div class="col-md-5 col-xs-5">
-			    <table class="table table-bordered order-entry-main-table">
-				<tbody id="row_viewer_tbody">
-				    <?php 
-				    foreach($tableItems["rightItems"] as $key =>$value)
-					renderRow($translation, $ascope, $data, $category,  $items, $key, $value);
-				    ?>
-				</tbody>
-			    </table>
-			</div>
-		    <?php endif; ?>
-		</div>
-	    <?php endforeach; ?>
-	</div>
+			<?php if($key == "Customer"): ?>
+			    <?php
+			    $customerInfo = $data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : "CustomerID"]);
+			    $tableItems = makeTableItems($customerInfo, $data->customerFields);
+			    $tableCategories = $data->customerFields;
+			    $items = $customerInfo;
+			    ?>
+			    <div class=" col-md-5 col-xs-5">
+				<table class="table table-bordered order-entry-main-table ">
+				    <tbody id="row_viewer_tbody">
+					<?php 
+					foreach($tableItems["leftItems"] as $key =>$value)
+					    renderViewRow($translation, $data, $tableCategories, $items, $key, $value);
+					?>
+				    </tbody>
+				</table>
+			    </div>
+			    <div class="col-md-5 col-xs-5">
+				<table class="table table-bordered order-entry-main-table">
+				    <tbody id="row_viewer_tbody">
+					<?php 
+					foreach($tableItems["rightItems"] as $key =>$value)
+					    renderViewRow($translation, $data, $tableCategories,  $items,$key, $value);
+					?>
+				    </tbody>
+				</table>
+			    </div>
+			<?php else: ?>
+			    <?php
+			    $tableCategories = $data->editCategories[$key];
+			    $tableItems = makeTableItems($item, $tableCategories);
+			    $items = $item;
+			    $category = $key;
+			    ?>
+			    <div class=" col-md-5 col-xs-5">
+				<table class="table table-bordered order-entry-main-table ">
+				    <tbody id="row_viewer_tbody">
+					<?php
+					foreach($tableItems["leftItems"] as $key =>$value)
+					    renderRow($translation, $ascope, $data, $category, $items, $key, $value);
+					?>
+				    </tbody>
+				</table>
+			    </div>
+			    <div class="col-md-5 col-xs-5">
+				<table class="table table-bordered order-entry-main-table">
+				    <tbody id="row_viewer_tbody">
+					<?php 
+					foreach($tableItems["rightItems"] as $key =>$value)
+					    renderRow($translation, $ascope, $data, $category,  $items, $key, $value);
+					?>
+				    </tbody>
+				</table>
+			    </div>
+			<?php endif; ?>
+		    </div>
+		<?php endforeach; ?>
+	    </div>
+	<?php endif; ?>
 
-	<div class="order-entry-header col-md-12 col-xs-12">
-	    <table class="table">
-		<tbody>
-		    <tr class="row-header">
-			<?php foreach($data->headTableThree as $key=>$value): ?>
-			    <td>
-				<?php echo $translation->translateLabel($key); ?>   
-			    </td>
-			<?php endforeach; ?>
-		    </tr>
-		    <tr>
-			<?php foreach($data->headTableThree as $key=>$value): ?>
-			    <td>
-				<?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
-			    </td>
-			<?php endforeach; ?>
-		    </tr>
-		</tbody>
-	    </table>
-	</div>
+	<?php if(property_exists($data, "headTableThree")): ?>
+	    <div class="order-entry-header col-md-12 col-xs-12">
+		<table class="table">
+		    <tbody>
+			<tr class="row-header">
+			    <?php foreach($data->headTableThree as $key=>$value): ?>
+				<td>
+				    <?php echo $translation->translateLabel($key); ?>   
+				</td>
+			    <?php endforeach; ?>
+			</tr>
+			<tr>
+			    <?php foreach($data->headTableThree as $key=>$value): ?>
+				<td>
+				    <?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+				</td>
+			    <?php endforeach; ?>
+			</tr>
+		    </tbody>
+		</table>
+	    </div>
+	<?php endif; ?>
 
 	<!-- Detail table -->
 	<div class="table-responsive order-entry-header col-md-12 col-xs-12" style="margin-top:20px;">
 	    <?php 
-	    $rows = $data->getDetail($headerItem["OrderNumber"]);
+	    $rows = $data->getDetail(key_exists("OrderNumber", $headerItem) ? $headerItem["OrderNumber"] : $headerItem[$data->detailTable["keyFields"][0]]);
 	    $gridFields = $data->embeddedgridFields;
 	    $embeddedgridContext = $headerItem;
 	    function makeRowActions($linksMaker, $data, $ascope, $row, $embeddedgridContext){
@@ -321,77 +328,79 @@
 	 },300);
 	</script>
 
-	<div class="panel panel-default order-entry-header col-md-7 col-xs-12" style="margin-top:20px; padding:5px;">
-	    <table class="col-md-12 col-xs-12 order-entry-footer-table">
-		<tbody>
-		    <tr>
-			<td colspan="5">
-			    <?php
-			    foreach($data->footerTable["flagsHeader"] as $key=>$value){
-				echo "<div>";
-				formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]);
-				echo $translation->translateLabel($key);
-				echo "</div>";
-			    }			    
-			    ?>
-			</td>
-		    </tr>
-		    <?php foreach($data->footerTable["flags"] as $row): ?>
+	<?php if(property_exists($data, "footerTable")): ?>
+	    <div class="panel panel-default order-entry-header col-md-7 col-xs-12" style="margin-top:20px; padding:5px;">
+		<table class="col-md-12 col-xs-12 order-entry-footer-table">
+		    <tbody>
 			<tr>
-			    <td>
-				<div><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $row[0], $headerItem[$row[0]]); ?><?php echo $translation->translateLabel($row[1]); ?></div>
-			    </td>
-			    <td class="date-title">
-				<div class="pull-right"><b><?php echo $translation->translateLabel($row[3]); ?>: </b></div>
-			    </td>
-			    <td>
-				<?php renderInput($ascope, $data, "...fields", $headerItem, $row[2], $headerItem[$row[2]]); ?>
-			    </td>
-			    <?php if($row[0] == "Shipped"): ?>
-				<td>
-				    <div><b><?php echo $translation->translateLabel("Trk #"); ?> </b></div>
-				</td>
-				<td>
-				    <?php renderInput($ascope, $data, "...fields", $headerItem, "TrackingNumber", $headerItem["TrackingNumber"]); ?>
-				</td>
-			    <?php elseif($row[0] == "Invoiced"): ?>
-				<td>
-				    <div><b><?php echo $translation->translateLabel("Inv #"); ?> </b></div>
-				</td>
-				<td>
-				    <?php renderInput($ascope, $data, "...fields", $headerItem, "InvoiceNumber", $headerItem["InvoiceNumber"]); ?>
-				</td>
-			    <?php endif;  ?>
-			</tr>
-		    <?php endforeach; ?>
-		</tbody>
-	    </table>
-	</div>
-	<div class="order-entry-header col-md-5 col-xs-12" style="margin-top:20px;">
-	    <table class="col-md-12 col-xs-12 order-entry-footer-table order-entry-balance-table">
-		<tbody>
-		    <?php foreach($data->footerTable["totalFields"] as $key=>$value): ?>
-			<tr>
-			    <td>
-				<?php if($key == "Shipping"):?>
-				    <div><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, "TaxFreight", $headerItem["TaxFreight"]); ?><?php echo $translation->translateLabel("Tax Freight"); ?></div>
-				<?php endif; ?>
-			    </td>
-			    <td>
-				<b><?php echo $translation->translateLabel($key); ?>: </b>
-			    </td>
-			    <td>
-				<?php if($key != "Tax" && $key != "Total"): ?>
-				    <?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
-				<?php else: ?>
-				    <div class="pull-right"><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?></div>
-				<?php endif; ?>
+			    <td colspan="5">
+				<?php
+				foreach($data->footerTable["flagsHeader"] as $key=>$value){
+				    echo "<div>";
+				    formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]);
+				    echo $translation->translateLabel($key);
+				    echo "</div>";
+				}			    
+				?>
 			    </td>
 			</tr>
-		    <?php endforeach; ?>
-		</tbody>
-	    </table>
-	</div>
+			<?php foreach($data->footerTable["flags"] as $row): ?>
+			    <tr>
+				<td>
+				    <div><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $row[0], $headerItem[$row[0]]); ?><?php echo $translation->translateLabel($row[1]); ?></div>
+				</td>
+				<td class="date-title">
+				    <div class="pull-right"><b><?php echo $translation->translateLabel($row[3]); ?>: </b></div>
+				</td>
+				<td>
+				    <?php renderInput($ascope, $data, "...fields", $headerItem, $row[2], $headerItem[$row[2]]); ?>
+				</td>
+				<?php if($row[0] == "Shipped"): ?>
+				    <td>
+					<div><b><?php echo $translation->translateLabel("Trk #"); ?> </b></div>
+				    </td>
+				    <td>
+					<?php renderInput($ascope, $data, "...fields", $headerItem, "TrackingNumber", $headerItem["TrackingNumber"]); ?>
+				    </td>
+				<?php elseif($row[0] == "Invoiced"): ?>
+				    <td>
+					<div><b><?php echo $translation->translateLabel("Inv #"); ?> </b></div>
+				    </td>
+				    <td>
+					<?php renderInput($ascope, $data, "...fields", $headerItem, "InvoiceNumber", $headerItem["InvoiceNumber"]); ?>
+				    </td>
+				<?php endif;  ?>
+			    </tr>
+			<?php endforeach; ?>
+		    </tbody>
+		</table>
+	    </div>
+	    <div class="order-entry-header col-md-5 col-xs-12" style="margin-top:20px;">
+		<table class="col-md-12 col-xs-12 order-entry-footer-table order-entry-balance-table">
+		    <tbody>
+			<?php foreach($data->footerTable["totalFields"] as $key=>$value): ?>
+			    <tr>
+				<td>
+				    <?php if($key == "Shipping"):?>
+					<div><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, "TaxFreight", $headerItem["TaxFreight"]); ?><?php echo $translation->translateLabel("Tax Freight"); ?></div>
+				    <?php endif; ?>
+				</td>
+				<td>
+				    <b><?php echo $translation->translateLabel($key); ?>: </b>
+				</td>
+				<td>
+				    <?php if($key != "Tax" && $key != "Total"): ?>
+					<?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+				    <?php else: ?>
+					<div class="pull-right"><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?></div>
+				    <?php endif; ?>
+				</td>
+			    </tr>
+			<?php endforeach; ?>
+		    </tbody>
+		</table>
+	    </div>
+	<?php endif; ?>
 
 	<?php
 	if(file_exists(__DIR__ . "/../" . $PartsPath . "editFooter.php"))

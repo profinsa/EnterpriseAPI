@@ -1087,6 +1087,12 @@ public $permissions = [
         "insert" => "APAdd|ADSetup",
         "delete" => "APDelete|ADSetup",
     ],
+    "Payments" => [
+        "select" => "APView|GLView|POView|ADView|ADSetup",
+        "update" => "APEdit|ADSetup",
+        "insert" => "APAdd|ADSetup",
+        "delete" => "APDelete|ADSetup",
+    ],
     "PaymentsHeaderApprove" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "any",
@@ -1100,6 +1106,12 @@ public $permissions = [
         "delete" => "any",
     ],
     "PaymentsHeaderHistory" => [
+        "select" => "APView|GLView|POView|ADView|ADSetup",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "PaymentsHistory" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "any",
         "insert" => "any",
