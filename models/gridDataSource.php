@@ -430,25 +430,29 @@ class gridDataSource{
         $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true)[0];
-        
+
         return $result;        
     }
 
     //getting data for new record
     public function getNewItem($id, $type){
         $values = [];
-        if(key_exists("GL" . $this->tableName . "New", $_SESSION))
-            foreach($_SESSION["GL" . $this->tableName . "New"]["$type"] as $key=>$value)
-                $values[$key] = $value["defaultValue"];
-        else{
-            $_SESSION["GL" . $this->tableName . "New"] = $this->editCategories;
-            $values = [];
-            foreach($this->editCategories[$type] as $key=>$value)
-                $values[$key] = $value["defaultValue"];
+        $result = $GLOBALS["DB"]::select("describe " . $this->tableName);
+
+        foreach($this->editCategories[$type] as $key=>$value) {
+            foreach($result as $struct) {
+                if ($struct->Field == $key) {
+                    $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+                    break;
+                }
+            }
         }
+
+        foreach($this->editCategories[$type] as $key=>$value)
+            $values[$key] = $value["defaultValue"];
+
         return $values;
     } 
-
     //getting data for grid view form
     public function getItem($id){
         $user = $_SESSION["user"];
