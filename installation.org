@@ -10,11 +10,12 @@
      For example this user will be "myenteprise" with password "enterprisepass"
    + load database from sql/backup_[last date].sql
      like that mysql -u enteprise -p myenterprise < backup_05_21_2017.sql
-   + change database settings in common.php
+   + change database settings in app/common.php
      - change db_host if it need
      - change db_user to myenterprise
      - change db_password to enterprisepass
      - change db_base to myenterprise
 
    If all steps is done, you can go to browser, type localhost/EnterpriseX/index.php and you will see login page
+   
    
