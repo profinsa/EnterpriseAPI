@@ -910,7 +910,7 @@ class gridData extends gridDataSource{
     public $vendorIdFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
     //getting data for Vendor Page
     public function getVendorInfo($id){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         $keyFields = "";
         $fields = [];
         foreach($this->vendorFields as $key=>$value){
@@ -1021,7 +1021,7 @@ class gridData extends gridDataSource{
     
     //getting rows for grid
     public function getDetail($id){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -1062,7 +1062,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = Session::get("user");
+        $user = $_SESSION["user"];
         $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber", "PurchaseLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
