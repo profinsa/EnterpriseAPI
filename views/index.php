@@ -87,8 +87,8 @@
 		  })
 		  .error(function(xhr){
 		      if(xhr.status == 401)
-			  console.log(xhr.responseText);
-//			  window.location = "index.php?page=login";
+//			  console.log(xhr.responseText);
+			  window.location = "index.php?page=login";
 		      else{
 			  $("#page-wrapper").html(xhr.responseText);
 			  window.scrollTo(0,0);
