@@ -257,12 +257,16 @@ function makeTableItems($values, $fieldsDefinition){
 			    <td>
 				<div><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $row[0], $headerItem[$row[0]]); ?><?php echo $translation->translateLabel($row[1]); ?></div>
 			    </td>
-			    <td class="date-title">
-				<div class="pull-right"><b><?php echo $translation->translateLabel($row[3]); ?>: </b></div>
-			    </td>
-			    <td>
-				<?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $row[2], $headerItem[$row[2]]); ?>
-			    </td>
+			    <?php if(count($row) > 2): ?>
+				<td class="date-title">
+				    <div class="pull-right"><b><?php echo $translation->translateLabel($row[3]); ?>: </b></div>
+				</td>
+				<td>
+				    <?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $row[2], $headerItem[$row[2]]); ?>
+				</td>
+			    <?php else: ?>
+				<td></td><td></td>
+			    <?php endif; ?>
 			    <td>
 				<?php if($row[0] == "Shipped"): ?>
 				    <div><b><?php echo $translation->translateLabel("Trk #"); ?> </b><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, "TrackingNumber", $headerItem["TrackingNumber"]); ?></div>

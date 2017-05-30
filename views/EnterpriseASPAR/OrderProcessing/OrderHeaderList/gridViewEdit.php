@@ -349,12 +349,16 @@ function makeTableItems($values, $fieldsDefinition){
 				<td>
 				    <div><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $row[0], $headerItem[$row[0]]); ?><?php echo $translation->translateLabel($row[1]); ?></div>
 				</td>
-				<td class="date-title">
-				    <div class="pull-right"><b><?php echo $translation->translateLabel($row[3]); ?>: </b></div>
-				</td>
-				<td>
-				    <?php renderInput($ascope, $data, "...fields", $headerItem, $row[2], $headerItem[$row[2]]); ?>
-				</td>
+				<?php if(count($row) > 2): ?>
+				    <td class="date-title">
+					<div class="pull-right"><b><?php echo $translation->translateLabel($row[3]); ?>: </b></div>
+				    </td>
+				    <td>
+					<?php renderInput($ascope, $data, "...fields", $headerItem, $row[2], $headerItem[$row[2]]); ?>
+				    </td>
+				<?php else: ?>
+				    <td></td><td></td>
+				<?php endif; ?>
 				<?php if($row[0] == "Shipped"): ?>
 				    <td>
 					<div><b><?php echo $translation->translateLabel("Trk #"); ?> </b></div>
@@ -409,7 +413,7 @@ function makeTableItems($values, $fieldsDefinition){
 	    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
 	?>
 
-	<div class="row">
+	<div class="col-md-12 col-xs-12 row">
 	    <div  style="margin-top:10px" class="pull-right">
 		<!--
 		     renders buttons translated Save and Cancel using translation model
