@@ -490,6 +490,106 @@ function makeTableItems($values, $fieldsDefinition){
 	</div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <script>
+    function validateForm(itemData) {
+        var itemDataArray = itemData.serializeArray();
+
+        var categories = <?php echo json_encode($data->editCategories); ?>;
+        var categoriesKeys = Object.keys(categories);
+        var columnNames = <?php echo json_encode($data->columnNames); ?>;
+        var validationError = false;
+        var validationErrorMessage = '';
+        var isAlert = false;
+
+        function getDbObject(key) {
+            for (var i = 0; i < categoriesKeys.length; i++) {
+                if (categories[categoriesKeys[i]].hasOwnProperty(key)) {
+                    return categories[categoriesKeys[i]][key];
+                }
+            }
+
+            return null;
+        }
+
+        function isNumeric(value) {
+            var re = /^-{0,1}\d*\.{0,1}\d+$/;
+            return (re.test(value));
+        }
+
+        function isDecimal(value) {
+            var re = /^-{0,1}\d*\.{0,1}\d+$/;
+            return (re.test(value.replace(/,/g,'')));
+        }
+
+        for (var i = 0; i < itemDataArray.length; i++) {
+            if ((itemDataArray[i].name !== 'category') && (itemDataArray[i].name !== 'id')) {
+                var dataObject = getDbObject(itemDataArray[i].name);
+
+                if (dataObject) {
+                    console.log(dataObject);
+                    var dataType = dataObject.dbType.replace(/\(.*/,'');
+                    var dataLength;
+                    var re = /\((.*)\)/;
+                    
+                    if (dataType !== 'datatime' && dataType !== 'timestamp') {
+                        console.log(dataObject, itemDataArray[i]);
+                        if (dataObject.required && !itemDataArray[i].value) {
+                            validationError = true;
+                            validationErrorMessage = 'cannot be empty.';
+                            $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                        } else {
+                            $('#' + itemDataArray[i].name).css('border', 'none');
+                            switch (dataType) {
+                                case 'decimal':
+                                    if (itemDataArray[i].value && !isDecimal(itemDataArray[i].value)) {
+                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        validationError = true;
+                                        validationErrorMessage = 'must contain a number.';
+                                    }
+                                    break;
+                                case 'bigint':
+                                case 'int':
+                                case 'float':
+                                    if (itemDataArray[i].value && !isNumeric(itemDataArray[i].value)) {
+                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        validationError = true;
+                                        validationErrorMessage = 'must contain a number.';
+                                    }
+                                    break;
+                                case 'char':
+                                    if (itemDataArray[i].value.length > 1) {
+                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        validationError = true;
+                                        validationErrorMessage = 'cannot contain more than 1 character.';
+                                    }
+                                    break;
+                                case 'varchar':
+                                    dataLength = dataObject.dbType.match(re)[1];
+
+                                    if (itemDataArray[i].value.length > dataLength) {
+                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        validationError = true;
+                                        validationErrorMessage = 'cannot contain more than ' + dataLength + ' character(s).';
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+
+                    if (validationError && !isAlert) {
+                        translatedFieldName = columnNames.hasOwnProperty(itemDataArray[i].name) ? columnNames[itemDataArray[i].name] : itemDataArray[i].name;
+                        isAlert = true;
+                        alert(translatedFieldName + ' field ' + validationErrorMessage);
+                    }
+                } else {
+                    //todo error handling
+                }
+            }
+        }
+
+        return !validationError;
+    }
      //customer modal oppener
      $('#CustomerID').click(function(){
 	 $('#CustomerChooser').modal('show');
@@ -503,28 +603,33 @@ function makeTableItems($values, $fieldsDefinition){
      }
      
      //handler of save button if we in new mode. Just doing XHR request to save data
-     function createItem(){
-	 var itemData = $("#itemData");
-	 $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-	  .success(function(data) {
-	      console.log('ok');
-	      window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
-	  })
-	  .error(function(err){
-	      console.log('wrong');
-	  });
-     }
+    function createItem(){
+        var itemData = $("#itemData");
+
+        if (validateForm(itemData)) {
+            $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+            .success(function(data) {
+                console.log('ok');
+                window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
+            })
+            .error(function(err){
+                console.log('wrong');
+            });
+        }
+    }
      //handler of save button if we in edit mode. Just doing XHR request to save data
-     function saveItem(){
-	 var itemData = $("#itemData");
-	 $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-	  .success(function(data) {
-	      window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]); ?>";
-	  })
-	  .error(function(err){
-	      console.log('wrong');
-	  });
-     }
+    function saveItem(){
+        var itemData = $("#itemData");
+        if (validateForm(itemData)) {
+            $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+            .success(function(data) {
+                window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]); ?>";
+            })
+            .error(function(err){
+                console.log('wrong');
+            });
+        }
+    }
 
      //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
      function orderDetailDelete(item){
