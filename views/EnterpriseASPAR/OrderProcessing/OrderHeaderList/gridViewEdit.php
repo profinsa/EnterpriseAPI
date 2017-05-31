@@ -491,6 +491,7 @@ function makeTableItems($values, $fieldsDefinition){
     </div><!-- /.modal -->
     <script>
     function validateForm(itemData) {
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
         var itemDataArray = itemData.serializeArray();
 
         var categories = <?php echo json_encode($data->editCategories); ?>;
@@ -525,13 +526,12 @@ function makeTableItems($values, $fieldsDefinition){
                 var dataObject = getDbObject(itemDataArray[i].name);
 
                 if (dataObject) {
-                    console.log(dataObject);
                     var dataType = dataObject.dbType.replace(/\(.*/,'');
                     var dataLength;
                     var re = /\((.*)\)/;
                     
                     if (dataType !== 'datatime' && dataType !== 'timestamp') {
-                        console.log(dataObject, itemDataArray[i]);
+                        console.log(itemDataArray[i]);
                         if (dataObject.required && !itemDataArray[i].value) {
                             validationError = true;
                             validationErrorMessage = 'cannot be empty.';
