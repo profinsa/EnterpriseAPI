@@ -252,7 +252,15 @@ class controller{
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
 
-                    "EnterpriseASPInv/BillOfMaterials/InventoryAssembliesList/" => [
+                    "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderClosedList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderHistoryList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ]

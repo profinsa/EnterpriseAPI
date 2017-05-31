@@ -445,6 +445,18 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "ExpenseReport" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "ExpenseReportHistory" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "ExpenseReportHeaderHistory" => [
         "select" => "any",
         "update" => "any",
@@ -763,6 +775,18 @@ public $permissions = [
         "insert" => "WOAdd|ADSetup",
         "delete" => "WODelete|ADSetup",
     ],
+    "InventoryWorkOrder" => [
+        "select" => "WOView|ADView|ADSetup",
+        "update" => "WOEdit|ADSetup",
+        "insert" => "WOAdd|ADSetup",
+        "delete" => "WODelete|ADSetup",
+    ],
+    "InventoryWorkOrderHistory" => [
+        "select" => "WOView|ADView|ADSetup",
+        "update" => "WOEdit|ADSetup",
+        "insert" => "WOAdd|ADSetup",
+        "delete" => "WODelete|ADSetup",
+    ],
     "InventoryWorkOrderHeaderClosed" => [
         "select" => "WOView|ADView|ADSetup",
         "update" => "any",
@@ -818,6 +842,12 @@ public $permissions = [
         "delete" => "ARDelete|ADSetup",
     ],
     "InvoiceTrackingHeader" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "InvoiceTracking" => [
         "select" => "any",
         "update" => "any",
         "insert" => "any",
@@ -1046,6 +1076,12 @@ public $permissions = [
         "delete" => "OEDelete|ADSetup",
     ],
     "OrderTrackingHeader" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "OrderTracking" => [
         "select" => "any",
         "update" => "any",
         "insert" => "any",

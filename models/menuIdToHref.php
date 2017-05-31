@@ -1,8 +1,10 @@
 <?php
  $menuIdToPath = [ 
     "AccountsReceivable/OrderProcessing/ViewOrdersDetail" => "EnterpriseASPAR/OrderProcessing/OrderDetail",
+    "AccountsReceivable/OrderProcessing/OrderTrackingDetail" => "EnterpriseASPAR/OrderProcessing/OrderTrackingDetail",
     "AccountsReceivable/OrderProcessing/ViewOrdersHistoryDetail" => "EnterpriseASPAR/OrderProcessing/OrderHistoryDetail",
     "AccountsReceivable/OrderProcessing/ViewInvoicesDetail" => "EnterpriseASPAR/OrderProcessing/InvoiceDetail",
+    "AccountsReceivable/OrderProcessing/InvoiceTrackingDetail" => "EnterpriseASPAR/OrderProcessing/InvoiceTrackingDetail",
     "AccountsReceivable/OrderProcessing/ViewInvoicesHistoryDetail" => "EnterpriseASPAR/OrderProcessing/InvoiceHistoryDetail",
     "AccountsReceivable/OrderProcessing/ViewQuotesDetail" => "EnterpriseASPAR/OrderProcessing/QuoteDetail",
     "AccountsReceivable/CreditMemos/ViewCreditMemosDetail" => "EnterpriseASPAR/CreditMemos/CreditMemoDetail",
@@ -17,9 +19,14 @@
     "AccountsPayable/VoucherProcessing/ViewVouchersDetail" => "EnterpriseASPAP/Payments/PaymentsDetail",
     "AccountsPayable/VoucherProcessing/ViewVouchersHistoryDetail" => "EnterpriseASPAP/Payments/PaymentsHistoryDetail",
     "MRP/BillofMaterials/ViewBillOfMaterialsDetail" => "EnterpriseASPInv/BillOfMaterials/InventoryAssembliesDetail",
+    "MRP/BillofMaterials/InventoryAssembliesInstructionsDetail" => "EnterpriseASPInv/BillOfMaterials/InventoryAssembliesInstructionsDetail",
+    "MRP/WorkOrders/ViewWorkOrdersDetail" => "EnterpriseASPInv/WorkOrders/InventoryWorkOrderDetail",
+    "MRP/WorkOrders/ViewWorkOrdersHistoryDetail" => "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHistoryDetail",
+    "Payroll/EmployeeExpenses/ExpenseReportsDetail" => "EnterpriseASPAP/ExpenseReports/ExpenseReportDetail",
+    "Payroll/EmployeeExpenses/ExpenseReportsHistoryDetail" => "EnterpriseASPAP/ExpenseReports/ExpenseReportHistoryDetail",
+    
     "AccountsReceivable/OrderProcessing/ViewQuotes" => "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
-    "AccountsReceivable/OrderProcessing/ViewQuotesTracking" => "EnterpriseASPAR/OrderProcessing/QuoteTrackingHeaderList",
-
+    "AccountsReceivable/OrderProcessing/ViewQuotesTracking" => "EnterpriseASPAR/OrderProcessing/QuoteTrackingHeaderList",   
     "AccountsReceivable/OrderProcessing/ViewOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
     "AccountsReceivable/OrderProcessing/PickPackOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderPickList",
     "AccountsReceivable/OrderProcessing/ShipOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderShipList",
