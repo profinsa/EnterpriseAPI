@@ -144,92 +144,106 @@ if(key_exists("back", $_GET)){
 	</div>
     </div>
     <script>
-	function validateForm(itemData) {
-		function getDbObject(key) {
-			for (var i = 0; i < categoriesKeys.length; i++) {
-				if (categories[categoriesKeys[i]].hasOwnProperty(key)) {
-					return categories[categoriesKeys[i]][key];
-				}
-			}
+    function validateForm(itemData) {
+        var itemDataArray = itemData.serializeArray();
 
-			return null;
-		}
+        var categories = <?php echo json_encode($data->editCategories); ?>;
+        var categoriesKeys = Object.keys(categories);
+        var columnNames = <?php echo json_encode($data->columnNames); ?>;
+        var validationError = false;
+        var validationErrorMessage = '';
+        var isAlert = false;
 
-		function isNumeric(value){
-			var re = /^-{0,1}\d*\.{0,1}\d+$/;
-			return (re.test(value));
-		}
+        function getDbObject(key) {
+            for (var i = 0; i < categoriesKeys.length; i++) {
+                if (categories[categoriesKeys[i]].hasOwnProperty(key)) {
+                    return categories[categoriesKeys[i]][key];
+                }
+            }
 
-		var itemDataArray = itemData.serializeArray();
+            return null;
+        }
 
-		var categories = <?php echo json_encode($data->editCategories); ?>;
-		var categoriesKeys = Object.keys(categories);
-		var columnNames = <?php echo json_encode($data->columnNames); ?>;
-		var validationError = false;
-		var isAlert = false;
+        function isNumeric(value) {
+            var re = /^-{0,1}\d*\.{0,1}\d+$/;
+            return (re.test(value));
+        }
 
-		for (var i = 0; i < itemDataArray.length; i++) {
-			if ((itemDataArray[i].name !== 'category') && (itemDataArray[i].name !== 'id')) {
-				var dataObject = getDbObject(itemDataArray[i].name);
+        function isDecimal(value) {
+            var re = /^-{0,1}\d*\.{0,1}\d+$/;
+            return (re.test(value.replace(/,/g,'')));
+        }
 
-				if (dataObject) {
-					var dataType = dataObject.dbType.replace(/\(.*/,'');
-					var dataLength;
-					var re = /\((.*)\)/;
+        for (var i = 0; i < itemDataArray.length; i++) {
+            if ((itemDataArray[i].name !== 'category') && (itemDataArray[i].name !== 'id')) {
+                var dataObject = getDbObject(itemDataArray[i].name);
 
-					switch (dataType) {
-						case 'bigint':
-						case 'decimal':
-						case 'int':
-						case 'float':
-							if (!isNumeric(itemDataArray[i].value)) {
-								$('#' + itemDataArray[i].name).css('border', '1px solid red');
-								
-								validationError = true;
+                if (dataObject) {
+                    console.log(dataObject);
+                    var dataType = dataObject.dbType.replace(/\(.*/,'');
+                    var dataLength;
+                    var re = /\((.*)\)/;
+                    
+                    if (dataType !== 'datatime' && dataType !== 'timestamp') {
+                        if (dataObject.required && !itemDataArray[i].value) {
+                            validationError = true;
+                            validationErrorMessage = 'cannot be empty.';
+                            $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                        } else {
+                            $('#' + itemDataArray[i].name).css('border', 'none');
+                            switch (dataType) {
+                                case 'decimal':
+                                    if (itemDataArray[i].value && !isDecimal(itemDataArray[i].value)) {
+                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        validationError = true;
+                                        validationErrorMessage = 'must contain a number.';
+                                    }
+                                    break;
+                                case 'bigint':
+                                case 'int':
+                                case 'float':
+                                    if (itemDataArray[i].value && !isNumeric(itemDataArray[i].value)) {
+                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        validationError = true;
+                                        validationErrorMessage = 'must contain a number.';
+                                    }
+                                    break;
+                                case 'char':
+                                    if (itemDataArray[i].value.length > 1) {
+                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        validationError = true;
+                                        validationErrorMessage = 'cannot contain more than 1 character.';
+                                    }
+                                    break;
+                                case 'varchar':
+                                    dataLength = dataObject.dbType.match(re)[1];
 
-							} else {
-								$('#' + itemDataArray[i].name).css('border', 'none');
-							}
-							break;
-						case 'char':
-							if (itemDataArray[i].value.length > 1) {
-								$('#' + itemDataArray[i].name).css('border', '1px solid red');
-								validationError = true;
-							} else {
-								$('#' + itemDataArray[i].name).css('border', 'none');
-							}
-							break;
-						case 'varchar':
-							dataLength = dataObject.dbType.match(re)[1];
+                                    if (itemDataArray[i].value.length > dataLength) {
+                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        validationError = true;
+                                        validationErrorMessage = 'cannot contain more than ' + dataLength + ' character(s).';
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
 
-							if (itemDataArray[i].value.length > dataLength) {
-								$('#' + itemDataArray[i].name).css('border', '1px solid red');
-								validationError = true;
-							} else {
-								$('#' + itemDataArray[i].name).css('border', 'none');
-							}
-							break;
-						case 'datatime':
-						case 'timestamp':
-							// skip
-							break;
-						default:
-							break;
-					}
+                    if (validationError && !isAlert) {
+                        translatedFieldName = columnNames.hasOwnProperty(itemDataArray[i].name) ? columnNames[itemDataArray[i].name] : itemDataArray[i].name;
+                        isAlert = true;
+                        alert(translatedFieldName + ' field ' + validationErrorMessage);
+                    }
+                } else {
+                    //todo error handling
+                }
+            }
+        }
 
-					if (validationError && !isAlert) {
-						translatedFieldName = columnNames.hasOwnProperty(itemDataArray[i].name) ? columnNames[itemDataArray[i].name] : itemDataArray[i].name;
-						isAlert = true;
-						alert('Check ' + translatedFieldName + ' input field!');
-					}
-				} else {
-					//todo error handling
-				}
-			}
-		}
+        return !validationError;
+    }
 
-		return !validationError;
-	}
      //handler of save button if we in new mode. Just doing XHR request to save data
 	function createItem(){
 		var itemData = $("#itemData");

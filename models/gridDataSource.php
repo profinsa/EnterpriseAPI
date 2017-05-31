@@ -427,11 +427,33 @@ class gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
-        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true)[0];
 
-        return $result;        
+        $describe = $GLOBALS["DB"]::select("describe " . $this->tableName);
+
+        foreach($this->editCategories[$type] as $key=>$value) {
+            foreach($describe as $struct) {
+                if ($struct->Field == $key) {
+                    $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+
+                    switch ($struct->Null) {
+                        case "NO":
+                            $this->editCategories[$type][$key]["required"] = true;
+                            break;
+                        case "YES":
+                            $this->editCategories[$type][$key]["required"] = false;
+                            break;
+                        default:
+                            $this->editCategories[$type][$key]["required"] = false;
+                    }
+                    break;
+                }
+            }
+        }
+
+        return $result;
     }
 
     //getting data for new record
@@ -443,6 +465,17 @@ class gridDataSource{
             foreach($result as $struct) {
                 if ($struct->Field == $key) {
                     $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+
+                    switch ($struct->Null) {
+                        case "NO":
+                            $this->editCategories[$type][$key]["required"] = true;
+                            break;
+                        case "YES":
+                            $this->editCategories[$type][$key]["required"] = false;
+                            break;
+                        default:
+                            $this->editCategories[$type][$key]["required"] = false;
+                    }
                     break;
                 }
             }
