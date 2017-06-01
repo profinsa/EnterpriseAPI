@@ -527,13 +527,11 @@ function makeTableItems($values, $fieldsDefinition){
                 var dataObject = getDbObject(itemDataArray[i].name);
 
                 if (dataObject) {
-                    console.log(dataObject);
                     var dataType = dataObject.dbType.replace(/\(.*/,'');
                     var dataLength;
                     var re = /\((.*)\)/;
                     
                     if (dataType !== 'datatime' && dataType !== 'timestamp') {
-                        console.log(dataObject, itemDataArray[i]);
                         if (dataObject.required && !itemDataArray[i].value) {
                             validationError = true;
                             validationErrorMessage = 'cannot be empty.';

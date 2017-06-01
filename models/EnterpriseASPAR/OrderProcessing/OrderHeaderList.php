@@ -315,7 +315,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(36)",
 				"inputType" => "text",
 				"defaultValue" => ""
-			],
+			]/*,
 			"ShippingName" => [
 				"dbType" => "varchar(50)",
 				"inputType" => "text",
@@ -355,7 +355,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(50)",
 				"inputType" => "text",
 				"defaultValue" => ""
-			]/*,
+			],
 			"ScheduledStartDate" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
