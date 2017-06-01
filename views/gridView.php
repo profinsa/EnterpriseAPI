@@ -106,8 +106,6 @@
      });
  }
 
- console.log('eeeeeeee');
- console.log($('.fdatetime'), "dddd");
  $('.fdatetime').datepicker({
      autoclose : true,
      format: {
