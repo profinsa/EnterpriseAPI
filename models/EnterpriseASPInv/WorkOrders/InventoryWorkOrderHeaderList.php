@@ -431,7 +431,6 @@ class gridData extends gridDataSource{
     //getting rows for grid
     public function getDetail($id){
         $user = $_SESSION["user"];
-
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -473,7 +472,6 @@ class gridData extends gridDataSource{
 
     public function detailDelete(){
         $user = $_SESSION["user"];
-        
         $idFields = ["CompanyID","DivisionID","DepartmentID","WorkOrderNumber", "WorkOrderLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -485,5 +483,5 @@ class gridData extends gridDataSource{
         
         $GLOBALS["DB"]::delete("DELETE from workorderdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
-}
-?>
+}?>
+
