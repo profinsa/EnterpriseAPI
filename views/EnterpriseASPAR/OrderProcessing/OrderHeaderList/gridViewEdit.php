@@ -439,58 +439,60 @@ function makeTableItems($values, $fieldsDefinition){
     </form>
 
     <!-- Customer Choose Dialog -->
-    <div id="CustomerChooser" class="modal fade" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
-	    <div class="modal-content">
-		<div class="modal-header">
-		    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		    <h4 class="modal-title">Customer selecting dialog</h4>
-		</div>
-		<div class="modal-body">
-		    <table class="table" id="customersTable">
-			<thead>
-			    <th></th>
-			    <th>
-				<?php echo $translation->translateLabel("Customer ID"); ?>
-			    </th>
-			    <th>
-				<?php echo $translation->translateLabel("Customer Type"); ?>
-			    </th>
-			    <th>
-				<?php echo $translation->translateLabel("Account Status"); ?>
-			    </th>
-			    <th>
-				<?php echo $translation->translateLabel("Name"); ?>
-			    </th>
-			    <th>
-				<?php echo $translation->translateLabel("Phone"); ?>
-			    </th>
-			    <th>
-				<?php echo $translation->translateLabel("Login"); ?>
-			    </th>
-			    <th>
-				<?php echo $translation->translateLabel("Password"); ?>
-			    </th>
-			</thead>
-			<tbody>
-			    <?php
-			    $customers = $data->getCustomers();
-			    foreach($customers as $customer){
-				echo "<tr><td><a href=\"javascript:editCustomerChoose('{$customer["CustomerID"]}');\" class=\"btn btn-info\">Select</a></td>";
-				echo "<td>{$customer["CustomerID"]}</td><td>{$customer["CustomerTypeID"]}</td><td>{$customer["AccountStatus"]}</td><td>{$customer["CustomerName"]}</td><td>{$customer["CustomerPhone"]}</td><td>{$customer["CustomerLogin"]}</td><td>{$customer["CustomerPassword"]}</td></tr>";
-			    }
-			    ?>
-			</tbody>
-		    </table>
-		</div>
-		<div class="modal-footer">
-		    <button type="button" class="btn btn-primary" data-dismiss="modal">
-			<?php echo $translation->translateLabel("Ok"); ?>
-		    </button>
-		</div>
-	    </div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+    <?php if(method_exists($data, "getCustomers")): ?>
+	<div id="CustomerChooser" class="modal fade" tabindex="-1" role="dialog">
+	    <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		    <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Customer selecting dialog</h4>
+		    </div>
+		    <div class="modal-body">
+			<table class="table" id="customersTable">
+			    <thead>
+				<th></th>
+				<th>
+				    <?php echo $translation->translateLabel("Customer ID"); ?>
+				</th>
+				<th>
+				    <?php echo $translation->translateLabel("Customer Type"); ?>
+				</th>
+				<th>
+				    <?php echo $translation->translateLabel("Account Status"); ?>
+				</th>
+				<th>
+				    <?php echo $translation->translateLabel("Name"); ?>
+				</th>
+				<th>
+				    <?php echo $translation->translateLabel("Phone"); ?>
+				</th>
+				<th>
+				    <?php echo $translation->translateLabel("Login"); ?>
+				</th>
+				<th>
+				    <?php echo $translation->translateLabel("Password"); ?>
+				</th>
+			    </thead>
+			    <tbody>
+				<?php
+				$customers = $data->getCustomers();
+				foreach($customers as $customer){
+				    echo "<tr><td><a href=\"javascript:editCustomerChoose('{$customer["CustomerID"]}');\" class=\"btn btn-info\">Select</a></td>";
+				    echo "<td>{$customer["CustomerID"]}</td><td>{$customer["CustomerTypeID"]}</td><td>{$customer["AccountStatus"]}</td><td>{$customer["CustomerName"]}</td><td>{$customer["CustomerPhone"]}</td><td>{$customer["CustomerLogin"]}</td><td>{$customer["CustomerPassword"]}</td></tr>";
+				}
+				?>
+			    </tbody>
+			</table>
+		    </div>
+		    <div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">
+			    <?php echo $translation->translateLabel("Ok"); ?>
+			</button>
+		    </div>
+		</div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+    <?php endif; ?>
     <script>
     function validateForm(itemData) {
         var itemDataArray = itemData.serializeArray();
