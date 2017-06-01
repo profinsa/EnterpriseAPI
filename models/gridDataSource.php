@@ -746,7 +746,10 @@ class gridDataSource{
                     }
                 }
                 if($desc && key_exists("currencyField", $desc)){
-                    if(key_exists($values[$desc["currencyField"]], $this->currencyPrecisions))
+                    if(!key_exists($desc["currencyField"], $values)){
+                        $result = [new stdClass()];
+                        $result[0]->CurrencyPrecision = 2;
+                    }else if(key_exists($values[$desc["currencyField"]], $this->currencyPrecisions))
                         $result = $this->currencyPrecisions[$values[$desc["currencyField"]]];
                     else 
                         $this->currencyPrecisions[$values[$desc["currencyField"]]] = $result = $GLOBALS["capsule"]::select("SELECT CurrencyPrecision from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CurrencyID='" . $values[$desc["currencyField"]] . "'" , array());

@@ -245,35 +245,36 @@ if(key_exists("back", $_GET)){
     }
 
      //handler of save button if we in new mode. Just doing XHR request to save data
-	function createItem(){
-		var itemData = $("#itemData");
+     function createItem(){
+	 var itemData = $("#itemData");
 
-		if (validateForm(itemData)) {
-			$.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemData.serialize(), null, 'json')
-			.success(function(data) {
-				console.log('ok');
-				window.location = "<?php echo $backhref; ?>";
-			})
-			.error(function(err){
-				console.log('wrong');
-			});
-		}
-	}
-	//handler of save button if we in edit mode. Just doing XHR request to save data
-	function saveItem(){
-		var itemData = $('#itemData');
-
-		if (validateForm(itemData)) {
-			$.post("<?php echo $linksMaker->makeGridItemSave($ascope["action"]); ?>", itemData.serialize(), null, 'json')
-			.success(function(data) {
-				console.log('ok');
-				window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"] . $back); ?>";
-			})
-			.error(function(err){
-				console.log('wrong');
-			});
-		}
+	 if (validateForm(itemData)) {
+	     $.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemData.serialize(), null, 'json')
+	      .success(function(data) {
+		  console.log('ok');
+		  window.location = "<?php echo $backhref; ?>";
+	      })
+	      .error(function(err){
+		  console.log('wrong');
+	      });
+	 }
      }
+     //handler of save button if we in edit mode. Just doing XHR request to save data
+     function saveItem(){
+	 var itemData = $('#itemData');
+
+	 if (validateForm(itemData)) {
+	     $.post("<?php echo $linksMaker->makeGridItemSave($ascope["action"]); ?>", itemData.serialize(), null, 'json')
+	      .success(function(data) {
+		  console.log('ok');
+		  window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"] . $back); ?>";
+	      })
+	      .error(function(err){
+		  console.log('wrong');
+	      });
+	 }
+     }
+
     </script>
 </div>
 

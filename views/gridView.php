@@ -105,7 +105,8 @@
 	 dom : "frtlip",
      });
  }
- jQuery('.fdatetime').datepicker({
+
+ $('.fdatetime').datepicker({
      autoclose : true,
      format: {
 	 toDisplay: function (date, format, language) {
@@ -122,5 +123,5 @@
 		   "/" +  d.getFullYear();
 	 }
      }
- });
+ }); 
 </script>

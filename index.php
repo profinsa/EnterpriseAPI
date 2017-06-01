@@ -35,7 +35,7 @@ $GLOBALS["capsule"] = $GLOBALS["DB"] = new Capsule;
 //class for emulating global DB class from laravel
 class DB{
     public static function select($query, $args){
-        $GLOBALS["DB"]::select($query, $args);
+        return $GLOBALS["DB"]::select($query, $args);
     }
 }
 
