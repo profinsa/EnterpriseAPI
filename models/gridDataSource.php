@@ -25,12 +25,127 @@ sql
 Last Modified: 16.03.2016
 Last Modified by: Nikita Zaharov
 */
+
 class gridDataSource{
     protected $tableName = "";
     //fields to render in grid
     protected $gridFields = [];
 
     public $idField = "";
+
+    //getting list of available expense report types
+    public function getExpenseReportTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT ExpenseReportType from expensereporttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ExpenseReportType] = [
+                "title" => $value->ExpenseReportType,
+                "value" => $value->ExpenseReportType
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available expense report reasons
+    public function getExpenseReportReasons(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT ExpenseReportReason from expensereportreasons WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ExpenseReportReason] = [
+                "title" => $value->ExpenseReportReason,
+                "value" => $value->ExpenseReportReason
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available work order progress
+    public function getWorkOrderProgress(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT WorkOrderInProgress from workorderinprogress WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->WorkOrderInProgress] = [
+                "title" => $value->WorkOrderInProgress,
+                "value" => $value->WorkOrderInProgress
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available work order priority
+    public function getWorkOrderPriority(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT WorkOrderPriority from workorderpriority WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->WorkOrderPriority] = [
+                "title" => $value->WorkOrderPriority,
+                "value" => $value->WorkOrderPriority
+            ];
+        
+        return $res;
+    }
+    
+    //getting list of available work order status
+    public function getWorkOrderStatus(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT WorkOrderStatus from workorderstatus WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->WorkOrderStatus] = [
+                "title" => $value->WorkOrderStatus,
+                "value" => $value->WorkOrderStatus
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available companies
+    public function getCompanies(){
+        $result = DB::select('SELECT CompanyID,DivisionID,DepartmentID from companies', array());
+        $res = [];
+        foreach($result as $key=>$value)
+            $res[$value->CompanyID] = [
+                "title" => $value->CompanyID,
+                "value" => $value->CompanyID
+            ];
+        
+        return $res;
+    }    
+
+    //getting list of available divisions of company
+    public function getDivisions(){
+        $result = DB::select('SELECT CompanyID,DivisionID,DepartmentID from companies', array());
+        $res = [];
+        foreach($result as $key=>$value)
+            $res[$value->DivisionID] = [
+                "title" => $value->DivisionID,
+                "value" => $value->DivisionID
+            ];
+        
+        return $res;
+    }    
+
+    //getting list of available departments of company
+    public function getDepartments(){
+        $result = DB::select('SELECT CompanyID,DivisionID,DepartmentID from companies', array());
+        $res = [];
+        foreach($result as $key=>$value)
+            $res[$value->DepartmentID] = [
+                "title" => $value->DepartmentID,
+                "value" => $value->DepartmentID
+            ];
+        
+        return $res;
+    }    
 
     //getting list of available tax groups
     public function getTaxGroups(){
