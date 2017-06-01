@@ -544,8 +544,6 @@ class gridDataSource{
 
         $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
-        echo ">>>>> ", json_encode($result);
-
         $result = json_decode(json_encode($result), true)[0];
 
         $describe = $GLOBALS["DB"]::select("describe " . $this->tableName);
