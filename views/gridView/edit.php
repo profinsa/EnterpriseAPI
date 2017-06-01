@@ -137,7 +137,7 @@ if(key_exists("back", $_GET)){
 			require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
 		    ?>
 		<?php endif; ?>
-		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $scope->mode != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
+		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $scope->mode == "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
 	    </div>

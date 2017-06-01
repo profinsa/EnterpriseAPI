@@ -1,4 +1,13 @@
 <!-- edit and new -->
+<?php
+if(key_exists("back", $_GET)){
+    $backhref = urldecode($_GET["back"]);
+    $back = "&back=" . urlencode($_GET["back"]);
+}else{
+    $backhref = $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]);
+    $back = "";
+}
+?>
 <div id="row_editor">
     <ul class="nav nav-tabs" role="tablist">
 		<?php  
@@ -15,7 +24,7 @@
 	    <div class="tab-content">
 		<?php foreach($data->editCategories as $key =>$value):  ?>
 		    <div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo preg_replace("/[\s\&]+/", "", $key) ?>">
-				<?php if($key == "Customer Transactions"): ?>
+				<?php if($key == "Customer Transactions" && $scope->mode != "new"): ?>
 					<div style="margin-top:10px;"></div>
 					<?php
 					$item = $data->getEditItem($scope->item, $key);
@@ -24,7 +33,7 @@
 					require __DIR__ . "/../../../embeddedgrid.php"; 
 					//echo json_encode($rows);
 					?>
-				<?php elseif($key == "Customer Transactions History"): ?>
+				<?php elseif($key == "Customer Transactions History" && $scope->mode != "new"): ?>
 					<div style="margin-top:10px;"></div>
 					<?php
 					$item = $data->getEditItem($scope->item, $key);
@@ -121,7 +130,7 @@
 			require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
 		    ?>
 		<?php endif; ?>
-		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $scope->mode != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
+		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $scope->mode == "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
 	    </div>

@@ -24,7 +24,7 @@ if(key_exists("back", $_GET)){
 	    <div class="tab-content">
 		<?php foreach($data->editCategories as $key =>$value):  ?>
 		    <div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo preg_replace("/[\s\&]+/", "", $key) ?>">
-				<?php if($key == "Project Transactions"): ?>
+				<?php if($key == "Project Transactions" && $scope->mode != "new"): ?>
 					<div style="margin-top:10px;"></div>
 					<?php
 					$item = $data->getEditItem($scope->item, $key);
@@ -33,7 +33,7 @@ if(key_exists("back", $_GET)){
 					require __DIR__ . "/../../../embeddedgrid.php"; 
 					//echo json_encode($rows);
 					?>
-				<?php elseif($key == "Project Transactions History"): ?>
+				<?php elseif($key == "Project Transactions History" && $scope->mode != "new"): ?>
 					<div style="margin-top:10px;"></div>
 					<?php
 					$item = $data->getEditItem($scope->item, $key);
@@ -130,7 +130,7 @@ if(key_exists("back", $_GET)){
 			require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
 		    ?>
 		<?php endif; ?>
-		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $scope->mode != "new" ? $linksMaker->makeGridItemViewCancel($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
+		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $scope->mode == "new" ? $linksMaker->makeGridItemViewCancel($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
 	    </div>
