@@ -30,6 +30,7 @@ Last Modified: 04/09/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 protected $tableName = "invoicetrackingheader";
 public $dashboardTitle ="InvoiceTrackingHeader";
@@ -37,85 +38,202 @@ public $breadCrumbTitle ="InvoiceTrackingHeader";
 public $idField ="InvoiceNumber";
 public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
 public $gridFields = [
+        "InvoiceNumber" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "InvoiceDescription" => [
+            "dbType" => "varchar(80)",
+            "inputType" => "text"
+        ],
+        "PaymentProblem" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "checkbox",
+            "defaultValue" => "0"
+        ],
+        "EnteredBy" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "Approved" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "checkbox",
+            "defaultValue" => "0"
+        ]
+    ];
 
-"InvoiceNumber" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-],
-"InvoiceDescription" => [
-    "dbType" => "varchar(80)",
-    "inputType" => "text"
-],
-"EnteredBy" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-]
-];
+    public $editCategories = [
+        "Main" => [
+            "InvoiceNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => "",
+                "disabledEdit" => "true"
+            ],
+            "InvoiceDescription" => [
+                "dbType" => "varchar(80)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "InvoiceLongDescription" => [
+                "dbType" => "varchar(255)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "PaymentExpectedBy" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "PaymentProblem" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "PaymentProblemReason" => [
+                "dbType" => "varchar(255)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "EnteredBy" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
+                "defaultValue" => ""
+            ],
+            "Approved" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ApprovedBy" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
+                "defaultValue" => ""
+            ],
+            "ApprovedDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ]
+        ],
+        "Tracking Detail" => [
+            "InvoiceNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => "",
+                "disabledEdit" => "true"
+            ]
+        ]
+    ];
+    
+    public $columnNames = [
+        "InvoiceNumber" => "Invoice Number",
+        "InvoiceDescription" => "Invoice Description",
+        "EnteredBy" => "Entered By",
+        "InvoiceLongDescription" => "Invoice Long Description",
+        "PaymentExpectedBy" => "Payment Expected By",
+        "PaymentProblem" => "Payment Problem",
+        "PaymentProblemReason" => "Payment Problem Reason",
+        "Approved" => "Approved",
+        "ApprovedBy" => "Approved By",
+        "ApprovedDate" => "Approved Date",
+        "CommentNumber" => "Comment Number",
+        "CommentDate" => "Comment Date",
+        "Comment" => "Comment"
+    ];
+    
+    public $detailPages = [
+        "Tracking Detail" => [
+            "hideFields" => "true",
+            "viewPath" => "AccountsReceivable/OrderProcessing/InvoiceTrackingDetail",
+            "newKeyField" => "InvoiceNumber",
+            "keyFields" => ["InvoiceNumber", "CommentNumber"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","InvoiceNumber", "CommentNumber"],
+            "gridFields" => [
+                "InvoiceNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "CommentNumber" => [
+                    "dbType" => "decimal(18,0)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "CommentDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime",
+                    "defaultValue" => "now"
+                ],
+                "Comment" => [
+                    "dbType" => "varchar(255)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "Approved" => [
+                    "dbType" => "tinyint(1)",
+                    "inputType" => "checkbox",
+                    "defaultValue" => "0"
+                ]
+            ]
+        ]
+    ];
+    //getting rows for grid
+    public function getTrackingDetail($id){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["Tracking Detail"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages["Tracking Detail"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
 
-public $editCategories = [
-"Main" => [
+        $keyFields .= " AND InvoiceNumber='" . $id . "'";
 
-"InvoiceNumber" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"InvoiceDescription" => [
-"dbType" => "varchar(80)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"InvoiceLongDescription" => [
-"dbType" => "varchar(255)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"PaymentExpectedBy" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"PaymentProblem" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"PaymentProblemReason" => [
-"dbType" => "varchar(255)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"EnteredBy" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Approved" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"ApprovedBy" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ApprovedDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-]
-]];
-public $columnNames = [
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from invoicetrackingdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
-"InvoiceNumber" => "Invoice Number",
-"InvoiceDescription" => "Invoice Description",
-"EnteredBy" => "Entered By",
-"InvoiceLongDescription" => "Invoice Long Description",
-"PaymentExpectedBy" => "Payment Expected By",
-"PaymentProblem" => "Payment Problem",
-"PaymentProblemReason" => "Payment Problem Reason",
-"Approved" => "Approved",
-"ApprovedBy" => "Approved By",
-"ApprovedDate" => "Approved Date"];
-}?>
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+
+    public function deleteTrackingDetail(){
+        $user = Session::get("user");
+        $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber", "CommentNumber"];
+        $keyValues = explode("__", $_GET["item"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        
+        DB::delete("DELETE from invoicetrackingdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+}
+?>
