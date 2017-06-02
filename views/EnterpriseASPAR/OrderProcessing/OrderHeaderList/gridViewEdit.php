@@ -92,12 +92,11 @@ function makeTableItems($values, $fieldsDefinition){
 			break;
 		}
 	    }
-
 	    function renderInput($ascope, $data, $category, $item, $key, $value){
 		switch($data->editCategories[$category][$key]["inputType"]){
 		    case "text" :
 			//renders text input with label
-			echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
+			echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control\" value=\"";
 			if(key_exists("formatFunction", $data->editCategories[$category][$key])){
 			    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
 			    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
@@ -494,6 +493,15 @@ function makeTableItems($values, $fieldsDefinition){
 	</div><!-- /.modal -->
     <?php endif; ?>
     <script>
+    function fillSameInputs(value, key, event) {
+        var elements = $('input[name=' + key + ']');
+        var elementsKeys = Object.keys(elements);
+
+        for (var k = 0; k < elementsKeys.length; k++) {
+            $(elements[elementsKeys[k]]).val(event.value);
+        }
+    }
+
     function validateForm(itemData) {
         var itemDataArray = itemData.serializeArray();
 
@@ -543,7 +551,15 @@ function makeTableItems($values, $fieldsDefinition){
                             switch (dataType) {
                                 case 'decimal':
                                     if (itemDataArray[i].value && !isDecimal(itemDataArray[i].value)) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
+
                                         validationError = true;
                                         validationErrorMessage = 'must contain a number.';
                                     }
@@ -552,14 +568,26 @@ function makeTableItems($values, $fieldsDefinition){
                                 case 'int':
                                 case 'float':
                                     if (itemDataArray[i].value && !isNumeric(itemDataArray[i].value)) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
                                         validationError = true;
                                         validationErrorMessage = 'must contain a number.';
                                     }
                                     break;
                                 case 'char':
                                     if (itemDataArray[i].value.length > 1) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
                                         validationError = true;
                                         validationErrorMessage = 'cannot contain more than 1 character.';
                                     }
@@ -568,7 +596,13 @@ function makeTableItems($values, $fieldsDefinition){
                                     dataLength = dataObject.dbType.match(re)[1];
 
                                     if (itemDataArray[i].value.length > dataLength) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
                                         validationError = true;
                                         validationErrorMessage = 'cannot contain more than ' + dataLength + ' character(s).';
                                     }
