@@ -169,12 +169,21 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
             require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
         ?>
         <?php endif; ?>
-        <a class="btn btn-info" href="<?php echo $scope->mode == "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
+        <a class="btn btn-info" href="<?php echo $scope->mode == "new" ? $linksMaker->makeGridItemViewCancel($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
             <?php echo $translation->translateLabel("Cancel"); ?>
         </a>
     </div>
     </form>
     <script>
+    function fillSameInputs(value, key, event) {
+        var elements = $('input[name=' + key + ']');
+        var elementsKeys = Object.keys(elements);
+
+        for (var k = 0; k < elementsKeys.length; k++) {
+            $(elements[elementsKeys[k]]).val(event.value);
+        }
+    }
+
     function validateForm(itemData) {
         var itemDataArray = itemData.serializeArray();
 
@@ -210,7 +219,6 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
                 var dataObject = getDbObject(itemDataArray[i].name);
 
                 if (dataObject) {
-                    console.log(dataObject);
                     var dataType = dataObject.dbType.replace(/\(.*/,'');
                     var dataLength;
                     var re = /\((.*)\)/;
@@ -225,32 +233,59 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
                             switch (dataType) {
                                 case 'decimal':
                                     if (itemDataArray[i].value && !isDecimal(itemDataArray[i].value)) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
+
                                         validationError = true;
                                         validationErrorMessage = 'must contain a number.';
+
                                     }
                                     break;
                                 case 'bigint':
                                 case 'int':
                                 case 'float':
                                     if (itemDataArray[i].value && !isNumeric(itemDataArray[i].value)) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
                                         validationError = true;
                                         validationErrorMessage = 'must contain a number.';
                                     }
                                     break;
                                 case 'char':
                                     if (itemDataArray[i].value.length > 1) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
                                         validationError = true;
                                         validationErrorMessage = 'cannot contain more than 1 character.';
+
                                     }
                                     break;
                                 case 'varchar':
                                     dataLength = dataObject.dbType.match(re)[1];
 
                                     if (itemDataArray[i].value.length > dataLength) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
                                         validationError = true;
                                         validationErrorMessage = 'cannot contain more than ' + dataLength + ' character(s).';
                                     }
