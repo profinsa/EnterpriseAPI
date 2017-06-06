@@ -22,44 +22,9 @@ controllers/dashboard
 Calls:
 sql
 
-Last Modified: 07.04.2016
+Last Modified: 06.06.2016
 Last Modified by: Nikita Zaharov
 */
-
-/*        $db = $GLOBALS["capsule"]::connection()->getPdo();
-
-// if any params are present, add them
-/*        $sParamsIn = '';
-if(isset($aParams) && is_array($aParams) && count($aParams)>0) {
-// loop through params and set
-foreach($aParams as $sParam) {
-$sParamsIn .= '?,';
-}
-
-// trim the last comma from the params in string
-$sParamsIn = substr($sParamsIn, 0, strlen($sParamsIn)-1);
-}
-
-// create initial stored procedure call
-$stmt = $db->prepare("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)");
-
-/*        // if any params are present, add them
-if(isset($aParams) && is_array($aParams) && count($aParams)>0) {
-$iParamCount = 1;
-
-// loop through params and bind value to the prepare statement
-foreach ($aParams as &$value) {
-$stmt->bindParam($iParamCount, $value);
-$iParamCount++;
-}
-}
-
-// execute the stored procedure
-$stmt->execute();
-
-// loop through results and place into array if found
-$results = $stmt->fetchAll(PDO::FETCH_CLASS, 'stdClass');
-echo json_encode($results);*/
 
 class dashboardData{
     public $breadCrumbTitle = "General Ledger";
