@@ -43,7 +43,6 @@ class gridData extends gridDataSource{
         ]
     ];
 
-
     public $makeTabs = true;
     
     public $editCategories = [
@@ -137,55 +136,110 @@ class gridData extends gridDataSource{
         "Approved" => "Approved",
         "ApprivedBy" => "Apprived By",
         "ApprovedDate" => "Approved Date",
-        "EnteredBy" => "Entered By"
-    ];
-    public $headTableOne = [
-        "Assembly ID" => "AssemblyID"
+        "EnteredBy" => "Entered By",
+        "AssemblyBuildInstructions" => "Build Instructions",
+        "AssemblySchematicURL" => "Schematic URL",
+        "AssemblyPictureURL" => "Picture URL",
+        "AssemblyDiagramURL" => "Diagram URL",
+        "AssemblyOtherURL" => "Other URL",
+        "AssemblyLastUpdated" => "Last Updated",
+        "AssemblyLastUpdatedBy" => "Last Updated By",
+        "AssemblyTimeToBuild" => "AssemblyTimeToBuild",
+        "AssemblyTimeToBuildUnit" => "AssemblyTimeToBuildUnit"
     ];
 
-    public $detailTable = [
-        "viewPath" => "MRP/BillofMaterials/ViewBillOfMaterialsDetail",
-        "newKeyField" => "AssemblyID",
-        "keyFields" => ["AssemblyID", "ItemID"],
-    ];
-
-    public $detailIdFields = ["CompanyID","DivisionID","DepartmentID","AssemblyID", "ItemID"];
-	public $embeddedgridFields = [
-            "AssemblyID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ItemID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "NumberOfItemsInAssembly" => [
-                "dbType" => "int(11)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "WarehouseID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "LaborCost" => [
-                "dbType" => "decimal(19,4)",
-                "format" => "{0:n}",
-                "inputType" => "text",
-                "defaultValue" => ""
+    public $detailPages = [
+        "Main" => [
+            "viewPath" => "MRP/BillofMaterials/ViewBillOfMaterialsDetail",
+            "newKeyField" => "AssemblyID",
+            "keyFields" => ["AssemblyID", "ItemID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","AssemblyID", "ItemID"],
+            "gridFields" => [
+                "AssemblyID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "ItemID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "NumberOfItemsInAssembly" => [
+                    "dbType" => "int(11)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "WarehouseID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "LaborCost" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ]
             ]
-	];
-    
-    //getting rows for grid
-    public function getDetail($id){
-        $user = $_SESSION["user"];
+        ],
+        "Assembly Instructions" => [
+            "hideFields" => "true",
+            "viewPath" => "MRP/BillofMaterials/InventoryAssembliesInstructionsDetail",
+            "newKeyField" => "AssemblyID",
+            "keyFields" => ["AssemblyID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","AssemblyID"],
+            "gridFields" => [
+                "AssemblyID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "AssemblyBuildInstructions" => [
+                    "dbType" => "varchar(999)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "AssemblySchematicURL" => [
+                    "dbType" => "varchar(120)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "AssemblyPictureURL" => [
+                    "dbType" => "varchar(120)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "AssemblyDiagramURL" => [
+                    "dbType" => "varchar(120)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "AssemblyOtherURL" => [
+                    "dbType" => "varchar(120)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "AssemblyLastUpdated" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime",
+                    "defaultValue" => "now"
+                ],
+                "AssemblyLastUpdatedBy" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ]
+            ]
+        ]
+    ];
 
+    //getting rows for grid
+    public function getMain($id){
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
-        foreach($this->embeddedgridFields as $key=>$value){
+        foreach($this->detailPages["Main"]["gridFields"] as $key=>$value){
             $fields[] = $key;
             if(key_exists("addFields", $value)){
                 $_fields = explode(",", $value["addFields"]);
@@ -193,7 +247,7 @@ class gridData extends gridDataSource{
                     $fields[] = $addfield;
             }
         }
-        foreach($this->detailIdFields as $key){
+        foreach($this->detailPages["Main"]["detailIdFields"] as $key){
             switch($key){
             case "CompanyID" :
                 $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
@@ -214,7 +268,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND AssemblyID='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from inventoryassemblies " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from inventoryassemblies " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -222,9 +276,8 @@ class gridData extends gridDataSource{
         return $result;
     }
 
-    public function detailDelete(){
-        $user = $_SESSION["user"];
-        
+    public function deleteMain(){
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentsID", "AssemblyID", "ItemID"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -234,6 +287,63 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from inventoryasseblies " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from inventoryasseblies " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
-}?>
+    
+    //getting rows for grid
+    public function getAssemblyInstructions($id){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["Assembly Instructions"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages["Assembly Instructions"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND AssemblyID='" . $id . "'";
+
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from inventoryassembliesinstructions " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+
+    public function deleteAssemblyInstructions(){
+        $user = Session::get("user");
+        $idFields = ["CompanyID","DivisionID","DepartmentID","AssemblyID"];
+        $keyValues = explode("__", $_GET["item"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        
+        DB::delete("DELETE from inventoryassebliesinstructions " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+}
+?>

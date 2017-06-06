@@ -1,22 +1,23 @@
-<table class="datatable table table-striped table-bordered">
+<table id="example23" class="<?php echo isset($embeddedGridClasses) ? $embeddedGridClasses : ""; ?> datatable table table-striped table-bordered">
     <thead>
 	<tr>
 	    <th></th>
-	    <?php if(count($rows)): ?>
-		<?php
-		//getting data for table
-		//renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
-		//we use first row of data for column rendering, each row is object with columnname=>value pairs
+	    <?php
+	    //getting data for table
+	    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
+	    //we use first row of data for column rendering, each row is object with columnname=>value pairs
+	    if(count($rows)){
 		foreach($rows[0] as $key =>$value)
 		    if(key_exists($key, $gridFields))
 			echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
-		?>
-	    <?php endif; ?>
+	    }
+	    ?>
 	</tr>
     </thead>
     <tbody>
 	<?php
-	$embeddedgridFields = property_exists($data, "embeddedgridFields") ? $data->embeddedgridFields : $data->transactionsFields;
+	if(!isset($embeddedgridFields))
+	    $embeddedgridFields = property_exists($data, "embeddedgridFields") ? $data->embeddedgridFields : $data->transactionsFields;
 	//renders table rows using rows, getted in previous block with $data->getPage()
 	//also renders buttons like edit, delete of row
 	if(count($rows)){
@@ -89,10 +90,10 @@
 					echo $drill->getLinkByField($key,$value);
 					break;
 				    case "OrderNumber" :
-					echo $drill->getReportLinkByOrderNumber($value, $scope["pathPage"]);
+					echo $drill->getReportLinkByOrderNumber($value, $ascope["pathPage"]);
 					break;
 				    case "InvoiceNumber" :
-					echo $drill->getReportLinkByInvoiceNumber($value, $scope["pathPage"]);
+					echo $drill->getReportLinkByInvoiceNumber($value, $ascope["pathPage"]);
 					break;
 				    case "TransactionNumber" :
 					if(key_exists("TransactionType", $row))
