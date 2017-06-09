@@ -25,7 +25,7 @@ models/translation.php
 models/dashboard/*
 app from index.php
 
-Last Modified: 05.04.2016
+Last Modified: 06.06.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -47,9 +47,15 @@ class controller{
         }
 
         $this->category =  $_GET["category"];
-        if(!file_exists('models/dashboards/' . $this->category . '.php'))
-            throw new Exception("model " . 'models/dashboards/' . $this->category . '.php' . " is not found");
-        require 'models/dashboards/' . $this->category . '.php';
+        $modelsRewrite = [
+            "GeneralLedger" => "GeneralLedger",
+            "Tasks" => "Tasks"
+        ];
+        
+        $modelName = $modelsRewrite[$this->category];
+        if(!file_exists('models/dashboards/' . $modelName . '.php'))
+            throw new Exception("model " . 'models/dashboards/' . $modelName . '.php' . " is not found");
+        require 'models/dashboards/' . $modelName . '.php';
         
         $_perm = new permissionsByFile();
 
@@ -70,8 +76,7 @@ class controller{
             $scope = $this;
             if(key_exists("mode", $_GET))
                 $this->mode = $_GET["mode"];
-            if(key_exists("category", $_GET))
-                $this->category = $_GET["category"];
+            
             if(key_exists("item", $_GET))
                 $this->item = $_GET["item"];
 

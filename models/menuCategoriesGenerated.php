@@ -1059,6 +1059,12 @@ $menuCategories["Inventory"] = [
     "full" => $translation->translateLabel('Inventory Transfers'),
     "short" => "In",
     "data" => [
+        [
+        "id" => "Inventory/WarehouseTransits/TransferInventory",
+        "full" => $translation->translateLabel('Transfer Inventory'),
+        "href"=> "EnterpriseASPInv/WarehouseTransit/InventoryTransferList",
+        "short" => "Ti"
+        ]
     ]
     ],
     [
@@ -1067,7 +1073,6 @@ $menuCategories["Inventory"] = [
     "full" => $translation->translateLabel('Warehouse Transits'),
     "short" => "Wa",
     "data" => [
-
         [
         "id" => "Inventory/WarehouseTransits/WarehouseTransits",
         "full" => $translation->translateLabel('Warehouse Transits'),
