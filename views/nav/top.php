@@ -35,11 +35,11 @@
 			<span class="caret"></span>
 		    </button>
 		    <ul class="dropdown-menu lang-chooser-popup" aria-labelledby="langChooserDropdown" aria-expanded="false">
-			<li><a href="javascript:;" data-value="<?php echo $scope->user["language"]; ?>"><?php echo $scope->user["language"]; ?></a></li>
+			<li><a href="javascript:;" data-value="<?php echo $scope->user["language"]; ?>" class="lang-item"><img src="assets/images/langs/<?php echo $scope->user["language"]; ?>.png">  <?php echo $scope->user["language"]; ?></a></li>
 			<?php
 			foreach($translation->languages as $value)
 			    if($value != $scope->user["language"])
-				echo "<li><a href=\"javascript:;\" data-value=\"$value\">" . $value . "</a></li>";
+				echo "<li><a href=\"javascript:;\" data-value=\"$value\" class=\"lang-item\"><img src=\"assets/images/langs/{$value}.png\">  " . $value . "</a></li>";
 			?>
 		    </ul>
 		</div>
