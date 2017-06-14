@@ -24,26 +24,12 @@ controls
 
 
 /*topbar*/
-.lang-chooser-container {
-    background-color:inherit;
-    margin-top:17px;
+.lang-item {
+    font-size:12pt;
 }
-
-.lang-chooser-container select {
-    padding:0px;
-    -webkit-appearance: none; 
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.lang-chooser {
-    background-color:inherit;
-    color:#ffffff;
-    border:0px; 
-}
-
-.lang-chooser option {
-    color:black;
+.lang-item img {
+    margin-bottom:2px;
+    margin-right:5px;
 }
 
 /*
@@ -122,3 +108,4 @@ adoptation for screen sizes
 .order-entry-footer-table input{
     max-width : 110px;
 }
+

@@ -108,6 +108,8 @@
 
  $('.fdatetime').datepicker({
      autoclose : true,
+     orientation : "bottom",
+     toggleActive : false,
      format: {
 	 toDisplay: function (date, format, language) {
 	     //console.log(date,' eee');

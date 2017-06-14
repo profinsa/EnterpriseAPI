@@ -2,12 +2,21 @@
 <nav class="navbar navbar-default navbar-static-top m-b-0">
     <div class="navbar-header"> 
 	<a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-	<div class="top-left-part"><a class="logo" href="index.html"><b>
-	    <!--This is dark logo icon-->	<img src="assets/images/stfb-logo.gif" style="width:60px; height:60px" alt="home" class="dark-logo" />
-	    <!--This is light logo icon-->	<img src="assets/images/stfb-logo.gif" alt="home" class="light-logo" /></b><span class="hidden-xs">
-	    <!--This is dark logo text-->	<img src="assets/images/stfb-logo.gif" alt="home" class="dark-logo" />
-	    <!--This is light logo text-->	<img src="assets/images/stfb-logo.gif" alt="home" class="light-logo" /></span></a>
-	    
+	<div class="top-left-part">
+	    <a class="logo" href="index.php">
+		<b>
+		    <!--This is dark logo icon-->
+		    <img src="assets/images/stfb-logo.gif" style="width:60px; height:60px" alt="home" class="dark-logo" />
+		    <!--This is light logo icon-->
+		    <img src="assets/images/stfb-logo.gif" style="width:60px; height:60px"  alt="home" class="light-logo" />
+		</b>
+		<span class="hidden-xs">
+		    <!--This is dark logo text-->
+		    <img src="assets/images/stfb-logo.gif" alt="home" class="dark-logo" />
+		    <!--This is light logo text-->
+		    <img src="assets/images/stfb-logo.gif" alt="home" class="light-logo" />
+		</span>
+	    </a>
 	</div>
 	<ul class="nav navbar-top-links navbar-left hidden-xs">
 	    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
@@ -19,69 +28,44 @@
 	    </li>
 	</ul>
 	<ul class="nav navbar-top-links navbar-right pull-right">
-	    <li>
-		<div class="lang-chooser-container">
-		    <select class="lang-chooser" onchange="changeLanguage(event);" style="padding:0px; position:relative; right:-15px; z-index:5000">
-			<option><?php echo $scope->user["language"]; ?></option>
+	    <li style="position:relative; right:-10px;">
+		<div class="dropdown" style="margin-top:13px; margin-right:0px;">
+		    <button class="btn btn-default dropdown-toggle" type="button" id="langChooserDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white; border:0px; background-color:inherit;">
+			<?php echo $scope->user["language"]; ?>
+			<span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu lang-chooser-popup" aria-labelledby="langChooserDropdown" aria-expanded="false">
+			<li><a href="javascript:;" data-value="<?php echo $scope->user["language"]; ?>" class="lang-item"><img src="assets/images/langs/<?php echo $scope->user["language"]; ?>.png">  <?php echo $scope->user["language"]; ?></a></li>
 			<?php
 			foreach($translation->languages as $value)
 			    if($value != $scope->user["language"])
-				echo "<option style=\"color:black;\">" . $value . "</option>";
+				echo "<li><a href=\"javascript:;\" data-value=\"$value\" class=\"lang-item\"><img src=\"assets/images/langs/{$value}.png\">  " . $value . "</a></li>";
 			?>
-		    </select>
-		    <span class="glyphicon glyphicon-chevron-down lang-chooser" style="position:relative; top:-1px; right:0px;font-size:6pt;" aria-hidden="true"></span>
+		    </ul>
 		</div>
 	    </li>
-	    <li class="right-side-toggle"> <a class="waves-effect waves-light" href="javascript:void(0)"><i class="ti-settings"></i></a></li>
-	    <!-- /.dropdown -->
+	    <li class="right-side-toggle">
+		<a class="waves-effect waves-light" href="javascript:void(0)">
+		    <i class="ti-settings"></i>
+		</a>
+	    </li>
 	</ul>
     </div>
-    <!-- /.navbar-header -->
-    <!-- /.navbar-top-links -->
-    <!-- /.navbar-static-side -->
 </nav>
-<!-- End Top Navigation -->
 
 <script>
- function changeLanguage(event){
+ $(".lang-chooser-popup li a").click(function(){
+     var item = $(this), lang = item.data('value');
+     item.parents(".dropdown").find('.btn').html(item.text() + ' <span class="caret"></span>');
+     item.parents(".dropdown").find('.btn').val(lang);
      var current = "<?php echo $scope->user["language"]; ?>";
-     if(event.target.value != current)
-	 $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
+     if(lang != current)
+	 $.getJSON("index.php?page=language&setLanguage=" + lang)
 	     .success(function(data) {
 		 location.reload();
 	     })
 	     .error(function(err){
 		 console.log('something going wrong');
 	     });
- }
- (function($, window){
-     var arrowWidth = 20;
-
-     $.fn.resizeselect = function(settings) {  
-	 return this.each(function() { 
-
-	     $(this).change(function(){
-		 var $this = $(this);
-
-		 // create test element
-		 var text = $this.find("option:selected").text();
-		 var $test = $("<span>").html(text);
-
-		 // add to body, get width, and get out
-		 $test.appendTo('body');
-		 var width = $test.width();
-		 $test.remove();
-
-		 // set select width
-		 $this.width(width + arrowWidth);
-
-		 // run on start
-	     }).change();
-
-	 });
-     };
-
-     // run by default
-     $("select.lang-chooser").resizeselect();                       
- })(jQuery, window);
+ });
 </script>
