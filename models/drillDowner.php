@@ -188,6 +188,10 @@ class drillDowner{
         return "<a target=\"_blank\" href=\"" . "index.php?page=docreports&type=" . (key_exists($type, $typeToReport) ? $typeToReport[$type] : "order") . "&id=" . $number . "\">$number</a>";
     }
 
+    public function getViewLinkByTransactionNumberAndType($number, $type){
+        return "<a target=\"_blank\" href=\"" . $this->getViewHrefByTransactionNumberAndType($number, $type) . "\">$number</a>";
+    }
+
     public function getLinkByCVID($transactiontype, $cvid){    
         $user = $GLOBALS["user"];
         $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $cvid;
