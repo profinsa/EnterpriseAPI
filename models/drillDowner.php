@@ -61,11 +61,28 @@ class drillDowner{
         foreach($this->accounts as $value)
             if($value->GLAccountName == $name && $value->GLAccountBalance == $balance){
 		$keyString .= "__" . $value->GLAccountNumber;
-		return "<a target=\"_blank\" href=\"index.php#/?page=grid&action=GeneralLedger/Ledger/ViewChartofAccounts&mode=view&category=Main&item=$keyString\">$name</a>";
+		return "<a target=\"_blank\" href=\"index.php#/?page=grid&action=GeneralLedger/Ledger/ViewGLAccountTransactions&mode=grid&category=Main&item=$keyString\">$name</a>";
 	    }
 
         return $name;
     }
+
+    // public function getLinkByAccountNameAndBalance($name, $balance){
+    //     $user = $GLOBALS["user"];
+    //     $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
+
+    //     if(!$this->accounts){
+    //         $this->accounts = $GLOBALS["capsule"]::select("SELECT GLAccountNumber,GLAccountName,GLAccountBalance from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+    //     }
+        
+    //     foreach($this->accounts as $value)
+    //         if($value->GLAccountName == $name && $value->GLAccountBalance == $balance){
+	// 	$keyString .= "__" . $value->GLAccountNumber;
+	// 	return "<a target=\"_blank\" href=\"index.php#/?page=grid&action=GeneralLedger/Ledger/ViewChartofAccounts&mode=view&category=Main&item=$keyString\">$name</a>";
+	//     }
+
+    //     return $name;
+    // }
 
     public function getLinkByCustomerID($CustomerID){
         if($CustomerID)

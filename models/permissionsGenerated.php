@@ -991,6 +991,12 @@ public $permissions = [
         "insert" => "GLAdd|ADSetup",
         "delete" => "GLDelete|ADSetup",
     ],
+    "LedgerAccountTransactions" => [
+        "select" => "GLView|ADView|ADSetup",
+        "update" => "GLEdit|ADSetup",
+        "insert" => "GLAdd|ADSetup",
+        "delete" => "GLDelete|ADSetup",
+    ],
     "LedgerTransactionsClosed" => [
         "select" => "GLView|ADView|ADSetup",
         "update" => "any",
