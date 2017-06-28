@@ -34,6 +34,8 @@ class gridData extends gridDataSource{
 	protected $tableName = "orderheader";
 	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
 	public $dashboardTitle ="Pick Orders";
+    public $features = ["selecting"];
+    public $modes = ["grid", "view"];
 	public $breadCrumbTitle ="Pick Orders";
 	public $idField ="OrderNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber"];
@@ -711,5 +713,39 @@ class gridData extends gridDataSource{
 		"ManagerSignature" => "Manager Signature",
 		"ManagerPassword" => "Manager Password"
 	];
+
+    public function Picked(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            $result = $GLOBALS["DB"]::statement("SELECT @ret = Order_Picked('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+
+            if ($result != true) {
+                $success = false;
+            }
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
+    public function PickAll(){
+        $user = Session::get("user");
+
+        $result = $GLOBALS["DB"]::statement("SELECT @ret = Order_PickAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+
+        if ($result == true)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
 }
 ?>
