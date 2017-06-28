@@ -1,6 +1,6 @@
 <?php
 if(key_exists("back", $_GET)){
-    $backhref = preg_replace("/\.\.\./", "#", $_GET["back"]) . "?back={$_GET["back"]}";
+    $backhref = preg_replace("/\.\.\./", "#", $_GET["back"]) . "&back={$_GET["back"]}";
     $back = "?{$_SERVER["QUERY_STRING"]}";
 }else{
     $backhref = $linksMaker->makeGridItemViewCancel($ascope["path"]);

@@ -2374,7 +2374,7 @@ $menuCategories["SystemSetup"] = [
         ]
     ]
     ],
-    [
+/*    [
     "type" => "submenu",
     "id" => "SystemSetup/EDISetup",
     "full" => $translation->translateLabel('EDI Setup '),
@@ -2412,7 +2412,7 @@ $menuCategories["SystemSetup"] = [
         "short" => "ED"
         ]
     ]
-    ]
+    ]*/
 ]
 ];
 
