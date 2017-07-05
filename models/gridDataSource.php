@@ -481,10 +481,19 @@ class gridDataSource{
                 "title" => $value->CurrencyID . ", " . $value->CurrencyType,
                 "value" => $value->CurrencyID
             ];
-        echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
-        echo json_encode($res);
 
         return $res;
+    }
+
+    // test function for getting autoincremented value
+    public function getNewIdFieldValue() {
+        $user = $_SESSION["user"];
+
+        $key = "MAX(" . $this->idField .")";
+
+        $result = $GLOBALS["capsule"]::select("SELECT " . $key . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'" , array());
+
+        return $result[0]->$key + 1;
     }
     
     //getting rows for grid
@@ -591,8 +600,12 @@ class gridDataSource{
                 if ($struct->Field == $key) {
                     // check this out Nikki!!! is this right??? i think is it right. if default value is absent in model
                     // we fill this from describe.
-                    if (!$this->editCategories[$type][$key]["defaultValue"]) {
-                        $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+                    // echo gettype($this->editCategories[$type][$key]);
+                    // echo 
+                    if (key_exists("defaultValue", $this->editCategories[$type][$key])) {
+                        if (!$this->editCategories[$type][$key]["defaultValue"]) {
+                            $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+                        }
                     }
 
                     switch ($struct->Null) {
@@ -610,8 +623,12 @@ class gridDataSource{
             }
         }
 
-        foreach($this->editCategories[$type] as $key=>$value)
-            $values[$key] = $value["defaultValue"];
+        foreach($this->editCategories[$type] as $key=>$value) {
+            if (key_exists("defaultValue", $this->editCategories[$type][$key])) {
+                $values[$key] = $value["defaultValue"];
+            }
+        }
+            
 
         return $values;
     } 

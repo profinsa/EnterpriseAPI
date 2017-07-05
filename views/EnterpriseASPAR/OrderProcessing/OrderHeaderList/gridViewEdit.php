@@ -83,6 +83,24 @@ function makeTableItems($values, $fieldsDefinition){
 			break;
 		    case "text":
 		    case "dropdown":
+            // if (key_exists("dataProvider", $data->editCategories[$category][$key])) {
+            //     $method = $data->editCategories[$category][$key]["dataProvider"];
+            //     echo json_encode($key);
+            //     echo json_encode($method);
+            // }
+            // $method = $data->editCategories[$category][$key]["dataProvider"];
+
+            // if ($method) {
+            //     echo json_encode($key);
+            //     echo json_encode($method);
+            //     if(key_exists("dataProviderArgs", $data->editCategories[$category][$key])){
+            //         $args = [];
+            //         foreach($data->editCategories[$category][$key]["dataProviderArgs"] as $argname)
+            //         $args[$argname] = $item[$argname];
+            //         $value = $data->$method($args);
+            //     }else
+            //         $value = $data->$method();
+            // }
 			if(key_exists("formatFunction", $fieldsDefinition[$key])){
 			    $formatFunction = $fieldsDefinition[$key]["formatFunction"];
 			    echo $data->$formatFunction($values, "editCategories", $key, $value, false);
@@ -96,6 +114,17 @@ function makeTableItems($values, $fieldsDefinition){
 		switch($data->editCategories[$category][$key]["inputType"]){
 		    case "text" :
 			//renders text input with label
+            if (key_exists("dataProvider", $data->editCategories[$category][$key])) {
+                $method = $data->editCategories[$category][$key]["dataProvider"];
+                if(key_exists("dataProviderArgs", $data->editCategories[$category][$key])){
+                    $args = [];
+                    foreach($data->editCategories[$category][$key]["dataProviderArgs"] as $argname)
+                    $args[$argname] = $item[$argname];
+                    $value = $data->$method($args);
+                }else
+                    $value = $data->$method();
+            }
+
 			echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control\" value=\"";
 			if(key_exists("formatFunction", $data->editCategories[$category][$key])){
 			    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];

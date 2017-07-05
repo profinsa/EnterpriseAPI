@@ -504,11 +504,12 @@ class gridData extends gridDataSource{
 			]
 		],
         "...fields" => [
-            "OrderNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "disabledEdit" => "true"
-            ],
+            // "OrderNumber" => [
+            //     "dbType" => "varchar(36)",
+            //     "inputType" => "text",
+            //     "disabledEdit" => "true",
+			// 	"dataProvider" => "getNewIdFieldValue"
+            // ],
             "OrderTypeID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text"
@@ -567,7 +568,8 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(36)",
 				"inputType" => "text",
 				"defaultValue" => "",
-                "disabledEdit" => "true"
+                "disabledEdit" => "true",
+				"dataProvider" => "getNewIdFieldValue"
 			],
 			"OrderTypeID" => [
 				"dbType" => "varchar(36)",
