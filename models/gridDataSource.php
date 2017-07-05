@@ -297,7 +297,15 @@ class gridDataSource{
         
         return $res;
     }
-    
+
+    //getting list of available order types
+    public function getNewOrderNumber(){
+        $user = $_SESSION["user"];
+        $result = $GLOBALS["DB"]::select("SELECT MAX(OrderNumber) from orderheader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        return $result + 1;
+    }
+
     //getting list of available order types
     public function getOrderTypes(){
         $user = $_SESSION["user"];
@@ -473,7 +481,9 @@ class gridDataSource{
                 "title" => $value->CurrencyID . ", " . $value->CurrencyType,
                 "value" => $value->CurrencyID
             ];
-        
+        echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+        echo json_encode($res);
+
         return $res;
     }
     
@@ -579,7 +589,11 @@ class gridDataSource{
         foreach($this->editCategories[$type] as $key=>$value) {
             foreach($result as $struct) {
                 if ($struct->Field == $key) {
-                    $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+                    // check this out Nikki!!! is this right??? i think is it right. if default value is absent in model
+                    // we fill this from describe.
+                    if (!$this->editCategories[$type][$key]["defaultValue"]) {
+                        $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+                    }
 
                     switch ($struct->Null) {
                         case "NO":

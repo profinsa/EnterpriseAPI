@@ -141,7 +141,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => ""
+                "defaultValue" => "USD"
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -1176,7 +1176,7 @@ class gridData extends gridDataSource{
                 break;
             }
             if(!in_array($key, $fields))
-                $fields[] = $key;                
+                $fields[] = $key;
         }
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);

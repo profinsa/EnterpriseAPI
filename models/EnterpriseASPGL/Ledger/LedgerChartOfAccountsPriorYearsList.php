@@ -110,7 +110,7 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(3)",
                 "inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-                "defaultValue" => ""
+                "defaultValue" => "USD"
             ],
             "CurrencyExchangeRate" => [
                 "dbType" => "float",
