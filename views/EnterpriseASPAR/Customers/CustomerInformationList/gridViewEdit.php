@@ -130,7 +130,7 @@ if(key_exists("back", $_GET)){
 			require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
 		    ?>
 		<?php endif; ?>
-		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $scope->mode == "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
+		<a class="btn btn-info" href="<?php echo $ascope["mode"] != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"])  : $linksMaker->makeGridItemViewCancel($ascope["path"]) ; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
 	    </div>
@@ -274,11 +274,25 @@ if(key_exists("back", $_GET)){
      function createItem(){
         var itemData = $("#itemData");
 
+        // console.log(itemData.serializeArray());
+        // console.log(itemData.serialize());
+
+        var itemDataArray = itemData.serializeArray();
+        var itemDataPlainObject = {};
+
+        for (var i = 0; i < itemDataArray.length; i++) {
+            if (!itemDataPlainObject.hasOwnProperty(itemDataArray[i].name)) {
+                itemDataPlainObject[itemDataArray[i].name] = itemDataArray[i].value;
+            }
+        }
+
+        console.log(itemDataPlainObject);
+
         if (validateForm(itemData)) {
-            $.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemData.serialize(), null, 'json')
+            $.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemDataPlainObject, null, 'json')
             .success(function(data) {
                 console.log('ok');
-                window.location = "<?php echo $backhref; ?>";
+                window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
             })
             .error(function(err){
                 console.log('wrong');

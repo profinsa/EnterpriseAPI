@@ -691,13 +691,21 @@ class gridDataSource{
                     else
                     if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
                             $values[$name] = str_replace(",", "", $values[$name]);
-                                      
+
                     if($insert_fields == ""){
                         $insert_fields = $name;
                         $insert_values = "'" . $values[$name] . "'";
                     }else{
-                        $insert_fields .= "," . $name;
-                        $insert_values .= ",'" . $values[$name] . "'";
+                        // simple preventing attribute duplicates in sql statment
+                        $pos = strpos($insert_fields, $name);
+
+                        if ($pos !== false) {
+                        } else {
+                            $insert_fields .= "," . $name;
+                            $insert_values .= ",'" . $values[$name] . "'";
+                        }
+                        // $insert_fields .= "," . $name;
+                        // $insert_values .= ",'" . $values[$name] . "'";
                     }
                 }
             }
