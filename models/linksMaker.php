@@ -35,7 +35,7 @@ class linksMaker{
     }
 
     function makeGridItemNew($path){
-        return "index.php#/?page=grid&action=$path&new=true";
+        return "index.php?page=grid&action=$path&new=true";
     }
 
     function makeGridItemView($path, $item){

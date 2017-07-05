@@ -58,7 +58,7 @@ if(key_exists("back", $_GET)){
 							
 							case "text" :
 							//renders text input with label
-							echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\""; 
+							echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\"  onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" name=\"" .  $key. "\" class=\"form-control\" value=\""; 
 							if(key_exists("formatFunction", $data->editCategories[$category][$key])){
 								$formatFunction = $data->editCategories[$category][$key]["formatFunction"];
 								echo $data->$formatFunction($item, "editCategories", $key, $value, false);
@@ -137,6 +137,15 @@ if(key_exists("back", $_GET)){
 	</div>
     </div>
     <script>
+    function fillSameInputs(value, key, event) {
+        var elements = $('input[name=' + key + ']');
+        var elementsKeys = Object.keys(elements);
+
+        for (var k = 0; k < elementsKeys.length; k++) {
+            $(elements[elementsKeys[k]]).val(event.value);
+        }
+    }
+
     function validateForm(itemData) {
         var itemDataArray = itemData.serializeArray();
 
@@ -172,7 +181,6 @@ if(key_exists("back", $_GET)){
                 var dataObject = getDbObject(itemDataArray[i].name);
 
                 if (dataObject) {
-                    console.log(dataObject);
                     var dataType = dataObject.dbType.replace(/\(.*/,'');
                     var dataLength;
                     var re = /\((.*)\)/;
@@ -187,7 +195,15 @@ if(key_exists("back", $_GET)){
                             switch (dataType) {
                                 case 'decimal':
                                     if (itemDataArray[i].value && !isDecimal(itemDataArray[i].value)) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
+
                                         validationError = true;
                                         validationErrorMessage = 'must contain a number.';
                                     }
@@ -196,14 +212,26 @@ if(key_exists("back", $_GET)){
                                 case 'int':
                                 case 'float':
                                     if (itemDataArray[i].value && !isNumeric(itemDataArray[i].value)) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
                                         validationError = true;
                                         validationErrorMessage = 'must contain a number.';
                                     }
                                     break;
                                 case 'char':
                                     if (itemDataArray[i].value.length > 1) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
                                         validationError = true;
                                         validationErrorMessage = 'cannot contain more than 1 character.';
                                     }
@@ -212,7 +240,13 @@ if(key_exists("back", $_GET)){
                                     dataLength = dataObject.dbType.match(re)[1];
 
                                     if (itemDataArray[i].value.length > dataLength) {
-                                        $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                        var elementsKeys = Object.keys(elements);
+
+
+                                        for (var k = 0; k < elementsKeys.length; k++) {
+                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                        }
                                         validationError = true;
                                         validationErrorMessage = 'cannot contain more than ' + dataLength + ' character(s).';
                                     }
