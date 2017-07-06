@@ -723,6 +723,25 @@ class gridDataSource{
                     if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
                             $values[$name] = str_replace(",", "", $values[$name]);
 
+                    if (strlen($values[$name]) == 0){
+                        if (preg_match('/decimal/', $value["dbType"])) {
+                            if (false !== $pos = strrpos($value["dbType"], ',')) {
+                                $presicion = (int)substr($value["dbType"], $pos + 1,1);
+                                if ($presicion > 0) {
+                                    $values[$name] = "0.0";
+                                } else {
+                                    $values[$name] = "0";
+                                }
+                            } {
+                                $values[$name] = "0.0";
+                            }
+                        } else if (preg_match('/int/', $value["dbType"])) {
+                            $values[$name] = "0";
+                        } else if (preg_match('/float/', $value["dbType"])) {
+                            $values[$name] = "0.0";
+                        }
+                    }
+
                     if($insert_fields == ""){
                         $insert_fields = $name;
                         $insert_values = "'" . $values[$name] . "'";
