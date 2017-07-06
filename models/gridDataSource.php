@@ -628,7 +628,6 @@ class gridDataSource{
                 $values[$key] = $value["defaultValue"];
             }
         }
-            
 
         return $values;
     } 
