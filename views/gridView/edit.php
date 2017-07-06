@@ -318,7 +318,7 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
             $.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemData.serialize(), null, 'json')
             .success(function(data) {
                 console.log('ok');
-                window.location = "<?php echo $backhref?>";
+                window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
             })
             .error(function(err){
                 console.log('wrong');
