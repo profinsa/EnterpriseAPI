@@ -260,7 +260,9 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "disabledEdit" => "true",
-                "defaultValue" => ""
+                "disabledNew" => "true",
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
             ],
             "WorkOrderType" => [
                 "dbType" => "varchar(36)",

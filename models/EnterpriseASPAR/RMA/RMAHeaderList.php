@@ -381,11 +381,13 @@ class gridData extends gridDataSource{
                 "disabledEdit" => "true",
 				"defaultValue" => ""
             ],
-            "PurchaseNumber" => [
+           "PurchaseNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "disabledEdit" => "true",
-                "defaultValue" => "",
+                "disabledNew" => "true",
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
             ],
             "PurchaseDate" => [
                 "dbType" => "timestamp",
