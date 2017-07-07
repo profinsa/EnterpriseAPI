@@ -85,14 +85,14 @@ class gridData extends gridDataSource{
             "InvoiceNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "disabledEdit" => "true",
+                // "disabledEdit" => "true",
                 "disabledNew" => "true",
                 "defaultValue" => ""
             ],
             "InvoiceLineNumber" => [
                 "dbType" => "bigint(20)",
                 "inputType" => "text",
-                "disabledEdit" => "true",
+                // "disabledEdit" => "true",
                 "disabledNew" => "true",
                 "defaultValue" => "-1"
             ],

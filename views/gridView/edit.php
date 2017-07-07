@@ -169,7 +169,7 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
             require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
         ?>
         <?php endif; ?>
-        <a class="btn btn-info" href="<?php echo $scope->mode == "new" ? $linksMaker->makeGridItemViewCancel($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
+        <a class="btn btn-info" href="<?php echo $ascope["mode"] != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"])  : $linksMaker->makeGridItemViewCancel($ascope["path"]) ; ?>">
             <?php echo $translation->translateLabel("Cancel"); ?>
         </a>
     </div>

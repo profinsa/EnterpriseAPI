@@ -56,14 +56,14 @@ class gridData extends gridDataSource{
             "OrderNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "disabledEdit" => "true",
+                // "disabledEdit" => "true",
                 "disabledNew" => "true",
                 "defaultValue" => "0.00"
             ],
             "OrderLineNumber" => [
                 "dbType" => "bigint(20)",
                 "inputType" => "text",
-                "disabledEdit" => "true",
+                // "disabledEdit" => "true",
                 "disabledNew" => "true",
                 "defaultValue" => "-1"
             ],
