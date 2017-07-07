@@ -142,7 +142,7 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
          for category(which tab is activated) uses $ascope of controller
        -->
     <?php if($security->can("update")): ?>
-        <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($scope->action, $scope->item) . $back;?>">
+        <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"]);?>">
             <?php echo $translation->translateLabel("Edit"); ?>
         </a>
         <?php
