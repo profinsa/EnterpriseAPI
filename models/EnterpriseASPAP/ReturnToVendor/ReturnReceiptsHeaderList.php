@@ -203,7 +203,11 @@ class gridData extends gridDataSource{
             "ReceiptID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultValue" => "",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
             ],
             "ReceiptTypeID" => [
                 "dbType" => "varchar(36)",

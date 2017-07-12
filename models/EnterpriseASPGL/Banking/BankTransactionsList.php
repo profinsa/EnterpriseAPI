@@ -82,7 +82,10 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "disabledEdit" => true,
                 "inputType" => "text",
-                "defaultValue" => ""
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
             ],
             "BankDocumentNumber" =>	[
                 "dbType" => "varchar(30)",

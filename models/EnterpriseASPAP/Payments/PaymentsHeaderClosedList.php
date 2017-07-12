@@ -294,11 +294,13 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
-
             "PaymentID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
             ],
             "PaymentTypeID" => [
                 "dbType" => "varchar(36)",

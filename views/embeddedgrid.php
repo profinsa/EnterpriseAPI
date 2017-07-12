@@ -97,7 +97,7 @@
 					break;
 				    case "TransactionNumber" :
 					if(key_exists("TransactionType", $row))
-					    echo $drill->getReportLinkByTransactionNumberAndType($value, $row["TransactionType"]);
+					    echo $drill->getViewLinkByTransactionNumberAndType($value, $row["TransactionType"]);
 					else
 					    echo $value;
 					break;

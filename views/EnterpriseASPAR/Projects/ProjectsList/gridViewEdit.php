@@ -114,13 +114,13 @@ if(key_exists("back", $_GET)){
 	if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
 	    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
 	?>
-	<div class="row">
-	    <div class="pull-right">
+	<div class="col-md-12 col-xs-12 row">
+	    <div  style="margin-top:10px" class="pull-right">
 		<!--
 		     renders buttons translated Save and Cancel using translation model
 		   -->
 		<?php if($security->can("update")): ?>
-		    <a class="btn btn-info waves-effect waves-light m-r-10" onclick="<?php echo ($scope->mode == "edit" ? "saveItem()" : "createItem()"); ?>">
+		    <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 			<?php echo $translation->translateLabel("Save"); ?>
 		    </a>
 		    <?php 
@@ -130,12 +130,12 @@ if(key_exists("back", $_GET)){
 			require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
 		    ?>
 		<?php endif; ?>
-		<a class="btn btn-inverse waves-effect waves-light" href="<?php echo $scope->mode == "new" ? $linksMaker->makeGridItemViewCancel($ascope["path"], $ascope["item"]) . $back  : $backhref  ; ?>">
+		<a class="btn btn-info" href="<?php echo $ascope["mode"] != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"])  : $linksMaker->makeGridItemViewCancel($ascope["path"]) ; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
 	    </div>
 	</div>
-    </div>
+    </form>
     <script>
     function validateForm(itemData) {
         var itemDataArray = itemData.serializeArray();
@@ -237,37 +237,33 @@ if(key_exists("back", $_GET)){
         return !validationError;
     }
      //handler of save button if we in new mode. Just doing XHR request to save data
-     function createItem(){
+    function createItem(){
         var itemData = $("#itemData");
 
         if (validateForm(itemData)) {
-            var itemData = $("#itemData");
-            $.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemData.serialize(), null, 'json')
+            $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
             .success(function(data) {
                 console.log('ok');
-                window.location = "<?php echo $backhref; ?>";
+                window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
             })
             .error(function(err){
                 console.log('wrong');
             });
         }
-     }
+    }
      //handler of save button if we in edit mode. Just doing XHR request to save data
-     function saveItem(){
-        var itemData = $('#itemData');
-
+    function saveItem(){
+        var itemData = $("#itemData");
         if (validateForm(itemData)) {
-            var itemData = $("#itemData");
-            $.post("<?php echo $linksMaker->makeGridItemSave($ascope["action"]); ?>", itemData.serialize(), null, 'json')
+            $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
             .success(function(data) {
-                console.log('ok');
-                window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"] . $back); ?>";
+                window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]); ?>";
             })
             .error(function(err){
                 console.log('wrong');
             });
         }
-     }
+    }
     </script>
 </div>
 <script>

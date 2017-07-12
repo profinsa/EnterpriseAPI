@@ -141,7 +141,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => ""
+                "defaultValue" => "USD"
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -504,11 +504,6 @@ class gridData extends gridDataSource{
 			]
 		],
         "...fields" => [
-            "OrderNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "disabledEdit" => "true"
-            ],
             "OrderTypeID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text"
@@ -564,11 +559,13 @@ class gridData extends gridDataSource{
 				"defaultValue" => ""
 			],
             "OrderNumber" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => "",
-                "disabledEdit" => "true"
-			],
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
+            ],
 			"OrderTypeID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
@@ -1176,7 +1173,7 @@ class gridData extends gridDataSource{
                 break;
             }
             if(!in_array($key, $fields))
-                $fields[] = $key;                
+                $fields[] = $key;
         }
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);

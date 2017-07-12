@@ -46,535 +46,713 @@ public $gridFields = [
 ]
 ];
 
-public $editCategories = [
-"Main" => [
+	public $editCategories = [
+		"Main" => [
+			"ShippingName" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingAddress1" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingAddress2" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingAddress3" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingCity" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingState" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingZip" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingCountry" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CustomerDropShipment" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"AllowanceDiscountPerc" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"InvoiceDueDate" => [
+				"dbType" => "timestamp",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"TaxExemptID" => [
+				"dbType" => "varchar(20)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CurrencyID" => [
+				"dbType" => "varchar(3)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
+				"defaultValue" => "USD"
+			],
+			"CurrencyExchangeRate" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"DiscountAmount" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
 
-"InvoiceNumber" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"OrderNumber" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TransactionTypeID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TransOpen" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"InvoiceDate" => [
-"dbType" => "timestamp",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"InvoiceDueDate" => [
-"dbType" => "timestamp",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"InvoiceShipDate" => [
-"dbType" => "timestamp",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"InvoiceCancelDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"SystemDate" => [
-"dbType" => "timestamp",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"Memorize" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"PurchaseOrderNumber" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TaxExemptID" => [
-"dbType" => "varchar(20)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TaxGroupID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CustomerID" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TermsID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CurrencyID" => [
-"dbType" => "varchar(3)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CurrencyExchangeRate" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Subtotal" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"DiscountPers" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"DiscountAmount" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TaxPercent" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TaxAmount" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TaxableSubTotal" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Freight" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TaxFreight" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"Handling" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Advertising" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Total" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"EmployeeID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CommissionPaid" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"CommissionSelectToPay" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"Commission" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CommissionableSales" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ComissionalbleCost" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CustomerDropShipment" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"ShipMethodID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"WarehouseID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShipToID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShipForID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShippingName" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShippingAddress1" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShippingAddress2" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShippingAddress3" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShippingCity" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShippingState" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShippingZip" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ShippingCountry" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ScheduledStartDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"ScheduledEndDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"ServiceStartDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"ServiceEndDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"PerformedBy" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"GLSalesAccount" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"PaymentMethodID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"AmountPaid" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"UndistributedAmount" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"BalanceDue" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CheckNumber" => [
-"dbType" => "varchar(20)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CheckDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"CreditCardTypeID" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditCardName" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditCardNumber" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditCardExpDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"CreditCardCSVNumber" => [
-"dbType" => "varchar(5)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditCardBillToZip" => [
-"dbType" => "varchar(10)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditCardValidationCode" => [
-"dbType" => "varchar(20)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CreditCardApprovalNumber" => [
-"dbType" => "varchar(20)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Picked" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"PickedDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"Printed" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"PrintedDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"Shipped" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"ShipDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"TrackingNumber" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Billed" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"BilledDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"Backordered" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"Posted" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"PostedDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"AllowanceDiscountPerc" => [
-"dbType" => "float",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"CashTendered" => [
-"dbType" => "decimal(19,4)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"MasterBillOfLading" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"MasterBillOfLadingDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"TrailerNumber" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"TrailerPrefix" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HeaderMemo1" => [
-"dbType" => "varchar(500)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HeaderMemo2" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HeaderMemo3" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HeaderMemo4" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HeaderMemo5" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HeaderMemo6" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HeaderMemo7" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HeaderMemo8" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"HeaderMemo9" => [
-"dbType" => "varchar(50)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Approved" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-],
-"ApprovedBy" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ApprovedDate" => [
-"dbType" => "datetime",
-"inputType" => "datetime",
-"defaultValue" => "now"
-],
-"EnteredBy" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"Signature" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SignaturePassword" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SupervisorSignature" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SupervisorPassword" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ManagerSignature" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"ManagerPassword" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"IncomeCreditMemo" => [
-"dbType" => "tinyint(1)",
-"inputType" => "checkbox",
-"defaultValue" => "0"
-]
-]];
+			],
+			"TaxableSubTotal" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			],
+			"Advertising" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			],
+			"Commission" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			],
+			"CommissionableSales" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			],
+			"ComissionalbleCost" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			]
+		],
+        "Customer" => [
+            "CustomerID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ]
+        ],
+		"Payment" => [
+			"GLSalesAccount" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
+				"defaultValue" => ""
+			],
+			"PaymentMethodID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getPaymentMethods",
+				"defaultValue" => ""
+			],
+			"AmountPaid" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "addFields" => "CurrencyID",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+			],
+			"BalanceDue" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+			],
+			"UndistributedAmount" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+			],
+			"CheckNumber" => [
+				"dbType" => "varchar(20)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CheckDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"CreditCardTypeID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getCreditCardTypes",
+				"defaultValue" => ""
+			],
+			"CreditCardName" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CreditCardNumber" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CreditCardExpDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"CreditCardCSVNumber" => [
+				"dbType" => "varchar(5)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CreditCardBillToZip" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CreditCardValidationCode" => [
+				"dbType" => "varchar(20)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CreditCardApprovalNumber" => [
+				"dbType" => "varchar(20)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+		],
+		"Shipping" => [
+			"CustomerDropShipment" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"ShipMethodID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"WarehouseID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShipForID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShipToID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingName" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingAddress1" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingAddress2" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingAddress3" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingCity" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingState" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingZip" => [
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingCountry" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			]/*,
+			"ScheduledStartDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"ScheduledEndDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"ServiceStartDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"ServiceEndDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"PerformedBy" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+                ]*/
+		],
+		"Additional" => [
+			"MasterBillOfLading" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"MasterBillOfLadingDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"TrailerNumber" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"TrailerPrefix" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			]
+		],
+		"Memos" => [
+			"HeaderMemo1" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"HeaderMemo2" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"HeaderMemo3" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"HeaderMemo4" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"HeaderMemo5" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"HeaderMemo6" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"HeaderMemo7" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"HeaderMemo8" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"HeaderMemo9" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			]
+		],
+		"Approval" => [
+			"Approved" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"ApprovedBy" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ApprovedDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"EnteredBy" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Signature" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"SignaturePassword" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"SupervisorSignature" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"SupervisorPassword" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ManagerSignature" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ManagerPassword" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			]
+		],
+        "...fields" => [
+            "InvoiceNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
+            ],
+            "OrderNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "disabledEdit" => "true"
+            ],
+            "InvoiceDate" => [
+                "dbType" => "timestamp",
+                "format" => "{0:d}",
+                "inputType" => "datetime"
+            ],
+            "CustomerID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ],
+            "CurrencyID" => [
+                "dbType" => "varchar(3)",
+                "inputType" => "text"
+            ],
+			"TransactionTypeID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getARTransactionTypes",
+				"defaultValue" => ""
+			],
+			"InvoiceCancelDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"ShipForID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipForIDS",
+                "dataProviderArgs" => ["CustomerID", "ShipToID"],
+				"defaultValue" => ""
+			],
+			"ShipToID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipToIDS",
+                "dataProviderArgs" => ["CustomerID"],
+				"defaultValue" => ""
+			],
+			"ShipMethodID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipMethods",
+				"defaultValue" => ""
+			],
+			"WarehouseID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getWarehouses",
+				"defaultValue" => ""
+			],
+            "OrderNumber" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "disabledEdit" => "true"
+			],
+            "Total" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			],
+			"EmployeeID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
+				"defaultValue" => ""
+			],
+            "InvoiceShipDate" => [
+				"dbType" => "timestamp",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"InvoiceCancelDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"SystemDate" => [
+				"dbType" => "timestamp",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"Memorize" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "disabledEdit" => "true"
+			],
+			"PurchaseOrderNumber" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],	
+            "TaxGroupID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CustomerID" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"TermsID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getTerms",
+				"defaultValue" => ""
+			],
+			"Subtotal" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+			],
+            "Freight" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			],
+			"TaxFreight" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"Handling" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			],
+			"Advertising" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			],
+            "TaxPercent" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"TaxAmount" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+
+			],
+            "DiscountPers" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+            "Backordered" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"Picked" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"PickedDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"Printed" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"PrintedDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"Shipped" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"ShipDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"TrackingNumber" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Billed" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"BilledDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"InvoiceNumber" => [
+				"dbType" => "varchar(20)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"InvoiceDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"Posted" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"PostedDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"AllowanceDiscountPerc" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CashTendered" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+            ],
+			"AmountPaid" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "addFields" => "CurrencyID",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+			],
+            "BalanceDue" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat"
+			]
+        ]
+    ];
 public $columnNames = [
 
 "InvoiceNumber" => "Invoice Number",

@@ -111,7 +111,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => ""
+				"defaultValue" => "USD"
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -360,25 +360,28 @@ class gridData extends gridDataSource{
 			]
 		],
         "...fields" => [
-            "OrderNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "disabledEdit" => "true"
-            ],
+            // "OrderNumber" => [
+            //     "dbType" => "varchar(36)",
+            //     "inputType" => "text",
+            //     "disabledEdit" => "true"
+            // ],
             "VendorInvoiceNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "disabledEdit" => "true"
+                "disabledEdit" => "true",
+				"defaultValue" => ""
             ],
             "OrderedBy" => [
                 "dbType" => "varchar(15)",
                 "inputType" => "text",
-                "disabledEdit" => "true"
+                "disabledEdit" => "true",
+				"defaultValue" => ""
             ],
             "PurchaseNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "disabledEdit" => "true"
+                "disabledEdit" => "true",
+                "defaultValue" => "",
             ],
             "PurchaseDate" => [
                 "dbType" => "timestamp",
@@ -387,11 +390,13 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text"
+                "inputType" => "text",
+                "defaultValue" => "",
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text"
+                "inputType" => "text",
+                "defaultValue" => "USD",
             ],
 			"TransactionTypeID" => [
 				"dbType" => "varchar(36)",

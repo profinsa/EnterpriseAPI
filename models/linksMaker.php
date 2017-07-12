@@ -35,7 +35,7 @@ class linksMaker{
     }
 
     function makeGridItemNew($path){
-        return "index.php#/?page=grid&action=$path&new=true";
+        return "index.php?page=grid&action=$path&new=true";
     }
 
     function makeGridItemView($path, $item){
@@ -52,6 +52,10 @@ class linksMaker{
     
 	function makeEmbeddedgridItemViewLink($viewpath, $backpath, $keyString, $item){
 	    return "index.php#/?page=grid&action=$viewpath&mode=view&category=Main&item=$keyString&back=" . urlencode("index.php#/?page=grid&action=$backpath&mode=view&category=Main&item=$item");
+	}
+
+	function makeEmbeddedviewItemViewLink($viewpath, $backpath, $keyString, $item){
+	    return "index.php#/?page=grid&action=$viewpath&mode=view&category=Main&item=$keyString&back=" . urlencode("index.php#/?page=grid&action=$backpath&mode=grid&category=Main&item=$item");
 	}
 
 	function makeEmbeddedgridItemNewLink($viewpath, $backpath, $keyString, $item){

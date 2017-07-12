@@ -3,12 +3,12 @@ require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "ledgertransactions";
-    protected $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 0 OR UPPER(GLTransactionNumber) = 'DEFAULT'";
+    protected $gridConditions = "1=1";
     public $dashboardTitle ="Ledger Transactions";
     public $breadCrumbTitle ="Ledger Transactions";
     public $idField ="GLTransactionNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
-    public $modes = ["grid", "view", "edit", "new"];
+    public $modes = ["grid"];
     public $gridFields = [
         "GLTransactionNumber" => [
             "dbType" => "varchar(36)",
@@ -209,6 +209,28 @@ class gridData extends gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
         $GLOBALS["capsule"]::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
         echo "ok";
+    }
+
+    public function getPage($GLTransactionAccount){
+        $user = $_SESSION["user"];
+        $result = [];
+
+        $keyValues = explode("__", $_GET["item"]);
+
+        $details = $GLOBALS["capsule"]::select("SELECT GLTransactionNumber from ledgertransactionsdetail WHERE CompanyID='". $user["CompanyID"] . "' AND DivisionID='"  . $user["DivisionID"] . "' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLTransactionAccount='" . $keyValues[3] . "'", array());
+        $fieldValues = [];
+        
+        foreach($details as $detail) {
+            $fieldValues[] = $detail->GLTransactionNumber;
+        }
+
+        if (count($fieldValues) > 0) {
+            $result = $GLOBALS["capsule"]::select("SELECT * from ledgertransactions WHERE CompanyID='". $user["CompanyID"] . "' AND DivisionID='"  . $user["DivisionID"] . "' AND DepartmentID='" . $user["DepartmentID"] . "' AND GLTransactionNumber IN (" . implode(",", $fieldValues) . ")", array());
+        }
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
     }
 }
 ?>

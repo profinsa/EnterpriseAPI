@@ -297,7 +297,15 @@ class gridDataSource{
         
         return $res;
     }
-    
+
+    //getting list of available order types
+    public function getNewOrderNumber(){
+        $user = $_SESSION["user"];
+        $result = $GLOBALS["DB"]::select("SELECT MAX(OrderNumber) from orderheader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        return $result + 1;
+    }
+
     //getting list of available order types
     public function getOrderTypes(){
         $user = $_SESSION["user"];
@@ -473,8 +481,19 @@ class gridDataSource{
                 "title" => $value->CurrencyID . ", " . $value->CurrencyType,
                 "value" => $value->CurrencyID
             ];
-        
+
         return $res;
+    }
+
+    // test function for getting autoincremented value
+    public function getNewIdFieldValue() {
+        $user = $_SESSION["user"];
+
+        $key = "MAX(" . $this->idField .")";
+
+        $result = $GLOBALS["capsule"]::select("SELECT " . $key . " from " . $this->tableName . " WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'" , array());
+
+        return $result[0]->$key + 1;
     }
     
     //getting rows for grid
@@ -579,7 +598,15 @@ class gridDataSource{
         foreach($this->editCategories[$type] as $key=>$value) {
             foreach($result as $struct) {
                 if ($struct->Field == $key) {
-                    $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+                    // check this out Nikki!!! is this right??? i think is it right. if default value is absent in model
+                    // we fill this from describe.
+                    // echo gettype($this->editCategories[$type][$key]);
+                    // echo 
+                    if (key_exists("defaultValue", $this->editCategories[$type][$key])) {
+                        if (!$this->editCategories[$type][$key]["defaultValue"]) {
+                            $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+                        }
+                    }
 
                     switch ($struct->Null) {
                         case "NO":
@@ -596,8 +623,11 @@ class gridDataSource{
             }
         }
 
-        foreach($this->editCategories[$type] as $key=>$value)
-            $values[$key] = $value["defaultValue"];
+        foreach($this->editCategories[$type] as $key=>$value) {
+            if (key_exists("defaultValue", $this->editCategories[$type][$key])) {
+                $values[$key] = $value["defaultValue"];
+            }
+        }
 
         return $values;
     } 
@@ -673,6 +703,62 @@ class gridDataSource{
         $GLOBALS["capsule"]::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 
+    public function dirtyAutoincrementColumn($tableName, $columnName){
+        $forDirtyAutoincrement = [
+            "orderheader" => [
+                //"columns" => "OrderNumber",
+                "tables" => ["orderheader", "orderheaderhistory"]
+            ],
+            "workorderheader" => [
+                //"columns" => "OrderNumber",
+                "tables" => ["workorderheader", "workorderheaderhistory"]
+            ],
+            "orderheaderhistory" => [
+                //"columns" => "OrderNumber",
+                "tables" => ["orderheader", "orderheaderhistory"]
+            ],
+            "invoiceheader" => [
+                //"columns" => "InvoiceNumber",
+                "tables" => ["invoiceheader", "invoiceheaderhistory"]
+            ],
+            "invoiceheaderhistory" => [
+                //"columns" => "InvoiceNumber",
+                "tables" => ["invoiceheader", "invoiceheaderhistory"]
+            ],
+            "receiptsheader" => [
+                //"columns" => "ReceipID",
+                "tables" => ["receiptsheader", "receiptsheaderhistory"]
+            ],
+            "purchaseheader" => [
+                "tables" => ["purchaseheader", "purchaseheaderhistory"]
+            ],
+            "purchasecontractheader" => [
+                "tables" => ["purchasecontractheader", "purchasecontractheaderhistory"]
+            ],
+            "paymentsheader" => [
+                "tables" => ["paymentsheader", "paymentsheaderhistory"]
+            ],
+            "ledgertransactions" => [
+                "tables" => ["ledgertransactions", "ledgertransactionshistory"]
+            ],
+            "banktransactions" => [
+                "tables" => ["banktransactions"]
+            ]
+        ];
+        $columnMax = 0;
+        if(key_exists($this->tableName, $forDirtyAutoincrement)){
+            foreach($forDirtyAutoincrement[$this->tableName]["tables"] as $tableName){
+                // $columnName = $forDirtyAutoincrement[$this->tableName]["column"];
+                $res = $GLOBALS["capsule"]::select("select $columnName from $tableName");
+                foreach($res as $row)
+                    if(is_numeric($row->$columnName) && $row->$columnName > $columnMax)
+                        $columnMax = $row->$columnName;
+            }
+        }
+
+        return ++$columnMax;
+    }
+
     //add row to table
     public function insertItem($values){
         $user = $_SESSION["user"];
@@ -681,7 +767,11 @@ class gridDataSource{
         $insert_values = "";
         foreach($this->editCategories as $category=>$arr){
             foreach($this->editCategories[$category] as $name=>$value){
-                if(key_exists($name, $values)){
+                if(key_exists($name, $values) && !key_exists("autogenerated", $value)){
+                    if(key_exists("dirtyAutoincrement", $value)) {
+                        $values[$name] = $this->dirtyAutoincrementColumn($this->tableName, $name);
+                    }
+
                     if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
                         $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
                     else if(key_exists("formatFunction", $value)){
@@ -691,13 +781,40 @@ class gridDataSource{
                     else
                     if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
                             $values[$name] = str_replace(",", "", $values[$name]);
-                                      
+
+                    if (strlen($values[$name]) == 0){
+                        if (preg_match('/decimal/', $value["dbType"])) {
+                            if (false !== $pos = strrpos($value["dbType"], ',')) {
+                                $presicion = (int)substr($value["dbType"], $pos + 1,1);
+                                if ($presicion > 0) {
+                                    $values[$name] = "0.0";
+                                } else {
+                                    $values[$name] = "0";
+                                }
+                            } {
+                                $values[$name] = "0.0";
+                            }
+                        } else if (preg_match('/int/', $value["dbType"])) {
+                            $values[$name] = "0";
+                        } else if (preg_match('/float/', $value["dbType"])) {
+                            $values[$name] = "0.0";
+                        }
+                    }
+
                     if($insert_fields == ""){
                         $insert_fields = $name;
                         $insert_values = "'" . $values[$name] . "'";
                     }else{
-                        $insert_fields .= "," . $name;
-                        $insert_values .= ",'" . $values[$name] . "'";
+                        // simple preventing attribute duplicates in sql statment
+                        $pos = strpos($insert_fields, $name);
+
+                        if ($pos !== false) {
+                        } else {
+                            $insert_fields .= "," . $name;
+                            $insert_values .= ",'" . $values[$name] . "'";
+                        }
+                        // $insert_fields .= "," . $name;
+                        // $insert_values .= ",'" . $values[$name] . "'";
                     }
                 }
             }
