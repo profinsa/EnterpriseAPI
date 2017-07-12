@@ -24,6 +24,7 @@
     "MRP/WorkOrders/ViewWorkOrdersHistoryDetail" => "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHistoryDetail",
     "Payroll/EmployeeExpenses/ExpenseReportsDetail" => "EnterpriseASPAP/ExpenseReports/ExpenseReportDetail",
     "Payroll/EmployeeExpenses/ExpenseReportsHistoryDetail" => "EnterpriseASPAP/ExpenseReports/ExpenseReportHistoryDetail",
+    "GeneralLedger/LedgerSetup/ViewStoredChartofAccounts" => "EnterpriseASPGL/Ledger/LedgerStoredChartOfAccountsList",
     
     "AccountsReceivable/OrderProcessing/ViewQuotes" => "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
     "AccountsReceivable/OrderProcessing/ViewQuotesTracking" => "EnterpriseASPAR/OrderProcessing/QuoteTrackingHeaderList",   

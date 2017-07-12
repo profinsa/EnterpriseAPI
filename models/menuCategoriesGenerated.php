@@ -1287,7 +1287,12 @@ $menuCategories["GeneralLedger"] = [
     "full" => $translation->translateLabel('Ledger Setup'),
     "short" => "Le",
     "data" => [
-
+       [
+        "id" => "GeneralLedger/LedgerSetup/ViewStoredChartofAccounts",
+        "full" => $translation->translateLabel('View Stored Chart of Accounts'),
+        "href"=> "EnterpriseASPGL/LedgerSetup/LedgerStoredChartOfAccountsList",
+        "short" => "Vi"
+        ],
         [
         "id" => "GeneralLedger/LedgerSetup/Currencies",
         "full" => $translation->translateLabel('Currencies'),
@@ -2225,7 +2230,12 @@ $menuCategories["SystemSetup"] = [
     "full" => $translation->translateLabel('Ledger Setup'),
     "short" => "Le",
     "data" => [
-
+       [
+        "id" => "GeneralLedger/LedgerSetup/ViewStoredChartofAccounts",
+        "full" => $translation->translateLabel('View Stored Chart of Accounts'),
+        "href"=> "EnterpriseASPGL/LedgerSetup/LedgerStoredChartOfAccountsList",
+        "short" => "Vi"
+        ],
         [
         "id" => "SystemSetup/LedgerSetup/Currencies",
         "full" => $translation->translateLabel('Currencies'),

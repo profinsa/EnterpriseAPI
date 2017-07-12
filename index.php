@@ -37,6 +37,12 @@ class DB{
     public static function select($query, $args){
         return $GLOBALS["DB"]::select($query, $args);
     }
+    public static function insert($query, $args){
+        return $GLOBALS["DB"]::insert($query, $args);
+    }
+    public static function delete($query, $args){
+        return $GLOBALS["DB"]::delete($query, $args);
+    }
 }
 
 //class for emulating global Session class from laravel

@@ -1,27 +1,27 @@
 <?php
 /*
-Name of Page: Security
+  Name of Page: Security
 
-Method: Response for security management
+  Method: Response for security management
 
-Date created: Nikita Zaharov, 24.02.2016
+  Date created: Nikita Zaharov, 24.02.2016
 
-Use: Provide simple methods for checking user rights. Searches in permissionGenerated page permissions and then check user rights
+  Use: Provide simple methods for checking user rights. Searches in permissionGenerated page permissions and then check user rights
 
-Input parameters:
-type of right or menu item name
+  Input parameters:
+  type of right or menu item name
 
-Output parameters:
-true if right is 
-false if is not
+  Output parameters:
+  true if right is 
+  false if is not
 
-Called from:
-+ most index and grid controller. Also from gridView
+  Called from:
+  + most index and grid controller. Also from gridView
 
-Calls:
+  Calls:
 
-Last Modified: 24.02.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 07.12.2016
+  Last Modified by: Nikita Zaharov
 */
 
 class Security{
@@ -47,8 +47,8 @@ class Security{
 
     public function checkMenu($name){
         if(key_exists($this->menuFlags[$name], $this->useraccess) && $this->useraccess[$this->menuFlags[$name]])
-           return 1;
-        return 0;
+           return true;
+        return false;
     }
     
     public function can($action){
@@ -57,7 +57,21 @@ class Security{
         $perms = explode("|", $this->permissions[$action]);
         foreach($perms as $value)
             if(key_exists($value, $this->useraccess) && $this->useraccess[$value])
-                return 1;
-        return 0;
+                return true;
+        return false;
+    }
+    
+    public function isAdmin(){
+        if($this->useraccess["ADSetup"] || $this->useraccess["ADSecurity"])
+            return true;
+        
+        return false;
+    }
+
+    public function isGLAdmin(){
+        if($this->useraccess["GLSetup"])
+            return true;
+        
+        return false;
     }
 }

@@ -61,4 +61,8 @@ class linksMaker{
     function makeEmbeddedgridItemDeleteLink($path, $item){
         return "index.php?page=grid&action=$path&procedure=detailDelete&item=$item";
     }
+
+    function makeProcedureLink($path, $procedure){
+        return "index.php?page=grid&action=$path&procedure=$procedure";
+    }
 }

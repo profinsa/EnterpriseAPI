@@ -1,12 +1,12 @@
 <?php
 /*
-  Name of Page: chartOfAccounts model
+  Name of Page: storedChartOfAccounts model
 
-  Method: Model for GeneralLedger/chartOfAccounts. It provides data from database and default values, column names and categories
+  Method: Model for gridView. It provides data from database and default values, column names and categories
 
-  Date created: Nikita Zaharov, 13.02.2016
+  Date created: Nikita Zaharov, 07.11.2017
 
-  Use: this model used by views/GeneralLedger/chartOfAccounts.php for:
+  Use: this model used by gridView for:
   - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
   - for loading data from tables, updating, inserting and deleting
 
@@ -19,31 +19,44 @@
   - methods has own output
 
   Called from:
-  created and used for ajax requests by controllers/GeneralLedger/chartOfAccounts.php
-  used as model by views/GeneralLedger/chartOfAccounts.php
+  created and used for ajax requests by Grid controller
+  used as model by gridView
 
   Calls:
   sql
 
-  Last Modified: 7.12.2016
+  Last Modified: 07.12.2017
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "ledgerchartofaccounts"; //table name which used for read and write fields
-    public $dashboardTitle = "Chart Of Accounts"; //title in dashboard
-    public $breadCrumbTitle = "Chart Of Accounts"; //title in breadCrumb
+    protected $tableName = "ledgerstoredchartofaccounts"; //table name which used for read and write fields
+    public $dashboardTitle = "Stored Chart Of Accounts"; //title in dashboard
+    public $breadCrumbTitle = "Stored Chart Of Accounts"; //title in breadCrumb
     public $idField = "GLAccountNumber"; //fieldname in database on which is selecting(CompanyID, DevisionID, DepartmentID, GLAccountNumber)
-    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "GLAccountNumber"];
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "GLAccountNumber", "Industry", "ChartType"];
+    public $modes = ["grid", "view", "edit"];
 
     //fields to render in grid
     public $gridFields = [ //field list for showing in grid mode(columns)
-        "GLAccountNumber" => [
+        "Industry" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
         ],
+        "ChartType" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "ChartDescription" => [
+            "dbType" => "varchar(128)",
+            "inputType" => "text"
+        ],
+        "GLAccountNumber" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ]/*,
         "GLAccountCode" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
@@ -67,7 +80,7 @@ class gridData extends gridDataSource{
             "addFields" => "CurrencyID",
             "currencyField" => "CurrencyID",
             "formatFunction" => "currencyFormat"
-        ]
+            ]*/
     ];
 
     /*categories which contains table columns, used by view for render tabs and them content
@@ -78,12 +91,26 @@ class gridData extends gridDataSource{
       - inputType: text, checkbox or dropdown -required
       - defaultValue - required
       - dataProvider - name of method which is called for filling falues of item to select(for dropdowns like CurrencyID)
-        Method can be declared in class or in parent class
+      Method can be declared in class or in parent class
       - disableEdit: true Which mean disable editing this element(like id field) in edit mode - optional
       - disableNew: true Which mean disable editing this element(like id field) in new mode - optional
-     */
+    */
     public $editCategories = [
         "Main" => [
+            "Industry" => [
+                "dbType" => "varchar(36)",
+                "disabledEdit" => true,
+                "inputType" => "text"
+            ],
+            "ChartType" => [
+                "dbType" => "varchar(36)",
+                "disabledEdit" => true,
+                "inputType" => "text"
+            ],
+            "ChartDescription" => [
+                "dbType" => "varchar(128)",
+                "inputType" => "text"
+            ],
             "GLAccountNumber" => [
                 "dbType" => "varchar(36)",
                 "disabledEdit" => true,
@@ -551,13 +578,11 @@ class gridData extends gridDataSource{
             ]
         ]
     ];
-    
+
     /* table column to translation/ObjID
        many columns not translated by them names. For that column must be converted to displayed title. This is table contains column names and their displaed titles.
-     */
+    */
     public $columnNames = [
-        "CurrencyID" => "Currency ID",
-        "CurrencyExchangeRate" => "Currency Exchange Rate", 
         "GLAccountNumber" => "Account Number",
         "GLAccountName" => "Account Name",
         "GLAccountDescription" => "Account Description",
@@ -610,14 +635,17 @@ class gridData extends gridDataSource{
         "GLPriorYearPeriod11" => "GL Prior Year Period 11",
         "GLPriorYearPeriod12" => "GL Prior Year Period 12",
         "GLPriorYearPeriod13" => "GL Prior Year Period 13",
-        "GLPriorYearPeriod14" => "GL Prior Year Period 14"
+        "GLPriorYearPeriod14" => "GL Prior Year Period 14",
+        "Industry" => "Industry",
+        "ChartType" => "Chart Type",
+        "ChartDescription" => "Description"
     ];
 
     //getting list of available GLAccount Groups
     public function getGLAccountGroups(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $result = $GLOBALS["capsule"]::select("SELECT GLAccountGroupID from ledgeraccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountGroupID ASC", array());
+        $result = DB::select("SELECT GLAccountGroupID from ledgeraccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountGroupID ASC", array());
         foreach($result as $value)
             $res[$value->GLAccountGroupID] = [
                 "title" => $value->GLAccountGroupID,
@@ -629,9 +657,9 @@ class gridData extends gridDataSource{
     
     //getting list of available GLAccount
     public function getGLAccountTypes(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $result = $GLOBALS["capsule"]::select("SELECT GLAccountType from ledgeraccounttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = DB::select("SELECT GLAccountType from ledgeraccounttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         foreach($result as $value)
             $res[$value->GLAccountType] = [
@@ -644,9 +672,9 @@ class gridData extends gridDataSource{
     
     //getting list of available values for GLBalanceType 
     public function getGLBalanceTypes(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $result = $GLOBALS["capsule"]::select("SELECT GLBalanceType from ledgerbalancetype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = DB::select("SELECT GLBalanceType from ledgerbalancetype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         foreach($result as $value)
             $res[$value->GLBalanceType] = [
@@ -656,8 +684,8 @@ class gridData extends gridDataSource{
         
         return $res;
     }
-
-    public function SaveToStored(){
+    
+    public function Copy(){
         $user = Session::get("user");
         $result = DB::Select("select GLAccountNumber from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLAccountNumber=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"], $_POST["Industry"], $_POST["ChartType"]));
         if(count($result)){
@@ -666,14 +694,17 @@ class gridData extends gridDataSource{
             return;
         }
 
-        $result = DB::Select("select * from LedgerChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLAccountNumber=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"]))[0];
+        $result = DB::Select("select * from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLAccountNumber=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"], $_POST["OldIndustry"], $_POST["OldChartType"]))[0];
 
         $values = [];
-        $values[] = "'" . $_POST["Industry"] . "'";
-        $values[] = "'" . $_POST["ChartType"] . "'";
-        $values[] = "'" . $_POST["ChartDescription"] . "'";
         foreach($result as $key=>$value){
-            if($value != "")
+            if($key == "Industry")
+                $values[] = "'" . $_POST["Industry"] . "'";
+            else if($key == "CharType")
+                $values[] = "'" . $_POST["ChartType"] . "'";
+            else if($key == "ChartDescription")
+                $values[] = "'" . $_POST["ChartDescription"] . "'";
+            else if($value != "")
                 $values[] = "'" . $value . "'";
             else
                 $values[] = "NULL";
@@ -681,6 +712,31 @@ class gridData extends gridDataSource{
 
         DB::Insert("INSERT INTO LedgerStoredChartOfAccounts VALUES(" . implode(",", $values) . ")", array());
         
+        echo "ok";
+    }
+
+    public function Load(){
+        $user = Session::get("user");
+        $result = DB::Select("select GLTransactionNumber from LedgerTransactionsDetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLTransactionAccount=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"]));
+        if(count($result)){
+            http_response_code(40);
+            echo "There is transactions with this Account";
+            return;
+        }
+        
+        $result = DB::Select("select * from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLAccountNumber=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"], $_POST["Industry"], $_POST["ChartType"]))[0];
+
+        $values = [];
+        foreach($result as $key=>$value){
+            if($key == "Industry" || $key == "ChartType" || $key == "ChartDescription");
+            else if($value != "")
+                $values[] = "$key='" . $value . "'";
+            else
+                $values[] = "$key=NULL";
+        }
+
+        DB::Insert("UPDATE LedgerChartOfAccounts SET " . implode(",", $values) . " WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLAccountNumber=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"]));
+
         echo "ok";
     }
 }
