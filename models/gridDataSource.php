@@ -593,19 +593,27 @@ class gridDataSource{
     //getting data for new record
     public function getNewItem($id, $type){
         $values = [];
-        $result = $GLOBALS["DB"]::select("describe " . $this->tableName);
+        
+        foreach($this->idFields as $value)
+            $idDefaults[] = "$value='DEFAULT'";
+
+        $defaultRecord = DB::select("select * from {$this->tableName} WHERE " . implode(" AND ", $idDefaults), array());
+        if(count($defaultRecord))
+            $defaultRecord = $defaultRecord[0];
+        else
+            $defaultRecord = false;
+        
+        $result = DB::select("describe " . $this->tableName, array());
 
         foreach($this->editCategories[$type] as $key=>$value) {
             foreach($result as $struct) {
                 if ($struct->Field == $key) {
-                    // check this out Nikki!!! is this right??? i think is it right. if default value is absent in model
-                    // we fill this from describe.
-                    // echo gettype($this->editCategories[$type][$key]);
-                    // echo 
-                    if (key_exists("defaultValue", $this->editCategories[$type][$key])) {
-                        if (!$this->editCategories[$type][$key]["defaultValue"]) {
-                            $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
-                        }
+                    if(key_exists("defaultValue", $this->editCategories[$type][$key]) &&
+                       !key_exists("defaultOverride", $this->editCategories[$type][$key]) &&
+                       !key_exists("dirtyAutoincrement", $this->editCategories[$type][$key])){
+                        $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+                        if($defaultRecord && property_exists($defaultRecord, $key) && $defaultRecord->$key != "")
+                            $this->editCategories[$type][$key]["defaultValue"] = $defaultRecord->$key;
                     }
 
                     switch ($struct->Null) {
