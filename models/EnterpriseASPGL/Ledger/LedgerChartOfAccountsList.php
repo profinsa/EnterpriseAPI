@@ -6,7 +6,7 @@
 
   Date created: Nikita Zaharov, 13.02.2016
 
-  Use: this model used by views/GeneralLedger/chartOfAccounts.php for:
+  Use: this model used by gridView for:
   - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
   - for loading data from tables, updating, inserting and deleting
 
@@ -19,13 +19,13 @@
   - methods has own output
 
   Called from:
-  created and used for ajax requests by controllers/GeneralLedger/chartOfAccounts.php
-  used as model by views/GeneralLedger/chartOfAccounts.php
+  created and used for ajax requests by Grid controller
+  used as model by gridView
 
   Calls:
   sql
 
-  Last Modified: 7.12.2016
+  Last Modified: 07.25.2016
   Last Modified by: Nikita Zaharov
 */
 
@@ -33,12 +33,12 @@ require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "ledgerchartofaccounts"; //table name which used for read and write fields
+    //fields to render in grid
     public $dashboardTitle = "Chart Of Accounts"; //title in dashboard
     public $breadCrumbTitle = "Chart Of Accounts"; //title in breadCrumb
     public $idField = "GLAccountNumber"; //fieldname in database on which is selecting(CompanyID, DevisionID, DepartmentID, GLAccountNumber)
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "GLAccountNumber"];
 
-    //fields to render in grid
     public $gridFields = [ //field list for showing in grid mode(columns)
         "GLAccountNumber" => [
             "dbType" => "varchar(36)",
@@ -47,6 +47,12 @@ class gridData extends gridDataSource{
         "GLAccountCode" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
+        ],
+        "GLSubAccountCode" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+
         ],
         "GLAccountName" => [
             "dbType" => "varchar(30)",
@@ -69,7 +75,7 @@ class gridData extends gridDataSource{
             "formatFunction" => "currencyFormat"
         ]
     ];
-
+    
     /*categories which contains table columns, used by view for render tabs and them content
       It's array, each item - category name(Main, Current etc)
       Each category is array from fields which will be showed on tab
@@ -84,17 +90,30 @@ class gridData extends gridDataSource{
      */
     public $editCategories = [
         "Main" => [
-            "GLAccountNumber" => [
-                "dbType" => "varchar(36)",
-                "disabledEdit" => true,
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
             "GLAccountCode" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
-                "defaultValue" => "",
+                "defaultValue" => "DEFAULT",
+                "defaultOverride" => true,
+                "disabledEdit" => true,
                 "dataProvider" => "getGLAccountGroups"
+            ],
+            "GLSubAccountCode" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "defaultValue" => "DEFAULT",
+                "defaultOverride" => true,
+                "disabledEdit" => true,
+                "dataProvider" => "getGLAccountSubGroups",
+                "depends" => [
+                    "GLAccountGroupID" => "GLAccountCode"
+                ],
+            ],
+            "GLAccountNumber" => [
+                "dbType" => "varchar(128)",
+                "disabledEdit" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
             ],
             "GLAccountName" => [
                 "dbType" => "varchar(30)",
@@ -551,18 +570,17 @@ class gridData extends gridDataSource{
             ]
         ]
     ];
-    
+
     /* table column to translation/ObjID
        many columns not translated by them names. For that column must be converted to displayed title. This is table contains column names and their displaed titles.
      */
     public $columnNames = [
-        "CurrencyID" => "Currency ID",
-        "CurrencyExchangeRate" => "Currency Exchange Rate", 
         "GLAccountNumber" => "Account Number",
         "GLAccountName" => "Account Name",
         "GLAccountDescription" => "Account Description",
         "GLAccountUse" => "Account Use",
         "GLAccountType" => "Account Type",
+        "GLSubAccountCode" => "Account Sub Group",
         "GLAccountCode" => "Account Group",
         "GLBalanceType" => "Balance Type",
         "GLAccountBalance" => "Account Balance",
@@ -615,9 +633,9 @@ class gridData extends gridDataSource{
 
     //getting list of available GLAccount Groups
     public function getGLAccountGroups(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $result = $GLOBALS["capsule"]::select("SELECT GLAccountGroupID from ledgeraccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountGroupID ASC", array());
+        $result = DB::select("SELECT GLAccountGroupID from ledgeraccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountGroupID ASC", array());
         foreach($result as $value)
             $res[$value->GLAccountGroupID] = [
                 "title" => $value->GLAccountGroupID,
@@ -627,11 +645,26 @@ class gridData extends gridDataSource{
         return $res;
     }
     
+    //getting list of available GLAccount Groups
+    public function getGLAccountSubGroups(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT GLAccountGroupID, GLAccountSubGroupID from ledgersubaccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountSubGroupID ASC", array());
+        foreach($result as $value)
+            $res[$value->GLAccountSubGroupID] = [
+                "GLAccountGroupID" => $value->GLAccountGroupID,
+                "title" => $value->GLAccountSubGroupID,
+                "value" => $value->GLAccountSubGroupID                
+            ];
+        
+        return $res;
+    }
+    
     //getting list of available GLAccount
     public function getGLAccountTypes(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $result = $GLOBALS["capsule"]::select("SELECT GLAccountType from ledgeraccounttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = DB::select("SELECT GLAccountType from ledgeraccounttypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         foreach($result as $value)
             $res[$value->GLAccountType] = [
@@ -644,9 +677,9 @@ class gridData extends gridDataSource{
     
     //getting list of available values for GLBalanceType 
     public function getGLBalanceTypes(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $res = [];
-        $result = $GLOBALS["capsule"]::select("SELECT GLBalanceType from ledgerbalancetype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = DB::select("SELECT GLBalanceType from ledgerbalancetype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         foreach($result as $value)
             $res[$value->GLBalanceType] = [
@@ -657,14 +690,52 @@ class gridData extends gridDataSource{
         return $res;
     }
 
+    //add row to table
+    public function insertItem($values){
+        $user = Session::get("user");
+        
+        $insert_fields = "";
+        $insert_values = "";
+        $alreadyUsed = [];
+        foreach($this->editCategories as $category=>$arr){
+            foreach($this->editCategories[$category] as $name=>$value){
+                if(key_exists($name, $values) && !key_exists($name, $alreadyUsed) && $values[$name] != "" && !key_exists("autogenerated", $value)){
+                    if(key_exists("dirtyAutoincrement", $value))
+                        $values[$name] = $this->dirtyAutoincrementColumn($this->tableName, $name);
+                    $alreadyUsed[$name] = true;
+                    if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
+                        $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                    else if(key_exists("formatFunction", $value)){
+                        $formatFunction = $value["formatFunction"];
+                        $values[$name] = $this->$formatFunction($values, "editCategories", $name, $values[$name], true);
+                    }
+                    if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                        $values[$name] = str_replace(",", "", $values[$name]);
+
+                    if($name == "GLAccountNumber")
+                        $values[$name] = "{$values["GLAccountCode"]}/{$values["GLSubAccountCode"]}/{$values[$name]}";
+                    
+                    if($insert_fields == ""){
+                        $insert_fields = $name;
+                        $insert_values = "'" . $values[$name] . "'";
+                    }else{
+                        $insert_fields .= "," . $name;
+                        $insert_values .= ",'" . $values[$name] . "'";
+                    }
+                }
+            }
+        }
+
+        $insert_fields .= ',CompanyID,DivisionID,DepartmentID';
+        $insert_values .= ",'" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "'";
+        DB::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")", array());
+    }
+    
     public function SaveToStored(){
         $user = Session::get("user");
         $result = DB::Select("select GLAccountNumber from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLAccountNumber=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"], $_POST["Industry"], $_POST["ChartType"]));
-        if(count($result)){
-            http_response_code(40);
-            echo "This accounts is already added to Stored Accounts";
-            return;
-        }
+        if(count($result))
+            return response("This accounts is already added to Stored Accounts", 400)->header('Content-Type', 'text/plain');
 
         $result = DB::Select("select * from LedgerChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLAccountNumber=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"]))[0];
 

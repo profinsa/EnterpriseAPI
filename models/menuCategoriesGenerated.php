@@ -1185,6 +1185,12 @@ $menuCategories["GeneralLedger"] = [
         "short" => "Vi"
         ],
         [
+        "id" => "GeneralLedger/Ledger/ViewLedgerAccountSubGroup",
+        "full" => $translation->translateLabel('View Ledger Account Sub Group'),
+        "href"=> "EnterpriseASPGL/Ledger/LedgerAccountSubGroupList",
+        "short" => "Vi"
+        ],
+        [
         "id" => "GeneralLedger/Ledger/ViewGLTransactions",
         "full" => $translation->translateLabel('View GL Transactions'),
         "href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsList",

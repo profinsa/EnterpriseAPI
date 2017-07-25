@@ -4,7 +4,7 @@
 
   Method: Model for gridView. It provides data from database and default values, column names and categories
 
-  Date created: Nikita Zaharov, 07.11.2017
+  Date created: Nikita Zaharov, 07.21.2017
 
   Use: this model used by gridView for:
   - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
@@ -25,7 +25,7 @@
   Calls:
   sql
 
-  Last Modified: 07.21.2017
+  Last Modified: 07.25.2017
   Last Modified by: Nikita Zaharov
 */
 
@@ -37,7 +37,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle = "Stored Chart Of Accounts"; //title in breadCrumb
     public $idField = "GLAccountNumber"; //fieldname in database on which is selecting(CompanyID, DevisionID, DepartmentID, GLAccountNumber)
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "GLAccountNumber", "Industry", "ChartType"];
-    public $modes = ["grid"];
+    public $modes = ["grid", "delete"];
 
     //fields to render in grid
     public $gridFields = [ //field list for showing in grid mode(columns)
@@ -52,6 +52,40 @@ class gridData extends gridDataSource{
         "ChartDescription" => [
             "dbType" => "varchar(128)",
             "inputType" => "text"
+        ],
+        "GLAccountNumber" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLAccountCode" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLSubAccountCode" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+
+        ],
+        "GLAccountName" => [
+            "dbType" => "varchar(30)",
+            "inputType" => "text"
+        ],
+        "GLAccountType" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLBalanceType" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "GLAccountBalance" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text",
+            "addFields" => "CurrencyID",
+            "currencyField" => "CurrencyID",
+            "formatFunction" => "currencyFormat"
         ]
     ];
 
@@ -81,19 +115,33 @@ class gridData extends gridDataSource{
             ],
             "ChartDescription" => [
                 "dbType" => "varchar(128)",
-                "inputType" => "text"
-            ],
-            "GLAccountNumber" => [
-                "dbType" => "varchar(36)",
                 "disabledEdit" => true,
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "text"
             ],
             "GLAccountCode" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
-                "defaultValue" => "",
+                "defaultValue" => "DEFAULT",
+                "defaultOverride" => true,
+                "disabledEdit" => true,
                 "dataProvider" => "getGLAccountGroups"
+            ],
+            "GLSubAccountCode" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "defaultValue" => "DEFAULT",
+                "defaultOverride" => true,
+                "disabledEdit" => true,
+                "dataProvider" => "getGLAccountSubGroups",
+                "depends" => [
+                    "GLAccountGroupID" => "GLAccountCode"
+                ],
+            ],
+            "GLAccountNumber" => [
+                "dbType" => "varchar(128)",
+                "disabledEdit" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
             ],
             "GLAccountName" => [
                 "dbType" => "varchar(30)",
@@ -561,6 +609,7 @@ class gridData extends gridDataSource{
         "GLAccountUse" => "Account Use",
         "GLAccountType" => "Account Type",
         "GLAccountCode" => "Account Group",
+        "GLSubAccountCode" => "Account Sub Group",
         "GLBalanceType" => "Balance Type",
         "GLAccountBalance" => "Account Balance",
         "GLOtherNotes" => "Other Notes",
@@ -627,6 +676,21 @@ class gridData extends gridDataSource{
         return $res;
     }
     
+    //getting list of available GLAccount Groups
+    public function getGLAccountSubGroups(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT GLAccountGroupID, GLAccountSubGroupID from ledgersubaccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountSubGroupID ASC", array());
+        foreach($result as $value)
+            $res[$value->GLAccountSubGroupID] = [
+                "GLAccountGroupID" => $value->GLAccountGroupID,
+                "title" => $value->GLAccountSubGroupID,
+                "value" => $value->GLAccountSubGroupID                
+            ];
+        
+        return $res;
+    }
+    
     //getting list of available GLAccount
     public function getGLAccountTypes(){
         $user = Session::get("user");
@@ -662,6 +726,10 @@ class gridData extends gridDataSource{
         $user = Session::get("user");
         $keyFields = "";
         $fields = [];
+        $number = urldecode($number);
+        //        $number = preg_replace('/\+/', " ", $number);
+        $keyValues = explode("__", $number);
+        
         foreach($this->gridFields as $key=>$value){
             $fields[] = $key;
             if(key_exists("addFields", $value)){
@@ -694,77 +762,13 @@ class gridData extends gridDataSource{
             else
                 $keyFields = $this->gridConditions;
         }
+
+        echo json_encode($keyValues);
+        $result = DB::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . " WHERE Industry=? AND ChartType=? AND ChartDescription=?", array($keyValues[0], $keyValues[1], $keyValues[2]));
+
+        $result = json_decode(json_encode($result), true);        
         
-        $result = DB::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
-        
-        $res = [];
-        foreach($result as $row){
-            $found = false;
-            foreach($res as $rrow)
-                if($rrow["Industry"] == $row["Industry"] &&
-                   $rrow["ChartType"] == $row["ChartType"] &&
-                   $rrow["ChartDescription"] == $row["ChartDescription"])
-                    $found = true;
-            if(!$found)
-                $res[] = $row;
-        }
-        
-        
-        return $res;
-    }
-    
-    public function Copy(){
-        $user = Session::get("user");
-        $result = DB::Select("select GLAccountNumber from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["Industry"], $_POST["ChartType"]));
-        if(count($result))
-            return response("This accounts is already added to Stored Accounts", 400)->header('Content-Type', 'text/plain');
-
-        $results = DB::Select("select * from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["OldIndustry"], $_POST["OldChartType"]));
-
-        foreach($results as $result){
-            $values = [];
-            foreach($result as $key=>$value){
-                if($key == "Industry")
-                    $values[] = "'" . $_POST["Industry"] . "'";
-                else if($key == "ChartType")
-                    $values[] = "'" . $_POST["ChartType"] . "'";
-                else if($key == "ChartDescription")
-                    $values[] = "'" . $_POST["ChartDescription"] . "'";
-                else if($value != "")
-                    $values[] = "'" . $value . "'";
-                else
-                    $values[] = "NULL";
-            }
-
-            DB::Insert("INSERT INTO LedgerStoredChartOfAccounts VALUES(" . implode(",", $values) . ")", array());
-        }
-        echo "ok";
-    }
-
-    public function Load(){
-        $user = Session::get("user");
-        $result = DB::Select("select GLTransactionNumber from LedgerTransactionsDetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLTransactionAccount=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"]));
-        if(count($result))
-            return response("There is transactions with this Account", 400)->header('Content-Type', 'text/plain');
-
-        $results = DB::Select("select * from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["Industry"], $_POST["ChartType"]));
-
-        foreach($result as $result){
-            $values = [];
-            foreach($result as $key=>$value){
-                if($key == "Industry" || $key == "ChartType" || $key == "ChartDescription");
-                else if($value != "")
-                    $values[] = "$key='" . $value . "'";
-                else
-                    $values[] = "$key=NULL";
-            }
-
-            DB::Insert("UPDATE LedgerChartOfAccounts SET " . implode(",", $values) . " WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLAccountNumber=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"]));
-        }
-
-        echo "ok";
+        return $result;
     }
 }
 ?>
