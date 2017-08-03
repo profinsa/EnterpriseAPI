@@ -925,6 +925,12 @@ public $permissions = [
         "insert" => "GLAdd|ADSetup",
         "delete" => "GLDelete|ADSetup",
     ],
+    "LedgerAccountSubGroup" => [
+        "select" => "GLView|ADView|ADSetup",
+        "update" => "GLEdit|ADSetup",
+        "insert" => "GLAdd|ADSetup",
+        "delete" => "GLDelete|ADSetup",
+    ],
     "LedgerAccountTypes" => [
         "select" => "any",
         "update" => "any",
@@ -944,6 +950,12 @@ public $permissions = [
         "delete" => "GLDelete|ADSetup",
     ],
     "LedgerStoredChartOfAccounts" => [
+        "select" => "GLView|ADView|ADSetup",
+        "update" => "GLEdit|ADSetup",
+        "insert" => "GLAdd|ADSetup",
+        "delete" => "ADSetup",
+    ],
+    "LedgerStoredAccounts" => [
         "select" => "GLView|ADView|ADSetup",
         "update" => "GLEdit|ADSetup",
         "insert" => "GLAdd|ADSetup",

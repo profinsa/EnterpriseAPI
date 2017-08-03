@@ -24,7 +24,7 @@ any views
 Calls:
 sql
 
-Last Modified: 05.24.2016
+Last Modified: 07.25.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -42,12 +42,22 @@ class linksMaker{
         return "index.php#/?page=grid&action=$path&mode=view&category=Main&item=$item";
     }
 
+    public function makeGridItemViewWithBackPath($path, $item, $backpath, $backitem){
+        return "index.php#/?page=grid&action=$path&mode=view&category=Main&item=" . urlencode($item);
+        //FIXME need implement backlink mechanics
+        // . "&back=index.php.../?page=grid&action=$path&mode=view&category=Main&item={$this->prefix}/index.../grid/$backpath/grid/Main/$backitem";
+    }
+
     function makeGridItemEdit($path, $item){
         return "index.php#/?page=grid&action=$path&mode=edit&category=Main&item=$item";
     }
 
     function makeGridItemViewCancel($path){
         return "index.php#/?page=grid&action=$path&mode=grid&category=Main&item=all";
+    }
+
+    public function makeGridLinkWithItem($path, $item){
+        return "index.php#/?page=grid&action=$path&mode=grid&cagegory=Main&item=" . urlencode($item);
     }
     
 	function makeEmbeddedgridItemViewLink($viewpath, $backpath, $keyString, $item){

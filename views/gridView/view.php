@@ -1,6 +1,8 @@
 <?php
 if(key_exists("back", $_GET)){
     $backhref = preg_replace("/\.\.\./", "#", $_GET["back"]) . "&back={$_GET["back"]}";
+    $backhref = preg_replace("/\._\.\./", "&", $backhref);
+//	$backhref = preg_replace("/\._\.\./", "&", $backhref;
     $back = "?{$_SERVER["QUERY_STRING"]}";
 }else{
     $backhref = $linksMaker->makeGridItemViewCancel($ascope["path"]);
@@ -135,25 +137,27 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
     require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
     ?>
 
-    <div style="margin-top:10px" class="pull-right">
-    <!--
-         buttons Edit and Cancel
-         for translation uses translation model
-         for category(which tab is activated) uses $ascope of controller
-       -->
-    <?php if($security->can("update")): ?>
-        <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"]);?>">
-            <?php echo $translation->translateLabel("Edit"); ?>
-        </a>
-        <?php
-        if(file_exists(__DIR__ . "/../" . $PartsPath . "viewActions.php"))
-        require __DIR__ . "/../" . $PartsPath . "viewActions.php";
-        if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
-        require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
-        ?>
-    <?php endif; ?>
-    <a class="btn btn-info" href="<?php echo $backhref; ?>">
-        <?php echo $translation->translateLabel("Cancel"); ?>
-    </a>
+    <div class="row">
+	<div style="margin-top:10px" class="pull-right">
+	    <!--
+		 buttons Edit and Cancel
+		 for translation uses translation model
+		 for category(which tab is activated) uses $ascope of controller
+	       -->
+	    <?php if($security->can("update")): ?>
+		<a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"]);?>">
+		    <?php echo $translation->translateLabel("Edit"); ?>
+		</a>
+		<?php
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "viewActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "viewActions.php";
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
+		?>
+	    <?php endif; ?>
+	    <a class="btn btn-info" href="<?php echo $backhref; ?>">
+		<?php echo $translation->translateLabel("Cancel"); ?>
+	    </a>
+	</div>
     </div>
 </div>

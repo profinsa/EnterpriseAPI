@@ -1,29 +1,29 @@
 <?php
 /*
-Name of Page: gridDataSource class
+  Name of Page: gridDataSource class
 
-Method: ancestor for GeneralLedger/* models. It provides data from database
+  Method: ancestor for GeneralLedger/* models. It provides data from database
 
-Date created: Nikita Zaharov, 17.02.2016
+  Date created: Nikita Zaharov, 17.02.2016
 
-Use: this model used for
-- for loading data from tables, updating, inserting and deleting
+  Use: this model used for
+  - for loading data from tables, updating, inserting and deleting
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-inherited by models/GeneralLedger/*
+  Called from:
+  inherited by models/GeneralLedger/*
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 16.03.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 08.03.2016
+  Last Modified by: Nikita Zaharov
 */
 
 class gridDataSource{
@@ -608,7 +608,7 @@ class gridDataSource{
         foreach($this->editCategories[$type] as $key=>$value) {
             foreach($result as $struct) {
                 if ($struct->Field == $key) {
-                    if(key_exists("defaultValue", $this->editCategories[$type][$key]) &&
+                    if(//key_exists("defaultValue", $this->editCategories[$type][$key]) &&
                        !key_exists("defaultOverride", $this->editCategories[$type][$key]) &&
                        !key_exists("dirtyAutoincrement", $this->editCategories[$type][$key])){
                         $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
@@ -631,11 +631,8 @@ class gridDataSource{
             }
         }
 
-        foreach($this->editCategories[$type] as $key=>$value) {
-            if (key_exists("defaultValue", $this->editCategories[$type][$key])) {
-                $values[$key] = $value["defaultValue"];
-            }
-        }
+        foreach($this->editCategories[$type] as $key=>$value)
+            $values[$key] = key_exists($key, $_GET) ? $_GET[$key] : (key_exists("defaultValue", $value) ? $value["defaultValue"] : "");
 
         return $values;
     } 
@@ -828,8 +825,19 @@ class gridDataSource{
             }
         }
 
-        $insert_fields .= ',CompanyID,DivisionID,DepartmentID';
-        $insert_values .= ",'" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "'";
+        $keyFields = [];
+        $keyValues = [];
+        foreach($this->idFields as $key){
+            if(!key_exists($key, $values) && ($key == 'CompanyID' || $key == 'DivisionID' || $key == 'DepartmentID')){
+                $keyFields[] = $key;
+                $keyValues[] = "'{$user[$key]}'";
+            }
+        }
+        
+        if(count($keyFields)){
+            $insert_fields .= ',' . implode(',', $keyFields);
+            $insert_values .= ',' . implode(',', $keyValues);
+        }
         $GLOBALS["capsule"]::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")");
     }
 
