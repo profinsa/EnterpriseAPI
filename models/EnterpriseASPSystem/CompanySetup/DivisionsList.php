@@ -181,6 +181,13 @@ class gridData extends gridDataSource{
         
         $result = DB::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
+        $resfilter = [];
+        foreach($result as $value)
+            $resfilter[$value->DivisionID] = $value;
+        $result = [];
+        
+        foreach($resfilter as $key=>$value)
+            $result[] = $value;
 
         $result = json_decode(json_encode($result), true);
         
