@@ -955,6 +955,12 @@ public $permissions = [
         "insert" => "GLAdd|ADSetup",
         "delete" => "ADSetup",
     ],
+    "LedgerStoredAccounts" => [
+        "select" => "GLView|ADView|ADSetup",
+        "update" => "GLEdit|ADSetup",
+        "insert" => "GLAdd|ADSetup",
+        "delete" => "ADSetup",
+    ],
     "LedgerChartOfAccountsBudgets" => [
         "select" => "GLView|OEView|ADView|ADSetup",
         "update" => "Always",

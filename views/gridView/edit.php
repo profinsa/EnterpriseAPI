@@ -1,7 +1,7 @@
-<!-- edit and new -->
 <?php
 if(key_exists("back", $_GET)){
     $backhref = preg_replace("/\.\.\./", "#", $_GET["back"]) . "&back={$_GET["back"]}";
+    $backhref = preg_replace("/\._\.\./", "&", $backhref);
     $back = "?{$_SERVER["QUERY_STRING"]}";
 }else{
     $backhref = $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]);
@@ -153,25 +153,27 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
     if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
         require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
     ?>
-    
-    <div  style="margin-top:10px" class="pull-right">
-        <!--
-         renders buttons translated Save and Cancel using translation model
-           -->
-        <?php if($security->can("update")): ?>
-        <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
-            <?php echo $translation->translateLabel("Save"); ?>
-        </a>
-        <?php 
-        if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
-            require __DIR__ . "/../" . $PartsPath . "editActions.php";
-        if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
-            require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
-        ?>
-        <?php endif; ?>
-        <a class="btn btn-info" href="<?php echo $ascope["mode"] != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"])  : $linksMaker->makeGridItemViewCancel($ascope["path"]) ; ?>">
-            <?php echo $translation->translateLabel("Cancel"); ?>
-        </a>
+
+    <div class="row">
+	<div  style="margin-top:10px" class="pull-right">
+            <!--
+		 renders buttons translated Save and Cancel using translation model
+               -->
+            <?php if($security->can("update")): ?>
+		<a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
+		    <?php echo $translation->translateLabel("Save"); ?>
+		</a>
+		<?php 
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "editActions.php";
+		if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
+		    require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
+		?>
+            <?php endif; ?>
+            <a class="btn btn-info" href="<?php echo $ascope["mode"] != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"])  : $linksMaker->makeGridItemViewCancel($ascope["path"]) ; ?>">
+		<?php echo $translation->translateLabel("Cancel"); ?>
+            </a>
+	</div>
     </div>
     </form>
     <script>

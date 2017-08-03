@@ -21,7 +21,7 @@
      grid model
      app as model
 
-     Last Modified: 24.03.2016
+     Last Modified: 07.25.2016
      Last Modified by: Nikita Zaharov
    -->
 
@@ -31,7 +31,7 @@
     <div class="table-responsive">
 	<script>
 	 <?php
-	 $rows = $data->getPage(1);
+	 $rows = $data->getPage($ascope["item"]);
 	 echo "var gridItems = " . json_encode($rows) . ";";
 	 ?>
 	</script>
@@ -45,7 +45,7 @@
 		    <th></th>
 		    <?php
 		    //getting data for table
-		    $rows = $data->getPage(1);
+		    $rows = $data->getPage($ascope["item"]);
 		    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 		    if(count($rows)){
 			foreach($rows[0] as $key =>$value)
@@ -83,7 +83,7 @@
 			   ngridDeleteItem function which called on click and just does XHR delete request and reload
 			   page content after receiving result
 			 */
-			if($security->can("select"))
+			if($security->can("select") && (!property_exists($data, "modes") || in_array("view", $data->modes)))
 			    echo "<a href=\"index.php#/?page=" . $app->page . "&action=" . $scope->action . "&mode=view&category=Main&item=" . $keyString ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
 			/*delete action, call javascript function with keyString as parameter then function call XHR 
 			   delete request on server
@@ -106,7 +106,6 @@
 
 			echo "</td>";
 
-			echo "</td>";
 			foreach($row as $key=>$value)
 			    if(key_exists($key, $data->gridFields)){
 				echo "<td>\n";
