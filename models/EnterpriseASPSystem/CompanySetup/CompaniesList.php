@@ -1,33 +1,32 @@
 <?php
-
 /*
-Name of Page: CompaniesList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\CompaniesList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/CompaniesList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\CompaniesList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\CompaniesList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/07/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: CompaniesList model
+   
+  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\CompaniesList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/CompaniesList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\CompaniesList.php
+  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\CompaniesList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/05/2017
+  Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
@@ -36,6 +35,7 @@ class gridData extends gridDataSource{
 	public $dashboardTitle ="Companies";
 	public $breadCrumbTitle ="Companies";
 	public $idField ="undefined";
+    public $modes = ["grid", "view", "edit"];
 	public $idFields = ["CompanyID","DivisionID","DepartmentID"];
 	public $gridFields = [
 		"CompanyName" => [
@@ -66,7 +66,12 @@ class gridData extends gridDataSource{
 
 	public $editCategories = [
 		"Main" => [
-
+			"CompanyID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+                "disabledEdit" => "true",
+				"defaultValue" => ""
+			],
 			"CompanyName" => [
 				"dbType" => "varchar(50)",
 				"inputType" => "text",
@@ -166,17 +171,20 @@ class gridData extends gridDataSource{
 		"Defaults" => [
 			"CurrencyID" => [
 				"dbType" => "varchar(3)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
 				"defaultValue" => ""
 			],
 			"BankAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"Terms" => [
 				"dbType" => "varchar(20)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getTerms",
 				"defaultValue" => ""
 			],
 			"FedTaxID" => [
@@ -226,12 +234,14 @@ class gridData extends gridDataSource{
 			],
 			"DefaultSalesTaxGroup" => [
 				"dbType" => "varchar(20)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getTaxGroups",
 				"defaultValue" => ""
 			],
 			"DefaultPurchaseTaxGroup" => [
 				"dbType" => "varchar(20)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getTaxGroups",
 				"defaultValue" => ""
 			],
 			"DefaultInventoryCostingMethod" => [
@@ -261,17 +271,19 @@ class gridData extends gridDataSource{
 			],
 			"WarehouseID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getWarehouses",
 				"defaultValue" => ""
 			],
-			"WarehouseBinID" => [
+            /*			"WarehouseBinID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "text",
 				"defaultValue" => ""
-			],
+                ],*/
 			"ShippingMethod" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipMethods",
 				"defaultValue" => ""
 			],
 			"ChargeHandling" => [
@@ -303,182 +315,218 @@ class gridData extends gridDataSource{
 		"Accounts" => [
 			"GLAPAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLAPCashAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLAPInventoryAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLAPFreightAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLAPHandlingAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLAPMiscAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLAPDiscountAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLAPPrePaidAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLAPWriteOffAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARCashAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARSalesAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARCOGSAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARInventoryAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARFreightAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARHandlingAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARDiscountAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARMiscAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARReturnAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARWriteOffAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLFixedAccumDepreciationAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLFixedDepreciationAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLFixedAssetAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLFixedDisposalAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLBankInterestEarnedAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLBankServiceChargesAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLBankMiscWithdrawlAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLBankBankMisDepositAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLBankOtherChargesAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLRetainedEarningsAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLProfitLossAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLUnrealizedCurrencyProfitLossAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLRealizedCurrencyProfitLossAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLARFreightProfitLossAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLCurrencyGainLossAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLUnrealizedCurrencyGainLossAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			]
 		],
@@ -487,209 +535,210 @@ class gridData extends gridDataSource{
 				"dbType" => "datetime",
 				"inputType" => "datetime",
 				"defaultValue" => "now"
-				],
+            ],
 			"FiscalEndDate" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
 				"defaultValue" => "now"
-				],
+            ],
 			"CurrentFiscalYear" => [
 				"dbType" => "smallint(6)",
 				"inputType" => "text",
 				"defaultValue" => ""
-				],
+            ],
 			"CurrentPeriod" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
 				"defaultValue" => "now"
-				],
+            ],
 			"Period1Date" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
 				"defaultValue" => "now"
-				],
-			"Period2Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period3Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period4Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period5Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period6Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period7Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period8Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period9Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period10Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period11Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period12Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period13Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
-			"Period14Date" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-				],
+            ],
 			"Period1Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period2Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period2Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period3Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period3Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period4Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period4Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period5Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period5Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period6Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period6Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period7Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period7Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period8Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period8Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period9Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period9Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period10Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period10Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period11Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period11Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period12Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period12Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period13Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period13Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
+			"Period14Date" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"Period14Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
-			"GAAPCompliant" => [
+            ]
+/*,
+            /*			"GAAPCompliant" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
 			"EditGLTranssactions" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
 			"EditBankTransactions" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
 			"EditAPTransactions" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
 			"EditARTransactions" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
 			"HardClose" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
 			"AuditTrail" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
 			"PeriodPosting" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-				],
+            ],
 			"SystemDates" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
-			]
+                ]*/
 		]
-];
+    ];
 	public $columnNames = [
 		"CompanyID" => "Company ID",
 		"CompanyName" => "Company Name",
@@ -816,5 +865,74 @@ class gridData extends gridDataSource{
 		"PeriodPosting" => "Period Posting",
 		"SystemDates" => "System Dates"
 	];
+
+    public function CreateCompany(){
+        $user = Session::get("user");
+        
+        $CompanyID = $_POST["CompanyID"];
+        $result = DB::select("select * FROM Companies WHERE CompanyID='$CompanyID'", array());
+        if(count($result))
+            return response("Company Already Exists", 400)->header('Content-Type', 'text/plain');
+                
+        $result = DB::select("show tables", array());
+        foreach($result as $key=>$row){
+            if($row->Tables_in_myenterprise != "activeemployee" &&
+               $row->Tables_in_myenterprise != "audittrail" &&
+               $row->Tables_in_myenterprise != "translation" &&
+               $row->Tables_in_myenterprise != "translations" &&
+               $row->Tables_in_myenterprise != "dtproperties" &&
+               $row->Tables_in_myenterprise != "gl detail by date" &&
+               $row->Tables_in_myenterprise != "gl details" &&
+               !preg_match("/history$/", $row->Tables_in_myenterprise) &&
+               !preg_match("/^audit/", $row->Tables_in_myenterprise) &&
+               !preg_match("/^report/", $row->Tables_in_myenterprise) &&
+               !preg_match("/report$/", $row->Tables_in_myenterprise))
+            $tables[] = $row->Tables_in_myenterprise;
+        }
+
+        foreach($tables as $tableName){
+            $desc = DB::select("describe $tableName", array());
+            $keys = 0;
+            foreach($desc as $column)
+                if($column->Field == "CompanyID" || $column->Field == "DivisionID" || $column->Field == "DepartmentID")
+                    $keys++;
+            if($keys == 3)
+                $tablesColumns[$tableName] = $desc;
+            // else
+            //  return response("Wrong table $tableName in database", 400)->header('Content-Type', 'text/plain');
+        }
+
+        $response = "";
+        foreach($tablesColumns as $tableName=>$desc){
+            $data = DB::select("select * from $tableName WHERE CompanyID='{$user["CompanyID"]}'", array());
+            if(count($data) && property_exists($data[0], "CompanyID") && property_exists($data[0], "DivisionID") && property_exists($data[0], "DepartmentID")){
+                $columns = [];
+                foreach($data[0] as $key=>$column)
+                    $columns[] = $key;
+                $query = "INSERT INTO $tableName (" . implode(",", $columns) . ") VALUES";
+                foreach($data as $row){
+                    $query .= "(";
+                    foreach($row as $key=>$value){
+                        if($key == "CompanyID")
+                            $value = $CompanyID;
+                        if($value == "")
+                            $query .= "NULL,";
+                        else
+                            $query .= "'$value',";
+                    }
+                    $query = substr($query, 0, -1);
+                    $query .= "),";
+                }
+                $query = substr($query, 0, -1);
+                try {
+                    DB::insert($query, array());
+                } catch (\Illuminate\Database\QueryException $ex) {
+                    echo 'Выброшено исключение: ',  $ex->getMessage(), "\n";
+                } //              $response .= $query;
+            }
+        }
+
+        echo "ok";
+    }
 }
 ?>

@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/03/2017
+  Last Modified: 08/05/2017
   Last Modified by: Nikita Zaharov
 */
 
@@ -37,6 +37,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Departments";
     public $idField ="undefined";
     public $idFields = ["CompanyID","DivisionID","DepartmentID"];
+    public $modes = ["view", "edit", "grid"];
     public $gridFields = [
         "DepartmentID" => [
             "dbType" => "varchar(36)",
@@ -169,6 +170,9 @@ class gridData extends gridDataSource{
             case "DivisionID" :
                 $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
                 break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
             }
             if(!in_array($key, $fields))
                 $fields[] = $key;                
@@ -189,6 +193,75 @@ class gridData extends gridDataSource{
         $result = json_decode(json_encode($result), true);
         
         return $result;
+    }
+    
+    public function CreateDepartment(){
+        $user = Session::get("user");
+        
+        $DepartmentID = $_POST["DepartmentID"];
+        $result = DB::select("select * FROM Departments WHERE CompanyID='{$user["CompanyID"]}' AND DivisionID='{$user["DivisionID"]}' AND DepartmentID='$DepartmentID'", array());
+        if(count($result))
+            return response("Department Already Exists", 400)->header('Content-Type', 'text/plain');
+                
+        $result = DB::select("show tables", array());
+        foreach($result as $key=>$row){
+            if($row->Tables_in_myenterprise != "activeemployee" &&
+               $row->Tables_in_myenterprise != "audittrail" &&
+               $row->Tables_in_myenterprise != "translation" &&
+               $row->Tables_in_myenterprise != "translations" &&
+               $row->Tables_in_myenterprise != "dtproperties" &&
+               $row->Tables_in_myenterprise != "gl detail by date" &&
+               $row->Tables_in_myenterprise != "gl details" &&
+               !preg_match("/history$/", $row->Tables_in_myenterprise) &&
+               !preg_match("/^audit/", $row->Tables_in_myenterprise) &&
+               !preg_match("/^report/", $row->Tables_in_myenterprise) &&
+               !preg_match("/report$/", $row->Tables_in_myenterprise))
+            $tables[] = $row->Tables_in_myenterprise;
+        }
+
+        foreach($tables as $tableName){
+            $desc = DB::select("describe $tableName", array());
+            $keys = 0;
+            foreach($desc as $column)
+                if($column->Field == "CompanyID" || $column->Field == "DivisionID" || $column->Field == "DepartmentID")
+                    $keys++;
+            if($keys == 3)
+                $tablesColumns[$tableName] = $desc;
+            // else
+            //  return response("Wrong table $tableName in database", 400)->header('Content-Type', 'text/plain');
+        }
+
+        $response = "";
+        foreach($tablesColumns as $tableName=>$desc){
+            $data = DB::select("select * from $tableName WHERE CompanyID='{$user["CompanyID"]}' AND DivisionID='{$user["DivisionID"]}' AND DepartmentID='{$user["DepartmentID"]}'", array());
+            if(count($data) && property_exists($data[0], "CompanyID") && property_exists($data[0], "DivisionID") && property_exists($data[0], "DepartmentID")){
+                $columns = [];
+                foreach($data[0] as $key=>$column)
+                    $columns[] = $key;
+                $query = "INSERT INTO $tableName (" . implode(",", $columns) . ") VALUES";
+                foreach($data as $row){
+                    $query .= "(";
+                    foreach($row as $key=>$value){
+                        if($key == "DepartmentID")
+                            $value = $DepartmentID;
+                        if($value == "")
+                            $query .= "NULL,";
+                        else
+                            $query .= "'$value',";
+                    }
+                    $query = substr($query, 0, -1);
+                    $query .= "),";
+                }
+                $query = substr($query, 0, -1);
+                try {
+                    DB::insert($query, array());
+                } catch (\Illuminate\Database\QueryException $ex) {
+                    echo 'Выброшено исключение: ',  $ex->getMessage(), "\n";
+                } //              $response .= $query;
+            }
+        }
+
+        echo "ok";
     }
 }
 ?>
