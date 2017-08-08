@@ -24,6 +24,7 @@ Called from:
 
 Calls:
 models/users.php
+models/translation.php
 app from index.php
 
 Last Modified: 07.04.2016
@@ -31,6 +32,7 @@ Last Modified by: Nikita Zaharov
 */
 
 require 'models/users.php';
+require 'models/translation.php';
 
 class controller{
     public $user = false;
@@ -41,14 +43,22 @@ class controller{
     public function process($app){
         $users = new users();
         $defaultUser = defaultUser();
+        
         if($_SERVER['REQUEST_METHOD'] === 'GET') { //log in as default user and redirect to index
             $user = $users->search($defaultUser["Company"],
                                    $defaultUser["Username"],
                                    $defaultUser["Password"],
                                    $defaultUser["Division"],
                                    $defaultUser["Department"]);                 
+                                   
+            $translate = new translation($defaultUser["Language"]);
 
-            $user["language"] = $defaultUser["Language"];
+            
+            $language = (!empty($_GET['language'])) ? $_GET['language'] : $defaultUser["Language"];
+            $language = in_array($language, $translate->languages) ? $language : $defaultUser["Language"];
+
+            $user["language"] = (!empty($_GET['language'])) ? $_GET['language'] : $defaultUser["Language"];
+
             $_SESSION["user"] = $user;
 
             header("Location: index.php#/?page=dashboard&category=GeneralLedger");

@@ -21,16 +21,16 @@ h1, h2, h3, h4, h5, h6,
 	color: #bbbbbb;
 }
 #side-menu > li > a.active {
-	border-color: #9BDBFF;
+	border-color: #63ff99;
 }
 a, 
 #side-menu > li > a.active i,
 .bg-title .breadcrumb .active,
 #side-menu ul > li > a:hover {
-	color: #9BDBFF;
+	color: #63ff99;
 }
 a:focus, a:hover {
-    color: #78c7f4;
+    color: #2aa254;
 }
 .content-wrapper #side-menu ul, .content-wrapper .sidebar #side-menu > li:hover, .content-wrapper .sidebar .nav-second-level > li > a {
 	background-color: #222;
