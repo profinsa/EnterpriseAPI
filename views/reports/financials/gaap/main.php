@@ -20,7 +20,7 @@
      Calls:
      nothing, just make redirect
 
-     Last Modified: 27.04.2016
+     Last Modified: 08.08.2016
      Last Modified by: Nikita Zaharov
    -->
 <div class="container-fluid">
@@ -35,11 +35,11 @@
 		<div class="form-group">
 		    <label for="iyear"><?php echo $translation->translateLabel("Year");?></label>
 		    <select id="iyear" class="form-control">
-			<option value="1">
-			    Previous Fiscal Year
-			</option>
 			<option value="0">
 			    Current Fiscal Year
+			</option>
+			<option value="1">
+			    Previous Fiscal Year
 			</option>
 		    </select>
 		</div>
@@ -81,6 +81,12 @@
 			</option>
 			<option>
 			    12
+			</option>
+			<option>
+			    13
+			</option>
+			<option>
+			    14
 			</option>
 		    </select>
 		</div>

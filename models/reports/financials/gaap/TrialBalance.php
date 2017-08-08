@@ -22,7 +22,7 @@ controllers/financials
 Calls:
 sql
 
-Last Modified: 11.05.2016
+Last Modified: 08.08.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -139,6 +139,8 @@ class financialsReportData{
         $data["CreditTotal"] = 0;
         $data["DebitTotal" . $itype] = 0;
         $data["CreditTotal" . $itype] = 0;
+        $data["Credit"] = [];
+        $data["Debit"] = [];
         
         foreach($result as $row){
             if($row["GLBalanceType"] == "Credit"){
