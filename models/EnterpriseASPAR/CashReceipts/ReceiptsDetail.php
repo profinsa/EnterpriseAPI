@@ -25,10 +25,12 @@
   Calls:
   MySql Database
 
-  Last Modified: 05/25/2017
+  Last Modified: 08/14/2017
   Last Modified by: Zaharov Nikita
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
     protected $tableName = "receiptsdetail";
     public $dashboardTitle ="Receipts Detail";
@@ -101,10 +103,6 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "dataProvider" => "getProjects"
-            ],
-            "CurrencyID" => [
-                "dbType" => "varchar(3)",
-                "inputType" => "text"
             ]
         ],
         "Memos" => [

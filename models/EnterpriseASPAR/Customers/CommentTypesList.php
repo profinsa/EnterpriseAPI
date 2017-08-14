@@ -3,7 +3,7 @@
 /*
 Name of Page: CommentTypesList model
  
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CommentTypesList.php It provides data from database and default values, column names and categories
+Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CommentTypesList.php It provides data from database and default values, column names and categories
  
 Date created: 02/16/2017  Kenna Fetterman
  
@@ -20,16 +20,17 @@ Output parameters:
 - methods have their own output
  
 Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CommentTypesList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CommentTypesList.php
+created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CommentTypesList.php
+used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CommentTypesList.php
  
 Calls:
 MySql Database
  
-Last Modified: 04/09/2017
+Last Modified: 04/08/2017
 Last Modified by: Kenna Fetterman
 */
-require "./models/gridDataSource.php";
+
+ require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "commenttypes";
 public $dashboardTitle ="Comment Types";

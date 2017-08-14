@@ -25,11 +25,13 @@
   Calls:
   MySql Database
 
-  Last Modified: 05/24/2017
+  Last Modified: 08/14/2017
   Last Modified by: Zaharov Nikita
 */
-require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+
+require "./models/subgridDataSource.php";
+
+class gridData extends subgridDataSource{
 	protected $tableName = "purchasedetail";
     //	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
 	public $dashboardTitle ="Purchase Detail";
@@ -39,43 +41,48 @@ class gridData extends gridDataSource{
 	public $gridFields = [
 		"ItemID" => [
 			"dbType" => "varchar(36)",
-			"inputType" => "text"
+            "inputType" => "dialogChooser",
+            "dataProvider" => "getItems"
 		],
 		"Description" => [
 			"dbType" => "varchar(80)",
 			"inputType" => "text"
 		],
+        "GLPurchaseAccount" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "dropdown",
+            "dataProvider" => "getAccounts",
+            "defaultValue" => ""
+        ],
+        "ProjectID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "dropdown",
+            "dataProvider" => "getProjects",
+            "defaultValue" => ""
+        ],
 		"OrderQty" => [
 			"dbType" => "float",
 			"inputType" => "text"
 		],
-		"ItemUOM" => [
+        /*		"ItemUOM" => [
             "dbType" => "varchar(15)",
             "inputType" => "text"
-		],
+            ],*/
         "ItemUnitPrice" =>	[
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
             "inputType" => "text"
-        ],
+        ],/*
 		"CurrencyID" => [
 			"dbType" => "varchar(3)",
             "inputType" => "dropdown",
             "defaultValue" => "USD",
             "dataProvider" => "getCurrencyTypes"
-		],
+            ],*/
 		"Total" => [
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
             "inputType" => "text"
-		],
-		"GLPurchaseAccount" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
-		],
-		"ProjectID" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
 		]
 	];
 
@@ -98,7 +105,8 @@ class gridData extends gridDataSource{
             ],
             "ItemID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getItems",
                 "defaultValue" => ""
             ],
             "Description" => [
@@ -119,7 +127,11 @@ class gridData extends gridDataSource{
             ],
             "WarehouseBinID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "depends" => [
+                    "WarehouseID" => "WarehouseID"
+                ],
+                "dataProvider" => "getWarehouseBins",
                 "defaultValue" => ""
             ],
             "OrderQty" => [
@@ -255,7 +267,7 @@ class gridData extends gridDataSource{
         "SerialNumber" => "Serial / Lot Number",
         "WarehouseID" => "Warehouse",
         "WarehouseBinID" => "Bin",
-        "OrderQty" => "Order Qty",
+        "OrderQty" => "Qty",
         "Backordered" => "Back ordered",
         "BackorderQyyty" => "Back ordered Qyyty",
         "ItemUOM" => "UOM",
@@ -263,7 +275,7 @@ class gridData extends gridDataSource{
         "TotalWeight" => "Total Weight",
         "ItemCost" =>  "Item Cost",
         "DiscountPerc" => "Discount",
-        "ItemUnitPrice" =>	"Item Unit Price",
+        "ItemUnitPrice" =>	"Price",
         "Taxable" => "Taxable",
         "TaxGroupID" => "Tax Group",
         "TaxPercent" => "Percent",
@@ -271,7 +283,7 @@ class gridData extends gridDataSource{
         "CurrencyID" => "Currency ID",
         "SubTotal" => "Sub Total",
         "Total" => "Total",
-        "GLSalesAccount" => "GL Sales Account",
+        "GLPurchaseAccount" => "Account",
         "ProjectID" => "Project ID",
         "TrackingNumber" => "Tracking Number",
         "DetailMemo1" => "Memo 1",
@@ -280,34 +292,5 @@ class gridData extends gridDataSource{
         "DetailMemo4" => "Memo 4",
         "DetailMemo5" => "Memo 5"
     ];
-
-    public $inventoryitemsIdFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
-    public function getItems(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->inventoryitemsIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
-        
-        return $result;
-    }
 }
 ?>
