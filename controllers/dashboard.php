@@ -25,13 +25,15 @@ models/translation.php
 models/dashboard/*
 app from index.php
 
-Last Modified: 06.06.2016
+Last Modified: 08.11.2016
 Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
+require 'models/drillDowner.php';
+require 'models/linksMaker.php';
 
 class controller{
     public $user = false;
@@ -59,9 +61,11 @@ class controller{
         
         $_perm = new permissionsByFile();
 
-        $this->user = $_SESSION["user"];
+        $user = $GLOBALS["user"] = $this->user = $_SESSION["user"];
                
         $data = new dashboardData();
+        $drill = new drillDowner($public_prefix);
+        $linksMaker = new linksMaker($public_prefix);
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("procedure", $_GET)){

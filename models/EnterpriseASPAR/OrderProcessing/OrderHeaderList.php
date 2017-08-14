@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 05/24/2017
+  Last Modified: 08/11/2017
   Last Modified by: Zaharov Nikita
 */
 
@@ -1202,6 +1202,20 @@ class gridData extends gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
         
         $GLOBALS["DB"]::delete("DELETE from orderdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+    public function getPage($id){
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
+            $this->gridConditions .= "and OrderDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "shiptoday"){
+            $this->gridConditions .= "and OrderShipDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
     }
 }
 ?>

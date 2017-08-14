@@ -31,6 +31,7 @@
     <div class="table-responsive">
 	<script>
 	 <?php
+     //getting data for table
 	 $rows = $data->getPage($ascope["item"]);
 	 echo "var gridItems = " . json_encode($rows) . ";";
 	 ?>
@@ -44,8 +45,6 @@
 		    ?>
 		    <th></th>
 		    <?php
-		    //getting data for table
-		    $rows = $data->getPage($ascope["item"]);
 		    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 		    if(count($rows)){
 			foreach($rows[0] as $key =>$value)

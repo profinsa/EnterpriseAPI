@@ -8,6 +8,25 @@
     $companyStatus = $data->CompanyAccountsStatus();
     ?>
     <div class="row">
+	<?php
+	$systemWideMessages = $data->CompanySystemWideMessage();
+	?>
+	<div class="col-md-12 col-xs-12">
+	    <div class="white-box">
+		<h3 class="box-title m-b-0"><?php echo $translation->translateLabel("System Wide Messages"); ?></h3>
+		<!-- 	<p class="text-muted">this is the sample data</p> -->
+		<div class="table-responsive">
+		    <table class="table">
+			<tbody>
+			    <?php
+			    foreach($systemWideMessages as $row)
+				echo "<tr><td>" . $row->SystemMessage . "</td>";
+			    ?>
+			</tbody>
+		    </table>
+		</div>
+	    </div>
+	</div>
     </div>
     <!--row -->
     <div class="row">
@@ -28,14 +47,14 @@
 			    <tbody>
 				<?php
 				foreach($companyStatus as $row)
-				    echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $row->GLAccountName . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";
+				    echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType)  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
 		    </div>
 		</div>
 	    </div>
-            <div>
+	    <div>
 		<div class="white-box">
 		    <h3 class="box-title"><?php echo $translation->translateLabel("Company Status"); ?></h3>
 		    <div id="morris-donut-chart" class="ecomm-donute" style="height: 317px;"></div>
@@ -84,7 +103,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["quotes"] as $row)
-					echo "<tr><td>" . $row->Quotes . "</td><td>" . formatField(["format"=>"{0:n}"], $row->QuoteTotals) . "</td></tr>";
+					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewQuotes") . "&filter=last24\">{$row->Quotes}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->QuoteTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
@@ -100,7 +119,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["orders"] as $row)
-					echo "<tr><td>" . $row->Orders . "</td><td>" . formatField(["format"=>"{0:n}"], $row->OrderTotals) . "</td></tr>";
+					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=last24\">{$row->Orders}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
@@ -116,7 +135,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["shipments"] as $row)
-					echo "<tr><td>" . $row->Shipments . "</td><td>" . formatField(["format"=>"{0:n}"], $row->ShipTotals) . "</td></tr>";
+					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=shiptoday\">{$row->Shipments}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->ShipTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
@@ -132,7 +151,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["purchases"] as $row)
-					echo "<tr><td>" . $row->Purchases . "</td><td>" . formatField(["format"=>"{0:n}"], $row->PurchaseTotals) . "</td></tr>";
+					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=last24\">{$row->Purchases}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->PurchaseTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
@@ -148,35 +167,11 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["receivings"] as $row)
-					echo "<tr><td>" . $row->Receivings . "</td><td>" . formatField(["format"=>"{0:n}"], $row->ReceiptTotals) . "</td></tr>";
+					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=receivedtoday\">{$row->Receivings}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
 			</div>
-		    </div>
-		</div>
-	    </div>
-	    <?php
-	    $systemWideMessages = $data->CompanySystemWideMessage();
-	    ?>
-	    <div>
-		<div class="white-box">
-		    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("System Wide Messages"); ?></h3>
-		    <!-- 	<p class="text-muted">this is the sample data</p> -->
-		    <div class="table-responsive">
-			<table class="table">
- 			    <thead>
-				<tr>
-				    <th><?php echo $translation->translateLabel("Message"); ?></th>
-				</tr>
-			    </thead>
-			    <tbody>
-				<?php
-				foreach($systemWideMessages as $row)
-				    echo "<tr><td>" . $row->SystemMessage . "</td>";
-				?>
-			    </tbody>
-			</table>
 		    </div>
 		</div>
 	    </div>
@@ -201,7 +196,7 @@
 			    <tbody>
 				<?php
 				foreach($topOrdersReceipts["orders"] as $row)
-				    echo "<tr><td>" . $row->OrderNumber . "</td><td>" . $row->CustomerID . "</td><td>" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
+				    echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsReceivable/OrderScreens/ViewOrders", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->OrderNumber}") . "\">{$row->OrderNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -219,7 +214,7 @@
 			    <tbody>
 				<?php
 				foreach($topOrdersReceipts["purchases"] as $row)
-				    echo "<tr><td>" . $row->PurchaseNumber . "</td><td>" . $row->VendorID . "</td><td>" . date("m/d/y", strtotime($row->PurchaseDueDate)) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->ReceiptTotal) . "</td></tr>";
+				    echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsPayable/PurchaseProcessing/ViewPurchases", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->PurchaseNumber}") . "\">{$row->PurchaseNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("VendorID", $row->VendorID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->PurchaseDueDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotal) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -247,7 +242,7 @@
 			    <tbody>
 				<?php
 				foreach($collectionAlerts as $row)
-				    echo "<tr><td>" . $row->CustomerID . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Overdue) . "</td></tr>";
+				    echo "<tr><td>" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Overdue) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -305,37 +300,5 @@
 		</div>
 	    </div>
 	</div>
-
-	<?php
-	//require
-	//	echo json_encode($data->CompanyAccountsStatus());
-	//	echo "<br/>";
-	//	echo json_encode($data->CollectionAlerts());
-	/*	echo "<br/>";*/
-/*	   echo "CompanyDailyActivity" .  json_encode($data->CompanyDailyActivity());
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "CompanyIncomeStatement" . json_encode($data->CompanyIncomeStatement());
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "Company System Wide Message" . json_encode($data->CompanySystemWideMessage());
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "InventoryLowStockAlert" . json_encode($data->InventoryLowStockAlert());
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "TodayTasks" . json_encode($data->TodaysTasks());
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "LeadFollowUp" . json_encode($data->LeadFollowUp());
-	   echo "<br/>";
-	   echo "<br/>";
-	   echo "<br/>";*/
-//	   echo "TopOrdersReceipts" . json_encode($data->TopOrdersReceipts());
-	?>
     </div>
 </div>

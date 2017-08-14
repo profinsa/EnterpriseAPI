@@ -1090,5 +1090,20 @@ class gridData extends gridDataSource{
         
         $GLOBALS["DB"]::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
+    
+    public function getPage($id){
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
+            $this->gridConditions .= "and PurchaseDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "receivedtoday"){
+            $this->gridConditions .= "and Received=0 and PurchaseDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
+    }
 }
 ?>

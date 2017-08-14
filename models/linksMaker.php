@@ -24,7 +24,7 @@ any views
 Calls:
 sql
 
-Last Modified: 07.25.2016
+Last Modified: 08.11.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -53,6 +53,10 @@ class linksMaker{
     }
 
     function makeGridItemViewCancel($path){
+        return $this->makeGridLink($path);
+    }
+    
+    public function makeGridLink($path){
         return "index.php#/?page=grid&action=$path&mode=grid&category=Main&item=all";
     }
 

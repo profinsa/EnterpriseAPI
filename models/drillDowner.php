@@ -25,7 +25,7 @@ controllers/financials
 Calls:
 sql
 
-Last Modified: 11.05.2016
+Last Modified: 08.11.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -67,6 +67,23 @@ class drillDowner{
         return $name;
     }
 
+    public function getLinkByAccountNameAndAccountType($name, $type){
+        $user = $GLOBALS["user"];
+        $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
+
+        if(!$this->accounts){
+            $this->accounts = DB::select("SELECT GLAccountNumber,GLAccountName,GLAccountType from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        }
+        
+        foreach($this->accounts as $value)
+            if($value->GLAccountName == $name && $value->GLAccountType == $type){
+                $keyString .= "__" . $value->GLAccountNumber;
+                return "<a target=\"_blank\" href=\"index.php#/?page=grid&action=GeneralLedger/Ledger/ViewGLAccountTransactions&mode=grid&category=Main&item=$keyString\">$name</a>";
+	    }
+
+        return $name;
+    }
+    
     // public function getLinkByAccountNameAndBalance($name, $balance){
     //     $user = $GLOBALS["user"];
     //     $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
