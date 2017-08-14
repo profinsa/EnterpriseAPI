@@ -43,6 +43,9 @@ class DB{
     public static function delete($query, $args){
         return $GLOBALS["DB"]::delete($query, $args);
     }
+    public static function connection($query, $args){
+        return $GLOBALS["DB"]::connection();
+    }
 }
 
 //class for emulating global Session class from laravel
