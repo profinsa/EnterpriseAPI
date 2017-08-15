@@ -2,7 +2,7 @@
 /*
   Name of Page: PaymentsHeaderClosedList model
    
-  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Payments\PaymentsHeaderClosedList.php It provides data from database and default values, column names and categories
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderClosedList.php It provides data from database and default values, column names and categories
    
   Date created: 02/16/2017  Kenna Fetterman
    
@@ -19,21 +19,24 @@
   - methods have their own output
    
   Called from:
-  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Payments\PaymentsHeaderClosedList.php
-  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Payments\PaymentsHeaderClosedList.php
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderClosedList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderClosedList.php
    
   Calls:
   MySql Database
    
-  Last Modified: 05/30/2017
+  Last Modified: 08/15/2017
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
     protected $tableName = "paymentsheader";
     protected $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=1) AND (IFNULL(PaymentsHeader.Paid,0)=1)";
     public $dashboardTitle ="Closed Payments";
+    public $modes = ["view", "grid", "edit"];
+    public $features = ["selecting"];
     public $breadCrumbTitle ="Closed Payments";
     public $idField ="PaymentID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentID"];
@@ -74,15 +77,15 @@ class gridData extends gridDataSource{
         ],
         "Cleared" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ],
         "Posted" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ],
         "Reconciled" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ]
     ];
 
@@ -154,12 +157,14 @@ class gridData extends gridDataSource{
         "Approval" => [
             "ApprovedBy" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
                 "defaultValue" => ""
             ],
             "EnteredBy" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
                 "defaultValue" => ""
             ],
             "Signature" => [
@@ -269,28 +274,27 @@ class gridData extends gridDataSource{
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
-
             "Amount" => [
                 "dbType" => "decimal(19,4)",
-                "format" => "{0:d}",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "UnAppliedAmount" => [
                 "dbType" => "decimal(19,4)",
-                "format" => "{0:d}",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "CreditAmount" => [
                 "dbType" => "decimal(19,4)",
-                "format" => "{0:d}",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "BatchControlTotal" => [
                 "dbType" => "decimal(19,4)",
-                "format" => "{0:d}",
+                "format" => "{0:n}",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
@@ -304,7 +308,8 @@ class gridData extends gridDataSource{
             ],
             "PaymentTypeID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPaymentTypes",
                 "defaultValue" => ""
             ],
             "VendorInvoiceNumber" => [
@@ -324,7 +329,8 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getVendors",
                 "defaultValue" => ""
             ],
             "DueToDate" => [
@@ -461,7 +467,8 @@ class gridData extends gridDataSource{
     public $headTableOne = [
         "Payment ID" => "PaymentID",
         "Due Date" => "DueToDate",
-        "Payment Type ID" => "PaymentTypeID"
+        "Payment Type ID" => "PaymentTypeID",
+        "Vendor ID" => "VendorID"
     ];
 
     public $customerField = "VendorID";
@@ -577,7 +584,7 @@ class gridData extends gridDataSource{
     public $vendorIdFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
     //getting data for Vendor Page
     public function getVendorInfo($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->vendorFields as $key=>$value){
@@ -609,37 +616,9 @@ class gridData extends gridDataSource{
         if($id)
             $keyFields .= " AND VendorID='" . $id . "'";
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
-        
-        return $result;
-    }
-
-    public function getVendors(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->vendorIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
         
         return $result;
     }
@@ -676,7 +655,7 @@ class gridData extends gridDataSource{
     
     //getting rows for grid
     public function getDetail($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -708,7 +687,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND PaymentID='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from paymentsdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from paymentsdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -717,7 +696,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentsID", "PaymentDetailID"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -727,7 +706,38 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from paymentsdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from paymentsdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $PaymentIDs = explode(",", $_POST["PaymentIDs"]);
+        $success = true;
+        foreach($PaymentIDs as $paymentID){
+            DB::statement("CALL Payment_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $paymentID . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Payment_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
     }
 }
 ?>

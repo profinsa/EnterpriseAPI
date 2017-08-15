@@ -1,50 +1,51 @@
 <?php
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
-protected $tableName = "invoiceheaderhistory";
-protected $gridConditions = "(LOWER(IFNULL(InvoiceHeaderHistory.TransactionTypeID,N'')) = 'return')";
-public $dashboardTitle ="Return Invoices History";
-public $breadCrumbTitle ="Return Invoices History";
-public $idField ="InvoiceNumber";
-public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
-public $gridFields = [
 
-"InvoiceNumber" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-],
-"TransactionTypeID" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-],
-"InvoiceDate" => [
-    "dbType" => "timestamp",
-    "format" => "{0:d}",
-    "inputType" => "datetime"
-],
-"CustomerID" => [
-    "dbType" => "varchar(50)",
-    "inputType" => "text"
-],
-"CurrencyID" => [
-    "dbType" => "varchar(3)",
-    "inputType" => "text"
-],
-"Total" => [
-    "dbType" => "decimal(19,4)",
-    "format" => "{0:n}",
-    "inputType" => "text"
-],
-"ShipDate" => [
-    "dbType" => "datetime",
-    "format" => "{0:d}",
-    "inputType" => "datetime"
-],
-"OrderNumber" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-]
-];
+class gridData extends gridDataSource{
+    protected $tableName = "invoiceheaderhistory";
+    protected $gridConditions = "(LOWER(IFNULL(InvoiceHeaderHistory.TransactionTypeID,N'')) = 'return')";
+    public $dashboardTitle ="Return Invoices History";
+    public $breadCrumbTitle ="Return Invoices History";
+    public $idField ="InvoiceNumber";
+    public $modes = ["grid", "view", "edit"];
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
+    public $gridFields = [
+        "InvoiceNumber" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "TransactionTypeID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ],
+        "InvoiceDate" => [
+            "dbType" => "timestamp",
+            "format" => "{0:d}",
+            "inputType" => "datetime"
+        ],
+        "CustomerID" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text"
+        ],
+        "CurrencyID" => [
+            "dbType" => "varchar(3)",
+            "inputType" => "text"
+        ],
+        "Total" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text"
+        ],
+        "ShipDate" => [
+            "dbType" => "datetime",
+            "format" => "{0:d}",
+            "inputType" => "datetime"
+        ],
+        "OrderNumber" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text"
+        ]
+    ];
 
 	public $editCategories = [
 		"Main" => [
@@ -112,7 +113,7 @@ public $gridFields = [
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => "USD"
+				"defaultValue" => ""
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -486,7 +487,8 @@ public $gridFields = [
             "OrderNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "disabledEdit" => "true"
+                "defaultValue" => "DEFAULT",
+                "defaultOverride" => true,
             ],
             "InvoiceDate" => [
                 "dbType" => "timestamp",
@@ -495,17 +497,22 @@ public $gridFields = [
             ],
             "CustomerID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text"
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getVendors",
+                "defaultValue" => "DEFAULT",
+                "defaultOverride" => true
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text"
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes"
             ],
 			"TransactionTypeID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getARTransactionTypes",
-				"defaultValue" => ""
+				"defaultValue" => "Return",
+                "defaultOverride" => true
 			],
 			"InvoiceCancelDate" => [
 				"dbType" => "datetime",
@@ -537,12 +544,6 @@ public $gridFields = [
 				"inputType" => "dropdown",
                 "dataProvider" => "getWarehouses",
 				"defaultValue" => ""
-			],
-            "OrderNumber" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => "",
-                "disabledEdit" => "true"
 			],
             "Total" => [
 				"dbType" => "decimal(19,4)",
@@ -586,11 +587,6 @@ public $gridFields = [
 			],	
             "TaxGroupID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"CustomerID" => [
-				"dbType" => "varchar(50)",
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
@@ -704,16 +700,6 @@ public $gridFields = [
 				"inputType" => "datetime",
 				"defaultValue" => "now"
 			],
-			"InvoiceNumber" => [
-				"dbType" => "varchar(20)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"InvoiceDate" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-			],
 			"Posted" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
@@ -753,111 +739,386 @@ public $gridFields = [
 			]
         ]
     ];
-public $columnNames = [
 
-"InvoiceNumber" => "Invoice Number",
-"TransactionTypeID" => "Type",
-"InvoiceDate" => "Invoice Date",
-"CustomerID" => "Vendor ID",
-"CurrencyID" => "Currency ID",
-"Total" => "Total",
-"ShipDate" => "Ship Date",
-"OrderNumber" => "Order Number",
-"TransOpen" => "TransOpen",
-"InvoiceDueDate" => "InvoiceDueDate",
-"InvoiceShipDate" => "InvoiceShipDate",
-"InvoiceCancelDate" => "InvoiceCancelDate",
-"SystemDate" => "SystemDate",
-"Memorize" => "Memorize",
-"PurchaseOrderNumber" => "PurchaseOrderNumber",
-"TaxExemptID" => "TaxExemptID",
-"TaxGroupID" => "TaxGroupID",
-"TermsID" => "TermsID",
-"CurrencyExchangeRate" => "CurrencyExchangeRate",
-"Subtotal" => "Subtotal",
-"DiscountPers" => "DiscountPers",
-"DiscountAmount" => "DiscountAmount",
-"TaxPercent" => "TaxPercent",
-"TaxAmount" => "TaxAmount",
-"TaxableSubTotal" => "TaxableSubTotal",
-"Freight" => "Freight",
-"TaxFreight" => "TaxFreight",
-"Handling" => "Handling",
-"Advertising" => "Advertising",
-"EmployeeID" => "EmployeeID",
-"CommissionPaid" => "CommissionPaid",
-"CommissionSelectToPay" => "CommissionSelectToPay",
-"Commission" => "Commission",
-"CommissionableSales" => "CommissionableSales",
-"ComissionalbleCost" => "ComissionalbleCost",
-"CustomerDropShipment" => "CustomerDropShipment",
-"ShipMethodID" => "ShipMethodID",
-"WarehouseID" => "WarehouseID",
-"ShipToID" => "ShipToID",
-"ShipForID" => "ShipForID",
-"ShippingName" => "ShippingName",
-"ShippingAddress1" => "ShippingAddress1",
-"ShippingAddress2" => "ShippingAddress2",
-"ShippingAddress3" => "ShippingAddress3",
-"ShippingCity" => "ShippingCity",
-"ShippingState" => "ShippingState",
-"ShippingZip" => "ShippingZip",
-"ShippingCountry" => "ShippingCountry",
-"ScheduledStartDate" => "ScheduledStartDate",
-"ScheduledEndDate" => "ScheduledEndDate",
-"ServiceStartDate" => "ServiceStartDate",
-"ServiceEndDate" => "ServiceEndDate",
-"PerformedBy" => "PerformedBy",
-"GLSalesAccount" => "GLSalesAccount",
-"PaymentMethodID" => "PaymentMethodID",
-"AmountPaid" => "AmountPaid",
-"UndistributedAmount" => "UndistributedAmount",
-"BalanceDue" => "BalanceDue",
-"CheckNumber" => "CheckNumber",
-"CheckDate" => "CheckDate",
-"CreditCardTypeID" => "CreditCardTypeID",
-"CreditCardName" => "CreditCardName",
-"CreditCardNumber" => "CreditCardNumber",
-"CreditCardExpDate" => "CreditCardExpDate",
-"CreditCardCSVNumber" => "CreditCardCSVNumber",
-"CreditCardBillToZip" => "CreditCardBillToZip",
-"CreditCardValidationCode" => "CreditCardValidationCode",
-"CreditCardApprovalNumber" => "CreditCardApprovalNumber",
-"Picked" => "Picked",
-"PickedDate" => "PickedDate",
-"Printed" => "Printed",
-"PrintedDate" => "PrintedDate",
-"Shipped" => "Shipped",
-"TrackingNumber" => "TrackingNumber",
-"Billed" => "Billed",
-"BilledDate" => "BilledDate",
-"Backordered" => "Backordered",
-"Posted" => "Posted",
-"PostedDate" => "PostedDate",
-"AllowanceDiscountPerc" => "AllowanceDiscountPerc",
-"CashTendered" => "CashTendered",
-"MasterBillOfLading" => "MasterBillOfLading",
-"MasterBillOfLadingDate" => "MasterBillOfLadingDate",
-"TrailerNumber" => "TrailerNumber",
-"TrailerPrefix" => "TrailerPrefix",
-"HeaderMemo1" => "HeaderMemo1",
-"HeaderMemo2" => "HeaderMemo2",
-"HeaderMemo3" => "HeaderMemo3",
-"HeaderMemo4" => "HeaderMemo4",
-"HeaderMemo5" => "HeaderMemo5",
-"HeaderMemo6" => "HeaderMemo6",
-"HeaderMemo7" => "HeaderMemo7",
-"HeaderMemo8" => "HeaderMemo8",
-"HeaderMemo9" => "HeaderMemo9",
-"Approved" => "Approved",
-"ApprovedBy" => "ApprovedBy",
-"ApprovedDate" => "ApprovedDate",
-"EnteredBy" => "EnteredBy",
-"Signature" => "Signature",
-"SignaturePassword" => "SignaturePassword",
-"SupervisorSignature" => "SupervisorSignature",
-"SupervisorPassword" => "SupervisorPassword",
-"ManagerSignature" => "ManagerSignature",
-"ManagerPassword" => "ManagerPassword",
-"IncomeCreditMemo" => "IncomeCreditMemo"];
+    public $headTableOne = [
+        "Invoice Number" => "InvoiceNumber",
+        "Invoice Date" => "InvoiceDate",
+        "Return Number" => "OrderNumber",
+        "Transaction Type" => "TransactionTypeID",
+        "Cancel Type" => "InvoiceCancelDate"
+    ];
+
+    public $headTableTwo = [
+        "Vendor ID" => "CustomerID",
+        "Ship To" => "ShipToID",
+        "Ship For" => "ShipForID",
+        "Warehouse" => "WarehouseID"
+    ];
+
+    public $headTableThree = [
+        "Purchase Order" => "PurchaseOrderNumber",
+        "Salesman" => "EmployeeID",
+        "Ship Date" => "InvoiceShipDate",
+        "Ship Via" => "ShipMethodID",
+        "Terms" => "TermsID"
+    ];
+
+    public $detailTable = [
+        "disableNew" => true,
+        "viewPath" => "AccountsPayable/ReturnToVendor/ViewReturnInvoicesHistoryDetail",
+        "newKeyField" => "InvoiceNumber",
+        "keyFields" => ["InvoiceNumber", "InvoiceLineNumber"]
+    ];
+
+    public $footerTable = [
+        "flagsHeader" => [
+            "Backordered" => "Backordered",
+            "Memorized" => "Memorize"
+        ],
+        "flags" => [
+            ["Posted", "Posted", "PostedDate", "Posted Date"],
+            ["Picked", "Picked", "PickedDate", "Picked Date"],
+            ["Printed", "Printed", "PrintedDate", "Printed Date"],
+            ["Billed", "Billed", "BilledDate", "Billed Date"],
+            ["Shipped", "Shipped", "InvoiceShipDate", "Shipped Date"]
+        ],
+        "totalFields" => [
+            "Subtotal" => "Subtotal",
+            "Shipping" => "Freight",
+            "Handling" => "Handling",
+            "Tax" => "TaxAmount",
+            "Total" => "Total",
+            "Payments" => "AmountPaid",
+            "Balance Due" => "BalanceDue"
+        ]
+    ];
+    
+	public $columnNames = [
+		"InvoiceNumber" => "Invoice Number",
+		"OrderNumber" => "Return Number",
+		"TransactionTypeID" => "Type",
+		"InvoiceDate" => "Invoice Date",
+		"CustomerID" => "Customer ID",
+		"CurrencyID" => "Currency ID",
+		"Total" => "Total",
+		"ShipDate" => "Ship Date",
+		"TransOpen" => "Trans Open",
+		"InvoiceDueDate" => "Invoice Due Date",
+		"InvoiceShipDate" => "Invoice Ship Date",
+		"InvoiceCancelDate" => "Invoice CancelDate",
+		"SystemDate" => "System Date",
+		"Memorize" => "Memorize",
+		"PurchaseOrderNumber" => "Purchase Order Number",
+		"TaxExemptID" => "Tax Exempt ID",
+		"TaxGroupID" => "Tax Group ID",
+		"TermsID" => "Terms ID",
+		"CurrencyExchangeRate" => "Currency Exchange Rate",
+		"Subtotal" => "Subtotal",
+		"DiscountPers" => "Discount Pers",
+		"DiscountAmount" => "Discount Amount",
+		"TaxPercent" => "Tax Percent",
+		"TaxAmount" => "Tax Amount",
+		"TaxableSubTotal" => "Taxable Sub Total",
+		"Freight" => "Freight",
+		"TaxFreight" => "Tax Freight",
+		"Handling" => "Handling",
+		"Advertising" => "Advertising",
+		"EmployeeID" => "Employee ID",
+		"CommissionPaid" => "Commission Paid",
+		"CommissionSelectToPay" => "Commission Select To Pay",
+		"Commission" => "Commission",
+		"CommissionableSales" => "Commissionable Sales",
+		"ComissionalbleCost" => "Comissionalble Cost",
+		"CustomerDropShipment" => "Customer Drop Shipment",
+		"ShipMethodID" => "ShipMethod ID",
+		"WarehouseID" => "Warehouse ID",
+		"ShipToID" => "Ship To ID",
+		"ShipForID" => "Ship For ID",
+		"ShippingName" => "Shipping Name",
+		"ShippingAddress1" => "Shipping Address 1",
+		"ShippingAddress2" => "Shipping Address 2",
+		"ShippingAddress3" => "Shipping Address 3",
+		"ShippingCity" => "Shipping City",
+		"ShippingState" => "Shipping State",
+		"ShippingZip" => "Shipping Zip",
+		"ShippingCountry" => "Shipping Country",
+		"ScheduledStartDate" => "Scheduled Start Date",
+		"ScheduledEndDate" => "Scheduled End Date",
+		"ServiceStartDate" => "Service Start Date",
+		"ServiceEndDate" => "Service End Date",
+		"PerformedBy" => "Performed By",
+		"GLSalesAccount" => "GL Sales Account",
+		"PaymentMethodID" => "Payment Method ID",
+		"AmountPaid" => "Amount Paid",
+		"UndistributedAmount" => "Undistributed Amount",
+		"BalanceDue" => "Balance Due",
+		"CheckNumber" => "Check Number",
+		"CheckDate" => "Check Date",
+		"CreditCardTypeID" => "Credit Card Type ID",
+		"CreditCardName" => "Credit Card Name",
+		"CreditCardNumber" => "Credit Card Number",
+		"CreditCardExpDate" => "Credit Card Exp Date",
+		"CreditCardCSVNumber" => "Credit Card CSV Number",
+		"CreditCardBillToZip" => "Credit Card Bill To Zip",
+		"CreditCardValidationCode" => "Credit Card Validation Code",
+		"CreditCardApprovalNumber" => "Credit Card Approval Number",
+		"Picked" => "Picked",
+		"PickedDate" => "Picked Date",
+		"Printed" => "Printed",
+		"PrintedDate" => "Printed Date",
+		"Shipped" => "Shipped",
+		"TrackingNumber" => "Tracking Number",
+		"Billed" => "Billed",
+		"BilledDate" => "Billed Date",
+		"Backordered" => "Backordered",
+		"Posted" => "Posted",
+		"PostedDate" => "Posted Date",
+		"AllowanceDiscountPerc" => "Allowance Discount Perc",
+		"CashTendered" => "Cash Tendered",
+		"MasterBillOfLading" => "Master Bill Of Lading",
+		"MasterBillOfLadingDate" => "Master Bill Of Lading Date",
+		"TrailerNumber" => "Trailer Number",
+		"TrailerPrefix" => "Trailer Prefix",
+		"HeaderMemo1" => "Header Memo 1",
+		"HeaderMemo2" => "Header Memo 2",
+		"HeaderMemo3" => "Header Memo 3",
+		"HeaderMemo4" => "Header Memo 4",
+		"HeaderMemo5" => "Header Memo 5",
+		"HeaderMemo6" => "Header Memo 6",
+		"HeaderMemo7" => "Header Memo 7",
+		"HeaderMemo8" => "Header Memo 8",
+		"HeaderMemo9" => "Header Memo 9",
+		"Approved" => "Approved",
+		"ApprovedBy" => "Approved By",
+		"ApprovedDate" => "Approved Date",
+		"EnteredBy" => "Entered By",
+		"Signature" => "Signature",
+		"SignaturePassword" => "Signature Password",
+		"SupervisorSignature" => "Supervisor Signature",
+		"SupervisorPassword" => "Supervisor Password",
+		"ManagerSignature" => "Manager Signature",
+		"ManagerPassword" => "Manager Password",
+		"IncomeCreditMemo" => "Income Credit Memo",
+        "OrderQty" => "Qty",
+        "ItemID" => "Item ID",
+        "Description" => "Description",
+        "ItemUOM" => "UOM",
+        "ItemUnitPrice" => "Price",
+        "Total" => "Total",
+        "GLSalesAccount" => "Sales Account",
+        "ProjectID" => "ProjectID"
+	];
+
+    public $customerFields = [
+        "CustomerID" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "AccountStatus" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerName" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerAddress1" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerAddress2" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerAddress3" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerCity" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerState" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerZip" => [
+            "dbType" => "varchar(10)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerCountry" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerPhone" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerFax" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerEmail" => [
+            "dbType" => "varchar(60)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "Attention" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ]
+    ];
+    
+    public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
+    //getting data for Customer Page
+    public function getCustomerInfo($id){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->customerFields as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->customerIdFields as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        if($id)
+            $keyFields .= " AND CustomerID='" . $id . "'";
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+        $result = json_decode(json_encode($id ? $result[0] : $result), true);
+        
+        return $result;
+    }
+
+    public $detailIdFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber", "InvoiceLineNumber"];
+	public $embeddedgridFields = [
+		"ItemID" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		],
+		"Description" => [
+			"dbType" => "varchar(80)",
+			"inputType" => "text"
+		],
+		"OrderQty" => [
+			"dbType" => "float",
+			"inputType" => "text"
+		],
+		"ItemUOM" => [
+            "dbType" => "varchar(15)",
+            "inputType" => "text"
+		],
+        "ItemUnitPrice" =>	[
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text"
+        ],
+		"CurrencyID" => [
+			"dbType" => "varchar(3)",
+			"inputType" => "text"
+		],
+		"Total" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text"
+		],
+		"GLSalesAccount" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		],
+		"ProjectID" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		]
+	];
+    
+    //getting rows for grid
+    public function getDetail($id){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->embeddedgridFields as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailIdFields as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND InvoiceNumber='" . $id . "'";
+
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from invoicedetailhistory " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+
+    public function detailDelete(){
+        $user = Session::get("user");
+        $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber", "InvoiceLineNumber"];
+        $keyValues = explode("__", $_GET["item"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        
+        DB::delete("DELETE from invoicedetailhistory " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
 }?>

@@ -25,11 +25,12 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/11/2017
+  Last Modified: 06/15/2017
   Last Modified by: Zaharov Nikita
 */
 
-require "./models/gridDataSource.php";
+namespace App\Models;
+require __DIR__ . "/../../../Models/gridDataSource.php";
 
 use Illuminate\Support\Facades\DB;
 use Session;

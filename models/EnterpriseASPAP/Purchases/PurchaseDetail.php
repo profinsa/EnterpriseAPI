@@ -25,13 +25,13 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/14/2017
+  Last Modified: 08/15/2017
   Last Modified by: Zaharov Nikita
 */
 
-require "./models/subgridDataSource.php";
+require "./models/gridDataSource.php";
 
-class gridData extends subgridDataSource{
+class gridData extends gridDataSource{
 	protected $tableName = "purchasedetail";
     //	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
 	public $dashboardTitle ="Purchase Detail";
@@ -41,48 +41,43 @@ class gridData extends subgridDataSource{
 	public $gridFields = [
 		"ItemID" => [
 			"dbType" => "varchar(36)",
-            "inputType" => "dialogChooser",
-            "dataProvider" => "getItems"
+			"inputType" => "text"
 		],
 		"Description" => [
 			"dbType" => "varchar(80)",
 			"inputType" => "text"
 		],
-        "GLPurchaseAccount" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "dropdown",
-            "dataProvider" => "getAccounts",
-            "defaultValue" => ""
-        ],
-        "ProjectID" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "dropdown",
-            "dataProvider" => "getProjects",
-            "defaultValue" => ""
-        ],
 		"OrderQty" => [
 			"dbType" => "float",
 			"inputType" => "text"
 		],
-        /*		"ItemUOM" => [
+		"ItemUOM" => [
             "dbType" => "varchar(15)",
             "inputType" => "text"
-            ],*/
+		],
         "ItemUnitPrice" =>	[
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
             "inputType" => "text"
-        ],/*
+        ],
 		"CurrencyID" => [
 			"dbType" => "varchar(3)",
             "inputType" => "dropdown",
             "defaultValue" => "USD",
             "dataProvider" => "getCurrencyTypes"
-            ],*/
+		],
 		"Total" => [
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
             "inputType" => "text"
+		],
+		"GLPurchaseAccount" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		],
+		"ProjectID" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
 		]
 	];
 
@@ -267,7 +262,7 @@ class gridData extends subgridDataSource{
         "SerialNumber" => "Serial / Lot Number",
         "WarehouseID" => "Warehouse",
         "WarehouseBinID" => "Bin",
-        "OrderQty" => "Qty",
+        "OrderQty" => "Order Qty",
         "Backordered" => "Back ordered",
         "BackorderQyyty" => "Back ordered Qyyty",
         "ItemUOM" => "UOM",
@@ -275,7 +270,7 @@ class gridData extends subgridDataSource{
         "TotalWeight" => "Total Weight",
         "ItemCost" =>  "Item Cost",
         "DiscountPerc" => "Discount",
-        "ItemUnitPrice" =>	"Price",
+        "ItemUnitPrice" =>	"Item Unit Price",
         "Taxable" => "Taxable",
         "TaxGroupID" => "Tax Group",
         "TaxPercent" => "Percent",
@@ -283,7 +278,7 @@ class gridData extends subgridDataSource{
         "CurrencyID" => "Currency ID",
         "SubTotal" => "Sub Total",
         "Total" => "Total",
-        "GLPurchaseAccount" => "Account",
+        "GLSalesAccount" => "GL Sales Account",
         "ProjectID" => "Project ID",
         "TrackingNumber" => "Tracking Number",
         "DetailMemo1" => "Memo 1",

@@ -25,11 +25,11 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/14/2017
+  Last Modified: 08/15/2017
   Last Modified by: Zaharov Nikita
 */
 
-require"./models/gridDataSource.php";
+require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
 	protected $tableName = "invoicedetail";

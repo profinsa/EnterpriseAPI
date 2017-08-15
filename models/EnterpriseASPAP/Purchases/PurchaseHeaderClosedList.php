@@ -1,41 +1,44 @@
 <?php
-
 /*
-Name of Page: PurchaseHeaderClosedList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Purchases\PurchaseHeaderClosedList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/PurchaseHeaderClosedList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Purchases\PurchaseHeaderClosedList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Purchases\PurchaseHeaderClosedList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/13/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: PurchaseHeaderClosedList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderClosedList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/PurchaseHeaderClosedList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderClosedList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderClosedList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/15/2017
+  Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "purchaseheader";
 	protected $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) NOT IN('rma','debit memo')) AND  IFNULL(Received,0) = 1 AND UPPER(PurchaseNumber <> 'DEFAULT')";
 	public $dashboardTitle ="Closed Purchases";
 	public $breadCrumbTitle ="Closed Purchases";
 	public $idField ="PurchaseNumber";
+    public $modes = ["grid", "view", "edit"]; // list of enabled modes
+    public $features = ["selecting"]; //list enabled features
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
 	public $gridFields = [
 		"PurchaseNumber" => [
@@ -74,7 +77,7 @@ class gridData extends gridDataSource{
 		],
 		"Shipped" => [
 			"dbType" => "tinyint(1)",
-			"inputType" => "text"
+			"inputType" => "checkbox"
 		],
 		"ShipDate" => [
 			"dbType" => "datetime",
@@ -83,7 +86,7 @@ class gridData extends gridDataSource{
 		],
 		"Memorize" => [
 			"dbType" => "tinyint(1)",
-			"inputType" => "text"
+			"inputType" => "checkbox"
 		]
 	];
 
@@ -153,7 +156,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => "USD"
+				"defaultValue" => ""
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -414,7 +417,8 @@ class gridData extends gridDataSource{
             ],
             "OrderedBy" => [
                 "dbType" => "varchar(15)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
                 "disabledEdit" => "true"
             ],
             "PurchaseNumber" => [
@@ -429,7 +433,8 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text"
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getVendors"
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
@@ -931,7 +936,7 @@ class gridData extends gridDataSource{
     public $vendorIdFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
     //getting data for Vendor Page
     public function getVendorInfo($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->vendorFields as $key=>$value){
@@ -963,37 +968,9 @@ class gridData extends gridDataSource{
         if($id)
             $keyFields .= " AND VendorID='" . $id . "'";
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
-        
-        return $result;
-    }
-
-    public function getVendors(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->vendorIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
         
         return $result;
     }
@@ -1042,7 +1019,7 @@ class gridData extends gridDataSource{
     
     //getting rows for grid
     public function getDetail($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -1074,7 +1051,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND PurchaseNumber='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -1083,7 +1060,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber", "PurchaseLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -1093,7 +1070,38 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["PurchaseNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Purchase_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@PostingResult,@SWP_RET_VALUE)");
+
+            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Purchase_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
     }
 }
 ?>

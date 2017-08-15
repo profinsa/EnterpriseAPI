@@ -7,7 +7,7 @@ $GLOBALS["dialogChooserInputs"] = [];
 <?php
 if(key_exists("back", $_GET)){
     $backhref = urldecode($_GET["back"]) . "&back={$_GET["back"]}";
-    $back = "&" . urlencode($_SERVER["QUERY_STRING"]);
+    $back = "&back=" . urlencode($_GET["back"]);
 }else{
     $backhref = "index.php?page=grid&path={$ascope["path"]}&mode=grid&category=Main&item=all";
     $back = "";
