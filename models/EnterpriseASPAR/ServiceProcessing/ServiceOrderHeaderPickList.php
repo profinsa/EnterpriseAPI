@@ -1,38 +1,41 @@
 <?php
-
 /*
-Name of Page: ServiceOrderHeaderPickList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\ServiceProcessing\ServiceOrderHeaderPickList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/ServiceOrderHeaderPickList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\ServiceProcessing\ServiceOrderHeaderPickList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\ServiceProcessing\ServiceOrderHeaderPickList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/09/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: ServiceOrderHeaderPickList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\ServiceProcessing\ServiceOrderHeaderPickList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/ServiceOrderHeaderPickList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\ServiceProcessing\ServiceOrderHeaderPickList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\ServiceProcessing\ServiceOrderHeaderPickList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/15/2017
+  Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "orderheader";
 	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N''))='service order') AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 0)";
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
 	public $dashboardTitle ="Fulfill Service Orders";
 	public $breadCrumbTitle ="Fulfill Service Orders";
 	public $idField ="OrderNumber";
@@ -68,7 +71,12 @@ class gridData extends gridDataSource{
 			"dbType" => "datetime",
 			"format" => "{0:d}",
 			"inputType" => "datetime"
-		]
+		],
+        "TrackingNumber" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ]
 	];
 
 	public $editCategories = [
@@ -604,7 +612,7 @@ class gridData extends gridDataSource{
 				"defaultValue" => ""
 			]
 		]
-];
+    ];
 	public $columnNames = [
 		"OrderNumber" => "Order Number",
 		"OrderTypeID" => "Type",
@@ -677,7 +685,7 @@ class gridData extends gridDataSource{
 		"Printed" => "Printed",
 		"PrintedDate" => "Printed Date",
 		"Shipped" => "Shipped",
-		"TrackingNumber" => "Tracking Number",
+		"TrackingNumber" => "Tracking #",
 		"Billed" => "Billed",
 		"BilledDate" => "Billed Date",
 		"Invoiced" => "Invoiced",
@@ -711,5 +719,39 @@ class gridData extends gridDataSource{
 		"ManagerSignature" => "Manager Signature",
 		"ManagerPassword" => "Manager Password"
 	];
+
+    public function FulfillServiceRequest(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            $result = DB::statement("SELECT @ret = ServiceOrder_FulfillServiceRequest('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+
+            if ($result == true) {
+                $success = false;
+            }
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
+    public function FulfillServiceRequestAll(){
+        $user = Session::get("user");
+
+        $result = DB::statement("SELECT @ret = ServiceOrder_FulfillServiceRequestAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+
+        if ($result == true)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
 }
 ?>

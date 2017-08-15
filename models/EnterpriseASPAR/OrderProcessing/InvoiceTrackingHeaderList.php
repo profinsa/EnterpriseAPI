@@ -1,43 +1,43 @@
 <?php
-
 /*
-Name of Page: InvoiceTrackingHeaderList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\InvoiceTrackingHeaderList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/InvoiceTrackingHeaderList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\InvoiceTrackingHeaderList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\InvoiceTrackingHeaderList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/09/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: InvoiceTrackingHeaderList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\InvoiceTrackingHeaderList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/InvoiceTrackingHeaderList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\InvoiceTrackingHeaderList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\InvoiceTrackingHeaderList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/15/2017
+  Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-protected $tableName = "invoicetrackingheader";
-public $dashboardTitle ="InvoiceTrackingHeader";
-public $breadCrumbTitle ="InvoiceTrackingHeader";
-public $idField ="InvoiceNumber";
-public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
-public $gridFields = [
+    protected $tableName = "invoicetrackingheader";
+    public $dashboardTitle ="InvoiceTrackingHeader";
+    public $breadCrumbTitle ="InvoiceTrackingHeader";
+    public $idField ="InvoiceNumber";
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
+    public $gridFields = [
         "InvoiceNumber" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
@@ -206,7 +206,7 @@ public $gridFields = [
                 break;
             }
             if(!in_array($key, $fields))
-                $fields[] = $key;
+                $fields[] = $key;                
         }
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
@@ -233,7 +233,7 @@ public $gridFields = [
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        DB::delete("DELETE from invoicetrackingdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from invoicetrackingdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
     }
 }
 ?>

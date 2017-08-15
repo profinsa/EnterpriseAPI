@@ -3,7 +3,7 @@
 /*
 Name of Page: OrderHeaderShipList model
  
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\OrderHeaderShipList.php It provides data from database and default values, column names and categories
+Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHeaderShipList.php It provides data from database and default values, column names and categories
  
 Date created: 02/16/2017  Kenna Fetterman
  
@@ -20,22 +20,24 @@ Output parameters:
 - methods have their own output
  
 Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\OrderHeaderShipList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\OrderHeaderShipList.php
+created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHeaderShipList.php
+used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHeaderShipList.php
  
 Calls:
 MySql Database
  
-Last Modified: 04/09/2017
-Last Modified by: Kenna Fetterman
+Last Modified: 08/15/2017
+Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "orderheader";
 	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 1) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
 	public $dashboardTitle ="Ship Orders";
-    public $features = ["selecting"];
-    public $modes = ["grid", "view"];
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
 	public $breadCrumbTitle ="Ship Orders";
 	public $idField ="OrderNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber"];
@@ -720,9 +722,9 @@ class gridData extends gridDataSource{
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
         foreach($numbers as $number){
-            $result = $GLOBALS["DB"]::statement("SELECT @ret = Order_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+            $result = DB::statement("SELECT @ret = Order_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
 
-            if ($result != true) {
+            if ($result == true) {
                 $success = false;
             }
         }
@@ -738,7 +740,7 @@ class gridData extends gridDataSource{
     public function ShipAll(){
         $user = Session::get("user");
 
-        $result = $GLOBALS["DB"]::statement("SELECT @ret = Order_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+        $result = DB::statement("SELECT @ret = Order_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
 
         if ($result == true)
             echo "ok";
@@ -747,6 +749,5 @@ class gridData extends gridDataSource{
             echo "failed";
         }
     }
-
 }
 ?>

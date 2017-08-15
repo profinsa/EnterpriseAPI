@@ -27,7 +27,7 @@
   Last Modified by: Zaharov Nikita
 */
 
-require "./gridDataSource.php";
+require "gridDataSource.php";
 
 class subgridDataSource extends gridDataSource{
     //getting rows for grid

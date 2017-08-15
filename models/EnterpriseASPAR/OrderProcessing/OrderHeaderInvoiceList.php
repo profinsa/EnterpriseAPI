@@ -3,7 +3,7 @@
 /*
 Name of Page: OrderHeaderInvoiceList model
  
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\OrderHeaderInvoiceList.php It provides data from database and default values, column names and categories
+Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHeaderInvoiceList.php It provides data from database and default values, column names and categories
  
 Date created: 02/16/2017  Kenna Fetterman
  
@@ -20,19 +20,23 @@ Output parameters:
 - methods have their own output
  
 Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\OrderHeaderInvoiceList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\OrderHeaderInvoiceList.php
+created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHeaderInvoiceList.php
+used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHeaderInvoiceList.php
  
 Calls:
 MySql Database
  
-Last Modified: 04/09/2017
-Last Modified by: Kenna Fetterman
+Last Modified: 08/15/2017
+Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "orderheader";
 	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold' AND (OrderHeader.Shipped = 1) AND (IFNULL(OrderHeader.Invoiced,0) = 0)";
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
 	public $dashboardTitle ="Invoice Shipped Orders";
 	public $breadCrumbTitle ="Invoice Shipped Orders";
 	public $idField ="OrderNumber";
@@ -711,5 +715,39 @@ class gridData extends gridDataSource{
 		"ManagerSignature" => "Manager Signature",
 		"ManagerPassword" => "Manager Password"
 	];
+
+    public function CreateFromOrder(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            $result = DB::statement("SELECT @ret = Invoice_CreateFromOrder('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')", array());
+
+            if ($result == true) {
+                $success = false;
+            }
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
+    public function AllOrders(){
+        $user = Session::get("user");
+
+        $result = DB::statement("SELECT @ret = Invoice_AllOrders('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
+
+        if ($result == true)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
 }
 ?>

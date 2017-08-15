@@ -2,11 +2,11 @@
 /*
 Name of Page: bankTransactions model
 
-Method: Model for GeneralLedger/banckAccounts. It provides data from database and default values, column names and categories
+Method: Model for gridView. It provides data from database and default values, column names and categories
 
 Date created: Nikita Zaharov, 17.02.2016
 
-Use: this model used by views/GeneralLedger/bankTransactions.php for:
+Use: this model used by views/gridView
 - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
 - for loading data from tables, updating, inserting and deleting
 
@@ -23,9 +23,9 @@ created and used for ajax requests by controllers/GeneralLedger/banckAccounts.ph
 used as model by views/GeneralLedger/backAccounts.php
 
 Calls:
-sql
+DB
 
-Last Modified: 4.04.2016
+Last Modified: 08.15.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -108,7 +108,7 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "defaultValue" => "",
-                "dataProvider" => "getTransactionTypes"
+                "dataProvider" => "getBankTransactionTypes"
             ],
             "TransactionDate" => [
                 "dbType" => "datetime",
@@ -184,34 +184,13 @@ class gridData extends gridDataSource{
         "Notes" => "Notes" 
     ];
 
-    //getting list of available transaction types 
-    public function getTransactionTypes(){
-        $user = $_SESSION["user"];
-
-        $res = [];
-        $result = $GLOBALS["capsule"]::select("SELECT BankTransactionTypeID,BankTransactionTypeDesc from banktransactiontypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
-
-        foreach($result as $key=>$value)
-            $res[$value->BankTransactionTypeID] = [
-                "title" => $value->BankTransactionTypeID,
-                "value" => $value->BankTransactionTypeID
-            ];
-        
-        return $res;
-    }
-    
     public function Post(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
+        $result = DB::select("select BankTransaction_Control('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["BankTransactionID"] . "')", array());
 
-        $result = $GLOBALS["capsule"]::select("select BankTransaction_Control('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["BankTransactionID"] . "')");
-
-        if($result[0]->SWP_RET_VALUE > -1)
-            echo $result[0]->PostingResult;
-        else {
-            http_response_code(400);
-            echo $result[0]->PostingResult;
-        }
+        header('Content-Type: application/json');
+        echo json_encode($result);
     }
 }
 ?>
