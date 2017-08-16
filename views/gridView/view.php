@@ -3,7 +3,7 @@ if(key_exists("back", $_GET)){
     $backhref = urldecode($_GET["back"]) . "&back={$_GET["back"]}";
     $back = "&back=" . urlencode($_GET["back"]);
 }else{
-    $backhref = "index.php?page=grid&path={$ascope["path"]}&mode=grid&category=Main&item=all";
+    $backhref = "index.php#/?page=grid&action={$ascope["path"]}&mode=grid&category=Main&item=all";
     $back = "";
 }
 function makeId($id){
