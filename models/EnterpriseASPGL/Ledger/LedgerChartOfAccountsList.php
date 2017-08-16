@@ -106,7 +106,7 @@ class gridData extends gridDataSource{
                 "disabledEdit" => true,
                 "dataProvider" => "getGLAccountSubGroups",
                 "depends" => [
-                    "GLAccountGroupID" => "GLAccountCode"
+                    "GLAccountCode" => "GLAccountCode"
                 ],
             ],
             "GLAccountNumber" => [
@@ -649,12 +649,12 @@ class gridData extends gridDataSource{
     public function getGLAccountSubGroups(){
         $user = Session::get("user");
         $res = [];
-        $result = DB::select("SELECT GLAccountGroupID, GLAccountSubGroupID from ledgersubaccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLAccountSubGroupID ASC", array());
+        $result = DB::select("SELECT GLAccountCode, GLSubAccountCode from ledgersubaccountgroup WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' ORDER BY GLSubAccountCode ASC", array());
         foreach($result as $value)
-            $res[$value->GLAccountSubGroupID] = [
-                "GLAccountGroupID" => $value->GLAccountGroupID,
-                "title" => $value->GLAccountSubGroupID,
-                "value" => $value->GLAccountSubGroupID                
+            $res[$value->GLSubAccountCode] = [
+                "GLAccountCode" => $value->GLAccountCode,
+                "title" => $value->GLSubAccountCode,
+                "value" => $value->GLSubAccountCode                
             ];
         
         return $res;
