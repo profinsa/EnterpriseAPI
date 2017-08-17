@@ -17,7 +17,7 @@ function makeId($id){
     return preg_replace("/[\s\$\&]+/", "", $id);
 }
 
-function makeRowActions($public_prefix, $linksMaker, $data, $ascope, $row, $ctx){
+function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
     $user = $GLOBALS["user"];
     $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$ctx["detailTable"]["keyFields"][0]] . (count($ctx["detailTable"]["keyFields"]) > 1 ? "__" . $row[$ctx["detailTable"]["keyFields"][1]] : "");
     if(!key_exists("editDisabled", $ctx["detailTable"])){
@@ -30,7 +30,7 @@ function makeRowActions($public_prefix, $linksMaker, $data, $ascope, $row, $ctx)
 
 $dropdownDepends = [];
 ?>
-<div id="row_editor">
+<div id="row_editor" class="row">
     <ul class="nav nav-tabs" role="tablist">
 	<?php
 	//render tabs like Main, Current etc
