@@ -763,7 +763,7 @@ class gridData extends gridDataSource{
                 $keyFields = $this->gridConditions;
         }
 
-        $result = DB::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . " WHERE Industry=? AND ChartType=? AND ChartDescription=?", array($keyValues[0], $keyValues[1], $keyValues[2]));
+        $result = DB::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . " WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND Industry=? AND ChartType=? AND ChartDescription=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $keyValues[0], $keyValues[1], $keyValues[2]));
 
         $result = json_decode(json_encode($result), true);        
         

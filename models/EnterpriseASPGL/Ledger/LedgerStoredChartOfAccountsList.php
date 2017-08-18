@@ -25,7 +25,7 @@
   Calls:
   sql
 
-  Last Modified: 07.21.2017
+  Last Modified: 08.18.2017
   Last Modified by: Nikita Zaharov
 */
 
@@ -718,11 +718,14 @@ class gridData extends gridDataSource{
     public function Copy(){
         $user = Session::get("user");
         $result = DB::Select("select GLAccountNumber from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["Industry"], $_POST["ChartType"]));
-        if(count($result))
-            return response("This accounts is already added to Stored Accounts", 400)->header('Content-Type', 'text/plain');
-
+        if(count($result)){
+            http_response_code(400);
+            echo "This accounts is already added to Stored Accounts";
+            return;
+        }
         $results = DB::Select("select * from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["OldIndustry"], $_POST["OldChartType"]));
 
+        $pdo = DB::connection()->getPdo();
         foreach($results as $result){
             $values = [];
             foreach($result as $key=>$value){
@@ -733,7 +736,7 @@ class gridData extends gridDataSource{
                 else if($key == "ChartDescription")
                     $values[] = "'" . $_POST["ChartDescription"] . "'";
                 else if($value != "")
-                    $values[] = "'" . $value . "'";
+                    $values[] = $pdo->quote($value);
                 else
                     $values[] = "NULL";
             }
@@ -746,22 +749,32 @@ class gridData extends gridDataSource{
     public function Load(){
         $user = Session::get("user");
         $result = DB::Select("select GLTransactionNumber from LedgerTransactionsDetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLTransactionAccount=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"]));
-        if(count($result))
-            return response("There is transactions with this Account", 400)->header('Content-Type', 'text/plain');
-
+        if(count($result)){
+            http_response_code(400);
+            echo "There is transactions with this Account";
+            return;
+        }
         $results = DB::Select("select * from LedgerStoredChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND Industry=? AND ChartType=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["Industry"], $_POST["ChartType"]));
 
-        foreach($result as $result){
+        echo count($results);
+        DB::delete("DELETE FROM LedgerChartOfAccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
+            
+        $pdo = DB::connection()->getPdo();
+        foreach($results as $result){
             $values = [];
+            $fields = [];
             foreach($result as $key=>$value){
                 if($key == "Industry" || $key == "ChartType" || $key == "ChartDescription");
-                else if($value != "")
-                    $values[] = "$key='" . $value . "'";
-                else
-                    $values[] = "$key=NULL";
+                else{
+                    $fields[] = $key;
+                    if($value != "")
+                        $values[] = $pdo->quote($value);
+                    else
+                        $values[] = "NULL";
+                }
             }
 
-            DB::Insert("UPDATE LedgerChartOfAccounts SET " . implode(",", $values) . " WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLAccountNumber=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLAccountNumber"]));
+            DB::Insert("INSERT INTO LedgerChartOfAccounts (" .  implode(",", $fields). ") VALUES(" . implode(",", $values) . ")");
         }
 
         echo "ok";
