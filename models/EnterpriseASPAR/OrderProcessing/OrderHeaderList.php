@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/15/2017
+  Last Modified: 08/18/2017
   Last Modified by: Zaharov Nikita
 */
 
@@ -1244,6 +1244,21 @@ class gridData extends gridDataSource{
             }
         } else {
             return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+        }
+    }
+    
+    public function getPage($id){
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
+            $this->gridConditions .= "and OrderDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "shiptoday"){
+            $this->gridConditions .= "and OrderShipDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
         }
     }
 }

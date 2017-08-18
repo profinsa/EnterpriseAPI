@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/15/2017
+  Last Modified: 08/18/2017
   Last Modified by: Nikita Zaharov
 */
 
@@ -1217,6 +1217,21 @@ class gridData extends gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
         DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
         echo "ok";
+    }
+    
+    public function getPage($id){
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
+            $this->gridConditions .= "and PurchaseDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "receivedtoday"){
+            $this->gridConditions .= "and Received=0 and PurchaseDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
     }
 }
 ?>
