@@ -151,7 +151,7 @@
 	 loginform.submit(function(e){
 	     var req = $.post("index.php?page=login", loginform.serialize(), null, 'json')
 			.success(function(data) {
-			    window.location = "index.php#/?page=dashboard&category=GeneralLedger";
+			    window.location = "index.php#/?page=dashboard&screen=GeneralLedger";
 			})
 			.error(function(err){
 			    var res = err.responseJSON;
