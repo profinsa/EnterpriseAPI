@@ -48,7 +48,7 @@ class controller{
             exit;
         }
 
-        $this->screen =  $_GET["screen"];
+        $this->screen =  key_exists("screen", $_GET) ? $_GET["screen"] : "GeneralLedger";
         $modelsRewrite = [
             "GeneralLedger" => "GeneralLedger",
             "Tasks" => "Tasks"
@@ -85,7 +85,19 @@ class controller{
                 $this->item = $_GET["item"];
 
             $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
-            require 'views/dashboards/' . $_GET["screen"] .  '.php';
+            
+            if(key_exists("screen",$_GET)){
+                $data->breadCrumbTitle = $data->dashboardTitle = $_GET["screen"];
+                $dashboardFile = $_GET["screen"];
+            }else{
+                $dashboardFile = "Accounting";
+                $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Accounting");
+                if($user["accesspermissions"]["DefaultDashboard"] != ""){
+                    $dashboardFile = preg_replace("/[\s]+/", "", $user["accesspermissions"]["DefaultDashboard"]);
+                    $this->breadCrumbTitle = $this->dashboardTitle =  $translation->translateLabel($user["accesspermissions"]["DefaultDashboard"]); 
+                }
+            }
+            require "views/dashboards/{$dashboardFile}.php";
         }
     }
 }

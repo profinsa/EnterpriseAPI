@@ -88,8 +88,9 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(120)",
                 "inputType" => "dropdown",
                 "dataProvider" => "getDashboards",
-                "defaultValue" => ""
-            ],
+                "defaultValue" => "Accounting",
+                "overrideDefault" => true
+            ]
         ],
         "Orders" => [
             "OEView" => [
@@ -789,9 +790,9 @@ class gridData extends gridDataSource{
         "RTPayrollView" => "RT Payroll View",
         "RTSystemView" => "RT System View"
     ];
+    
     //getting list of dashboards list
     public function getDashboards(){
-        $user = Session::get("user");
         $res = [
             "Accounting" => [
                 "title" => "Accounting",

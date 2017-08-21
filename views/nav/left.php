@@ -13,7 +13,7 @@
 		<!-- /input-group -->
 	    </li>
 	    <li class="nav-small-cap m-t-10">--- My Menu</li>
-	    <li> <a href="index.php#/?page=dashboard&screen=GeneralLedger" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Dashboard'); ?> </span></a></li>
+	    <li> <a href="index.php#/?page=dashboard" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Dashboard'); ?> </span></a></li>
 	    
 	    <li> <a href="index.php#/?page=dashboard&screen=Tasks" class="waves-effect"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> <?php echo $translation->translateLabel('Tasks');  ?> </span></a></li>
 	    
