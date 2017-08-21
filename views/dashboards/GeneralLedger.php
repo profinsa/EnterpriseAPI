@@ -267,7 +267,7 @@
 			    <tbody>
 				<?php
 				foreach($todaysTasks as $row)
-				    echo "<tr><td>" . date("m/d/y", strtotime($row->DueDate)) . "</td><td>" . $row->Task . "</td></tr>";
+				    echo "<tr><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . date("m/d/y", strtotime($row->DueDate)) . "</a></td><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . $row->Task . "</a></td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -291,8 +291,10 @@
 			    </thead>
 			    <tbody>
 				<?php
-				foreach($leadFollowUp as $row)
-				    echo "<tr><td>" . $row->LeadID . "</td><td>" . $row->LeadEmail . "</td></tr>";
+				foreach($leadFollowUp as $row){
+				    $keyString = "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->LeadID}";
+				    echo "<tr><td><a href=\"". $linksMaker->makeGridItemView("CRMHelpDesk/CRM/ViewLeads", $keyString)  . "\">" . $row->LeadID . "</a></td><td>" . $row->LeadEmail . "</td></tr>";
+				}
 				?>
 			    </tbody>
 			</table>

@@ -86,4 +86,8 @@ class linksMaker{
     function makeProcedureLink($path, $procedure){
         return "index.php?page=grid&action=$path&procedure=$procedure";
     }
+
+    function makeDashboardLink(){
+        return "index.php#/?page=dashboard";
+    }
 }

@@ -48,13 +48,13 @@ class controller{
             exit;
         }
 
-        $this->category =  $_GET["category"];
+        $this->screen =  $_GET["screen"];
         $modelsRewrite = [
             "GeneralLedger" => "GeneralLedger",
             "Tasks" => "Tasks"
         ];
         
-        $modelName = $modelsRewrite[$this->category];
+        $modelName = $modelsRewrite[$this->screen];
         if(!file_exists('models/dashboards/' . $modelName . '.php'))
             throw new Exception("model " . 'models/dashboards/' . $modelName . '.php' . " is not found");
         require 'models/dashboards/' . $modelName . '.php';
@@ -85,7 +85,7 @@ class controller{
                 $this->item = $_GET["item"];
 
             $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
-            require 'views/dashboards/' . $_GET["category"] .  '.php';
+            require 'views/dashboards/' . $_GET["screen"] .  '.php';
         }
     }
 }
