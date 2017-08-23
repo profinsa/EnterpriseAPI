@@ -49,6 +49,9 @@ class DB{
     public static function connection($query = false, $args = false){
         return $GLOBALS["DB"]::connection();
     }
+    public static function getDatabaseName(){
+        return $GLOBALS["DB"]::getDatabaseName();
+    }
 }
 
 //class for emulating global Session class from laravel
