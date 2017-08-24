@@ -376,8 +376,8 @@ $dropdownDepends = [];
 	     $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 	      .success(function(data) {
 		  console.log(localStorage.getItem("autorecalcLink"));
-		      if(localStorage.getItem("autorecalcLink")){
-			  $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+		  if(localStorage.getItem("autorecalcLink")){
+		      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
 		       .success(function(data) {
 			   localStorage.removeItem("autorecalcLink");
 			   localStorage.removeItem("autorecalcData");
