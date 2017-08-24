@@ -28,7 +28,9 @@
   Last Modified: 05/20/2017
   Last Modified by: Zaharov Nikita
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "purchasedetailhistory";
     //	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
@@ -282,7 +284,7 @@ class gridData extends gridDataSource{
 
     public $inventoryitemsIdFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
     public function getItems(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
 
@@ -302,7 +304,7 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
-        $result = $GLOBALS["DB"]::select("SELECT * from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT * from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true);
         

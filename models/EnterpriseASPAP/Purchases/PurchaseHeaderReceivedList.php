@@ -1,41 +1,43 @@
 <?php
-
 /*
-Name of Page: PurchaseHeaderReceivedList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Purchases\PurchaseHeaderReceivedList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/PurchaseHeaderReceivedList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Purchases\PurchaseHeaderReceivedList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Purchases\PurchaseHeaderReceivedList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/13/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: PurchaseHeaderReceivedList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderReceivedList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/PurchaseHeaderReceivedList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderReceivedList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderReceivedList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/15/2017
+  Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "purchaseheader";
 	protected $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (IFNULL(PurchaseHeader.Received,0)=1) AND (IFNULL(PurchaseHeader.Paid,0)=0)";
 	public $dashboardTitle ="Received Purchases";
 	public $breadCrumbTitle ="Received Purchases";
 	public $idField ="PurchaseNumber";
+    public $modes = ["grid", "view", "edit"]; // list of enabled modes
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
 	public $gridFields = [
 		"PurchaseNumber" => [
@@ -66,17 +68,27 @@ class gridData extends gridDataSource{
 		],
 		"Shipped" => [
 			"dbType" => "tinyint(1)",
-			"inputType" => "text"
+			"inputType" => "checkbox"
 		],
 		"ShipDate" => [
 			"dbType" => "datetime",
 			"format" => "{0:d}",
 			"inputType" => "datetime"
 		],
+        "TrackingNumber" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
 		"Received" => [
 			"dbType" => "tinyint(1)",
-			"inputType" => "text"
-		]
+			"inputType" => "checkbox"
+		],
+        "RecivingNumber" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ]
 	];
 
 	public $editCategories = [
@@ -84,6 +96,7 @@ class gridData extends gridDataSource{
 			"ShippingName" => [
 				"dbType" => "varchar(50)",
 				"inputType" => "text",
+                "disabledEdit" => "true",
 				"defaultValue" => ""
 			],
 			"ShippingAddress1" => [
@@ -145,7 +158,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => "USD"
+				"defaultValue" => ""
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -406,7 +419,8 @@ class gridData extends gridDataSource{
             ],
             "OrderedBy" => [
                 "dbType" => "varchar(15)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
                 "disabledEdit" => "true"
             ],
             "PurchaseNumber" => [
@@ -421,7 +435,8 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text"
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getVendors"
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
@@ -789,9 +804,9 @@ class gridData extends gridDataSource{
 		"ApprovedDate" => "Approved Date",
 		"Printed" => "Printed",
 		"PrintedDate" => "Printed Date",
-		"TrackingNumber" => "Tracking Number",
+		"TrackingNumber" => "Tracking #",
 		"ReceivedDate" => "Received Date",
-		"RecivingNumber" => "Reciving Number",
+		"RecivingNumber" => "Reciving #",
 		"Posted" => "Posted",
 		"PostedDate" => "Posted Date",
 		"CommissionPaid" => "Commission Paid",
@@ -923,7 +938,7 @@ class gridData extends gridDataSource{
     public $vendorIdFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
     //getting data for Vendor Page
     public function getVendorInfo($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->vendorFields as $key=>$value){
@@ -955,37 +970,9 @@ class gridData extends gridDataSource{
         if($id)
             $keyFields .= " AND VendorID='" . $id . "'";
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
-        
-        return $result;
-    }
-
-    public function getVendors(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->vendorIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
         
         return $result;
     }
@@ -1034,7 +1021,7 @@ class gridData extends gridDataSource{
     
     //getting rows for grid
     public function getDetail($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -1066,7 +1053,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND PurchaseNumber='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -1075,7 +1062,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber", "PurchaseLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -1085,7 +1072,7 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 }
 ?>

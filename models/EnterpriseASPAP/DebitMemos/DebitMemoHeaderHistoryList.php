@@ -1,43 +1,45 @@
 <?php
-
 /*
-Name of Page: DebitMemoHeaderHistoryList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\DebitMemos\DebitMemoHeaderHistoryList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/DebitMemoHeaderHistoryList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\DebitMemos\DebitMemoHeaderHistoryList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\DebitMemos\DebitMemoHeaderHistoryList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/13/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: DebitMemoHeaderHistoryList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\DebitMemos\DebitMemoHeaderHistoryList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/DebitMemoHeaderHistoryList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\DebitMemos\DebitMemoHeaderHistoryList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\DebitMemos\DebitMemoHeaderHistoryList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/15/2017
+  Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
-	protected $tableName = "purchaseheaderhistory";
+    protected $tableName = "purchaseheaderhistory";
     protected $gridConditions = "(LOWER(PurchaseHeaderHistory.TransactionTypeID) = 'debit memo')";
-	public $dashboardTitle ="Debit Memos History";
-	public $breadCrumbTitle ="Debit Memos History";
-	public $idField ="PurchaseNumber";
-	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
-	public $gridFields = [
+    public $dashboardTitle ="Debit Memos History";
+    public $breadCrumbTitle ="Debit Memos History";
+    public $idField ="PurchaseNumber";
+    public $modes = ["grid", "view"];
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
+    public $gridFields = [
         "PurchaseNumber" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
@@ -132,7 +134,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => "USD"
+				"defaultValue" => ""
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -393,8 +395,8 @@ class gridData extends gridDataSource{
             ],
             "OrderedBy" => [
                 "dbType" => "varchar(15)",
-                "inputType" => "text",
-                "disabledEdit" => "true"
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
             ],
             "PurchaseNumber" => [
                 "dbType" => "varchar(36)",
@@ -411,17 +413,20 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text"
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getVendors"
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text"
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes"
             ],
 			"TransactionTypeID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getARTransactionTypes",
-				"defaultValue" => ""
+                "defaultOverride" => true,
+				"defaultValue" => "Debit Memo"
 			],
 			"PurchaseCancelDate" => [
 				"dbType" => "datetime",
@@ -616,11 +621,6 @@ class gridData extends gridDataSource{
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
 			],*/
-			"InvoiceNumber" => [
-				"dbType" => "varchar(20)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
 			"Posted" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
@@ -914,7 +914,7 @@ class gridData extends gridDataSource{
     public $vendorIdFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
     //getting data for Vendor Page
     public function getVendorInfo($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->vendorFields as $key=>$value){
@@ -946,37 +946,9 @@ class gridData extends gridDataSource{
         if($id)
             $keyFields .= " AND VendorID='" . $id . "'";
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
-        
-        return $result;
-    }
-
-    public function getVendors(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->vendorIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
         
         return $result;
     }
@@ -1025,7 +997,7 @@ class gridData extends gridDataSource{
     
     //getting rows for grid
     public function getDetail($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -1057,7 +1029,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND PurchaseNumber='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from purchasedetailhistory " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from purchasedetailhistory " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -1066,7 +1038,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber", "PurchaseLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -1076,489 +1048,7 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from purchasedetailhistory " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from purchasedetailhistory " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
-
-    /*
-    public $editCategories = [
-        "Main" => [
-            "PurchaseNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TransactionTypeID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "PurchaseDate" => [
-                "dbType" => "timestamp",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "PurchaseDueDate" => [
-                "dbType" => "timestamp",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "PurchaseShipDate" => [
-                "dbType" => "timestamp",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "PurchaseCancelDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "PurchaseDateRequested" => [
-                "dbType" => "timestamp",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "SystemDate" => [
-                "dbType" => "timestamp",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "Memorize" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "OrderNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "VendorInvoiceNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "OrderedBy" => [
-                "dbType" => "varchar(15)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TaxExemptID" => [
-                "dbType" => "varchar(20)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TaxGroupID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "VendorID" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TermsID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CurrencyID" => [
-                "dbType" => "varchar(3)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CurrencyExchangeRate" => [
-                "dbType" => "float",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Subtotal" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "DiscountPers" => [
-                "dbType" => "float",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "DiscountAmount" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TaxPercent" => [
-                "dbType" => "float",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TaxAmount" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TaxableSubTotal" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Freight" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TaxFreight" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "Handling" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Advertising" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Total" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShipToWarehouse" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "WarehouseID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShipMethodID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShippingName" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShippingAddress1" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShippingAddress2" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShippingAddress3" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShippingCity" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShippingState" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShippingZip" => [
-                "dbType" => "varchar(10)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ShippingCountry" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Paid" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "PaymentID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "PaymentMethodID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "PaymentDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ]
-		],
-		"Payment" => [
-            "GLPurchaseAccount" => [
-                "dbType" => "varchar(25)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "AmountPaid" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "BalanceDue" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "UndistributedAmount" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CheckNumber" => [
-                "dbType" => "varchar(20)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CheckDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "PaidDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "CreditCardTypeID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CreditCardName" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CreditCardNumber" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CreditCardExpDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "CreditCardCSVNumber" => [
-                "dbType" => "varchar(5)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CreditCardBillToZip" => [
-                "dbType" => "varchar(10)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CreditCardValidationCode" => [
-                "dbType" => "varchar(20)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CreditCardApprovalNumber" => [
-                "dbType" => "varchar(20)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Printed" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "PrintedDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "Shipped" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "ShipDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "TrackingNumber" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Received" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "ReceivedDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "RecivingNumber" => [
-                "dbType" => "varchar(20)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Posted" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "PostedDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "CommissionPaid" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "CommissionSelectToPay" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "OriginalPurchaseNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "OriginalPurchaseDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-			 "IncomeTaxRate" => [
-                "dbType" => "float",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ]
-		],
-		"Memos" => [
-            "HeaderMemo1" => [
-                "dbType" => "varchar(500)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "HeaderMemo2" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "HeaderMemo3" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "HeaderMemo4" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "HeaderMemo5" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "HeaderMemo6" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "HeaderMemo7" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "HeaderMemo8" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "HeaderMemo9" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ]
-		],
-		"Approval" => [
-			"Approved" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "ApprovedBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ApprovedDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "EnteredBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Signature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SignaturePassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "PurchaseContractNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ]
-        ]
-        ];*/
 }
 ?>

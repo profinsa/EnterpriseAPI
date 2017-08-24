@@ -25,10 +25,12 @@
   Calls:
   MySql Database
 
-  Last Modified: 05/25/2017
+  Last Modified: 08/15/2017
   Last Modified by: Zaharov Nikita
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "invoicedetail";
 
@@ -99,7 +101,8 @@ class gridData extends gridDataSource{
             ],
             "ItemID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getItems",
                 "defaultValue" => ""
             ],
             "Description" => [
@@ -291,34 +294,5 @@ class gridData extends gridDataSource{
         "DetailMemo4" => "Memo 4",
         "DetailMemo5" => "Memo 5"
     ];
-
-    public $inventoryitemsIdFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
-    public function getItems(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->inventoryitemsIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
-        
-        return $result;
-    }
 }
 ?>

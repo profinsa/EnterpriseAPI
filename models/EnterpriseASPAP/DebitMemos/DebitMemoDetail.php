@@ -24,10 +24,12 @@
   Calls:
   MySql Database
 
-  Last Modified: 05/25/2017
+  Last Modified: 08/15/2017
   Last Modified by: Zaharov Nikita
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "purchasedetail";
 
@@ -99,99 +101,13 @@ class gridData extends gridDataSource{
             "ItemID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultOverride" => true,
+                "defaultValue" => "Debit Memo"
             ],
             "Description" => [
                 "dbType" => "varchar(80)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
-            "SerialNumber" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "WarehouseID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "dropdown",
-                "dataProvider" => "getWarehouses",
-                "defaultValue" => ""
-            ],
-            "WarehouseBinID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "OrderQty" => [
-                "dbType" => "float",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ItemUOM" => [
-                "dbType" => "varchar(15)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ItemWeight" => [
-                "dbType" => "float",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TotalWeight" => [
-                "dbType" => "float",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ItemCost" =>	[
-                "dbType" => "decimal(19,4)",
-                "format" => "{0:n}",
-                "inputType" => "text",
-                "defaultValue" => "0.00"
-            ],
-            "DiscountPerc" => [
-                "dbType" => "float",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ItemUnitPrice" =>	[
-                "dbType" => "decimal(19,4)",
-                "format" => "{0:n}",
-                "inputType" => "text",
-                "defaultValue" => "0.00"
-            ],
-            "Taxable" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-			],
-            "TaxGroupID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "dropdown",
-                "dataProvider" => "getTaxGroups",
-                "defaultValue" => ""
-            ],
-            "TaxPercent" => [
-                "dbType" => "float",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TaxAmount" =>	[
-                "dbType" => "decimal(19,4)",
-                "format" => "{0:n}",
-                "inputType" => "text",
-                "defaultValue" => "0.00"
-            ],
-            "CurrencyID" => [
-                "dbType" => "varchar(3)",
-                "inputType" => "dropdown",
-                "defaultValue" => "USD",
-                "dataProvider" => "getCurrencyTypes"
-            ],
-            "SubTotal" => [
-                "dbType" => "decimal(19,4)",
-                "format" => "{0:n}",
-                "inputType" => "text",
-                "defaultValue" => "0.00"
             ],
             "Total" => [
                 "dbType" => "decimal(19,4)",
@@ -250,7 +166,7 @@ class gridData extends gridDataSource{
         "PurchaseNumber" => "Debit Memo Number",
         "OrderNumber" => "Order",
         "PurchaseLineNumber" => "Line Number",
-        "ItemID" => "Item ID",
+        "ItemID" => "Document Number",
         "Description" => "Description",
         "SerialNumber" => "Serial / Lot Number",
         "WarehouseID" => "Warehouse",
@@ -280,34 +196,5 @@ class gridData extends gridDataSource{
         "DetailMemo4" => "Memo 4",
         "DetailMemo5" => "Memo 5"
     ];
-
-    public $inventoryitemsIdFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
-    public function getItems(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->inventoryitemsIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
-        
-        return $result;
-    }
 }
 ?>

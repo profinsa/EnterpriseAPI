@@ -61,7 +61,7 @@ class controller{
 
             $_SESSION["user"] = $user;
 
-            header("Location: index.php#/?page=dashboard&category=GeneralLedger");
+            header("Location: index.php#/?page=dashboard");
             exit;
         }
     }

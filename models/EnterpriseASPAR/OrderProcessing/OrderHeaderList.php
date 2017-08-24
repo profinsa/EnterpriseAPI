@@ -1,12 +1,12 @@
 <?php
 /*
-  Name of Page: OrderHeaderList model
+  Name of Page: OrderHearderList model
    
-  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\OrderHeaderList.php It provides data from database and default values, column names and categories
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHearderList.php It provides data from database and default values, column names and categories
    
   Date created: 02/16/2017  Kenna Fetterman
    
-  Use: this model used by views/OrderHeaderList for:
+  Use: this model used by views/OrderHearderList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
   - for loading data from tables, updating, inserting and deleting
    
@@ -19,20 +19,22 @@
   - methods have their own output
    
   Called from:
-  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\OrderHeaderList.php
-  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\OrderHeaderList.php
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHearderList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHearderList.php
    
   Calls:
   MySql Database
    
-  Last Modified: 05/24/2017
+  Last Modified: 08/18/2017
   Last Modified by: Zaharov Nikita
 */
 
 require "./models/gridDataSource.php";
+require "./models/helpers/recalc.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "orderheader";
-	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
+	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
 	public $dashboardTitle ="Orders";
 	public $breadCrumbTitle ="Orders";
 	public $idField ="OrderNumber";
@@ -40,7 +42,8 @@ class gridData extends gridDataSource{
 	public $gridFields = [
 		"OrderNumber" => [
 			"dbType" => "varchar(36)",
-			"inputType" => "text"
+			"inputType" => "text",
+            "disabledEdit" => "true"
 		],
 		"OrderTypeID" => [
 			"dbType" => "varchar(36)",
@@ -69,8 +72,17 @@ class gridData extends gridDataSource{
 			"format" => "{0:d}",
 			"inputType" => "datetime"
 		],
+        "TrackingNumber" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
 		"Invoiced" => [
 			"dbType" => "tinyint(1)",
+			"inputType" => "checkbox"
+		],
+		"InvoiceNumber" => [
+			"dbType" => "varchar(36)",
 			"inputType" => "text"
 		]
 	];
@@ -141,7 +153,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-                "defaultValue" => "USD"
+				"defaultValue" => ""
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -504,9 +516,13 @@ class gridData extends gridDataSource{
 			]
 		],
         "...fields" => [
-            "OrderTypeID" => [
+            "OrderNumber" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text"
+                "inputType" => "text",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
             ],
             "OrderDate" => [
                 "dbType" => "timestamp",
@@ -515,7 +531,8 @@ class gridData extends gridDataSource{
             ],
             "CustomerID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text"
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getCustomers",
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
@@ -525,7 +542,9 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getARTransactionTypes",
-				"defaultValue" => ""
+				"defaultValue" => "",
+                "defaultOverride" => true,
+				"defaultValue" => "Order"
 			],
 			"OrderCancelDate" => [
 				"dbType" => "datetime",
@@ -558,24 +577,11 @@ class gridData extends gridDataSource{
                 "dataProvider" => "getWarehouses",
 				"defaultValue" => ""
 			],
-            "OrderNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "disabledEdit" => "true",
-                "disabledNew" => "true",
-                "defaultValue" => "(new)",
-                "dirtyAutoincrement" => "true"
-            ],
 			"OrderTypeID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getOrderTypes",
 				"defaultValue" => ""
-			],
-			"OrderDate" => [
-				"dbType" => "timestamp",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
 			],
             "Total" => [
 				"dbType" => "decimal(19,4)",
@@ -619,11 +625,6 @@ class gridData extends gridDataSource{
 			],	
             "TaxGroupID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"CustomerID" => [
-				"dbType" => "varchar(50)",
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
@@ -797,7 +798,7 @@ class gridData extends gridDataSource{
         "Order Date" => "OrderDate",
         "Order Type" => "OrderTypeID",
         "Transaction Type" => "TransactionTypeID",
-        "Cancel Type" => "OrderCancelDate"
+        "Cancel Date" => "OrderCancelDate"
     ];
 
     public $headTableTwo = [
@@ -917,7 +918,7 @@ class gridData extends gridDataSource{
 		"Printed" => "Printed",
 		"PrintedDate" => "Printed Date",
 		"Shipped" => "Shipped",
-		"TrackingNumber" => "Tracking Number",
+		"TrackingNumber" => "Tracking #",
 		"Billed" => "Billed",
 		"BilledDate" => "Billed Date",
 		"InvoiceNumber" => "Invoice #",
@@ -1035,8 +1036,7 @@ class gridData extends gridDataSource{
     public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
     //getting data for Customer Page
     public function getCustomerInfo($id){
-        $user = $_SESSION["user"];
-
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->customerFields as $key=>$value){
@@ -1068,38 +1068,9 @@ class gridData extends gridDataSource{
         if($id)
             $keyFields .= " AND CustomerID='" . $id . "'";
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
-        
-        return $result;
-    }
-
-    public function getCustomers(){
-        $user = $_SESSION["user"];
-
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->customerIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
         
         return $result;
     }
@@ -1145,11 +1116,19 @@ class gridData extends gridDataSource{
 			"inputType" => "text"
 		]
 	];
-    
+
+    public function Recalc() {
+        $recalc = new recalcHelper;
+
+        $recalc->recalcOrder(Session::get("user"), $_POST["OrderNumber"]);
+
+        echo "ok";
+        return;
+    }
+
     //getting rows for grid
     public function getDetail($id){
-        $user = $_SESSION["user"];
-
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -1181,7 +1160,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND OrderNumber='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from orderdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from orderdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -1190,8 +1169,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = $_SESSION["user"];
-
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber", "OrderLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -1201,7 +1179,87 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from orderdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from orderdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+    public function Post(){
+        $user = Session::get("user");
+
+         DB::statement("CALL Order_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
+
+         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+         } else {
+            echo "ok";
+            header('Content-Type: application/json');
+         }
+    }
+
+    public function UnPost(){
+        $user = Session::get("user");
+
+         DB::statement("CALL Order_Cancel2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
+
+         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+         } else {
+            echo "ok";
+            header('Content-Type: application/json');
+         }
+    }
+
+    public function Memorize(){
+        $user = Session::get("user");
+        $keyValues = explode("__", $_POST["id"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
+        echo "ok";
+    }
+
+    public function contractCreateFromOrder() {
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        if ($recalc->lookForProcedure("Contract_CreateFromOrder")) {
+            DB::statement("CALL Contract_CreateFromOrder('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+
+            if($result[0]->SWP_RET_VALUE == -1) {
+                echo "error";
+                return response("failed", 400)->header('Content-Type', 'text/plain');
+            } else {
+                echo "ok";
+                header('Content-Type: application/json');
+            }
+        } else {
+            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+        }
+    }
+    
+    public function getPage($id){
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
+            $this->gridConditions .= "and OrderDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "shiptoday"){
+            $this->gridConditions .= "and OrderShipDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
     }
 }
 ?>

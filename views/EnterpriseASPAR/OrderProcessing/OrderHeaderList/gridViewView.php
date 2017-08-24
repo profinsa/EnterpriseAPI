@@ -8,7 +8,7 @@
      Use: this view used for view mode. Renders all ui interface including Detail actions but only in the view mode
 
      Input parameters:
-     $scope: common information object
+     $ascope: common information object
      $data : model
 
      Output parameters:
@@ -20,10 +20,13 @@
      Calls:
      model
 
-     Last Modified: 05/30/2017
+     Last Modified: 05/23/2017
      Last Modified by: Zaharov Nikita
    -->
 <?php
+function makeId($id){
+    return preg_replace("/[\s\$]+/", "", $id);
+}
 function formatValue($data, $fieldsDefinition, $values, $key, $value){
     switch($fieldsDefinition[$key]["inputType"]){
 	case "checkbox" :
@@ -33,6 +36,7 @@ function formatValue($data, $fieldsDefinition, $values, $key, $value){
 	case "datetime" :
 	    echo date("m/d/y", strtotime($value));
 	    break;
+	case "dialogChooser":
 	case "text":
 	case "dropdown":
 	    if(key_exists("formatFunction", $fieldsDefinition[$key])){
@@ -78,7 +82,8 @@ function makeTableItems($values, $fieldsDefinition){
     ];
 }
 ?>
-<div id="row_viewer" style="display:table">
+
+<div id="row_viewer" class="row">
     <div class="order-entry-header">
 	<?php
 	$headerItem = $data->getEditItem($ascope["item"], "...fields");
@@ -130,14 +135,14 @@ function makeTableItems($values, $fieldsDefinition){
 	    //uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 	    foreach($data->editCategories as $key =>$value)
 		if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
-		    echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#$key\" aria-controls=\"$key\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
+		    echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"" . makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 	    ?>
 	</ul>
 	<br/>
 	<!-- renders tables, contains record data using getEditItem from model  -->
 	<div class="tab-content">
 	    <?php foreach($data->editCategories as $key =>$value):  ?>
-		<div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo $key ?>">
+		<div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
 		    <?php
 		    $item = $data->getEditItem($ascope["item"], $key);
 		    if($key == "Customer"){
@@ -145,6 +150,11 @@ function makeTableItems($values, $fieldsDefinition){
 			$tableItems = makeTableItems($customerInfo, $data->customerFields);
 			$tableCategories = $data->customerFields;
 			$items = $customerInfo;
+		    }else if($key == "Vendor"){
+			$vendorInfo = $data->getVendorInfo($headerItem[property_exists($data, "vendorField") ? $data->vendorField : "VendorID"]);
+			$tableItems = makeTableItems($vendorInfo, $data->vendorFields);
+			$tableCategories = $data->vendorFields;
+			$items = $vendorInfo;
 		    }
 		    else {
 			$tableCategories = $data->editCategories[$key];
@@ -203,41 +213,45 @@ function makeTableItems($values, $fieldsDefinition){
     <?php endif; ?>
 
     <!-- Detail table -->
-    <div class="table-responsive order-entry-header col-md-12 col-xs-12" style="margin-top:20px;">
-	<?php 
-	$rows = $data->getDetail(key_exists("OrderNumber", $headerItem) ? $headerItem["OrderNumber"] : $headerItem[$data->detailTable["keyFields"][0]]);
-	$gridFields = $data->embeddedgridFields;
-	$embeddedgridContext = $headerItem;
-	function makeRowActions($linksMaker, $data, $ascope, $row, $embeddedgridContext){
-            $user = $GLOBALS["user"];
-            $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$data->detailTable["keyFields"][0]] . "__" . $row[$data->detailTable["keyFields"][1]];
-	    echo "<a href=\"" . $linksMaker->makeEmbeddedgridItemViewLink($data->detailTable["viewPath"], $ascope["path"], $keyString, $ascope["item"]);
-	    echo "\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
-	    echo "<a href=\"javascript:;\" onclick=\"orderDetailDelete('$keyString')\"><span class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a>";
-	}
-	require __DIR__ . "/../../../embeddedgrid.php"; 
-	?>
-    </div>
-    <div class="subgrid-buttons row col-md-1">
-	<?php if(!key_exists("disableNew", $data->detailTable)): ?>
-	    <a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailTable["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailTable["newKeyField"]}={$embeddedgridContext[$data->detailTable["newKeyField"]]}" ?>">
-		<?php echo $translation->translateLabel("New"); ?>
-	    </a>
-	<?php endif; ?>
-    </div>
-    <script>
-     var table = $('.datatable').DataTable( {
-	 dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
-     });
-     setTimeout(function(){
-	 var buttons = $('.subgrid-buttons');
-	 var tableFooter = $('.subgrid-table-footer');
-	 tableFooter.prepend(buttons);
-     },300);
-    </script>
+    <?php if(property_exists($data, "detailTable")): ?>
+	<div class="table-responsive order-entry-header col-md-12 col-xs-12" style="margin-top:20px;">
+	    <?php 
+	    $rows = $data->getDetail(key_exists("keyFields",$data->detailTable) ? $headerItem[$data->detailTable["keyFields"][0]] :$headerItem["OrderNumber"]);
+	    $gridFields = $data->embeddedgridFields;
+	    $embeddedgridContext = $headerItem;
+	    function makeRowActions($linksMaker, $data, $ascope, $row, $embeddedgridContext){
+		$user = $GLOBALS["user"];
+		$keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$data->detailTable["keyFields"][0]] . (count($data->detailTable["keyFields"]) > 1 ? "__" . $row[$data->detailTable["keyFields"][1]] : "");
+		echo "<a href=\"" . $linksMaker->makeEmbeddedgridItemEditLink($data->detailTable["viewPath"], $ascope["path"], $keyString, $ascope["item"]);
+		echo "\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+		echo "<a href=\"javascript:;\" onclick=\"orderDetailDelete('$keyString')\"><span class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a>";
+	    }
+	    require __DIR__ . "/../../../embeddedgrid.php"; 
+	    ?>
+	</div>
+	<div class="subgrid-buttons row col-md-1">
+	    <?php if(!key_exists("disableNew", $data->detailTable)): ?>
+		<a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailTable["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailTable["newKeyField"]}={$embeddedgridContext[$data->detailTable["newKeyField"]]}" ?>">
+		    <?php echo $translation->translateLabel("New"); ?>
+		</a>
+	    <?php endif; ?>
+	</div>
+	<script>
+	 datatableInitialized = true;
+	 var table = $('#example23').DataTable( {
+	     dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
+	 });
+	 setTimeout(function(){
+	     var buttons = $('.subgrid-buttons');
+	     var tableFooter = $('.subgrid-table-footer');
+	     tableFooter.prepend(buttons);
+	 },300);
+	</script>
+    <?php endif; ?>
 
+    <!-- footer table -->
     <?php if(property_exists($data, "footerTable")): ?>
-	<div class="panel panel-default order-entry-header col-md-8 col-xs-12" style="margin-top:20px; border:1px solid gray;">
+	<div class="panel panel-default order-entry-header col-md-8 col-xs-12" style="margin-top:20px;">
 	    <table class="col-md-12 col-xs-12 order-entry-flagsanddates-table">
 		<tbody>
 		    <tr>
@@ -257,16 +271,16 @@ function makeTableItems($values, $fieldsDefinition){
 			    <td>
 				<div><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $row[0], $headerItem[$row[0]]); ?><?php echo $translation->translateLabel($row[1]); ?></div>
 			    </td>
-			    <?php if(count($row) > 2): ?>
-				<td class="date-title">
+			    <td class="date-title">
+				<?php if(count($row) > 2): ?>
 				    <div class="pull-right"><b><?php echo $translation->translateLabel($row[3]); ?>: </b></div>
-				</td>
-				<td>
+				<?php endif; ?>
+			    </td>
+			    <td>
+				<?php if(count($row) > 2): ?>
 				    <?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $row[2], $headerItem[$row[2]]); ?>
-				</td>
-			    <?php else: ?>
-				<td></td><td></td>
-			    <?php endif; ?>
+				<?php endif; ?>
+			    </td>
 			    <td>
 				<?php if($row[0] == "Shipped"): ?>
 				    <div><b><?php echo $translation->translateLabel("Trk #"); ?> </b><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, "TrackingNumber", $headerItem["TrackingNumber"]); ?></div>
@@ -301,11 +315,12 @@ function makeTableItems($values, $fieldsDefinition){
 	    </table>
 	</div>
     <?php endif; ?>
+    
     <?php
-    if(file_exists(__DIR__ . "/../" . $PartsPath . "viewFooter.php"))
-	require __DIR__ . "/../" . $PartsPath . "viewFooter.php";
-    if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
-	require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
+    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "viewFooter.php"))
+	require __DIR__ . "/../../../" . $PartsPath . "viewFooter.php";
+    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "vieweditFooter.php"))
+	require __DIR__ . "/../../../" . $PartsPath . "vieweditFooter.php";
     ?>
 
     <div class="col-md-12 col-xs-12 row">
@@ -320,10 +335,10 @@ function makeTableItems($values, $fieldsDefinition){
 		    <?php echo $translation->translateLabel("Edit"); ?>
 		</a>
 		<?php
-		if(file_exists(__DIR__ . "/../" . $PartsPath . "viewActions.php"))
-		    require __DIR__ . "/../" . $PartsPath . "viewActions.php";
-		if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
-		    require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
+		if(file_exists(__DIR__ . "/../../../" . $PartsPath . "viewActions.php"))
+		    require __DIR__ . "/../../../" . $PartsPath . "viewActions.php";
+		if(file_exists(__DIR__ . "/../../../" . $PartsPath . "vieweditActions.php"))
+		    require __DIR__ . "/../../../" . $PartsPath . "vieweditActions.php";
 		?>
 	    <?php endif; ?>
 	    <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>">
@@ -336,9 +351,16 @@ function makeTableItems($values, $fieldsDefinition){
  //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
  function orderDetailDelete(item){
      if(confirm("Are you sure?")){
-	 $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], $ascope["item"]);?>" + item, {})
+	 localStorage.setItem("autorecalc", true);
+	 $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "detailDelete", $ascope["item"]);?>" + item, {})
 	  .success(function(data) {
-	      onlocation(window.location);
+	      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+	       .success(function(data) {
+		   onlocation(window.location);
+	       })
+	       .error(function(err){
+		   onlocation(window.location);
+	       });
 	  })
 	  .error(function(err){
 	      console.log('wrong');

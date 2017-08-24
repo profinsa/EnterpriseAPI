@@ -50,4 +50,5 @@
         padding:10px 0 0 8px;
     }
   </style>
+  <script src="http://spin.js.org/spin.min.js"></script>
 </head>

@@ -1,35 +1,36 @@
 <?php
-
 /*
-Name of Page: ReceiptsHeaderList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\CashReceipts\ReceiptsHeaderList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/ReceiptsHeaderList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\CashReceipts\ReceiptsHeaderList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\CashReceipts\ReceiptsHeaderList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/09/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: ReceiptsHeaderList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\CashReceipts\ReceiptsHeaderList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/ReceiptsHeaderList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\CashReceipts\ReceiptsHeaderList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\CashReceipts\ReceiptsHeaderList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/15/2017
+  Last Modified by: Zaharov Nikita
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
     protected $tableName = "receiptsheader";
     protected $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Customer') AND (ReceiptsHeader.CreditAmount IS NULL OR ReceiptsHeader.CreditAmount <> 0 OR IFNULL(ReceiptsHeader.Posted,0) = 0)";
@@ -62,7 +63,9 @@ class gridData extends gridDataSource{
         "Amount" => [
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
-            "inputType" => "text"
+            "inputType" => "text",
+            "currencyField" => "CurrencyID",
+            "formatFunction" => "currencyFormat"
         ],
         "Status" => [
             "dbType" => "varchar(10)",
@@ -70,19 +73,19 @@ class gridData extends gridDataSource{
         ],
         "Deposited" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ],
         "Cleared" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ],
         "Reconciled" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ],
         "Posted" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ]
     ];
 
@@ -105,7 +108,8 @@ class gridData extends gridDataSource{
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
@@ -115,8 +119,9 @@ class gridData extends gridDataSource{
             ],
             "GLBankAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getAccounts"
             ],
             "Status" => [
                 "dbType" => "varchar(10)",
@@ -210,13 +215,18 @@ class gridData extends gridDataSource{
             ],
             "ReceiptTypeID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getReceiptTypes",
                 "defaultValue" => ""
             ],
             "ReceiptClassID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "disabledNew" => "true",
+                "disabledEdit" => "true",
+                "defaultValue" => "",
+                "defaultOverride" => true,
+				"defaultValue" => "Customer"
             ],
             "CheckNumber" => [
                 "dbType" => "varchar(20)",
@@ -225,7 +235,8 @@ class gridData extends gridDataSource{
             ],
             "CustomerID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getCustomers",
                 "defaultValue" => ""
             ],
             "Memorize" => [
@@ -255,7 +266,8 @@ class gridData extends gridDataSource{
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
@@ -266,16 +278,21 @@ class gridData extends gridDataSource{
             "Amount" => [
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat",
                 "defaultValue" => ""
             ],
             "UnAppliedAmount" => [
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat",
                 "defaultValue" => ""
             ],
             "GLBankAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "Status" => [
@@ -296,6 +313,8 @@ class gridData extends gridDataSource{
             "CreditAmount" => [
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat",
                 "defaultValue" => ""
             ],
             "Cleared" => [
@@ -391,6 +410,8 @@ class gridData extends gridDataSource{
             "BatchControlTotal" => [
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat",
                 "defaultValue" => ""
             ],
             "Signature" => [
@@ -590,7 +611,7 @@ class gridData extends gridDataSource{
     public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
     //getting data for Customer Page
     public function getCustomerInfo($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->customerFields as $key=>$value){
@@ -622,37 +643,9 @@ class gridData extends gridDataSource{
         if($id)
             $keyFields .= " AND CustomerID='" . $id . "'";
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
-        
-        return $result;
-    }
-
-    public function getCustomers(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->customerIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
         
         return $result;
     }
@@ -680,7 +673,7 @@ class gridData extends gridDataSource{
     
     //getting rows for grid
     public function getDetail($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -712,7 +705,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND ReceiptID='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from receiptsdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from receiptsdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -721,7 +714,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","ReceiptID", "ReceiptDetailID"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -731,7 +724,64 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from receiptsdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from receiptsdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+    }
+
+    // CREATE DEFINER=`root`@`localhost` PROCEDURE `Receipt_Recalc2`(v_CompanyID NATIONAL VARCHAR(36),
+    // 	v_DivisionID NATIONAL VARCHAR(36),
+    // 	v_DepartmentID NATIONAL VARCHAR(36),
+    // 	v_ReceiptID  NATIONAL VARCHAR(36),INOUT SWP_Ret_Value INT)
+    // SWL_return:
+
+
+    // CREATE DEFINER=`root`@`localhost` PROCEDURE `Receipt_Post2`(v_CompanyID NATIONAL VARCHAR(36),
+    // 	v_DivisionID NATIONAL VARCHAR(36),
+    // 	v_DepartmentID NATIONAL VARCHAR(36),
+    // 	v_ReceiptID NATIONAL VARCHAR(36),
+    // 	INOUT v_Success INT  ,
+    // 	INOUT v_PostingResult NATIONAL VARCHAR(200) ,INOUT SWP_Ret_Value INT)
+    // SWL_return:
+    public function RecalcReceipt(){
+        $user = Session::get("user");
+
+         DB::statement("CALL Receipt_Recalc2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ReceiptID"] . "',@SWP_RET_VALUE)", array());
+
+         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+         } else {
+            echo "ok";
+            header('Content-Type: application/json');
+         }
+    }
+
+    public function PostReceipt(){
+        $user = Session::get("user");
+
+         DB::statement("CALL Receipt_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ReceiptID"] . "',@Success,@PostingResult,@SWP_RET_VALUE)", array());
+
+         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE', array());
+         if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+         } else {
+            echo "ok";
+            header('Content-Type: application/json');
+         }
+    }
+
+    public function Memorize(){
+        $user = Session::get("user");
+        $keyValues = explode("__", $_POST["id"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields, array());
+        echo "ok";
     }
 }
 ?>

@@ -1,5 +1,7 @@
 <?php
 require "./models/gridDataSource.php";
+require "./models/helpers/recalc.php";
+
 class gridData extends gridDataSource{
     protected $tableName = "purchaseheader";
     protected $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND ((IFNULL(Received,0) = 1) AND UPPER(PurchaseNumber) <> 'DEFAULT')";
@@ -7,6 +9,8 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Closed RMA's";
     public $idField ="PurchaseNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
+    public $modes = ["grid", "view", "edit"]; // list of enabled modes
+    public $features = ["selecting"]; //list enabled features
     public $gridFields = [
         "PurchaseNumber" => [
             "dbType" => "varchar(36)",
@@ -38,6 +42,11 @@ class gridData extends gridDataSource{
             "dbType" => "datetime",
             "format" => "{0:d}",
             "inputType" => "datetime"
+        ],
+        "TrackingNumber" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
         ],
         "Memorize" => [
             "dbType" => "tinyint(1)",
@@ -111,7 +120,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => "USD"
+				"defaultValue" => ""
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -360,28 +369,25 @@ class gridData extends gridDataSource{
 			]
 		],
         "...fields" => [
-            // "OrderNumber" => [
-            //     "dbType" => "varchar(36)",
-            //     "inputType" => "text",
-            //     "disabledEdit" => "true"
-            // ],
+            "OrderNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "disabledEdit" => "true"
+            ],
             "VendorInvoiceNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "disabledEdit" => "true",
-				"defaultValue" => ""
+                "disabledEdit" => "true"
             ],
             "OrderedBy" => [
                 "dbType" => "varchar(15)",
                 "inputType" => "text",
-                "disabledEdit" => "true",
-				"defaultValue" => ""
+                "disabledEdit" => "true"
             ],
             "PurchaseNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "disabledEdit" => "true",
-                "defaultValue" => "",
+                "disabledEdit" => "true"
             ],
             "PurchaseDate" => [
                 "dbType" => "timestamp",
@@ -390,13 +396,11 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => "",
+                "inputType" => "text"
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
-                "defaultValue" => "USD",
+                "inputType" => "text"
             ],
 			"TransactionTypeID" => [
 				"dbType" => "varchar(36)",
@@ -768,7 +772,7 @@ class gridData extends gridDataSource{
 		"Printed" => "Printed",
 		"PrintedDate" => "Printed Date",
 		"Shipped" => "Shipped",
-		"TrackingNumber" => "Tracking Number",
+		"TrackingNumber" => "Tracking #",
 		"Billed" => "Billed",
 		"BilledDate" => "Billed Date",
 		"InvoiceNumber" => "Invoice #",
@@ -886,7 +890,7 @@ class gridData extends gridDataSource{
     public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
     //getting data for Customer Page
     public function getCustomerInfo($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->customerFields as $key=>$value){
@@ -918,7 +922,7 @@ class gridData extends gridDataSource{
         if($id)
             $keyFields .= " AND CustomerID='" . $id . "'";
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
         
@@ -926,7 +930,7 @@ class gridData extends gridDataSource{
     }
 
     public function getCustomers(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
 
@@ -946,7 +950,7 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
-        $result = $GLOBALS["DB"]::select("SELECT * from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT * from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true);
         
@@ -997,7 +1001,7 @@ class gridData extends gridDataSource{
     
     //getting rows for grid
     public function getDetail($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -1029,7 +1033,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND PurchaseNumber='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -1038,7 +1042,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber", "PurchaseLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -1048,7 +1052,100 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["PurchaseNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL RMA_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @v_PostingResult,@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL RMA_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
+    }
+
+    public function Post(){
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        if ($recalc->lookForProcedure("RMA_Post2")) {
+            DB::statement("CALL RMA_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
+
+            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1) {
+                echo "error";
+                return response($result[0]->PostingResult, 400)->header('Content-Type', 'text/plain');
+            } else {
+                echo "ok";
+                header('Content-Type: application/json');
+            }
+        } else {
+            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+        }
+    }
+    public function Recalc(){
+        $recalc = new recalcHelper;
+
+        $recalc->recalcRMA(Session::get("user"), $_POST["PurchaseNumber"]);
+
+        echo "ok";
+        return;
+    }
+    public function UnPost(){
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        if ($recalc->lookForProcedure("RMA_Cancel")) {
+            DB::statement("CALL RMA_Cancel('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1) {
+                echo "error";
+                return response("failed", 400)->header('Content-Type', 'text/plain');
+            } else {
+                echo "ok";
+                header('Content-Type: application/json');
+            }
+        } else {
+            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+        }
+    }
+
+    public function Memorize(){
+        $user = Session::get("user");
+        $keyValues = explode("__", $_POST["id"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
+        echo "ok";
     }
 }
 ?>

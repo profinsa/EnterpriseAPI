@@ -24,7 +24,7 @@ any views
 Calls:
 sql
 
-Last Modified: 07.25.2016
+Last Modified: 08.11.2016
 Last Modified by: Nikita Zaharov
 */
 
@@ -53,6 +53,10 @@ class linksMaker{
     }
 
     function makeGridItemViewCancel($path){
+        return $this->makeGridLink($path);
+    }
+    
+    public function makeGridLink($path){
         return "index.php#/?page=grid&action=$path&mode=grid&category=Main&item=all";
     }
 
@@ -60,16 +64,19 @@ class linksMaker{
         return "index.php#/?page=grid&action=$path&mode=grid&cagegory=Main&item=" . urlencode($item);
     }
     
-	function makeEmbeddedgridItemViewLink($viewpath, $backpath, $keyString, $item){
-	    return "index.php#/?page=grid&action=$viewpath&mode=view&category=Main&item=$keyString&back=" . urlencode("index.php#/?page=grid&action=$backpath&mode=view&category=Main&item=$item");
-	}
-
 	function makeEmbeddedviewItemViewLink($viewpath, $backpath, $keyString, $item){
 	    return "index.php#/?page=grid&action=$viewpath&mode=view&category=Main&item=$keyString&back=" . urlencode("index.php#/?page=grid&action=$backpath&mode=grid&category=Main&item=$item");
 	}
 
 	function makeEmbeddedgridItemNewLink($viewpath, $backpath, $keyString, $item){
 	    return "index.php#/?page=grid&action=$viewpath&mode=new&category=Main&item=$keyString&back=" . urlencode("index.php#/?page=grid&action=$backpath&mode=view&category=Main&item=$item");
+	}
+	public function makeEmbeddedgridItemViewLink($viewpath, $backpath, $keyString, $item){
+	    return "index.php#/?page=grid&action=$viewpath&mode=view&category=Main&item=$keyString&back=" . urlencode("index.php#/?page=grid&action=$backpath&mode=view&category=Main&item=$item");
+	}
+
+	public function makeEmbeddedgridItemEditLink($viewpath, $backpath, $keyString, $item){
+	    return "index.php#/?page=grid&action=$viewpath&mode=edit&category=Main&item=$keyString&back=" . urlencode("index.php#/?page=grid&action=$backpath&mode=view&category=Main&item=$item");
 	}
 
     function makeEmbeddedgridItemDeleteLink($path, $item){
@@ -78,5 +85,9 @@ class linksMaker{
 
     function makeProcedureLink($path, $procedure){
         return "index.php?page=grid&action=$path&procedure=$procedure";
+    }
+
+    function makeDashboardLink(){
+        return "index.php#/?page=dashboard";
     }
 }

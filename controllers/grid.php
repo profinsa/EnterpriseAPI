@@ -44,6 +44,16 @@ class controller{
     public $dashboardTitle = "";
     public $breadCrumbTitle = "";
     public $path;
+    
+    protected  $redirectModel = [
+        "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
+        "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
+        "EnterpriseASPAP/ReturnToVendor/ReturnHeaderInvoiceList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
+        "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderClosedList" => "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList",
+        "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderShippedList" => "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList",
+        "EnterpriseASPGL/Ledger/LedgerTransactionsClosedList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList",
+        "EnterpriseASPGL/Ledger/LedgerTransactionsHistoryList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList"
+    ];
 
     public function process($app){
         if(!key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
@@ -59,9 +69,18 @@ class controller{
         
         $this->action = $this->path =  $_GET["action"];
         $model_path = $menuIdToPath[$_GET["action"]];
-        if(!file_exists('models/' . $model_path . '.php'))
-            throw new Exception("model " . 'models/' . $model_path . '.php' . " is not found");
-        require 'models/' . $menuIdToPath[$_GET["action"]] . '.php';
+        $requireModelPath = key_exists($model_path, $this->redirectModel) ? $this->redirectModel[$model_path] : $model_path;
+        if(!file_exists('models/' . $requireModelPath . '.php'))
+            throw new Exception("model " . 'models/' . $requireModelPath . '.php' . " is not found");
+        require 'models/' . $requireModelPath. '.php';
+        
+        if($requireModelPath != $model_path){
+            preg_match("/\/([^\/]+)$/", $model_path, $filename);
+            $newPath = $filename[1];
+            $data = new $newPath;
+        }
+        else
+            $data = new gridData();
 
         preg_match("/\/(\w+)$/", $this->action, $page);
         $page = $page[1];
@@ -79,7 +98,6 @@ class controller{
 
         $this->user = $GLOBALS["user"] = $_SESSION["user"];
                
-        $data = new gridData();
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("update", $_GET)){

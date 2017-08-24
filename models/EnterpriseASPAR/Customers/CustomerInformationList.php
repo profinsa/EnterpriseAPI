@@ -1,35 +1,36 @@
 <?php
-
 /*
-Name of Page: CustomerInformationList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerInformationList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/CustomerInformationList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerInformationList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerInformationList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/09/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: CustomerInformationList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerInformationList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/CustomerInformationList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerInformationList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerInformationList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/14/2017
+  Last Modified by: Zaharov Nikita
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "customerinformation";
 	public $dashboardTitle ="Customer Information";
@@ -709,19 +710,44 @@ class gridData extends gridDataSource{
 				"defaultValue" => ""
 			]
 		],
+        /*        "Ship To" =>[
+            "CustomerID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ]
+        ],
+        "Ship For" =>[
+            "CustomerID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ]
+            ],*/
+        "Credit" =>[
+            "CustomerID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ]
+        ],
+        "Customer Comments" =>[
+            "CustomerID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ]
+        ],
         "Customer Transactions" => [
             "CustomerID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text"
-            ],
+            ]
         ],
         "Customer Transactions History" => [
             "CustomerID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text"
-            ],
+            ]
         ]
     ];
+    
 	public $columnNames = [
 		"CustomerID" => "Customer ID",
 		"CustomerTypeID" => "Customer Type ID",
@@ -856,48 +882,265 @@ class gridData extends gridDataSource{
 		"TransactionAmount" => "Transaction Amount",
         "CurrencyID" => "Currency ID",
 		"ShipDate" => "Ship Date",
-		"TrackingNumber" => "Tracking Number"
+		"TrackingNumber" => "Tracking Number",
+        "CommentLineID" => "CommentLineID",
+        "CommentDate" => "CommentDate",
+        "CommentType" => "CommentType",
+        "Comment" => "Comment",
+        "ReferenceID" => "Reference ID",
+        "ReferenceName" => "Name",
+        "ReferenceDate" => "Date",
+        "ReferenceFactor" => "ReferenceFactor",
+        "ReferenceSoldSince" => "Sold Since",
+        "ReferenceLastSale" => "Last Sale",
+        "ReferenceHighCredit" => "High Credit",
+        "ReferenceCurrentBalance" => "Current Balance",
+        "ReferencePastDue" => "Past Due",
+        "ReferencePromptPerc" => "Prompt %",
+        "ReferenceLateDays" => "Late Days",
+        "ReferenceFutures" => "ReferenceFutures",
+        "ReferenceComments" => "ReferenceComments",
+        "Approved" => "Approved",
+        "ApprovedBy" => "ApprovedBy",
+        "ApprovedDate" => "ApprovedDate",
+        "EnteredBy" => "EnteredBy",
+        "ShipToID" => "ShipToID",
+        "ShipForID" => "ShipForID",
+        "ShipForName" => "ShipForName",
+        "ShipForAddress1" => "ShipForAddress1",
+        "ShipForAddress2" => "ShipForAddress2",
+        "ShipForAddress3" => "ShipForAddress3",
+        "ShipForCity" => "ShipForCity",
+        "ShipForState" => "ShipForState",
+        "ShipForZip" => "ShipForZip",
+        "ShipForeCountry" => "ShipForeCountry",
+        "ShipForEmail" => "ShipForEmail",
+        "ShipForWebPage" => "ShipForWebPage",
+        "ShipForAttention" => "ShipForAttention",
+        "ShipForNotes" => "ShipForNotes",
+        "CommentLineID" => "Comment Line ID"
 	];
 
-    public $transactionsIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
-	public $transactionsFields = [
-		"TransactionType" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
-		],
-		"TransactionNumber" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
-		],
-		"TransactionDate" => [
-			"dbType" => "datetime",
-			"inputType" => "datetime"
-		],
-		"TransactionAmount" => [
-            "dbType" => "decimal(19,4)",
-            "format" => "{0:n}",
-            "inputType" => "text"
-		],
-        "CurrencyID" =>	[
-            "dbType" => "varchar(3)",
-            "inputType" => "dropdown",
+    public $detailPages = [
+        /*        "Ship For" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            //"editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/Customers/ViewShipForLocations",
+            "newKeyField" => "CustomerID",
+            "keyFields" => ["CustomerID", "ReceiptTypeID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","CustomerID"],
+            "gridFields" => [
+                "CommentLineID" => [
+                    "dbType" => "int(11)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "CommentDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime",
+                    "defaultValue" => "now"
+                ],
+                "CommentType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "Comment" => [
+                    "dbType" => "varchar(255)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ]
+            ]
+            ],*/
+        "Customer Comments" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/OrderProcessing/OrderTrackingDetail",
+            "newKeyField" => "CustomerID",
+            "keyFields" => ["CustomerID", "CommentLineID"],
+            "detailIdFields" => ["CompanyID", "DivisionID", "DepartmentID", "CustomerID", "CommentLineID"],
+            "gridFields" => [
+                "CommentLineID" => [
+                    "dbType" => "int(11)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "CommentDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime",
+                    "defaultValue" => "now"
+                ],
+                "CommentType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "Comment" => [
+                    "dbType" => "varchar(255)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ]
+            ]
         ],
-		"ShipDate" => [
-			"dbType" => "datetime",
-			"inputType" => "datetime"
-		],
-		"TrackingNumber" => [
-			"dbType" => "varchar(50)",
-			"inputType" => "text"
-		]
-	];
-    
-    //getting rows for grid
-    public function getTransactions($CustomerID, $type){
-        $user = $_SESSION["user"];
+        "Credit" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            //            "editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/Customers/ViewCreditReferences",
+            "newKeyField" => "CustomerID",
+            "keyFields" => ["CustomerID", "ReferenceID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","CustomerID"],
+            "gridFields" => [
+                "ReferenceID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "ReferenceName" => [
+                    "dbType" => "varchar(30)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "ReferenceDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime",
+                    "defaultValue" => "now"
+                ],
+                "ReferenceSoldSince" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime",
+                    "defaultValue" => "now"
+                ],
+                "ReferenceLastSale" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime",
+                    "defaultValue" => "now"
+                ],
+                "ReferenceHighCredit" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "ReferenceCurrentBalance" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "ReferencePastDue" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "ReferencePromptPerc" => [
+                    "dbType" => "float",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "ReferenceLateDays" => [
+                    "dbType" => "int(11)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ]
+            ]
+        ],
+        "Customer Transactions" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/OrderProcessing/OrderTrackingDetail",
+            "newKeyField" => "CustomerID",
+            "keyFields" => ["CustomerID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","CustomerID"],
+            "gridFields" => [
+                "TransactionType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TransactionAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "CurrencyID" =>	[
+                    "dbType" => "varchar(3)",
+                    "inputType" => "dropdown",
+                ],
+                "ShipDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TrackingNumber" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ]
+            ]
+        ],
+        "Customer Transactions History" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/ProjectsJobs/ViewProjects",
+            "newKeyField" => "CustomerID",
+            "keyFields" => ["CustomerID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","CustomerID"],
+            "gridFields" => [
+                "TransactionType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TransactionAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "CurrencyID" =>	[
+                    "dbType" => "varchar(3)",
+                    "inputType" => "dropdown",
+                ],
+                "ShipDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TrackingNumber" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ]
+            ]
+        ]
+    ];
+
+    //getting rows for Transaction grids
+    public function getTransactionsWithType($CustomerID, $type){
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
-        foreach($this->transactionsFields as $key=>$value){
+        foreach($this->detailPages["Customer Transactions"]["gridFields"] as $key=>$value){
             $fields[] = $key;
             if(key_exists("addFields", $value)){
                 $_fields = explode(",", $value["addFields"]);
@@ -905,7 +1148,7 @@ class gridData extends gridDataSource{
                     $fields[] = $addfield;
             }
         }
-        foreach($this->transactionsIdFields as $key){
+        foreach($this->detailPages["Customer Transactions"]["detailIdFields"] as $key){
             switch($key){
             case "CompanyID" :
                 $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
@@ -918,15 +1161,103 @@ class gridData extends gridDataSource{
                 break;
             }
             if(!in_array($key, $fields))
-                $fields[] = $key;
+                $fields[] = $key;                
         }
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
         $keyFields .= " AND CustomerID='" . $CustomerID . "'";
-
         
-        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $fields) . " from " . ($type == "history" ? "customerhistorytransactions " : "customertransactions ") . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from " . ($type == "history" ? "customerhistorytransactions " : "customertransactions ") . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+        
+    public function getCustomerTransactions($CustomerID){
+        return $this->getTransactionsWithType($CustomerID, "normal");
+    }
+    
+    public function getCustomerTransactionsHistory($CustomerID){
+        return $this->getTransactionsWithType($CustomerID, "history");
+    }
+
+    //getting rows for Customer Commens grid
+    public function getCustomerComments($CustomerID){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["Customer Comments"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages["Customer Comments"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND CustomerID='" . $CustomerID . "'";
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from customercomments " . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+
+    public function getCredit($CustomerID){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["Credit"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages["Credit"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND CustomerID='" . $CustomerID . "'";
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from customercreditreferences " . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);

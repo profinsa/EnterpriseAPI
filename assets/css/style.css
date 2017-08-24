@@ -69,9 +69,9 @@ adoptation for screen sizes
 
 .order-entry-header .row-header td {
     font-weight : bold;
-    background-color: #4F5467;
+    background-color: #black;
     color : #fff;
-    border-left : 1px solid #fff;
+    border-left : 1px solid; /* #fff;*/
 }
 
 .order-entry-main-table .title {

@@ -1,6 +1,36 @@
 <?php
+/*
+  Name of Page: OrderHistoryDetail model
+
+  Method: Model for OrderDetail form. It provides data from database and default values, column names and categories
+
+  Date created: 05/17/2017 Zaharov Nikita
+
+  Use: this model used by views/OrderDetail for
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+
+  Called from:
+  created and used for ajax requests by grid controllers
+  used as model by views
+
+  Calls:
+  MySql Database
+
+  Last Modified: 08/14/2017
+  Last Modified by: Zaharov Nikita
+*/
 
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "orderdetailhistory";
     //	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
@@ -56,14 +86,14 @@ class gridData extends gridDataSource{
             "OrderNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                // "disabledEdit" => "true",
+                "disabledEdit" => "true",
                 "disabledNew" => "true",
                 "defaultValue" => "0.00"
             ],
             "OrderLineNumber" => [
                 "dbType" => "bigint(20)",
                 "inputType" => "text",
-                // "disabledEdit" => "true",
+                "disabledEdit" => "true",
                 "disabledNew" => "true",
                 "defaultValue" => "-1"
             ],
@@ -263,7 +293,7 @@ class gridData extends gridDataSource{
 
     public $inventoryitemsIdFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
     public function getItems(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
 
@@ -283,7 +313,7 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
-        $result = $GLOBALS["DB"]::select("SELECT * from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT * from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true);
         

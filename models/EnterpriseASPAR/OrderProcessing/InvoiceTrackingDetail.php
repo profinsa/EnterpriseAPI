@@ -29,7 +29,9 @@
   Last Modified by: Nikita Zaharov
 */
 
-require "./models/gridDataSource.php";
+namespace App\Models;
+require __DIR__ . "/../../../Models/gridDataSource.php";
+
 class gridData extends gridDataSource{
     protected $tableName = "invoicetrackingdetail";
     public $dashboardTitle ="Invoice Tracking Detail";

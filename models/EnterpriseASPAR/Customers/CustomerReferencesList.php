@@ -3,7 +3,7 @@
 /*
 Name of Page: CustomerReferencesList model
  
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerReferencesList.php It provides data from database and default values, column names and categories
+Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerReferencesList.php It provides data from database and default values, column names and categories
  
 Date created: 02/16/2017  Kenna Fetterman
  
@@ -20,15 +20,16 @@ Output parameters:
 - methods have their own output
  
 Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerReferencesList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Customers\CustomerReferencesList.php
+created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerReferencesList.php
+used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerReferencesList.php
  
 Calls:
 MySql Database
  
-Last Modified: 04/09/2017
-Last Modified by: Kenna Fetterman
+Last Modified: 08/14/2017
+Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	protected $tableName = "customerreferences";

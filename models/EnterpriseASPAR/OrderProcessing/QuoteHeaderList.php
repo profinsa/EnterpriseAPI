@@ -1,35 +1,37 @@
 <?php
-
 /*
-Name of Page: QuoteHeaderList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\QuoteHeaderList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/QuoteHeaderList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\QuoteHeaderList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\OrderProcessing\QuoteHeaderList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/09/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: QuoteHeaderList model
+
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\QuoteHeaderList.php It provides data from database and default values, column names and categories
+
+  Date created: 02/16/2017  Kenna Fetterman
+
+  Use: this model used by views/QuoteHeaderList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\QuoteHeaderList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\QuoteHeaderList.php
+
+  Calls:
+  MySql Database
+
+  Last Modified: 08/18/2017
+  Last Modified by: Zaharov Nikita
 */
+
 require "./models/gridDataSource.php";
+require "./models/helpers/recalc.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "orderheader";
 	protected $gridConditions = "LOWER(OrderTypeID) = LOWER('Quote')";
@@ -68,7 +70,12 @@ class gridData extends gridDataSource{
 			"dbType" => "datetime",
 			"format" => "{0:d}",
 			"inputType" => "datetime"
-		]
+		],
+        "TrackingNumber" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ]
 	];
 
 	public $editCategories = [
@@ -137,7 +144,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => "USD"
+				"defaultValue" => ""
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -508,10 +515,6 @@ class gridData extends gridDataSource{
                 "defaultValue" => "(new)",
                 "dirtyAutoincrement" => "true"
             ],
-            "OrderTypeID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text"
-            ],
             "OrderDate" => [
                 "dbType" => "timestamp",
                 "format" => "{0:d}",
@@ -519,7 +522,8 @@ class gridData extends gridDataSource{
             ],
             "CustomerID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text"
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getCustomers"
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
@@ -529,7 +533,9 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getARTransactionTypes",
-				"defaultValue" => ""
+				"defaultValue" => "",
+                "defaultOverride" => true,
+				"defaultValue" => "Quote"
 			],
 			"OrderCancelDate" => [
 				"dbType" => "datetime",
@@ -562,17 +568,13 @@ class gridData extends gridDataSource{
                 "dataProvider" => "getWarehouses",
 				"defaultValue" => ""
 			],
-            "OrderNumber" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => "",
-                "disabledEdit" => "true"
-			],
 			"OrderTypeID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getOrderTypes",
-				"defaultValue" => ""
+				"defaultValue" => "",
+                "defaultOverride" => true,
+				"defaultValue" => "Quote"
 			],
 			"OrderDate" => [
 				"dbType" => "timestamp",
@@ -621,11 +623,6 @@ class gridData extends gridDataSource{
 			],	
             "TaxGroupID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"CustomerID" => [
-				"dbType" => "varchar(50)",
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
@@ -919,7 +916,7 @@ class gridData extends gridDataSource{
 		"Printed" => "Printed",
 		"PrintedDate" => "Printed Date",
 		"Shipped" => "Shipped",
-		"TrackingNumber" => "Tracking Number",
+		"TrackingNumber" => "Tracking #",
 		"Billed" => "Billed",
 		"BilledDate" => "Billed Date",
 		"InvoiceNumber" => "Invoice #",
@@ -1037,7 +1034,7 @@ class gridData extends gridDataSource{
     public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
     //getting data for Customer Page
     public function getCustomerInfo($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->customerFields as $key=>$value){
@@ -1069,37 +1066,9 @@ class gridData extends gridDataSource{
         if($id)
             $keyFields .= " AND CustomerID='" . $id . "'";
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
-        
-        return $result;
-    }
-
-    public function getCustomers(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->customerIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
         
         return $result;
     }
@@ -1148,7 +1117,7 @@ class gridData extends gridDataSource{
     
     //getting rows for grid
     public function getDetail($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -1180,7 +1149,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND OrderNumber='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from orderdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from orderdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -1189,7 +1158,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber", "OrderLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -1199,7 +1168,135 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from orderdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from orderdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+    public function getPrecision($currencyID) {
+        $user = Session::get("user");
+
+        $result = DB::select("SELECT CurrencyPrecision from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CurrencyID='" . $currencyID . "'" , array());
+
+        if ($result) {
+            return $result[0]->CurrencyPrecision;
+        } else {
+            return 2;
+        }
+    }
+
+    public function recalcQuoteDetail($currencyPrecision, $allowanceDiscountPerc, $quoteDetail) {
+        $DiscountPerc = $quoteDetail->DiscountPerc + $allowanceDiscountPerc;
+        $Qty = $quoteDetail->OrderQty;
+        $Taxable = $quoteDetail->Taxable;
+        $TaxPercent = $quoteDetail->TaxPercent;
+        $ItemUnitPrice = $quoteDetail->ItemUnitPrice;
+        $SubTotal = round($Qty * $ItemUnitPrice, $currencyPrecision);
+
+        $ItemDiscountAmount = round($Qty * $ItemUnitPrice * $DiscountPerc / 100, $currencyPrecision);
+        $ItemTotal = round($Qty * $ItemUnitPrice * (100 - $DiscountPerc) / 100, $currencyPrecision);
+
+        if ($Taxable == "1") {
+            $ItemTaxAmount = round(($ItemTotal * $TaxPercent) / 100, $currencyPrecision);
+            $TaxAmount = $ItemTaxAmount;
+            $ItemTotalTaxable = $ItemTotal;
+            $ItemTotal += $ItemTaxAmount;
+        } else {
+            $TaxAmount = 0;
+            $ItemTotalTaxable = 0;
+        }
+
+        return [
+            "ItemTotalTaxable" => $ItemTotalTaxable,
+            "ItemDiscountAmount" => $ItemDiscountAmount,
+
+            // for row updating OrderDetail
+            "TaxAmount" => $TaxAmount,
+            "Total" => $ItemTotal,
+            "SubTotal" => $SubTotal
+        ];
+    }
+
+    public function recalcQuote() {
+        $user = Session::get("user");
+
+        $orderNumber = $_POST["OrderNumber"];
+
+        $result = DB::select("SELECT * from OrderHeader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND OrderNumber='" . $orderNumber . "'", array());
+
+        $orderHeader = $result[0];
+
+        $SubTotal = 0;
+        $Total = 0;
+        $TotalTaxable = 0;
+        $TaxAmount = 0;
+        $HeaderTaxAmount = 0;
+        $ItemTotalTaxable = 0;
+        $ItemDiscountAmount = 0;
+        $DiscountAmount = 0;
+
+        $Precision = $this->getPrecision($orderHeader->CurrencyID);
+
+        $quoteDetails = DB::select("SELECT * from OrderDetail WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND OrderNumber='" . $orderNumber . "'", array());
+        foreach($quoteDetails as $quoteDetail) {
+            $detailResult = $this->recalcQuoteDetail($Precision, $orderHeader->AllowanceDiscountPerc, $quoteDetail);
+            $SubTotal += $detailResult["SubTotal"];
+            $Total += $detailResult["Total"];
+            $TotalTaxable += $detailResult["ItemTotalTaxable"];
+            $DiscountAmount += $detailResult["ItemDiscountAmount"];
+            $TaxAmount += $detailResult["TaxAmount"];
+
+            DB::update("UPDATE OrderDetail set TaxAmount='" . $detailResult["TaxAmount"] . "', Total='" . $detailResult["Total"] . "', SubTotal='" . $detailResult["SubTotal"] . "' WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND OrderLineNumber='" . $quoteDetail->OrderLineNumber ."'");
+        }
+
+        $Handling = $orderHeader->Handling;
+        $HeaderTaxPercent = $orderHeader->TaxPercent;
+
+        if($Handling > 0) {
+            $HeaderTaxAmount = round($Handling * $HeaderTaxPercent / 100, $Precision);
+        }
+
+        $Freight = $orderHeader->Freight;
+        $TaxFreight = $orderHeader->TaxFreight;
+
+        if (($Freight > 0) && ($TaxFreight == "1")) {
+            $HeaderTaxAmount = round($HeaderTaxAmount + $Freight * $HeaderTaxPercent / 100, $Precision);
+        }
+
+        $Total += ($Handling + $Freight + $HeaderTaxAmount);
+
+        DB::update("UPDATE OrderHeader set SubTotal='" . $SubTotal . "', DiscountAmount='" . $DiscountAmount . "', TaxableSubTotal='" . $TotalTaxable . "', BalanceDue='" . round($Total - $orderHeader->AmountPaid, $Precision) ."', TaxAmount='" .($TaxAmount + $HeaderTaxAmount) . "', Total='" . $Total . "' WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND OrderNumber='" . $orderNumber ."'");
+    }
+
+    public function createFromQuote() {
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        if ($recalc->lookForProcedure("Order_CreateFromQuote")) {
+            DB::statement("CALL Order_CreateFromQuote('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+
+            if($result[0]->SWP_RET_VALUE == -1) {
+                echo "error";
+                return response("failed", 400)->header('Content-Type', 'text/plain');
+            } else {
+                echo "ok";
+                header('Content-Type: application/json');
+            }
+        } else {
+            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+        }
+    }
+        
+    public function getPage($id){
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
+            $this->gridConditions .= "and OrderDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
     }
 }
 ?>

@@ -1,13 +1,12 @@
 <?php
-
 /*
-Name of Page: PaymentsHeaderList model
+Name of Page: PaymentsHeaderIssueList model
  
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Payments\PaymentsHeaderList.php It provides data from database and default values, column names and categories
+Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderIssueList.php It provides data from database and default values, column names and categories
  
 Date created: 02/16/2017  Kenna Fetterman
  
-Use: this model used by views/PaymentsHeaderList for:
+Use: this model used by views/PaymentsHeaderIssueList for:
 - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
 - for loading data from tables, updating, inserting and deleting
  
@@ -20,15 +19,16 @@ Output parameters:
 - methods have their own output
  
 Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Payments\PaymentsHeaderList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Payments\PaymentsHeaderList.php
+created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderIssueList.php
+used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderIssueList.php
  
 Calls:
 MySql Database
  
-Last Modified: 04/13/2017
-Last Modified by: Kenna Fetterman
+Last Modified: 08/15/2017
+Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 protected $tableName = "paymentsheader";

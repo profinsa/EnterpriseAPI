@@ -25,7 +25,7 @@
   Calls:
   sql
 
-  Last Modified: 07.25.2016
+  Last Modified: 08.16.2016
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,12 +36,12 @@ class gridData extends gridDataSource{
 
     public $dashboardTitle = "Ledger Account Sub Group";
     public $breadCrumbTitle = "Ledger Account Sub Group";
-    public $idField = "GLAccountGroupID";
-    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "GLAccountGroupID", "GLAccountSubGroupID"];
+    public $idField = "GLAccountCode";
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "GLAccountCode", "GLSubAccountCode"];
     
     //fields to render in grid
     public $gridFields = [
-        "GLAccountSubGroupID" => [
+        "GLSubAccountCode" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
         ],
@@ -49,7 +49,7 @@ class gridData extends gridDataSource{
             "dbType" => "varchar(128)",
             "inputType" => "text"
         ],
-        "GLAccountGroupID" => [
+        "GLAccountCode" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
         ],
@@ -75,7 +75,7 @@ class gridData extends gridDataSource{
     //categories which contains table columns, used by view for render tabs and them content
     public $editCategories = [
         "Main" => [
-            "GLAccountSubGroupID" => [
+            "GLSubAccountCode" => [
                 "dbType" => "varchar(36)",
                 "disabledEdit" => true,
                 "inputType" => "text"
@@ -85,7 +85,7 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
-            "GLAccountGroupID" => [
+            "GLAccountCode" => [
                 "dbType" => "varchar(36)",
                 "disabledEdit" => true,
                 "inputType" => "text",
@@ -118,8 +118,8 @@ class gridData extends gridDataSource{
 
     //table column to translation/ObjID
     public $columnNames = [
-        "GLAccountGroupID" => "Group Account ID",
-        "GLAccountSubGroupID" => "Sub Group Account ID",
+        "GLAccountCode" => "Group Account ID",
+        "GLSubAccountCode" => "Sub Group Account ID",
         "GLAccountSubGroupName" => "Group Account Name",
         "GLAccountGroupBalance"	=> "Group Balance",
         "GLAccountUse" => "Group Account Use",

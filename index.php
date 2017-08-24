@@ -33,15 +33,24 @@ use Illuminate\Database\Capsule\Manager as Capsule;
 $GLOBALS["capsule"] = $GLOBALS["DB"] = new Capsule;
 
 //class for emulating global DB class from laravel
-class DB{
-    public static function select($query, $args){
-        return $GLOBALS["DB"]::select($query, $args);
+class DB{    
+    public static function select($query, $args = false){
+        return $GLOBALS["DB"]::select($query, $args ? $args : array());
     }
-    public static function insert($query, $args){
-        return $GLOBALS["DB"]::insert($query, $args);
+    public static function update($query, $args = false){
+        return $GLOBALS["DB"]::update($query, $args ? $args : array());
     }
-    public static function delete($query, $args){
-        return $GLOBALS["DB"]::delete($query, $args);
+    public static function insert($query, $args = false){
+        return $GLOBALS["DB"]::insert($query, $args ? $args : array());
+    }
+    public static function delete($query, $args = false){
+        return $GLOBALS["DB"]::delete($query, $args ? $args : array());
+    }
+    public static function connection($query = false, $args = false){
+        return $GLOBALS["DB"]::connection();
+    }
+    public static function getDatabaseName(){
+        return $GLOBALS["DB"]::getDatabaseName();
     }
 }
 

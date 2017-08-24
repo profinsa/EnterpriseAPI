@@ -25,11 +25,12 @@
   Calls:
   MySql Database
 
-  Last Modified: 05/29/2017
+  Last Modified: 08/15/2017
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
     protected $tableName = "workorderdetail";
     public $dashboardTitle ="Inventory Work Order Detail";
@@ -55,6 +56,7 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "disabledEdit" => "true",
+                "disabledNew" => "true",
                 "defaultValue" => ""
             ],
             "WorkOrderLineNumber" => [

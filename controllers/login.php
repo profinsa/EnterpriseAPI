@@ -40,7 +40,6 @@ require 'models/companies.php';
 require 'models/users.php';
 
 $GLOBALS["capsule"]->setAsGlobal();
-//echo json_encode() . 'eeeeeeeeeee';
 
 class controller{
     public $styles = [

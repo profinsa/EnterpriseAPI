@@ -1,41 +1,43 @@
 <?php
-
 /*
-Name of Page: PurchaseHeaderList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/PurchaseHeaderList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/13/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: PurchaseHeaderList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/PurchaseHeaderList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/18/2017
+  Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
 	protected $tableName = "purchaseheader";
 	protected $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND ((IFNULL(Received,0) = 0) OR (IFNULL(PurchaseHeader.Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT')";
 	public $dashboardTitle ="Purchases";
 	public $breadCrumbTitle ="Purchases";
 	public $idField ="PurchaseNumber";
+    //	public $modes = ["grid", "view", "edit];
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
 	public $gridFields = [
 		"PurchaseNumber" => [
@@ -66,17 +68,27 @@ class gridData extends gridDataSource{
 		],
 		"Shipped" => [
 			"dbType" => "tinyint(1)",
-			"inputType" => "text"
+			"inputType" => "checkbox"
 		],
 		"ShipDate" => [
 			"dbType" => "datetime",
 			"format" => "{0:d}",
 			"inputType" => "datetime"
 		],
+        "TrackingNumber" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
 		"Received" => [
 			"dbType" => "tinyint(1)",
-			"inputType" => "text"
-		]
+			"inputType" => "checkbox"
+		],
+        "RecivingNumber" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ]
 	];
 
 	public $editCategories = [
@@ -145,7 +157,7 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(3)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-				"defaultValue" => "USD"
+				"defaultValue" => ""
 			],
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
@@ -406,7 +418,8 @@ class gridData extends gridDataSource{
             ],
             "OrderedBy" => [
                 "dbType" => "varchar(15)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
                 "disabledEdit" => "true"
             ],
             "PurchaseNumber" => [
@@ -424,7 +437,10 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text"
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getVendors",
+                "defaultOverride" => true,
+                "defaultValue" => "DEFAULT"
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
@@ -434,7 +450,6 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getARTransactionTypes",
-				"defaultValue" => ""
 			],
 			"PurchaseCancelDate" => [
 				"dbType" => "datetime",
@@ -792,9 +807,9 @@ class gridData extends gridDataSource{
 		"ApprovedDate" => "Approved Date",
 		"Printed" => "Printed",
 		"PrintedDate" => "Printed Date",
-		"TrackingNumber" => "Tracking Number",
+		"TrackingNumber" => "Tracking #",
 		"ReceivedDate" => "Received Date",
-		"RecivingNumber" => "Reciving Number",
+		"RecivingNumber" => "Reciving #",
 		"Posted" => "Posted",
 		"PostedDate" => "Posted Date",
 		"CommissionPaid" => "Commission Paid",
@@ -926,7 +941,7 @@ class gridData extends gridDataSource{
     public $vendorIdFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
     //getting data for Vendor Page
     public function getVendorInfo($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->vendorFields as $key=>$value){
@@ -958,37 +973,9 @@ class gridData extends gridDataSource{
         if($id)
             $keyFields .= " AND VendorID='" . $id . "'";
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
-        
-        return $result;
-    }
-
-    public function getVendors(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->vendorIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
         
         return $result;
     }
@@ -1037,7 +1024,7 @@ class gridData extends gridDataSource{
     
     //getting rows for grid
     public function getDetail($id){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->embeddedgridFields as $key=>$value){
@@ -1069,7 +1056,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND PurchaseNumber='" . $id . "'";
 
         
-        $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -1078,7 +1065,7 @@ class gridData extends gridDataSource{
     }
 
     public function detailDelete(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber", "PurchaseLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
@@ -1088,7 +1075,163 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        $GLOBALS["DB"]::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+    public function getPrecision($currencyID) {
+        $user = Session::get("user");
+
+        $result = DB::select("SELECT CurrencyPrecision from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CurrencyID='" . $currencyID . "'" , array());
+
+        if ($result) {
+            return $result[0]->CurrencyPrecision;
+        } else {
+            return 2;
+        }
+    }
+
+    public function recalcPurcahseDetail($currencyPrecision, $purchaseDetail) {
+        $DiscountPerc = $purchaseDetail->DiscountPerc;
+        $Qty = $purchaseDetail->OrderQty;
+        $Taxable = $purchaseDetail->Taxable;
+        $TaxPercent = $purchaseDetail->TaxPercent;
+        $ItemUnitPrice = $purchaseDetail->ItemUnitPrice;
+        $SubTotal = round($Qty * $ItemUnitPrice, $currencyPrecision);
+
+        $ItemDiscountAmount = round($Qty * $ItemUnitPrice * $DiscountPerc / 100, $currencyPrecision);
+        $ItemTotal = round($Qty * $ItemUnitPrice * (100 - $DiscountPerc) / 100, $currencyPrecision);
+
+        if ($Taxable == "1") {
+            $ItemTaxAmount = round(($ItemTotal * $TaxPercent) / 100, $currencyPrecision);
+            $TaxAmount = $ItemTaxAmount;
+            $ItemTotalTaxable = $ItemTotal;
+            $ItemTotal += $ItemTaxAmount;
+        } else {
+            $TaxAmount = 0;
+            $ItemTotalTaxable = 0;
+        }
+
+        return [
+            "ItemTotalTaxable" => $ItemTotalTaxable,
+            "ItemDiscountAmount" => $ItemDiscountAmount,
+
+            // for row updating PurchaseDetail
+            "TaxAmount" => $TaxAmount,
+            "Total" => $ItemTotal,
+            "SubTotal" => $SubTotal
+        ];
+    }
+
+    public function recalcPurchase() {
+        $user = Session::get("user");
+
+        $purchaseNumber = $_POST["PurchaseNumber"];
+
+        $result = DB::select("SELECT * from PurchaseHeader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PurchaseNumber='" . $purchaseNumber . "'", array());
+
+        $purchaseHeader = $result[0];
+
+        $SubTotal = 0;
+        $Total = 0;
+        $TotalTaxable = 0;
+        $TaxAmount = 0;
+        $HeaderTaxAmount = 0;
+        $ItemTotalTaxable = 0;
+        $ItemDiscountAmount = 0;
+        $DiscountAmount = 0;
+
+        $Precision = $this->getPrecision($purchaseHeader->CurrencyID);
+
+        $purchaseDetails = DB::select("SELECT * from PurchaseDetail WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PurchaseNumber='" . $purchaseNumber . "'", array());
+
+        foreach($purchaseDetails as $purchaseDetail) {
+            $detailResult = $this->recalcPurcahseDetail($Precision, $purchaseDetail);
+            $SubTotal += $detailResult["SubTotal"];
+            $Total += $detailResult["Total"];
+            $TotalTaxable += $detailResult["ItemTotalTaxable"];
+            $DiscountAmount += $detailResult["ItemDiscountAmount"];
+            $TaxAmount += $detailResult["TaxAmount"];
+
+            DB::update("UPDATE PurchaseDetail set TaxAmount='" . $detailResult["TaxAmount"] . "', Total='" . $detailResult["Total"] . "', SubTotal='" . $detailResult["SubTotal"] . "' WHERE PurchaseLineNumber='" . $purchaseDetail->PurchaseLineNumber ."'");
+        }
+
+
+        $Handling = $purchaseHeader->Handling;
+        $HeaderTaxPercent = $purchaseHeader->TaxPercent;
+
+
+        if($Handling > 0) {
+            $HeaderTaxAmount = round($Handling * $HeaderTaxPercent / 100, $Precision);
+        }
+
+        $Freight = $purchaseHeader->Freight;
+        $TaxFreight = $purchaseHeader->TaxFreight;
+
+        if (($Freight > 0) && ($TaxFreight == "1")) {
+            $HeaderTaxAmount = round($HeaderTaxAmount + $Freight * $HeaderTaxPercent / 100, $Precision);
+        }
+
+        $Total += ($Handling + $Freight + $HeaderTaxAmount);
+
+        DB::update("UPDATE PurchaseHeader set SubTotal='" . $SubTotal . "', DiscountAmount='" . $DiscountAmount . "', TaxableSubTotal='" . $TotalTaxable . "', BalanceDue='" . round($Total - $purchaseHeader->AmountPaid, $Precision) ."', TaxAmount='" .($TaxAmount + $HeaderTaxAmount) . "', Total='" . $Total . "' WHERE PurchaseNumber='" . $purchaseNumber ."'");
+    }
+
+    public function PostPurchase(){
+        $user = Session::get("user");
+
+         DB::statement("CALL Purchase_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
+
+         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+         } else {
+            echo "ok";
+            header('Content-Type: application/json');
+         }
+    }
+
+    public function UnPostPurchase(){
+        $user = Session::get("user");
+
+         DB::statement("CALL Purchase_Cancel('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@SWP_RET_VALUE)");
+
+         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+         } else {
+            echo "ok";
+            header('Content-Type: application/json');
+         }
+    }
+
+    public function Memorize(){
+        $user = Session::get("user");
+        $keyValues = explode("__", $_POST["id"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
+        echo "ok";
+    }
+    
+    public function getPage($id){
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
+            $this->gridConditions .= "and PurchaseDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "receivedtoday"){
+            $this->gridConditions .= "and Received=0 and PurchaseDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
     }
 }
 ?>

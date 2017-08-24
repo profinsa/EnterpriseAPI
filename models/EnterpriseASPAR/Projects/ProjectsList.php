@@ -1,35 +1,37 @@
 <?php
-
 /*
-Name of Page: ProjectsList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Projects\ProjectsList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/ProjectsList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Projects\ProjectsList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAR\Projects\ProjectsList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/09/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: ProjectsList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Projects\ProjectsList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/ProjectsList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Projects\ProjectsList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Projects\ProjectsList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/14/2017
+  Last Modified by: Zaharov Nikita
 */
+
 require "./models/gridDataSource.php";
+require "./models/helpers/recalc.php";
+
 class gridData extends gridDataSource{
     protected $tableName = "projects";
     public $dashboardTitle ="Projects";
@@ -64,7 +66,7 @@ class gridData extends gridDataSource{
         ],
         "ProjectOpen" => [
             "dbType" => "tinyint(1)",
-            "inputType" => "text"
+            "inputType" => "checkbox"
         ]
     ];
 
@@ -73,7 +75,8 @@ class gridData extends gridDataSource{
             "ProjectID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultValue" => "",
+                "disabledEdit" => "true"
             ],
             "ProjectName" => [
                 "dbType" => "varchar(50)",
@@ -92,7 +95,8 @@ class gridData extends gridDataSource{
             ],
             "ProjectTypeID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getProjectTypes",
                 "defaultValue" => ""
             ],
             "ProjectStartDate" => [
@@ -107,7 +111,8 @@ class gridData extends gridDataSource{
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
@@ -117,27 +122,36 @@ class gridData extends gridDataSource{
             ],
             "ProjectEstRevenue" => [
                 "dbType" => "decimal(19,4)",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "ProjectActualRevenue" => [
                 "dbType" => "decimal(19,4)",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "ProjectEstCost" => [
                 "dbType" => "decimal(19,4)",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "ProjectActualCost" => [
                 "dbType" => "decimal(19,4)",
+                "currencyField" => "CurrencyID",
+                "formatFunction" => "currencyFormat",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "EmployeeID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
                 "defaultValue" => ""
             ],
             "ProjectNotes" => [
@@ -147,15 +161,11 @@ class gridData extends gridDataSource{
             ],
             "GLSalesAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
             ],
             "ProjectOpen" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "Memorize" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
@@ -203,41 +213,89 @@ class gridData extends gridDataSource{
 		"TrackingNumber" => "Tracking Number"
     ];
     
-    public $transactionsIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
-	public $transactionsFields = [
-		"TransactionType" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
-		],
-		"TransactionNumber" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
-		],
-		"TransactionDate" => [
-			"dbType" => "datetime",
-			"inputType" => "datetime"
-		],
-		"TransactionAmount" => [
-            "dbType" => "decimal(19,4)",
-            "format" => "{0:n}",
-            "inputType" => "text"
-		],
-        "CurrencyID" =>	[
-            "dbType" => "varchar(3)",
-            "inputType" => "dropdown",
+    public $detailPages = [
+        "Project Transactions" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/OrderProcessing/OrderTrackingDetail",
+            "newKeyField" => "CustomerID",
+            "keyFields" => ["CustomerID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","CustomerID"],
+            "gridFields" => [
+                "TransactionType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TransactionAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "CurrencyID" =>	[
+                    "dbType" => "varchar(3)",
+                    "inputType" => "dropdown",
+                ],
+                "CustomerID" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ]
+            ]
         ],
-		"CustomerID" => [
-			"dbType" => "varchar(50)",
-			"inputType" => "text"
-		]
-	];
-    
+        "Project Transactions History" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/ProjectsJobs/ViewProjects",
+            "newKeyField" => "CustomerID",
+            "keyFields" => ["CustomerID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","CustomerID"],
+            "gridFields" => [
+                "TransactionType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TransactionAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "CurrencyID" =>	[
+                    "dbType" => "varchar(3)",
+                    "inputType" => "dropdown",
+                ],
+                "CustomerID" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ]
+            ]
+        ]
+    ];
+
     //getting rows for grid
-    public function getTransactions($CustomerID, $type){
-        $user = $_SESSION["user"];
+    public function getTransactionsWithType($CustomerID, $type){
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
-        foreach($this->transactionsFields as $key=>$value){
+        foreach($this->detailPages["Project Transactions"]["gridFields"] as $key=>$value){
             $fields[] = $key;
             if(key_exists("addFields", $value)){
                 $_fields = explode(",", $value["addFields"]);
@@ -245,7 +303,7 @@ class gridData extends gridDataSource{
                     $fields[] = $addfield;
             }
         }
-        foreach($this->transactionsIdFields as $key){
+        foreach($this->detailPages["Project Transactions"]["detailIdFields"] as $key){
             switch($key){
             case "CompanyID" :
                 $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
@@ -258,19 +316,49 @@ class gridData extends gridDataSource{
                 break;
             }
             if(!in_array($key, $fields))
-                $fields[] = $key;
+                $fields[] = $key;                
         }
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
         $keyFields .= " AND CustomerID='" . $CustomerID . "'";
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from " . ($type == "history" ? "projecthistorytransactions " : "projecttransactions ") . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
-        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $fields) . " from " . ($type == "history" ? "projecthistorytransactions " : "projecttransactions ") . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true);
         
-
         return $result;
+    }
+        
+    public function getProjectTransactions($CustomerID){
+        return $this->getTransactionsWithType($CustomerID, "normal");
+    }
+    
+    public function getProjectTransactionsHistory($CustomerID){
+        return $this->getTransactionsWithType($CustomerID, "history");
+    }
+
+    public function recalc() {
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        if ($recalc->lookForProcedure("Project_ReCalc2")) {
+            DB::statement("CALL Project_ReCalc2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ProjectID"] . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+
+            if($result[0]->SWP_RET_VALUE == -1) {
+                echo "error";
+                return response("failed", 400)->header('Content-Type', 'text/plain');
+            } else {
+                echo "ok";
+                header('Content-Type: application/json');
+            }
+        } else {
+            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+        }
     }
 }
 ?>

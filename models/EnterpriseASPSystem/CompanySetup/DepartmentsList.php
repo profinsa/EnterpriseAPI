@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/05/2017
+  Last Modified: 08/11/2017
   Last Modified by: Nikita Zaharov
 */
 
@@ -199,6 +199,7 @@ class gridData extends gridDataSource{
         $user = Session::get("user");
         
         $DepartmentID = $_POST["DepartmentID"];
+        $pdo = DB::connection()->getPdo();
         $result = DB::select("select * FROM Departments WHERE CompanyID='{$user["CompanyID"]}' AND DivisionID='{$user["DivisionID"]}' AND DepartmentID='$DepartmentID'", array());
         if(count($result))
             return response("Department Already Exists", 400)->header('Content-Type', 'text/plain');
@@ -238,26 +239,66 @@ class gridData extends gridDataSource{
                 $columns = [];
                 foreach($data[0] as $key=>$column)
                     $columns[] = $key;
-                $query = "INSERT INTO $tableName (" . implode(",", $columns) . ") VALUES";
-                foreach($data as $row){
-                    $query .= "(";
-                    foreach($row as $key=>$value){
-                        if($key == "DepartmentID")
-                            $value = $DepartmentID;
-                        if($value == "")
-                            $query .= "NULL,";
-                        else
-                            $query .= "'$value',";
+                if($tableName != "ledgerstoredchartofaccounts"){
+                    $query = "INSERT INTO $tableName (" . implode(",", $columns) . ") VALUES";
+                    foreach($data as $row){
+                        $query .= "(";
+                        foreach($row as $key=>$value){
+                            if($key == "DepartmentID")
+                                $value = $DepartmentID;
+
+                            if($value == "" &&
+                               $key != "CustomerID"&&
+                               $key != "CustomerItemID"&&
+                               $key != "ContactID"&&
+                               $key != "ContactLogID"&&
+                               $key != "InvoiceNumber"&&
+                               $key != "OrderNumber"&&
+                               $key != "EmployeeID"&&
+                               $key != "PurchaseNumber")
+                                $query .= "NULL,";
+                            else
+                                $query .= $pdo->quote($value) . ",";
+                        }
+                        $query = substr($query, 0, -1);
+                        $query .= "),";
                     }
                     $query = substr($query, 0, -1);
-                    $query .= "),";
+                    try {
+                        DB::insert($query, array());
+                    } catch (\Illuminate\Database\QueryException $ex) {
+                        echo 'Выброшено исключение: ',  $ex->getMessage(), "\n";
+                    } //              $response .= $query;
+                }else{
+                    foreach($data as $row){
+                        $query = "INSERT INTO $tableName (" . implode(",", $columns) . ") VALUES";
+                        $query .= "(";
+                        foreach($row as $key=>$value){
+                            if($key == "DepartmentID")
+                                $value = $DepartmentID;
+
+                            if($value == "" &&
+                               $key != "CustomerID"&&
+                               $key != "CustomerItemID"&&
+                               $key != "ContactID"&&
+                               $key != "ContactLogID"&&
+                               $key != "InvoiceNumber"&&
+                               $key != "OrderNumber"&&
+                               $key != "EmployeeID"&&
+                               $key != "PurchaseNumber")
+                                $query .= "NULL,";
+                            else
+                                $query .= $pdo->quote($value) . ",";
+                        }
+                        $query = substr($query, 0, -1);
+                        $query .= ")";
+                        try {
+                            DB::insert($query, array());
+                        } catch (\Illuminate\Database\QueryException $ex) {
+                            echo 'Выброшено исключение: ',  $ex->getMessage(), "\n";
+                        } //              $response .= $query;
+                    }
                 }
-                $query = substr($query, 0, -1);
-                try {
-                    DB::insert($query, array());
-                } catch (\Illuminate\Database\QueryException $ex) {
-                    echo 'Выброшено исключение: ',  $ex->getMessage(), "\n";
-                } //              $response .= $query;
             }
         }
 
