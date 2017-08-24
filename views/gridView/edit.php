@@ -68,7 +68,13 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
                     echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
                        ."></div></div>";
                     break;
-                    
+                    case "file" :
+                    //renders text input with label
+                    echo "<input class=\"file_attachment\" type=\"hidden\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"\" />";
+                    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key . "_attachment" ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"file\" id=\"" . $key . "_attachment" ."\" name=\"" . $key . "_attachment" . "\" class=\"form-control\" value=\"";
+                        echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+                    ."></div></div>";
+                    break;
                     case "datetime" :
                     //renders text input with label
                     echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
@@ -317,34 +323,122 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
     }
 
      //handler of save button if we in new mode. Just doing XHR request to save data
-    function createItem(){
-        var itemData = $("#itemData");
+    // function createItem(){
+    //     var itemData = $("#itemData");
 
-        if (validateForm(itemData)) {
-            $.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemData.serialize(), null, 'json')
-            .success(function(data) {
-                console.log('ok');
-                window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
-            })
-            .error(function(err){
-                console.log('wrong');
-            });
-        }
-     }
-     //handler of save button if we in edit mode. Just doing XHR request to save data
-     function saveItem(){
-        var itemData = $("#itemData");
+    //     if (validateForm(itemData)) {
+    //         $.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemData.serialize(), null, 'json')
+    //         .success(function(data) {
+    //             console.log('ok');
+    //             window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
+    //         })
+    //         .error(function(err){
+    //             console.log('wrong');
+    //         });
+    //     }
+    //  }
+    //  //handler of save button if we in edit mode. Just doing XHR request to save data
+    //  function saveItem(){
+    //     var itemData = $("#itemData");
 
-        if (validateForm(itemData)) {
-            $.post("<?php echo $linksMaker->makeGridItemSave($ascope["action"]); ?>", itemData.serialize(), null, 'json')
-            .success(function(data) {
-                console.log('ok');
-                window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"] . $back); ?>";
-            })
-            .error(function(err){
-                console.log('wrong');
-            });
-        }
-     }
+    //     if (validateForm(itemData)) {
+    //         $.post("<?php echo $linksMaker->makeGridItemSave($ascope["action"]); ?>", itemData.serialize(), null, 'json')
+    //         .success(function(data) {
+    //             console.log('ok');
+    //             window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"] . $back); ?>";
+    //         })
+    //         .error(function(err){
+    //             console.log('wrong');
+    //         });
+    //     }
+    //  }
+
+
+
+
+
+
+
+	function createItem(){
+	var itemData = $("#itemData");
+
+	if (validateForm(itemData)) {
+		var attachments = $("input[type=file]");
+
+		var formData = new FormData();
+
+		for (var i = 0; i < attachments.length; i++) {
+			formData.append('file[]', attachments[i].files[0]);
+		}
+
+		$.ajax({
+			url : '/assets/upload.php',
+			type : 'POST',
+			data : formData,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,  // tell jQuery not to set contentType
+			success : function(e) {
+                try{
+				var res = JSON.parse(e).data;
+				var file_attachments = $(".file_attachment");
+
+				for (var i = 0; i < res.length; i++) {
+					file_attachments.val(res[i]);
+				}
+                }catch(e){}
+
+                $.post("<?php echo $linksMaker->makeGridItemNew($ascope["action"]); ?>", itemData.serialize(), null, 'json')
+                .success(function(data) {
+                    console.log('ok');
+                    window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
+                })
+                .error(function(err){
+                    console.log('wrong');
+                });
+			}
+		});
+	}
+	}
+
+	function saveItem(){
+	var itemData = $("#itemData");
+
+	if (validateForm(itemData)) {
+		var attachments = $("input[type=file]");
+
+		var formData = new FormData();
+
+		for (var i = 0; i < attachments.length; i++) {
+			formData.append('file[]', attachments[i].files[0]);
+		}
+
+		$.ajax({
+			url : 'upload.php',
+			type : 'POST',
+			data : formData,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,  // tell jQuery not to set contentType
+			success : function(e) {
+                try {
+				var res = JSON.parse(e).data;
+				var file_attachments = $(".file_attachment");
+
+				for (var i = 0; i < res.length; i++) {
+					file_attachments.val(res[i]);
+				}
+                }
+                catch (e){}
+                $.post("<?php echo $linksMaker->makeGridItemSave($ascope["action"]); ?>", itemData.serialize(), null, 'json')
+                .success(function(data) {
+                    console.log('ok');
+                    window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"] . $back); ?>";
+                })
+                .error(function(err){
+                    console.log('wrong');
+                });
+			}
+		});
+	}
+	}
     </script>
 </div>

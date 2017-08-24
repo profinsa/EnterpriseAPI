@@ -62,6 +62,10 @@ function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
                     if(key_exists($key, $data->editCategories[$category])){
                     echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
                     switch($data->editCategories[$category][$key]["inputType"]){
+                        case "file" :
+						//renders text input with label
+						echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"uploads/" . $value . "\">";
+						break;
                         case "checkbox" :
                             echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
                         break;

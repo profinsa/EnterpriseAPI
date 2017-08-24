@@ -25,8 +25,8 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/05/2017
-  Last Modified by: Nikita Zaharov
+  Last Modified: 23/08/2017
+  Last Modified by: Eugene Tetarenko
 */
 
 require "./models/gridDataSource.php";
@@ -737,6 +737,13 @@ class gridData extends gridDataSource{
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
                 ]*/
+		],
+		"Logos" => [
+			"Logo" => [
+				"dbType" => "varchar(255)",
+				"inputType" => "file",
+				"defaultValue" => ""
+			],
 		]
     ];
 	public $columnNames = [
