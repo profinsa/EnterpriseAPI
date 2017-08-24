@@ -63,7 +63,7 @@ $dropdownDepends = [];
 				    $translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
 				    if(key_exists($key, $data->editCategories[$category]) && key_exists("alwaysEdit", $data->editCategories[$category][$key])){
 					switch($data->editCategories[$category][$key]["inputType"]){
-					    case "text" :
+                        case "text" :
 						//renders text input with label
 						echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
 						if(key_exists("formatFunction", $data->editCategories[$category][$key])){
@@ -119,6 +119,9 @@ $dropdownDepends = [];
 				    }else if(key_exists($key, $data->editCategories[$category])){
 					echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
 					switch($data->editCategories[$category][$key]["inputType"]){
+                        case "file" :
+						echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"uploads/" . $value . "\">";
+						break;
 					    case "checkbox" :
 						echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
 						break;

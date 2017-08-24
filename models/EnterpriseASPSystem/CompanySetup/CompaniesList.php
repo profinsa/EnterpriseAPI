@@ -737,6 +737,13 @@ class gridData extends gridDataSource{
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
                 ]*/
+		],
+		"Logos" => [
+			"Logo" => [
+				"dbType" => "varchar(255)",
+				"inputType" => "file",
+				"defaultValue" => ""
+			],
 		]
     ];
 	public $columnNames = [

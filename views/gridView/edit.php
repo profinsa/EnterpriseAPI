@@ -83,7 +83,14 @@ $dropdownDepends = [];
 					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
 					     ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
 					    ."></div></div>";
-					break;
+                    break;
+
+                    case "file" :
+                    echo "<input class=\"file_attachment\" type=\"hidden\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"\" />";
+                    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key . "_attachment" ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"file\" id=\"" . $key . "_attachment" ."\" name=\"" . $key . "_attachment" . "\" class=\"form-control\" value=\"";
+                        echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+                    ."></div></div>";
+                    break;
 
 				    case "checkbox" :
 					//renders checkbox input with label
@@ -341,31 +348,57 @@ $dropdownDepends = [];
          return !validationError;
      }
 
-     //handler of save button if we in new mode. Just doing XHR request to save data
+    //  handler of save button if we in new mode. Just doing XHR request to save data
      function createItem(){
 	 var itemData = $("#itemData");
 
 	 if (validateForm(itemData)) {
-	     $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-	      .success(function(data) {
-		  if(localStorage.getItem("autorecalcLink")){
-		      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-		       .success(function(data) {
-			   localStorage.removeItem("autorecalcLink");
-			   localStorage.removeItem("autorecalcData");
-			   window.location = "<?php echo $backhref?>";
-		       })
-		       .error(function(err){
-			   localStorage.removeItem("autorecalcLink");
-			   localStorage.removeItem("autorecalcData");
-			   window.location = "<?php echo $backhref?>";
-		       });
-		  }else
-		  window.location = "<?php echo $backhref?>";
-	      })
-	      .error(function(err){
-		  console.log('wrong');
-	      });
+		var attachments = $("input[type=file]");
+
+		var formData = new FormData();
+
+		for (var i = 0; i < attachments.length; i++) {
+			formData.append('file[]', attachments[i].files[0]);
+		}
+
+		$.ajax({
+			url : '/assets/upload.php',
+			type : 'POST',
+			data : formData,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,  // tell jQuery not to set contentType
+			success : function(e) {
+                try{
+				var res = JSON.parse(e).data;
+				var file_attachments = $(".file_attachment");
+
+				for (var i = 0; i < res.length; i++) {
+					file_attachments.val(res[i]);
+				}
+                }catch(e){}
+
+                $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+                .success(function(data) {
+                if(localStorage.getItem("autorecalcLink")){
+                    $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+                    .success(function(data) {
+                    localStorage.removeItem("autorecalcLink");
+                    localStorage.removeItem("autorecalcData");
+                    window.location = "<?php echo $backhref?>";
+                    })
+                    .error(function(err){
+                    localStorage.removeItem("autorecalcLink");
+                    localStorage.removeItem("autorecalcData");
+                    window.location = "<?php echo $backhref?>";
+                    });
+                }else
+                window.location = "<?php echo $backhref?>";
+                })
+                .error(function(err){
+                console.log('wrong');
+                });
+			}
+		});
 	 }
      }
      //handler of save button if we in edit mode. Just doing XHR request to save data
@@ -373,27 +406,53 @@ $dropdownDepends = [];
 	 var itemData = $("#itemData");
 
 	 if (validateForm(itemData)) {
-	     $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-	      .success(function(data) {
-		  console.log(localStorage.getItem("autorecalcLink"));
-		  if(localStorage.getItem("autorecalcLink")){
-		      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-		       .success(function(data) {
-			   localStorage.removeItem("autorecalcLink");
-			   localStorage.removeItem("autorecalcData");
-			   window.location = "<?php echo $backhref?>";
-		       })
-		       .error(function(err){
-			   localStorage.removeItem("autorecalcLink");
-			   localStorage.removeItem("autorecalcData");
-			   window.location = "<?php echo $backhref?>";
-		       });
-		  }else
-		  window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back ; ?>";
-	      })
-	      .error(function(err){
-		  console.log('wrong');
-	      });
+	     var attachments = $("input[type=file]");
+
+	     var formData = new FormData();
+
+	     for (var i = 0; i < attachments.length; i++) {
+		 formData.append('file[]', attachments[i].files[0]);
+	     }
+
+	     $.ajax({
+		 url : 'upload.php',
+		 type : 'POST',
+		 data : formData,
+		 processData: false,  // tell jQuery not to process the data
+		 contentType: false,  // tell jQuery not to set contentType
+		 success : function(e) {
+                     try {
+			 var res = JSON.parse(e).data;
+			 var file_attachments = $(".file_attachment");
+
+			 for (var i = 0; i < res.length; i++) {
+			     file_attachments.val(res[i]);
+			 }
+                     }
+                     catch (e){}
+                     $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+				       .success(function(data) {
+					   console.log(localStorage.getItem("autorecalcLink"));
+					   if(localStorage.getItem("autorecalcLink")){
+					       $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+						.success(function(data) {
+						    localStorage.removeItem("autorecalcLink");
+						    localStorage.removeItem("autorecalcData");
+						    window.location = "<?php echo $backhref?>";
+						})
+						.error(function(err){
+						    localStorage.removeItem("autorecalcLink");
+						    localStorage.removeItem("autorecalcData");
+						    window.location = "<?php echo $backhref?>";
+						});
+					   }else
+					   window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back ; ?>";
+				       })
+				       .error(function(err){
+					   console.log('wrong');
+				       });
+		 }
+	     });
 	 }
      }
     </script>
