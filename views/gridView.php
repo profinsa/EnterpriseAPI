@@ -94,6 +94,7 @@
 <script language="javascript" type="text/javascript">
  if(!$.fn.DataTable.isDataTable("#example23")){
      $('#example23').DataTable( {
+	 pageLength : gridViewDefaultRowsInGrid,
 	 dom : "Bfrt<\"grid-footer row col-md-12\"<\"col-md-3 grid-length\"l><\"col-md-3\"i><\"col-md-6\"p>>",
 	 buttons: [
 	     'copy', 'csv', 'excel', 'pdf', 'print'

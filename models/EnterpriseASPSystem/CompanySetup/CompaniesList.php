@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/11/2017
+  Last Modified: 08/26/2017
   Last Modified by: Nikita Zaharov
 */
 
@@ -64,6 +64,11 @@ class gridData extends gridDataSource{
 		]
 	];
 
+    public $editCategoriesWidth = [
+        "left" => 25,
+        "right" => 35
+    ];
+    
 	public $editCategories = [
 		"Main" => [
 			"CompanyID" => [
@@ -166,7 +171,68 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(255)",
 				"inputType" => "text",
 				"defaultValue" => ""
-			]
+			],
+            "GAAPCompliant" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "editPermissions" => "admin"
+
+            ],
+			"EditGLTranssactions" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "editPermissions" => "admin"
+            ],
+			"EditBankTransactions" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "editPermissions" => "admin"
+
+            ],
+			"EditAPTransactions" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "editPermissions" => "admin"
+
+            ],
+			"EditARTransactions" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "editPermissions" => "admin"
+
+            ],
+			"HardClose" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "editPermissions" => "admin"
+
+            ],
+			"AuditTrail" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "editPermissions" => "admin"
+
+            ],
+			"PeriodPosting" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "editPermissions" => "admin"
+
+            ],
+			"SystemDates" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0",
+                "editPermissions" => "admin"
+            ]
 		],
 		"Defaults" => [
 			"CurrencyID" => [
@@ -181,11 +247,95 @@ class gridData extends gridDataSource{
                 "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
+			"DefaultGLPostingDate" => [
+				"dbType" => "varchar(1)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"AgeInvoicesBy" => [
+				"dbType" => "varchar(1)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"AgePurchaseOrdersBy" => [
+				"dbType" => "varchar(1)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"DefaultSalesGLTracking" => [
+				"dbType" => "varchar(1)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"DefaultSalesTaxGroup" => [
+				"dbType" => "varchar(20)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getTaxGroups",
+				"defaultValue" => ""
+			],
+			"DefaultGLPurchaseGLTracking" => [
+				"dbType" => "varchar(1)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"DefaultPurchaseTaxGroup" => [
+				"dbType" => "varchar(20)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getTaxGroups",
+				"defaultValue" => ""
+			],
 			"Terms" => [
 				"dbType" => "varchar(20)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getTerms",
 				"defaultValue" => ""
+			],
+			"FinanceChargePercent" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"FinanceCharge" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"DefaultInventoryCostingMethod" => [
+				"dbType" => "varchar(1)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"WarehouseID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getWarehouses",
+				"defaultValue" => ""
+			],
+            /*			"WarehouseBinID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+                ],*/
+			"ShippingMethod" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipMethods",
+				"defaultValue" => ""
+			],
+			"HandlingRate" => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ChargeHandling" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"HandlingAsPercent" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
 			],
 			"FedTaxID" => [
 				"dbType" => "varchar(36)",
@@ -217,88 +367,10 @@ class gridData extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
-			"DefaultGLPostingDate" => [
-				"dbType" => "varchar(1)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"DefaultSalesGLTracking" => [
-				"dbType" => "varchar(1)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"DefaultGLPurchaseGLTracking" => [
-				"dbType" => "varchar(1)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"DefaultSalesTaxGroup" => [
-				"dbType" => "varchar(20)",
-				"inputType" => "dropdown",
-                "dataProvider" => "getTaxGroups",
-				"defaultValue" => ""
-			],
 			"DefaultPurchaseTaxGroup" => [
 				"dbType" => "varchar(20)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getTaxGroups",
-				"defaultValue" => ""
-			],
-			"DefaultInventoryCostingMethod" => [
-				"dbType" => "varchar(1)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"AgeInvoicesBy" => [
-				"dbType" => "varchar(1)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"AgePurchaseOrdersBy" => [
-				"dbType" => "varchar(1)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"FinanceCharge" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-			],
-			"FinanceChargePercent" => [
-				"dbType" => "float",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"WarehouseID" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "dropdown",
-                "dataProvider" => "getWarehouses",
-				"defaultValue" => ""
-			],
-            /*			"WarehouseBinID" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-                ],*/
-			"ShippingMethod" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "dropdown",
-                "dataProvider" => "getShipMethods",
-				"defaultValue" => ""
-			],
-			"ChargeHandling" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-			],
-			"HandlingAsPercent" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-			],
-			"HandlingRate" => [
-				"dbType" => "float",
-				"inputType" => "text",
 				"defaultValue" => ""
 			],
 			"ChargeMinimumSurcharge" => [
@@ -312,6 +384,38 @@ class gridData extends gridDataSource{
 				"defaultValue" => ""
 			]
 		],
+        "Consolidation" => [
+            "MasterReportingCompany" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ShareEmployees" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ShareCustomers" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ShareVendors" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ShareItems" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ShareWarehouses" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+        ],
 		"Accounts" => [
 			"GLAPAccount" => [
 				"dbType" => "varchar(36)",
@@ -559,7 +663,9 @@ class gridData extends gridDataSource{
 			"Period1Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
             ],
 			"Period2Date" => [
 				"dbType" => "datetime",
@@ -569,7 +675,9 @@ class gridData extends gridDataSource{
 			"Period2Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
             ],
 			"Period3Date" => [
 				"dbType" => "datetime",
@@ -579,7 +687,9 @@ class gridData extends gridDataSource{
 			"Period3Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
             ],
 			"Period4Date" => [
 				"dbType" => "datetime",
@@ -589,7 +699,9 @@ class gridData extends gridDataSource{
 			"Period4Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
             ],
 			"Period5Date" => [
 				"dbType" => "datetime",
@@ -599,7 +711,10 @@ class gridData extends gridDataSource{
 			"Period5Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
+
             ],
 			"Period6Date" => [
 				"dbType" => "datetime",
@@ -609,7 +724,10 @@ class gridData extends gridDataSource{
 			"Period6Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
+
             ],
 			"Period7Date" => [
 				"dbType" => "datetime",
@@ -619,7 +737,10 @@ class gridData extends gridDataSource{
 			"Period7Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
+
             ],
 			"Period8Date" => [
 				"dbType" => "datetime",
@@ -629,7 +750,10 @@ class gridData extends gridDataSource{
 			"Period8Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
+
             ],
 			"Period9Date" => [
 				"dbType" => "datetime",
@@ -639,7 +763,10 @@ class gridData extends gridDataSource{
 			"Period9Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
+
             ],
 			"Period10Date" => [
 				"dbType" => "datetime",
@@ -649,7 +776,10 @@ class gridData extends gridDataSource{
 			"Period10Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
+
             ],
 			"Period11Date" => [
 				"dbType" => "datetime",
@@ -659,7 +789,10 @@ class gridData extends gridDataSource{
 			"Period11Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
+
             ],
 			"Period12Date" => [
 				"dbType" => "datetime",
@@ -669,7 +802,10 @@ class gridData extends gridDataSource{
 			"Period12Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
+
             ],
 			"Period13Date" => [
 				"dbType" => "datetime",
@@ -679,7 +815,10 @@ class gridData extends gridDataSource{
 			"Period13Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
+
             ],
 			"Period14Date" => [
 				"dbType" => "datetime",
@@ -689,54 +828,10 @@ class gridData extends gridDataSource{
 			"Period14Closed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
-				"defaultValue" => "0"
+				"defaultValue" => "0",
+                "disabledEdit" => "true",
+                "disabledNew" => "true"
             ]
-/*,
-            /*			"GAAPCompliant" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-            ],
-			"EditGLTranssactions" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-            ],
-			"EditBankTransactions" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-            ],
-			"EditAPTransactions" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-            ],
-			"EditARTransactions" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-            ],
-			"HardClose" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-            ],
-			"AuditTrail" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-            ],
-			"PeriodPosting" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-            ],
-			"SystemDates" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-                ]*/
 		],
 		"Logos" => [
 			"Logo" => [
@@ -767,23 +862,23 @@ class gridData extends gridDataSource{
 		"CompanySupportDirectoryURL" => "Company Support Directory URL",
 		"CompanyWebCRMDirectoryURL" => "Company Web CRM Directory URL",
 		"CompanyNotes" => "Company Notes",
-		"CurrencyID" => "Currency ID",
-		"BankAccount" => "Bank Account",
-		"Terms" => "Terms",
+		"CurrencyID" => "Default Company Currency ID",
+		"BankAccount" => "Default Company Bank Account",
+		"Terms" => "Default Terms",
 		"FedTaxID" => "Fed Tax ID",
 		"StateTaxID" => "State TaxI D",
 		"VATRegistrationNumber" => "VAT Registration Number",
 		"VATSalesTaxID" => "VAT SalesTax ID",
 		"VATPurchaseTaxID" => "VAT Purchase Tax ID",
 		"VATOtherRegistrationNumber" => "VAT Other RegistrationN umber",
-		"DefaultGLPostingDate" => "Default GL Posting Date",
-		"DefaultSalesGLTracking" => "Default Sales GL Tracking",
-		"DefaultGLPurchaseGLTracking" => "Default GL Purchase GL Tracking",
+		"DefaultGLPostingDate" => "Default GL Posting Date (1=System Date, 2=Transaction Date)",
+		"DefaultSalesGLTracking" => "Default Sales GL Tracking (1=Customer, 2=Item)",
+		"DefaultGLPurchaseGLTracking" => "Default GL Purchase GL Tracking (1=Vendor, 2=Item)",
 		"DefaultSalesTaxGroup" => "Default Sales Tax Group",
 		"DefaultPurchaseTaxGroup" => "Default Purchase Tax Group",
-		"DefaultInventoryCostingMethod" => "Default Inventory Costing Method",
-		"AgeInvoicesBy" => "Age Invoices By",
-		"AgePurchaseOrdersBy" => "Age Purchase Orders By",
+		"DefaultInventoryCostingMethod" => "Default Inventory Costing Method (A, F or L)",
+		"AgeInvoicesBy" => "Age Invoices By (1=Transaction Date, 2=Due Date)",
+		"AgePurchaseOrdersBy" => "Age Purchase Orders By (1=Transaction Date, 2=Due Date)",
 		"FinanceCharge" => "Finance Charge",
 		"FinanceChargePercent" => "Finance Charge Percent",
 		"WarehouseID" => "Warehouse ID",
@@ -870,7 +965,13 @@ class gridData extends gridDataSource{
 		"HardClose" => "Hard Close",
 		"AuditTrail" => "Audit Trail",
 		"PeriodPosting" => "Period Posting",
-		"SystemDates" => "System Dates"
+		"SystemDates" => "System Dates",
+        "MasterReportingCompany" => "Master Reporting Company",
+        "ShareEmployees" => "Share Employees",
+        "ShareCustomers" => "Share Customers",
+        "ShareVendords" => "Share Vendors",
+        "ShareItems" => "Share Items",
+        "ShareWarehouses" => "Share Warehouses"
 	];
 
     public function CreateCompany(){
@@ -879,9 +980,12 @@ class gridData extends gridDataSource{
         $CompanyID = $_POST["CompanyID"];
         $pdo = DB::connection()->getPdo();
         $result = DB::select("select * FROM Companies WHERE CompanyID='$CompanyID'", array());
-        if(count($result))
-            return response("Company Already Exists", 400)->header('Content-Type', 'text/plain');
-                
+        if(count($result)){
+            http_response_code(500);
+            echo "Company Already Exists";
+            return;
+        }
+        
         $result = DB::select("show tables", array());
         foreach($result as $key=>$row){
             if($row->Tables_in_myenterprise != "activeemployee" &&

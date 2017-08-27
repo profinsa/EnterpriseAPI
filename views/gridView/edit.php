@@ -55,6 +55,8 @@ $dropdownDepends = [];
 					      $data->getNewItem($ascope["item"], $category);
 		    //used as translated field name
 		    $translatedFieldName = '';
+		    $leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
+		    $rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : 6;
 		    ?>
 		    <?php if(!property_exists($data, "detailPages") ||
 			     !key_exists($curCategory, $data->detailPages)||
@@ -63,10 +65,16 @@ $dropdownDepends = [];
 			foreach($item as $key =>$value){
 			    $translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
 			    if(key_exists($key, $data->editCategories[$category])){
+				$disabledEdit =  (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  ||
+						 (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ||
+						 (key_exists("editPermissions", $data->editCategories[$category][$key]) &&
+						  $data->editCategories[$category][$key]["editPermissions"] == "admin" &&
+													       !$security->isAdmin())
+														   ? "readonly" : "";
 				switch($data->editCategories[$category][$key]["inputType"]){
 				    case "text" :
 					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
 					if(key_exists("formatFunction", $data->editCategories[$category][$key])){
 					    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
 					    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
@@ -74,30 +82,26 @@ $dropdownDepends = [];
 					else
 					    echo formatField($data->editCategories[$category][$key], $value);
 
-					echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-					   ."></div></div>";
+					echo"\" $disabledEdit></div></div>";
 					break;
 					
 				    case "datetime" :
 					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-					     ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-					    ."></div></div>";
-                    break;
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" $disabledEdit></div></div>";
+					break;
 
-                    case "file" :
-                    echo "<input class=\"file_attachment\" type=\"hidden\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"\" />";
-                    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key . "_attachment" ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"file\" id=\"" . $key . "_attachment" ."\" name=\"" . $key . "_attachment" . "\" class=\"form-control\" value=\"";
-                        echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-                    ."></div></div>";
-                    break;
+				    case "file" :
+					echo "<input class=\"file_attachment\" type=\"hidden\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"\" />";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key . "_attachment" ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"file\" id=\"" . $key . "_attachment" ."\" name=\"" . $key . "_attachment" . "\" class=\"form-control\" value=\"";
+					echo"\" $disabledEdit></div></div>";
+					break;
 
 				    case "checkbox" :
+					if($disabledEdit != "")
+					    $disabledEdit = "disabled";
 					//renders checkbox input with label
 					echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
-					     ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit") || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
-					    ."></div></div>";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." $disabledEdit></div></div>";
 					break;
 
 				    case "dialogChooser":
@@ -105,11 +109,13 @@ $dropdownDepends = [];
 					if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"]))
 					    $GLOBALS["dialogChooserTypes"][$dataProvider] = "hophop";
 					$GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-					echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\"></div></div>";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\"></div></div>";
 					break;
 				    case "dropdown" :
+					if($disabledEdit != "")
+					    $disabledEdit = "disabled";
 					//renders select with available values as dropdowns with label
-					echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "disabled" : "") .  ">";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\">" . $translatedFieldName . "</label><div class=\"col-md-$rightWidth\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\" $disabledEdit>";
 					$method = $data->editCategories[$category][$key]["dataProvider"];
 					if(key_exists("depends", $data->editCategories[$category][$key])){
 					    $dropdownDepends[$key] = [
@@ -280,7 +286,7 @@ $dropdownDepends = [];
                  var dataObject = getDbObject(itemDataArray[i].name);
 
                  if (dataObject) {
-//                     console.log(dataObject);
+		     //                     console.log(dataObject);
                      var dataType = dataObject.dbType.replace(/\(.*/,'');
                      var dataLength;
                      var re = /\((.*)\)/;
@@ -348,45 +354,45 @@ $dropdownDepends = [];
          return !validationError;
      }
 
-    //  handler of save button if we in new mode. Just doing XHR request to save data
+     //  handler of save button if we in new mode. Just doing XHR request to save data
      function createItem(){
 	 var itemData = $("#itemData");
 
 	 if (validateForm(itemData)) {
-		var attachments = $("input[type=file]");
+	     var attachments = $("input[type=file]");
 
-		var formData = new FormData();
+	     var formData = new FormData();
 
-		for (var i = 0; i < attachments.length; i++) {
-			formData.append('file[]', attachments[i].files[0]);
-		}
+	     for (var i = 0; i < attachments.length; i++) {
+		 formData.append('file[]', attachments[i].files[0]);
+	     }
 
-		$.ajax({
-			url : '/assets/upload.php',
-			type : 'POST',
-			data : formData,
-			processData: false,  // tell jQuery not to process the data
-			contentType: false,  // tell jQuery not to set contentType
-			success : function(e) {
-                try{
-				var res = JSON.parse(e).data;
-				var file_attachments = $(".file_attachment");
+	     $.ajax({
+		 url : '/assets/upload.php',
+		 type : 'POST',
+		 data : formData,
+		 processData: false,  // tell jQuery not to process the data
+		 contentType: false,  // tell jQuery not to set contentType
+		 success : function(e) {
+                     try{
+			 var res = JSON.parse(e).data;
+			 var file_attachments = $(".file_attachment");
 
-				for (var i = 0; i < res.length; i++) {
-					file_attachments.val(res[i]);
-				}
-                }catch(e){}
+			 for (var i = 0; i < res.length; i++) {
+			     file_attachments.val(res[i]);
+			 }
+                     }catch(e){}
 
-                $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-                .success(function(data) {
-                if(localStorage.getItem("autorecalcLink")){
-                    $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-                    .success(function(data) {
-                    localStorage.removeItem("autorecalcLink");
-                    localStorage.removeItem("autorecalcData");
-                    window.location = "<?php echo $backhref?>";
-                    })
-                    .error(function(err){
+                     $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+				       .success(function(data) {
+					   if(localStorage.getItem("autorecalcLink")){
+					       $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+						.success(function(data) {
+						    localStorage.removeItem("autorecalcLink");
+						    localStorage.removeItem("autorecalcData");
+						    window.location = "<?php echo $backhref?>";
+						})
+						.error(function(err){
                     localStorage.removeItem("autorecalcLink");
                     localStorage.removeItem("autorecalcData");
                     window.location = "<?php echo $backhref?>";

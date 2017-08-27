@@ -39,6 +39,8 @@ $dropdownDepends = [];
 		<?php
 		$curCategory = $key;
 		$item = $data->getEditItem($ascope["item"], $key);
+		$leftWidth = property_exists($data, "editCategoriesWidth") ? $data->editCategoriesWidth["left"] : 50;
+		$rightWidth = property_exists($data, "editCategoriesWidth") ? $data->editCategoriesWidth["right"] : 50;
 		?>
 		<div class="table-responsive" style="margin-top:10px;">
 		    <?php if(!property_exists($data, "detailPages") ||
@@ -47,10 +49,10 @@ $dropdownDepends = [];
 			<table class="table">
 			    <thead>
 				<tr>
-				    <th>
+				    <th style="width:<?php echo $leftWidth; ?>%">
 					<?php echo $translation->translateLabel("Field"); ?>
 				    </th>
-				    <th>
+				    <th style="width:<?php echo $rightWidth; ?>%">
 					<?php echo $translation->translateLabel("Value"); ?>
 				    </th>
 				</tr>

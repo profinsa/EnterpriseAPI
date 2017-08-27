@@ -51,6 +51,13 @@
 				    <label for="checkbox4" > Toggle Sidebar </label>
 				</div>
 			    </li>
+			    <li>
+				<label for="homanyrows">
+				    <?php echo $translation->translateLabel("Rows in grid"); ?>
+				</label>
+				<select id="howmanyrows" style="margin-left: 30px;" onchange="changeDefaultRowsInGrid(this);">
+				</select>
+			    </li>
 			</ul>
 			<ul id="themecolors" class="m-t-20">
 			    <li><b>With Light sidebar</b></li>
@@ -80,6 +87,14 @@
 	require 'uiItems/footer.php';
 	?>
 	<script>
+	 var gridViewDefaultRowsInGrid = localStorage.getItem('gridViewDefaultRowsInGrid');
+	 if(!gridViewDefaultRowsInGrid)
+	     localStorage.setItem('gridViewDefaultRowsInGrid', gridViewDefaultRowsInGrid = 10);
+	 
+	 function changeDefaultRowsInGrid(item){
+	     localStorage.setItem('gridViewDefaultRowsInGrid', gridViewDefaultRowsInGrid = parseInt($(item).val()));
+	 }
+	 
 	 var menuCategories = <?php echo json_encode($menuCategories); ?>;
 	 function findMenuItem(href){
 	     var ind, sind, submenu, iind, items;
@@ -124,8 +139,8 @@
 		     //		     sideBarSelectItem(findMenuItem(path));//match[1], match[2]);
 		 //		 else{
 		 //		     sideBarCloseAll();
-//		     sideBarDeselectAll();
-//		 }
+		 //		     sideBarDeselectAll();
+		 //		 }
 		 console.log(path);
 		 $.get(path)
 		  .done(function(data){
@@ -136,12 +151,12 @@
 		  })
 		  .error(function(xhr){
 		      if(xhr.status == 401)
-//			  console.log(xhr.responseText);
-			  window.location = "index.php?page=login";
+			  //			  console.log(xhr.responseText);
+		      window.location = "index.php?page=login";
 		      else{
 			  $("#page-wrapper").html(xhr.responseText);
 			  window.scrollTo(0,0);
-//			  alert("Unable to load page");
+			  //			  alert("Unable to load page");
 		      }
 		  });
 	     }
@@ -153,6 +168,11 @@
 
 	 //select sidebar item if application loaded in separated pages mode, like that: grid/GeneralLedger/ledgerAccountGroup/grid/main/all, without index#/
 	 function main(){
+	     var rowOptions = [10, 25, 50,100];
+	     var howmanyrows = $("#howmanyrows"), ind, _html = "";
+	     for(ind in rowOptions)
+		 _html += "<option " + ( rowOptions[ind] == gridViewDefaultRowsInGrid ? "selected" : "") + ">" + rowOptions[ind] + "</option>";
+	     howmanyrows[0].innerHTML = _html;
 	     <?php if(isset($scope)): ?>
 	     //sideBarSelectItem("<?php /*echo  $scope["pathFolder"] . "\",\"" . $scope["pathPage"];*/?>");
 	     <?php endif; ?>
