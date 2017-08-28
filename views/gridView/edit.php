@@ -368,7 +368,7 @@ $dropdownDepends = [];
 	     }
 
 	     $.ajax({
-		 url : 'assets/upload.php',
+		 url : 'upload.php',
 		 type : 'POST',
 		 data : formData,
 		 processData: false,  // tell jQuery not to process the data
