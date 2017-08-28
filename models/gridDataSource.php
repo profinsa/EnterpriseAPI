@@ -1262,10 +1262,14 @@ class gridDataSource{
         $keyValues = explode("__", $id);
         $keyFields = "";
         $fcount = 0;
-        foreach($this->idFields as $key)
-            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
+        if($this->tableName == "companies")
+            $keyFields = "CompanyID='{$user["CompanyID"]}'";
+        else {
+            foreach($this->idFields as $key)
+                $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+            if($keyFields != "")
+                $keyFields = substr($keyFields, 0, -5);
+        }
         
         $update_fields = "";
         $alreadyUsed = [];
