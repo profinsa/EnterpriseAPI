@@ -969,7 +969,7 @@ class gridData extends gridDataSource{
         "MasterReportingCompany" => "Master Reporting Company",
         "ShareEmployees" => "Share Employees",
         "ShareCustomers" => "Share Customers",
-        "ShareVendords" => "Share Vendors",
+        "ShareVendors" => "Share Vendors",
         "ShareItems" => "Share Items",
         "ShareWarehouses" => "Share Warehouses"
 	];

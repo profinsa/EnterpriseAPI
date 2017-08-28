@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 08.15.2016
+  Last Modified: 08.28.2016
   Last Modified by: Nikita Zaharov
 */
 
@@ -33,9 +33,104 @@ class gridDataSource{
 
     public $idField = "";
 
+    //cheking if table in list of shared tables and sharing for this table is enabled
+    public function checkTableSharing($tableName){
+        $user = Session::get("user");
+        $sharedCategories = [
+            "ShareEmployees" => [
+                "accesspermissions",
+                "payrollemployeepayfrequency",
+                "payrollemployeepaytype",
+                "payrollemployees",
+                "payrollemployeesaccrual",
+                "payrollemployeesaccrualfrequency",
+                "payrollemployeesaccrualtypes",
+                "payrollemployeescalendar",
+                "payrollemployeescurrentlyon",
+                "payrollemployeesdetail",
+                "payrollemployeesdetailhistory",
+                "payrollemployeesevents",
+                "payrollemployeeseventtypes",
+                "payrollemployeeshistory",
+                "payrollemployeestaskdetail",
+                "payrollemployeestaskdetailhistory",
+                "payrollemployeestaskheader",
+                "payrollemployeestaskheaderhistory",
+                "payrollemployeestaskpriority",
+                "payrollemployeestasktype",
+                "payrollemployeestatus",
+                "payrollemployeestatustype",
+                "pyrollemployeestimesheetdetail",
+                "payrollemployeestimesheetheader",
+                "payrollemployeetype"
+            ],
+            "ShareCustomers" => [
+                "customeraccountstatuses",
+                "customercomments",
+                "customercontactlog",
+                "customercontacts",
+                "customercreditreferences",
+                "customerfinancials",
+                "customerhistorytransactions",
+                "customerinformation",
+                "customeritemcrossreference",
+                "customerpricecrossreference",
+                "customerreferences",
+                "customersatisfaction",
+                "customershipforlocations",
+                "customershiptolocations",
+                "customertransactions",
+                "customertypes"
+            ],
+            "ShareVendors" => [
+                "vendoraccountstatuses",
+                "vendorcomments",
+                "vendorcontacts",
+                "vendorfinancials",
+                "vendorhistorytransactions",
+                "vendorinformation",
+                "vendoritemcrossreference",
+                "vendorpricecrossreference",
+                "vendortransactions",
+                "vendortypes"
+            ],
+            "ShareItems" => [
+                "inventoryitems",
+                "inventoryitemsdisplaylang",
+                "inventoryitemtypes",
+                "itemhistorytransactions",
+                "itemtransactions"
+            ],
+            "ShareWarehouses" => [
+                "warehousebins",
+                "warehousebintypes",
+                "warehousebinzones",
+                "warehouses",
+                "warehousescontacts",
+                "warehousetransitdetail",
+                "warehousetransitdetailhistory",
+                "warehousetransitheader",
+                "warehousetransitheaderhistory"
+            ]
+        ];
+
+        $company = DB::select("SELECT * FROM companies WHERE CompanyID=?", array($user["CompanyID"]))[0];
+        
+        foreach($sharedCategories as $category=>$tables)
+          foreach($tables as $table)
+              if($table == strtolower($tableName) && $company->$category)
+                  return true;
+
+        return false;
+    }
+    
     //Vendors Dialog Chooser
     public function getVendors(){
         $user = Session::get("user");
+        if($this->checkTableSharing("vendorinformation")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $keyFields = "";
         $fields = [];
 
@@ -91,12 +186,17 @@ class gridDataSource{
                     "inputType" => "text"
                 ],
             ],
-            "values" => json_decode(json_encode($result))
+            "values" => json_decode(json_encode($result)),
+            "allValues" => json_decode(json_encode( DB::select("SELECT * from VendorInformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())))
         ];
     }
     
     public function getCustomers(){
         $user = Session::get("user");
+        if($this->checkTableSharing("customerinformation")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $keyFields = "";
         $fields = [];
 
@@ -116,8 +216,6 @@ class gridDataSource{
         }
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
-
-        $result = DB::select("SELECT CustomerID,CustomerTypeID,AccountStatus,CustomerName,CustomerPhone,CustomerLogin,CustomerPassword from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         return [
             "title" => "Customer selecting dialog",
@@ -152,13 +250,18 @@ class gridDataSource{
                     "inputType" => "text"
                 ],
             ],
-            "values" => json_decode(json_encode($result))
+            "values" => json_decode(json_encode( DB::select("SELECT CustomerID,CustomerTypeID,AccountStatus,CustomerName,CustomerPhone,CustomerLogin,CustomerPassword from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array()))),
+            "allValues" => json_decode(json_encode( DB::select("SELECT * from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())))
         ];
     }
 
     //Items Dialog Chooser
     public function getItems(){
         $user = Session::get("user");
+        if($this->checkTableSharing("inventoryitems")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $keyFields = "";
         $fields = [];
         $inventoryitemsIdFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
@@ -503,6 +606,10 @@ class gridDataSource{
     //getting list of available shipment methods
     public function getShipToIDS($args){
         $user = Session::get("user");
+        if($this->checkTableSharing("customershiptolocations")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $res = [];
         $result = DB::select("SELECT ShipToID from customershiptolocations WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CustomerID='" . $args["CustomerID"] . "'", array());
 
@@ -518,6 +625,10 @@ class gridDataSource{
     //getting list of available shipment methods
     public function getShipForIDS($args){
         $user = Session::get("user");
+        if($this->checkTableSharing("customershipforlocations")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $res = [];
 
         $result = DB::select("SELECT ShipForID from customershipforlocations WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CustomerID='" . $args["CustomerID"] . "' AND ShipToID='" . $args["ShipToID"] . "'", array());
@@ -564,6 +675,10 @@ class gridDataSource{
     //getting list of available employees
     public function getPayrollEmployees(){
         $user = Session::get("user");
+        if($this->checkTableSharing("payrollemployees")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $res = [];
         $result = DB::select("SELECT EmployeeID from payrollemployees WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
@@ -579,6 +694,10 @@ class gridDataSource{
     //getting list of available warehouses
     public function getWarehouses(){
         $user = Session::get("user");
+        if($this->checkTableSharing("warehouses")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $res = [];
         $result = DB::select("SELECT WarehouseID from warehouses WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
@@ -594,6 +713,10 @@ class gridDataSource{
     //getting list of available warehouse bin types
     public function getWarehouseBinTypes(){
         $user = Session::get("user");
+        if($this->checkTableSharing("warehousebintypes")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $res = [];
         $result = DB::select("SELECT WarehouseBinTypeID from warehousebintypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
@@ -609,6 +732,10 @@ class gridDataSource{
     //getting list of available warehouse bin zones
     public function getWarehouseBinZones(){
         $user = Session::get("user");
+        if($this->checkTableSharing("warehousebinzones")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $res = [];
         $result = DB::select("SELECT WarehouseBinZoneID from warehousebinzones WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
@@ -624,6 +751,10 @@ class gridDataSource{
     //getting list of available warehouse bins
     public function getWarehouseBins(){
         $user = Session::get("user");
+        if($this->checkTableSharing("warehousebins")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $res = [];
         $result = DB::select("SELECT WarehouseID,WarehouseBinID from warehousebins WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
@@ -826,7 +957,7 @@ class gridDataSource{
 
         foreach($result as $key=>$value)
             $res[$value->GLAccountNumber] = [
-                "title" => $value->GLAccountNumber . ", " . $value->GLAccountName,
+                "title" => $value->GLAccountNumber . " - " . $value->GLAccountName,
                 "value" => $value->GLAccountNumber
             ];
         return $res;
@@ -869,6 +1000,10 @@ class gridDataSource{
     //getting rows for grid
     public function getPage($number){
         $user = Session::get("user");
+        if($this->checkTableSharing($this->tableName)){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $keyFields = "";
         $fields = [];
         foreach($this->gridFields as $key=>$value){
@@ -906,7 +1041,6 @@ class gridDataSource{
         
         $result = DB::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
-
         $result = json_decode(json_encode($result), true);
         
         return $result;
@@ -915,6 +1049,10 @@ class gridDataSource{
     //getting data for grid edit form 
     public function getEditItem($id, $type){
         $user = Session::get("user");
+        if($this->checkTableSharing($this->tableName)){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         $columns = [];
         $fakeColumns = [];
         foreach($this->editCategories[$type] as $key=>$value){
@@ -929,6 +1067,7 @@ class gridDataSource{
             }
         }
         
+        $id = urldecode($id);
         $keyValues = explode("__", $id);
         $keyFields = "";
         $fcount = 0;
@@ -1027,7 +1166,25 @@ class gridDataSource{
         }
         return ++$columnMax;
     }
-    
+
+    public function lock($id){
+    }
+
+    public function unlock($id){
+    }
+
+    /*    public function lockedBy($id){
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $result = DB::select("SELECT LockedBy, LockTS from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        return $result;
+        }*/
+        
     //getting data for new record
     public function getNewItem($id, $type){            
         $values = [];
@@ -1035,7 +1192,7 @@ class gridDataSource{
         foreach($this->idFields as $value)
             $idDefaults[] = "$value='DEFAULT'";
 
-        $defaultRecord = DB::select("select * from {$this->tableName} WHERE " . implode(" AND ", $idDefaults));
+        $defaultRecord = DB::select("select * from {$this->tableName} WHERE " . implode(" AND ", $idDefaults), array());
         if(count($defaultRecord))
             $defaultRecord = $defaultRecord[0];
         else
@@ -1076,6 +1233,11 @@ class gridDataSource{
     //getting data for grid view form
     public function getItem($id){
         $user = Session::get("user");
+        if($this->checkTableSharing($this->tableName)){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
+        $id = urldecode($id);
         $keyValues = explode("__", $id);
         $keyFields = "";
         $fcount = 0;
@@ -1092,6 +1254,11 @@ class gridDataSource{
     //updating data of grid item
     public function updateItem($id, $category, $values){
         $user = Session::get("user");
+        if($this->checkTableSharing($this->tableName)){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
+        $id = urldecode($id);
         $keyValues = explode("__", $id);
         $keyFields = "";
         $fcount = 0;
@@ -1149,6 +1316,10 @@ class gridDataSource{
     //add row to table
     public function insertItem($values){
         $user = Session::get("user");
+        if($this->checkTableSharing($this->tableName)){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
         
         $insert_fields = "";
         $insert_values = "";
@@ -1179,14 +1350,31 @@ class gridDataSource{
             }
         }
 
-        $insert_fields .= ',CompanyID,DivisionID,DepartmentID';
-        $insert_values .= ",'" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "'";
-        DB::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")");
+        $keyFields = [];
+        $keyValues = [];
+        foreach($this->idFields as $key){
+            if(!key_exists($key, $values) && ($key == 'CompanyID' || $key == 'DivisionID' || $key == 'DepartmentID')){
+                $keyFields[] = $key;
+                $keyValues[] = "'{$user[$key]}'";
+            }
+        }
+        
+        if(count($keyFields)){
+            $insert_fields .= ',' . implode(',', $keyFields);
+            $insert_values .= ',' . implode(',', $keyValues);
+        }
+        
+        $result = DB::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")");
     }
 
     //delete row from table
     public function deleteItem($id){
         $user = Session::get("user");
+        if($this->checkTableSharing($this->tableName)){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
+        $id = urldecode($id);
         $keyValues = explode("__", $id);
         $keyFields = "";
         $fcount = 0;
@@ -1194,7 +1382,7 @@ class gridDataSource{
             $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
-        
+
         DB::delete("DELETE from " . $this->tableName .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 
