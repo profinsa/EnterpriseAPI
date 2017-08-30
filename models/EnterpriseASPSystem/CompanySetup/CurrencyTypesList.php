@@ -114,5 +114,154 @@ class gridData extends gridDataSource{
         "MajorUnits" => "Major Units",
         "MinorUnits" => "Minor Units"
     ];
+    public function updateItem($id, $category, $values){
+        $user = Session::get("user");
+        $id = urldecode($id);
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $insertKeyFields = [];
+        $insertKeyValues = [];
+        foreach($this->idFields as $key){
+            if(!key_exists($key, $values) && ($key == 'CompanyID' || $key == 'DivisionID' || $key == 'DepartmentID')){
+                $insertKeyFields[] = $key;
+                $insertKeyValues[] = "'{$user[$key]}'";
+            }
+        }
+        $update_fields = "";
+        $alreadyUsed = [];
+        $insert_values_history = [];
+        if($category){
+            foreach($this->editCategories as $category=>$cvalue){
+                foreach($this->editCategories[$category] as $name=>$value){
+                    if(key_exists($name, $values) &&  $values[$name] != "" && !key_exists($name, $alreadyUsed)){
+                        $alreadyUsed[$name] = true;
+                        if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
+                            $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                        else if(key_exists("formatFunction", $value)){
+                            $formatFunction = $value["formatFunction"];
+                            $values[$name] = $this->$formatFunction($values, "editCategories", $name, $values[$name], true);
+                        }
+                        if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                            $values[$name] = str_replace(",", "", $values[$name]);
+
+                        if($update_fields == "")
+                            $update_fields = $name . "='" . $values[$name] . "'";
+                        else
+                            $update_fields .= "," . $name . "='" . $values[$name] . "'";
+
+                            if (($name == "CurrencyID") || ($name == "CurrencyExchangeRate")  || ($name == "CurrencyRateLastUpdate")) {
+                            $insert_values_history[$name] = $values[$name];
+                        }
+                    }
+                }
+            }
+        }else{
+            foreach($this->gridFields as $name=>$value){
+                if(key_exists($name, $values)){
+                    if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
+                        $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                    else if(key_exists("formatFunction", $value)){
+                        $formatFunction = $value["formatFunction"];
+                        $values[$name] = $this->$formatFunction($values, "gridFields", $name, $values[$name], true);
+                    }
+                    if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                        $values[$name] = str_replace(",", "", $values[$name]);
+
+                    if($update_fields == "")
+                        $update_fields = $name . "='" . $values[$name] . "'";
+                    else
+                        $update_fields .= "," . $name . "='" . $values[$name] . "'";
+
+                    if (($name == "CurrencyID") || ($name == "CurrencyExchangeRate")  || ($name == "CurrencyRateLastUpdate")) {
+                        $insert_values_history[$name] = $values[$name];
+                    }
+                }
+            }
+        }
+
+        $oldItem = DB::select("SELECT CurrencyExchangeRate from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $oldExchangeRate = json_decode(json_encode($oldItem), true)[0]["CurrencyExchangeRate"];
+        
+        DB::insert("INSERT INTO currencytypeshistory (CurrencyID,CurrencyExchangeRate,CurrencyIDDateTime," . implode(',', $insertKeyFields) . ") values('" . $insert_values_history["CurrencyID"] . "','" . $oldExchangeRate . "','" . date("Y-m-d H:i:s", time()) . "'," . implode(',', $insertKeyValues) . ")");
+        DB::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+    //add row to table
+    public function insertItem($values){
+        $user = Session::get("user");
+        
+        $insert_fields = "";
+        $insert_values = "";
+        $insert_values_history = [];
+        $alreadyUsed = [];
+        foreach($this->editCategories as $category=>$arr){
+            foreach($this->editCategories[$category] as $name=>$value){
+                if(key_exists($name, $values) && !key_exists($name, $alreadyUsed) && $values[$name] != "" && !key_exists("autogenerated", $value)){
+                    if(key_exists("dirtyAutoincrement", $value))
+                        $values[$name] = $this->dirtyAutoincrementColumn($this->tableName, $name);
+                    $alreadyUsed[$name] = true;
+                    if($value["inputType"] == 'timestamp' || $value["inputType"] == 'datetime')
+                        $values[$name] = date("Y-m-d H:i:s", strtotime($values[$name]));
+                    else if(key_exists("formatFunction", $value)){
+                        $formatFunction = $value["formatFunction"];
+                        $values[$name] = $this->$formatFunction($values, "editCategories", $name, $values[$name], true);
+                    }
+                    if(key_exists("format", $value) && preg_match('/decimal/', $value["dbType"]))
+                        $values[$name] = str_replace(",", "", $values[$name]);
+
+                    if($insert_fields == ""){
+                        $insert_fields = $name;
+                        $insert_values = "'" . $values[$name] . "'";
+                    }else{
+                        $insert_fields .= "," . $name;
+                        $insert_values .= ",'" . $values[$name] . "'";
+                    }
+                    
+                    if (($name == "CurrencyID") || ($name == "CurrencyExchangeRate")  || ($name == "CurrencyRateLastUpdate")) {
+                        $insert_values_history[$name] = $values[$name];
+                    }
+                }
+            }
+        }
+
+        $keyFields = [];
+        $keyValues = [];
+        foreach($this->idFields as $key){
+            if(!key_exists($key, $values) && ($key == 'CompanyID' || $key == 'DivisionID' || $key == 'DepartmentID')){
+                $keyFields[] = $key;
+                $keyValues[] = "'{$user[$key]}'";
+            }
+        }
+        
+        if(count($keyFields)){
+            $insert_fields .= ',' . implode(',', $keyFields);
+            $insert_values .= ',' . implode(',', $keyValues);
+        }
+
+        $historyResult = DB::insert("INSERT INTO currencytypeshistory (CurrencyID,CurrencyExchangeRate,CurrencyIDDateTime," . implode(',', $keyFields) . ") values('" . $insert_values_history["CurrencyID"] . "','" . $insert_values_history["CurrencyExchangeRate"] . "','" . $insert_values_history["CurrencyRateLastUpdate"] . "'," . implode(',', $keyValues) . ")");
+        $result = DB::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")");
+    }
+
+    //delete row from table
+    public function deleteItem($id){
+        $user = Session::get("user");
+        $id = urldecode($id);
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        DB::delete("DELETE from " . $this->tableName .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from currencytypeshistory " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
 }
 ?>

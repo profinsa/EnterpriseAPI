@@ -253,6 +253,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "CurrencyTypesHistory" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "CustomerAccountStatuses" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "Always",

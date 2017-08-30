@@ -319,6 +319,7 @@
     "SystemSetup/CompanySetup/CompanyIDNumbers" => "EnterpriseASPSystem/CompanySetup/CompaniesNextNumbersList",
     "SystemSetup/CompanySetup/CreditCardTypes" => "EnterpriseASPSystem/CompanySetup/CreditCardTypesList",
     "SystemSetup/CompanySetup/Currencies" => "EnterpriseASPSystem/CompanySetup/CurrencyTypesList",
+    "SystemSetup/CompanySetup/CurrenciesHistory" => "EnterpriseASPSystem/CompanySetup/CurrencyTypesHistoryList",
     "SystemSetup/CompanySetup/TaxItems" => "EnterpriseASPSystem/CompanySetup/TaxesList",
     "SystemSetup/CompanySetup/TaxGroupDetails" => "EnterpriseASPSystem/CompanySetup/TaxGroupDetailList",
     "SystemSetup/CompanySetup/TaxGroups" => "EnterpriseASPSystem/CompanySetup/TaxGroupsList",

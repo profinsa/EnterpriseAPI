@@ -1,8 +1,14 @@
 <table id="example23" class="<?php echo isset($embeddedGridClasses) ? $embeddedGridClasses : ""; ?> datatable table table-striped table-bordered">
     <thead>
 	<tr>
-	    <th></th>
 	    <?php
+	    if (count($rows) > 0){
+			if(property_exists($data, "detailPages") && key_exists($ascope["category"], $data->detailPages) && key_exists("hideRowActions", $data->detailPages[$ascope["category"]]));
+			else
+				echo "<th></th>";
+		} else if(count($rows) == 0) {
+			echo "<th></th>";
+		}
 	    //getting data for table
 	    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 	    //we use first row of data for column rendering, each row is object with columnname=>value pairs
@@ -10,7 +16,7 @@
 		foreach($rows[0] as $key =>$value)
 		    if(key_exists($key, $gridFields))
 			echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
-	    }
+		}
 	    ?>
 	</tr>
     </thead>
@@ -41,29 +47,31 @@
 		   ngridDeleteItem function which called on click and just does XHR delete request and reload
 		   page content after receiving result
 		 */
-		echo "<td>";
-		if(key_exists("TransactionType", $row) && key_exists("TransactionNumber", $row)){
-		    echo "<a href=\"";
-		    echo $drill->getViewHrefByTransactionNumberAndType($row["TransactionNumber"], $row["TransactionType"]);
-		    echo "\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+		if (property_exists($data, "detailPages")&& key_exists($ascope["category"], $data->detailPages) && key_exists("hideRowActions", $data->detailPages[$ascope["category"]]));
+		else {
+			echo "<td>";
+			if(key_exists("TransactionType", $row) && key_exists("TransactionNumber", $row)){
+				echo "<a href=\"";
+				echo $drill->getViewHrefByTransactionNumberAndType($row["TransactionNumber"], $row["TransactionType"]);
+				echo "\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+			}
+
+			if(function_exists("makeRowActions")){
+				makeRowActions($linksMaker, $data, $ascope, $row, $embeddedgridContext);
+			}
+			/*
+			Each grid page(each screen) can have own row actions.
+			Like actions above it is just a html. It can have javascript or not
+			$PartsPath is path part what depends of current screen on which the user is located
+			For example, we want to add some actions to Account Receivable -> Order Processing -> View Orders
+			then we need create file gridRowActions on that path: resources/view/EnterpriseASPAR/OrderProcessing/OrderHeaderList/gridRowActions.php and add to it some html
+			*/
+			//including custom row actions
+			if(file_exists(__DIR__ . "/../" . $PartsPath . "gridRowActions.php"))
+				require __DIR__ . "/../" . $PartsPath . "gridRowActions.php";
+
+			echo "</td>";
 		}
-
-		if(function_exists("makeRowActions")){
-		    makeRowActions($linksMaker, $data, $ascope, $row, $embeddedgridContext);
-		}
-		/*
-		   Each grid page(each screen) can have own row actions.
-		   Like actions above it is just a html. It can have javascript or not
-		   $PartsPath is path part what depends of current screen on which the user is located
-		   For example, we want to add some actions to Account Receivable -> Order Processing -> View Orders
-		   then we need create file gridRowActions on that path: resources/view/EnterpriseASPAR/OrderProcessing/OrderHeaderList/gridRowActions.php and add to it some html
-		 */
-		//including custom row actions
-		if(file_exists(__DIR__ . "/../" . $PartsPath . "gridRowActions.php"))
-		    require __DIR__ . "/../" . $PartsPath . "gridRowActions.php";
-
-		echo "</td>";
-
 		/*
 		   Output values. Each value just a text inside td.
 		   Value can be formatted if it needed by its type. For example datetime prints as month/day/year
