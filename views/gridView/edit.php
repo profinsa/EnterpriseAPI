@@ -7,14 +7,14 @@ $GLOBALS["dialogChooserInputs"] = [];
 <?php
 if(key_exists("back", $_GET)){
     if(strpos($_GET["back"], "=" . $ascope["path"] . "&") === false){
-	$backhref = urldecode($_GET["back"]) . "&back=" . urlencode($_GET["back"]);
+	$backhref = $_GET["back"] . "&back=" . urlencode($_GET["back"]);
 	$back = "&back=" . urlencode($_GET["back"]);
     }else{
 	$backhref = $linksMaker->makeGridLink($ascope["path"]);//$linksMaker->makeGridLink($ascope["path"]);
 	$back = "&back=" . urlencode($linksMaker->makeGridLink($ascope["path"]));
     }
 }else{
-    $backhref = urlencode($linksMaker->makeGridLink($ascope["path"]));
+    $backhref = $linksMaker->makeGridLink($ascope["path"]);
     $back = "";
 }
 
