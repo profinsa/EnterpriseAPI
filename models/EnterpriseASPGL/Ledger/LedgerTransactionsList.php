@@ -218,7 +218,8 @@ class gridData extends gridDataSource{
         "GLTransactionNumberDetail" => "Detail Number",
         "GLDebitAmount" => "Debit Amount",
         "GLCreditAmount" => "Credit Amount",
-        "ProjectID" => "Project ID"
+        "ProjectID" => "Project ID",
+        "GLControlNumber" => "Control Number"
     ];
 
     public $detailPages = [
@@ -256,6 +257,12 @@ class gridData extends gridDataSource{
                     "dbType" => "varchar(36)",
                     "inputType" => "dropdown",
                     "dataProvider" => "getProjects",
+                    "defaultValue" => ""
+                ],
+                "GLControlNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "dropdown",
+                    "dataProvider" => "getGLControlNumbers",
                     "defaultValue" => ""
                 ]
             ]

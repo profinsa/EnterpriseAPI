@@ -950,6 +950,20 @@ class gridDataSource{
     }
     
     //getting list of available account types 
+    public function getGLControlNumbers(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT GLControlNumber,GLControlNumberName from GLControlNumbers WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->GLControlNumber] = [
+                "title" => $value->GLControlNumber . " - " . $value->GLControlNumberName,
+                "value" => $value->GLControlNumber
+            ];
+        return $res;
+    }
+
+    //getting list of available account types 
     public function getAccounts(){
         $user = Session::get("user");
         $res = [];
