@@ -419,11 +419,11 @@ $dropdownDepends = [];
 						       else
 							   window.location = "<?php echo $backhref?>";
 						   })
-								     .error(function(err){
-									 localStorage.removeItem("autorecalcLink");
-									 localStorage.removeItem("autorecalcData");
-									 window.location = "<?php echo $backhref?>";
-								     });
+						   .error(function(err){
+						       localStorage.removeItem("autorecalcLink");
+						       localStorage.removeItem("autorecalcData");
+						       window.location = "<?php echo $backhref?>";
+						   });
 					      } else if(cb)
 						  cb(insertRequest);
 					      else
