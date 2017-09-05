@@ -118,7 +118,7 @@ class financialsReportData{
         if(preg_match('/Period/', $this->type, $numberParts))
             $params .= "'" . $_GET["year"] . "', '" . $_GET["period"] . "', ";
         
-        $stmt = $conn->prepare("CALL RptGLCashFlow" . $typesToProc[$this->type] . ( $_GET["itype"] == "Standard" ? "" : $_GET["itype"]) . "('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', " . $params . "@PeriodEndDate, @ret)",array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
+        $stmt = $conn->prepare("CALL RptGLCashFlow" . $typesToProc[$this->type] . ( $_GET["itype"] == "Standard" ? "" : $_GET["itype"]) . "Drills('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', " . $params . "@PeriodEndDate, @ret)",array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
 
         $rs = $stmt->execute();
 

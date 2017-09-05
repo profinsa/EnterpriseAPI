@@ -112,6 +112,8 @@ class financialsReportData{
 
         $params = '';
 
+        $_GET["vtype"] = $this->type;
+
         if(preg_match('/Period/', $this->type, $numberParts))
             $params .= "'" . $_GET["year"] . "', '" . $_GET["period"] . "', ";
         

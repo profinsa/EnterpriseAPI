@@ -29,7 +29,22 @@
     $user = $data->getUser();
     $currencySymbol = $data->getCurrencySymbol()["symbol"];
     $tdata = $data->getData();
-    //echo json_encode($tdata);
+	//echo json_encode($tdata);
+	$typesToProc = [
+		"Standard" => "",
+		"Company" => "Company",
+		"Division" => "Division",
+		"Period" => "Period",
+		"DivisionPeriod" => "PeriodDivision",
+		"CompanyPeriod" => "PeriodCompany"
+	];
+
+	$params = '';
+
+	if(preg_match('/Period/', $_GET["vtype"], $numberParts))
+		$params .= "'" . $_GET["year"] . "', '" . $_GET["period"] . "', ";
+
+	$proc = "CALL RptGLIncomeStatement" . $typesToProc[$_GET["vtype"]] . ( $_GET["itype"] == "Standard" ? "" : $_GET["itype"]) . "('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', " . $params . "@PeriodEndDate, @IncomeTotal, @CogsTotal, @ExpenseTotal" . ($_GET["itype"] == "Comparative" || $_GET["itype"] == "YTD" ? ", @IncomeTotalComparative, @CogsTotalComparative, @ExpenseTotalComparative" : "") . ", @ret)";
     ?>
     <div class="col-md-12 col-xs-12">
 	<div class="col-md-12 col-xs-12" style="border-bottom: 1px solid black;">
@@ -67,7 +82,7 @@
 		    echo "<tr>";
 		    //		    if($_GET["itype"] != "Comparative")
 		    echo"<td style=\"width:100px\"></td>";
-		    echo "<td>" . ($data->type == "Company" ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . ($data->type == "Division" || $data->type == "Company" ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalance($row["GLAccountName"], $row["GLAccountBalanceOriginal"]) . "</td>";
+		    echo "<td>" . ($data->type == "Company" ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . ($data->type == "Division" || $data->type == "Company" ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) . "</td>";
 		    if($_GET["itype"] == "Comparative")
 			echo "<td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td><td>" .  $row["GLAccountBalanceComparative"] ."</td>";
 		    else
@@ -96,7 +111,7 @@
 		</tr>
 		<?php
 		foreach($tdata["Cogs"] as $row){
-		    echo "<tr><td style=\"width:100px\"></td><td>" . ($data->type == "Company" ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . ($data->type == "Division" || $data->type == "Company" ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalance($row["GLAccountName"], $row["GLAccountBalanceOriginal"]) . "</td>";
+		    echo "<tr><td style=\"width:100px\"></td><td>" . ($data->type == "Company" ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . ($data->type == "Division" || $data->type == "Company" ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) . "</td>";
 		    if($_GET["itype"] == "Comparative")
 			echo "<td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td><td>" .  $row["GLAccountBalanceComparative"] ."</td>";
 		    else
@@ -137,7 +152,7 @@
 		</tr>
 		<?php
 		foreach($tdata["Expense"] as $row){
-		    echo "<tr><td style=\"width:100px\"></td><td>" . ($data->type == "Company" && key_exists("DivisionID", $row) ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . (($data->type == "Division" || $data->type == "Company")  && key_exists("DepartmentID", $row) ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalance($row["GLAccountName"], $row["GLAccountBalanceOriginal"]) . "</td>";
+		    echo "<tr><td style=\"width:100px\"></td><td>" . ($data->type == "Company" && key_exists("DivisionID", $row) ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . (($data->type == "Division" || $data->type == "Company")  && key_exists("DepartmentID", $row) ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) . "</td>";
 		    if($_GET["itype"] == "Comparative")
 			echo "<td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td><td>" .  $row["GLAccountBalanceComparative"] ."</td>";
 		    else

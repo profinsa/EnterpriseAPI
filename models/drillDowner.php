@@ -25,8 +25,8 @@ controllers/financials
 Calls:
 sql
 
-Last Modified: 08.11.2016
-Last Modified by: Nikita Zaharov
+Last Modified: 04.09.2017
+Last Modified by: Eugene Tetarenko
 */
 
 class drillDowner{
@@ -180,6 +180,39 @@ class drillDowner{
         
         return "<a target=\"_blank\" href=\"index.php?page=docreports&type=" . $pfixes["prefix"] . "order" . $pfixes["postfix"] . "&id=$OrderNumber\">$OrderNumber</a>";
 
+    }
+
+    public function getLinkByAccountNameAndBalanceForTrial($name, $balance, $proc){
+        $user = $GLOBALS["user"];
+        $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
+
+        $conn =  DB::connection()->getPdo();
+        $conn->setAttribute($conn::ATTR_EMULATE_PREPARES, true);
+        
+        $stmt = $conn->prepare($proc,array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
+
+        $rs = $stmt->execute();
+
+        $this->accounts = $stmt->fetchAll($conn::FETCH_ASSOC);
+
+        $stmt = null;
+
+        foreach($this->accounts as $value) {
+            if($value["GLAccountName"] == $name && $value["GLAccountBalance"] == $balance){
+                $keyString .= "__" . $value["GLAccountNumber"];
+                return "<a target=\"_blank\" href=\"index.php#/?page=grid&action=GeneralLedger/Ledger/ViewGLAccountTransactions&mode=grid&category=Main&item=$keyString\">$name</a>";
+            }        
+        }
+
+        return $name;
+    }
+
+    public function getLinkByCashFlowID($CashFlowID, $name){
+        $user = $GLOBALS["user"];
+        $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
+
+        $keyString .= "__" . $CashFlowID;
+        return "<a target=\"_blank\" href=\"index.php#/?page=grid&action=GeneralLedger/Ledger/ViewGLAccountsTransactions&mode=grid&category=Main&item=$keyString\">$name</a>";
     }
 
     public function getViewHrefByTransactionNumberAndType($number, $type){

@@ -62,10 +62,28 @@ Last Modified by: Nikita Zaharov
 	<table class="col-md-12 col-xs-12 balance-sheet-table">
 	    <tbody>
 		<?php
+		$user = Session::get("user");
+		
+		$typesToProc = [
+			"Standard" => "",
+			"Company" => "Company",
+			"Division" => "Division",
+			"Period" => "Period",
+			"DivisionPeriod" => "PeriodDivision",
+			"CompanyPeriod" => "PeriodCompany"
+		];
+
+		$params = '';
+
+		if(preg_match('/Period/', $_GET["vtype"], $numberParts))
+			$params .= "'" . $_GET["year"] . "', '" . $_GET["period"] . "', ";
+
+		$proc = "CALL RptGLTrialBalance" . $typesToProc[$_GET["vtype"]] . ( $_GET["itype"] == "Standard" ? "" : $_GET["itype"]) . "Drills('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', @PeriodEndDate, @ret)";
+		
 		foreach($tdata["Debit"] as $row)
-		    echo "<tr><td colspan=\"3\">" . $drill->getLinkByAccountNameAndBalance($row["GLAccountName"], $row["GLAccountBalanceOriginal"]) . "</td><td>" . $currencySymbol .$row["GLAccountBalance"] . "</td><td></td><td></td>" . ($_GET["itype"] == "Comparative" || $_GET["itype"] == "YTD" ? "<td></td><td>" . $currencySymbol .$row["GLAccountBalance" . $_GET["itype"]] . "</td><td></td><td></td>" : "") . "</tr>"; 
+		    echo "<tr><td colspan=\"3\">" . $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) . "</td><td>" . $currencySymbol .$row["GLAccountBalance"] . "</td><td></td><td></td>" . ($_GET["itype"] == "Comparative" || $_GET["itype"] == "YTD" ? "<td></td><td>" . $currencySymbol .$row["GLAccountBalance" . $_GET["itype"]] . "</td><td></td><td></td>" : "") . "</tr>"; 
 		foreach($tdata["Credit"] as $row)
-		    echo "<tr><td colspan=\"3\">" . $drill->getLinkByAccountNameAndBalance($row["GLAccountName"], $row["GLAccountBalanceOriginal"]) . "</td><td></td><td></td><td>" . $currencySymbol . $row["GLAccountBalance"] . "</td>" . ($_GET["itype"] == "Comparative" || $_GET["itype"] == "YTD" ? "<td></td><td></td><td></td><td>" . $currencySymbol .$row["GLAccountBalance" . $_GET["itype"]] . "</td>" : "") . "</tr>"; 
+		    echo "<tr><td colspan=\"3\">" . $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) . "</td><td></td><td></td><td>" . $currencySymbol . $row["GLAccountBalance"] . "</td>" . ($_GET["itype"] == "Comparative" || $_GET["itype"] == "YTD" ? "<td></td><td></td><td></td><td>" . $currencySymbol .$row["GLAccountBalance" . $_GET["itype"]] . "</td>" : "") . "</tr>"; 
 		?>
 		<tr><td colspan="3"></td><td style="border-top:1px solid black; border-bottom:3px double black;"><?php echo $currencySymbol . $tdata["DebitTotal"]; ?></td><td></td><td style="border-top:1px solid black; border-bottom:3px double black;"><?php echo $currencySymbol . $tdata["CreditTotal"]; ?></td><?php echo ($_GET["itype"] == "Comparative" || $_GET["itype"] == "YTD" ? "<td></td><td style=\"border-top:1px solid black; border-bottom:3px double black;\">" . $currencySymbol .$tdata["DebitTotal" . $_GET["itype"]] . "</td><td></td><td style=\"border-top:1px solid black; border-bottom:3px double black;\">" . $currencySymbol .$tdata["CreditTotal" . $_GET["itype"]] . "</td>" : ""); ?></tr>
 	    </tbody>

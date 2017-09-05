@@ -71,7 +71,7 @@
 		    echo "<tr>";
 		    //		    if($_GET["itype"] != "Comparative")
 		    echo"<td style=\"width:20px\"></td>";
-		    echo "<td style=\"width:200px;\">" . $row["FlowTitle"] . "</td><td></td>";
+		    echo "<td style=\"width:200px;\">" . $drill->getLinkByCashFlowID($row["FlowID"], $row["FlowTitle"]) . "</td><td></td>";
 		    if($_GET["itype"] == "Comparative" || $_GET["itype"] == "YTD")
 			echo (key_exists("debit", $row) ? "<td style=\"" . negativeStyle($row["debit"]) . "\">" . $currencySymbol . $row["debit"] . "</td>" : "<td></td>" ) . (key_exists("credit", $row) ? "<td style=\"" . negativeStyle($row["credit"]) . "\">" . $currencySymbol . $row["credit"] . "</td>" :  "<td></td>") . (key_exists("debit" . $_GET["itype"], $row) ? "<td style=\"" . negativeStyle($row["debit" . $_GET["itype"]]) . "\">" . $currencySymbol . $row["debit" . $_GET["itype"]] . "</td>" : "<td></td>" ) . (key_exists("credit" . $_GET["itype"], $row) ? "<td style=\"" . negativeStyle($row["credit" . $_GET["itype"]]) . "\">" . $currencySymbol . $row["credit" . $_GET["itype"]] . "</td>" :  "<td></td>") . "<td></td>";
 		    else
@@ -122,7 +122,7 @@
 		    echo "<tr>";
 		    //		    if($_GET["itype"] != "Comparative")
 		    echo"<td style=\"width:20px\"></td>";
-		    echo "<td style=\"width:200px;\">" . $row["FlowTitle"] . "</td><td></td>";
+		    echo "<td style=\"width:200px;\">" . $drill->getLinkByCashFlowID($row["FlowID"], $row["FlowTitle"]) . "</td><td></td>";
 		    if($_GET["itype"] == "Comparative" || $_GET["itype"] == "YTD")
 			echo (key_exists("debit", $row) ? "<td style=\"" . negativeStyle($row["debit"]) . "\">" . $currencySymbol . $row["debit"] . "</td>" : "<td></td>" ) . (key_exists("credit", $row) ? "<td style=\"" . negativeStyle($row["credit"]) . "\">" . $currencySymbol . $row["credit"] . "</td>" :  "<td></td>") . (key_exists("debit" . $_GET["itype"], $row) ? "<td style=\"" . negativeStyle($row["debit" . $_GET["itype"]]) . "\">" . $currencySymbol . $row["debit" . $_GET["itype"]] . "</td>" : "<td></td>" ) . (key_exists("credit" . $_GET["itype"], $row) ? "<td style=\"" . negativeStyle($row["credit" . $_GET["itype"]]) . "\">" . $currencySymbol . $row["credit" . $_GET["itype"]] . "</td>" :  "<td></td>") . "<td></td>";
 		    else
@@ -174,7 +174,7 @@
 		    echo "<tr>";
 		    //		    if($_GET["itype"] != "Comparative")
 		    echo"<td style=\"width:20px\"></td>";
-		    echo "<td style=\"width:200px;\">" . $row["FlowTitle"] . "</td><td></td>";
+		    echo "<td style=\"width:200px;\">" . $drill->getLinkByCashFlowID($row["FlowID"], $row["FlowTitle"]) . "</td><td></td>";
 		    if($_GET["itype"] == "Comparative" || $_GET["itype"] == "Comparative")
 			echo (key_exists("debit", $row) ? "<td style=\"" . negativeStyle($row["debit"]) . "\">" . $currencySymbol . $row["debit"] . "</td>" : "<td></td>" ) . (key_exists("credit", $row) ? "<td style=\"" . negativeStyle($row["credit"]) . "\">" . $currencySymbol . $row["credit"] . "</td>" :  "<td></td>") . (key_exists("debit" . $_GET["itype"], $row) ? "<td style=\"" . negativeStyle($row["debit" . $_GET["itype"]]) . "\">" . $currencySymbol . $row["debit" . $_GET["itype"]] . "</td>" : "<td></td>" ) . (key_exists("credit" . $_GET["itype"], $row) ? "<td style=\"" . negativeStyle($row["credit" . $_GET["itype"]]) . "\">" . $currencySymbol . $row["credit" . $_GET["itype"]] . "</td>" :  "<td></td>") . "<td></td>";
 		    else

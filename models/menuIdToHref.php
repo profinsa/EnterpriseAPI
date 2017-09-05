@@ -184,6 +184,7 @@
     "GeneralLedger/Ledger/ViewLedgerAccountGroup" => "EnterpriseASPGL/Ledger/LedgerAccountGroupList",
     "GeneralLedger/Ledger/ViewGLTransactions" => "EnterpriseASPGL/Ledger/LedgerTransactionsList",
     "GeneralLedger/Ledger/ViewGLAccountTransactions" => "EnterpriseASPGL/Ledger/LedgerAccountTransactionsList",
+    "GeneralLedger/Ledger/ViewGLAccountsTransactions" => "EnterpriseASPGL/Ledger/LedgerAccountsTransactionsList",
     "GeneralLedger/Ledger/ViewClosedGLTransactions" => "EnterpriseASPGL/Ledger/LedgerTransactionsClosedList",
     "GeneralLedger/Ledger/ViewGLTransactionsHistory" => "EnterpriseASPGL/Ledger/LedgerTransactionsHistoryList",
     "GeneralLedger/Ledger/StoreGLTransactions" => "EnterpriseASPGL/Ledger/LedgerTransactionsStoreList",
