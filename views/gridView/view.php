@@ -1,7 +1,12 @@
 <?php
 if(key_exists("back", $_GET)){
-    $backhref = urldecode($_GET["back"]) . "&back={$_GET["back"]}";
-    $back = "&back=" . urlencode($_GET["back"]);
+    if(strpos($_GET["back"], "=" . $ascope["path"] . "&") === false){
+	$backhref = $_GET["back"] . "&back=" . urlencode($_GET["back"]);
+	$back = "&back=" . urlencode($_GET["back"]);
+    }else{
+	$backhref = $linksMaker->makeGridLink($ascope["path"]);
+	$back = "&back=" . urlencode($linksMaker->makeGridLink($ascope["path"]));
+    }
 }else{
     $backhref = "index.php#/?page=grid&action={$ascope["path"]}&mode=grid&category=Main&item=all";
     $back = "";

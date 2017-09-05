@@ -6,10 +6,15 @@ $GLOBALS["dialogChooserInputs"] = [];
 <!-- edit and new -->
 <?php
 if(key_exists("back", $_GET)){
-    $backhref = urldecode($_GET["back"]) . "&back={$_GET["back"]}";
-    $back = "&back=" . urlencode($_GET["back"]);
+    if(strpos($_GET["back"], "=" . $ascope["path"] . "&") === false){
+	$backhref = $_GET["back"] . "&back=" . urlencode($_GET["back"]);
+	$back = "&back=" . urlencode($_GET["back"]);
+    }else{
+	$backhref = $linksMaker->makeGridLink($ascope["path"]);//$linksMaker->makeGridLink($ascope["path"]);
+	$back = "&back=" . urlencode($linksMaker->makeGridLink($ascope["path"]));
+    }
 }else{
-    $backhref = "index.php#/?page=grid&action={$ascope["path"]}&mode=grid&category=Main&item=all";
+    $backhref = $linksMaker->makeGridLink($ascope["path"]);
     $back = "";
 }
 
@@ -166,6 +171,11 @@ $dropdownDepends = [];
 				    <?php echo $translation->translateLabel("New"); ?>
 				</a>
 			    <?php endif; ?>
+			    <?php if(!key_exists("disableNew", $data->detailPages[$curCategory]) && $ascope["mode"] == "new"): ?>
+				<a class="btn btn-info" href="javascript:newSubgridItem<?php echo $newButtonId; ?>();">
+				    <?php echo $translation->translateLabel("New"); ?>
+				</a>
+			    <?php endif; ?>
 			</div>
 			<script>
 			 //			 if(!datatableInitialized){
@@ -181,6 +191,20 @@ $dropdownDepends = [];
 			     console.log(tableFooter, buttons);
 			     tableFooter.prepend(buttons);
 			 },300);
+			 function newSubgridItem<?php echo $newButtonId;?>(){
+			     createItem(function(request){
+				 var insertedData = JSON.parse(request.responseText);
+				 var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
+				 for(ind in idFields){
+				     if(keyString == "")
+					 keyString = insertedData[idFields[ind]];
+				     else
+					 keyString += "__" + insertedData[idFields[ind]];
+				 }
+				 var link = "index.php#/?page=grid&action=<?php echo $data->detailPages[$curCategory]["viewPath"]; ?>&mode=new&category=Main&item=new&back=<?php echo urlencode("index.php#/?page=grid&action={$ascope["path"]}&mode=edit&category=Main&item="); ?>" + keyString + "&<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>" + "=" + insertedData["<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>"];
+				 window.location = link;
+			     });
+			 }
 			</script>
 		    <?php endif; ?>
 		</div>
@@ -355,7 +379,7 @@ $dropdownDepends = [];
      }
 
      //  handler of save button if we in new mode. Just doing XHR request to save data
-     function createItem(){
+     function createItem(cb){
 	 var itemData = $("#itemData");
 
 	 if (validateForm(itemData)) {
@@ -383,28 +407,33 @@ $dropdownDepends = [];
 			 }
                      }catch(e){}
 
-                     $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-				       .success(function(data) {
-					   if(localStorage.getItem("autorecalcLink")){
-					       $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-						.success(function(data) {
-						    localStorage.removeItem("autorecalcLink");
-						    localStorage.removeItem("autorecalcData");
-						    window.location = "<?php echo $backhref?>";
-						})
-						.error(function(err){
-                    localStorage.removeItem("autorecalcLink");
-                    localStorage.removeItem("autorecalcData");
-                    window.location = "<?php echo $backhref?>";
-                    });
-                }else
-                window.location = "<?php echo $backhref?>";
-                })
-                .error(function(err){
-                console.log('wrong');
-                });
-			}
-		});
+                     var insertRequest = $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+					  .success(function(data) {
+					      if(localStorage.getItem("autorecalcLink")){
+						  $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+						   .success(function(data) {
+						       localStorage.removeItem("autorecalcLink");
+						       localStorage.removeItem("autorecalcData");
+						       if(cb)
+							   cb(insertRequest);
+						       else
+							   window.location = "<?php echo $backhref?>";
+						   })
+						   .error(function(err){
+						       localStorage.removeItem("autorecalcLink");
+						       localStorage.removeItem("autorecalcData");
+						       window.location = "<?php echo $backhref?>";
+						   });
+					      } else if(cb)
+						  cb(insertRequest);
+					      else
+						  window.location = "<?php echo $backhref?>";
+					  })
+						   .error(function(err){
+					   console.log('wrong');
+				       });
+		 }
+	     });
 	 }
      }
      //handler of save button if we in edit mode. Just doing XHR request to save data

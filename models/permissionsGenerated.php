@@ -925,6 +925,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "ControlNumbers" => [
+        "select" => "GLView|ADView|ADSetup",
+        "update" => "GLEdit|ADSetup",
+        "insert" => "GLAdd|ADSetup",
+        "delete" => "GLDelete|ADSetup",
+    ],
     "LedgerAccountGroup" => [
         "select" => "GLView|ADView|ADSetup",
         "update" => "GLEdit|ADSetup",

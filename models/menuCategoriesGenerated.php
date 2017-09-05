@@ -1360,6 +1360,12 @@ $menuCategories["GeneralLedger"] = [
         "full" => $translation->translateLabel('Depreciation Methods'),
         "href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetDepreciationMethodsList",
         "short" => "De"
+        ],
+        [
+        "id" => "GeneralLedger/LedgerSetup/ControlNumbers",
+        "full" => $translation->translateLabel('Control Numbers'),
+        "href"=> "EnterpriseASPSystem/LedgerSetup/ControlNumbersList",
+        "short" => "De"
         ]
     ]
     ]
@@ -2302,6 +2308,12 @@ $menuCategories["SystemSetup"] = [
         "id" => "SystemSetup/LedgerSetup/DepreciationMethods",
         "full" => $translation->translateLabel('Depreciation Methods'),
         "href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetDepreciationMethodsList",
+        "short" => "De"
+        ],
+        [
+        "id" => "GeneralLedger/LedgerSetup/ControlNumbers",
+        "full" => $translation->translateLabel('Control Numbers'),
+        "href"=> "EnterpriseASPSystem/LedgerSetup/ControlNumbersList",
         "short" => "De"
         ]
     ]

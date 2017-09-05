@@ -1,5 +1,35 @@
 <?php
-require "./models/gridDataSource.php";
+/*
+Name of Page: LedgerTransactions model
+
+Method: Model for gridView. It provides data from database and default values, column names and categories
+
+Date created: Nikita Zaharov, 13.02.2016
+
+Use: this model used by gridView for:
+- as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
+- for loading data from tables, updating, inserting and deleting
+
+Input parameters:
+$db: database instance
+methods has own parameters
+
+Output parameters:
+- dictionaries as public properties
+- methods has own output
+
+Called from:
+created and used for ajax requests by Grid controller
+used as model by gridView
+
+Calls:
+sql
+
+Last Modified: 08.30.2016
+Last Modified by: Nikita Zaharov
+*/
+
+require __DIR__ . "/../../../models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "ledgertransactions";
@@ -8,7 +38,8 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Ledger Transactions";
     public $idField ="GLTransactionNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
-    public $modes = ["grid", "view", "edit", "new"];
+    public $modes = ["grid", "view", "edit", "new", "delete"];
+    public $temporarySaving = true;
     public $gridFields = [
         "GLTransactionNumber" => [
             "dbType" => "varchar(36)",
@@ -63,6 +94,7 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "dataProvider" => "getLedgerTransactionTypes",
+                "required" => true,
                 "defaultValue" => ""
             ],
             "GLTransactionDate" => [
@@ -89,7 +121,7 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(3)",
                 "inputType" => "dropdown",
                 "dataProvider" => "getCurrencyTypes",
-                "defaultValue" => "USD"
+                "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
                 "dbType" => "float",
@@ -151,7 +183,7 @@ class gridData extends gridDataSource{
             ]
         ]
     ];
-
+    
     public $columnNames = [
         "GLTransactionNumber" => "Transaction Number",
         "GLTransactionTypeID" => "Type",
@@ -170,7 +202,7 @@ class gridData extends gridDataSource{
         "GLTransactionRecurringYN" => "GL Transaction Recurring YN",
         "Reversal" => "Reversal",
         "Approved" => "Approved",
-        "ApprovedBy" => "ApprovedBy",
+        "ApprovedBy" => "Approved By",
         "ApprovedDate" => "Approved Date",
         "EnteredBy" => "EnteredBy",
         "BatchControlNumber" => "Batch Control Number",
@@ -181,25 +213,130 @@ class gridData extends gridDataSource{
         "SupervisorPassword" => "Supervisor Password",
         "ManagerSignature" => "Manager Signature",
         "ManagerPassword" => "Manager Password",
-        "Memorize" => "Memorize"
+        "Memorize" => "Memorize",
+        "GLTransactionAccount" => "Account",
+        "GLTransactionNumberDetail" => "Detail Number",
+        "GLDebitAmount" => "Debit Amount",
+        "GLCreditAmount" => "Credit Amount",
+        "ProjectID" => "Project ID",
+        "GLControlNumber" => "Control Number"
     ];
 
-    public function PostManual(){
-        $user = $_SESSION["user"];
+    public $detailPages = [
+        "Main" => [
+            //            "hideFields" => "true",
+            //"disableNew" => "true",
+            //"deleteDisabled" => "true",
+            //"editDisabled" => "true",
+            "viewPath" => "GeneralLedger/Ledger/LedgerTransactionsDetail",
+            "newKeyField" => "GLTransactionNumber",
+            "keyFields" => ["GLTransactionNumber", "GLTransactionNumberDetail"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"],
+            "gridFields" => [
+                "GLTransactionAccount" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "dropdown",
+                    "dataProvider" => "getAccounts",
+                    "defaultValue" => ""
+                ],
+                "GLDebitAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "inputType" => "text",
+                    "defaultValue" => "",
+                    "format" => "{0:n}",
+                    //"formatFunction" => "currencyFormat"
+                ],
+                "GLCreditAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "inputType" => "text",
+                    "defaultValue" => "",
+                    "format" => "{0:n}",
+                    //                    "formatFunction" => "currencyFormat"
+                ],
+                "ProjectID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "dropdown",
+                    "dataProvider" => "getProjects",
+                    "defaultValue" => ""
+                ],
+                "GLControlNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "dropdown",
+                    "dataProvider" => "getGLControlNumbers",
+                    "defaultValue" => ""
+                ]
+            ]
+        ]
+    ];
 
-        $GLOBALS["capsule"]::statement("CALL LedgerTransactions_PostManual('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["GLTransactionNumber"] . "',@PostingResult,@DisbalanceAmount,@IsValid,@SWP_RET_VALUE)");
-
-        $results = $GLOBALS["capsule"]::select('select @PostingResult as PostingResult, @DisbalanceAmount as DisbalanceAmount, @IsValid as IsValid, @SWP_RET_VALUE as SWP_RET_VALUE');
-        if($results[0]->SWP_RET_VALUE > -1)
-            echo $results[0]->PostingResult;
-        else {
-            http_response_code(400);
-            echo $results[0]->PostingResult;
+    public function getMain($GLTransactionNumber){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["Main"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
         }
+        foreach($this->detailPages["Main"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND GLTransactionNumber='" . $GLTransactionNumber . "'";
+        
+        $result = DB::select("SELECT * from ledgertransactionsdetail WHERE ". $keyFields, array());
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+    
+    public function deleteMain(){
+        $user = Session::get("user");
+        $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber", "GLTransactionNumberDetail"];
+        $keyValues = explode("__", $_GET["item"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        
+        DB::delete("DELETE from ledgertransactionsdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+    public function PostManual(){
+        $user = Session::get("user");
+
+        DB::statement("CALL LedgerTransactions_PostManual('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["GLTransactionNumber"] . "',@PostingResult,@DisbalanceAmount,@IsValid,@SWP_RET_VALUE)");
+
+        $results = DB::select('select @PostingResult as PostingResult, @DisbalanceAmount as DisbalanceAmount, @IsValid as IsValid, @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($results[0]->SWP_RET_VALUE > -1){
+            header('Content-Type: application/json');
+            echo $results[0]->PostingResult;
+        }else
+            echo $results[0]->PostingResult;
     }
 
     public function Memorize(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyValues = explode("__", $_POST["id"]);
         $keyFields = "";
         $fcount = 0;
@@ -207,8 +344,165 @@ class gridData extends gridDataSource{
             $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
-        $GLOBALS["capsule"]::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
+        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
         echo "ok";
+    }
+
+    public function Recalc(){
+        $user = Session::get("user");
+        $details = DB::select("SELECT * from ledgertransactionsdetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLTransactionNumber=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLTransactionNumber"]));
+        $amount = 0;
+        foreach($details as $dkey=>$detail)
+            $amount += $detail->GLDebitAmount;
+        
+        DB::update("UPDATE ledgertransactions set GLTransactionAmount=? WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND GLTransactionNumber=?", array($amount, $user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["GLTransactionNumber"]));
+    }
+}
+
+class LedgerTransactionsClosedList extends gridData{
+    protected $tableName = "ledgertransactions";
+    protected $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 1 AND UPPER(GLTransactionNumber) <> 'DEFAULT'";
+    public $dashboardTitle ="Closed Ledger Transactions";
+    public $breadCrumbTitle ="Closed Ledger Transactions";
+    public $idField ="GLTransactionNumber";
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
+    public $modes = ["grid", "view", "edit"]; // list of enabled modes
+    public $features = ["selecting"]; //list enabled features
+    
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["GLTransactionNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL LedgerTransactions_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL LedgerTransactions_CopyAllToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
+    
+    public function Memorize(){
+        $user = Session::get("user");
+        $keyValues = explode("__", $_POST["id"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
+        echo "ok";
+    }
+}
+
+class LedgerTransactionsHistoryList extends gridData{
+    protected $tableName = "ledgertransactionshistory";
+    public $dashboardTitle ="Ledger Transactions History";
+    public $breadCrumbTitle ="Ledger Transactions History";
+    public $modes = ["grid", "view"];
+    protected $gridConditions = "1=1";
+    
+    public $detailPages = [
+        "Main" => [
+            //            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "GeneralLedger/Ledger/LedgerTransactionsDetail",
+            "newKeyField" => "GLTransactionNumber",
+            "keyFields" => ["GLTransactionNumber", "GLTransactionNumberDetail"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"],
+            "gridFields" => [
+                "GLTransactionAccount" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "dropdown",
+                    "dataProvider" => "getAccounts",
+                    "defaultValue" => ""
+                ],
+                "GLDebitAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "inputType" => "text",
+                    "defaultValue" => "",
+                    "format" => "{0:n}",
+                    //"formatFunction" => "currencyFormat"
+                ],
+                "GLCreditAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "inputType" => "text",
+                    "defaultValue" => "",
+                    "format" => "{0:n}",
+                    //                    "formatFunction" => "currencyFormat"
+                ],
+                "ProjectID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "dropdown",
+                    "dataProvider" => "getProjects",
+                    "defaultValue" => ""
+                ]
+            ]
+        ]
+    ];
+    
+    public function getMain($GLTransactionNumber){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["Main"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages["Main"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND GLTransactionNumber='" . $GLTransactionNumber . "'";
+        
+        $result = DB::select("SELECT * from ledgertransactionsdetailhistory WHERE ". $keyFields, array());
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
     }
 }
 ?>

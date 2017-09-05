@@ -37,6 +37,9 @@
     "GeneralLedger/LedgerSetup/ViewStoredChartofAccounts" => "EnterpriseASPGL/Ledger/LedgerStoredChartOfAccountsList",
     "GeneralLedger/LedgerSetup/LedgerStoredAccounts" => "EnterpriseASPGL/Ledger/LedgerStoredAccountsList",
     "GeneralLedger/Ledger/ViewLedgerAccountSubGroup" => "EnterpriseASPGL/Ledger/LedgerAccountSubGroupList",
+    "GeneralLedger/LedgerSetup/ControlNumbers" => "EnterpriseASPGL/Ledger/ControlNumbersList",
+
+    
     
     "AccountsReceivable/OrderProcessing/ViewQuotes" => "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
     "AccountsReceivable/OrderProcessing/ViewQuotesTracking" => "EnterpriseASPAR/OrderProcessing/QuoteTrackingHeaderList",   
