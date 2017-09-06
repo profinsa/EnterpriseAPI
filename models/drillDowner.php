@@ -268,7 +268,7 @@ class drillDowner{
             "PurchaseNumber" => "grid/AccountsPayable/PurchaseProcessing/ViewPurchases/view/Main/",
         ];
 
-        return "index.php#/" . (key_exists($name, $nameToView) ? $typeToView[$name] : "?page=grid&action=AccountsReceivable/OrderProcessing/ViewOrders&mode=view&category=Main&item=") . "$keyString";
+        return "index.php#/" . (key_exists($name, $typeToView) ? $typeToView[$name] : "?page=grid&action=AccountsReceivable/OrderProcessing/ViewOrders&mode=view&category=Main&item=") . "$keyString";
     }
 
     public function getViewLinkByTransactionNumberAndType($number, $type){
