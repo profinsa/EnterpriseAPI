@@ -3,7 +3,8 @@
 </h3>
 <div class="table-responsive col-md-12">
     <?php
-    $tableData = $data->getData();
+	$tableData = $data->getData();
+	$GLOBALS["user"] = $this->user;
     ?>
     <?php if(count($tableData)): ?>
 	<table class="table table-bordered">
@@ -18,9 +19,25 @@
 	    <tbody>
 		<?php
 		foreach($tableData as $row){
-		    echo "<tr>";
-		    foreach($row as $key=>$value)
-			echo "<td>" . $value . "</td>\n";
+			echo "<tr>";
+		    foreach($row as $key=>$value) {
+				switch ($key) {
+					case "CustomerID":
+						echo "<td>" . $drill->getLinkByField($key, $value) . "</td>\n";
+					break;
+					case "InvoiceNumber":
+					case "OrderNumber":
+					case "PurchaseNumber":
+						if (key_exists("OrderTypeID", $row)) {
+							echo "<td>" . $drill->getViewLinkByTransactionNumberAndType($value, $row["OrderTypeID"]) . "</td>\n";
+						} else {
+							echo "<td>" . $drill->getViewLinkByTransactionNumberAndName($value, $key) . "</td>\n";
+						}
+					break;
+					default:
+						echo "<td>" . $value . "</td>\n";
+				}
+			}
 		    echo "</tr>\n";
 		}
 		?>

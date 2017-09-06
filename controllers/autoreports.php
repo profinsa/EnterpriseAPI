@@ -31,6 +31,8 @@ Last Modified by: Nikita Zaharov
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
+// require "common.php";
+require "models/drillDowner.php";
 
 class controller{
     public $user = false;
@@ -64,6 +66,8 @@ class controller{
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
             $translation = new translation($this->user["language"]);
+            $drill = new drillDowner();
+
             if(key_exists("title", $_GET))
                 $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Report: " ) . $translation->translateLabel($_GET["title"]);
             

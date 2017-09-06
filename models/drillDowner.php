@@ -254,6 +254,22 @@ class drillDowner{
         ];
         return "<a target=\"_blank\" href=\"" . "index.php?page=docreports&type=" . (key_exists($type, $typeToReport) ? $typeToReport[$type] : "order") . "&id=" . $number . "\">$number</a>";
     }
+    public function getViewLinkByTransactionNumberAndName($number, $name){
+        return "<a target=\"_blank\" href=\"" . $this->getViewHrefByTransactionNumberAndName($number, $name) ."\">$number</a>";
+    }
+
+    public function getViewHrefByTransactionNumberAndName($number, $name){
+        $user = $GLOBALS["user"];
+        $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $number;
+        
+        $typeToView = [
+            "OrderNumber" => "grid/AccountsReceivable/OrderProcessing/ViewOrders/view/Main/",
+            "InvoiceNumber" => "grid/AccountsReceivable/OrderProcessing/ViewInvoices/view/Main/",
+            "PurchaseNumber" => "grid/AccountsPayable/PurchaseProcessing/ViewPurchases/view/Main/",
+        ];
+
+        return "index.php#/" . (key_exists($name, $nameToView) ? $typeToView[$name] : "?page=grid&action=AccountsReceivable/OrderProcessing/ViewOrders&mode=view&category=Main&item=") . "$keyString";
+    }
 
     public function getViewLinkByTransactionNumberAndType($number, $type){
         return "<a target=\"_blank\" href=\"" . $this->getViewHrefByTransactionNumberAndType($number, $type) . "\">$number</a>";
