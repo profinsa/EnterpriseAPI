@@ -1121,7 +1121,7 @@ class gridDataSource{
             $fresult[$value] = "";
         }
 
-        $result = $result + $fresult;
+        $result = array_merge($result,$fresult);
 
         return $result;
     }

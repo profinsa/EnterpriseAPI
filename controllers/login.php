@@ -66,7 +66,9 @@ class controller{
             if($_POST["captcha"] != $_SESSION["captcha"])
                 $wrong_captcha = true;
 
-            if(!$wrong_captcha && $user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])){//access granted, captcha is matched                 
+            if(!$wrong_captcha &&
+               ($user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])) &&
+               ($user["accesspermissions"]["RestrictSecurityIP"] ? $user["accesspermissions"]["IPAddress"] == $_SERVER['REMOTE_ADDR'] : true)){//access granted, captcha is matched                 
                 $app->renderUi = false;
                 $user["language"] = $_POST["language"];
                 $_SESSION["user"] = $user;
