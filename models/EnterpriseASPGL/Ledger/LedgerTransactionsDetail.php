@@ -1,7 +1,7 @@
 <?php
-require "./models/gridDataSource.php";
+require "./models/subgridDataSource.php";
 
-class gridData extends gridDataSource{
+class gridData extends subgridDataSource{
     protected $tableName = "ledgertransactionsdetail";
     public $dashboardTitle ="Ledger Transactions Detail";
     public $breadCrumbTitle ="Ledger Transactions Detail";

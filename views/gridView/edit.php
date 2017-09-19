@@ -148,64 +148,140 @@ $dropdownDepends = [];
 			?>
 		    <?php endif; ?>
 		    <?php if(property_exists($data, "detailPages") && key_exists($curCategory, $data->detailPages)):?>
-			<div class="col-md-12 col-xs-12">
-			    <?php
-			    $getmethod = "get" . makeId($curCategory);
-			    $deletemethod = "delete" . makeId($curCategory);
-			    $rows = $data->$getmethod(key_exists("OrderNumber", $item) ? $item["OrderNumber"] : $item[$data->detailPages[$curCategory]["keyFields"][0]]);
-			    //			echo json_encode($rows);
-			    $detailTable = $data->detailPages[$curCategory];
-			    $gridFields = $embeddedgridFields = $detailTable["gridFields"];
-			    $deleteProcedure = "delete" . makeid($curCategory);
-			    $embeddedgridContext = [
-				"item" =>$item,
-				"detailTable" => $detailTable
-			    ];
-			    $embeddedGridClasses = $newButtonId = "new" . makeId($curCategory);
-			    require __DIR__ . "/../embeddedgrid.php"; 
-			    ?>
-			</div>
-			<div id="<?php echo $newButtonId; ?>" class="row col-md-1">
-			    <?php if(!key_exists("disableNew", $data->detailPages[$curCategory]) && $ascope["mode"] == "edit"): ?>
-				<a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailPages[$curCategory]["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailPages[$curCategory]["newKeyField"]}={$embeddedgridContext["item"][$data->detailPages[$curCategory]["newKeyField"]]}" ?>">
-				    <?php echo $translation->translateLabel("New"); ?>
-				</a>
-			    <?php endif; ?>
-			    <?php if(!key_exists("disableNew", $data->detailPages[$curCategory]) && $ascope["mode"] == "new"): ?>
-				<a class="btn btn-info" href="javascript:newSubgridItem<?php echo $newButtonId; ?>();">
-				    <?php echo $translation->translateLabel("New"); ?>
-				</a>
-			    <?php endif; ?>
-			</div>
-			<script>
-			 //			 if(!datatableInitialized){
-			 datatableInitialized = true;
-			 console.log("initializing datatable");
-			 var table = $('.<?php echo $newButtonId ?>').DataTable( {
-			     dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'#footer<?php echo $newButtonId; ?>.row'<'col-sm-4'i><'col-sm-7'p>>"
-			 });
-			 //			 }
-			 setTimeout(function(){
-			     var buttons = $('#<?php echo $newButtonId; ?>');
-			     var tableFooter = $('#footer<?php echo $newButtonId; ?>');
-			     console.log(tableFooter, buttons);
-			     tableFooter.prepend(buttons);
-			 },300);
-			 function newSubgridItem<?php echo $newButtonId;?>(){
-			     createItem(function(request){
-				 var insertedData = JSON.parse(request.responseText);
-				 var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
-				 for(ind in idFields){
-				     if(keyString == "")
-					 keyString = insertedData[idFields[ind]];
-				     else
-					 keyString += "__" + insertedData[idFields[ind]];
+			<?php if(property_exists($data, "detailPagesAsSubgrid")):?>
+			    <div id="subgrid" class="col-md-12 col-xs-12">
+			    </div>
+			    
+			    <script>
+			     function setRecalc(id){
+				 var recalcLink = "<?php echo $linksMaker->makeProcedureLink($ascope["path"], "Recalc"); ?>";
+				 //automatic recalc if we back from detail
+				 localStorage.setItem("recalclLink", recalcLink);
+				 localStorage.setItem("autorecalcLink", recalcLink);
+				 localStorage.setItem("autorecalcData", JSON.stringify({
+				     "<?php echo $data->idFields[3]; ?>" : id
+				 }));
+			     }
+			     <?php if($ascope["mode"] == "new"): ?>
+			     function newSubgridItemHook(){
+				 createItem(function(data){
+				     var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
+				     for(ind in idFields){
+					 if(keyString == "")
+					     keyString = data[idFields[ind]];
+					 else
+					     keyString += "__" + data[idFields[ind]];
+				     }
+				     var hash = "#/?page=grid&action=<?php echo $ascope["action"]; ?>&mode=edit&category=Main&item=" + encodeURIComponent(keyString);
+
+				     var location = window.location.toString();
+				     location = location.match(/(.*index.php)/)[1];
+				     onlocationSkipUrls[location + hash] = true;
+				     window.location.hash = hash;
+
+				     setRecalc(data["<?php echo $data->idFields[3]; ?>"]);
+				     subgridView("new", keyString);
+				     newSubgridItemHook = false; 
+				 });
+			     }
+			     <?php else: ?>
+			     newSubgridItemHook = false;
+			     <?php endif; ?>
+			     function subgridView(subgridmode, keyString){
+				 var detailRewrite = {
+				     "ViewGLTransactions" : "LedgerTransactionsDetail"
+				 }, ind;
+				 var path = new String(window.location);
+				 path = path.replace(/#\/\?/, "?");
+				 path = path.replace(/page\=grid/, "page=subgrid");
+				 path = path.replace(/mode\=view|mode\=edit|mode\=new/, "mode=subgrid");
+				 if(keyString){
+				     path = path.replace(/mode\=subgrid/, "mode=new");
+				     if(path.search(/item\=/) == -1)
+					 path += "&item=" + keyString;
 				 }
-				 var link = "index.php#/?page=grid&action=<?php echo $data->detailPages[$curCategory]["viewPath"]; ?>&mode=new&category=Main&item=new&back=<?php echo urlencode("index.php#/?page=grid&action={$ascope["path"]}&mode=edit&category=Main&item="); ?>" + keyString + "&<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>" + "=" + insertedData["<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>"];
-				 window.location = link;
+				 
+				 for(ind in detailRewrite)
+				     path = path.replace(new RegExp(ind), detailRewrite[ind]);
+				 $.get(path)
+				  .done(function(data){
+				      setTimeout(function(){
+					  $("#subgrid").html(data);
+					  datatableInitialized = true;
+					  setTimeout(function(){
+					      var buttons = $('.subgrid-buttons');
+					      var tableFooter = $('.subgrid-table-footer');
+					      tableFooter.prepend(buttons);
+					  },300);
+				      },0);
+				  })
+				  .error(function(xhr){
+				      // if(xhr.status == 401)
+					  //    else
+				      //	  alert("Unable to load page");
+				  });
+			     }
+			     subgridView();
+			    </script>
+			<?php else: ?>
+			    <div class="col-md-12 col-xs-12">
+				<?php
+				$getmethod = "get" . makeId($curCategory);
+				$deletemethod = "delete" . makeId($curCategory);
+				$rows = $data->$getmethod(key_exists("OrderNumber", $item) ? $item["OrderNumber"] : $item[$data->detailPages[$curCategory]["keyFields"][0]]);
+				//			echo json_encode($rows);
+				$detailTable = $data->detailPages[$curCategory];
+				$gridFields = $embeddedgridFields = $detailTable["gridFields"];
+				$deleteProcedure = "delete" . makeid($curCategory);
+				$embeddedgridContext = [
+				    "item" =>$item,
+				    "detailTable" => $detailTable
+				];
+				$embeddedGridClasses = $newButtonId = "new" . makeId($curCategory);
+				require __DIR__ . "/../embeddedgrid.php"; 
+				?>
+			    </div>
+			    <div id="<?php echo $newButtonId; ?>" class="row col-md-1">
+				<?php if(!key_exists("disableNew", $data->detailPages[$curCategory]) && $ascope["mode"] == "edit"): ?>
+				    <a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailPages[$curCategory]["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailPages[$curCategory]["newKeyField"]}={$embeddedgridContext["item"][$data->detailPages[$curCategory]["newKeyField"]]}" ?>">
+					<?php echo $translation->translateLabel("New"); ?>
+				    </a>
+				<?php endif; ?>
+				<?php if(!key_exists("disableNew", $data->detailPages[$curCategory]) && $ascope["mode"] == "new"): ?>
+				    <a class="btn btn-info" href="javascript:newSubgridItem<?php echo $newButtonId; ?>();">
+					<?php echo $translation->translateLabel("New"); ?>
+				    </a>
+				<?php endif; ?>
+			    </div>
+			    <script>
+			     //			 if(!datatableInitialized){
+			     datatableInitialized = true;
+			     console.log("initializing datatable");
+			     var table = $('.<?php echo $newButtonId ?>').DataTable( {
+				 dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'#footer<?php echo $newButtonId; ?>.row'<'col-sm-4'i><'col-sm-7'p>>"
 			     });
-			 }
-			</script>
+			     //			 }
+			     setTimeout(function(){
+				 var buttons = $('#<?php echo $newButtonId; ?>');
+				 var tableFooter = $('#footer<?php echo $newButtonId; ?>');
+				 console.log(tableFooter, buttons);
+				 tableFooter.prepend(buttons);
+			     },300);
+			     function newSubgridItem<?php echo $newButtonId;?>(){
+				 createItem(function(insertedData){
+				     var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
+				     for(ind in idFields){
+					 if(keyString == "")
+					     keyString = insertedData[idFields[ind]];
+					 else
+					     keyString += "__" + insertedData[idFields[ind]];
+				     }
+				     var link = "index.php#/?page=grid&action=<?php echo $data->detailPages[$curCategory]["viewPath"]; ?>&mode=new&category=Main&item=new&back=<?php echo urlencode("index.php#/?page=grid&action={$ascope["path"]}&mode=edit&category=Main&item="); ?>" + keyString + "&<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>" + "=" + insertedData["<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>"];
+				     window.location = link;
+				 });
+			     }
+			    </script>
+			<?php endif; ?>
 		    <?php endif; ?>
 		</div>
 	    <?php endforeach; ?>
@@ -408,14 +484,14 @@ $dropdownDepends = [];
                      }catch(e){}
 
                      var insertRequest = $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-					  .success(function(data) {
+					  .success(function(rdata) {
 					      if(localStorage.getItem("autorecalcLink")){
 						  $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
 						   .success(function(data) {
 						       localStorage.removeItem("autorecalcLink");
 						       localStorage.removeItem("autorecalcData");
 						       if(cb)
-							   cb(insertRequest);
+							   cb(rdata);
 						       else
 							   window.location = "<?php echo $backhref?>";
 						   })
@@ -425,7 +501,7 @@ $dropdownDepends = [];
 						       window.location = "<?php echo $backhref?>";
 						   });
 					      } else if(cb)
-						  cb(insertRequest);
+						  cb(rdata);
 					      else
 						  window.location = "<?php echo $backhref?>";
 					  })

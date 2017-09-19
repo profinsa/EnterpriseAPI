@@ -4,7 +4,7 @@ Name of Page: subgridController
 
 Method: controller for pages with subgrid (like Ledger Transactions Detail etc), used for rendering page and interacting with it
 
-Date created: Nikita Zaharov, 3.04.2016
+Date created: Nikita Zaharov, 04.03.2017
 
 Use: The controller is responsible for:
 - page rendering using view
@@ -25,7 +25,7 @@ models/translation.php
 models/gridDataSource derevatives -- models who inherits from gridDataSource
 app from index.php
 
-Last Modified: 03.04.2016
+Last Modified: 09.18.2017
 Last Modified by: Nikita Zaharov
 */
 
@@ -73,11 +73,11 @@ class controller{
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("update", $_GET)){
-                $data->updateItem($_POST["id"], $_POST["category"], $_POST);
+                $data->updateItem($_POST["id"], false, $_POST);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }else if(key_exists("new", $_GET)){
-                $data->insertSubgridItem($_POST, $_GET["items"]);
+                $data->insertItem($_POST, $_GET["items"]);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }else if(key_exists("procedure", $_GET)){
@@ -101,13 +101,16 @@ class controller{
                     $this->mode = $_GET["mode"];
                 if(key_exists("category", $_GET))
                     $this->category = $_GET["category"];
-                if(key_exists("items", $_GET))
-                    $this->items = $_GET["items"];
+                //                if(key_exists("items", $_GET))
+                //   $this->items = $_GET["items"];
+                //else
+                //                    $this->items = 'NOTHING';
                 if(key_exists("item", $_GET))
-                    $this->item = $_GET["item"];
-                if(!key_exists("items", $_GET))
-                    $this->items = $_GET["item"];
+                    $this->items = $this->item = $_GET["item"];
+                else
+                    $this->items = $this->item = 'NOTHING';
 
+                $ascope = json_decode(json_encode($scope), true);
                 $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
                 require 'models/menuCategoriesGenerated.php';
                 require 'views/subGridView.php';

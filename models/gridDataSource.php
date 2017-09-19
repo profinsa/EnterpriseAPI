@@ -1394,6 +1394,24 @@ class gridDataSource{
     //delete row from table
     public function deleteItem($id){
         $user = Session::get("user");
+        $detailTables = [
+            "orderheader" => [
+                "orderdetail"
+            ],
+            "invoiceheader" => [
+                "invoicedetail"
+            ],
+            "purchaseheader" => [
+                "purchasedetail"
+            ],
+            "paymentsheader" => [
+                "paymentsdetail",
+                "paymentchecks"
+            ],
+            "ledgertransactions" => [
+                "ledgertransactionsdetail"
+            ]
+        ];
         if($this->checkTableSharing($this->tableName)){
             $user["DivisionID"] = "DEFAULT";
             $user["DepartmentID"] = "DEFAULT";
@@ -1408,6 +1426,10 @@ class gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
 
         DB::delete("DELETE from " . $this->tableName .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        
+        if(key_exists($this->tableName, $detailTables))
+            foreach($detailTables[$this->tableName] as $detail)
+                DB::delete("DELETE from $detail" .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 
     protected $currencyPrecisions = [];
