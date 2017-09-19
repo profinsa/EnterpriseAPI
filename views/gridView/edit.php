@@ -164,7 +164,7 @@ $dropdownDepends = [];
 			     }
 			     <?php if($ascope["mode"] == "new"): ?>
 			     function newSubgridItemHook(){
-				 createItem(function(data){
+				 return createItem(function(data){
 				     var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
 				     for(ind in idFields){
 					 if(keyString == "")
@@ -510,7 +510,9 @@ $dropdownDepends = [];
 				       });
 		 }
 	     });
+	     return false;
 	 }
+	 return true;
      }
      //handler of save button if we in edit mode. Just doing XHR request to save data
      function saveItem(){

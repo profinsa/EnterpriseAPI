@@ -1101,7 +1101,8 @@ class gridDataSource{
                 if ($struct->Field == $key) {
                     $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
 
-                    switch ($struct->Null) {
+                    if(!key_exists("required", $this->editCategories[$type][$key])){
+                        switch ($struct->Null) {
                         case "NO":
                             $this->editCategories[$type][$key]["required"] = true;
                             break;
@@ -1110,6 +1111,7 @@ class gridDataSource{
                             break;
                         default:
                             $this->editCategories[$type][$key]["required"] = false;
+                        }
                     }
                     break;
                 }
@@ -1223,7 +1225,8 @@ class gridDataSource{
                         if($defaultRecord && property_exists($defaultRecord, $key) && $defaultRecord->$key != "")
                             $this->editCategories[$type][$key]["defaultValue"] = $defaultRecord->$key;
                     }
-                    switch ($struct->Null) {
+                    if(!key_exists("required", $this->editCategories[$type][$key])){
+                        switch ($struct->Null) {
                         case "NO":
                             $this->editCategories[$type][$key]["required"] = true;
                             break;
@@ -1232,6 +1235,7 @@ class gridDataSource{
                             break;
                         default:
                             $this->editCategories[$type][$key]["required"] = false;
+                        }
                     }
                     break;
                 }

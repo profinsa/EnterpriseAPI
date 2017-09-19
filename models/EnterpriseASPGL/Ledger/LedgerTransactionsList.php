@@ -277,10 +277,11 @@ class gridData extends gridDataSource{
 
         $results = DB::select('select @PostingResult as PostingResult, @DisbalanceAmount as DisbalanceAmount, @IsValid as IsValid, @SWP_RET_VALUE as SWP_RET_VALUE');
         if($results[0]->SWP_RET_VALUE > -1){
-            header('Content-Type: application/json');
             echo $results[0]->PostingResult;
-        }else
+        }else{
+            http_response_code(400);
             echo $results[0]->PostingResult;
+        }
     }
 
     public function Memorize(){
