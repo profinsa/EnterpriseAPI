@@ -47,7 +47,7 @@ $dropdownDepends = [];
 		$leftWidth = property_exists($data, "editCategoriesWidth") ? $data->editCategoriesWidth["left"] : 50;
 		$rightWidth = property_exists($data, "editCategoriesWidth") ? $data->editCategoriesWidth["right"] : 50;
 		?>
-		<div class="table-responsive" style="margin-top:10px;">
+		<div style="margin-top:10px;">
 		    <?php if(!property_exists($data, "detailPages") ||
 			     !key_exists($curCategory, $data->detailPages)||
 			     !key_exists("hideFields", $data->detailPages[$curCategory])):?>
