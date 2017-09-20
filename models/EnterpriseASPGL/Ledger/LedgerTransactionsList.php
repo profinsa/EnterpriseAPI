@@ -414,44 +414,5 @@ class LedgerTransactionsHistoryList extends gridData{
             ]
         ]
     ];
-    
-    public function getMain($GLTransactionNumber){
-        $user = Session::get("user");
-        $keyFields = "";
-        $fields = [];
-        foreach($this->detailPages["Main"]["gridFields"] as $key=>$value){
-            $fields[] = $key;
-            if(key_exists("addFields", $value)){
-                $_fields = explode(",", $value["addFields"]);
-                foreach($_fields as $addfield)
-                    $fields[] = $addfield;
-            }
-        }
-        foreach($this->detailPages["Main"]["detailIdFields"] as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-            if(!in_array($key, $fields))
-                $fields[] = $key;                
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $keyFields .= " AND GLTransactionNumber='" . $GLTransactionNumber . "'";
-        
-        $result = DB::select("SELECT * from ledgertransactionsdetailhistory WHERE ". $keyFields, array());
-
-        $result = json_decode(json_encode($result), true);
-        
-        return $result;
-    }
 }
 ?>

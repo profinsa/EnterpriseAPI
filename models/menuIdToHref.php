@@ -34,6 +34,7 @@
     "Inventory/WarehouseTransits/WarehouseTransitHistoryDetail" => "EnterpriseASPInv/WarehouseTransit/WarehouseTransitHistoryDetail",
     "AccountsPayable/PurchaseContracts/PurchaseTrackingDetail" => "EnterpriseASPAP/Purchases/PurchaseTrackingDetail",
     "GeneralLedger/Ledger/LedgerTransactionsDetail" => "EnterpriseASPGL/Ledger/LedgerTransactionsDetail",
+    "GeneralLedger/Ledger/LedgerTransactionsDetailHistory" => "EnterpriseASPGL/Ledger/LedgerTransactionsHistoryDetail",
     "GeneralLedger/LedgerSetup/ViewStoredChartofAccounts" => "EnterpriseASPGL/Ledger/LedgerStoredChartOfAccountsList",
     "GeneralLedger/LedgerSetup/LedgerStoredAccounts" => "EnterpriseASPGL/Ledger/LedgerStoredAccountsList",
     "GeneralLedger/Ledger/ViewLedgerAccountSubGroup" => "EnterpriseASPGL/Ledger/LedgerAccountSubGroupList",

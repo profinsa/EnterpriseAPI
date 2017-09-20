@@ -189,7 +189,9 @@ $dropdownDepends = [];
 			     <?php endif; ?>
 			     function subgridView(subgridmode, keyString){
 				 var detailRewrite = {
-				     "ViewGLTransactions" : "LedgerTransactionsDetail"
+				     "ViewGLTransactions" : "LedgerTransactionsDetail",
+				     "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
+				     "BankDeposits" : "LedgerTransactionsDetail"
 				 }, ind;
 				 var path = new String(window.location);
 				 path = path.replace(/#\/\?/, "?");

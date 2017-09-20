@@ -30,16 +30,16 @@ class gridData extends subgridDataSource{
             "currencyField" => "CurrencyID",
             "formatFunction" => "currencyFormat"
         ],
-        "ProjectID" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "dropdown",
-            "dataProvider" => "getProjects",
-            "defaultValue" => ""
-        ],
         "GLControlNumber" => [
             "dbType" => "varchar(36)",
             "inputType" => "dropdown",
             "dataProvider" => "getGLControlNumbers",
+            "defaultValue" => ""
+        ],
+        "ProjectID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "dropdown",
+            "dataProvider" => "getProjects",
             "defaultValue" => ""
         ]
     ];
