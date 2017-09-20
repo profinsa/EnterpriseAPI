@@ -817,6 +817,12 @@ public $permissions = [
         "insert" => "ARAdd|ADSetup",
         "delete" => "ARDelete|ADSetup",
     ],
+    "PositivePay" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "Invoice" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "AREdit|ADSetup",

@@ -845,6 +845,21 @@ $menuCategories["AccountsPayable"] = [
         ]
     ]
     ],
+	[
+		"type" => "submenu",
+		"id" => "AccountsPayable/Checks",
+		"full" => $translation->translateLabel("Checks"),
+		"short" => "CS",
+		"data" => [
+	        [
+		        "id" => "AccountsPayable/Checks/PositivePayDetail",
+		        "full" => $translation->translateLabel('Positive Pay'),
+		        "href_ended" => "AccountsPayable/Checks/PositivePayDetail&mode=new&category=Main&item=" . $keyString,
+                "href"=> "EnterpriseASAP/Checks/PositivePayDetail",
+		        "short" => "Pp"
+	        ]
+		]
+	],
     [
     "type" => "submenu",
     "id" => "AccountsPayable/ReturntoVendorProcessing",

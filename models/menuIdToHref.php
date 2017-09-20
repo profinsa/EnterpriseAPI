@@ -48,6 +48,7 @@
     "AccountsReceivable/OrderProcessing/ShipOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderShipList",
     "AccountsReceivable/OrderProcessing/InvoiceShippedOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList",
     "AccountsReceivable/OrderProcessing/ViewInvoices" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
+    "AccountsPayable/Checks/PositivePayDetail" => "EnterpriseASPAP/Checks/PositivePayDetail",
     "AccountsReceivable/OrderScreens/ViewOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
     "AccountsReceivable/OrderScreens/ViewClosedOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderClosedList",
     "AccountsReceivable/OrderScreens/ViewOrdersHistory" => "EnterpriseASPAR/OrderProcessing/OrderHeaderHistoryList",
