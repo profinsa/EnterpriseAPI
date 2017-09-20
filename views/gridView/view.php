@@ -154,49 +154,102 @@ $dropdownDepends = [];
 			</table>
 		    <?php endif; ?>
 		    <?php if(property_exists($data, "detailPages") && key_exists($curCategory, $data->detailPages)):?>
-			<div class="col-md-12 col-xs-12">
-			    <?php
-			    $getmethod = "get" . makeId($curCategory);
-			    $deletemethod = "delete" . makeId($curCategory);
-			    $rows = $data->$getmethod(key_exists("OrderNumber", $item) ? $item["OrderNumber"] :
-						      $item[(key_exists("detailAliases", $data->detailPages[$curCategory]) &&
-							     key_exists($data->detailPages[$curCategory]["keyFields"][0], $data->detailPages[$curCategory]["detailAliases"])
-								 ? $data->detailPages[$curCategory]["detailAliases"][$data->detailPages[$curCategory]["keyFields"][0]]
-																      : $data->detailPages[$curCategory]["keyFields"][0])]);
-			    //			echo json_encode($rows);
-			    $detailTable = $data->detailPages[$curCategory];
-			    $gridFields = $embeddedgridFields = $detailTable["gridFields"];
-			    $deleteProcedure = "delete" . makeid($curCategory);
-			    $embeddedgridContext = [
-				"item" =>$item,
-				"detailTable" => $detailTable
-			    ];
-			    $embeddedGridClasses = $newButtonId = "new" . makeId($curCategory);
-			    require __DIR__ . "/../embeddedgrid.php"; 
-			    ?>
-			</div>
-			<div id="<?php echo $newButtonId; ?>" class="row col-md-1">
-			    <?php if(!key_exists("disableNew", $data->detailPages[$curCategory])): ?>
-				<a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailPages[$curCategory]["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailPages[$curCategory]["newKeyField"]}={$embeddedgridContext["item"][$data->detailPages[$curCategory]["newKeyField"]]}" ?>">
-				    <?php echo $translation->translateLabel("New"); ?>
-				</a>
-			    <?php endif; ?>
-			</div>
-			<script>
-			 //			 if(!datatableInitialized){
-			 datatableInitialized = true;
-			 console.log("initializing datatable");
-			 var table = $('.<?php echo $newButtonId ?>').DataTable( {
-			     dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'#footer<?php echo $newButtonId; ?>.row'<'col-sm-4'i><'col-sm-7'p>>"
-			 });
-			 //			 }
-			 setTimeout(function(){
-			     var buttons = $('#<?php echo $newButtonId; ?>');
-			     var tableFooter = $('#footer<?php echo $newButtonId; ?>');
-			     console.log(tableFooter, buttons);
-			     tableFooter.prepend(buttons);
-			 },300);
-			</script>
+			<?php if(property_exists($data, "detailPagesAsSubgrid")):?>
+			    <div id="subgrid" class="col-md-12 col-xs-12">
+			    </div>
+			    
+			    <script>
+			     function setRecalc(id){
+				 var recalcLink = "<?php echo $linksMaker->makeProcedureLink($ascope["path"], "Recalc"); ?>";
+				 //automatic recalc if we back from detail
+				 localStorage.setItem("recalclLink", recalcLink);
+				 localStorage.setItem("autorecalcLink", recalcLink);
+				 localStorage.setItem("autorecalcData", JSON.stringify({
+				     "<?php echo $data->idFields[3]; ?>" : id
+				 }));
+			     }
+			     newSubgridItemHook = false;
+			     function subgridView(subgridmode, keyString){
+				 var detailRewrite = {
+				     "ViewGLTransactions" : "LedgerTransactionsDetail"
+				 }, ind;
+				 var path = new String(window.location);
+				 path = path.replace(/#\/\?/, "?");
+				 path = path.replace(/page\=grid/, "page=subgrid");
+				 path = path.replace(/mode\=view|mode\=edit|mode\=new/, "mode=subgrid");
+				 if(keyString){
+				     path = path.replace(/mode\=subgrid/, "mode=new");
+				     if(path.search(/item\=/) == -1)
+					 path += "&item=" + keyString;
+				 }
+				 
+				 for(ind in detailRewrite)
+				     path = path.replace(new RegExp(ind), detailRewrite[ind]);
+				 $.get(path)
+				  .done(function(data){
+				      setTimeout(function(){
+					  $("#subgrid").html(data);
+					  datatableInitialized = true;
+					  setTimeout(function(){
+					      var buttons = $('.subgrid-buttons');
+					      var tableFooter = $('.subgrid-table-footer');
+					      tableFooter.prepend(buttons);
+					  },300);
+				      },0);
+				  })
+				  .error(function(xhr){
+				      // if(xhr.status == 401)
+					  //    else
+				      //	  alert("Unable to load page");
+				  });
+			     }
+			     subgridView();
+			    </script>
+			<?php else: ?>
+			    <div class="col-md-12 col-xs-12">
+				<?php
+				$getmethod = "get" . makeId($curCategory);
+				$deletemethod = "delete" . makeId($curCategory);
+				$rows = $data->$getmethod(key_exists("OrderNumber", $item) ? $item["OrderNumber"] :
+							  $item[(key_exists("detailAliases", $data->detailPages[$curCategory]) &&
+								 key_exists($data->detailPages[$curCategory]["keyFields"][0], $data->detailPages[$curCategory]["detailAliases"])
+								     ? $data->detailPages[$curCategory]["detailAliases"][$data->detailPages[$curCategory]["keyFields"][0]]
+							       : $data->detailPages[$curCategory]["keyFields"][0])]);
+				//			echo json_encode($rows);
+				$detailTable = $data->detailPages[$curCategory];
+				$gridFields = $embeddedgridFields = $detailTable["gridFields"];
+				$deleteProcedure = "delete" . makeid($curCategory);
+				$embeddedgridContext = [
+				    "item" =>$item,
+				    "detailTable" => $detailTable
+				];
+				$embeddedGridClasses = $newButtonId = "new" . makeId($curCategory);
+				require __DIR__ . "/../embeddedgrid.php"; 
+				?>
+			    </div>
+			    <div id="<?php echo $newButtonId; ?>" class="row col-md-1">
+				<?php if(!key_exists("disableNew", $data->detailPages[$curCategory])): ?>
+				    <a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailPages[$curCategory]["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailPages[$curCategory]["newKeyField"]}={$embeddedgridContext["item"][$data->detailPages[$curCategory]["newKeyField"]]}" ?>">
+					<?php echo $translation->translateLabel("New"); ?>
+				    </a>
+				<?php endif; ?>
+			    </div>
+			    <script>
+			     //			 if(!datatableInitialized){
+			     datatableInitialized = true;
+			     console.log("initializing datatable");
+			     var table = $('.<?php echo $newButtonId ?>').DataTable( {
+				 dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'#footer<?php echo $newButtonId; ?>.row'<'col-sm-4'i><'col-sm-7'p>>"
+			     });
+			     //			 }
+			     setTimeout(function(){
+				 var buttons = $('#<?php echo $newButtonId; ?>');
+				 var tableFooter = $('#footer<?php echo $newButtonId; ?>');
+				 console.log(tableFooter, buttons);
+				 tableFooter.prepend(buttons);
+			     },300);
+			    </script>
+			<?php endif; ?>
 		    <?php endif; ?>
 		</div>
 	    </div>

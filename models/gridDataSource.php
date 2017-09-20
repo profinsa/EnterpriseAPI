@@ -1101,7 +1101,8 @@ class gridDataSource{
                 if ($struct->Field == $key) {
                     $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
 
-                    switch ($struct->Null) {
+                    if(!key_exists("required", $this->editCategories[$type][$key])){
+                        switch ($struct->Null) {
                         case "NO":
                             $this->editCategories[$type][$key]["required"] = true;
                             break;
@@ -1110,6 +1111,7 @@ class gridDataSource{
                             break;
                         default:
                             $this->editCategories[$type][$key]["required"] = false;
+                        }
                     }
                     break;
                 }
@@ -1121,7 +1123,7 @@ class gridDataSource{
             $fresult[$value] = "";
         }
 
-        $result = $result + $fresult;
+        $result = array_merge($result,$fresult);
 
         return $result;
     }
@@ -1223,7 +1225,8 @@ class gridDataSource{
                         if($defaultRecord && property_exists($defaultRecord, $key) && $defaultRecord->$key != "")
                             $this->editCategories[$type][$key]["defaultValue"] = $defaultRecord->$key;
                     }
-                    switch ($struct->Null) {
+                    if(!key_exists("required", $this->editCategories[$type][$key])){
+                        switch ($struct->Null) {
                         case "NO":
                             $this->editCategories[$type][$key]["required"] = true;
                             break;
@@ -1232,6 +1235,7 @@ class gridDataSource{
                             break;
                         default:
                             $this->editCategories[$type][$key]["required"] = false;
+                        }
                     }
                     break;
                 }
@@ -1394,6 +1398,24 @@ class gridDataSource{
     //delete row from table
     public function deleteItem($id){
         $user = Session::get("user");
+        $detailTables = [
+            "orderheader" => [
+                "orderdetail"
+            ],
+            "invoiceheader" => [
+                "invoicedetail"
+            ],
+            "purchaseheader" => [
+                "purchasedetail"
+            ],
+            "paymentsheader" => [
+                "paymentsdetail",
+                "paymentchecks"
+            ],
+            "ledgertransactions" => [
+                "ledgertransactionsdetail"
+            ]
+        ];
         if($this->checkTableSharing($this->tableName)){
             $user["DivisionID"] = "DEFAULT";
             $user["DepartmentID"] = "DEFAULT";
@@ -1408,6 +1430,10 @@ class gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
 
         DB::delete("DELETE from " . $this->tableName .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        
+        if(key_exists($this->tableName, $detailTables))
+            foreach($detailTables[$this->tableName] as $detail)
+                DB::delete("DELETE from $detail" .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 
     protected $currencyPrecisions = [];

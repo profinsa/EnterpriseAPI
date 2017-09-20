@@ -31,6 +31,7 @@
      Last Modified by: Nikita Zaharov
    -->
 <!-- subgrid -->
+<!-- grid -->
 <div id="grid_content" class="row">
     <div class="table-responsive">
 	<table id="example23" class="table table-striped table-bordered">
@@ -41,13 +42,10 @@
 		    <?php endif; ?>
 		    <?php
 		    //getting data for table
-		    $rows = $data->getPage($scope->items);
+		    $rows = $data->getPage($ascope["items"]);
 		    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
-		    if(count($rows)){
-			foreach($rows[0] as $key =>$value)
-			    if(key_exists($key, $data->gridFields))
-				echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
-		    }
+		    foreach($data->gridFields as $key=>$field)
+			echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
 		    ?>
 		</tr>
 	    </thead>
@@ -83,6 +81,7 @@
 					echo date("m/d/y", strtotime($value));
 					break;
 				    case "text":
+				    case "dialogChooser" :
 				    case "dropdown":
 					if(key_exists("formatFunction", $data->gridFields[$key])){
 					    $formatFunction = $data->gridFields[$key]["formatFunction"];
@@ -117,8 +116,12 @@
      },300);
      //handler new button. Does xhr request and replace grid content
      function newSubgridItem(){
+	 if(typeof(newSubgridItemHook) == 'function'){
+	     if(newSubgridItemHook())
+		 return;
+	 }
 	 var itemData = $("#itemData");
-	 $.get("index.php?page=subgrid&action=<?php  echo $scope->action ;  ?>&mode=new&category=Main&items=<?php echo $scope->items; ?>")
+	 $.get("index.php?page=subgrid&action=<?php  echo $scope->action ;  ?>&mode=new&category=Main&item=<?php echo $scope->items; ?>")
 	  .done(function(data){
               //	      setTimeout(function(){
 	      $("#subgrid").html(data);
@@ -135,7 +138,7 @@
      //handler change button from rows. Does xhr request and replace grid content
      function changeSubgridItem(item){
 	 var itemData = $("#itemData");
-	 $.get("index.php?page=subgrid&action=<?php  echo $scope->action ;  ?>&mode=edit&category=Main&items=<?php echo $scope->items; ?>&item=" + item)
+	 $.get("index.php?page=subgrid&action=<?php  echo $scope->action ;  ?>&mode=edit&category=Main&item=" + item)
 	  .done(function(data){
               //	      setTimeout(function(){
 	      $("#subgrid").html(data);
@@ -154,6 +157,19 @@
 	     var itemData = $("#itemData");
 	     $.getJSON("index.php?page=subgrid&action=<?php  echo $scope->action ;  ?>&delete=true&id=" + item)
 	      .success(function(data) {
+		  if(localStorage.getItem("autorecalcLink")){
+		      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+		       .success(function(data) {
+			   localStorage.removeItem("autorecalcLink");
+			   localStorage.removeItem("autorecalcData");
+			   onlocation(window.location);
+		       })
+		       .error(function(err){
+			   localStorage.removeItem("autorecalcLink");
+			   localStorage.removeItem("autorecalcData");
+			   onlocation(window.location);
+		       });
+		  }else
 		  onlocation(window.location);
 	      })
 	      .error(function(err){
@@ -163,4 +179,3 @@
      }
     </script>
 </div>
-

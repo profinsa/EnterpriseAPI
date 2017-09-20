@@ -23,7 +23,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/14/2017
+  Last Modified: 09/19/2017
   Last Modified by: Zaharov Nikita
 */
 
@@ -31,7 +31,7 @@ require "gridDataSource.php";
 
 class subgridDataSource extends gridDataSource{
     //getting rows for grid
-    public function getPage($id){        
+    public function getPage($id){
         $user = Session::get("user");
         $fields = [];
         $keyValues = explode("__", $id);

@@ -1,5 +1,10 @@
 <script>
  function postClicked(){
+     if("<?php echo $ascope["mode"]; ?>" == "new"){
+	 alert("<?php echo $translation->translateLabel("Please save Transaction!"); ?>");
+	 return;
+     }
+     
      $.post("index.php?page=grid&action=<?php  echo $scope->path ;  ?>&procedure=PostManual",{
          "GLTransactionNumber" : "<?php echo $item["GLTransactionNumber"]; ?>"
      })
@@ -12,6 +17,11 @@
  }
  
  function memorizeClicked(){
+     if("<?php echo $ascope["mode"]; ?>" == "new"){
+	 alert("<?php echo $translation->translateLabel("Please save Transaction!"); ?>");
+	 return;
+     }
+     
      $.post("index.php?page=grid&action=<?php  echo $scope->path ;  ?>&procedure=Memorize",{
 	 "id" : "<?php echo $scope->item; ?>",
          "Memorize" : "<?php echo $item["Memorize"]; ?>"

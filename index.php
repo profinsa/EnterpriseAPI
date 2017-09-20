@@ -22,7 +22,7 @@ Calls:
 + /controllers/*
 
 
-Last Modified: 13.02.2016
+Last Modified: 09.19.2016
 Last Modified by: Nikita Zaharov
 */
 require 'vendor/autoload.php';
@@ -34,6 +34,9 @@ $GLOBALS["capsule"] = $GLOBALS["DB"] = new Capsule;
 
 //class for emulating global DB class from laravel
 class DB{    
+    public static function statement($query, $args = false){
+        return $GLOBALS["DB"]::statement($query, $args ? $args : array());
+    }
     public static function select($query, $args = false){
         return $GLOBALS["DB"]::select($query, $args ? $args : array());
     }

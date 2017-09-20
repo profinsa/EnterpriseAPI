@@ -129,8 +129,13 @@
 	 /*
 	    parsing window.location, loading page and insert to content section. Main entry point of SAP
 	  */
+	 var onlocationSkipUrls = {};
 	 function onlocation(location){
-	     var path = new String(location);
+	     var path = location.toString();
+	     if(onlocationSkipUrls.hasOwnProperty(path)){
+		 delete onlocationSkipUrls[path];
+		 return;
+	     }
 	     var match;
 	     if(path.search(/index.php\#\//) != -1){
 		 path = path.replace(/index.php\#\//, "index.php");
@@ -141,7 +146,7 @@
 		 //		     sideBarCloseAll();
 		 //		     sideBarDeselectAll();
 		 //		 }
-		 console.log(path);
+		 //console.log(path);
 		 $.get(path)
 		  .done(function(data){
 		      setTimeout(function(){
