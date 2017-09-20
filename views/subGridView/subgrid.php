@@ -33,7 +33,7 @@
 <!-- subgrid -->
 <!-- grid -->
 <div id="grid_content" class="row">
-    <div class="table-responsive">
+    <div>
 	<table id="example23" class="table table-striped table-bordered">
 	    <thead>
 		<tr>

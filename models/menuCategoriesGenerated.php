@@ -1224,6 +1224,11 @@ $menuCategories["GeneralLedger"] = [
         "short" => "Vi"
         ],
         [
+        "id" => "GeneralLedger/Ledger/BankDeposits",
+        "full" => $translation->translateLabel('View Bank Deposits'),
+        "href"=> "EnterpriseASPGL/Ledger/LedgerBankDeposits",
+        "short" => "Bd"
+		],        [
         "id" => "GeneralLedger/Ledger/ViewBudgets",
         "full" => $translation->translateLabel('View Budgets'),
         "href"=> "EnterpriseASPGL/Ledger/LedgerChartOfAccountsBudgetsList",

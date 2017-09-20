@@ -117,8 +117,10 @@ $dropdownDepends = [];
 					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\"></div></div>";
 					break;
 				    case "dropdown" :
-					if($disabledEdit != "")
+					if($disabledEdit != ""){
 					    $disabledEdit = "disabled";
+					    echo "<input type=\"hidden\" name=\"$key\" value=\"$value\"/>";
+					}
 					//renders select with available values as dropdowns with label
 					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\">" . $translatedFieldName . "</label><div class=\"col-md-$rightWidth\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\" $disabledEdit>";
 					$method = $data->editCategories[$category][$key]["dataProvider"];
@@ -205,7 +207,7 @@ $dropdownDepends = [];
 				 
 				 for(ind in detailRewrite)
 				     path = path.replace(new RegExp(ind), detailRewrite[ind]);
-				 $.get(path)
+				 $.get(path + "<?php echo (property_exists($data, "detailSubgridModes") && key_exists("edit", $data->detailSubgridModes) ? "&modes=" . implode("__", $data->detailSubgridModes["edit"]) : ""); ?>")
 				  .done(function(data){
 				      setTimeout(function(){
 					  $("#subgrid").html(data);

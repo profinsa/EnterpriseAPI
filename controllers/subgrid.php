@@ -70,6 +70,8 @@ class controller{
         $this->user = $_SESSION["user"];
                
         $data = new gridData();
+        if(key_exists("modes", $_GET))
+            $data->modes = explode("__", $_GET["modes"]);
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("update", $_GET)){

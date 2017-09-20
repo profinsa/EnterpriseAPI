@@ -187,7 +187,7 @@ $dropdownDepends = [];
 				 
 				 for(ind in detailRewrite)
 				     path = path.replace(new RegExp(ind), detailRewrite[ind]);
-				 $.get(path)
+				 $.get(path + "<?php echo (property_exists($data, "detailSubgridModes") && key_exists("view", $data->detailSubgridModes) ? "&modes=" . implode("__", $data->detailSubgridModes["view"]) : ""); ?>")
 				  .done(function(data){
 				      setTimeout(function(){
 					  $("#subgrid").html(data);
