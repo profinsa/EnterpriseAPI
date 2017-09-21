@@ -302,7 +302,7 @@ $dropdownDepends = [];
 		     renders buttons translated Save and Cancel using translation model
 		   -->
 		<?php if($security->can("update")): ?>
-		    <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
+		    <a class="btn btn-info" id="saveButton" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 			<?php echo $translation->translateLabel("Save"); ?>
 		    </a>
 		    <?php 

@@ -25,7 +25,7 @@ used as model by gridView
 Calls:
 sql
 
-Last Modified: 09.20.2017
+Last Modified: 09.21.2017
 Last Modified by: Nikita Zaharov
 */
 
@@ -33,13 +33,13 @@ require __DIR__ . "/../../../models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "ledgertransactions";
-    protected $gridConditions = "(IFNULL(GLTransactionPostedYN, 0) = 0 OR UPPER(GLTransactionNumber) = 'DEFAULT') AND GLTransactionTypeID='Deposit'";
+    protected $gridConditions = "UPPER(GLTransactionNumber) != 'DEFAULT' AND GLTransactionTypeID='Deposit'";
     public $dashboardTitle ="Bank Deposits";
     public $breadCrumbTitle ="Bank Deposits";
     public $idField ="GLTransactionNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"];
     public $modes = ["grid", "view", "new", "delete"];
-    public $features = ["selecting"];
+    //    public $features = ["selecting"];
     public $gridFields = [
         "GLTransactionNumber" => [
             "dbType" => "varchar(36)",
@@ -234,18 +234,18 @@ class gridData extends gridDataSource{
         "Main" => []
     ];
 
-    public function PostManual(){
+    public function Save(){
         $user = Session::get("user");
 
         DB::statement("CALL LedgerTransactions_PostManual('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["GLTransactionNumber"] . "',@PostingResult,@DisbalanceAmount,@IsValid,@SWP_RET_VALUE)");
 
         $results = DB::select('select @PostingResult as PostingResult, @DisbalanceAmount as DisbalanceAmount, @IsValid as IsValid, @SWP_RET_VALUE as SWP_RET_VALUE');
         if($results[0]->SWP_RET_VALUE > -1){
-            header('Content-Type: application/json');
             echo $results[0]->PostingResult;
-        }else
-            return response($results[0]->PostingResult, 400)->header('Content-Type', 'text/plain');
-        
+        }else{
+            http_response_code(400);
+            echo $results[0]->PostingResult;
+        }
     }
 
     public function Recalc(){

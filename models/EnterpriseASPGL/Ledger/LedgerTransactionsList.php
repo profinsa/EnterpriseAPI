@@ -33,7 +33,7 @@ require __DIR__ . "/../../../models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     protected $tableName = "ledgertransactions";
-    protected $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 0 OR UPPER(GLTransactionNumber) = 'DEFAULT'";
+    protected $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 0 AND UPPER(GLTransactionNumber) != 'DEFAULT'";
     public $dashboardTitle ="Ledger Transactions";
     public $breadCrumbTitle ="Ledger Transactions";
     public $idField ="GLTransactionNumber";
