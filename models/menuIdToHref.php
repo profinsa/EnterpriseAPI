@@ -41,6 +41,7 @@
     "GeneralLedger/LedgerSetup/LedgerStoredAccounts" => "EnterpriseASPGL/Ledger/LedgerStoredAccountsList",
     "GeneralLedger/Ledger/ViewLedgerAccountSubGroup" => "EnterpriseASPGL/Ledger/LedgerAccountSubGroupList",
     "GeneralLedger/LedgerSetup/ControlNumbers" => "EnterpriseASPGL/Ledger/ControlNumbersList",
+    "GeneralLedger/LedgerSetup/OFXImport" => "EnterpriseASPGL/Ledger/OFXImportList",
 
     
     

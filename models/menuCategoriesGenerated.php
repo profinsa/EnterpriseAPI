@@ -1386,8 +1386,13 @@ $menuCategories["GeneralLedger"] = [
         "full" => $translation->translateLabel('Control Numbers'),
         "href"=> "EnterpriseASPSystem/LedgerSetup/ControlNumbersList",
         "short" => "De"
-        ]
-    ]
+        ],
+        [
+        "id" => "GeneralLedger/LedgerSetup/OFXImport",
+        "full" => $translation->translateLabel('QFX & OFX Import'),
+        "href"=> "EnterpriseASPSystem/LedgerSetup/OFXImportList",
+        "short" => "De"
+        ]    ]
     ]
 ]
 ];
@@ -2334,6 +2339,12 @@ $menuCategories["SystemSetup"] = [
         "id" => "GeneralLedger/LedgerSetup/ControlNumbers",
         "full" => $translation->translateLabel('Control Numbers'),
         "href"=> "EnterpriseASPSystem/LedgerSetup/ControlNumbersList",
+        "short" => "De"
+        ],
+        [
+        "id" => "GeneralLedger/LedgerSetup/OFXImport",
+        "full" => $translation->translateLabel('QFX & OFX Import'),
+        "href"=> "EnterpriseASPSystem/LedgerSetup/OFXImportList",
         "short" => "De"
         ]
     ]

@@ -3,7 +3,7 @@
 
      Method: renders whole page. 
 
-     Date created: Nikita Zaharov, 20.02.2016
+     Date created: Nikita Zaharov, 02.20.2017
 
      Use: used by controllers/GeneralLedger/*.php for rendering page
      Page may renders in four modes:
@@ -29,7 +29,7 @@
      grid model
      app as model
    -
-     Last Modified: 24.03.2016
+     Last Modified: 03.23.2017
      Last Modified by: Nikita Zaharov
    -->
 <div class="container-fluid">
