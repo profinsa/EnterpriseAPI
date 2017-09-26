@@ -77,14 +77,28 @@ $capsule->addConnection([
 ]);
 $capsule->setAsGlobal();
 
-function errorHandler($message){
-    echo <<<EOT
+function errorHandler($message, $error){
+    if(isDebug()){        
+        echo <<<EOT
 <html>
     <body>
         <b style="text-align:center; padding-top:50px;">Fatal error: </b> . $message;
     </body>
 </html>
 EOT;
+    }else{
+        $record = [
+            "timestamp" => date('U = Y-m-d H:i:s'),
+            "query" => $_SERVER["REQUEST_URI"],
+            "file" => $error["file"],
+            "message" => $error["message"],
+            "code" => $error["type"],
+            "line" => $error["line"]
+        ];
+        file_put_contents(__DIR__ . "/error.log", json_encode($record) . ",\n", FILE_APPEND);
+        echo "<div class=\"centered\"><h2>This page cannot be loaded because of errors happened while execution. The incident is logged</h2></div>";
+        exit;
+    }
 }
 
 
@@ -110,7 +124,7 @@ function fatal_handler() {
   if( $error !== NULL && $error["type"] <= 16){
       http_response_code(500);
       $message = "{$error["message"]} in {$error["file"]} on line {$error["line"]}";
-      errorHandler($message);
+      errorHandler($message, $error);
   }
 }
 
@@ -121,6 +135,11 @@ try{
     $_app = new app();
     $_app->controller->process($_app);
 }catch(Exception $e){
-    errorHandler($e->getMessage());
+    errorHandler($e->getMessage(), [
+        "file" => $e->getFile(),
+        "line" => $e->getLine(),
+        "message" => $e->getMessage(),
+        "type" => $e->getCode()
+    ]);
 }
 ?>

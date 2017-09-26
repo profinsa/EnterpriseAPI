@@ -18,4 +18,8 @@ function defaultUser(){
         "Language" => "English"
     ];
 }
+
+function isDebug(){
+    return false;
+}
 ?>
