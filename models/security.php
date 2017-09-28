@@ -40,9 +40,17 @@ class Security{
         "Reports" => "MTReportsView"
     ];
 
+    protected $model = false;
+    protected $item;
+
     public function __construct($useraccessperm, $perm){
         $this->permissions = $perm;
         $this->useraccess = $useraccessperm;
+    }
+
+    public function setModel($model, $item){
+        $this->model = $model;
+        $this->item = $item;
     }
 
     public function checkMenu($name){
@@ -55,6 +63,11 @@ class Security{
         if($this->permissions[$action] == "any" || $this->permissions[$action] == "Always")
             return 1;
         $perms = explode("|", $this->permissions[$action]);
+        
+        $lockedBy;
+        if($this->model && $this->item != 'all' && ($lockedBy = $this->model->lockedBy($this->item)) && $lockedBy->LockedBy != $user["EmployeeID"])
+            return false;
+        
         foreach($perms as $value)
             if(key_exists($value, $this->useraccess) && $this->useraccess[$value])
                 return true;

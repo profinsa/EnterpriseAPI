@@ -4,7 +4,7 @@
 
   Method: ancestor for GeneralLedger/* models. It provides data from database
 
-  Date created: Nikita Zaharov, 17.02.2016
+  Date created: Nikita Zaharov, 02.17.2017
 
   Use: this model used for
   - for loading data from tables, updating, inserting and deleting
@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 08.28.2016
+  Last Modified: 08.28.2017
   Last Modified by: Nikita Zaharov
 */
 
@@ -1060,8 +1060,56 @@ class gridDataSource{
         return $result;
     }
 
+    public function lock($id){
+        $user = Session::get("user");
+        
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $ts = date("Y-m-d H:i:s");
+        $result = DB::update("update {$this->tableName} set LockedBy='{$user["EmployeeID"]}', LockTS='$ts' WHERE $keyFields", array());
+    }
+
+    public function unlock($id){
+        $user = Session::get("user");
+        
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        try{
+            $result = DB::update("update {$this->tableName} set LockedBy=NULL, LockTS=NULL WHERE $keyFields", array());        
+        }catch(\Exception $e){
+            //    echo $e->getMessage() . "\n";
+        }
+    }
+
+    public function lockedBy($id){
+        $keyValues = explode("__", $id);
+        $keyFields = "";
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $result = DB::select("SELECT LockedBy, LockTS from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        if($result[0]->LockedBy != "")
+            return $result[0];
+        
+        return false;
+    }
+
     //getting data for grid edit form 
     public function getEditItem($id, $type){
+        if(!$this->lockedBy($id))
+            $this->lock($id);
+        
         $user = Session::get("user");
         if($this->checkTableSharing($this->tableName)){
             $user["DivisionID"] = "DEFAULT";
@@ -1182,25 +1230,7 @@ class gridDataSource{
         }
         return ++$columnMax;
     }
-
-    public function lock($id){
-    }
-
-    public function unlock($id){
-    }
-
-    /*    public function lockedBy($id){
-        $keyValues = explode("__", $id);
-        $keyFields = "";
-        foreach($this->idFields as $key)
-            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = DB::select("SELECT LockedBy, LockTS from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-        return $result;
-        }*/
-        
+   
     //getting data for new record
     public function getNewItem($id, $type){            
         $values = [];
@@ -1271,6 +1301,8 @@ class gridDataSource{
 
     //updating data of grid item
     public function updateItem($id, $category, $values){
+        $this->unlock($id);
+        
         $user = Session::get("user");
         if($this->checkTableSharing($this->tableName)){
             $user["DivisionID"] = "DEFAULT";
