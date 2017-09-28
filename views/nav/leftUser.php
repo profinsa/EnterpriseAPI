@@ -21,8 +21,28 @@
 		</select>
 	    </li> -->
 
+            <li>
+		<a href="javascript:unlockMyRecords();">
+                    <?php echo $translation->translateLabel('Release Record Locks'); ?>
+		</a>
+		<form id="lockData">
+		    <input type="hidden" name="category" value="Main" />
+		    <input type="hidden" name="EmployeeID"  value="<?php echo $user["EmployeeID"]; ?>" />
+		</form>
+            </li>
 	    <li><a href="index.php?page=index&logout=true"><i class="fa fa-power-off"></i>  <?php echo $translation->translateLabel("Log out"); ?></a></li>
 	</ul>
     </div>
 </div>
+<script>
+ function unlockMyRecords(){
+     var itemData = $("#lockData");
+     $.post("<?php echo $linksMaker->makeProcedureLink("SystemSetup/SecuritySetup/UnlockRecords", "unlockSelected"); ?>", itemData.serialize(), null, 'json').success(function(data){
+	 console.log(data);
+     })
+      .error(function(data){
+	  console.log(data);
+      });
+ }
 
+</script>

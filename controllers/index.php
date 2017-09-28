@@ -4,7 +4,7 @@ Name of Page: Index
 
 Method: This is controller for index page.
 
-Date created: Nikita Zaharov, 09.02.2016
+Date created: Nikita Zaharov, 02.09.2017
 
 Use: controller is used by index.php, load by GET request parameter - page=index.
 
@@ -26,12 +26,14 @@ Calls:
 models/translation.php
 app from index.php
 
-Last Modified: 21.02.2016
+Last Modified: 02.21.2017
 Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
 require 'models/security.php';
+require 'models/drillDowner.php';
+require 'models/linksMaker.php';
 
 class controller{
     public $user = false;
@@ -47,7 +49,9 @@ class controller{
                 exit;
             }
             
-            $this->user = $_SESSION["user"];
+            $drill = new drillDowner();
+            $linksMaker = new linksMaker();
+            $this->user = $user = $_SESSION["user"];
                
             $security = new Security($this->user["accesspermissions"], []);
             $translation = new translation($this->user["language"]);
