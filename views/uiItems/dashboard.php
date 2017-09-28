@@ -12,7 +12,7 @@
 	    <?php endif; ?>
 	<?php endif; ?>
     </div>
-    <div class="col-md-6 pull-right">
+    <div class="col-md-4 pull-right">
 	<ol class="breadcrumb">
 	    <li><a href="index.php#/?page=dashboard&category=GeneralLedger">Dashboard</a></li>
 	    <li class="active"><?php echo $scope->breadCrumbTitle ?></li>

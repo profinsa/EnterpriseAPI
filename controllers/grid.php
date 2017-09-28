@@ -96,8 +96,7 @@ class controller{
             return;
         }
 
-        $this->user = $GLOBALS["user"] = $_SESSION["user"];
-               
+        $this->user = $GLOBALS["user"] = $_SESSION["user"];               
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("update", $_GET)){
@@ -293,6 +292,8 @@ class controller{
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
                 
+                $security->setModel($data, $this->item);
+        
                 $scope = $this;
                 $ascope = json_decode(json_encode($scope), true);
 

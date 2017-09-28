@@ -60,6 +60,7 @@ class Security{
     }
     
     public function can($action){
+        $user = $_SESSION["user"];
         if($this->permissions[$action] == "any" || $this->permissions[$action] == "Always")
             return 1;
         $perms = explode("|", $this->permissions[$action]);

@@ -347,7 +347,7 @@
     "SystemSetup/CompanySetup/TranslationTable" => "EnterpriseASPSystem/CompanySetup/Translation",
     "SystemSetup/CompanySetup/TimeUnits" => "EnterpriseASPSystem/CompanySetup/TimeUnitsList",
     "SystemSetup/SecuritySetup/SecuritySetup" => "EnterpriseASPSystem/CompanySetup/AccessPermissionsList",
-    "SystemSetup/SecuritySetup/UnlockRecords" => "EnterpriseASPSystem/CompanySetup/Unlock",
+    "SystemSetup/SecuritySetup/UnlockRecords" => "EnterpriseASPSystem/CompanySetup/UnlockList",
     "SystemSetup/SecuritySetup/SystemErrorLog" => "EnterpriseASPSystem/CompanySetup/ErrorLogList",
     "SystemSetup/SecuritySetup/AuditDescription" => "EnterpriseASPSystem/CompanySetup/AuditTablesDescriptionList",
     "SystemSetup/SecuritySetup/AuditTrail" => "EnterpriseASPSystem/CompanySetup/AuditTrailList",

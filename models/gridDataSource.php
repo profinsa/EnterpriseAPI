@@ -1061,6 +1061,9 @@ class gridDataSource{
     }
 
     public function lock($id){
+        if($this->tableName == "lock")
+            return false;
+        
         $user = Session::get("user");
         
         $keyValues = explode("__", $id);
@@ -1075,6 +1078,9 @@ class gridDataSource{
     }
 
     public function unlock($id){
+        if($this->tableName == "lock")
+            return false;
+        
         $user = Session::get("user");
         
         $keyValues = explode("__", $id);
@@ -1091,6 +1097,9 @@ class gridDataSource{
     }
 
     public function lockedBy($id){
+        if($this->tableName == "lock")
+            return false;
+        
         $keyValues = explode("__", $id);
         $keyFields = "";
         foreach($this->idFields as $key)

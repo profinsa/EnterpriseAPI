@@ -1981,6 +1981,12 @@ public $permissions = [
         "insert" => "ADSetup",
         "delete" => "ADSetup",
     ],
+    "Unlock" => [
+        "select" => "ARView|APView|GLView|OEView|ADView|ADSetup",
+        "update" => "ADSetup",
+        "insert" => "ADSetup",
+        "delete" => "ADSetup",
+    ],
     "Terms" => [
         "select" => "any",
         "update" => "any",
