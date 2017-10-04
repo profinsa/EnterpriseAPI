@@ -41,6 +41,7 @@ class Security{
     ];
 
     protected $model = false;
+    protected $mode = "view";
     protected $item;
 
     public function __construct($useraccessperm, $perm){
@@ -48,9 +49,10 @@ class Security{
         $this->useraccess = $useraccessperm;
     }
 
-    public function setModel($model, $item){
+    public function setModel($model, $item, $mode){
         $this->model = $model;
         $this->item = $item;
+        $this->mode = $mode;
     }
 
     public function checkMenu($name){
@@ -66,7 +68,7 @@ class Security{
         $perms = explode("|", $this->permissions[$action]);
         
         $lockedBy;
-        if($this->model && $this->item != 'all' && ($lockedBy = $this->model->lockedBy($this->item)) && $lockedBy->LockedBy != $user["EmployeeID"])
+        if($this->mode == "view" && $this->model && $this->item != 'all' && ($lockedBy = $this->model->lockedBy($this->item)) && $lockedBy->LockedBy != $user["EmployeeID"])
             return false;
         
         foreach($perms as $value)

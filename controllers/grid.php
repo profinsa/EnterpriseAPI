@@ -292,7 +292,7 @@ class controller{
                 if(key_exists("item", $_GET))
                     $this->item = $_GET["item"];
                 
-                $security->setModel($data, $this->item);
+                $security->setModel($data, $this->item, $this->mode);
         
                 $scope = $this;
                 $ascope = json_decode(json_encode($scope), true);
