@@ -1,34 +1,34 @@
 <?php
-
 /*
-Name of Page: VendorInformationList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorInformationList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/VendorInformationList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorInformationList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorInformationList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/13/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: VendorInformationList model
+   
+  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorInformationList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/VendorInformationList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorInformationList.php
+  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorInformationList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 09/10/2017
+  Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	protected $tableName = "vendorinformation";
@@ -68,6 +68,7 @@ class gridData extends gridDataSource{
 			"VendorID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
+                "disabledEdit" => "disabledEdit",
                 "defaultValue" => ""
 			],
 			"AccountStatus" => [
@@ -527,6 +528,92 @@ class gridData extends gridDataSource{
             ]
         ]
     ];
+
+    public $detailPages = [
+        "Vendor Transactions" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "AccountsPayable/OrderProcessing/OrderTrackingDetail",
+            "newKeyField" => "VendorID",
+            "keyFields" => ["VendorID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","VendorID"],
+            "gridFields" => [
+                "TransactionType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TransactionAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "CurrencyID" =>	[
+                    "dbType" => "varchar(3)",
+                    "inputType" => "dropdown",
+                ],
+                "ShipDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TrackingNumber" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ]
+            ]
+        ],
+        "Vendor Transactions History" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/ProjectsJobs/ViewProjects",
+            "newKeyField" => "VendorID",
+            "keyFields" => ["VendorID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","VendorID"],
+            "gridFields" => [
+                "TransactionType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TransactionAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "CurrencyID" =>	[
+                    "dbType" => "varchar(3)",
+                    "inputType" => "dropdown",
+                ],
+                "ShipDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TrackingNumber" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ]
+            ]
+        ]
+    ];
+    
     public $columnNames = [
         "VendorID" => "Vendor ID",
         "VendorTypeID" => "Vendor Type ID",
@@ -658,7 +745,7 @@ class gridData extends gridDataSource{
 	];
     
     //getting rows for grid
-    public function getTransactions($VendorID, $type){
+    public function getTransactionsWithType($VendorID, $type){
         $user = $_SESSION["user"];
         $keyFields = "";
         $fields = [];
@@ -696,6 +783,36 @@ class gridData extends gridDataSource{
         $result = json_decode(json_encode($result), true);
         
         return $result;
+    }
+
+    public function getVendorTransactions($VendorID){
+        return $this->getTransactionsWithType($VendorID, "normal");
+    }
+    
+    public function getVendorTransactionsHistory($VendorID){
+        return $this->getTransactionsWithType($VendorID, "history");
+    }
+    
+    public function recalc() {
+        $user = Session::get("user");
+
+        $vendorID = $_POST["VendorID"];
+
+        $result = DB::statement("SELECT @ret = VendorFinancials_ReCalc2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $vendorID . "')");
+
+        if($result)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+
+    public function insertItem($values){
+        $user = Session::get("user");
+        
+        $result = DB::insert("INSERT INTO vendorfinancials (CompanyID, DivisionID, DepartmentID, VendorID) values(?, ?, ?, ?)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $values["VendorID"]));
+        parent::insertItem($values);
     }
 }
 ?>

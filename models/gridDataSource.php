@@ -1455,6 +1455,12 @@ class gridDataSource{
             ],
             "ledgertransactions" => [
                 "ledgertransactionsdetail"
+            ],
+            "customerinformation" => [
+                "customerfinancials"
+            ],
+            "vendorinformation" => [
+                "vendorfinancials"
             ]
         ];
         if($this->checkTableSharing($this->tableName)){

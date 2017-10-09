@@ -1,33 +1,34 @@
 <?php
 /*
-Name of Page: VendorFinancialsList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorFinancialsList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/VendorFinancialsList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorFinancialsList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorFinancialsList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 05/11/2017
-Last Modified by: Zaharov Nikita
+  Name of Page: VendorFinancialsList model
+   
+  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorFinancialsList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/VendorFinancialsList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorFinancialsList.php
+  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorFinancialsList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 09/10/2017
+  Last Modified by: Zaharov Nikita
 */
+
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
@@ -36,6 +37,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Vendor Financials";
     public $idField ="VendorID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
+    public $modes = ["view", "edit", "grid"];
     public $gridFields = [
         "VendorID" => [
             "dbType" => "varchar(50)",
@@ -73,6 +75,7 @@ class gridData extends gridDataSource{
             "VendorID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
             ],
             "LateDays" => [

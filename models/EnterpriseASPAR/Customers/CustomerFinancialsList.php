@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/14/2017
+  Last Modified: 09/10/2017
   Last Modified by: Zaharov Nikita
 */
 
@@ -37,6 +37,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Customer Financials";
     public $idField ="CustomerID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
+    public $modes = ["grid", "view", "edit"];
     public $gridFields = [
         "CustomerID" => [
             "dbType" => "varchar(50)",
@@ -79,6 +80,7 @@ class gridData extends gridDataSource{
             "CustomerID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
             ],
             "AvailibleCredit" => [

@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/14/2017
+  Last Modified: 09/10/2017
   Last Modified by: Zaharov Nikita
 */
 
@@ -65,6 +65,7 @@ class gridData extends gridDataSource{
 			"CustomerID" => [
 				"dbType" => "varchar(50)",
 				"inputType" => "text",
+                "disabledEdit" => "true",
 				"defaultValue" => ""
 			],
 			"AccountStatus" => [
@@ -1263,6 +1264,13 @@ class gridData extends gridDataSource{
         $result = json_decode(json_encode($result), true);
         
         return $result;
+    }
+
+    public function insertItem($values){
+        $user = Session::get("user");
+        
+        $result = DB::insert("INSERT INTO customerfinancials (CompanyID, DivisionID, DepartmentID, CustomerID) values(?, ?, ?, ?)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $values["CustomerID"]));
+        parent::insertItem($values);
     }
 }
 ?>
