@@ -25,8 +25,8 @@ controllers/financials
 Calls:
 sql
 
-Last Modified: 04.09.2017
-Last Modified by: Eugene Tetarenko
+Last Modified: 09.10.2017
+Last Modified by: Nikita Zaharov
 */
 
 class drillDowner{
@@ -39,11 +39,11 @@ class drillDowner{
         switch($name){
         case "VendorID" :
 		$keyString .= "__" . $value;
-            return "<a target=\"_Blank\" href=\"index.php#/?page=grid&action=AccountsPayable/Vendors/ViewVendorFinancials&mode=view&category=Main&item=$keyString\">$value</a>";
+            return "<a href=\"index.php#/?page=grid&action=AccountsPayable/Vendors/ViewVendorFinancials&mode=view&category=Main&item=$keyString\">$value</a>";
             break;
         case "CustomerID" :
             $keyString .= "__" . $value;
-		return "<a target=\"_Blank\" href=\"index.php#/?page=grid&action=AccountsReceivable/Customers/ViewCustomerFinancials&mode=view&category=Main&item=$keyString\">$value</a>";
+		return "<a href=\"index.php#/?page=grid&action=AccountsReceivable/Customers/ViewCustomerFinancials&mode=view&category=Main&item=$keyString\">$value</a>";
 		break;
             default:
 		return $value;
