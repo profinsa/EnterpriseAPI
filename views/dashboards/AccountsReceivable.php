@@ -20,7 +20,7 @@
 			<tbody>
 			    <?php
 			    foreach($systemWideMessages as $row)
-				echo "<tr><td>" . $row->SystemMessage . "</td>";
+			    echo "<tr><td>" . $row->SystemMessage . "</td>";
 			    ?>
 			</tbody>
 		    </table>
@@ -47,7 +47,7 @@
 			    <tbody>
 				<?php
 				foreach($companyStatus as $row)
-				    echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType)  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";
+				echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType)  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -60,11 +60,16 @@
 		    <div id="morris-donut-chart" class="ecomm-donute" style="height: 317px;"></div>
 		    <ul class="list-inline m-t-30 text-center">
 			<?php
-			$colors = ["#fb9678", "#01c0c8", "#4F5467"];
+			$colors = ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"];
+			while (true) {
+			    $colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+			    if(count($colors) == 10000)
+				break;
+			}
 			$colorInd = 0;
 			
 			foreach($companyStatus as $row)
-			    echo "<li class=\"p-r-20\"><h5 class=\"text-muted\"><i class=\"fa fa-circle\" style=\"color: " . $colors[$colorInd++] . ";\"></i>" . $row->GLAccountName  ."</h5><h4 class=\"m-b-0\">" . formatField(["format"=>"{0:n}"], $row->Totals) . "</h4></li>";
+			echo "<li class=\"p-r-20\"><h5 class=\"text-muted\"><i class=\"fa fa-circle\" style=\"color: " . $colors[$colorInd++] . ";\"></i>" . $row->GLAccountName  ."</h5><h4 class=\"m-b-0\">" . formatField(["format"=>"{0:n}"], $row->Totals) . "</h4></li>";
 
 			?>
 		    </ul>
@@ -76,11 +81,11 @@
 		 data: [
 		     <?php
 		     foreach($companyStatus as $row)
-			 echo "{ label : \"" . $row->GLAccountName . "\", value : \"" .  $row->Totals . "\"},";
+		     echo "{ label : \"" . $row->GLAccountName . "\", value : \"" .  $row->Totals . "\"},";
 		     ?>
 		 ],
 		 resize: true,
-		 colors:['#fb9678', '#01c0c8', '#4F5467']
+		 colors: <?php echo json_encode($colors); ?>
 	     });
 	    </script>
 	    
@@ -103,7 +108,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["quotes"] as $row)
-					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewQuotes") . "&filter=last24\">{$row->Quotes}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->QuoteTotals) . "</td></tr>";
+				    echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewQuotes") . "&filter=last24\">{$row->Quotes}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->QuoteTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
@@ -119,7 +124,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["orders"] as $row)
-					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=last24\">{$row->Orders}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotals) . "</td></tr>";
+				    echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=last24\">{$row->Orders}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
@@ -135,7 +140,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["shipments"] as $row)
-					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=shiptoday\">{$row->Shipments}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->ShipTotals) . "</td></tr>";
+				    echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=shiptoday\">{$row->Shipments}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->ShipTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
@@ -151,7 +156,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["purchases"] as $row)
-					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=last24\">{$row->Purchases}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->PurchaseTotals) . "</td></tr>";
+				    echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=last24\">{$row->Purchases}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->PurchaseTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
@@ -167,7 +172,7 @@
 				<tbody>
 				    <?php
 				    foreach($companyDailyActivity["receivings"] as $row)
-					echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=receivedtoday\">{$row->Receivings}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotals) . "</td></tr>";
+				    echo "<tr><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=receivedtoday\">{$row->Receivings}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotals) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
@@ -196,7 +201,7 @@
 			    <tbody>
 				<?php
 				foreach($topOrdersReceipts["orders"] as $row)
-				    echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsReceivable/OrderScreens/ViewOrders", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->OrderNumber}") . "\">{$row->OrderNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
+				echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsReceivable/OrderScreens/ViewOrders", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->OrderNumber}") . "\">{$row->OrderNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -214,7 +219,7 @@
 			    <tbody>
 				<?php
 				foreach($topOrdersReceipts["purchases"] as $row)
-				    echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsPayable/PurchaseProcessing/ViewPurchases", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->PurchaseNumber}") . "\">{$row->PurchaseNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("VendorID", $row->VendorID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->PurchaseDueDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotal) . "</td></tr>";
+				echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsPayable/PurchaseProcessing/ViewPurchases", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->PurchaseNumber}") . "\">{$row->PurchaseNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("VendorID", $row->VendorID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->PurchaseDueDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotal) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -242,7 +247,7 @@
 			    <tbody>
 				<?php
 				foreach($collectionAlerts as $row)
-				    echo "<tr><td>" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Overdue) . "</td></tr>";
+				echo "<tr><td>" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Overdue) . "</td></tr>";
 				?>
 			    </tbody>
 			</table>
@@ -267,7 +272,7 @@
 			    <tbody>
 				<?php
 				foreach($todaysTasks as $row)
-				    echo "<tr><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . date("m/d/y", strtotime($row->DueDate)) . "</a></td><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . $row->Task . "</a></td></tr>";
+				echo "<tr><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . date("m/d/y", strtotime($row->DueDate)) . "</a></td><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . $row->Task . "</a></td></tr>";
 				?>
 			    </tbody>
 			</table>

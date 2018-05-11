@@ -60,7 +60,12 @@
 		    <div id="morris-donut-chart" class="ecomm-donute" style="height: 317px;"></div>
 		    <ul class="list-inline m-t-30 text-center">
 			<?php
-			$colors = ["#fb9678", "#01c0c8", "#4F5467"];
+			$colors = ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"];
+			while (true) {
+			    $colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+			    if(count($colors) == 10000)
+				break;
+			}
 			$colorInd = 0;
 			
 			foreach($companyStatus as $row)
@@ -80,7 +85,7 @@
 		     ?>
 		 ],
 		 resize: true,
-		 colors:['#fb9678', '#01c0c8', '#4F5467']
+		 colors: <?php echo json_encode($colors); ?>
 	     });
 	    </script>
 	    
