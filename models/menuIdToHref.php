@@ -146,7 +146,7 @@
     "AccountsPayable/VoucherProcessing/ApproveVouchers" => "EnterpriseASPAP/Payments/PaymentsHeaderApproveList",
     "AccountsPayable/VoucherProcessing/IssueVouchers" => "EnterpriseASPAP/Payments/PaymentsHeaderIssueList",
     "AccountsPayable/VoucherProcessing/IssueCreditMemosforVouchers" => "EnterpriseASPAP/Payments/PaymentsHeaderIssueCreditMemoList",
-    "AccountsPayable/VoucherProcessing/ThreeWayMatching" => "EnterpriseASPAP/Payments/PaymentsMatching",
+    "AccountsPayable/VoucherProcessing/ThreeWayMatching" => "EnterpriseASPAP/Payments/PaymentsMatchingList",
     "AccountsPayable/VoucherScreens/ViewVouchers" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
     "AccountsPayable/VoucherScreens/VoidVouchers" => "EnterpriseASPAP/Payments/PaymentsHeaderVoidList",
     "AccountsPayable/VoucherScreens/ViewVoidedVouchersHistory" => "EnterpriseASPAP/Payments/PaymentsHeaderVoidHistoryList",
