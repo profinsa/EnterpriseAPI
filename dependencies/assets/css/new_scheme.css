@@ -193,3 +193,10 @@ a.dt-button.active:not(.disabled):hover:not(.disabled) {
     background: #333;
     color: #fff;
 }
+
+.order-entry-header .row-header td {
+    font-weight : bold;
+    background-color: #black;
+    color : #fff;
+    border-left : 1px solid;
+}
