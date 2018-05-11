@@ -4,7 +4,7 @@ Name of Page: index
 
 Method: main entry point of application
 
-Date created: Nikita Zaharov, 08.02.2016
+Date created: Nikita Zaharov, 08.02.2017
 
 Use:  Initialization ofr application,  router for actions. Response for thing like page=index transoforms to call 
 index.php from /controllers
@@ -22,7 +22,7 @@ Calls:
 + /controllers/*
 
 
-Last Modified: 09.19.2016
+Last Modified: 05.11.2018
 Last Modified by: Nikita Zaharov
 */
 require 'vendor/autoload.php';
@@ -105,6 +105,7 @@ EOT;
 class app{
     public $controller = false;
     public $title = 'Integral Accounting X';
+    public $loginLogo = "";
     public $page = 'index';
     public function __construct(){
         if(isset($_GET["page"]))
@@ -133,6 +134,8 @@ try{
     session_start();
 
     $_app = new app();
+    
+    $_app->loginLogo = $config["loginLogo"];
     $_app->controller->process($_app);
 }catch(Exception $e){
     errorHandler($e->getMessage(), [

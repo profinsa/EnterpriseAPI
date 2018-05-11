@@ -4,6 +4,14 @@
     require 'header.php';
     ?>
     <body>
+	<style>
+	 .label {
+	     font-size : 12pt !Important;
+	 }
+	 .form-control {
+	     font-size : 12pt !Important;
+	 }
+	</style>
 	<!-- Preloader -->
 	<div class="preloader">
 	    <div class="cssload-speeding-wheel"></div>
@@ -13,7 +21,14 @@
 		<div class="white-box">
 		    <form id="loginform" class="form-horizontal form-material" method="POST">
 			<input type="hidden" name="page" value="login">
-			<h3 class="box-title m-b-20"><?php echo $translation->translateLabel("Sign In"); ?></h3>
+			<div class="row" style="padding-bottom:20px">
+			    <div class="col-md-4"></div>
+			    <div class="col-md-4">
+				<img src="assets/images/stfb-logo.gif" alt="Logo">			
+			    </div>
+			    <div class="col-md-4"></div>
+			</div>
+			<!-- 			    <h3 class="box-title m-b-20"><?php echo $translation->translateLabel("Sign In"); ?></h3> -->
 			<div class="form-group">
 			    <div class="row">
  				<div class="col-xs-6">

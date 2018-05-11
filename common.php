@@ -4,7 +4,8 @@ function config(){
         "db_host" => "localhost",
         "db_user" => "enterprise",
         "db_password" => "enterprise",
-        "db_base" => "myenterprise"
+        "db_base" => "myenterprise",
+        "loginLogo" => "assets/images/stfb-logo.gif"
     );
 }
 
