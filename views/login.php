@@ -11,6 +11,9 @@
 	 .form-control {
 	     font-size : 12pt !Important;
 	 }
+	 .has-error {
+	     border : 1px solid red !Important;
+	 }
 	</style>
 	<!-- Preloader -->
 	<div class="preloader">
@@ -69,6 +72,9 @@
 			    <div class="col-xs-12">
 				<input name="name" id="iname" class="form-control" type="text" required="" placeholder="<?php echo $translation->translateLabel("User Name"); ?>">
 			    </div>
+			</div>
+			<div  id="user_wrong_message" style="color:red; padding-bottom:20px; display:none">
+			    <strong>These credentials do not match our records.</strong>
 			</div>
 			<div class="form-group">
 			    <div class="col-xs-12">
@@ -174,6 +180,15 @@
 				$("#icaptcha").addClass("has-error");
 			    else
 				$("#icaptcha").removeClass("has-error");
+			    if(res.wrong_user){
+				$("#iname").addClass("has-error");
+				$("#ipassword").addClass("has-error");
+				$("#user_wrong_message").css("display", "block");
+			    }else{
+				$("#iname").removeClass("has-error");
+				$("#ipassword").removeClass("has-error");
+				$("#user_wrong_message").css("display", "none");
+			    }
 			    document.getElementById('captcha').src = res.captcha; 
 			});
 	     return false;

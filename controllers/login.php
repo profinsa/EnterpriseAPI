@@ -4,7 +4,7 @@ Name of Page: Login
 
 Method: This is controller for login page. It contains logic for user verification and captcha generation
 
-Date created: Nikita Zaharov, 08.02.2016
+Date created: Nikita Zaharov, 08.02.2017
 
 Use: controller is used by index.php, load by GET request parameter - page=login.
 
@@ -29,7 +29,7 @@ models/users.php
 models/companies.php
 app from index.php
 
-Last Modified: 13.02.2016
+Last Modified: 14.05.2018
 Last Modified by: Nikita Zaharov
 */
 
@@ -60,15 +60,16 @@ class controller{
       entry point of controller. Rendering page, loading models, log in with checking
      */
     public function process($app){
+        $user = false;
         $users = new users();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {//login request process
             $wrong_captcha = false;
             if($_POST["captcha"] != $_SESSION["captcha"])
                 $wrong_captcha = true;
 
-            if(!$wrong_captcha &&
-               ($user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])) &&
-               ($user["accesspermissions"]["RestrictSecurityIP"] ? $user["accesspermissions"]["IPAddress"] == $_SERVER['REMOTE_ADDR'] : true)){//access granted, captcha is matched                 
+            if(($user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])) &&
+               ($user["accesspermissions"]["RestrictSecurityIP"] ? $user["accesspermissions"]["IPAddress"] == $_SERVER['REMOTE_ADDR'] : true) &&
+               !$wrong_captcha){//access granted, captcha is matched                 
                 $app->renderUi = false;
                 $user["language"] = $_POST["language"];
                 $_SESSION["user"] = $user;
@@ -87,7 +88,7 @@ class controller{
                 );
                 if($wrong_captcha)
                     $response["wrong_captcha"] = true;
-                if(!isset($user))
+                if(!$user)
                     $response["wrong_user"] = true;
                 
                 echo json_encode($response);
