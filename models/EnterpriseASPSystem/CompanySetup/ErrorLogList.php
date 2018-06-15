@@ -1,7 +1,7 @@
 <?php
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-    protected $tableName = "errorlog";
+    public $tableName = "errorlog";
     public $dashboardTitle ="Error Log";
     public $breadCrumbTitle ="Error Log";
     public $idField ="ErrorID";

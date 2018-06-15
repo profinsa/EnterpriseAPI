@@ -32,12 +32,12 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "workorderheader";
+    public $tableName = "workorderheader";
     public $dashboardTitle ="Inventory Work Orders";
     public $breadCrumbTitle ="Inventory Work Orders";
     public $idField ="WorkOrderNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","WorkOrderNumber"];
-	protected $gridConditions = "WorkOrderCompleted = '0'";	
+	public $gridConditions = "WorkOrderCompleted = '0'";	
     public $gridFields = [
         "WorkOrderNumber" => [
             "dbType" => "varchar(36)",

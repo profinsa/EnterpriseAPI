@@ -32,7 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "ledgerbalancetype";
+    public $tableName = "ledgerbalancetype";
     public $dashboardTitle ="LedgerBalanceType";
     public $breadCrumbTitle ="LedgerBalanceType";
     public $idField ="GLBalanceType";

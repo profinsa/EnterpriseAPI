@@ -32,7 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "banktransactiontypes";
+    public $tableName = "banktransactiontypes";
     public $dashboardTitle ="Bank Transaction Types";
     public $breadCrumbTitle ="Bank Transaction Types";
     public $idField ="BankTransactionTypeID";

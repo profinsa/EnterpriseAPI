@@ -33,8 +33,8 @@ require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "purchaseheader";
-    protected $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'debit memo') AND (ABS(IFNULL(PurchaseHeader.BalanceDue,0)) >= 0.005 OR ABS(IFNULL(PurchaseHeader.Total,0)) < 0.005 OR IFNULL(PurchaseHeader.Posted,0)=0)";
+    public $tableName = "purchaseheader";
+    public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'debit memo') AND (ABS(IFNULL(PurchaseHeader.BalanceDue,0)) >= 0.005 OR ABS(IFNULL(PurchaseHeader.Total,0)) < 0.005 OR IFNULL(PurchaseHeader.Posted,0)=0)";
     public $dashboardTitle ="Debit Memos";
     public $breadCrumbTitle ="Debit Memos";
     public $idField ="PurchaseNumber";

@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "aptransactiontypes";
+public $tableName = "aptransactiontypes";
 public $dashboardTitle ="AP Transaction Types";
 public $breadCrumbTitle ="AP Transaction Types";
 public $idField ="TransactionTypeID";

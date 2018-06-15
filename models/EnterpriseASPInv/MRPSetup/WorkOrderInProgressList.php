@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "workorderinprogress";
+public $tableName = "workorderinprogress";
 public $dashboardTitle ="Work Order In Progress Types";
 public $breadCrumbTitle ="Work Order In Progress Types";
 public $idField ="WorkOrderInProgress";

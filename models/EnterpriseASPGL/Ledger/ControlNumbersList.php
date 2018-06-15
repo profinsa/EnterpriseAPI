@@ -32,7 +32,7 @@ Last Modified by: Nikita Zaharov
 require __DIR__ . "/../../../models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "glcontrolnumbers";
+    public $tableName = "glcontrolnumbers";
 
     //fields to render in grid
     public $gridFields = [

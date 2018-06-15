@@ -1,7 +1,7 @@
 <?php
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "ledgerchartofaccounts";
+public $tableName = "ledgerchartofaccounts";
 public $dashboardTitle ="Ledger Chart Of Accounts";
 public $breadCrumbTitle ="Ledger Chart Of Accounts";
 public $idField ="undefined";

@@ -32,7 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "companies";
+    public $tableName = "companies";
     public $dashboardTitle ="Period Close ";
     public $breadCrumbTitle ="Period Close ";
     public $idField ="undefined";

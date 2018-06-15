@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "contacttype";
+public $tableName = "contacttype";
 public $dashboardTitle ="Contact Type";
 public $breadCrumbTitle ="Contact Type";
 public $idField ="ContactType";

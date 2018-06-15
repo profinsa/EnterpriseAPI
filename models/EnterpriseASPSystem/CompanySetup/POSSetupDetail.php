@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "possetup";
+public $tableName = "possetup";
 public $dashboardTitle ="POS Setup ";
 public $breadCrumbTitle ="POS Setup ";
 public $idField ="undefined";

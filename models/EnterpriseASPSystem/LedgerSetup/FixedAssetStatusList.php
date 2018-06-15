@@ -32,7 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "fixedassetstatus";
+    public $tableName = "fixedassetstatus";
     public $dashboardTitle ="Fixed Asset Status";
     public $breadCrumbTitle ="Fixed Asset Status";
     public $idField ="AssetStatusID";

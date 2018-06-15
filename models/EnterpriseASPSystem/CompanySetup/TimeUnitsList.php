@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "timeunits";
+public $tableName = "timeunits";
 public $dashboardTitle ="TimeUnits";
 public $breadCrumbTitle ="TimeUnits";
 public $idField ="TimeUnitID";

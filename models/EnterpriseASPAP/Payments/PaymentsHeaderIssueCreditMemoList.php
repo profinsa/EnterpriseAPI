@@ -32,8 +32,8 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "paymentsheader";
-    protected $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND PaymentsHeader.ApprovedForPayment=1 AND IFNULL(PaymentsHeader.Void,0)=0 AND PaymentsHeader.PaymentID <> 'DEFAULT'";
+    public $tableName = "paymentsheader";
+    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND PaymentsHeader.ApprovedForPayment=1 AND IFNULL(PaymentsHeader.Void,0)=0 AND PaymentsHeader.PaymentID <> 'DEFAULT'";
     public $modes = ["grid"];
     public $features = ["selecting"];
     public $dashboardTitle ="Issue Credit Memo For Payments";

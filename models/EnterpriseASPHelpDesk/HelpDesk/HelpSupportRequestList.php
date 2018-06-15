@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "helpsupportrequest";
+public $tableName = "helpsupportrequest";
 public $dashboardTitle ="Help Support Requests";
 public $breadCrumbTitle ="Help Support Requests";
 public $idField ="CaseId";

@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "contactregions";
+public $tableName = "contactregions";
 public $dashboardTitle ="Contact Regions";
 public $breadCrumbTitle ="Contact Regions";
 public $idField ="ContactRegionID";

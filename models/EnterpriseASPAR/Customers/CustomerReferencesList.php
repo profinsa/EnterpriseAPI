@@ -32,7 +32,7 @@ Last Modified by: Nikita Zaharov
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-	protected $tableName = "customerreferences";
+	public $tableName = "customerreferences";
 	public $dashboardTitle ="CustomerReferences";
 	public $breadCrumbTitle ="CustomerReferences";
 	public $idField ="ReferenceID";

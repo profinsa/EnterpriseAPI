@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "leadtype";
+public $tableName = "leadtype";
 public $dashboardTitle ="Lead Type";
 public $breadCrumbTitle ="Lead Type";
 public $idField ="LeadTypeID";

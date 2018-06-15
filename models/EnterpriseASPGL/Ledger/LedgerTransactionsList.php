@@ -32,8 +32,8 @@ Last Modified by: Nikita Zaharov
 require __DIR__ . "/../../../models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "ledgertransactions";
-    protected $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 0 AND UPPER(GLTransactionNumber) != 'DEFAULT'";
+    public $tableName = "ledgertransactions";
+    public $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 0 AND UPPER(GLTransactionNumber) != 'DEFAULT'";
     public $dashboardTitle ="Ledger Transactions";
     public $breadCrumbTitle ="Ledger Transactions";
     public $idField ="GLTransactionNumber";
@@ -309,8 +309,8 @@ class gridData extends gridDataSource{
 }
 
 class LedgerTransactionsClosedList extends gridData{
-    protected $tableName = "ledgertransactions";
-    protected $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 1 AND UPPER(GLTransactionNumber) <> 'DEFAULT'";
+    public $tableName = "ledgertransactions";
+    public $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 1 AND UPPER(GLTransactionNumber) <> 'DEFAULT'";
     public $dashboardTitle ="Closed Ledger Transactions";
     public $breadCrumbTitle ="Closed Ledger Transactions";
     public $idField ="GLTransactionNumber";
@@ -368,11 +368,11 @@ class LedgerTransactionsClosedList extends gridData{
 }
 
 class LedgerTransactionsHistoryList extends gridData{
-    protected $tableName = "ledgertransactionshistory";
+    public $tableName = "ledgertransactionshistory";
     public $dashboardTitle ="Ledger Transactions History";
     public $breadCrumbTitle ="Ledger Transactions History";
     public $modes = ["grid", "view"];
-    protected $gridConditions = "1=1";
+    public $gridConditions = "1=1";
     
     public $detailPages = [
         "Main" => [

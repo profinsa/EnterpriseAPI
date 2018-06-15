@@ -31,7 +31,7 @@ Last Modified by: Nikita Zaharov
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-    protected $tableName = "audittablesdescription";
+    public $tableName = "audittablesdescription";
     public $dashboardTitle ="Audit Description";
     public $breadCrumbTitle ="Audit Description";
     public $idField ="undefined";

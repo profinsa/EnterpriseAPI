@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "vendorcontacts";
+public $tableName = "vendorcontacts";
 public $dashboardTitle ="Vendor Contacts";
 public $breadCrumbTitle ="Vendor Contacts";
 public $idField ="VendorID";

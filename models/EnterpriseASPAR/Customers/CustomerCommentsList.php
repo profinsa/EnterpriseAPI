@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-    protected $tableName = "customercomments";
+    public $tableName = "customercomments";
     public $dashboardTitle ="Customer Comments";
     public $breadCrumbTitle ="Customer Comments";
     public $idField ="CustomerID";

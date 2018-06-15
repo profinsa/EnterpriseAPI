@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "workordertypes";
+public $tableName = "workordertypes";
 public $dashboardTitle ="Work Order Types";
 public $breadCrumbTitle ="Work Order Types";
 public $idField ="WorkOrderTypes";

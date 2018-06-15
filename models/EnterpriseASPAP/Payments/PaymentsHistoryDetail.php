@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\DB;
 use Session;
 
 class gridData extends gridDataSource{
-	protected $tableName = "paymentsdetailhistory";
+	public $tableName = "paymentsdetailhistory";
 
 	public $dashboardTitle ="Payments History Detail";
 	public $breadCrumbTitle ="Payments History Detail";

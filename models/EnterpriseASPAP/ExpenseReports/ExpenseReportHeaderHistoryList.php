@@ -32,7 +32,7 @@ Last Modified by: Kenna Fetterman
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "expensereportheaderhistory";
+    public $tableName = "expensereportheaderhistory";
     public $dashboardTitle ="ExpenseReportHeaderHistory";
     public $breadCrumbTitle ="ExpenseReportHeaderHistory";
     public $idField ="ExpenseReportID";

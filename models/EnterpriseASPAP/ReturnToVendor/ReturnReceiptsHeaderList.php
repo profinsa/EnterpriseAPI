@@ -33,8 +33,8 @@ require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "receiptsheader";
-    protected $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Vendor')";
+    public $tableName = "receiptsheader";
+    public $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Vendor')";
     public $dashboardTitle ="Return Receipts";
     public $breadCrumbTitle ="Return Receipts";
     public $idField ="ReceiptID";

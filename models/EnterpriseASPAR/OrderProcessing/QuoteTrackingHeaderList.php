@@ -32,7 +32,7 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "quotetrackingheader";
+    public $tableName = "quotetrackingheader";
     public $dashboardTitle ="QuoteTrackingHeader";
     public $breadCrumbTitle ="QuoteTrackingHeader";
     public $idField ="OrderNumber";

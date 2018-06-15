@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "companiessystemwidemessage";
+public $tableName = "companiessystemwidemessage";
 public $dashboardTitle ="CompaniesSystemWideMessage ";
 public $breadCrumbTitle ="CompaniesSystemWideMessage ";
 public $idField ="undefined";

@@ -32,7 +32,7 @@ Last Modified by: Nikita Zaharov
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "banktransactions";
+    public $tableName = "banktransactions";
     //fields to render in grid
     public $gridFields = [
         "BankTransactionID" => [

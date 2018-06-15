@@ -32,8 +32,8 @@ Last Modified by: Nikita Zaharov
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "bankaccounts";
-    protected $gridConditions = "BankAccounts.GLBankAccount Is Not Null And LENGTH(LTRIM(RTrim(BankAccounts.GLBankAccount))) > 0";
+    public $tableName = "bankaccounts";
+    public $gridConditions = "BankAccounts.GLBankAccount Is Not Null And LENGTH(LTRIM(RTrim(BankAccounts.GLBankAccount))) > 0";
     //fields to render in grid
     public $gridFields = [
         "BankID" => [

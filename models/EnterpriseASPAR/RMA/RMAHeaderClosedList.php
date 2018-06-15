@@ -3,8 +3,8 @@ require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "purchaseheader";
-    protected $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND ((IFNULL(Received,0) = 1) AND UPPER(PurchaseNumber) <> 'DEFAULT')";
+    public $tableName = "purchaseheader";
+    public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND ((IFNULL(Received,0) = 1) AND UPPER(PurchaseNumber) <> 'DEFAULT')";
     public $dashboardTitle ="Closed RMA's";
     public $breadCrumbTitle ="Closed RMA's";
     public $idField ="PurchaseNumber";

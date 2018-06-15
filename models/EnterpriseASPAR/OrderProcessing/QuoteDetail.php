@@ -32,7 +32,7 @@
 require "./models/subgridDataSource.php";
 
 class gridData extends subgridDataSource{
-	protected $tableName = "orderdetail";
+	public $tableName = "orderdetail";
 	public $dashboardTitle ="Quote Detail";
 	public $breadCrumbTitle ="Quote Detail";
 	public $idField ="OrderNumber";

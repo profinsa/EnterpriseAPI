@@ -1,8 +1,8 @@
 <?php
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-    protected $tableName = "purchaseheader";
-    // protected $gridConditions = "(LOWER(IFNULL(DebitMemoHeaderPayments.TransactionTypeID,N'')) = 'debit memo') AND (ABS(IFNULL(DebitMemoHeaderPayments.Total, 0) - IFNULL(DebitMemoHeaderPayments.AmountPaid, 0)) >= 0.005 AND ABS(IFNULL(DebitMemoHeaderPayments.Total,0)) >= 0.005 AND IFNULL(DebitMemoHeaderPayments.Posted,0)=1)";
+    public $tableName = "purchaseheader";
+    // public $gridConditions = "(LOWER(IFNULL(DebitMemoHeaderPayments.TransactionTypeID,N'')) = 'debit memo') AND (ABS(IFNULL(DebitMemoHeaderPayments.Total, 0) - IFNULL(DebitMemoHeaderPayments.AmountPaid, 0)) >= 0.005 AND ABS(IFNULL(DebitMemoHeaderPayments.Total,0)) >= 0.005 AND IFNULL(DebitMemoHeaderPayments.Posted,0)=1)";
     public $dashboardTitle ="Apply Debit Memos to Payments ";
     public $breadCrumbTitle ="Apply Debit Memos to Payments ";
     public $idField ="PurchaseNumber";

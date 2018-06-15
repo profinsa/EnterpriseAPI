@@ -32,7 +32,7 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "ledgerstoredchartofaccounts"; //table name which used for read and write fields
+    public $tableName = "ledgerstoredchartofaccounts"; //table name which used for read and write fields
     public $dashboardTitle = "Stored Chart Of Accounts"; //title in dashboard
     public $breadCrumbTitle = "Stored Chart Of Accounts"; //title in breadCrumb
     public $idField = "GLAccountNumber"; //fieldname in database on which is selecting(CompanyID, DevisionID, DepartmentID, GLAccountNumber)

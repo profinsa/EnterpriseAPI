@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "companiesdisplaylang";
+public $tableName = "companiesdisplaylang";
 public $dashboardTitle ="CompaniesDisplayLang";
 public $breadCrumbTitle ="CompaniesDisplayLang";
 public $idField ="DisplayLang";

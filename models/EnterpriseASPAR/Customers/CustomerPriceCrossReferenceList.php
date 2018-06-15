@@ -32,7 +32,7 @@ Last Modified by: Nikita Zaharov
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-    protected $tableName = "customerpricecrossreference";
+    public $tableName = "customerpricecrossreference";
     public $dashboardTitle ="Customer Price Cross Reference";
     public $breadCrumbTitle ="Customer Price Cross Reference";
     public $idField ="CustomerID";

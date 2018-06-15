@@ -34,8 +34,8 @@ require "./models/helpers/recalc.php";
 require "./models/helpers/transactionShippingRate.php";
 
 class gridData extends gridDataSource{
-	protected $tableName = "invoiceheader";
-	protected $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (Posted=1) AND (ABS(InvoiceHeader.BalanceDue) < 0.005) AND (ABS(InvoiceHeader.Total) >= 0.005))";
+	public $tableName = "invoiceheader";
+	public $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (Posted=1) AND (ABS(InvoiceHeader.BalanceDue) < 0.005) AND (ABS(InvoiceHeader.Total) >= 0.005))";
     public $modes = ["grid", "view", "edit"];
     public $features = ["selecting"]; //list enabled features
 	public $dashboardTitle ="Closed Invoices";

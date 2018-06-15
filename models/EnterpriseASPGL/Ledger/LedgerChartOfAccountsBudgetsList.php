@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "ledgerchartofaccountsbudgets";
+    public $tableName = "ledgerchartofaccountsbudgets";
     public $dashboardTitle ="Budgets";
     public $breadCrumbTitle ="Budgets";
     public $idField ="GLBudgetID";

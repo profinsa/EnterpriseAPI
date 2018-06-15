@@ -34,7 +34,7 @@ require __DIR__ . "/../../gridDataSource.php";
 class gridData extends gridDataSource{
     public $dashboardTitle ="Unlock";
     public $breadCrumbTitle ="Unlock";
-    protected $tableName = "lock";
+    public $tableName = "lock";
     public $columnNames = [
         "GLTransactionNumber" => "Transaction Number",
         "GLTransactionTypeID" => "Type"

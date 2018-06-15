@@ -2,7 +2,7 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "bankreconciliationsummary";
+    public $tableName = "bankreconciliationsummary";
     public $dashboardTitle ="Reconciliation Summary";
     public $breadCrumbTitle ="Reconciliation Summary";
     public $idField ="BankRecID";

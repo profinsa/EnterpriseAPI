@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "companiesworkflowbyemployees";
+public $tableName = "companiesworkflowbyemployees";
 public $dashboardTitle ="CompaniesWorkflowByEmployees";
 public $breadCrumbTitle ="CompaniesWorkflowByEmployees";
 public $idField ="WorkFlowTypeID";

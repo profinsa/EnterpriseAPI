@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "payrollitemtypes";
+public $tableName = "payrollitemtypes";
 public $dashboardTitle ="PayrollItemTypes";
 public $breadCrumbTitle ="PayrollItemTypes";
 public $idField ="PayrollItemTypeID";

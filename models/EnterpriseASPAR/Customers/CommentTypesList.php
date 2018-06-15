@@ -32,7 +32,7 @@ Last Modified by: Kenna Fetterman
 
  require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "commenttypes";
+public $tableName = "commenttypes";
 public $dashboardTitle ="Comment Types";
 public $breadCrumbTitle ="Comment Types";
 public $idField ="CommentType";

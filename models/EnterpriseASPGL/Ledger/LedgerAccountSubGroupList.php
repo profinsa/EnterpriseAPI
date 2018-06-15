@@ -32,7 +32,7 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "ledgersubaccountgroup";
+    public $tableName = "ledgersubaccountgroup";
 
     public $dashboardTitle = "Ledger Account Sub Group";
     public $breadCrumbTitle = "Ledger Account Sub Group";

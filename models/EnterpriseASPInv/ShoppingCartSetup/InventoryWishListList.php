@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "inventorywishlist";
+public $tableName = "inventorywishlist";
 public $dashboardTitle ="InventoryWishList ";
 public $breadCrumbTitle ="InventoryWishList ";
 public $idField ="ItemID";

@@ -33,8 +33,8 @@ Last Modified by: Nikita Zaharov
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-	protected $tableName = "orderheader";
-	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N''))='service order') AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 1) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
+	public $tableName = "orderheader";
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N''))='service order') AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 1) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
 	public $modes = ["grid", "view"];
 	public $features = ["selecting"];
 	public $dashboardTitle ="Perform Service Orders";

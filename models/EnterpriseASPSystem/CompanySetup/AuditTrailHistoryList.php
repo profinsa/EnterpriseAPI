@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "audittrailhistory";
+public $tableName = "audittrailhistory";
 public $dashboardTitle ="Audit Trail History";
 public $breadCrumbTitle ="Audit Trail History";
 public $idField ="EmployeeID";

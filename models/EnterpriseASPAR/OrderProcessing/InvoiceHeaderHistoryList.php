@@ -32,8 +32,8 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-	protected $tableName = "invoiceheaderhistory";
-	protected $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeaderHistory.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')))";
+	public $tableName = "invoiceheaderhistory";
+	public $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeaderHistory.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')))";
 	public $dashboardTitle ="Invoices History";
 	public $breadCrumbTitle ="Invoices History";
 	public $idField ="InvoiceNumber";

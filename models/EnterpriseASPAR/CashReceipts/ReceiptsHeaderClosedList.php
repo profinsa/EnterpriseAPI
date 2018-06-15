@@ -32,8 +32,8 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "receiptsheader";
-    protected $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Customer') AND (NOT (ReceiptsHeader.CreditAmount IS NULL OR ReceiptsHeader.CreditAmount <> 0)) AND IFNULL(ReceiptsHeader.Posted,0) = 1";
+    public $tableName = "receiptsheader";
+    public $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Customer') AND (NOT (ReceiptsHeader.CreditAmount IS NULL OR ReceiptsHeader.CreditAmount <> 0)) AND IFNULL(ReceiptsHeader.Posted,0) = 1";
     public $dashboardTitle ="Closed Receipt";
     public $breadCrumbTitle ="Closed Receipt";
     public $idField ="ReceiptID";

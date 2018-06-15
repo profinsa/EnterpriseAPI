@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "leadcomments";
+public $tableName = "leadcomments";
 public $dashboardTitle ="Lead Comments";
 public $breadCrumbTitle ="Lead Comments";
 public $idField ="CommentNumber";

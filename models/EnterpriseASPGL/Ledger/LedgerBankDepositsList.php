@@ -32,8 +32,8 @@ Last Modified by: Nikita Zaharov
 require __DIR__ . "/../../../models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "ledgertransactions";
-    protected $gridConditions = "UPPER(GLTransactionNumber) != 'DEFAULT' AND GLTransactionTypeID='Deposit'";
+    public $tableName = "ledgertransactions";
+    public $gridConditions = "UPPER(GLTransactionNumber) != 'DEFAULT' AND GLTransactionTypeID='Deposit'";
     public $dashboardTitle ="Bank Deposits";
     public $breadCrumbTitle ="Bank Deposits";
     public $idField ="GLTransactionNumber";

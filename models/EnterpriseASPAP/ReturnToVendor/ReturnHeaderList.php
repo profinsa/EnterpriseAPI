@@ -33,8 +33,8 @@ require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
 class ReturnHeaderList extends gridDataSource{
-    protected $tableName = "orderheader";
-    protected $gridConditions = "(LOWER(OrderHeader.TransactionTypeID) = LOWER('Return'))";
+    public $tableName = "orderheader";
+    public $gridConditions = "(LOWER(OrderHeader.TransactionTypeID) = LOWER('Return'))";
     public $dashboardTitle ="Returns";
     public $breadCrumbTitle ="Returns";
     public $idField ="OrderNumber";
@@ -1239,7 +1239,7 @@ class ReturnHeaderList extends gridDataSource{
 class gridData extends ReturnHeaderList {}
 
 class ReturnHeaderPickList extends ReturnHeaderList{
-    protected $gridConditions = "(LOWER(OrderHeader.TransactionTypeID) = LOWER('Return')) AND (IFNULL(OrderHeader.Posted,0) = 1) AND (IFNULL(OrderHeader.Picked,0) = 0)";
+    public $gridConditions = "(LOWER(OrderHeader.TransactionTypeID) = LOWER('Return')) AND (IFNULL(OrderHeader.Posted,0) = 1) AND (IFNULL(OrderHeader.Picked,0) = 0)";
     public $modes = ["grid", "view"];
     public $features = ["selecting"];
     public $dashboardTitle ="Pick Returns";
@@ -1280,7 +1280,7 @@ class ReturnHeaderPickList extends ReturnHeaderList{
 }
 
 class ReturnHeaderShipList extends ReturnHeaderList{
-    protected $gridConditions = "(LOWER(OrderHeader.TransactionTypeID) = LOWER('Return')) AND ((IFNULL(OrderHeader.Posted, 0) = 1) AND (IFNULL(OrderHeader.Picked, 0) = 1) AND (IFNULL(OrderHeader.Shipped, 0) = 0) AND (IFNULL(OrderHeader.Invoiced, 0) = 0))";
+    public $gridConditions = "(LOWER(OrderHeader.TransactionTypeID) = LOWER('Return')) AND ((IFNULL(OrderHeader.Posted, 0) = 1) AND (IFNULL(OrderHeader.Picked, 0) = 1) AND (IFNULL(OrderHeader.Shipped, 0) = 0) AND (IFNULL(OrderHeader.Invoiced, 0) = 0))";
     public $modes = ["grid", "view"];
     public $features = ["selecting"];
     public $dashboardTitle ="Ship Returns";
@@ -1321,7 +1321,7 @@ class ReturnHeaderShipList extends ReturnHeaderList{
 }
 
 class ReturnHeaderInvoiceList extends ReturnHeaderList {
-    protected $gridConditions = "((LOWER(OrderHeader.TransactionTypeID) = LOWER('Return')) AND (OrderHeader.Shipped = 1) AND (IFNULL(OrderHeader.Invoiced,0) = 0))";
+    public $gridConditions = "((LOWER(OrderHeader.TransactionTypeID) = LOWER('Return')) AND (OrderHeader.Shipped = 1) AND (IFNULL(OrderHeader.Invoiced,0) = 0))";
 	public $modes = ["grid", "view"];
 	public $features = ["selecting"];
     public $dashboardTitle ="Invoice Shipped Returns";

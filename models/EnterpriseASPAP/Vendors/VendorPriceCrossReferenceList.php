@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "vendorpricecrossreference";
+public $tableName = "vendorpricecrossreference";
 public $dashboardTitle ="Vendor Price Cross Reference";
 public $breadCrumbTitle ="Vendor Price Cross Reference";
 public $idField ="VendorID";

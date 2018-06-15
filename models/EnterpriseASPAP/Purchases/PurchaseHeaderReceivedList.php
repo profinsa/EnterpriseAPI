@@ -32,8 +32,8 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-	protected $tableName = "purchaseheader";
-	protected $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (IFNULL(PurchaseHeader.Received,0)=1) AND (IFNULL(PurchaseHeader.Paid,0)=0)";
+	public $tableName = "purchaseheader";
+	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (IFNULL(PurchaseHeader.Received,0)=1) AND (IFNULL(PurchaseHeader.Paid,0)=0)";
 	public $dashboardTitle ="Received Purchases";
 	public $breadCrumbTitle ="Received Purchases";
 	public $idField ="PurchaseNumber";

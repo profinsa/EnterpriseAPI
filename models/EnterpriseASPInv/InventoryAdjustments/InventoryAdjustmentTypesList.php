@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "inventoryadjustmenttypes";
+public $tableName = "inventoryadjustmenttypes";
 public $dashboardTitle ="Inventory Adjustment Types";
 public $breadCrumbTitle ="Inventory Adjustment Types";
 public $idField ="AdjustmentTypeID";

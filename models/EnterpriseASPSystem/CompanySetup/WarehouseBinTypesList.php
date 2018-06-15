@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "warehousebintypes";
+public $tableName = "warehousebintypes";
 public $dashboardTitle ="WarehouseBinTypes";
 public $breadCrumbTitle ="WarehouseBinTypes";
 public $idField ="WarehouseBinTypeID";

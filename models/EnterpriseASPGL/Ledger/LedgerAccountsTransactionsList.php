@@ -2,8 +2,8 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "ledgertransactions";
-    protected $gridConditions = "1=1";
+    public $tableName = "ledgertransactions";
+    public $gridConditions = "1=1";
     public $dashboardTitle ="Ledger Transactions";
     public $breadCrumbTitle ="Ledger Transactions";
     public $idField ="GLTransactionNumber";

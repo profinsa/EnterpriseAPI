@@ -33,8 +33,8 @@ require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
 class ReturnInvoiceHeaderList extends gridDataSource{
-    protected $tableName = "invoiceheader";
-    protected $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return'))  AND (NOT   (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) < 0.005 AND InvoiceHeader.Posted = 1))";
+    public $tableName = "invoiceheader";
+    public $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return'))  AND (NOT   (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) < 0.005 AND InvoiceHeader.Posted = 1))";
     public $dashboardTitle ="Return Invoices";
     public $breadCrumbTitle ="Return Invoices";
     public $idField ="InvoiceNumber";
@@ -1198,7 +1198,7 @@ class ReturnInvoiceHeaderList extends gridDataSource{
 class gridData extends ReturnInvoiceHeaderList {}
 
 class ReturnInvoiceHeaderClosedList extends ReturnInvoiceHeaderList{
-    protected $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return'))  AND (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) < 0.005)";
+    public $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return'))  AND (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) < 0.005)";
     public $dashboardTitle ="Closed Returns";
     public $breadCrumbTitle ="Closed Returns";
     public $modes = ["grid", "view", "edit"];
@@ -1236,7 +1236,7 @@ class ReturnInvoiceHeaderClosedList extends ReturnInvoiceHeaderList{
 }
 
 class ReturnInvoiceHeaderShippedList extends ReturnInvoiceHeaderList{
-    protected $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return')) AND (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) >= 0.005)";
+    public $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return')) AND (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) >= 0.005)";
     public $dashboardTitle ="Shipped Returns";
     public $breadCrumbTitle ="Shipped Returns";
     public $modes = ["grid"];

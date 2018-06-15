@@ -33,8 +33,8 @@ require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
 class gridData extends gridDataSource{
-	protected $tableName = "orderheader";
-	protected $gridConditions = "LOWER(OrderTypeID) = LOWER('Quote')";
+	public $tableName = "orderheader";
+	public $gridConditions = "LOWER(OrderTypeID) = LOWER('Quote')";
 	public $dashboardTitle ="Quotes";
 	public $breadCrumbTitle ="Quotes";
 	public $idField ="OrderNumber";

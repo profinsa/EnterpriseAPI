@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "payrollinstantmessages";
+public $tableName = "payrollinstantmessages";
 public $dashboardTitle ="PayrollInstantMessages";
 public $breadCrumbTitle ="PayrollInstantMessages";
 public $idField ="InstantMessageID";

@@ -33,8 +33,8 @@ require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
 class gridData extends gridDataSource{
-	protected $tableName = "orderheader";
-	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID,N'')) <> 'hold') AND (IFNULL(OrderHeader.Backordered, 0) = 1)";	
+	public $tableName = "orderheader";
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID,N'')) <> 'hold') AND (IFNULL(OrderHeader.Backordered, 0) = 1)";	
 	public $dashboardTitle ="Back Orders";
 	public $breadCrumbTitle ="Back Orders";
 	public $idField ="OrderNumber";

@@ -27,7 +27,7 @@
 */
 
 class gridDataSource{
-    protected $tableName = "";
+    public $tableName = "";
     //fields to render in grid
     protected $gridFields = [];
 

@@ -32,8 +32,8 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "paymentsheader";
-    protected $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=1) AND (IFNULL(PaymentsHeader.Paid,0)=1)";
+    public $tableName = "paymentsheader";
+    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=1) AND (IFNULL(PaymentsHeader.Paid,0)=1)";
     public $dashboardTitle ="Closed Payments";
     public $modes = ["view", "grid", "edit"];
     public $features = ["selecting"];

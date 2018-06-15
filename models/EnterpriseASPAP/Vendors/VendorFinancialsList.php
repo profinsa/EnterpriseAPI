@@ -32,7 +32,7 @@
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-    protected $tableName = "vendorfinancials";
+    public $tableName = "vendorfinancials";
     public $dashboardTitle ="Vendor Financials";
     public $breadCrumbTitle ="Vendor Financials";
     public $idField ="VendorID";

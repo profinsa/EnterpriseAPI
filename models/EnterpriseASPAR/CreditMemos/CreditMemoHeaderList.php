@@ -34,8 +34,8 @@ require "./models/helpers/recalc.php";
 require "./models/helpers/transactionShippingRate.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "invoiceheader";
-    protected $gridConditions = "(ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0) AND (LOWER(InvoiceHeader.TransactionTypeID) IN ('credit memo'))";
+    public $tableName = "invoiceheader";
+    public $gridConditions = "(ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0) AND (LOWER(InvoiceHeader.TransactionTypeID) IN ('credit memo'))";
     public $dashboardTitle ="Credit Memos";
     public $breadCrumbTitle ="Credit Memos";
     public $idField ="InvoiceNumber";

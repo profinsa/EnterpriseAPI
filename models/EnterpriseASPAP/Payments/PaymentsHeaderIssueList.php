@@ -31,8 +31,8 @@ Last Modified by: Nikita Zaharov
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "paymentsheader";
-protected $gridConditions = "(IFNULL(ApprovedForPayment,0) = 1 AND IFNULL(CheckPrinted,0) = 0 AND IFNULL(Posted,0) = 1 AND IFNULL(Paid,0) = 0)";
+public $tableName = "paymentsheader";
+public $gridConditions = "(IFNULL(ApprovedForPayment,0) = 1 AND IFNULL(CheckPrinted,0) = 0 AND IFNULL(Posted,0) = 1 AND IFNULL(Paid,0) = 0)";
 public $dashboardTitle ="Issue Payments";
 public $breadCrumbTitle ="Issue Payments";
 public $idField ="PaymentID";

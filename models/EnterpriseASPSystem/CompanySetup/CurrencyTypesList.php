@@ -31,7 +31,7 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "currencytypes";
+    public $tableName = "currencytypes";
     public $dashboardTitle ="Currencies";
     public $breadCrumbTitle ="Currencies";
     public $idField ="CurrencyID";

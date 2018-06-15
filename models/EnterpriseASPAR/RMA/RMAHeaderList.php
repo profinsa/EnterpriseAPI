@@ -2,8 +2,8 @@
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-    protected $tableName = "purchaseheader";
-    protected $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND ((IFNULL(Received,0) = 0) OR (IFNULL(Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT')";
+    public $tableName = "purchaseheader";
+    public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND ((IFNULL(Received,0) = 0) OR (IFNULL(Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT')";
     public $dashboardTitle ="RMA's";
     public $breadCrumbTitle ="RMA's";
     public $idField ="PurchaseNumber";

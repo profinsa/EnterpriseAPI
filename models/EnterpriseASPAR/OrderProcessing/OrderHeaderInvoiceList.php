@@ -33,8 +33,8 @@ Last Modified by: Nikita Zaharov
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
-	protected $tableName = "orderheader";
-	protected $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold' AND (OrderHeader.Shipped = 1) AND (IFNULL(OrderHeader.Invoiced,0) = 0)";
+	public $tableName = "orderheader";
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold' AND (OrderHeader.Shipped = 1) AND (IFNULL(OrderHeader.Invoiced,0) = 0)";
 	public $modes = ["grid", "view"];
 	public $features = ["selecting"];
 	public $dashboardTitle ="Invoice Shipped Orders";

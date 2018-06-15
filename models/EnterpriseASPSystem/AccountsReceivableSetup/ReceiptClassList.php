@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "receiptclass";
+public $tableName = "receiptclass";
 public $dashboardTitle ="Receipt Class";
 public $breadCrumbTitle ="Receipt Class";
 public $idField ="ReceiptClassID";

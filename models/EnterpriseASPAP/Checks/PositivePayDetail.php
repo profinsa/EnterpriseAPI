@@ -35,8 +35,8 @@ require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     public $dashboardTitle ="Positive Pay";
     public $breadCrumbTitle ="Positive Pay";
-    protected $tableName = "";
-    protected $gridConditions = "";
+    public $tableName = "";
+    public $gridConditions = "";
     public $idField ="undefined";
     public $idFields = ["CompanyID","DivisionID","DepartmentID"];
     public $onlyEdit = true;

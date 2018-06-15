@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-protected $tableName = "terms";
+public $tableName = "terms";
 public $dashboardTitle ="Terms";
 public $breadCrumbTitle ="Terms";
 public $idField ="TermsID";

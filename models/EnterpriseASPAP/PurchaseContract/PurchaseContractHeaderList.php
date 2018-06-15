@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-	protected $tableName = "purchasecontractheader";
+	public $tableName = "purchasecontractheader";
 	public $dashboardTitle ="PurchaseContractHeader";
 	public $breadCrumbTitle ="PurchaseContractHeader";
 	public $idField ="PurchaseContractNumber";

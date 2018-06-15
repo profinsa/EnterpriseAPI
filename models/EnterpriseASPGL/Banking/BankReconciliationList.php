@@ -45,7 +45,7 @@ function formatCurrency($value){
 }
 
 class gridData extends gridDataSource{
-    protected $tableName = "bankreconciliation";
+    public $tableName = "bankreconciliation";
     public $dashboardTitle ="Bank Reconciliation";
     public $breadCrumbTitle ="Bank Reconciliation";
     public $idField ="BankID";
