@@ -641,6 +641,21 @@ class gridData extends gridDataSource{
         
         return $result;
     }
+
+    public function Customer_CreateFromLead(){
+        $user = Session::get("user");
+        
+        DB::statement("CALL Customer_CreateFromLead('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "','" . $_POST["LeadID"] . "',@PostingResult,@SWP_RET_VALUE)");
+
+         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+         } else {
+            echo "ok";
+            header('Content-Type: application/json');
+         }
+    }
     
     public $columnNames = [
         "LeadID" => "Lead ID",

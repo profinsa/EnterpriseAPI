@@ -23,7 +23,7 @@
 
      Last Modified: 07.25.2016
      Last Modified by: Nikita Zaharov
-   -->
+-->
 
 <div id="grid_content" class="row">
     <h3 class="box-title m-b-0"><?php echo $data->dashboardTitle ?></h3>
@@ -31,7 +31,7 @@
     <div class="table-responsive">
 	<script>
 	 <?php
-     //getting data for table
+	 //getting data for table
 	 $rows = $data->getPage($ascope["item"]);
 	 echo "var gridItems = " . json_encode($rows) . ";";
 	 ?>
@@ -48,8 +48,8 @@
 		    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 		    if(count($rows)){
 			foreach($rows[0] as $key =>$value)
-			    if(key_exists($key, $data->gridFields))
-				echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
+			if(key_exists($key, $data->gridFields))
+			    echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
 		    }
 		    ?>
 		</tr>
@@ -106,43 +106,43 @@
 			echo "</td>";
 
 			foreach($row as $key=>$value)
-			    if(key_exists($key, $data->gridFields)){
-				echo "<td>\n";
-				switch($data->gridFields[$key]["inputType"]){
-				    case "checkbox" :
-					echo $value ? "True" : "False";
-					break;
-				    case "timestamp" :
-				    case "datetime" :
-					echo date("m/d/y", strtotime($value));
-					break;
-				    case "text":
-				    case "dropdown":
-					switch($key){
-					    case "CustomerID" :
-						echo $drill->getLinkByField($key,$value);
-						break;
-					    case "VendorID" :
-						echo $drill->getLinkByField($key,$value);
-						break;
-					    case "OrderNumber" :
-						echo $drill->getReportLinkByOrderNumber($value, $page);
-						break;
-					    case "InvoiceNumber" :
-						echo $drill->getReportLinkByInvoiceNumber($value, $page);
-						break;
-					    default:
-						if(key_exists("formatFunction", $data->gridFields[$key])){
-						    $formatFunction = $data->gridFields[$key]["formatFunction"];
-						    echo $data->$formatFunction($row, "gridFields", $key, $value, false);
-						}
-						else
-						    echo formatField($data->gridFields[$key], $value);
-						break;
-					}
-				}
-				echo "</td>\n";
+			if(key_exists($key, $data->gridFields)){
+			    echo "<td>\n";
+			    switch($data->gridFields[$key]["inputType"]){
+				case "checkbox" :
+				    echo $value ? "True" : "False";
+				    break;
+				case "timestamp" :
+				case "datetime" :
+				    echo date("m/d/y", strtotime($value));
+				    break;
+				case "text":
+				case "dropdown":
+				    switch($key){
+					case "CustomerID" :
+					    echo $drill->getLinkByField($key,$value);
+					    break;
+					case "VendorID" :
+					    echo $drill->getLinkByField($key,$value);
+					    break;
+					case "OrderNumber" :
+					    echo $drill->getReportLinkByOrderNumber($value, $page);
+					    break;
+					case "InvoiceNumber" :
+					    echo $drill->getReportLinkByInvoiceNumber($value, $page);
+					    break;
+					default:
+					    if(key_exists("formatFunction", $data->gridFields[$key])){
+						$formatFunction = $data->gridFields[$key]["formatFunction"];
+						echo $data->$formatFunction($row, "gridFields", $key, $value, false);
+					    }
+					    else
+						echo formatField($data->gridFields[$key], $value);
+					    break;
+				    }
 			    }
+			    echo "</td>\n";
+			}
 			echo "</tr>";
 			$current_row++;
 		    }
@@ -153,9 +153,9 @@
     </div>
     <div>
 	<?php if((!property_exists($data, "modes") || in_array("new", $data->modes)) && $security->can("insert")): ?>
-	<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page; ?>&action=<?php echo $scope->action ?>&mode=new&category=Main">
-	    <?php echo $translation->translateLabel("New"); ?>
-	</a>
+	    <a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page; ?>&action=<?php echo $scope->action ?>&mode=new&category=Main">
+		<?php echo $translation->translateLabel("New"); ?>
+	    </a>
 	<?php endif; ?>
 	<?php
 	if(file_exists(__DIR__ . "/../" . $PartsPath . "gridActions.php"))
