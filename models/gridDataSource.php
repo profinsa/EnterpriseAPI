@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 08.28.2017
+  Last Modified: 19/11/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -1006,6 +1006,51 @@ class gridDataSource{
                 "value" => $value->CurrencyID,
                 "CurrencyID" => $value->CurrencyID,
                 "ExchangeRate" => $value->CurrencyExchangeRate
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available countact source ids
+    public function getContactSourceIds(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT ContactSourceID from ContactSource WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ContactSourceID] = [
+                "title" => $value->ContactSourceID,
+                "value" => $value->ContactSourceID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available countact industry ids
+    public function getContactIndustryIds(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT ContactIndustryID from ContactIndustry WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ContactIndustryID] = [
+                "title" => $value->ContactIndustryID,
+                "value" => $value->ContactIndustryID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available lead types
+    public function getLeadTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT LeadTypeID from LeadType WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->LeadTypeID] = [
+                "title" => $value->LeadTypeID,
+                "value" => $value->LeadTypeID
             ];
         
         return $res;

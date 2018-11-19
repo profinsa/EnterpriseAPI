@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/11/2017
+  Last Modified: 19/11/2018
   Last Modified by: Nikita Zaharov
 */
 require "./models/gridDataSource.php";
@@ -38,7 +38,8 @@ class gridData extends gridDataSource{
     public $gridFields = [
         "LeadID" => [
             "dbType" => "varchar(50)",
-            "inputType" => "text"
+            "inputType" => "text",
+            "required" => "true",
         ],
         "LeadLastName" => [
             "dbType" => "varchar(50)",
@@ -75,12 +76,6 @@ class gridData extends gridDataSource{
             "LeadID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
-                "disabledEdit" => "true",
-                "defaultValue" => ""
-            ],
-            "LeadCompany" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
                 "defaultValue" => ""
             ],
             "LeadLastName" => [
@@ -95,6 +90,11 @@ class gridData extends gridDataSource{
             ],
             "LeadSalutation" => [
                 "dbType" => "varchar(10)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "LeadCompany" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
@@ -138,11 +138,6 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
-            "LeadWebPage" => [
-                "dbType" => "varchar(80)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
             "LeadPhone" => [
                 "dbType" => "varchar(30)",
                 "inputType" => "text",
@@ -152,6 +147,29 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(30)",
                 "inputType" => "text",
                 "defaultValue" => ""
+            ],
+            "LeadWebPage" => [
+                "dbType" => "varchar(80)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "LeadRegionID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getContactRegions"
+            ],
+            "LeadSourceID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getContactSourceIds"
+            ],
+            "LeadIndustryID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getContactIndustryIds"
             ],
             "LeadLogin" => [
                 "dbType" => "varchar(60)",
@@ -163,7 +181,7 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
-            "LeadPasswordOld" => [
+            /*            "LeadPasswordOld" => [
                 "dbType" => "varchar(15)",
                 "inputType" => "text",
                 "defaultValue" => ""
@@ -182,7 +200,7 @@ class gridData extends gridDataSource{
                 "dbType" => "int(11)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
+                ],*/
             "LeadSecurityGroup" => [
                 "dbType" => "smallint(6)",
                 "inputType" => "text",
@@ -195,33 +213,20 @@ class gridData extends gridDataSource{
             ],
             "EmployeeID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CurrencyID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getPayrollEmployees"
             ],
             "LeadTypeID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getLeadTypes"
             ],
-            "LeadRegionID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "LeadSourceID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "LeadIndustryID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
+            "Hot" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
             ],
             "FirstContacted" => [
                 "dbType" => "datetime",
@@ -232,6 +237,16 @@ class gridData extends gridDataSource{
                 "dbType" => "datetime",
                 "inputType" => "datetime",
                 "defaultValue" => "now"
+            ],
+            "Newsletter" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "MessageBoard" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
             ],
             "NextFollowUp" => [
                 "dbType" => "datetime",
@@ -248,75 +263,10 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
-            "ReferedDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "ReferalURL" => [
-                "dbType" => "varchar(60)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "LastVisit" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "IPAddress" => [
-                "dbType" => "varchar(11)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "NumberOfVisits" => [
-                "dbType" => "bigint(20)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
             "PrimaryInterest" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
-            "Confirmed" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "Validated" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "OptInEmail" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "Newsletter" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "OptInNewsletter" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "MessageBoard" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "Portal" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "Hot" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
             ],
             "ConvertedToCustomer" => [
                 "dbType" => "tinyint(1)",
@@ -332,7 +282,63 @@ class gridData extends gridDataSource{
                 "dbType" => "datetime",
                 "inputType" => "datetime",
                 "defaultValue" => "now"
-            ]
+            ],
+            "CurrencyID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getCurrencyTypes"
+            ],
+            "Confirmed" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "OptInEmail" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "OptInNewsletter" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            /*            "ReferedDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+                ],*/
+            "IPAddress" => [
+                "dbType" => "varchar(11)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ReferalURL" => [
+                "dbType" => "varchar(60)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]/*,
+            "LastVisit" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "NumberOfVisits" => [
+                "dbType" => "bigint(20)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Validated" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Portal" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+                ],*/
         ],
         "Memos" => [
             "LeadMemo1" => [
@@ -380,6 +386,30 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ]
+        ],
+        "LeadContacts" => [
+            "LeadID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "disabledEdit" => "true",
+                "defaultValue" => ""
+            ],
+        ],
+        "LeadComments" => [
+            "LeadID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "disabledEdit" => "true",
+                "defaultValue" => ""
+            ],
+        ],
+        "LeadSatisfaction" => [
+            "LeadID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "disabledEdit" => "true",
+                "defaultValue" => ""
+            ],
         ]
     ];
     
