@@ -66,12 +66,14 @@ class gridData extends gridDataSource{
             "CommentNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
             ],
             "LeadID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getLeadIds"
             ],
             "CommentDate" => [
                 "dbType" => "timestamp",
@@ -80,8 +82,9 @@ class gridData extends gridDataSource{
             ],
             "CommentType" => [
                 "dbType" => "varchar(15)",
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getCommentTypes"
             ],
             "Comment" => [
                 "dbType" => "varchar(255)",

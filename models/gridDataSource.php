@@ -255,6 +255,70 @@ class gridDataSource{
         ];
     }
 
+    public function getLeads(){
+        $user = Session::get("user");
+        if($this->checkTableSharing("leadinformation")){
+            $user["DivisionID"] = "DEFAULT";
+            $user["DepartmentID"] = "DEFAULT";
+        }
+        $keyFields = "";
+        $fields = [];
+
+        $leadIdFields = ["CompanyID","DivisionID","DepartmentID","LeadID"];
+        foreach($leadIdFields as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        return [
+            "title" => "Lead selecting dialog",
+            "choosedColumn" => "LeadID",
+            "desc" => [
+                "LeadID" => [
+                    "title" => "Lead ID",
+                    "inputType" => "text"
+                ],
+                "LeadTypeID" => [
+                    "title" => "Lead Type ID",
+                    "inputType" => "text"
+                ],
+                "LeadLastName" => [
+                    "title" => "Last Name",
+                    "inputType" => "text"
+                ],
+                "LeadFirstName" => [
+                    "title" => "First Name",
+                    "inputType" => "text"
+                ],
+                "LeadSalutation" => [
+                    "title" => "Salutation",
+                    "inputType" => "text"
+                ],
+                "LeadEmail" => [
+                    "title" => "Email",
+                    "inputType" => "text"
+                ],
+                "ConvertedToCustomer" => [
+                    "title" => "Converted to Customer",
+                    "inputType" => "checkbox"
+                ],
+            ],
+            "values" => json_decode(json_encode( DB::select("SELECT LeadID,LeadTypeID,LeadLastName, LeadFirstName, LeadSalutation, LeadEmail, ConvertedToCustomer from leadinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array()))),
+            "allValues" => json_decode(json_encode( DB::select("SELECT * from leadinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())))
+        ];
+    }
+
     //Items Dialog Chooser
     public function getItems(){
         $user = Session::get("user");
@@ -1041,6 +1105,21 @@ class gridDataSource{
         return $res;
     }
 
+    //getting list of available lead ids
+    public function getLeadIds(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT LeadID from LeadInformation WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->LeadID] = [
+                "title" => $value->LeadID,
+                "value" => $value->LeadID
+            ];
+        
+        return $res;
+    }
+    
     //getting list of available lead types
     public function getLeadTypes(){
         $user = Session::get("user");
@@ -1055,6 +1134,22 @@ class gridDataSource{
         
         return $res;
     }
+
+    //getting list of available comment types
+    public function getCommentTypes(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT CommentType from CommentTypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->CommentType] = [
+                "title" => $value->CommentType,
+                "value" => $value->CommentType
+            ];
+        
+        return $res;
+    }
+
 
     //getting rows for grid
     public function getPage($number){

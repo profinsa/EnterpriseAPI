@@ -40,11 +40,13 @@ class gridData extends gridDataSource{
     public $gridFields = [
         "LeadID" => [
             "dbType" => "varchar(50)",
-            "inputType" => "text"
+            "inputType" => "text",
+            "disabledEdit" => "true"
         ],
         "ContactID" => [
             "dbType" => "varchar(36)",
-            "inputType" => "text"
+            "inputType" => "text",
+            "disabledEdit" => "true"
         ],
         "LeadType" => [
             "dbType" => "varchar(36)",
@@ -76,8 +78,9 @@ class gridData extends gridDataSource{
         "Main" => [
             "LeadID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dropdown",
+                "defaultValue" => "",
+                "dataProvider" => "getLeadIds"
             ],
             "ContactID" => [
                 "dbType" => "varchar(36)",

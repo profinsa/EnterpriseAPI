@@ -53,7 +53,8 @@ class gridData extends gridDataSource{
             "LeadTypeID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultValue" => "",
+                "disabledEdit" => "true"
             ],
             "LeadTypeDescription" => [
                 "dbType" => "varchar(50)",

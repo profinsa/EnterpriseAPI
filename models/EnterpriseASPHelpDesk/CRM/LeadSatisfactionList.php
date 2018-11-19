@@ -57,13 +57,15 @@ class gridData extends gridDataSource{
         "Main" => [
             "LeadID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dialogChooser",
+                "defaultValue" => "",
+                "dataProvider" => "getLeads"
             ],
             "ItemID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
+                "inputType" => "dialogChooser",
+                "defaultValue" => "",
+                "dataProvider" => "getItems"
             ],
             "SurveyDate" => [
                 "dbType" => "datetime",
@@ -230,6 +232,7 @@ class gridData extends gridDataSource{
     
     public $columnNames = [
         "LeadID" => "Lead ID",
+        "LeadTypeID" => "Lead Type ID",
         "ItemID" => "Item ID",
         "SurveyDate" => "Survey Date",
         "QuestionOne" => "Question One",
