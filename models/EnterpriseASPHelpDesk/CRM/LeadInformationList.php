@@ -413,6 +413,235 @@ class gridData extends gridDataSource{
         ]
     ];
     
+    public $detailPages = [
+        "LeadContacts" => [
+            "hideFields" => "true",
+            //"disableNew" => "true",
+            "viewPath" => "CRMHelpDesk/CRM/ViewLeadContacts",
+            "newKeyField" => "LeadID",
+            "keyFields" => ["LeadID", "ContactID"],
+            "detailIdFields" => ["CompanyID", "DivisionID", "DepartmentID", "LeadID", "ContactID"],
+            "gridFields" => [
+                "LeadID" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text",
+                    "disabledEdit" => "true"
+                ],
+                "ContactID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "disabledEdit" => "true"
+                ],
+                "LeadType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "ContactDescription" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ],
+                "ContactLastName" => [
+                    "dbType" => "varchar(20)",
+                    "inputType" => "text"
+                ],
+                "ContactFirstName" => [
+                    "dbType" => "varchar(20)",
+                    "inputType" => "text"
+                ],
+                "ContactTitle" => [
+                    "dbType" => "varchar(20)",
+                    "inputType" => "text"
+                ],
+                "ContactPhone" => [
+                    "dbType" => "varchar(30)",
+                    "inputType" => "text"
+                ],
+                "ContactEmail" => [
+                    "dbType" => "varchar(60)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ]
+            ]
+        ],
+        "LeadComments" => [
+            "hideFields" => "true",
+            //"disableNew" => "true",
+            "viewPath" => "CRMHelpDesk/CRM/ViewLeadComments",
+            "newKeyField" => "LeadID",
+            "keyFields" => ["LeadID", "CommentNumber"],
+            "detailIdFields" => ["CompanyID", "DivisionID", "DepartmentID", "CommentNumber"],
+            "gridFields" => [
+                "LeadID" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ],
+                "CommentNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "CommentDate" => [
+                    "dbType" => "timestamp",
+                    "format" => "{0:d}",
+                    "inputType" => "datetime"
+                ],
+                "CommentType" => [
+                    "dbType" => "varchar(15)",
+                    "inputType" => "text"
+                ],
+                "Comment" => [
+                    "dbType" => "varchar(255)",
+                    "inputType" => "text"
+                ]
+            ]
+        ],
+        "LeadSatisfaction" => [
+            "hideFields" => "true",
+            //"disableNew" => "true",
+            "viewPath" => "CRMHelpDesk/CRM/ViewLeadSatisfaction",
+            "newKeyField" => "LeadID",
+            "keyFields" => ["LeadID", "ItemID", "SurveyDate"],
+            "detailIdFields" => ["CompanyID", "DivisionID", "DepartmentID", "LeadID", "ItemID", "SurveyDate"],
+            "gridFields" => [
+                "LeadID" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ],
+                "ItemID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "SurveyDate" => [
+                    "dbType" => "datetime",
+                    "format" => "{0:d}",
+                    "inputType" => "datetime"
+                ]
+            ]
+        ],
+    ];
+
+    //getting rows for Lead Contacts grid
+    public function getLeadContacts($LeadID){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["LeadContacts"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages["LeadContacts"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND LeadID='" . $LeadID . "'";
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from leadcontacts " . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+    
+    //getting rows for Lead Comments grid
+    public function getLeadComments($LeadID){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["LeadComments"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages["LeadComments"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND LeadID='" . $LeadID . "'";
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from leadcomments " . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+
+    //getting rows for Lead Satisfaction grid
+    public function getLeadSatisfaction($LeadID){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["LeadSatisfaction"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages["LeadSatisfaction"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND LeadID='" . $LeadID . "'";
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from leadsatisfaction " . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+    
     public $columnNames = [
         "LeadID" => "Lead ID",
         "LeadLastName" => "Last Name",
@@ -474,6 +703,20 @@ class gridData extends gridDataSource{
         "LeadMemo6" => "Lead Memo 6",
         "LeadMemo7" => "Lead Memo 7",
         "LeadMemo8" => "Lead Memo 8",
-        "LeadMemo9" => "Lead Memo 9"
+        "LeadMemo9" => "Lead Memo 9",
+        "ContactID" => "Contact ID",
+        "LeadType" => "Lead Type",
+        "ContactDescription" => "Description",
+        "ContactLastName" => "Last Name",
+        "ContactFirstName" => "First Name",
+        "ContactTitle" => "Title",
+        "ContactPhone" => "Phone",
+        "ContactEmail" => "Email",
+        "CommentNumber" => "Comment Number",
+        "CommentDate" => "Comment Date",
+        "CommentType" => "Comment Type",
+        "Comment" => "Comment",
+        "ItemID" => "Item ID",
+        "SurveyDate" => "Survey Date"
     ];
 }?>
