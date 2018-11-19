@@ -468,7 +468,7 @@ class gridData extends gridDataSource{
             //"disableNew" => "true",
             "viewPath" => "CRMHelpDesk/CRM/ViewLeadComments",
             "newKeyField" => "LeadID",
-            "keyFields" => ["LeadID", "CommentNumber"],
+            "keyFields" => ["LeadID"],
             "detailIdFields" => ["CompanyID", "DivisionID", "DepartmentID", "CommentNumber"],
             "gridFields" => [
                 "LeadID" => [

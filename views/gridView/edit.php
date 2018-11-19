@@ -24,7 +24,19 @@ function makeId($id){
 
 function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
     $user = $GLOBALS["user"];
-    $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$ctx["detailTable"]["keyFields"][0]] . (count($ctx["detailTable"]["keyFields"]) > 1 ? "__" . $row[$ctx["detailTable"]["keyFields"][1]] : "");
+    $keyString = "";
+    if(key_exists("detailIdFields",$ctx["detailTable"])){
+        $values = [];
+        foreach($ctx["detailTable"]["detailIdFields"] as $value){
+            if(key_exists($value, $user))
+                $values[] = $user[$value];
+            else
+                $values[] = $row[$value];
+        }
+        $keyString = join("__", $values);
+    }else{
+        $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$ctx["detailTable"]["keyFields"][0]] . (count($ctx["detailTable"]["keyFields"]) > 1 ? "__" . $row[$ctx["detailTable"]["keyFields"][1]] : "");
+    }
     if(!key_exists("editDisabled", $ctx["detailTable"])){
 	echo "<a href=\"" . $linksMaker->makeEmbeddedgridItemViewLink($ctx["detailTable"]["viewPath"], $ascope["path"], $keyString, $ascope["item"]);
 	echo "\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";

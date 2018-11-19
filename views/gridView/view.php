@@ -17,7 +17,19 @@ function makeId($id){
 
 function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
     $user = $GLOBALS["user"];
-    $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$ctx["detailTable"]["keyFields"][0]] . (count($ctx["detailTable"]["keyFields"]) > 1 ? "__" . $row[$ctx["detailTable"]["keyFields"][1]] : "");
+    $keyString = "";
+    if(key_exists("detailIdFields",$ctx["detailTable"])){
+	$values = [];
+	foreach($ctx["detailTable"]["detailIdFields"] as $value){
+	    if(key_exists($value, $user))
+		$values[] = $user[$value];
+	    else
+		$values[] = $row[$value];
+	}
+	$keyString = join("__", $values);
+    }else{
+	$keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$ctx["detailTable"]["keyFields"][0]] . (count($ctx["detailTable"]["keyFields"]) > 1 ? "__" . $row[$ctx["detailTable"]["keyFields"][1]] : "");
+    }
     if(!key_exists("editDisabled", $ctx["detailTable"])){
 	echo "<a href=\"" . $linksMaker->makeEmbeddedgridItemViewLink($ctx["detailTable"]["viewPath"], $ascope["path"], $keyString, $ascope["item"]);
 	echo "\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
@@ -34,8 +46,8 @@ $dropdownDepends = [];
 	//render tabs like Main, Current etc
 	//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 	foreach($data->editCategories as $key =>$value)
-	    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
-		echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
+	if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
+	    echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 	?>
     </ul>
     <div class="tab-content">
@@ -70,7 +82,7 @@ $dropdownDepends = [];
 				    $translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
 				    if(key_exists($key, $data->editCategories[$category]) && key_exists("alwaysEdit", $data->editCategories[$category][$key])){
 					switch($data->editCategories[$category][$key]["inputType"]){
-                        case "text" :
+					    case "text" :
 						//renders text input with label
 						echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
 						if(key_exists("formatFunction", $data->editCategories[$category][$key])){
@@ -81,7 +93,7 @@ $dropdownDepends = [];
 						    echo formatField($data->editCategories[$category][$key], $value);
 
 						echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-						   ."></td></tr>";
+					       ."></td></tr>";
 						break;
 						
 					    case "datetime" :
@@ -118,15 +130,15 @@ $dropdownDepends = [];
 						    echo "<option></option>";
 
 						foreach($types as $type)
-						    if(!$value || $type["value"] != $value)
-							echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+						if(!$value || $type["value"] != $value)
+						    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
 						echo"</select></td></tr>";
 						break;
 					}
 				    }else if(key_exists($key, $data->editCategories[$category])){
 					echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
 					switch($data->editCategories[$category][$key]["inputType"]){
-                        case "file" :
+					    case "file" :
 						echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"uploads/" . $value . "\">";
 						break;
 					    case "checkbox" :
@@ -201,7 +213,7 @@ $dropdownDepends = [];
 				  })
 				  .error(function(xhr){
 				      // if(xhr.status == 401)
-					  //    else
+				      //    else
 				      //	  alert("Unable to load page");
 				  });
 			     }
@@ -215,7 +227,7 @@ $dropdownDepends = [];
 				$rows = $data->$getmethod(key_exists("OrderNumber", $item) ? $item["OrderNumber"] :
 							  $item[(key_exists("detailAliases", $data->detailPages[$curCategory]) &&
 								 key_exists($data->detailPages[$curCategory]["keyFields"][0], $data->detailPages[$curCategory]["detailAliases"])
-								     ? $data->detailPages[$curCategory]["detailAliases"][$data->detailPages[$curCategory]["keyFields"][0]]
+							       ? $data->detailPages[$curCategory]["detailAliases"][$data->detailPages[$curCategory]["keyFields"][0]]
 							       : $data->detailPages[$curCategory]["keyFields"][0])]);
 				//			echo json_encode($rows);
 				$detailTable = $data->detailPages[$curCategory];
@@ -270,7 +282,7 @@ $dropdownDepends = [];
 		 buttons Edit and Cancel
 		 for translation uses translation model
 		 for category(which tab is activated) uses $ascope of controller
-	       -->
+	    -->
 	    <?php if($security->can("update") && (property_exists($data, "modes")  && in_array("edit", $data->modes) || !property_exists($data, "modes"))): ?>
 		<a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"] . $back); ?>">
 		    <?php echo $translation->translateLabel("Edit"); ?>
