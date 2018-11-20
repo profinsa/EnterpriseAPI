@@ -105,10 +105,12 @@ EOT;
 class app{
     public $controller = false;
     public $title = "Integral Accounting";
+    public $theme = 'none';
     public $loginLogo = "";
     public $page = 'index';
     public function __construct(){
 	$config = config();
+	$this->theme = $config["theme"];
 	$this->title = $config["title"];
         if(isset($_GET["page"]))
             $this->page = $_GET["page"];

@@ -28,7 +28,11 @@
     <script src="dependencies/assets/js/bootstrap-datepicker.min.js"></script>
     
     <!--new dark scheme -->
-    <!-- <link href="dependencies/assets/css/new_scheme.css" rel="stylesheet"> -->
+    <?php
+    if($app->theme != 'none')
+	echo "<link href=\"assets/css/" . $app->theme. ".css\" rel=\"stylesheet\">";
+    ?>
+    <!--  -->
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
