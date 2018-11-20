@@ -3841,12 +3841,14 @@ $leftMenu = [
 		"type" => "absoluteLink",
 		"title" => "Help Documentaion",
 		"link" => "https://stfbinc.helpdocs.com",
+		"target" => "_Blank",
 		"icon" => "icon-docs"
 	    ],
 	    [
 		"type" => "absoluteLink",
 		"title" => "Support Ticket",
 		"link" => "https://stfbinc.teamwork.com/support/",
+		"target" => "_Blank",
 		"icon" => "icon-support"
 	    ],
 	    [
