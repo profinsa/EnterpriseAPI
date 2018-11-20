@@ -95,7 +95,7 @@
 	     localStorage.setItem('gridViewDefaultRowsInGrid', gridViewDefaultRowsInGrid = parseInt($(item).val()));
 	 }
 	 
-	 var menuCategories = <?php echo json_encode($menuCategories); ?>;
+	 var menuCategories = <?php echo json_encode($leftMenu["Main"]["data"]); ?>;
 	 function findMenuItem(href){
 	     var ind, sind, submenu, iind, items;
 	     for(ind in menuCategories){

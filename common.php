@@ -1,6 +1,7 @@
 <?php
 function config(){
     return array(
+        "title" => 'Integral Accounting X',
         "db_host" => "localhost",
         "db_user" => "enterprise",
         "db_password" => "enterprise",

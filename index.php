@@ -1,30 +1,30 @@
 <?php
 /*
-Name of Page: index
+   Name of Page: index
 
-Method: main entry point of application
+   Method: main entry point of application
 
-Date created: Nikita Zaharov, 08.02.2017
+   Date created: Nikita Zaharov, 08.02.2017
 
-Use:  Initialization ofr application,  router for actions. Response for thing like page=index transoforms to call 
-index.php from /controllers
+   Use:  Initialization ofr application,  router for actions. Response for thing like page=index transoforms to call 
+   index.php from /controllers
 
-Input parameters:
-GET and POST params and data
+   Input parameters:
+   GET and POST params and data
 
-Output parameters:
-html site pages
+   Output parameters:
+   html site pages
 
-Called from:
-+ app object used by most of /controllers and /models
+   Called from:
+   + app object used by most of /controllers and /models
 
-Calls:
-+ /controllers/*
+   Calls:
+   + /controllers/*
 
 
-Last Modified: 05.11.2018
-Last Modified by: Nikita Zaharov
-*/
+   Last Modified: 2-.11.2018
+   Last Modified by: Nikita Zaharov
+ */
 require 'vendor/autoload.php';
 require './common.php';
 
@@ -104,10 +104,12 @@ EOT;
 
 class app{
     public $controller = false;
-    public $title = 'Integral Accounting X';
+    public $title = "Integral Accounting";
     public $loginLogo = "";
     public $page = 'index';
     public function __construct(){
+	$config = config();
+	$this->title = $config["title"];
         if(isset($_GET["page"]))
             $this->page = $_GET["page"];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -121,12 +123,12 @@ class app{
 }
 
 function fatal_handler() {
-  $error = error_get_last();
-  if( $error !== NULL && $error["type"] <= 16){
-      http_response_code(500);
-      $message = "{$error["message"]} in {$error["file"]} on line {$error["line"]}";
-      errorHandler($message, $error);
-  }
+    $error = error_get_last();
+    if( $error !== NULL && $error["type"] <= 16){
+	http_response_code(500);
+	$message = "{$error["message"]} in {$error["file"]} on line {$error["line"]}";
+	errorHandler($message, $error);
+    }
 }
 
 register_shutdown_function("fatal_handler");
