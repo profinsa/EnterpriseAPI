@@ -30,7 +30,7 @@
     <!--new dark scheme -->
     <?php
     if($app->theme != 'none')
-	echo "<link href=\"assets/css/" . $app->theme. ".css\" rel=\"stylesheet\">";
+	echo "<link href=\"assets/css/themes/" . $app->theme. ".css\" rel=\"stylesheet\">";
     ?>
     <!--  -->
     

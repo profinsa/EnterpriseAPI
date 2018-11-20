@@ -2,7 +2,7 @@
 function config(){
     return array(
         "theme" => 'none',
-        //"theme" => 'dark',
+        //"theme" => 'dark', uncomment for dark theme
         "title" => 'Integral Accounting X',
         "db_host" => "localhost",
         "db_user" => "enterprise",
