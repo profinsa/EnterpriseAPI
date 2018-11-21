@@ -62,6 +62,9 @@ class Session{
     public static function get($key){
         return $_SESSION[$key];
     }
+    public static function set($key, $value){
+	return $_SESSION[$key] = $value;
+    }
 }
 
 $config = config();

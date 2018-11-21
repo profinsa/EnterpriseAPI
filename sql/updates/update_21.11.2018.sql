@@ -106,3 +106,6 @@ END;
 //
 
 DELIMITER ;
+
+ALTER TABLE audittrail MODIFY OldValue VARCHAR(255);
+ALTER TABLE audittrail MODIFY NewValue VARCHAR(255);

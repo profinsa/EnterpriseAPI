@@ -1,32 +1,32 @@
 <?php
 /*
-Name of Page: AuditTablesDescriptionList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AuditTablesDescriptionList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/AuditTablesDescriptionList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AuditTablesDescriptionList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AuditTablesDescriptionList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 08/23/2017
-Last Modified by: Nikita Zaharov
+  Name of Page: AuditTablesDescriptionList model
+   
+  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AuditTablesDescriptionList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/AuditTablesDescriptionList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AuditTablesDescriptionList.php
+  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\AuditTablesDescriptionList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 21/11/2018
+  Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
@@ -141,7 +141,7 @@ class gridData extends gridDataSource{
         $pdo->exec("DROP TRIGGER IF EXISTS `{$TableName}_Audit_Insert`;");
         $trigger = "CREATE TRIGGER `{$TableName}_Audit_Insert` AFTER INSERT ON `" . strtolower($TableName) . "` FOR EACH ROW SWL_return: \nBEGIN\n DECLARE EXIT HANDLER FOR SQLEXCEPTION RESIGNAL; \n DECLARE EXIT HANDLER FOR SQLWARNING RESIGNAL; \n DECLARE EXIT HANDLER FOR NOT FOUND RESIGNAL; \n";
 
-        $trigger .= "\n CALL AuditInsert(NEW.CompanyID, NEW.DivisionID, NEW.DepartmentID, " . $pdo->quote($DocumentType) . ", " . ( $TransactionNumberField != "" ? "NEW.$TransactionNumberField" : "NULL") . ", " . ( $TransactionLineNumberField != "" ? "NEW.$TransactionLineNumberField" : "NULL") . ", " . $pdo->quote($TableName) . ", " . ( $TransactionNumberField != "" ? "NEW.$TransactionNumberField" : "NULL") . ", '', " . ( $TransactionNumberField != "" ? "CAST(NEW.$TransactionNumberField AS NCHAR(80))" : "NULL") . ");\n";
+        $trigger .= "\n CALL AuditInsert(NEW.CompanyID, NEW.DivisionID, NEW.DepartmentID, " . $pdo->quote($DocumentType) . ", " . ( $TransactionNumberField != "" ? "NEW.$TransactionNumberField" : "NULL") . ", " . ( $TransactionLineNumberField != "" ? "NEW.$TransactionLineNumberField" : "NULL") . ", " . $pdo->quote($TableName) . ", " . ( $TransactionNumberField != "" ? "NEW.$TransactionNumberField" : "NULL") . ", '', " . ( $TransactionNumberField != "" ? "CAST(NEW.$TransactionNumberField AS NCHAR(250))" : "NULL") . ");\n";
         
         $trigger .= "END;";
 
@@ -156,7 +156,7 @@ class gridData extends gridDataSource{
         $pdo->exec("DROP TRIGGER IF EXISTS `{$TableName}_Audit_Update`;");
         $trigger = "CREATE TRIGGER `{$TableName}_Audit_Update` AFTER UPDATE ON `" . strtolower($TableName) . "` FOR EACH ROW SWL_return: \nBEGIN\n DECLARE EXIT HANDLER FOR SQLEXCEPTION RESIGNAL; \n DECLARE EXIT HANDLER FOR SQLWARNING RESIGNAL; \n DECLARE EXIT HANDLER FOR NOT FOUND RESIGNAL; \n";
         foreach($columns as $column)
-            $trigger .= "\n CALL AuditInsert(NEW.CompanyID, NEW.DivisionID, NEW.DepartmentID, " . $pdo->quote($DocumentType) . ", " . ( $TransactionNumberField != "" ? "NEW.$TransactionNumberField" : "NULL") . ", " . ( $TransactionLineNumberField != "" ? "NEW.$TransactionLineNumberField" : "NULL") . ", " . $pdo->quote($TableName) . ", " . $pdo->quote($column->Field) . ", CAST(OLD.{$column->Field} AS NCHAR(80)), CAST(NEW.{$column->Field} AS NCHAR(80)));\n";
+            $trigger .= "\n CALL AuditInsert(NEW.CompanyID, NEW.DivisionID, NEW.DepartmentID, " . $pdo->quote($DocumentType) . ", " . ( $TransactionNumberField != "" ? "NEW.$TransactionNumberField" : "NULL") . ", " . ( $TransactionLineNumberField != "" ? "NEW.$TransactionLineNumberField" : "NULL") . ", " . $pdo->quote($TableName) . ", " . $pdo->quote($column->Field) . ", CAST(OLD.{$column->Field} AS NCHAR(250)), CAST(NEW.{$column->Field} AS NCHAR(250)));\n";
         $trigger .= "END;";
 
         echo $trigger;
