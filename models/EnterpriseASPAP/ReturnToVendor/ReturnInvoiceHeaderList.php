@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/15/2017
+  Last Modified: 11/26/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -202,6 +202,9 @@ class ReturnInvoiceHeaderList extends gridDataSource{
         "Customer" => [
             "CustomerID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
+                "defaultOverride" => true,
+                "defaultValue" => "",
                 "inputType" => "text"
             ]
         ],
@@ -529,8 +532,9 @@ class ReturnInvoiceHeaderList extends gridDataSource{
                 "dbType" => "varchar(50)",
                 "inputType" => "dialogChooser",
                 "dataProvider" => "getVendors",
+                "required" => "true",
+                "defaultOverride" => true,
                 "defaultValue" => "DEFAULT",
-                "defaultOverride" => true
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",

@@ -26,9 +26,10 @@ used as model by views/www.integralaccountingx.com\EnterpriseX\models\Enterprise
 Calls:
 MySql Database
  
-Last Modified: 04/13/2017
-Last Modified by: Kenna Fetterman
+Last Modified: 11/26/2018
+Last Modified by Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	public $tableName = "purchasecontractheader";
@@ -657,6 +658,9 @@ class gridData extends gridDataSource{
         "Vendor" => [
             "VendorID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
+                "defaultOverride" => true,
+                "defaultValue" => "DEFAULT",
                 "inputType" => "text"
             ]
         ],
@@ -893,6 +897,9 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
+                "defaultOverride" => true,
+                "defaultValue" => "DEFAULT",
                 "inputType" => "text"
             ],
             "CurrencyID" => [

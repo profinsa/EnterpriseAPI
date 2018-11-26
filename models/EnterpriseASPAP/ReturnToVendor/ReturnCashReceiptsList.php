@@ -115,6 +115,8 @@ class gridData extends gridDataSource{
             ],
             "CustomerID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
+                "defaultOverride" => true,
                 "inputType" => "text",
                 "defaultValue" => ""
             ],

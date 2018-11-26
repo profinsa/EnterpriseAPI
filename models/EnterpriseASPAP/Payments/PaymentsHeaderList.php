@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/15/2017
+  Last Modified: 11/26/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -152,6 +152,8 @@ class gridData extends gridDataSource{
         "Vendor" => [
             "VendorID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
+                "defaultOverride" => true,
                 "inputType" => "text",
                 "defaultValue" => ""
             ]
@@ -332,6 +334,8 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
+                "defaultOverride" => true,
                 "inputType" => "dialogChooser",
                 "dataProvider" => "getVendors",
                 "defaultValue" => ""
