@@ -36,6 +36,7 @@ class gridData extends gridDataSource{
 	public $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeaderHistory.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')))";
 	public $dashboardTitle ="Invoices History";
 	public $breadCrumbTitle ="Invoices History";
+    public $modes = ["grid", "view"];
 	public $idField ="InvoiceNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
 	public $gridFields = [

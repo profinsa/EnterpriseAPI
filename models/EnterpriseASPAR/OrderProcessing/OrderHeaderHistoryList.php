@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/15/2017
+  Last Modified: 11/26/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -38,6 +38,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle ="Orders History";
     public $breadCrumbTitle ="Orders History";
     public $idField ="OrderNumber";
+    public $modes = ["grid", "view"];
     public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber"];
     public $gridFields = [
 		"OrderNumber" => [

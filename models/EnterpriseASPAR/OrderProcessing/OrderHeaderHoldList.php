@@ -37,6 +37,7 @@ class gridData extends gridDataSource{
 	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(OrderHeader.OrderTypeID) = 'hold')";
 	public $dashboardTitle ="Orders On Hold";
 	public $breadCrumbTitle ="Orders On Hold";
+    public $modes = ["grid", "view", "edit"];
 	public $idField ="OrderNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber"];
 	public $gridFields = [

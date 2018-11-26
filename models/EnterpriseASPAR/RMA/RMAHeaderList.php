@@ -184,6 +184,9 @@ class gridData extends gridDataSource{
         "Customer" => [
             "VendorID" => [
                 "dbType" => "varchar(50)",
+                "defaultValue" => "",
+                "defaultOverride" => "true",
+                "required" => "true",
                 "inputType" => "text"
             ]
         ],
@@ -404,6 +407,9 @@ class gridData extends gridDataSource{
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
+                "defaultValue" => "",
+                "defaultOverride" => "true",
+                "required" => "true",
                 "inputType" => "dialogChooser",
                 "dataProvider" => "getCustomers"
             ],
