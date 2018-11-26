@@ -31,7 +31,10 @@
    -
      Last Modified: 03.23.2017
      Last Modified by: Nikita Zaharov
-   -->
+-->
+<?php
+include './views/commonJavascript.php';
+?>
 <div class="container-fluid">
     <?php
     require './views/uiItems/dashboard.php';

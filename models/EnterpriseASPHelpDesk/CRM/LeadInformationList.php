@@ -76,6 +76,7 @@ class gridData extends gridDataSource{
             "LeadID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
+                "required" => "true",
                 "defaultValue" => ""
             ],
             "LeadLastName" => [

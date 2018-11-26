@@ -20,9 +20,9 @@
      Calls:
      model
 
-     Last Modified: 08/15/2017
+     Last Modified: 11/26/2018
      Last Modified by: Zaharov Nikita
-   -->
+-->
 
 <?php
 $GLOBALS["dialogChooserTypes"] = [];
@@ -66,7 +66,7 @@ function renderInput($ascope, $data, $category, $item, $key, $value){
 		echo formatField($data->editCategories[$category][$key], $value);
 
 	    echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-	       .">";
+	   .">";
 	    break;
 	    
 	case "datetime" :
@@ -99,7 +99,7 @@ function renderInput($ascope, $data, $category, $item, $key, $value){
 	    if(key_exists("dataProviderArgs", $data->editCategories[$category][$key])){
 		$args = [];
 		foreach($data->editCategories[$category][$key]["dataProviderArgs"] as $argname)
-		    $args[$argname] = $item[$argname];
+		$args[$argname] = $item[$argname];
 		$types = $data->$method($args);
 	    }
 	    else
@@ -110,8 +110,8 @@ function renderInput($ascope, $data, $category, $item, $key, $value){
 		echo "<option></option>";
 
 	    foreach($types as $type)
-		if(!$value || $type["value"] != $value)
-		    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+	    if(!$value || $type["value"] != $value)
+		echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
 	    echo"</select>";
 	    break;
     }
@@ -167,7 +167,7 @@ function makeTableItems($values, $fieldsDefinition){
 	    <?php
 	    
 	    $headerItem = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], "...fields") :
-					    $data->getNewItem($ascope["item"], "...fields" );
+			  $data->getNewItem($ascope["item"], "...fields" );
 	    ?>
 	    <table class="col-md-12 col-xs-12 table">
 		<tbody>
@@ -215,8 +215,8 @@ function makeTableItems($values, $fieldsDefinition){
 		//render tabs like Main, Current etc
 		//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 		foreach($data->editCategories as $key =>$value)
-		    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
-			echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#" . makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
+		if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
+		    echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#" . makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 		?>
 	    </ul>
 	    <br/>
@@ -227,7 +227,7 @@ function makeTableItems($values, $fieldsDefinition){
 			    <?php
 			    //getting record.
 			    $item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
-						      $data->getNewItem($ascope["item"], $key);
+				    $data->getNewItem($ascope["item"], $key);
 			    ?>
 			    <?php if($key == "Customer"): ?>
 				<?php
@@ -241,7 +241,7 @@ function makeTableItems($values, $fieldsDefinition){
 					<tbody id="row_viewer_tbody">
 					    <?php 
 					    foreach($tableItems["leftItems"] as $key =>$value)
-						renderViewRow($translation, $data, $tableCategories, $items, $key, $value);
+					    renderViewRow($translation, $data, $tableCategories, $items, $key, $value);
 					    ?>
 					</tbody>
 				    </table>
@@ -251,7 +251,7 @@ function makeTableItems($values, $fieldsDefinition){
 					<tbody id="row_viewer_tbody">
 					    <?php 
 					    foreach($tableItems["rightItems"] as $key =>$value)
-						renderViewRow($translation, $data, $tableCategories,  $items,$key, $value);
+					    renderViewRow($translation, $data, $tableCategories,  $items,$key, $value);
 					    ?>
 					</tbody>
 				    </table>
@@ -268,7 +268,7 @@ function makeTableItems($values, $fieldsDefinition){
 					<tbody id="row_viewer_tbody">
 					    <?php 
 					    foreach($tableItems["leftItems"] as $key =>$value)
-						renderViewRow($translation, $data, $tableCategories, $items, $key, $value);
+					    renderViewRow($translation, $data, $tableCategories, $items, $key, $value);
 					    ?>
 					</tbody>
 				    </table>
@@ -278,7 +278,7 @@ function makeTableItems($values, $fieldsDefinition){
 					<tbody id="row_viewer_tbody">
 					    <?php 
 					    foreach($tableItems["rightItems"] as $key =>$value)
-						renderViewRow($translation, $data, $tableCategories,  $items,$key, $value);
+					    renderViewRow($translation, $data, $tableCategories,  $items,$key, $value);
 					    ?>
 					</tbody>
 				    </table>
@@ -295,7 +295,7 @@ function makeTableItems($values, $fieldsDefinition){
 					<tbody id="row_viewer_tbody">
 					    <?php
 					    foreach($tableItems["leftItems"] as $key =>$value)
-						renderRow($translation, $ascope, $data, $category, $items, $key, $value);
+					    renderRow($translation, $ascope, $data, $category, $items, $key, $value);
 					    ?>
 					</tbody>
 				    </table>
@@ -305,7 +305,7 @@ function makeTableItems($values, $fieldsDefinition){
 					<tbody id="row_viewer_tbody">
 					    <?php 
 					    foreach($tableItems["rightItems"] as $key =>$value)
-						renderRow($translation, $ascope, $data, $category,  $items, $key, $value);
+					    renderRow($translation, $ascope, $data, $category,  $items, $key, $value);
 					    ?>
 					</tbody>
 				    </table>
@@ -358,6 +358,10 @@ function makeTableItems($values, $fieldsDefinition){
 	<div class="subgrid-buttons row col-md-1">
 	    <?php if(!key_exists("disableNew", $data->detailTable) && $ascope["mode"] != "new"): ?>
 		<a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailTable["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailTable["newKeyField"]}={$embeddedgridContext[$data->detailTable["newKeyField"]]}" ?>">
+		    <?php echo $translation->translateLabel("New"); ?>
+		</a>
+	    <?php elseif($ascope["mode"] == "new"): ?>
+		<a class="btn btn-info" href="javascript:;" onclick="orderDetailNew();">
 		    <?php echo $translation->translateLabel("New"); ?>
 		</a>
 	    <?php endif; ?>
@@ -462,7 +466,7 @@ function makeTableItems($values, $fieldsDefinition){
 	    <div  style="margin-top:10px" class="pull-right">
 		<!--
 		     renders buttons translated Save and Cancel using translation model
-		   -->
+		-->
 		<?php if($security->can("update")): ?>
 		    <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 			<?php echo $translation->translateLabel("Save"); ?>
@@ -482,187 +486,208 @@ function makeTableItems($values, $fieldsDefinition){
     </form>
 
     <script>
-    function fillSameInputs(value, key, event) {
-        var elements = $('input[name=' + key + ']');
-        var elementsKeys = Object.keys(elements);
+     function fillSameInputs(value, key, event) {
+         var elements = $('input[name=' + key + ']');
+         var elementsKeys = Object.keys(elements);
 
 
-        for (var k = 0; k < elementsKeys.length; k++) {
-            $(elements[elementsKeys[k]]).val(event.value);
-        }
-    }
+         for (var k = 0; k < elementsKeys.length; k++) {
+             $(elements[elementsKeys[k]]).val(event.value);
+         }
+     }
 
-    function validateForm(itemData) {
-        var itemDataArray = itemData.serializeArray();
+     function validateForm(itemData) {
+         var itemDataArray = itemData.serializeArray();
 
-        var categories = <?php echo json_encode($data->editCategories); ?>;
-        var categoriesKeys = Object.keys(categories);
-        var columnNames = <?php echo json_encode($data->columnNames); ?>;
-        var validationError = false;
-        var validationErrorMessage = '';
-        var isAlert = false;
+         var categories = <?php echo json_encode($data->editCategories); ?>;
+         var categoriesKeys = Object.keys(categories);
+         var columnNames = <?php echo json_encode($data->columnNames); ?>;
+         var validationError = false;
+         var validationErrorMessage = '';
+         var isAlert = false;
 
-        function getDbObject(key) {
-            for (var i = 0; i < categoriesKeys.length; i++) {
-                if (categories[categoriesKeys[i]].hasOwnProperty(key)) {
-                    return categories[categoriesKeys[i]][key];
-                }
-            }
+         function getDbObject(key) {
+             for (var i = 0; i < categoriesKeys.length; i++) {
+                 if (categories[categoriesKeys[i]].hasOwnProperty(key)) {
+                     return categories[categoriesKeys[i]][key];
+                 }
+             }
 
-            return null;
-        }
+             return null;
+         }
 
-        function isNumeric(value) {
-            var re = /^-{0,1}\d*\.{0,1}\d+$/;
-            return (re.test(value));
-        }
+         function isNumeric(value) {
+             var re = /^-{0,1}\d*\.{0,1}\d+$/;
+             return (re.test(value));
+         }
 
-        function isDecimal(value) {
-            var re = /^-{0,1}\d*\.{0,1}\d+$/;
-            return (re.test(value.replace(/,/g,'')));
-        }
+         function isDecimal(value) {
+             var re = /^-{0,1}\d*\.{0,1}\d+$/;
+             return (re.test(value.replace(/,/g,'')));
+         }
 
-        for (var i = 0; i < itemDataArray.length; i++) {
-            if ((itemDataArray[i].name !== 'category') && (itemDataArray[i].name !== 'id')) {
-                var dataObject = getDbObject(itemDataArray[i].name);
+         for (var i = 0; i < itemDataArray.length; i++) {
+             if ((itemDataArray[i].name !== 'category') && (itemDataArray[i].name !== 'id')) {
+                 var dataObject = getDbObject(itemDataArray[i].name);
 
-                if (dataObject) {
-                    var dataType = dataObject.dbType.replace(/\(.*/,'');
-                    var dataLength;
-                    var re = /\((.*)\)/;
-                    
-                    if (dataType !== 'datatime' && dataType !== 'timestamp') {
-                        if (dataObject.required && !itemDataArray[i].value) {
-                            validationError = true;
-                            validationErrorMessage = 'cannot be empty.';
-                            $('#' + itemDataArray[i].name).css('border', '1px solid red');
-                        } else {
-                            $('#' + itemDataArray[i].name).css('border', 'none');
-                            switch (dataType) {
-                                case 'decimal':
-                                    if (itemDataArray[i].value && !isDecimal(itemDataArray[i].value)) {
-                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
-                                        var elementsKeys = Object.keys(elements);
-
-
-                                        for (var k = 0; k < elementsKeys.length; k++) {
-                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
-                                        }
-                                        validationError = true;
-                                        validationErrorMessage = 'must contain a number.';
-                                    }
-                                    break;
-				case 'smallint':
-                                case 'bigint':
-                                case 'int':
-                                case 'float':
-                                    if (itemDataArray[i].value && !isNumeric(itemDataArray[i].value)) {
-                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
-                                        var elementsKeys = Object.keys(elements);
+                 if (dataObject) {
+                     var dataType = dataObject.dbType.replace(/\(.*/,'');
+                     var dataLength;
+                     var re = /\((.*)\)/;
+                     
+                     if (dataType !== 'datatime' && dataType !== 'timestamp') {
+                         if (dataObject.required && !itemDataArray[i].value) {
+                             validationError = true;
+                             validationErrorMessage = 'cannot be empty.';
+                             $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                         } else {
+                             $('#' + itemDataArray[i].name).css('border', 'none');
+                             switch (dataType) {
+                                 case 'decimal':
+                                     if (itemDataArray[i].value && !isDecimal(itemDataArray[i].value)) {
+                                         var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                         var elementsKeys = Object.keys(elements);
 
 
-                                        for (var k = 0; k < elementsKeys.length; k++) {
-                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
-                                        }
-                                        validationError = true;
-                                        validationErrorMessage = 'must contain a number.';
-                                    }
-                                    break;
-                                case 'char':
-                                    if (itemDataArray[i].value.length > 1) {
-                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
-                                        var elementsKeys = Object.keys(elements);
+                                         for (var k = 0; k < elementsKeys.length; k++) {
+                                             $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                         }
+                                         validationError = true;
+                                         validationErrorMessage = 'must contain a number.';
+                                     }
+                                     break;
+				 case 'smallint':
+                                 case 'bigint':
+                                 case 'int':
+                                 case 'float':
+                                     if (itemDataArray[i].value && !isNumeric(itemDataArray[i].value)) {
+                                         var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                         var elementsKeys = Object.keys(elements);
 
 
-                                        for (var k = 0; k < elementsKeys.length; k++) {
-                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
-                                        }
-                                        validationError = true;
-                                        validationErrorMessage = 'cannot contain more than 1 character.';
-                                    }
-                                    break;
-                                case 'varchar':
-                                    dataLength = dataObject.dbType.match(re)[1];
-
-                                    if (itemDataArray[i].value.length > dataLength) {
-                                        var elements = $('input[name=' + itemDataArray[i].name + ']');
-                                        var elementsKeys = Object.keys(elements);
+                                         for (var k = 0; k < elementsKeys.length; k++) {
+                                             $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                         }
+                                         validationError = true;
+                                         validationErrorMessage = 'must contain a number.';
+                                     }
+                                     break;
+                                 case 'char':
+                                     if (itemDataArray[i].value.length > 1) {
+                                         var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                         var elementsKeys = Object.keys(elements);
 
 
-                                        for (var k = 0; k < elementsKeys.length; k++) {
-                                            $(elements[elementsKeys[k]]).css('border', '1px solid red');
-                                        }
-                                        validationError = true;
-                                        validationErrorMessage = 'cannot contain more than ' + dataLength + ' character(s).';
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    }
+                                         for (var k = 0; k < elementsKeys.length; k++) {
+                                             $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                         }
+                                         validationError = true;
+                                         validationErrorMessage = 'cannot contain more than 1 character.';
+                                     }
+                                     break;
+                                 case 'varchar':
+                                     dataLength = dataObject.dbType.match(re)[1];
 
-                    if (validationError && !isAlert) {
-                        translatedFieldName = columnNames.hasOwnProperty(itemDataArray[i].name) ? columnNames[itemDataArray[i].name] : itemDataArray[i].name;
-                        isAlert = true;
-                        alert(translatedFieldName + ' field ' + validationErrorMessage);
-                    }
-                } else {
-                    //todo error handling
-                }
-            }
-        }
+                                     if (itemDataArray[i].value.length > dataLength) {
+                                         var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                         var elementsKeys = Object.keys(elements);
 
-        return !validationError;
-    }
+
+                                         for (var k = 0; k < elementsKeys.length; k++) {
+                                             $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                         }
+                                         validationError = true;
+                                         validationErrorMessage = 'cannot contain more than ' + dataLength + ' character(s).';
+                                     }
+                                     break;
+                                 default:
+                                     break;
+                             }
+                         }
+                     }
+
+                     if (validationError && !isAlert) {
+                         translatedFieldName = columnNames.hasOwnProperty(itemDataArray[i].name) ? columnNames[itemDataArray[i].name] : itemDataArray[i].name;
+                         isAlert = true;
+                         alert(translatedFieldName + ' field ' + validationErrorMessage);
+                     }
+                 } else {
+                     //todo error handling
+                 }
+             }
+         }
+
+         return !validationError;
+     }
      
      //handler of save button if we in new mode. Just doing XHR request to save data
-    function createItem(){
-        var itemData = $("#itemData");
+     function createItem(){
+         var itemData = $("#itemData");
 
-        if (validateForm(itemData)) {
-            $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-            .success(function(data) {
-                console.log('ok');
-                window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
-            })
-            .error(function(err){
-                console.log('wrong');
-            });
-        }
-    }
+         if (validateForm(itemData)) {
+             $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+              .success(function(data) {
+                  console.log('ok');
+                  window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
+              })
+              .error(function(err){
+                  console.log('wrong');
+              });
+         }
+     }
      //handler of save button if we in edit mode. Just doing XHR request to save data
-    function saveItem(){
-        var itemData = $("#itemData");
-        if (validateForm(itemData)) {
-            $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-            .success(function(data) {
-                window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]); ?>";
-            })
-            .error(function(err){
-                console.log('wrong');
-            });
-        }
-    }
+     function saveItem(){
+         var itemData = $("#itemData");
+         if (validateForm(itemData)) {
+             $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+              .success(function(data) {
+                  window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]); ?>";
+              })
+              .error(function(err){
+                  console.log('wrong');
+              });
+         }
+     }
 
-     //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
-     function orderDetailDelete(item){
-	 if(confirm("Are you sure?")){
-	     $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "detailDelete", $ascope["item"]);?>" + item, {})
-	      .success(function(data) {
-		  $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-		   .success(function(data) {
-		       onlocation(window.location);
-		   })
-		   .error(function(err){
-		       onlocation(window.location);
-		   });
+     //handler new button for detail grid in New mode
+     function orderDetailNew(){
+         var itemData = $("#itemData");
+
+         if (validateForm(itemData)) {
+             $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+              .success(function(res) {
+		  var newLink = linksMaker.makeEmbeddedgridItemNewLink(
+		      "<?php echo $data->detailTable["viewPath"]; ?>",
+		      "<?php echo  $ascope["path"]; ?>", "new",
+		      generateKeyString({ "<?php echo $data->detailTable["newKeyField"]; ?>" : res["<?php echo $data->detailTable["newKeyField"]; ?>"]})) + "&<?php echo $data->detailTable["newKeyField"]; ?>=" + res["<?php echo $data->detailTable["newKeyField"]; ?>"];
+		      //console.log(newLink);
+		      //                  console.log('ok');
+		  window.location = newLink;
 	      })
 	      .error(function(err){
 		  console.log('wrong');
 	      });
-	 }
+         }
      }
+
+		  //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
+		  function orderDetailDelete(item){
+		      if(confirm("Are you sure?")){
+			  $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "detailDelete", $ascope["item"]);?>" + item, {})
+			   .success(function(data) {
+			       $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+				.success(function(data) {
+				    onlocation(window.location);
+				})
+				.error(function(err){
+				    onlocation(window.location);
+				});
+			   })
+			   .error(function(err){
+			       console.log('wrong');
+			   });
+		      }
+		  }
     </script>
 </div>
 
