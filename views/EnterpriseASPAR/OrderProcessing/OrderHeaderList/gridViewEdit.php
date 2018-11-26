@@ -670,24 +670,24 @@ function makeTableItems($values, $fieldsDefinition){
          }
      }
 
-		  //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
-		  function orderDetailDelete(item){
-		      if(confirm("Are you sure?")){
-			  $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "detailDelete", $ascope["item"]);?>" + item, {})
-			   .success(function(data) {
-			       $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-				.success(function(data) {
-				    onlocation(window.location);
-				})
-				.error(function(err){
-				    onlocation(window.location);
-				});
-			   })
-			   .error(function(err){
-			       console.log('wrong');
-			   });
-		      }
-		  }
+     //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
+     function orderDetailDelete(item){
+	 if(confirm("Are you sure?")){
+	     $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "");?>" + item, {})
+	      .success(function(data) {
+		  $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+		   .success(function(data) {
+		       onlocation(window.location);
+		   })
+		   .error(function(err){
+		       onlocation(window.location);
+		   });
+	      })
+	      .error(function(err){
+		  console.log('wrong');
+	      });
+	 }
+     }
     </script>
 </div>
 

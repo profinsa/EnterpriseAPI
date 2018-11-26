@@ -20,7 +20,7 @@
      Calls:
      model
 
-     Last Modified: 05/23/2017
+     Last Modified: 11/26/2018
      Last Modified by: Zaharov Nikita
    -->
 <?php
@@ -352,7 +352,7 @@ function makeTableItems($values, $fieldsDefinition){
  function orderDetailDelete(item){
      if(confirm("Are you sure?")){
 	 localStorage.setItem("autorecalc", true);
-	 $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "detailDelete", $ascope["item"]);?>" + item, {})
+	 $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "");?>" + item, {})
 	  .success(function(data) {
 	      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
 	       .success(function(data) {
