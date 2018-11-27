@@ -29,13 +29,9 @@ if($companies != ""){
 }
 $whereBlock = implode(" OR ", $whereParts);
 
-//echo $whereBlock;
 foreach($tablesColumns as $tableName=>$desc){
     $deleteStr = "delete from $tableName where $whereBlock";
-    //    DB::delete($deleteStr);
+    DB::delete($deleteStr);
     echo $deleteStr . "\t[done]\n";
 }
-//echo json
-
-//DB::delete("delete from auditlogin where LoginDateTime < NOW() - INTERVAL $howManyDays DAY AND CompanyID='$CompanyID' AND DivisionID='$DivisionID' AND DepartmentID='$DepartmentID'");
 ?>

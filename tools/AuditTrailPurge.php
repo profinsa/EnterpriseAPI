@@ -23,10 +23,10 @@ else if(count($argv) == 2){
     $whereBlock = "CompanyID='$CompanyID' AND DivisionID='$DivisionID' AND DepartmentID='$DepartmentID'"; 
 }
 
-echo $whereBlock;
-//echo count($argv)  . json_encode($argv, JSON_PRETTY_PRINT);
-
+if($whereBlock != ""){
 file_put_contents("AuditTrail.json", json_encode(DB::select("SELECT * from audittrail where EntryDate < NOW() - INTERVAL $howManyDays DAY AND $whereBlock", array()), JSON_PRETTY_PRINT), FILE_APPEND);
 DB::delete("delete from audittrail where EntryDate < NOW() - INTERVAL $howManyDays DAY AND $whereBlock");
-
+} else {
+    echo "there is no companies to delete from audittrail\n";
+}
 ?>
