@@ -1,5 +1,5 @@
 <?php
-include '../init.php';
+include './init.php';
 
 $howManyDays = 1; //how many days data need to keep, by default 1 day
 $CompanyID = "DINOS";

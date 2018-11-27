@@ -1,0 +1,8 @@
+* common
+all tools is commandline, because of their execution time. How long tool works depends of how many data
+in database. Commanline can work as long as it need.
+To call any tool you need open cmd.exe, change directory to Enterprise\tools and execute tools like that:
+php AuditLoginPurge.php
+* AuditLoginPurge.php
+* AuditTrailPurge.php
+* CompanyPurge.php
