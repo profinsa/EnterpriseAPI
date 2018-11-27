@@ -8,11 +8,15 @@ if(count($argv) == 1)
     echo "WRONG : missed arguments";
 else if(count($argv) == 2){
     if($argv[1] == "ALL"){
-        $companies = DB::select("select CompanyID from companies");
+        $companiesDb = DB::select("select CompanyID from companies");
+        $companies = [];
         foreach($companies as $company)
             if($company->CompanyID != 'DEFAULT' &&
-               $company->CompanyID != 'Demo' &&
-               $company->CompanyID != 'DINOS')
+               $company->CompanyID != 'DEMO' &&
+               $company->CompanyID != 'DINOS' &&
+               in_array($company->CompanyID, $companies) != true)
+                $companies[] = $company->CompanyID;
+        foreach($companies as $company)
                 $whereParts[] = "CompanyID='{$company->CompanyID}'";
         $whereBlock = implode(" OR ", $whereParts);
     }
@@ -24,8 +28,9 @@ else if(count($argv) == 2){
 }
 
 if($whereBlock != ""){
-file_put_contents("AuditTrail.json", json_encode(DB::select("SELECT * from audittrail where EntryDate < NOW() - INTERVAL $howManyDays DAY AND $whereBlock", array()), JSON_PRETTY_PRINT), FILE_APPEND);
-DB::delete("delete from audittrail where EntryDate < NOW() - INTERVAL $howManyDays DAY AND $whereBlock");
+    file_put_contents("AuditTrail.json", json_encode(DB::select("SELECT * from audittrail where EntryDate < NOW() - INTERVAL $howManyDays DAY AND $whereBlock", array()), JSON_PRETTY_PRINT), FILE_APPEND);
+    DB::delete("delete from audittrail where EntryDate < NOW() - INTERVAL $howManyDays DAY AND $whereBlock");
+    echo "work is done!\n";
 } else {
     echo "there is no companies to delete from audittrail\n";
 }

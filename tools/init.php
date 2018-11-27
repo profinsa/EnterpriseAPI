@@ -4,7 +4,6 @@ $pdo = DB::connection()->getPdo();
 $result = DB::select("show tables", array());
 foreach($result as $key=>$row){
     if($row->Tables_in_myenterprise != "activeemployee" &&
-       $row->Tables_in_myenterprise != "audittrail" &&
        $row->Tables_in_myenterprise != "translation" &&
        $row->Tables_in_myenterprise != "translations" &&
        $row->Tables_in_myenterprise != "dtproperties" &&
@@ -21,8 +20,6 @@ foreach($result as $key=>$row){
        $row->Tables_in_myenterprise != "projecttransactions" &&
        $row->Tables_in_myenterprise != "vendorhistorytransactions" &&
        $row->Tables_in_myenterprise != "vendortransactions" &&
-       !preg_match("/history$/", $row->Tables_in_myenterprise) &&
-       !preg_match("/^audit/", $row->Tables_in_myenterprise) &&
        !preg_match("/^report/", $row->Tables_in_myenterprise) &&
        !preg_match("/report$/", $row->Tables_in_myenterprise))
         $tables[] = $row->Tables_in_myenterprise;

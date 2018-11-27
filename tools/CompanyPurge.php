@@ -20,12 +20,16 @@ if($companies != ""){
     foreach($companies as $company)
         $whereParts[] = "CompanyID='$company'";
 }else{
-    $companies = DB::select("select CompanyID from companies");
-    foreach($companies as $company)
+    $companiesDb = DB::select("select CompanyID from companies");
+    $companies = [];
+    foreach($companiesDb as $company)
         if($company->CompanyID != 'DEFAULT' &&
-           $company->CompanyID != 'Demo' &&
-           $company->CompanyID != 'DINOS')
-            $whereParts[] = "CompanyID='{$company->CompanyID}'";
+           $company->CompanyID != 'DEMO' &&
+           $company->CompanyID != 'DINOS' &&
+           in_array($company->CompanyID, $companies) != true)
+            $companies[] = $company->CompanyID;
+    foreach($companies as $company)
+        $whereParts[] = "CompanyID='$company'";
 }
 $whereBlock = implode(" OR ", $whereParts);
 
@@ -34,4 +38,6 @@ foreach($tablesColumns as $tableName=>$desc){
     DB::delete($deleteStr);
     echo $deleteStr . "\t[done]\n";
 }
+
+DB::delete("delete from audittrail where CompanyID!='DINOS' && CompanyID != 'DEFAULT' && CompanyID != 'DEMO'");
 ?>

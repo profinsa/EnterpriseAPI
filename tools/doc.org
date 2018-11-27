@@ -1,8 +1,34 @@
 * common
 all tools is commandline, because of their execution time. How long tool works depends of how many data
 in database. Commanline can work as long as it need.
-To call any tool you need open cmd.exe, change directory to Enterprise\tools and execute tools like that:
+To call any tool you need open cmd.exe, change directory to Enterprise\tools like that:
+cd C:\\Cloud\Dropbox\live\wwwroot\EnterpriseX\tools
+and execute tools like that:
 php AuditLoginPurge.php
 * AuditLoginPurge.php
+  Clean auditlogin table from records of certain company, division and department or from all except DINOS,
+  DEFAULT, DEMO
+  examples:
+  php AuditLoginPurge.php DINOS DEFAULT DEFALT
+  delete records for DINOS DEFAULT DEFAULT
+  
+  php AuditLoginPurge.php ALL
+  delete records for ALL companies, division and departments excep DINOS, DEFAULT, DEMO and their divisions
+  and departments
 * AuditTrailPurge.php
+  Clean audittrail table from records of certain company, division and department or from all except DINOS,
+  DEFAULT, DEMO
+  examples:
+  php AuditTrailPurge.php DINOS DEFAULT DEFALT
+  delete records for DINOS DEFAULT DEFAULT
+  
+  php AuditTrailPurge.php ALL
+  delete records for ALL companies, division and departments excep DINOS, DEFAULT, DEMO and their divisions
+  and departments
 * CompanyPurge.php
+  Clean all records in all tables in database for all companies except DINOS, DEFAULT and DEMO
+  example:
+  php CompanyPurge.php
+  For distribution you probably need delete records in audittrail and auditlogin tables for DINOS also,
+  because of ByPassLogin's users create many records in these tables
+  
