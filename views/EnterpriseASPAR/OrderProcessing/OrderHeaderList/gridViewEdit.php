@@ -20,7 +20,7 @@
      Calls:
      model
 
-     Last Modified: 11/26/2018
+     Last Modified: 11/28/2018
      Last Modified by: Zaharov Nikita
 -->
 
@@ -86,8 +86,10 @@ function renderInput($ascope, $data, $category, $item, $key, $value){
 	    
 	case "dialogChooser":
 	    $dataProvider = $data->editCategories[$category][$key]["dataProvider"];
-	    if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"]))
-		$GLOBALS["dialogChooserTypes"][$dataProvider] = "hophop";
+	    if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
+		$GLOBALS["dialogChooserTypes"][$dataProvider] = $data->editCategories[$category][$key];
+		$GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
+	    }
 	    $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
 	    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\">";
 	    break;

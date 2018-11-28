@@ -1,6 +1,6 @@
 <!--
      ui logic for building dialog for choosing items using data models
-   -->
+-->
 <?php
 function writeValue($data, $desc, $value){
     switch($desc["inputType"]){
@@ -28,6 +28,12 @@ function writeValue($data, $desc, $value){
     <?php
     $dialogData = $data->$key();
     ?>
+    <script>
+     window["dataDialogChooser<?php echo $value["fieldName"]; ?>"] = {
+	 data : <?php echo json_encode($dialogData, JSON_PRETTY_PRINT); ?>,
+	 desc : <?php echo json_encode($GLOBALS["dialogChooserTypes"][$key], JSON_PRETTY_PRINT); ?>
+     };
+    </script>
     <div id="<?php echo $key; ?>" class="modal fade" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document" style="display:table;">
 	    <div class="modal-content">
@@ -85,7 +91,21 @@ function writeValue($data, $desc, $value){
  }
  //handler of customer choose button
  function dialogChooserChoose(dialog, value){
+     var values = window['dataDialogChooser' + dialogChooserCurrentField].data.allValues,
+	 fields = window['dataDialogChooser' + dialogChooserCurrentField].desc.fieldsToFill,
+	 ind;
+     for(ind in values){
+	 if(values[ind][dialogChooserCurrentField] == value){
+	     values = values[ind];
+	     break;
+	 }
+     }
+
+     console.log(values);
+     //     console.log(JSON.stringify(window['dataDialogChooser' + dialogChooserCurrentField], null, 3));
      $('#' + dialog).modal('hide');
      $('#' + dialogChooserCurrentField).val(value);
+     for(ind in fields)
+	 $('#' + fields[ind]).val(values[ind]);
  }
- </script>
+</script>

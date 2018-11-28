@@ -539,6 +539,15 @@ class gridData extends gridDataSource{
                 "required" => "true",
                 "inputType" => "dialogChooser",
                 "dataProvider" => "getCustomers",
+                "fieldsToFill" => [
+                    "CustomerName" => "ShippingName",
+                    "CustomerAddress1" => "ShippingAddress1",
+                    "CustomerAddress2" => "ShippingAddress2",
+                    "CustomerAddress3" => "ShippingAddress3",
+                    "CustomerCity" => "ShippingCity",
+                    "CustomerZip" => "ShippingZip",
+                    "CustomerCountry" => "ShippingCountry",
+                ]
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
