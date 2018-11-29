@@ -69,7 +69,7 @@ $dropdownDepends = [];
 		    $category = $key;
 		    $curCategory = $key;
 		    $item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
-					      $data->getNewItem($ascope["item"], $category);
+			    $data->getNewItem($ascope["item"], $category);
 		    //used as translated field name
 		    $translatedFieldName = '';
 		    $leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
@@ -86,8 +86,8 @@ $dropdownDepends = [];
 						 (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ||
 						 (key_exists("editPermissions", $data->editCategories[$category][$key]) &&
 						  $data->editCategories[$category][$key]["editPermissions"] == "admin" &&
-													       !$security->isAdmin())
-														   ? "readonly" : "";
+						  !$security->isAdmin())
+					       ? "readonly" : "";
 				switch($data->editCategories[$category][$key]["inputType"]){
 				    case "text" :
 					//renders text input with label
@@ -123,8 +123,10 @@ $dropdownDepends = [];
 
 				    case "dialogChooser":
 					$dataProvider = $data->editCategories[$category][$key]["dataProvider"];
-					if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"]))
-					    $GLOBALS["dialogChooserTypes"][$dataProvider] = "hophop";
+					if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
+					    $GLOBALS["dialogChooserTypes"][$dataProvider] = $data->editCategories[$category][$key];
+					    $GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
+					}
 					$GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
 					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\"></div></div>";
 					break;
@@ -152,8 +154,8 @@ $dropdownDepends = [];
 					    echo "<option></option>";
 
 					foreach($types as $type)
-					    if(!$value || $type["value"] != $value)
-						echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+					if(!$value || $type["value"] != $value)
+					    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
 					echo"</select></div></div>";
 					break;
 				}

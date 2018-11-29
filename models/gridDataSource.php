@@ -443,7 +443,8 @@ EOF;
                     "format" => "{0:n}"
                 ]
             ],
-            "values" => json_decode(json_encode($result))
+            "values" => json_decode(json_encode($result)),
+            "allValues" => json_decode(json_encode(DB::select("SELECT * from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())))
         ];
     }
 
