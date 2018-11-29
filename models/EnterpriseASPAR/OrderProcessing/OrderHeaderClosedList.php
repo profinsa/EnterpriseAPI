@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/26/2018
+  Last Modified: 11/29/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -212,7 +212,9 @@ class gridData extends gridDataSource{
                 "defaultValue" => "",
                 "defaultOverride" => "true",
                 "required" => "true",
-                "inputType" => "text"
+                "required" => "true",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getCustomers",
             ]
         ],
 		"Payment" => [
