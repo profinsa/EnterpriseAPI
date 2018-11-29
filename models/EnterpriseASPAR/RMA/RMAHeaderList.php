@@ -411,7 +411,7 @@ class gridData extends gridDataSource{
                 "defaultOverride" => "true",
                 "required" => "true",
                 "inputType" => "dialogChooser",
-                "dataProvider" => "getCustomers"
+                "dataProvider" => "getVendors"
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",

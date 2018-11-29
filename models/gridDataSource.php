@@ -153,6 +153,32 @@ class gridDataSource{
 
         $result = DB::select("SELECT VendorID,VendorTypeID,AccountStatus,VendorName,VendorPhone,VendorLogin,VendorPassword from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
+        $query = <<<EOF
+     Select
+      VendorID,
+			TermsID,
+			CurrencyID ,
+			0 As DiscountPers,
+			TaxGroupID,
+			TaxIDNo As TaxExemptID,
+			WarehouseID,
+			ShipMethodID As ShipMethodID,
+			GLPurchaseAccount As GLPurchaseAccount,
+			VendorName as ShippingName,
+			VendorAddress1 As ShippingAddress1,
+			VendorAddress2 As ShippingAddress2,
+			VendorAddress3 As ShippingAddress3,
+			VendorCity As ShippingCity,
+			VendorState As ShippingState,
+			VendorZip As ShippingZip,
+			VendorCountry As ShippingCountry
+            from VendorInformation
+   Where CompanyID = '{$user["CompanyID"]}'
+   AND DivisionID = '{$user["DivisionID"]}'
+   AND DepartmentID = '{$user["DepartmentID"]}'
+EOF;
+        //			IFNULL(T.NetDays,0) as NetDays
+
         return [
             "title" => "Vendor selecting dialog",
             "choosedColumn" => "VendorID",
@@ -187,7 +213,7 @@ class gridDataSource{
                 ],
             ],
             "values" => json_decode(json_encode($result)),
-            "allValues" => json_decode(json_encode( DB::select("SELECT * from VendorInformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())))
+            "allValues" => json_decode(json_encode( DB::select($query, array())))
         ];
     }
     
