@@ -81,6 +81,7 @@ function writeValue($data, $desc, $value){
  for(ind in dialogChooserInputs){
      $('#' + ind).click((function(ind){
 	 return function(){
+	     console.log('hahaha');
 	     dialogChooserCurrentField = ind;
 	     $('#' + dialogChooserInputs[ind]).modal('show');
 	     if(!$.fn.DataTable.isDataTable("#" + dialogChooserInputs[ind] + "Table"))
@@ -105,7 +106,7 @@ function writeValue($data, $desc, $value){
      //     console.log(JSON.stringify(window['dataDialogChooser' + dialogChooserCurrentField], null, 3));
      $('#' + dialog).modal('hide');
      $('#' + dialogChooserCurrentField).val(value);
-     for(ind in fields)
-	 $('#' + fields[ind]).val(values[ind]);
+     for(ind in values) //foreach fields for working with fiels transformation array
+	 $('#' + ind).val(values[ind]);
  }
 </script>

@@ -217,6 +217,40 @@ class gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
+        $query = <<<EOF
+   Select  CustomerID,
+	CustomerInformation.TermsID,
+	CustomerShipToID as ShipToID,
+	CustomerShipForID as ShipForID,
+    CurrencyID,
+	TaxGroupID,
+	TaxIDNo,
+	WarehouseID,
+	ShipMethodID,
+	EmployeeID ,
+	GLSalesAccount,
+	CustomerName as ShippingName,
+	CustomerAddress1 As ShippingAddress1,
+	CustomerAddress2 As ShippingAddress2,
+	CustomerAddress3 As ShippingAddress3,
+	CustomerCity As ShippingCity,
+	CustomerState As ShippingState,
+	CustomerZip As ShippingZip,
+	CustomerCountry As ShippingCountry
+   FROM customerinformation
+   Where CustomerInformation.CompanyID = '{$user["CompanyID"]}'
+   AND CustomerInformation.DivisionID = '{$user["DivisionID"]}'
+   AND CustomerInformation.DepartmentID = '{$user["DepartmentID"]}'
+EOF;
+        /*
+	IFNULL(Terms.NetDays,0) As NetDays,
+   From CustomerInformation LEFT OUTER JOIN Terms ON (CustomerInformation.CompanyID = Terms.CompanyID
+   AND CustomerInformation.DivisionID = Terms.DivisionID
+   AND CustomerInformation.DepartmentID = Terms.DepartmentID
+   AND CustomerInformation.TermsID = Terms.TermsID)
+   then where
+   AND CustomerInformation.CustomerID = v_CustomerID
+         */
         return [
             "title" => "Customer selecting dialog",
             "choosedColumn" => "CustomerID",
@@ -251,7 +285,7 @@ class gridDataSource{
                 ],
             ],
             "values" => json_decode(json_encode( DB::select("SELECT CustomerID,CustomerTypeID,AccountStatus,CustomerName,CustomerPhone,CustomerLogin,CustomerPassword from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array()))),
-            "allValues" => json_decode(json_encode( DB::select("SELECT * from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())))
+            "allValues" => json_decode(json_encode( DB::select($query, array())))
         ];
     }
 

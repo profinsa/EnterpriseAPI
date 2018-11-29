@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/15/2017
+  Last Modified: 11/29/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -540,7 +540,33 @@ class gridData extends gridDataSource{
                 "defaultOverride" => "true",
                 "required" => "true",
                 "inputType" => "dialogChooser",
-                "dataProvider" => "getCustomers"
+                "dataProvider" => "getCustomers",
+                "fieldsToFill" => [
+                    "TermsID" => "TermID",
+                    "CustomerShipToID" => "ShipToID",
+                    "CustomerShipForID" => "ShipForID",
+                    "CurrencyID" => "CurrencyID",
+                    //                    CASE
+                    //WHEN IFNULL(CurrencyID,N'') = N'' THEN v_CompanyCurrencyID
+                    //ELSE CurrencyID
+                    //END 	AS CurrencyID,
+                    "TaxGroupID" => "TaxGroupID",
+                    "TaxIDNo" => "TaxIDNo",
+                    "WarehouseID" => "WarehouseID",
+                    "ShipMethodID" => "ShipMethodID",
+                    "EmployeeID" => "EmployeeID",
+                    "GLSalesAccount" => "GLSalesAccount",
+                    "CustomerName" => "ShippingName",
+                    "CustomerAddress1" => "ShippingAddress1",
+                    "CustomerAddress2" => "ShippingAddress2",
+                    "CustomerAddress3" => "ShippingAddress3",
+                    "CustomerCity" => "ShippingCity",
+                    "CustomerState" => "ShippingState",
+                    "CustomerZip" => "ShippingZip",
+                    "CustomerCountry" => "ShippingCountry",
+                    //IFNULL(Terms.NetDays,0) As NetDays,
+                    //v_AllowanceDiscountPercent AS AllowanceDiscountPerc
+                ]
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
