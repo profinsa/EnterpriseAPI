@@ -38,6 +38,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Credit Memos History";
     public $idField ="InvoiceNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
+    public $modes = ["grid", "view"];
     public $gridFields = [
         "InvoiceNumber" => [
             "dbType" => "varchar(36)",

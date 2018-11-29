@@ -22,11 +22,11 @@
   created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\ServiceProcessing\ServiceInvoiceHeaderClosedList.php
   used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\ServiceProcessing\ServiceInvoiceHeaderClosedList.php
    
-Calls:
-MySql Database
- 
-Last Modified: 08/15/2017
-Last Modified by: Nikita Zaharov
+  Calls:
+  MySql Database
+   
+  Last Modified: 11/29/2018
+  Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
@@ -210,6 +210,7 @@ class gridData extends gridDataSource{
         "Customer" => [
             "CustomerID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
                 "inputType" => "text"
             ]
         ],
@@ -530,6 +531,7 @@ class gridData extends gridDataSource{
             ],
             "CustomerID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
                 "inputType" => "dialogChooser",
                 "dataProvider" => "getCustomers"
             ],

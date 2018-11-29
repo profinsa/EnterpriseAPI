@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/15/2017
+  Last Modified: 11/29/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -211,6 +211,7 @@ class gridData extends gridDataSource{
         "Customer" => [
             "CustomerID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
                 "inputType" => "text"
             ]
         ],
@@ -532,6 +533,7 @@ class gridData extends gridDataSource{
             ],
             "CustomerID" => [
                 "dbType" => "varchar(50)",
+                "required" => "true",
                 "inputType" => "dialogChooser",
                 "dataProvider" => "getCustomers"
             ],
