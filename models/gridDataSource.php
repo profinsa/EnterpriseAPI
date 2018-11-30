@@ -287,7 +287,7 @@ EOF;
         $company = DB::select("select * from companies WHERE $keyFields")[0];
         foreach($allValues as $rowKey=>$row){
             foreach($row as $columnName=>$value)
-                if($value == "")
+                if($columnName == "CurrencyID" && $value == "")
                     $row->$columnName = $company->CurrencyID;
         }
         return [

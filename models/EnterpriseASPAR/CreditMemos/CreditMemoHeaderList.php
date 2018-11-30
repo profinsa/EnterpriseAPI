@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/26/2018
+  Last Modified: 11/30/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -206,12 +206,95 @@ class gridData extends gridDataSource{
 			]
 		],
         "Customer" => [
+            "loadFrom" => [
+                "method" => "getCustomerInfo",
+                "key" => "CustomerID",
+            ],
             "CustomerID" => [
                 "dbType" => "varchar(50)",
                 "defaultValue" => "",
                 "defaultOverride" => "true",
                 "required" => "true",
                 "inputType" => "text"
+            ],
+            "AccountStatus" => [
+                "title" => "Account Status",
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+			"ShippingName" => [
+                "title" => "Customer Name",
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingAddress1" => [
+                "title" => "Customer Address 1",
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingAddress2" => [
+                "title" => "Customer Address 3",
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingAddress3" => [
+                "title" => "Customer Address 3",
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingCity" => [
+                "title" => "Customer City",
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingState" => [
+                "title" => "Customer State",
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShippingZip" => [
+                "title" => "Customer Zip",
+				"dbType" => "varchar(10)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "disabled" => "true"
+			],
+			"ShippingCountry" => [
+                "title" => "Customer Country",
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => "",
+                "disabled" => "true"
+			],
+            "CustomerPhone" => [
+                "title" => "Customer Phone",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CustomerFax" => [
+                "title" => "Customer Fax",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CustomerEmail" => [
+                "title" => "Customer Email",
+                "dbType" => "varchar(60)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Attention" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
             ]
         ],
 		"Payment" => [
