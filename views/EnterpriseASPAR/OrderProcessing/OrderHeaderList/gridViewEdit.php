@@ -20,7 +20,7 @@
      Calls:
      model
 
-     Last Modified: 11/28/2018
+     Last Modified: 11/30/2018
      Last Modified by: Zaharov Nikita
 -->
 
@@ -57,7 +57,7 @@ function renderInput($ascope, $data, $category, $item, $key, $value){
     switch($data->editCategories[$category][$key]["inputType"]){
 	case "text" :
 	    //renders text input with label
-	    echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control\" value=\"";
+	    echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control $key\" value=\"";
 	    if(key_exists("formatFunction", $data->editCategories[$category][$key])){
 		$formatFunction = $data->editCategories[$category][$key]["formatFunction"];
 		echo $data->$formatFunction($item, "editCategories", $key, $value, false);
@@ -71,7 +71,7 @@ function renderInput($ascope, $data, $category, $item, $key, $value){
 	    
 	case "datetime" :
 	    //renders text input with label
-	    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+	    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
 		 ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
 		.">";
 	    break;
@@ -79,7 +79,7 @@ function renderInput($ascope, $data, $category, $item, $key, $value){
 	case "checkbox" :
 	    //renders checkbox input with label
 	    echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-	    echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+	    echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"1\" " . ($value ? "checked" : "") ." " .
 		 ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit") || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
 		.">";
 	    break;
@@ -91,12 +91,12 @@ function renderInput($ascope, $data, $category, $item, $key, $value){
 		$GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
 	    }
 	    $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-	    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\">";
+	    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\">";
 	    break;
 
 	case "dropdown" :
 	    //renders select with available values as dropdowns with label
-	    echo "<select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
+	    echo "<select class=\"form-control $key\" name=\"" . $key . "\" id=\"" . $key . "\">";
 	    $method = $data->editCategories[$category][$key]["dataProvider"];
 	    if(key_exists("dataProviderArgs", $data->editCategories[$category][$key])){
 		$args = [];
@@ -120,10 +120,17 @@ function renderInput($ascope, $data, $category, $item, $key, $value){
 }
 
 function renderRow($translation, $ascope, $data, $category, $item, $key, $value){
-    $translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
-    echo "<div class=\"form-group col-md-12 col-xs-12\"><label class=\"col-md-6 col-xs-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6 col-xs-6\">";
-    renderInput($ascope, $data, $category, $item, $key, $value);
-    echo "</div></div>";
+    if($key != "loadFrom"){
+	$translatedFieldName = $translation->translateLabel(
+	    key_exists("title", $data->editCategories[$category][$key]) ?
+	    $data->editCategories[$category][$key]["title"] :
+	    (key_exists($key, $data->columnNames) ?
+	     $data->columnNames[$key] :
+	     $key));
+	echo "<div class=\"form-group col-md-12 col-xs-12\"><label class=\"col-md-6 col-xs-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6 col-xs-6\">";
+	renderInput($ascope, $data, $category, $item, $key, $value);
+	echo "</div></div>";
+    }
 }
 
 function renderViewRow($translation, $data, $fieldsDefinition, $values, $key, $value){
@@ -226,39 +233,7 @@ function makeTableItems($values, $fieldsDefinition){
 		<?php foreach($data->editCategories as $key =>$value):  ?>
 		    <?php if($key != '...fields'): ?>
 			<div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
-			    <?php
-			    //getting record.
-			    $item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
-				    $data->getNewItem($ascope["item"], $key);
-			    ?>
-			    <?php if($key == "Customer"): ?>
-				<?php
-				$customerInfo = $data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : "CustomerID"]);
-				$tableItems = makeTableItems($customerInfo, $data->customerFields);
-				$tableCategories = $data->customerFields;
-				$items = $customerInfo;
-				?>
-				<div class=" col-md-5 col-xs-5">
-				    <table class="table table-bordered order-entry-main-table ">
-					<tbody id="row_viewer_tbody">
-					    <?php 
-					    foreach($tableItems["leftItems"] as $key =>$value)
-					    renderViewRow($translation, $data, $tableCategories, $items, $key, $value);
-					    ?>
-					</tbody>
-				    </table>
-				</div>
-				<div class="col-md-5 col-xs-5">
-				    <table class="table table-bordered order-entry-main-table">
-					<tbody id="row_viewer_tbody">
-					    <?php 
-					    foreach($tableItems["rightItems"] as $key =>$value)
-					    renderViewRow($translation, $data, $tableCategories,  $items,$key, $value);
-					    ?>
-					</tbody>
-				    </table>
-				</div>
-			    <?php elseif($key == "Vendor"): ?>
+			    <?php if($key == "Vendor"): ?>
 				<?php
 				$vendorInfo = $data->getVendorInfo($headerItem[property_exists($data, "vendorField") ? $data->vendorField : "VendorID"]);
 				$tableItems = makeTableItems($vendorInfo, $data->vendorFields);
@@ -287,6 +262,9 @@ function makeTableItems($values, $fieldsDefinition){
 				</div>
 			    <?php else: ?>
 				<?php
+				//getting record.
+				$item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
+					$data->getNewItem($ascope["item"], $key);
 				$tableCategories = $data->editCategories[$key];
 				$tableItems = makeTableItems($item, $tableCategories);
 				$items = $item;

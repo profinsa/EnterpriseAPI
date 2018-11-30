@@ -262,7 +262,12 @@ EOF;
 	CustomerCity As ShippingCity,
 	CustomerState As ShippingState,
 	CustomerZip As ShippingZip,
-	CustomerCountry As ShippingCountry
+	CustomerCountry As ShippingCountry,
+    AccountStatus,
+    CustomerPhone,
+    CustomerFax,
+    CustomerEmail,
+    Attention
    FROM customerinformation
    Where CustomerInformation.CompanyID = '{$user["CompanyID"]}'
    AND CustomerInformation.DivisionID = '{$user["DivisionID"]}'
@@ -1325,20 +1330,6 @@ EOF;
             $user["DivisionID"] = "DEFAULT";
             $user["DepartmentID"] = "DEFAULT";
         }
-        $columns = [];
-        $fakeColumns = [];
-        foreach($this->editCategories[$type] as $key=>$value){
-            if(!key_exists("fake", $value))
-               $columns[] = $key;
-            else
-                $fakeColumns[] = $key;
-            if(key_exists("addFields", $value)){
-                $_fields = explode(",", $value["addFields"]);
-                foreach($_fields as $addfield)
-                    $columns[] = $addfield;
-            }
-        }
-        
         $id = urldecode($id);
         $keyValues = explode("__", $id);
         $keyFields = "";
@@ -1348,42 +1339,63 @@ EOF;
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
-        $result = DB::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true)[0];
-        
-        $describe = DB::select("describe " . $this->tableName);
-
-        foreach($this->editCategories[$type] as $key=>$value) {
-            foreach($describe as $struct) {
-                if ($struct->Field == $key) {
-                    $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
-
-                    if(!key_exists("required", $this->editCategories[$type][$key])){
-                        switch ($struct->Null) {
-                        case "NO":
-                            $this->editCategories[$type][$key]["required"] = true;
-                            break;
-                        case "YES":
-                            $this->editCategories[$type][$key]["required"] = false;
-                            break;
-                        default:
-                            $this->editCategories[$type][$key]["required"] = false;
-                        }
-                    }
-                    break;
+        $columns = [];
+        $fakeColumns = [];
+        if(key_exists("loadFrom", $this->editCategories[$type])){
+            $key = $this->editCategories[$type]["loadFrom"]["key"];
+            $keyValue = DB::select("SELECT {$this->editCategories[$type]["loadFrom"]["key"]} from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())[0]->$key;
+            $method = $this->editCategories[$type]["loadFrom"]["method"];
+            return $this->$method($keyValue);
+        }else {
+            foreach($this->editCategories[$type] as $key=>$value){
+                if(!key_exists("fake", $value))
+                    $columns[] = $key;
+                else
+                    $fakeColumns[] = $key;
+                if(key_exists("addFields", $value)){
+                    $_fields = explode(",", $value["addFields"]);
+                    foreach($_fields as $addfield)
+                        $columns[] = $addfield;
                 }
             }
+        
+            $result = DB::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+            $result = json_decode(json_encode($result), true)[0];
+        
+            $describe = DB::select("describe " . $this->tableName);
+
+            foreach($this->editCategories[$type] as $key=>$value) {
+                foreach($describe as $struct) {
+                    if ($struct->Field == $key) {
+                        $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+
+                        if(!key_exists("required", $this->editCategories[$type][$key])){
+                            switch ($struct->Null) {
+                            case "NO":
+                                $this->editCategories[$type][$key]["required"] = true;
+                                break;
+                            case "YES":
+                                $this->editCategories[$type][$key]["required"] = false;
+                                break;
+                            default:
+                                $this->editCategories[$type][$key]["required"] = false;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            $fresult = [];
+            foreach($fakeColumns as $value){
+                $fresult[$value] = "";
+            }
+
+            $result = array_merge($result,$fresult);
+
+            return $result;
         }
-
-        $fresult = [];
-        foreach($fakeColumns as $value){
-            $fresult[$value] = "";
-        }
-
-        $result = array_merge($result,$fresult);
-
-        return $result;
     }
 
     public function dirtyAutoincrementColumn($tableName, $columnName){
@@ -1483,7 +1495,9 @@ EOF;
         }
 
         foreach($this->editCategories[$type] as $key=>$value)
-            $values[$key] = key_exists($key, $_GET) ? $_GET[$key] : (key_exists("defaultValue", $value) ? $value["defaultValue"] : "");
+            if($key != "loadFrom"){
+                $values[$key] = key_exists($key, $_GET) ? $_GET[$key] : (key_exists("defaultValue", $value) ? $value["defaultValue"] : "");
+            }
         
         return $values;
     } 

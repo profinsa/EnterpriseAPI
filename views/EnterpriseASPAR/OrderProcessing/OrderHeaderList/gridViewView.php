@@ -20,9 +20,9 @@
      Calls:
      model
 
-     Last Modified: 11/26/2018
+     Last Modified: 11/30/2018
      Last Modified by: Zaharov Nikita
-   -->
+-->
 <?php
 function makeId($id){
     return preg_replace("/[\s\$]+/", "", $id);
@@ -134,8 +134,8 @@ function makeTableItems($values, $fieldsDefinition){
 	    //render tabs like Main, Current etc
 	    //uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 	    foreach($data->editCategories as $key =>$value)
-		if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
-		    echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"" . makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
+	    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
+		echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"" . makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 	    ?>
 	</ul>
 	<br/>
@@ -144,7 +144,6 @@ function makeTableItems($values, $fieldsDefinition){
 	    <?php foreach($data->editCategories as $key =>$value):  ?>
 		<div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
 		    <?php
-		    $item = $data->getEditItem($ascope["item"], $key);
 		    if($key == "Customer"){
 			$customerInfo = $data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : "CustomerID"]);
 			$tableItems = makeTableItems($customerInfo, $data->customerFields);
@@ -157,6 +156,7 @@ function makeTableItems($values, $fieldsDefinition){
 			$items = $vendorInfo;
 		    }
 		    else {
+			$item = $data->getEditItem($ascope["item"], $key);
 			$tableCategories = $data->editCategories[$key];
 			$tableItems = makeTableItems($item, $tableCategories);
 			$items = $item;
@@ -168,7 +168,7 @@ function makeTableItems($values, $fieldsDefinition){
 				<tbody id="row_viewer_tbody">
 				    <?php 
 				    foreach($tableItems["leftItems"] as $key =>$value)
-					renderRow($translation, $data, $tableCategories, $items, $key, $value);
+				    renderRow($translation, $data, $tableCategories, $items, $key, $value);
 				    ?>
 				</tbody>
 			    </table>
@@ -178,7 +178,7 @@ function makeTableItems($values, $fieldsDefinition){
 				<tbody id="row_viewer_tbody">
 				    <?php 
 				    foreach($tableItems["rightItems"] as $key =>$value)
-					renderRow($translation, $data, $tableCategories,  $items,$key, $value);
+				    renderRow($translation, $data, $tableCategories,  $items,$key, $value);
 				    ?>
 				</tbody>
 			    </table>
@@ -329,7 +329,7 @@ function makeTableItems($values, $fieldsDefinition){
 		 buttons Edit and Cancel
 		 for translation uses translation model
 		 for category(which tab is activated) uses $ascope of controller
-	       -->
+	    -->
 	    <?php if($security->can("update")): ?>
 		<a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"]); ?>">
 		    <?php echo $translation->translateLabel("Edit"); ?>

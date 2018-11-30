@@ -106,7 +106,9 @@ function writeValue($data, $desc, $value){
      //     console.log(JSON.stringify(window['dataDialogChooser' + dialogChooserCurrentField], null, 3));
      $('#' + dialog).modal('hide');
      $('#' + dialogChooserCurrentField).val(value);
-     for(ind in values) //foreach fields for working with fiels transformation array
-	 $('#' + ind).val(values[ind]);
+     for(ind in values){ //foreach fields for working with fiels transformation array
+	 $('.' + ind).val(values[ind]);
+//	 console.log($('#' + ind));
+     }
  }
 </script>
