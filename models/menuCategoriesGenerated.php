@@ -24,8 +24,353 @@ $leftMenu = [
 	"data" => [
 	    [
 		"type" => "submenu",
+		"id" => "GeneralLedger",
+		"full" => $translation->translateLabel('General Ledger'),
+		"short" => "Ge",
+		"data" => [
+		    [
+			"type" => "submenu",
+			"id" => "GeneralLedger/Ledger",
+			"full" => $translation->translateLabel('Ledger'),
+			"short" => "Le",
+			"data" => [
+
+			    [
+				"id" => "GeneralLedger/Ledger/ViewChartofAccounts",
+				"full" => $translation->translateLabel('View Chart of Accounts'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerChartOfAccountsList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Ledger/ViewLedgerAccountGroup",
+				"full" => $translation->translateLabel('View Ledger Account Group'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerAccountGroupList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Ledger/ViewLedgerAccountSubGroup",
+				"full" => $translation->translateLabel('View Ledger Account Sub Group'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerAccountSubGroupList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Ledger/ViewGLTransactions",
+				"full" => $translation->translateLabel('View GL Transactions'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Ledger/ViewClosedGLTransactions",
+				"full" => $translation->translateLabel('View Closed GL Transactions'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsClosedList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Ledger/ViewGLTransactionsHistory",
+				"full" => $translation->translateLabel('View GL Transactions History'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsHistoryList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Ledger/BankDeposits",
+				"full" => $translation->translateLabel('View Bank Deposits'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerBankDeposits",
+				"short" => "Bd"
+			    ],        [
+				"id" => "GeneralLedger/Ledger/ViewBudgets",
+				"full" => $translation->translateLabel('View Budgets'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerChartOfAccountsBudgetsList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Ledger/ViewPriorFiscalYear",
+				"full" => $translation->translateLabel('View Prior Fiscal Year'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerChartOfAccountsPriorYearsList",
+				"short" => "Vi"
+			    ]/*,
+				[
+				"id" => "GeneralLedger/Ledger/LedgerTreeviewSample1",
+				"full" => $translation->translateLabel('Ledger Treeview Sample1'),
+				"href"=> "EnterpriseASPGL/Ledger/GLCOATreeView",
+				"short" => "Le"
+				],
+				[
+				"id" => "GeneralLedger/Ledger/LedgerTreeviewSample2",
+				"full" => $translation->translateLabel('Ledger Treeview Sample2'),
+				"href"=> "EnterpriseASPGL/Ledger/GLCOATreeViewSample2",
+				"short" => "Le"
+				]*/
+			]
+		    ],
+		    [
+			"type" => "submenu",
+			"id" => "GeneralLedger/Banking",
+			"full" => $translation->translateLabel('Banking'),
+			"short" => "Ba",
+			"data" => [
+
+			    [
+				"id" => "GeneralLedger/Banking/ViewBankAccounts",
+				"full" => $translation->translateLabel('View Bank Accounts'),
+				"href"=> "EnterpriseASPGL/Banking/BankAccountsList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Banking/ViewBankAccountsContacts",
+				"full" => $translation->translateLabel('View Bank Accounts Contacts'),
+				"href"=> "EnterpriseASPGL/Banking/BankAccountsContactsList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Banking/ViewBankTransactions",
+				"full" => $translation->translateLabel('View Bank Transactions'),
+				"href"=> "EnterpriseASPGL/Banking/BankTransactionsList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/Banking/ReconcileBankAccounts",
+				"full" => $translation->translateLabel('Reconcile Bank Accounts'),
+				"href"=> "EnterpriseASPGL/Banking/BankReconciliationList",
+				"short" => "Re"
+			    ],
+			    [
+				"id" => "GeneralLedger/Banking/ViewBankReconciliations",
+				"full" => $translation->translateLabel('View Bank Reconciliations'),
+				"href"=> "EnterpriseASPGL/Banking/BankReconciliationSummaryList",
+				"short" => "Vi"
+			    ]
+			]
+		    ],
+		    [
+			"type" => "submenu",
+			"id" => "GeneralLedger/FixedAssets",
+			"full" => $translation->translateLabel('Fixed Assets'),
+			"short" => "Fi",
+			"data" => [
+			    [
+				"id" => "GeneralLedger/FixedAssets/ViewAssets",
+				"full" => $translation->translateLabel('View Assets '),
+				"href"=> "EnterpriseASPGL/FixedAssets/FixedAssetsList",
+				"short" => "Vi"
+			    ]
+			]
+		    ],
+		    [
+			"type" => "submenu",
+			"id" => "GeneralLedger/LedgerSetup",
+			"full" => $translation->translateLabel('Ledger Setup'),
+			"short" => "Le",
+			"data" => [
+			    [
+				"id" => "GeneralLedger/LedgerSetup/ViewStoredChartofAccounts",
+				"full" => $translation->translateLabel('View Stored Chart of Accounts'),
+				"href"=> "EnterpriseASPGL/LedgerSetup/LedgerStoredChartOfAccountsList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/Currencies",
+				"full" => $translation->translateLabel('Currencies'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CurrencyTypesList",
+				"short" => "Cu"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/ClosePeriod",
+				"full" => $translation->translateLabel('Close Period'),
+				"href_ended" => "GeneralLedger/LedgerSetup/ClosePeriod&mode=edit&category=Main&item=" . $keyString,
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerPeriodCloseDetail",
+				"short" => "Cl"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/CloseYear",
+				"full" => $translation->translateLabel('Close Year'),
+				"href_ended" => "GeneralLedger/LedgerSetup/CloseYear&mode=view&category=Main&item=" . $keyString,
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",
+				"short" => "Cl"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/LedgerTransactionTypes",
+				"full" => $translation->translateLabel('Ledger Transaction Types'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerTransactionTypesList",
+				"short" => "Le"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/LedgerBalanceTypes",
+				"full" => $translation->translateLabel('Ledger Balance Types'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerBalanceTypeList",
+				"short" => "Le"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/LedgerAccountTypes",
+				"full" => $translation->translateLabel('Ledger Account Types'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerAccountTypesList",
+				"short" => "Le"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/BankTransactionTypes",
+				"full" => $translation->translateLabel('Bank Transaction Types'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/BankTransactionTypesList",
+				"short" => "Ba"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/AssetType",
+				"full" => $translation->translateLabel('Asset Type'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetTypeList",
+				"short" => "As"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/AssetStatus",
+				"full" => $translation->translateLabel('Asset Status'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetStatusList",
+				"short" => "As"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/DepreciationMethods",
+				"full" => $translation->translateLabel('Depreciation Methods'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetDepreciationMethodsList",
+				"short" => "De"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/ControlNumbers",
+				"full" => $translation->translateLabel('Control Numbers'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/ControlNumbersList",
+				"short" => "De"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/OFXImport",
+				"full" => $translation->translateLabel('QFX & OFX Import'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/OFXImportList",
+				"short" => "De"
+			    ]
+			]
+		    ]
+		]
+	    ],
+		    [
+			"type" => "submenu",
+			"id" => "Financials",
+			"full" => $translation->translateLabel('Financial Reports'),
+			"short" => "Fi",
+			"data" => [
+			    [
+				"id" => "Financials/GaapMain",
+				"type" => "relativeLink",
+				"full" => $translation->translateLabel('Gaap Financials'),
+				"href"=> "page=financials&type=gaap&module=main",
+				"short" => "Le"
+			    ],
+			    [
+				"type" => "submenu",
+				"id" => "Financialsials/GaapAgedReports",
+				"full" => $translation->translateLabel('Gaap Aged Reports'),
+				"short" => "Ga",
+				"data" => [
+				    [
+					"id" => "Financials/GaapAgedReports/AgedPayables",
+					"full" => $translation->translateLabel('Aged Payables'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=gaap&module=AgedPayablesSummary",
+					"short" => "Ag"
+				    ],
+				    [
+					"id" => "Financials/GaapAgedReports/AgedPayablesComparative",
+					"full" => $translation->translateLabel('Aged Payables Comparative'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=gaap&module=AgedPayablesSummaryComparative",
+					"short" => "Ag"
+				    ],
+				    [
+					"id" => "Financials/GaapAgedReports/AgedPayablesYTD",
+					"full" => $translation->translateLabel('Aged Payables YTD'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=gaap&module=AgedPayablesSummaryYTD",
+					"short" => "Ag"
+				    ],
+				    [
+					"id" => "Financials/GaapAgedReports/AgedReceivables",
+					"full" => $translation->translateLabel('Aged Receivables'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=gaap&module=AgedReceivablesSummary",
+					"short" => "Ag"
+				    ],
+				    [
+					"id" => "Financials/GaapAgedReports/AgedReceivablesComparative",
+					"full" => $translation->translateLabel('Aged Receivables Comparative'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=gaap&module=AgedReceivablesSummaryComparative",
+					"short" => "Ag"
+				    ],
+				    [
+					"id" => "Financials/GaapAgedReports/AgedReceivablesYTD",
+					"full" => $translation->translateLabel('Aged Receivables YTD'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=gaap&module=AgedReceivablesSummaryYTD",
+					"short" => "Ag"
+				    ]
+				]
+			    ],
+			    [
+				"id" => "Financials/GaapWorksheets",
+				"type" => "relativeLink",
+				"target" => "_blank",
+				"full" => $translation->translateLabel('Worksheets'),
+				"href"=> "page=financials&type=common&module=worksheets",
+				"short" => "Le"
+			    ]
+			    /*[
+			       "type" => "submenu",
+			       "id" => "Reports/Financials/IFRSAgedReports",
+			       "full" => $translation->translateLabel('IFRS Aged Reports'),
+			       "short" => "IF",
+			       "data" => [
+
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayables",
+			       "full" => $translation->translateLabel('Aged Payables'),
+			       "href"=> "reports/IFRSFinancials/RptIFRSAgedPayablesSummary",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayablesComparative",
+			       "full" => $translation->translateLabel('Aged Payables Comparative'),
+			       "href"=> "reports/IFRSFinancials/RptIFRSAgedPayablesSummaryComparative",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayablesYTD",
+			       "full" => $translation->translateLabel('Aged Payables YTD'),
+			       "href"=> "reports/IFRSFinancials/RptIFRSAgedPayablesSummaryYTD",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivables",
+			       "full" => $translation->translateLabel('Aged Receivables'),
+			       "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummary",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivablesComparative",
+			       "full" => $translation->translateLabel('Aged Receivables Comparative'),
+			       "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummaryComparative",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivablesYTD",
+			       "full" => $translation->translateLabel('Aged Receivables YTD'),
+			       "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummaryYTD",
+			       "short" => "Ag"
+			       ]*/
+			]
+		    ],
+	    [
+		"type" => "submenu",
 		"id" => "AccountsReceivable",
-		"full" => $translation->translateLabel('Accounts Receivable'),
+		"full" => $translation->translateLabel('Receivables'),
 		"short" => "Ac",
 		"data" => [
 		    [
@@ -563,7 +908,7 @@ $leftMenu = [
 	    [
 		"type" => "submenu",
 		"id" => "AccountsPayable",
-		"full" => $translation->translateLabel('Accounts Payable'),
+		"full" => $translation->translateLabel('Payables'),
 		"short" => "Ac",
 		"data" => [
 		    [
@@ -1197,229 +1542,6 @@ $leftMenu = [
 	    ],
 	    [
 		"type" => "submenu",
-		"id" => "GeneralLedger",
-		"full" => $translation->translateLabel('General Ledger'),
-		"short" => "Ge",
-		"data" => [
-		    [
-			"type" => "submenu",
-			"id" => "GeneralLedger/Ledger",
-			"full" => $translation->translateLabel('Ledger'),
-			"short" => "Le",
-			"data" => [
-
-			    [
-				"id" => "GeneralLedger/Ledger/ViewChartofAccounts",
-				"full" => $translation->translateLabel('View Chart of Accounts'),
-				"href"=> "EnterpriseASPGL/Ledger/LedgerChartOfAccountsList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Ledger/ViewLedgerAccountGroup",
-				"full" => $translation->translateLabel('View Ledger Account Group'),
-				"href"=> "EnterpriseASPGL/Ledger/LedgerAccountGroupList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Ledger/ViewLedgerAccountSubGroup",
-				"full" => $translation->translateLabel('View Ledger Account Sub Group'),
-				"href"=> "EnterpriseASPGL/Ledger/LedgerAccountSubGroupList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Ledger/ViewGLTransactions",
-				"full" => $translation->translateLabel('View GL Transactions'),
-				"href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Ledger/ViewClosedGLTransactions",
-				"full" => $translation->translateLabel('View Closed GL Transactions'),
-				"href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsClosedList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Ledger/ViewGLTransactionsHistory",
-				"full" => $translation->translateLabel('View GL Transactions History'),
-				"href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsHistoryList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Ledger/BankDeposits",
-				"full" => $translation->translateLabel('View Bank Deposits'),
-				"href"=> "EnterpriseASPGL/Ledger/LedgerBankDeposits",
-				"short" => "Bd"
-			    ],        [
-				"id" => "GeneralLedger/Ledger/ViewBudgets",
-				"full" => $translation->translateLabel('View Budgets'),
-				"href"=> "EnterpriseASPGL/Ledger/LedgerChartOfAccountsBudgetsList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Ledger/ViewPriorFiscalYear",
-				"full" => $translation->translateLabel('View Prior Fiscal Year'),
-				"href"=> "EnterpriseASPGL/Ledger/LedgerChartOfAccountsPriorYearsList",
-				"short" => "Vi"
-			    ]/*,
-				[
-				"id" => "GeneralLedger/Ledger/LedgerTreeviewSample1",
-				"full" => $translation->translateLabel('Ledger Treeview Sample1'),
-				"href"=> "EnterpriseASPGL/Ledger/GLCOATreeView",
-				"short" => "Le"
-				],
-				[
-				"id" => "GeneralLedger/Ledger/LedgerTreeviewSample2",
-				"full" => $translation->translateLabel('Ledger Treeview Sample2'),
-				"href"=> "EnterpriseASPGL/Ledger/GLCOATreeViewSample2",
-				"short" => "Le"
-				]*/
-			]
-		    ],
-		    [
-			"type" => "submenu",
-			"id" => "GeneralLedger/Banking",
-			"full" => $translation->translateLabel('Banking'),
-			"short" => "Ba",
-			"data" => [
-
-			    [
-				"id" => "GeneralLedger/Banking/ViewBankAccounts",
-				"full" => $translation->translateLabel('View Bank Accounts'),
-				"href"=> "EnterpriseASPGL/Banking/BankAccountsList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Banking/ViewBankAccountsContacts",
-				"full" => $translation->translateLabel('View Bank Accounts Contacts'),
-				"href"=> "EnterpriseASPGL/Banking/BankAccountsContactsList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Banking/ViewBankTransactions",
-				"full" => $translation->translateLabel('View Bank Transactions'),
-				"href"=> "EnterpriseASPGL/Banking/BankTransactionsList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/Banking/ReconcileBankAccounts",
-				"full" => $translation->translateLabel('Reconcile Bank Accounts'),
-				"href"=> "EnterpriseASPGL/Banking/BankReconciliationList",
-				"short" => "Re"
-			    ],
-			    [
-				"id" => "GeneralLedger/Banking/ViewBankReconciliations",
-				"full" => $translation->translateLabel('View Bank Reconciliations'),
-				"href"=> "EnterpriseASPGL/Banking/BankReconciliationSummaryList",
-				"short" => "Vi"
-			    ]
-			]
-		    ],
-		    [
-			"type" => "submenu",
-			"id" => "GeneralLedger/FixedAssets",
-			"full" => $translation->translateLabel('Fixed Assets'),
-			"short" => "Fi",
-			"data" => [
-			    [
-				"id" => "GeneralLedger/FixedAssets/ViewAssets",
-				"full" => $translation->translateLabel('View Assets '),
-				"href"=> "EnterpriseASPGL/FixedAssets/FixedAssetsList",
-				"short" => "Vi"
-			    ]
-			]
-		    ],
-		    [
-			"type" => "submenu",
-			"id" => "GeneralLedger/LedgerSetup",
-			"full" => $translation->translateLabel('Ledger Setup'),
-			"short" => "Le",
-			"data" => [
-			    [
-				"id" => "GeneralLedger/LedgerSetup/ViewStoredChartofAccounts",
-				"full" => $translation->translateLabel('View Stored Chart of Accounts'),
-				"href"=> "EnterpriseASPGL/LedgerSetup/LedgerStoredChartOfAccountsList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/Currencies",
-				"full" => $translation->translateLabel('Currencies'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CurrencyTypesList",
-				"short" => "Cu"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/ClosePeriod",
-				"full" => $translation->translateLabel('Close Period'),
-				"href_ended" => "GeneralLedger/LedgerSetup/ClosePeriod&mode=edit&category=Main&item=" . $keyString,
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerPeriodCloseDetail",
-				"short" => "Cl"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/CloseYear",
-				"full" => $translation->translateLabel('Close Year'),
-				"href_ended" => "GeneralLedger/LedgerSetup/CloseYear&mode=view&category=Main&item=" . $keyString,
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",
-				"short" => "Cl"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/LedgerTransactionTypes",
-				"full" => $translation->translateLabel('Ledger Transaction Types'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerTransactionTypesList",
-				"short" => "Le"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/LedgerBalanceTypes",
-				"full" => $translation->translateLabel('Ledger Balance Types'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerBalanceTypeList",
-				"short" => "Le"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/LedgerAccountTypes",
-				"full" => $translation->translateLabel('Ledger Account Types'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerAccountTypesList",
-				"short" => "Le"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/BankTransactionTypes",
-				"full" => $translation->translateLabel('Bank Transaction Types'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/BankTransactionTypesList",
-				"short" => "Ba"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/AssetType",
-				"full" => $translation->translateLabel('Asset Type'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetTypeList",
-				"short" => "As"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/AssetStatus",
-				"full" => $translation->translateLabel('Asset Status'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetStatusList",
-				"short" => "As"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/DepreciationMethods",
-				"full" => $translation->translateLabel('Depreciation Methods'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetDepreciationMethodsList",
-				"short" => "De"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/ControlNumbers",
-				"full" => $translation->translateLabel('Control Numbers'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/ControlNumbersList",
-				"short" => "De"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/OFXImport",
-				"full" => $translation->translateLabel('QFX & OFX Import'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/OFXImportList",
-				"short" => "De"
-			    ]
-			]
-		    ]
-		]
-	    ],
-	    [
-		"type" => "submenu",
 		"id" => "CRMHelpDesk",
 		"full" => $translation->translateLabel('CRM'),
 		"short" => "CR",
@@ -1428,6 +1550,12 @@ $leftMenu = [
 			"id" => "CRMHelpDesk/CRM/ViewLeads",
 			"full" => $translation->translateLabel('View Leads'),
 			"href"=> "EnterpriseASPHelpDesk/CRM/LeadInformationList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "AccountsReceivable/OrderScreens/ViewQuotes",
+			"full" => $translation->translateLabel('View Quotes'),
+			"href"=> "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
 			"short" => "Vi"
 		    ],
 		    [
@@ -2055,580 +2183,10 @@ $leftMenu = [
 	    ],
 	    [
 		"type" => "submenu",
-		"id" => "SystemSetup",
-		"full" => $translation->translateLabel('System Setup'),
-		"short" => "Sy",
-		"data" => [
-
-		    [
-			"type" => "submenu",
-			"id" => "SystemSetup/CompanySetup",
-			"full" => $translation->translateLabel('Company Setup'),
-			"short" => "Co",
-			"data" => [
-
-			    [
-				"id" => "SystemSetup/CompanySetup/CompanySetup",
-				"full" => $translation->translateLabel('Company Setup'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/CompanyDisplayLanguages",
-				"full" => $translation->translateLabel('Company Display Languages'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesDisplayLangList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/SystemWideMessage",
-				"full" => $translation->translateLabel('System Wide Message'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesSystemWideMessageDetail",
-				"short" => "Sy"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/CompanyWorkflowByEmployees",
-				"full" => $translation->translateLabel('Company Workflow By Employees'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesWorkflowByEmployeesList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/CompanyWorkflowTypes",
-				"full" => $translation->translateLabel('Company Workflow Types'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesWorkFlowTypesList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/DivisionSetup",
-				"full" => $translation->translateLabel('Division Setup'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/DivisionsList",
-				"short" => "Di"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/DepartmentSetup",
-				"full" => $translation->translateLabel('Department Setup'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/DepartmentsList",
-				"short" => "De"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/CompanyIDNumbers",
-				"full" => $translation->translateLabel('Company ID Numbers'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesNextNumbersList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/CreditCardTypes",
-				"full" => $translation->translateLabel('Credit Card Types'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CreditCardTypesList",
-				"short" => "Cr"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/Currencies",
-				"full" => $translation->translateLabel('Currencies'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CurrencyTypesList",
-				"short" => "Cu"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/TaxItems",
-				"full" => $translation->translateLabel('Tax Items'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/TaxesList",
-				"short" => "Ta"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/TaxGroupDetails",
-				"full" => $translation->translateLabel('Tax Group Details'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/TaxGroupDetailList",
-				"short" => "Ta"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/TaxGroups",
-				"full" => $translation->translateLabel('Tax Groups'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/TaxGroupsList",
-				"short" => "Ta"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/Terms",
-				"full" => $translation->translateLabel('Terms'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/TermsList",
-				"short" => "Te"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/POSSetup",
-				"full" => $translation->translateLabel('POS Setup'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/POSSetupDetail",
-				"short" => "PO"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/ShipmentMethods",
-				"full" => $translation->translateLabel('Shipment Methods'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/ShipmentMethodsList",
-				"short" => "Sh"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/Warehouses",
-				"full" => $translation->translateLabel('Warehouses'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/WarehousesList",
-				"short" => "Wa"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/WarehouseBins",
-				"full" => $translation->translateLabel('Warehouse Bins'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/WarehouseBinsList",
-				"short" => "Wa"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/WarehouseBinTypes",
-				"full" => $translation->translateLabel('Warehouse Bin Types'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/WarehouseBinTypesList",
-				"short" => "Wa"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/WarehouseBinZones",
-				"full" => $translation->translateLabel('Warehouse Bin Zones'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/WarehouseBinZonesList",
-				"short" => "Wa"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/WarehouseContacts",
-				"full" => $translation->translateLabel('Warehouse Contacts'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/WarehousesContactsList",
-				"short" => "Wa"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/ContactIndustries",
-				"full" => $translation->translateLabel('Contact Industries'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/ContactIndustryList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/ContactRegions",
-				"full" => $translation->translateLabel('Contact Regions'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/ContactRegionsList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/ContactSources",
-				"full" => $translation->translateLabel('Contact Sources'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/ContactSourceList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/ContactTypes",
-				"full" => $translation->translateLabel('Contact Types'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/ContactTypeList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/TranslationTable",
-				"full" => $translation->translateLabel('Translation Table'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/Translation",
-				"short" => "Tr"
-			    ],
-			    [
-				"id" => "SystemSetup/CompanySetup/TimeUnits",
-				"full" => $translation->translateLabel('Time Units'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/TimeUnitsList",
-				"short" => "Ti"
-			    ]
-			]
-		    ],
-		    [
-			"type" => "submenu",
-			"id" => "SystemSetup/SecuritySetup",
-			"full" => $translation->translateLabel('Security Setup'),
-			"short" => "Se",
-			"data" => [
-
-			    [
-				"id" => "SystemSetup/SecuritySetup/SecuritySetup",
-				"full" => $translation->translateLabel('Security Setup'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/AccessPermissionsList",
-				"short" => "Se"
-			    ],
-			    [
-				"id" => "SystemSetup/SecuritySetup/UnlockRecords",
-				"full" => $translation->translateLabel('Unlock Records'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/Unlock",
-				"short" => "Un"
-			    ],
-			    [
-				"id" => "SystemSetup/SecuritySetup/SystemErrorLog",
-				"full" => $translation->translateLabel('System Error Log'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/ErrorLogList",
-				"short" => "Sy"
-			    ],
-			    [
-				"id" => "SystemSetup/SecuritySetup/AuditDescription",
-				"full" => $translation->translateLabel('Audit Description'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/AuditTablesDescriptionList",
-				"short" => "Au"
-			    ],
-			    [
-				"id" => "SystemSetup/SecuritySetup/AuditTrail",
-				"full" => $translation->translateLabel('Audit Trail'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/AuditTrailList",
-				"short" => "Au"
-			    ],
-			    [
-				"id" => "SystemSetup/SecuritySetup/AuditTrailHistory",
-				"full" => $translation->translateLabel('Audit Trail History'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/AuditTrailHistoryList",
-				"short" => "Au"
-			    ],
-			    [
-				"id" => "SystemSetup/SecuritySetup/AuditLogin",
-				"full" => $translation->translateLabel('Audit Login'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/AuditLoginList",
-				"short" => "Au"
-			    ],
-			    [
-				"id" => "SystemSetup/SecuritySetup/AuditLoginHistory",
-				"full" => $translation->translateLabel('Audit Login History'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/AuditLoginHistoryList",
-				"short" => "Au"
-			    ]
-			]
-		    ],
-		    [
-			"type" => "submenu",
-			"id" => "SystemSetup/LedgerSetup",
-			"full" => $translation->translateLabel('Ledger Setup'),
-			"short" => "Le",
-			"data" => [
-			    [
-				"id" => "GeneralLedger/LedgerSetup/ViewStoredChartofAccounts",
-				"full" => $translation->translateLabel('View Stored Chart of Accounts'),
-				"href"=> "EnterpriseASPGL/LedgerSetup/LedgerStoredChartOfAccountsList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/Currencies",
-				"full" => $translation->translateLabel('Currencies'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/CurrencyTypesList",
-				"short" => "Cu"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/ClosePeriod",
-				"full" => $translation->translateLabel('Close Period'),
-				"href_ended" => "SystemSetup/LedgerSetup/ClosePeriod&mode=edit&category=Main&item=" . $keyString,
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerPeriodCloseDetail",
-				"short" => "Cl"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/CloseYear",
-				"full" => $translation->translateLabel('Close Year'),
-				"href_ended" => "SystemSetup/LedgerSetup/CloseYear&mode=view&category=Main&item=" . $keyString,
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",
-				"short" => "Cl"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/LedgerTransactionTypes",
-				"full" => $translation->translateLabel('Ledger Transaction Types'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerTransactionTypesList",
-				"short" => "Le"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/LedgerBalanceTypes",
-				"full" => $translation->translateLabel('Ledger Balance Types'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerBalanceTypeList",
-				"short" => "Le"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/LedgerAccountTypes",
-				"full" => $translation->translateLabel('Ledger Account Types'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerAccountTypesList",
-				"short" => "Le"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/BankTransactionTypes",
-				"full" => $translation->translateLabel('Bank Transaction Types'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/BankTransactionTypesList",
-				"short" => "Ba"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/AssetType",
-				"full" => $translation->translateLabel('Asset Type'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetTypeList",
-				"short" => "As"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/AssetStatus",
-				"full" => $translation->translateLabel('Asset Status'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetStatusList",
-				"short" => "As"
-			    ],
-			    [
-				"id" => "SystemSetup/LedgerSetup/DepreciationMethods",
-				"full" => $translation->translateLabel('Depreciation Methods'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetDepreciationMethodsList",
-				"short" => "De"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/ControlNumbers",
-				"full" => $translation->translateLabel('Control Numbers'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/ControlNumbersList",
-				"short" => "De"
-			    ],
-			    [
-				"id" => "GeneralLedger/LedgerSetup/OFXImport",
-				"full" => $translation->translateLabel('QFX & OFX Import'),
-				"href"=> "EnterpriseASPSystem/LedgerSetup/OFXImportList",
-				"short" => "De"
-			    ]
-			]
-		    ],
-		    [
-			"type" => "submenu",
-			"id" => "SystemSetup/AccountsReceivableSetup",
-			"full" => $translation->translateLabel('Accounts Receivable Setup'),
-			"short" => "Ac",
-			"data" => [
-
-			    [
-				"id" => "SystemSetup/AccountsReceivableSetup/ARTransactionTypes",
-				"full" => $translation->translateLabel('AR Transaction Types'),
-				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ARTransactionTypesList",
-				"short" => "AR"
-			    ],
-			    [
-				"id" => "SystemSetup/AccountsReceivableSetup/ContractTypes",
-				"full" => $translation->translateLabel('Contract Types'),
-				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ContractTypesList",
-				"short" => "Co"
-			    ],
-			    [
-				"id" => "SystemSetup/AccountsReceivableSetup/OrderTypes",
-				"full" => $translation->translateLabel('Order Types'),
-				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/OrderTypesList",
-				"short" => "Or"
-			    ],
-			    [
-				"id" => "SystemSetup/AccountsReceivableSetup/ReceiptTypes",
-				"full" => $translation->translateLabel('Receipt Types'),
-				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ReceiptTypesList",
-				"short" => "Re"
-			    ],
-			    [
-				"id" => "SystemSetup/AccountsReceivableSetup/ReceiptClasses",
-				"full" => $translation->translateLabel('Receipt Classes'),
-				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ReceiptClassList",
-				"short" => "Re"
-			    ],
-			    [
-				"id" => "SystemSetup/AccountsReceivableSetup/ReceiptMethods",
-				"full" => $translation->translateLabel('Receipt Methods'),
-				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ReceiptMethodsList",
-				"short" => "Re"
-			    ],
-			    [
-				"id" => "SystemSetup/AccountsReceivableSetup/SalesGroups",
-				"full" => $translation->translateLabel('Sales Groups'),
-				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/SalesGroupList",
-				"short" => "Sa"
-			    ]
-			]
-		    ],
-		    [
-			"type" => "submenu",
-			"id" => "SystemSetup/AccountsPayableSetup",
-			"full" => $translation->translateLabel('Accounts Payable Setup'),
-			"short" => "Ac",
-			"data" => [
-
-			    [
-				"id" => "SystemSetup/AccountsPayableSetup/APTransactionTypes",
-				"full" => $translation->translateLabel('AP Transaction Types'),
-				"href"=> "EnterpriseASPSystem/AccountsPayableSetup/APTransactionTypesList",
-				"short" => "AP"
-			    ],
-			    [
-				"id" => "SystemSetup/AccountsPayableSetup/PaymentClasses",
-				"full" => $translation->translateLabel('Payment Classes'),
-				"href"=> "EnterpriseASPSystem/AccountsPayableSetup/PaymentClassesList",
-				"short" => "Pa"
-			    ],
-			    [
-				"id" => "SystemSetup/AccountsPayableSetup/PaymentTypes",
-				"full" => $translation->translateLabel('Payment Types'),
-				"href"=> "EnterpriseASPSystem/AccountsPayableSetup/PaymentTypesList",
-				"short" => "Pa"
-			    ],
-			    [
-				"id" => "SystemSetup/AccountsPayableSetup/PaymentMethods",
-				"full" => $translation->translateLabel('Payment Methods'),
-				"href"=> "EnterpriseASPSystem/AccountsPayableSetup/PaymentMethodsList",
-				"short" => "Pa"
-			    ]
-			]
-		    ],
-		    /*    [
-		       "type" => "submenu",
-		       "id" => "SystemSetup/EDISetup",
-		       "full" => $translation->translateLabel('EDI Setup '),
-		       "short" => "ED",
-		       "data" => [
-
-		       [
-		       "id" => "SystemSetup/EDISetup/EDISetup",
-		       "full" => $translation->translateLabel('EDI Setup'),
-		       "href"=> "EnterpriseASPSystem/EDISetup/EDISetupList",
-		       "short" => "ED"
-		       ],
-		       [
-		       "id" => "SystemSetup/EDISetup/EDIDocumentTypes",
-		       "full" => $translation->translateLabel('EDI Document Types'),
-		       "href"=> "EnterpriseASPSystem/EDISetup/EDIDocumentTypesList",
-		       "short" => "ED"
-		       ],
-		       [
-		       "id" => "SystemSetup/EDISetup/EDIDocumentDirections",
-		       "full" => $translation->translateLabel('EDI Document Directions'),
-		       "href"=> "EnterpriseASPSystem/EDISetup/EDIDirectionList",
-		       "short" => "ED"
-		       ],
-		       [
-		       "id" => "SystemSetup/EDISetup/EDIExceptions",
-		       "full" => $translation->translateLabel('EDI Exceptions'),
-		       "href"=> "EnterpriseASPSystem/EDISetup/EDIExceptionsList",
-		       "short" => "ED"
-		       ],
-		       [
-		       "id" => "SystemSetup/EDISetup/EDIExceptionTypes",
-		       "full" => $translation->translateLabel('EDI Exception Types'),
-		       "href"=> "EnterpriseASPSystem/EDISetup/EDIExceptionTypesList",
-		       "short" => "ED"
-		       ]
-		       ]
-		       ]*/
-		]
-	    ],
-	    [
-		"type" => "submenu",
 		"id" => "Reports",
 		"full" => $translation->translateLabel('Reports'),
 		"short" => "Re",
 		"data" => [
-		    [
-			"type" => "submenu",
-			"id" => "Reports/Financials",
-			"full" => $translation->translateLabel('Financials'),
-			"short" => "Fi",
-			"data" => [
-			    [
-				"id" => "Reports/Financials/GaapMain",
-				"type" => "relativeLink",
-				"full" => $translation->translateLabel('Gaap Financials'),
-				"href"=> "page=financials&type=gaap&module=main",
-				"short" => "Le"
-			    ],
-			    [
-				"type" => "submenu",
-				"id" => "Reports/Financials/GaapAgedReports",
-				"full" => $translation->translateLabel('Gaap Aged Reports'),
-				"short" => "Ga",
-				"data" => [
-				    [
-					"id" => "Reports/Financials/GaapAgedReports/AgedPayables",
-					"full" => $translation->translateLabel('Aged Payables'),
-					"type" => "relativeLink",
-					"target" => "_blank",
-					"href"=> "page=financials&type=gaap&module=AgedPayablesSummary",
-					"short" => "Ag"
-				    ],
-				    [
-					"id" => "Reports/Financials/GaapAgedReports/AgedPayablesComparative",
-					"full" => $translation->translateLabel('Aged Payables Comparative'),
-					"type" => "relativeLink",
-					"target" => "_blank",
-					"href"=> "page=financials&type=gaap&module=AgedPayablesSummaryComparative",
-					"short" => "Ag"
-				    ],
-				    [
-					"id" => "Reports/Financials/GaapAgedReports/AgedPayablesYTD",
-					"full" => $translation->translateLabel('Aged Payables YTD'),
-					"type" => "relativeLink",
-					"target" => "_blank",
-					"href"=> "page=financials&type=gaap&module=AgedPayablesSummaryYTD",
-					"short" => "Ag"
-				    ],
-				    [
-					"id" => "Reports/Financials/GaapAgedReports/AgedReceivables",
-					"full" => $translation->translateLabel('Aged Receivables'),
-					"type" => "relativeLink",
-					"target" => "_blank",
-					"href"=> "page=financials&type=gaap&module=AgedReceivablesSummary",
-					"short" => "Ag"
-				    ],
-				    [
-					"id" => "Reports/Financials/GaapAgedReports/AgedReceivablesComparative",
-					"full" => $translation->translateLabel('Aged Receivables Comparative'),
-					"type" => "relativeLink",
-					"target" => "_blank",
-					"href"=> "page=financials&type=gaap&module=AgedReceivablesSummaryComparative",
-					"short" => "Ag"
-				    ],
-				    [
-					"id" => "Reports/Financials/GaapAgedReports/AgedReceivablesYTD",
-					"full" => $translation->translateLabel('Aged Receivables YTD'),
-					"type" => "relativeLink",
-					"target" => "_blank",
-					"href"=> "page=financials&type=gaap&module=AgedReceivablesSummaryYTD",
-					"short" => "Ag"
-				    ]
-				]
-			    ],
-			    [
-				"id" => "Reports/Financials/GaapWorksheets",
-				"type" => "relativeLink",
-				"target" => "_blank",
-				"full" => $translation->translateLabel('Worksheets'),
-				"href"=> "page=financials&type=common&module=worksheets",
-				"short" => "Le"
-			    ]
-			    /*[
-			       "type" => "submenu",
-			       "id" => "Reports/Financials/IFRSAgedReports",
-			       "full" => $translation->translateLabel('IFRS Aged Reports'),
-			       "short" => "IF",
-			       "data" => [
-
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayables",
-			       "full" => $translation->translateLabel('Aged Payables'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedPayablesSummary",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayablesComparative",
-			       "full" => $translation->translateLabel('Aged Payables Comparative'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedPayablesSummaryComparative",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayablesYTD",
-			       "full" => $translation->translateLabel('Aged Payables YTD'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedPayablesSummaryYTD",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivables",
-			       "full" => $translation->translateLabel('Aged Receivables'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummary",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivablesComparative",
-			       "full" => $translation->translateLabel('Aged Receivables Comparative'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummaryComparative",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivablesYTD",
-			       "full" => $translation->translateLabel('Aged Receivables YTD'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummaryYTD",
-			       "short" => "Ag"
-			       ]*/
-			]
-		    ],
 		    [
 			"type" => "submenu",
 			"id" => "Reports/AccountsReceivableReports",
@@ -3829,6 +3387,454 @@ $leftMenu = [
 			    ]
 			]
 		    ]
+		]
+	    ],
+	    [
+		"type" => "submenu",
+		"id" => "SystemSetup",
+		"full" => $translation->translateLabel('System Setup'),
+		"short" => "Sy",
+		"data" => [
+
+		    [
+			"type" => "submenu",
+			"id" => "SystemSetup/CompanySetup",
+			"full" => $translation->translateLabel('Company Setup'),
+			"short" => "Co",
+			"data" => [
+
+			    [
+				"id" => "SystemSetup/CompanySetup/CompanySetup",
+				"full" => $translation->translateLabel('Company Setup'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/CompanyDisplayLanguages",
+				"full" => $translation->translateLabel('Company Display Languages'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesDisplayLangList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/SystemWideMessage",
+				"full" => $translation->translateLabel('System Wide Message'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesSystemWideMessageDetail",
+				"short" => "Sy"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/CompanyWorkflowByEmployees",
+				"full" => $translation->translateLabel('Company Workflow By Employees'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesWorkflowByEmployeesList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/CompanyWorkflowTypes",
+				"full" => $translation->translateLabel('Company Workflow Types'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesWorkFlowTypesList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/DivisionSetup",
+				"full" => $translation->translateLabel('Division Setup'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/DivisionsList",
+				"short" => "Di"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/DepartmentSetup",
+				"full" => $translation->translateLabel('Department Setup'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/DepartmentsList",
+				"short" => "De"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/CompanyIDNumbers",
+				"full" => $translation->translateLabel('Company ID Numbers'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CompaniesNextNumbersList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/CreditCardTypes",
+				"full" => $translation->translateLabel('Credit Card Types'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CreditCardTypesList",
+				"short" => "Cr"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/Currencies",
+				"full" => $translation->translateLabel('Currencies'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CurrencyTypesList",
+				"short" => "Cu"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/TaxItems",
+				"full" => $translation->translateLabel('Tax Items'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/TaxesList",
+				"short" => "Ta"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/TaxGroupDetails",
+				"full" => $translation->translateLabel('Tax Group Details'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/TaxGroupDetailList",
+				"short" => "Ta"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/TaxGroups",
+				"full" => $translation->translateLabel('Tax Groups'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/TaxGroupsList",
+				"short" => "Ta"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/Terms",
+				"full" => $translation->translateLabel('Terms'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/TermsList",
+				"short" => "Te"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/POSSetup",
+				"full" => $translation->translateLabel('POS Setup'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/POSSetupDetail",
+				"short" => "PO"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/ShipmentMethods",
+				"full" => $translation->translateLabel('Shipment Methods'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/ShipmentMethodsList",
+				"short" => "Sh"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/Warehouses",
+				"full" => $translation->translateLabel('Warehouses'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/WarehousesList",
+				"short" => "Wa"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/WarehouseBins",
+				"full" => $translation->translateLabel('Warehouse Bins'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/WarehouseBinsList",
+				"short" => "Wa"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/WarehouseBinTypes",
+				"full" => $translation->translateLabel('Warehouse Bin Types'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/WarehouseBinTypesList",
+				"short" => "Wa"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/WarehouseBinZones",
+				"full" => $translation->translateLabel('Warehouse Bin Zones'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/WarehouseBinZonesList",
+				"short" => "Wa"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/WarehouseContacts",
+				"full" => $translation->translateLabel('Warehouse Contacts'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/WarehousesContactsList",
+				"short" => "Wa"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/ContactIndustries",
+				"full" => $translation->translateLabel('Contact Industries'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/ContactIndustryList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/ContactRegions",
+				"full" => $translation->translateLabel('Contact Regions'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/ContactRegionsList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/ContactSources",
+				"full" => $translation->translateLabel('Contact Sources'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/ContactSourceList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/ContactTypes",
+				"full" => $translation->translateLabel('Contact Types'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/ContactTypeList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/TranslationTable",
+				"full" => $translation->translateLabel('Translation Table'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/Translation",
+				"short" => "Tr"
+			    ],
+			    [
+				"id" => "SystemSetup/CompanySetup/TimeUnits",
+				"full" => $translation->translateLabel('Time Units'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/TimeUnitsList",
+				"short" => "Ti"
+			    ]
+			]
+		    ],
+		    [
+			"type" => "submenu",
+			"id" => "SystemSetup/SecuritySetup",
+			"full" => $translation->translateLabel('Security Setup'),
+			"short" => "Se",
+			"data" => [
+
+			    [
+				"id" => "SystemSetup/SecuritySetup/SecuritySetup",
+				"full" => $translation->translateLabel('Security Setup'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/AccessPermissionsList",
+				"short" => "Se"
+			    ],
+			    [
+				"id" => "SystemSetup/SecuritySetup/UnlockRecords",
+				"full" => $translation->translateLabel('Unlock Records'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/Unlock",
+				"short" => "Un"
+			    ],
+			    [
+				"id" => "SystemSetup/SecuritySetup/SystemErrorLog",
+				"full" => $translation->translateLabel('System Error Log'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/ErrorLogList",
+				"short" => "Sy"
+			    ],
+			    [
+				"id" => "SystemSetup/SecuritySetup/AuditDescription",
+				"full" => $translation->translateLabel('Audit Description'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/AuditTablesDescriptionList",
+				"short" => "Au"
+			    ],
+			    [
+				"id" => "SystemSetup/SecuritySetup/AuditTrail",
+				"full" => $translation->translateLabel('Audit Trail'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/AuditTrailList",
+				"short" => "Au"
+			    ],
+			    [
+				"id" => "SystemSetup/SecuritySetup/AuditTrailHistory",
+				"full" => $translation->translateLabel('Audit Trail History'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/AuditTrailHistoryList",
+				"short" => "Au"
+			    ],
+			    [
+				"id" => "SystemSetup/SecuritySetup/AuditLogin",
+				"full" => $translation->translateLabel('Audit Login'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/AuditLoginList",
+				"short" => "Au"
+			    ],
+			    [
+				"id" => "SystemSetup/SecuritySetup/AuditLoginHistory",
+				"full" => $translation->translateLabel('Audit Login History'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/AuditLoginHistoryList",
+				"short" => "Au"
+			    ]
+			]
+		    ],
+		    [
+			"type" => "submenu",
+			"id" => "SystemSetup/LedgerSetup",
+			"full" => $translation->translateLabel('Ledger Setup'),
+			"short" => "Le",
+			"data" => [
+			    [
+				"id" => "GeneralLedger/LedgerSetup/ViewStoredChartofAccounts",
+				"full" => $translation->translateLabel('View Stored Chart of Accounts'),
+				"href"=> "EnterpriseASPGL/LedgerSetup/LedgerStoredChartOfAccountsList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/Currencies",
+				"full" => $translation->translateLabel('Currencies'),
+				"href"=> "EnterpriseASPSystem/CompanySetup/CurrencyTypesList",
+				"short" => "Cu"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/ClosePeriod",
+				"full" => $translation->translateLabel('Close Period'),
+				"href_ended" => "SystemSetup/LedgerSetup/ClosePeriod&mode=edit&category=Main&item=" . $keyString,
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerPeriodCloseDetail",
+				"short" => "Cl"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/CloseYear",
+				"full" => $translation->translateLabel('Close Year'),
+				"href_ended" => "SystemSetup/LedgerSetup/CloseYear&mode=view&category=Main&item=" . $keyString,
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerYearCloseDetail",
+				"short" => "Cl"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/LedgerTransactionTypes",
+				"full" => $translation->translateLabel('Ledger Transaction Types'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerTransactionTypesList",
+				"short" => "Le"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/LedgerBalanceTypes",
+				"full" => $translation->translateLabel('Ledger Balance Types'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerBalanceTypeList",
+				"short" => "Le"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/LedgerAccountTypes",
+				"full" => $translation->translateLabel('Ledger Account Types'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/LedgerAccountTypesList",
+				"short" => "Le"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/BankTransactionTypes",
+				"full" => $translation->translateLabel('Bank Transaction Types'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/BankTransactionTypesList",
+				"short" => "Ba"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/AssetType",
+				"full" => $translation->translateLabel('Asset Type'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetTypeList",
+				"short" => "As"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/AssetStatus",
+				"full" => $translation->translateLabel('Asset Status'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetStatusList",
+				"short" => "As"
+			    ],
+			    [
+				"id" => "SystemSetup/LedgerSetup/DepreciationMethods",
+				"full" => $translation->translateLabel('Depreciation Methods'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/FixedAssetDepreciationMethodsList",
+				"short" => "De"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/ControlNumbers",
+				"full" => $translation->translateLabel('Control Numbers'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/ControlNumbersList",
+				"short" => "De"
+			    ],
+			    [
+				"id" => "GeneralLedger/LedgerSetup/OFXImport",
+				"full" => $translation->translateLabel('QFX & OFX Import'),
+				"href"=> "EnterpriseASPSystem/LedgerSetup/OFXImportList",
+				"short" => "De"
+			    ]
+			]
+		    ],
+		    [
+			"type" => "submenu",
+			"id" => "SystemSetup/AccountsReceivableSetup",
+			"full" => $translation->translateLabel('Accounts Receivable Setup'),
+			"short" => "Ac",
+			"data" => [
+
+			    [
+				"id" => "SystemSetup/AccountsReceivableSetup/ARTransactionTypes",
+				"full" => $translation->translateLabel('AR Transaction Types'),
+				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ARTransactionTypesList",
+				"short" => "AR"
+			    ],
+			    [
+				"id" => "SystemSetup/AccountsReceivableSetup/ContractTypes",
+				"full" => $translation->translateLabel('Contract Types'),
+				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ContractTypesList",
+				"short" => "Co"
+			    ],
+			    [
+				"id" => "SystemSetup/AccountsReceivableSetup/OrderTypes",
+				"full" => $translation->translateLabel('Order Types'),
+				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/OrderTypesList",
+				"short" => "Or"
+			    ],
+			    [
+				"id" => "SystemSetup/AccountsReceivableSetup/ReceiptTypes",
+				"full" => $translation->translateLabel('Receipt Types'),
+				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ReceiptTypesList",
+				"short" => "Re"
+			    ],
+			    [
+				"id" => "SystemSetup/AccountsReceivableSetup/ReceiptClasses",
+				"full" => $translation->translateLabel('Receipt Classes'),
+				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ReceiptClassList",
+				"short" => "Re"
+			    ],
+			    [
+				"id" => "SystemSetup/AccountsReceivableSetup/ReceiptMethods",
+				"full" => $translation->translateLabel('Receipt Methods'),
+				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/ReceiptMethodsList",
+				"short" => "Re"
+			    ],
+			    [
+				"id" => "SystemSetup/AccountsReceivableSetup/SalesGroups",
+				"full" => $translation->translateLabel('Sales Groups'),
+				"href"=> "EnterpriseASPSystem/AccountsReceivableSetup/SalesGroupList",
+				"short" => "Sa"
+			    ]
+			]
+		    ],
+		    [
+			"type" => "submenu",
+			"id" => "SystemSetup/AccountsPayableSetup",
+			"full" => $translation->translateLabel('Accounts Payable Setup'),
+			"short" => "Ac",
+			"data" => [
+
+			    [
+				"id" => "SystemSetup/AccountsPayableSetup/APTransactionTypes",
+				"full" => $translation->translateLabel('AP Transaction Types'),
+				"href"=> "EnterpriseASPSystem/AccountsPayableSetup/APTransactionTypesList",
+				"short" => "AP"
+			    ],
+			    [
+				"id" => "SystemSetup/AccountsPayableSetup/PaymentClasses",
+				"full" => $translation->translateLabel('Payment Classes'),
+				"href"=> "EnterpriseASPSystem/AccountsPayableSetup/PaymentClassesList",
+				"short" => "Pa"
+			    ],
+			    [
+				"id" => "SystemSetup/AccountsPayableSetup/PaymentTypes",
+				"full" => $translation->translateLabel('Payment Types'),
+				"href"=> "EnterpriseASPSystem/AccountsPayableSetup/PaymentTypesList",
+				"short" => "Pa"
+			    ],
+			    [
+				"id" => "SystemSetup/AccountsPayableSetup/PaymentMethods",
+				"full" => $translation->translateLabel('Payment Methods'),
+				"href"=> "EnterpriseASPSystem/AccountsPayableSetup/PaymentMethodsList",
+				"short" => "Pa"
+			    ]
+			]
+		    ],
+		    /*    [
+		       "type" => "submenu",
+		       "id" => "SystemSetup/EDISetup",
+		       "full" => $translation->translateLabel('EDI Setup '),
+		       "short" => "ED",
+		       "data" => [
+
+		       [
+		       "id" => "SystemSetup/EDISetup/EDISetup",
+		       "full" => $translation->translateLabel('EDI Setup'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDISetupList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIDocumentTypes",
+		       "full" => $translation->translateLabel('EDI Document Types'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIDocumentTypesList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIDocumentDirections",
+		       "full" => $translation->translateLabel('EDI Document Directions'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIDirectionList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIExceptions",
+		       "full" => $translation->translateLabel('EDI Exceptions'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIExceptionsList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIExceptionTypes",
+		       "full" => $translation->translateLabel('EDI Exception Types'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIExceptionTypesList",
+		       "short" => "ED"
+		       ]
+		       ]
+		       ]*/
 		]
 	    ]
 	]

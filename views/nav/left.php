@@ -26,7 +26,11 @@
 			foreach($item["data"] as $key=>$subitem){
 			    if(!key_exists("type", $subitem))
 				echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"index.php#/?page=grid&action=" . (key_exists("href_ended", $subitem) ? $subitem["href_ended"] : $subitem["id"]) . "\">" . $subitem["full"] . "</a></li>";
-			    else if($subitem["type"] == "submenu"){
+			    else if($subitem["type"] == "relativeLink"){
+				$href = "index.php" . (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "" : "#/") . "?" . $subitem["href"];
+				echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"" . $href . "\" " . (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $subitem["full"] . "</a></li>";
+				
+			    }else if($subitem["type"] == "submenu"){
 				echo "<li> <a href=\"javascript:void(0)\" class=\"waves-effect\">" . $subitem["full"] . "<span class=\"fa arrow\"></span></a>";
 				echo "<ul class=\"nav nav-third-level collapse\" aria-expanded=\"false\" style=\"height: 0px;\">";
 				foreach($subitem["data"] as $skey=>$ssubitem){
