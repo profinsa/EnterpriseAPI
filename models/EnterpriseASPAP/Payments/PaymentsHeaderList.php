@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/26/2018
+  Last Modified: 11/30/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -150,10 +150,96 @@ class gridData extends gridDataSource{
             ]
         ],
         "Vendor" => [
+            "loadFrom" => [
+                "method" => "getVendorInfo",
+                "key" => "VendorID",
+            ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
+                "defaultValue" => "",
+                "defaultOverride" => "true",
                 "required" => "true",
-                "defaultOverride" => true,
+                "inputType" => "text"
+            ],
+            "AccountStatus" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorName" => [
+                "title" => "Name",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorAddress1" => [
+                "title" => "addr 1",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorAddress2" => [
+                "title" => "addr 2",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorAddress3" => [
+                "title" => "addr 3",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorCity" => [
+                "title" => "City",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorState" => [
+                "title" => "State",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorZip" => [
+                "title" => "Zip",
+                "dbType" => "varchar(10)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorCountry" => [
+                "title" => "Country",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorPhone" => [
+                "title" => "Phone",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorFax" => [
+                "title" => "Fax",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorEmail" => [
+                "title" => "Email",
+                "dbType" => "varchar(60)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorWebPage" => [
+                "title" => "Web",
+                "dbType" => "varchar(80)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Attention" => [
+                "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ]

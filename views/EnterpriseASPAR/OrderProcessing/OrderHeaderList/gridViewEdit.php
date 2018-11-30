@@ -233,64 +233,35 @@ function makeTableItems($values, $fieldsDefinition){
 		<?php foreach($data->editCategories as $key =>$value):  ?>
 		    <?php if($key != '...fields'): ?>
 			<div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
-			    <?php if($key == "Vendor"): ?>
-				<?php
-				$vendorInfo = $data->getVendorInfo($headerItem[property_exists($data, "vendorField") ? $data->vendorField : "VendorID"]);
-				$tableItems = makeTableItems($vendorInfo, $data->vendorFields);
-				$tableCategories = $data->vendorFields;
-				$items = $vendorInfo;
-				?>
-				<div class=" col-md-5 col-xs-5">
-				    <table class="table table-bordered order-entry-main-table ">
-					<tbody id="row_viewer_tbody">
-					    <?php 
-					    foreach($tableItems["leftItems"] as $key =>$value)
-					    renderViewRow($translation, $data, $tableCategories, $items, $key, $value);
-					    ?>
-					</tbody>
-				    </table>
-				</div>
-				<div class="col-md-5 col-xs-5">
-				    <table class="table table-bordered order-entry-main-table">
-					<tbody id="row_viewer_tbody">
-					    <?php 
-					    foreach($tableItems["rightItems"] as $key =>$value)
-					    renderViewRow($translation, $data, $tableCategories,  $items,$key, $value);
-					    ?>
-					</tbody>
-				    </table>
-				</div>
-			    <?php else: ?>
-				<?php
-				//getting record.
-				$item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
-					$data->getNewItem($ascope["item"], $key);
-				$tableCategories = $data->editCategories[$key];
-				$tableItems = makeTableItems($item, $tableCategories);
-				$items = $item;
-				$category = $key;
-				?>
-				<div class=" col-md-5 col-xs-5">
-				    <table class="table table-bordered order-entry-main-table ">
-					<tbody id="row_viewer_tbody">
-					    <?php
-					    foreach($tableItems["leftItems"] as $key =>$value)
-					    renderRow($translation, $ascope, $data, $category, $items, $key, $value);
-					    ?>
-					</tbody>
-				    </table>
-				</div>
-				<div class="col-md-5 col-xs-5">
-				    <table class="table table-bordered order-entry-main-table">
-					<tbody id="row_viewer_tbody">
-					    <?php 
-					    foreach($tableItems["rightItems"] as $key =>$value)
-					    renderRow($translation, $ascope, $data, $category,  $items, $key, $value);
-					    ?>
-					</tbody>
-				    </table>
-				</div>
-			    <?php endif; ?>
+			    <?php
+			    //getting record.
+			    $item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
+				    $data->getNewItem($ascope["item"], $key);
+			    $tableCategories = $data->editCategories[$key];
+			    $tableItems = makeTableItems($item, $tableCategories);
+			    $items = $item;
+			    $category = $key;
+			    ?>
+			    <div class=" col-md-5 col-xs-5">
+				<table class="table table-bordered order-entry-main-table ">
+				    <tbody id="row_viewer_tbody">
+					<?php
+					foreach($tableItems["leftItems"] as $key =>$value)
+					renderRow($translation, $ascope, $data, $category, $items, $key, $value);
+					?>
+				    </tbody>
+				</table>
+			    </div>
+			    <div class="col-md-5 col-xs-5">
+				<table class="table table-bordered order-entry-main-table">
+				    <tbody id="row_viewer_tbody">
+					<?php 
+					foreach($tableItems["rightItems"] as $key =>$value)
+					renderRow($translation, $ascope, $data, $category,  $items, $key, $value);
+					?>
+				    </tbody>
+				</table>
+			    </div>
 			</div>
 		    <?php endif; ?>
 		<?php endforeach; ?>

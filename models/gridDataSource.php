@@ -171,7 +171,15 @@ class gridDataSource{
 			VendorCity As ShippingCity,
 			VendorState As ShippingState,
 			VendorZip As ShippingZip,
-			VendorCountry As ShippingCountry
+			VendorCountry As ShippingCountry,
+			VendorName,
+			VendorAddress1,
+			VendorAddress2,
+			VendorAddress3,
+			VendorCity,
+			VendorState,
+			VendorZip,
+			VendorCountry
             from VendorInformation
    Where CompanyID = '{$user["CompanyID"]}'
    AND DivisionID = '{$user["DivisionID"]}'
