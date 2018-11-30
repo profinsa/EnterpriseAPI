@@ -91,7 +91,7 @@ $dropdownDepends = [];
 				switch($data->editCategories[$category][$key]["inputType"]){
 				    case "text" :
 					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"";
 					if(key_exists("formatFunction", $data->editCategories[$category][$key])){
 					    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
 					    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
@@ -104,7 +104,7 @@ $dropdownDepends = [];
 					
 				    case "datetime" :
 					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" $disabledEdit></div></div>";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" $disabledEdit></div></div>";
 					break;
 
 				    case "file" :
@@ -118,7 +118,7 @@ $dropdownDepends = [];
 					    $disabledEdit = "disabled";
 					//renders checkbox input with label
 					echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." $disabledEdit></div></div>";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"1\" " . ($value ? "checked" : "") ." $disabledEdit></div></div>";
 					break;
 
 				    case "dialogChooser":
@@ -128,7 +128,7 @@ $dropdownDepends = [];
 					    $GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
 					}
 					$GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\"></div></div>";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\"></div></div>";
 					break;
 				    case "dropdown" :
 					if($disabledEdit != ""){
@@ -136,7 +136,7 @@ $dropdownDepends = [];
 					    echo "<input type=\"hidden\" name=\"$key\" value=\"$value\"/>";
 					}
 					//renders select with available values as dropdowns with label
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\">" . $translatedFieldName . "</label><div class=\"col-md-$rightWidth\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\" $disabledEdit>";
+					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\">" . $translatedFieldName . "</label><div class=\"col-md-$rightWidth\"><select class=\"form-control $key\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\" $disabledEdit>";
 					$method = $data->editCategories[$category][$key]["dataProvider"];
 					if(key_exists("depends", $data->editCategories[$category][$key])){
 					    $dropdownDepends[$key] = [

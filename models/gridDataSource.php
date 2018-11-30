@@ -428,7 +428,7 @@ EOF;
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
-        $result = DB::select("SELECT ItemID,IsActive,ItemTypeID,ItemName,ItemDescription,ItemUPCCode,Price from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT ItemID,IsActive,ItemTypeID,ItemName,ItemDescription, ItemUPCCode,Price from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         return [
             "title" => "Item selecting dialog",
@@ -465,7 +465,7 @@ EOF;
                 ]
             ],
             "values" => json_decode(json_encode($result)),
-            "allValues" => json_decode(json_encode(DB::select("SELECT * from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())))
+            "allValues" => json_decode(json_encode(DB::select("SELECT ItemID,IsActive,ItemTypeID,ItemName,ItemUPCCode, ItemDescription as Description, Price as ItemUnitPrice from inventoryitems " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())))
         ];
     }
 
