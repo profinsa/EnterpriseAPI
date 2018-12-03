@@ -523,9 +523,9 @@ $dropdownDepends = [];
 					      else
 						  window.location = "<?php echo $backhref?>";
 					  })
-						   .error(function(err){
-					   console.log('wrong');
-				       });
+					  .error(function(err){
+					      console.log('wrong');
+					  });
 		 }
 	     });
 	     return false;
@@ -562,26 +562,26 @@ $dropdownDepends = [];
                      }
                      catch (e){}
                      $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-				       .success(function(data) {
-					   console.log(localStorage.getItem("autorecalcLink"));
-					   if(localStorage.getItem("autorecalcLink")){
-					       $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-						.success(function(data) {
-						    localStorage.removeItem("autorecalcLink");
-						    localStorage.removeItem("autorecalcData");
-						    window.location = "<?php echo $backhref?>";
-						})
-						.error(function(err){
-						    localStorage.removeItem("autorecalcLink");
-						    localStorage.removeItem("autorecalcData");
-						    window.location = "<?php echo $backhref?>";
-						});
-					   }else
-					   window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back ; ?>";
-				       })
-				       .error(function(err){
-					   console.log('wrong');
-				       });
+		      .success(function(data) {
+			  console.log(localStorage.getItem("autorecalcLink"));
+			  if(localStorage.getItem("autorecalcLink")){
+			      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+			       .success(function(data) {
+				   localStorage.removeItem("autorecalcLink");
+				   localStorage.removeItem("autorecalcData");
+				   window.location = "<?php echo $backhref?>";
+			       })
+			       .error(function(err){
+				   localStorage.removeItem("autorecalcLink");
+				   localStorage.removeItem("autorecalcData");
+				   window.location = "<?php echo $backhref?>";
+			       });
+			  }else
+			  window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back ; ?>";
+		      })
+		      .error(function(err){
+			  console.log('wrong');
+		      });
 		 }
 	     });
 	 }

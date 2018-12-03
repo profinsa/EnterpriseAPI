@@ -1,31 +1,31 @@
 <?php
 /*
-Name of Page: liksMaker model
+  Name of Page: liksMaker model
 
-Method: It makes links to any page of project by properties
+  Method: It makes links to any page of project by properties
 
-Date created: Nikita Zaharov, 05.24.2016
+  Date created: Nikita Zaharov, 05.24.2016
 
-Use: this model used for 
-For creating links to pages of projects using properties as source. 
-Model expose identical api in both projects(NewTechPhp and Enterprise). Because of it, views uses same code to generate 
-different links in interface. This increases the speed of porting features.
+  Use: this model used for 
+  For creating links to pages of projects using properties as source. 
+  Model expose identical api in both projects(NewTechPhp and Enterprise). Because of it, views uses same code to generate 
+  different links in interface. This increases the speed of porting features.
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-any views
+  Called from:
+  any views
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 08.11.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 08.11.2016
+  Last Modified by: Nikita Zaharov
 */
 
 class linksMaker{

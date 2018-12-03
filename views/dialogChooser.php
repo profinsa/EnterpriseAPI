@@ -102,13 +102,50 @@ function writeValue($data, $desc, $value){
 	 }
      }
 
-     console.log(values);
-     //     console.log(JSON.stringify(window['dataDialogChooser' + dialogChooserCurrentField], null, 3));
-     $('#' + dialog).modal('hide');
-     $('#' + dialogChooserCurrentField).val(value);
-     for(ind in values){ //foreach fields for working with fiels transformation array
-	 $('.' + ind).val(values[ind]);
-//	 console.log($('#' + ind));
+     if(dialogChooserCurrentField == "ItemID"){
+	 console.log(dialogChooserCurrentField);
+	 //console.log(JSON.stringify(<?php echo json_encode($data) ?>, null, 3));
+	 var TransactionNumber;
+	 switch("<?php echo $data->tableName; ?>"){
+	     case "orderdetail" :
+	     case "contractsdetail" :
+		 TransactionNumber = $('.OrderNumber').val();
+		 break;
+	     case "invoicedetail" :
+		 TransactionNumber = $('.InvoiceNumber').val();
+		 break;
+	     case "purchasedetail" :
+		 TransactionNumber = $('.PurchaseNumber').val();
+		 break;		 
+	 }
+	 console.log(TransactionNumber, "<?php echo $data->tableName; ?>");
+	     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "Inventory_PopulateItemInfo"); ?>", {
+		 "ItemID" : value,
+		 "TransactionNumber" : TransactionNumber,
+		 "ParentTable" : "<?php echo $data->parentTableName; ?>",
+		 "Qty" : 1
+	     }, null, 'json')
+	      .success(function(data){
+		  values = data;
+		  $('#' + dialog).modal('hide');
+		  $('#' + dialogChooserCurrentField).val(value);
+		  for(ind in values){ //foreach fields for working with fiels transformation array
+		      $('.' + ind).val(values[ind]);
+		      //	 console.log($('#' + ind));
+		  }
+	      })
+	      .error(function(err){
+		  console.log("something wrong: " + JSON.err);
+	      });
+     }else{
+	 //     console.log(values);
+	 //     console.log(JSON.stringify(window['dataDialogChooser' + dialogChooserCurrentField], null, 3));
+	 $('#' + dialog).modal('hide');
+	 $('#' + dialogChooserCurrentField).val(value);
+	 for(ind in values){ //foreach fields for working with fiels transformation array
+	     $('.' + ind).val(values[ind]);
+	     //	 console.log($('#' + ind));
+	 }
      }
  }
 </script>

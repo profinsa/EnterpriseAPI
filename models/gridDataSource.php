@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 19/11/2018
+  Last Modified: 11/30/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -1230,6 +1230,19 @@ EOF;
             ];
         
         return $res;
+    }
+
+    public function Inventory_PopulateItemInfo(){
+        $user = Session::get("user");
+
+        DB::statement("call Inventory_PopulateItemInfo('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$_POST["ItemID"]}', '{$_POST["TransactionNumber"]}', '{$_POST["ParentTable"]}', {$_POST["Qty"]}, @Result, @Description, @ItemUOM, @ItemWeight, @DiscountPercent, @WarehouseID, @WarehouseBinID, @GLAccount, @ItemCost, @ItemPrice, @Serialized, @SerialNumber, @Taxable, @TaxGroupID, @PopulateResult, @SWP_RET_VALUE)", array());
+        
+        $result = DB::select('select @Result as Result, @Description as Description, @ItemUOM as ItemUOM, @ItemWeight as ItemWeight, @DiscountPercent as DiscountPercent, @WarehouseID as WarehouseID, @WarehouseBinID as WarehouseBinID, @GLAccount as GLAccount, @ItemCost as ItemCost, @ItemPrice as ItemPrice, @ItemPrice as ItemUnitPrice, @Serialized as Serialized, @SerialNumber as SerialNumber, @Taxable as Taxable, @TaxGroupID as TaxGroupID, @PopulateResult as PopulateResult, @SWP_RET_VALUE as SWP_RET_VALUE', array());
+        echo json_encode($result[0]);
+    //        if($success)
+    //      header('Content-Type: application/json');
+    //  else
+    //      return response("failed", 400)->header('Content-Type', 'text/plain');
     }
 
 
