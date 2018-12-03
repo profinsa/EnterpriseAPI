@@ -919,6 +919,121 @@ class gridData extends gridDataSource{
         "ProjectID" => "ProjectID"
 	];
 
+    public $customerFields = [
+        "CustomerID" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "AccountStatus" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerName" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerAddress1" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerAddress2" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerAddress3" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerCity" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerState" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerZip" => [
+            "dbType" => "varchar(10)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerCountry" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerPhone" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerFax" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerEmail" => [
+            "dbType" => "varchar(60)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "Attention" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ]
+    ];
+
+    public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
+    //getting data for Customer Page
+    public function getCustomerInfo($id){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->customerFields as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->customerIdFields as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        if($id)
+            $keyFields .= " AND CustomerID='" . $id . "'";
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+        $result = json_decode(json_encode($id ? $result[0] : $result), true);
+        
+        return $result;
+    }
+    
     public $vendorFields = [
         "VendorID" => [
             "dbType" => "varchar(50)",

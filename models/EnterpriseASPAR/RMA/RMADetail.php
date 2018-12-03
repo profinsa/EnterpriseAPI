@@ -105,7 +105,8 @@ class gridData extends subgridDataSource{
             ],
             "ItemID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getItems",
                 "defaultValue" => ""
             ],
             "Description" => [
