@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/15/2017
+  Last Modified: 12/03/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -33,6 +33,7 @@ require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
 	public $tableName = "purchasedetail";
+    public $parentTableName = "purchaseheader";
     //	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
 	public $dashboardTitle ="Purchase Detail";
 	public $breadCrumbTitle ="Purchase Detail";

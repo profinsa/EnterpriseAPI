@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/15/2017
+  Last Modified: 12/03/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -33,6 +33,7 @@ require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
 	public $tableName = "orderdetail";
+    public $parentTableName = "orderheader";
 	public $dashboardTitle ="Return Detail";
 	public $breadCrumbTitle ="Return Detail";
 	public $idField ="OrderNumber";

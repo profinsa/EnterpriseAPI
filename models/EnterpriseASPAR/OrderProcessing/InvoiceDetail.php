@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/14/2017
+  Last Modified: 12/03/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -33,6 +33,7 @@ require "./models/subgridDataSource.php";
 
 class gridData extends subgridDataSource{
 	public $tableName = "invoicedetail";
+    public $parentTableName = "invoiceheader";
 	public $dashboardTitle ="Invoice Detail";
 	public $breadCrumbTitle ="Invoice Detail";
 	public $idField ="InvoiceNumber";
