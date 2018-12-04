@@ -29,12 +29,15 @@
      grid model
      app as model
    -
-     Last Modified: 03.23.2017
+     Last Modified: 12.04.2018
      Last Modified by: Nikita Zaharov
 -->
 <?php
-include './views/commonJavascript.php';
+include './views/components/context.php';
+include './views/components/commonJavascript.php';
+include './views/components/common.php';
 ?>
+
 <div class="container-fluid">
     <?php
     require './views/uiItems/dashboard.php';

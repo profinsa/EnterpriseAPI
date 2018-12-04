@@ -20,34 +20,11 @@
      Calls:
      model
 
-     Last Modified: 11/30/2018
+     Last Modified: 12/04/2018
      Last Modified by: Zaharov Nikita
 -->
 <?php
-function makeId($id){
-    return preg_replace("/[\s\$]+/", "", $id);
-}
-function formatValue($data, $fieldsDefinition, $values, $key, $value){
-    switch($fieldsDefinition[$key]["inputType"]){
-	case "checkbox" :
-	    echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
-	    break;
-	case "timestamp" :
-	case "datetime" :
-	    echo date("m/d/y", strtotime($value));
-	    break;
-	case "dialogChooser":
-	case "text":
-	case "dropdown":
-	    if(key_exists("formatFunction", $fieldsDefinition[$key])){
-		$formatFunction = $fieldsDefinition[$key]["formatFunction"];
-		echo $data->$formatFunction($values, "editCategories", $key, $value, false);
-	    }
-	    else
-		echo formatField($fieldsDefinition[$key], $value);
-	    break;
-    }
-}
+
 function renderRow($translation, $data, $fieldsDefinition, $values, $key, $value){
     echo "<tr><td class=\"title\">" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
     echo formatValue($data, $fieldsDefinition, $values, $key, $value);
@@ -213,41 +190,10 @@ function makeTableItems($values, $fieldsDefinition){
     <?php endif; ?>
 
     <!-- Detail table -->
-    <?php if(property_exists($data, "detailTable")): ?>
-	<div class="table-responsive order-entry-header col-md-12 col-xs-12" style="margin-top:20px;">
-	    <?php 
-	    $rows = $data->getDetail(key_exists("keyFields",$data->detailTable) ? $headerItem[$data->detailTable["keyFields"][0]] :$headerItem["OrderNumber"]);
-	    $gridFields = $data->embeddedgridFields;
-	    $embeddedgridContext = $headerItem;
-	    function makeRowActions($linksMaker, $data, $ascope, $row, $embeddedgridContext){
-		$user = $GLOBALS["user"];
-		$keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$data->detailTable["keyFields"][0]] . (count($data->detailTable["keyFields"]) > 1 ? "__" . $row[$data->detailTable["keyFields"][1]] : "");
-		echo "<a href=\"" . $linksMaker->makeEmbeddedgridItemEditLink($data->detailTable["viewPath"], $ascope["path"], $keyString, $ascope["item"]);
-		echo "\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
-		echo "<a href=\"javascript:;\" onclick=\"orderDetailDelete('$keyString')\"><span class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a>";
-	    }
-	    require __DIR__ . "/../../../embeddedgrid.php"; 
-	    ?>
-	</div>
-	<div class="subgrid-buttons row col-md-1">
-	    <?php if(!key_exists("disableNew", $data->detailTable)): ?>
-		<a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailTable["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailTable["newKeyField"]}={$embeddedgridContext[$data->detailTable["newKeyField"]]}" ?>">
-		    <?php echo $translation->translateLabel("New"); ?>
-		</a>
-	    <?php endif; ?>
-	</div>
-	<script>
-	 datatableInitialized = true;
-	 var table = $('#example23').DataTable( {
-	     dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
-	 });
-	 setTimeout(function(){
-	     var buttons = $('.subgrid-buttons');
-	     var tableFooter = $('.subgrid-table-footer');
-	     tableFooter.prepend(buttons);
-	 },300);
-	</script>
-    <?php endif; ?>
+    <?php
+    if(property_exists($data, "detailTable"))
+    	require __DIR__ . "/components/detailGrid.php";
+    ?>
 
     <!-- footer table -->
     <?php if(property_exists($data, "footerTable")): ?>
@@ -347,24 +293,3 @@ function makeTableItems($values, $fieldsDefinition){
 	</div>
     </div>
 </div>
-<script>
- //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
- function orderDetailDelete(item){
-     if(confirm("Are you sure?")){
-	 localStorage.setItem("autorecalc", true);
-	 $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "");?>" + item, {})
-	  .success(function(data) {
-	      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-	       .success(function(data) {
-		   onlocation(window.location);
-	       })
-	       .error(function(err){
-		   onlocation(window.location);
-	       });
-	  })
-	  .error(function(err){
-	      console.log('wrong');
-	  });
-     }
- }
-</script>

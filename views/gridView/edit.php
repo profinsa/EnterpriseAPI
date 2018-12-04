@@ -169,15 +169,6 @@ $dropdownDepends = [];
 			    </div>
 			    
 			    <script>
-			     function setRecalc(id){
-				 var recalcLink = "<?php echo $linksMaker->makeProcedureLink($ascope["path"], "Recalc"); ?>";
-				 //automatic recalc if we back from detail
-				 localStorage.setItem("recalclLink", recalcLink);
-				 localStorage.setItem("autorecalcLink", recalcLink);
-				 localStorage.setItem("autorecalcData", JSON.stringify({
-				     "<?php echo $data->idFields[3]; ?>" : id
-				 }));
-			     }
 			     <?php if($ascope["mode"] == "new"): ?>
 			     function newSubgridItemHook(){
 				 return createItem(function(data){
@@ -235,7 +226,7 @@ $dropdownDepends = [];
 				  })
 				  .error(function(xhr){
 				      // if(xhr.status == 401)
-					  //    else
+				      //    else
 				      //	  alert("Unable to load page");
 				  });
 			     }

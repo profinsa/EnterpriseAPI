@@ -1,4 +1,8 @@
 error.log
 *~
-./tools/AuditLogin.json
-./tools/AuditTrail.json
+tools/AuditLogin.json
+tools/AuditTrail.json
+views/reports/financials/worksheets/10columns.xlsx
+views/reports/financials/worksheets/sharedStrings.temp.xml
+views/reports/financials/worksheets/sheet1.temp.xml
+
