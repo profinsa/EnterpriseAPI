@@ -5,8 +5,9 @@
  */
 
 function makeId($id){
-    return preg_replace("/[\s\$]+/", "", $id);
+    return preg_replace("/[\s\$\&]+/", "", $id);
 }
+
 function formatValue($data, $fieldsDefinition, $values, $key, $value){
     switch($fieldsDefinition[$key]["inputType"]){
 	case "checkbox" :

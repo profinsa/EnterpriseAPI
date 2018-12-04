@@ -11,9 +11,6 @@ if(key_exists("back", $_GET)){
     $backhref = "index.php#/?page=grid&action={$ascope["path"]}&mode=grid&category=Main&item=all";
     $back = "";
 }
-function makeId($id){
-    return preg_replace("/[\s\$\&]+/", "", $id);
-}
 
 function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
     $user = $GLOBALS["user"];

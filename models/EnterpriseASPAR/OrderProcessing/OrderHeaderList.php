@@ -1238,7 +1238,6 @@ class OrderHeaderList extends gridDataSource{
         $recalc->recalcOrder(Session::get("user"), $_POST["OrderNumber"]);
 
         echo "ok";
-        return;
     }
 
     //getting rows for grid
