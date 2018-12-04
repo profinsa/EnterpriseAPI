@@ -1,5 +1,6 @@
 <?php
 require "./models/gridDataSource.php";
+require "./models/helpers/recalc.php";
 
 class gridData extends gridDataSource{
     public $tableName = "purchaseheader";

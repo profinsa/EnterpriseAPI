@@ -1212,7 +1212,7 @@ class gridData extends gridDataSource{
         ];
     }
 
-    public function recalcPurchase() {
+    public function Recalc() {
         $user = Session::get("user");
 
         $purchaseNumber = $_POST["PurchaseNumber"];

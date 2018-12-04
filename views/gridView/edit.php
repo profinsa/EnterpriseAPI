@@ -269,7 +269,7 @@ $dropdownDepends = [];
 			     setTimeout(function(){
 				 var buttons = $('#<?php echo $newButtonId; ?>');
 				 var tableFooter = $('#footer<?php echo $newButtonId; ?>');
-				 console.log(tableFooter, buttons);
+				 //console.log(tableFooter, buttons);
 				 tableFooter.prepend(buttons);
 			     },300);
 			     function newSubgridItem<?php echo $newButtonId;?>(){
@@ -550,7 +550,7 @@ $dropdownDepends = [];
                      catch (e){}
                      $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 		      .success(function(data) {
-			  console.log(localStorage.getItem("autorecalcLink"));
+			  //console.log(localStorage.getItem("autorecalcLink"));
 			  if(localStorage.getItem("autorecalcLink")){
 			      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
 			       .success(function(data) {

@@ -256,7 +256,7 @@ $dropdownDepends = [];
 			     setTimeout(function(){
 				 var buttons = $('#<?php echo $newButtonId; ?>');
 				 var tableFooter = $('#footer<?php echo $newButtonId; ?>');
-				 console.log(tableFooter, buttons);
+				 //console.log(tableFooter, buttons);
 				 tableFooter.prepend(buttons);
 			     },300);
 			    </script>

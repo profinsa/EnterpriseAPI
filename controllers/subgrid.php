@@ -25,13 +25,14 @@ models/translation.php
 models/gridDataSource derevatives -- models who inherits from gridDataSource
 app from index.php
 
-Last Modified: 09.18.2017
+Last Modified: 12.04.2018
 Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
+require 'models/linksMaker.php';
 
 class controller{
     public $user = false;
@@ -51,6 +52,8 @@ class controller{
         }
 
         require 'models/menuIdToHref.php';
+        $linksMaker = new linksMaker();
+
         $this->action = $_GET["action"];
         $model_path = $menuIdToPath[$_GET["action"]];
         if(!file_exists('models/' . $model_path . '.php'))

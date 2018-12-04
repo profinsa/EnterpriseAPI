@@ -71,6 +71,7 @@
 		  "<?php echo  $ascope["path"]; ?>", "new",
 		  generateKeyString({ "<?php echo $data->detailTable["newKeyField"]; ?>" : res["<?php echo $data->detailTable["newKeyField"]; ?>"]})
 	      ) + "&<?php echo $data->detailTable["newKeyField"]; ?>=" + res["<?php echo $data->detailTable["newKeyField"]; ?>"];
+	      setRecalc(res[context.data.detailTable["newKeyField"]]);
 	      //console.log(link);
 	      //                  console.log('ok');
 	      window.location = link;

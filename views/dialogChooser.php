@@ -81,7 +81,6 @@ function writeValue($data, $desc, $value){
  for(ind in dialogChooserInputs){
      $('#' + ind).click((function(ind){
 	 return function(){
-	     console.log('hahaha');
 	     dialogChooserCurrentField = ind;
 	     $('#' + dialogChooserInputs[ind]).modal('show');
 	     if(!$.fn.DataTable.isDataTable("#" + dialogChooserInputs[ind] + "Table"))
@@ -103,7 +102,7 @@ function writeValue($data, $desc, $value){
      }
 
      if(dialogChooserCurrentField == "ItemID"){
-	 console.log(dialogChooserCurrentField);
+	 //	 console.log(dialogChooserCurrentField);
 	 //console.log(JSON.stringify(<?php echo json_encode($data) ?>, null, 3));
 	 var TransactionNumber;
 	 switch("<?php echo $data->tableName; ?>"){
