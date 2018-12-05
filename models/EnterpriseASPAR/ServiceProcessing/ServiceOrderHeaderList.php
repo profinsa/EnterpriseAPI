@@ -25,14 +25,14 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 12/05/2018
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
-class gridData extends gridDataSource{
+class ServiceOrderHeaderList extends gridDataSource{
     public $tableName = "orderheader";
     public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N''))='service order') AND IFNULL(Invoiced,0) = 0 AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold')";
     public $dashboardTitle ="Service Orders";
@@ -1319,6 +1319,149 @@ class gridData extends gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
         DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
         echo "ok";
+    }
+}
+
+class gridData extends ServiceOrderHeaderList {}
+
+class ServiceOrderHeaderClosedList extends ServiceOrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N''))='service order') AND (OrderHeader.Invoiced = 1)";	
+	public $dashboardTitle ="Closed Service Orders";
+	public $breadCrumbTitle ="Closed Service Orders";
+    public $modes = ["grid", "view", "edit"];
+}
+
+class ServiceOrderHeaderHoldList extends ServiceOrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N''))='service order') AND (LOWER(OrderHeader.OrderTypeID) = 'hold')";
+	public $dashboardTitle ="Service Orders On Hold";
+	public $breadCrumbTitle ="Service Orders On Hold";
+    public $modes = ["grid", "view", "edit"];
+}
+
+class ServiceOrderHeaderShipList extends ServiceOrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N''))='service order') AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 1) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
+	public $dashboardTitle ="Perform Service Orders";
+	public $breadCrumbTitle ="Perform Service Orders";
+
+    public function ServicePerformed(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            $result = DB::statement("SELECT @ret = ServiceOrder_ServicePerformed('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+
+            if ($result == true) {
+                $success = false;
+            }
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
+    public function ServicePerformedAll(){
+        $user = Session::get("user");
+
+        $result = DB::statement("SELECT @ret = ServiceOrder_ServicePerformedAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+
+        if ($result == true)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+}
+
+class ServiceOrderHeaderPickList extends ServiceOrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N''))='service order') AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 0)";
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
+	public $dashboardTitle ="Fulfill Service Orders";
+	public $breadCrumbTitle ="Fulfill Service Orders";
+
+    public function FulfillServiceRequest(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            $result = DB::statement("SELECT @ret = ServiceOrder_FulfillServiceRequest('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+
+            if ($result == true) {
+                $success = false;
+            }
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
+    public function FulfillServiceRequestAll(){
+        $user = Session::get("user");
+
+        $result = DB::statement("SELECT @ret = ServiceOrder_FulfillServiceRequestAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+
+        if ($result == true)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+}
+
+class ServiceOrderHeaderInvoiceList extends ServiceOrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N''))='service order') AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (OrderHeader.Shipped = 1) AND (IFNULL(OrderHeader.Invoiced,0) = 0)";
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
+	public $dashboardTitle ="Invoice Service Orders";
+	public $breadCrumbTitle ="Invoice Service Orders";
+
+    public function CreateFromOrder(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL ServiceInvoice_CreateFromOrder2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@v_InvoiceNumber ,@SWP_RET_VALUE)");
+
+            $result = DB::select('select @v_InvoiceNumber as v_InvoiceNumber, @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success){
+            header('Content-Type: application/json');
+            echo "ok";
+        }else{
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+            echo "failed";
+        }
+    }
+    
+    public function AllServiceOrders(){
+        $user = Session::get("user");
+
+        $result = DB::statement("SELECT @ret = Invoice_AllServiceOrders('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+
+        if ($result == true)
+            echo "ok";
+        else {
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+            echo "failed";
+        }
     }
 }
 ?>

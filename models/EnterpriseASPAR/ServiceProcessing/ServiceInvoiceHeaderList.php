@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 12/05/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -33,7 +33,7 @@ require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 require "./models/helpers/transactionShippingRate.php";
 
-class gridData extends gridDataSource{
+class ServiceInvoiceHeaderList extends gridDataSource{
     public $tableName = "invoiceheader";
     public $gridConditions="(LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) ='service invoice') AND (ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0)";
     public $dashboardTitle ="Service Invoices";
@@ -1286,4 +1286,15 @@ class gridData extends gridDataSource{
         echo "ok";
     }
 }
+
+class gridData extends ServiceInvoiceHeaderList {}
+
+class ServiceInvoiceHeaderClosedList extends ServiceINvoiceHeaderList{
+    //	public $gridConditions = "((LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) ='service invoice') AND (Posted=1)  AND (ABS(InvoiceHeader.BalanceDue) < 0.005) AND (ABS(InvoiceHeader.Total) >= 0.005))";
+    public $gridConditions = "((LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) ='service invoice') AND (Posted=1))";
+	public $dashboardTitle ="Closed Service Invoices";
+	public $breadCrumbTitle ="Closed Service Invoices";
+    public $modes = ["grid", "view", "edit"];
+}
+
 ?>

@@ -55,6 +55,14 @@ class controller{
 
         "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
 
+        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderHoldList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
+        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderClosedList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
+        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderPickList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
+        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderShipList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
+        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderInvoiceList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
+
+        "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderClosedList" => "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderList",
+
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderInvoiceList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
