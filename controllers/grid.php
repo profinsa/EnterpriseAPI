@@ -65,6 +65,11 @@ class controller{
 
         "EnterpriseASPAR/CreditMemos/CreditMemoHeaderClosedList" => "EnterpriseASPAR/CreditMemos/CreditMemoHeaderList",
 
+        "EnterpriseASPAR/RMA/RMAHeaderClosedList" => "EnterpriseASPAR/RMA/RMAHeaderList",
+        "EnterpriseASPAR/RMA/RMAHeaderApproveList" => "EnterpriseASPAR/RMA/RMAHeaderList",
+        "EnterpriseASPAR/RMA/RMAHeaderReceiveList" => "EnterpriseASPAR/RMA/RMAHeaderList",
+        "EnterpriseASPAR/RMA/RMAHeaderReceivedList" => "EnterpriseASPAR/RMA/RMAHeaderList",
+
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderInvoiceList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
