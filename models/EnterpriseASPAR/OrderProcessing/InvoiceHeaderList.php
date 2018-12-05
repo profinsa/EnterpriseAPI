@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 12/05/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -34,7 +34,7 @@ require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 require "./models/helpers/transactionShippingRate.php";
 
-class gridData extends gridDataSource{
+class InvoiceHeaderList extends gridDataSource{
 	public $tableName = "invoiceheader";
 	public $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0))";
 	public $dashboardTitle ="Invoices";
@@ -1329,6 +1329,47 @@ class gridData extends gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
         DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields, array());
         echo "ok";
+    }
+}
+
+class gridData extends InvoiceHeaderList {} 
+
+class InvoiceHeaderClosedList extends InvoiceHeaderList{
+	public $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (Posted=1) AND (ABS(InvoiceHeader.BalanceDue) < 0.005) AND (ABS(InvoiceHeader.Total) >= 0.005))";
+    public $modes = ["grid", "view", "edit"];
+    public $features = ["selecting"]; //list enabled features
+	public $dashboardTitle ="Closed Invoices";
+	public $breadCrumbTitle ="Closed Invoices";
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["InvoiceNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Invoice_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Invoice_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)", array());
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
     }
 }
 ?>

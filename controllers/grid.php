@@ -47,11 +47,20 @@ class controller{
     
     protected  $redirectModel = [
         "EnterpriseASPAR/OrderProcessing/OrderHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+        "EnterpriseASPAR/OrderProcessing/OrderHeaderBackList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+        "EnterpriseASPAR/OrderProcessing/OrderHeaderPickList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+        "EnterpriseASPAR/OrderProcessing/OrderHeaderShipList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+        "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+        "EnterpriseASPAR/OrderProcessing/OrderHeaderHoldList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+
+        "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
+
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderInvoiceList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderClosedList" => "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderShippedList" => "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList",
+        
         "EnterpriseASPGL/Ledger/LedgerTransactionsClosedList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList",
         "EnterpriseASPGL/Ledger/LedgerTransactionsHistoryList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList"
     ];

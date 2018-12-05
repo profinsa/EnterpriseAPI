@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 12/05/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -1418,5 +1418,241 @@ class OrderHeaderClosedList extends OrderHeaderList {
             return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
     }
 
+}
+
+class OrderHeaderBackList extends OrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID,N'')) <> 'hold') AND (IFNULL(OrderHeader.Backordered, 0) = 1)";	
+	public $dashboardTitle ="Back Orders";
+	public $breadCrumbTitle ="Back Orders";
+    public $modes = ["grid", "view", "edit"];
+
+    public function allocate() {
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        if ($recalc->lookForProcedure("Order_Allocate")) {
+            DB::statement("CALL Order_Allocate('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@Result,@SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE', array());
+
+            if($result[0]->SWP_RET_VALUE == -1) {
+                echo "error";
+                return response($result[0]->Result, 400)->header('Content-Type', 'text/plain');
+            } else {
+                echo "ok";
+                header('Content-Type: application/json');
+            }
+        } else {
+            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+        }
+    }
+
+    public function split() {
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        if ($recalc->lookForProcedure("Order_Split")) {
+            DB::statement("CALL Order_Split('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+
+            if($result[0]->SWP_RET_VALUE == -1) {
+                echo "error";
+                return response("failed", 400)->header('Content-Type', 'text/plain');
+            } else {
+                echo "ok";
+                header('Content-Type: application/json');
+            }
+        } else {
+            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+        }
+    }
+}
+
+class OrderHeaderPickList extends OrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
+	public $dashboardTitle ="Pick Orders";
+	public $breadCrumbTitle ="Pick Orders";
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
+
+    public function Picked(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            $result = DB::statement("SELECT @ret = Order_Picked('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')", array());
+
+            if ($result == true) {
+                $success = false;
+            }
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
+    public function PickAll(){
+        $user = Session::get("user");
+
+        $result = DB::statement("SELECT @ret = Order_PickAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
+
+        if ($result == true)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+}
+
+class OrderHeaderInvoiceList extends OrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold' AND (OrderHeader.Shipped = 1) AND (IFNULL(OrderHeader.Invoiced,0) = 0)";
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
+	public $dashboardTitle ="Invoice Shipped Orders";
+	public $breadCrumbTitle ="Invoice Shipped Orders";
+
+    public function invoiceCreateFromOrder(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            $result = DB::statement("SELECT @ret = Invoice_CreateFromOrder('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')", array());
+
+            if ($result == true) {
+                $success = false;
+            }
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
+    public function AllOrders(){
+        $user = Session::get("user");
+
+        $result = DB::statement("SELECT @ret = Invoice_AllOrders('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
+
+        if ($result == true)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+}
+
+class OrderHeaderHoldList extends OrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(OrderHeader.OrderTypeID) = 'hold')";
+	public $dashboardTitle ="Orders On Hold";
+	public $breadCrumbTitle ="Orders On Hold";
+    public $modes = ["grid", "view", "edit"];
+
+    public function releaseOnHoldOrder() {
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        if ($recalc->lookForProcedure("Order_ReleaseOnHoldOrder")) {
+            DB::statement("CALL Order_ReleaseOnHoldOrder('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
+
+            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+
+            if($result[0]->SWP_RET_VALUE == -1) {
+                echo "error";
+                return response($result[0]->PostingResult, 400)->header('Content-Type', 'text/plain');
+            } else {
+                echo "ok";
+                header('Content-Type: application/json');
+            }
+        } else {
+            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+        }
+    }
+
+    public function Post(){
+        $user = Session::get("user");
+
+         DB::statement("CALL Order_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
+
+         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+         } else {
+            echo "ok";
+            header('Content-Type: application/json');
+         }
+    }
+
+    public function UnPost(){
+        $user = Session::get("user");
+
+         DB::statement("CALL Order_Cancel2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
+
+         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+         } else {
+            echo "ok";
+            header('Content-Type: application/json');
+         }
+    }
+}
+
+class OrderHeaderShipList extends OrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 1) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
+	public $dashboardTitle ="Ship Orders";
+	public $breadCrumbTitle ="Ship Orders";
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
+
+    public function Shipped(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            $result = DB::statement("SELECT @ret = Order_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+
+            if ($result == true) {
+                $success = false;
+            }
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
+    public function ShipAll(){
+        $user = Session::get("user");
+
+        $result = DB::statement("SELECT @ret = Order_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+
+        if ($result == true)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo "failed";
+        }
+    }
 }
 ?>
