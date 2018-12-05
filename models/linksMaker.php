@@ -90,4 +90,8 @@ class linksMaker{
     function makeDashboardLink(){
         return "index.php#/?page=dashboard";
     }
+
+    function makeDocreportsLink($type, $id){
+        return "index.php?page=docreports&type=$type&id=$id"; 
+    }
 }

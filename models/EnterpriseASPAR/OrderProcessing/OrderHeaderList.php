@@ -1351,13 +1351,14 @@ class OrderHeaderList extends gridDataSource{
 
             if($result[0]->SWP_RET_VALUE == -1) {
                 echo "error";
-                return response("failed", 400)->header('Content-Type', 'text/plain');
+                http_response_code(400);
             } else {
                 echo "ok";
                 header('Content-Type: application/json');
             }
         } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+            http_response_code(400);
+            echo "Procedure not found";
         }
     }
     

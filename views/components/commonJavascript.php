@@ -29,4 +29,17 @@
      autorecalcData[context.data.idFields[3]] = id;
      localStorage.setItem("autorecalcData", JSON.stringify(autorecalcData));
  }
+
+ //calling procedure from server
+
+ function serverProcedureCall(methodName, props, reloadPage){
+     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, props)
+      .success(function(data) {
+	  if(reloadPage)
+              onlocation(window.location);
+      })
+      .error(function(xhr){
+          alert(xhr.responseText);
+      });
+ }
 </script>
