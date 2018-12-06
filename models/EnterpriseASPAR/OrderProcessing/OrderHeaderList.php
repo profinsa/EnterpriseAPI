@@ -1303,26 +1303,24 @@ class OrderHeaderList extends gridDataSource{
 
          $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
+             http_response_code(400);
+             echo "error";
          } else {
             echo "ok";
-            header('Content-Type: application/json');
          }
     }
 
     public function UnPost(){
         $user = Session::get("user");
 
-         DB::statement("CALL Order_Cancel2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
+         DB::statement("CALL Order_Cancel('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
 
          $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
+             http_response_code(400);
+             echo "error";
          } else {
-            echo "ok";
-            header('Content-Type: application/json');
+             echo "ok";
          }
     }
 
@@ -1354,7 +1352,6 @@ class OrderHeaderList extends gridDataSource{
                 http_response_code(400);
             } else {
                 echo "ok";
-                header('Content-Type: application/json');
             }
         } else {
             http_response_code(400);
@@ -1401,9 +1398,11 @@ class OrderHeaderClosedList extends OrderHeaderList {
         }
 
         if($success)
-            header('Content-Type: application/json');
-        else
-            return response("failed", 400)->header('Content-Type', 'text/plain');
+            echo "ok";
+        else {
+             http_response_code(400);
+             echo $result[0]->SWP_RET_VALUE;
+        }
     }
     
     public function CopyAllToHistory(){
@@ -1414,9 +1413,11 @@ class OrderHeaderClosedList extends OrderHeaderList {
         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
         if($result[0]->SWP_RET_VALUE > -1)
             echo $result[0]->SWP_RET_VALUE;
-        else
-            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
-    }
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+   }
 
 }
 
@@ -1437,14 +1438,14 @@ class OrderHeaderBackList extends OrderHeaderList{
             $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE', array());
 
             if($result[0]->SWP_RET_VALUE == -1) {
-                echo "error";
-                return response($result[0]->Result, 400)->header('Content-Type', 'text/plain');
+                http_response_code(400);
+                echo $result[0]->Result;
             } else {
                 echo "ok";
-                header('Content-Type: application/json');
             }
         } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+            http_response_code(400);
+            echo "Procedure not found";
         }
     }
 
@@ -1459,14 +1460,13 @@ class OrderHeaderBackList extends OrderHeaderList{
             $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
 
             if($result[0]->SWP_RET_VALUE == -1) {
+                http_response_code(400);
                 echo "error";
-                return response("failed", 400)->header('Content-Type', 'text/plain');
-            } else {
+            } else 
                 echo "ok";
-                header('Content-Type: application/json');
-            }
         } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+            http_response_code(400);
+            echo "Procedure not found";
         }
     }
 }
@@ -1572,45 +1572,15 @@ class OrderHeaderHoldList extends OrderHeaderList{
             $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
 
             if($result[0]->SWP_RET_VALUE == -1) {
-                echo "error";
-                return response($result[0]->PostingResult, 400)->header('Content-Type', 'text/plain');
+                http_response_code(400);
+                echo $result[0]->PostingResult;
             } else {
                 echo "ok";
-                header('Content-Type: application/json');
             }
         } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+                http_response_code(400);
+                echo "Procedure not found";
         }
-    }
-
-    public function Post(){
-        $user = Session::get("user");
-
-         DB::statement("CALL Order_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
-
-         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
-            echo "ok";
-            header('Content-Type: application/json');
-         }
-    }
-
-    public function UnPost(){
-        $user = Session::get("user");
-
-         DB::statement("CALL Order_Cancel2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
-
-         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
-            echo "ok";
-            header('Content-Type: application/json');
-         }
     }
 }
 

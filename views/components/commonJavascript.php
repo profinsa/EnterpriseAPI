@@ -30,16 +30,22 @@
      localStorage.setItem("autorecalcData", JSON.stringify(autorecalcData));
  }
 
+ //calling Recalc
+ function callRecalc(id){
+     var autorecalcData = {};
+     autorecalcData[context.data.idFields[3]] = id;
+     serverProcedureCall('Recalc', autorecalcData, true);
+ }
  //calling procedure from server
 
  function serverProcedureCall(methodName, props, reloadPage){
-     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, props)
+     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, props, 'text')
       .success(function(data) {
 	  if(reloadPage)
-              onlocation(window.location);
+	      onlocation(window.location);
       })
       .error(function(xhr){
-          alert(xhr.responseText);
+	  alert(xhr.responseText);
       });
  }
 </script>
