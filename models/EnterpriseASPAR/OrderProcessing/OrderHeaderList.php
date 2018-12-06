@@ -1304,7 +1304,7 @@ class OrderHeaderList extends gridDataSource{
          $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
              http_response_code(400);
-             echo "error";
+             echo $result[0]->PostingResult;
          } else {
             echo "ok";
          }
@@ -1318,7 +1318,7 @@ class OrderHeaderList extends gridDataSource{
          $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
              http_response_code(400);
-             echo "error";
+             echo $result[0]->SWP_RET_VALUE;
          } else {
              echo "ok";
          }
@@ -1483,32 +1483,36 @@ class OrderHeaderPickList extends OrderHeaderList{
 
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
+        $rets = "";
         foreach($numbers as $number){
-            $result = DB::statement("SELECT @ret = Order_Picked('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')", array());
+            DB::statement("set @ret = Order_Picked('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')", array());
+            $result = DB::select('select @ret as ret', array());
 
-            if ($result == true) {
+            if ($result[0]->ret == true) {
                 $success = false;
-            }
+            } else
+                $rets .= ' ' . $result[0]->ret;
         }
 
         if($success)
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $rets;
         }
     }
     
     public function PickAll(){
         $user = Session::get("user");
 
-        $result = DB::statement("SELECT @ret = Order_PickAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
-
-        if ($result == true)
+        DB::statement("set @ret = Order_PickAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
+        $result = DB::select('select @ret as ret', array());
+        
+        if ($result[0]->ret == 0)
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $result[0]->ret;
         }
     }
 }
@@ -1520,37 +1524,44 @@ class OrderHeaderInvoiceList extends OrderHeaderList{
 	public $dashboardTitle ="Invoice Shipped Orders";
 	public $breadCrumbTitle ="Invoice Shipped Orders";
 
-    public function invoiceCreateFromOrder(){
+    public function Invoice_CreateFromOrder(){
         $user = Session::get("user");
 
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
+        $rets = '';
         foreach($numbers as $number){
-            $result = DB::statement("SELECT @ret = Invoice_CreateFromOrder('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')", array());
+            //            callStoredCode('Invoice_CreateFromOrder2', ['CompanyID', 'DivisionID', 'DepartmentID', '
+            DB::statement("call Invoice_CreateFromOrder2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @InvoiceNumber, @SWP_Ret_Value)", array());
 
-            if ($result == true) {
+            $result = DB::select('select @SWP_Ret_Value as ret', array());
+
+            if ($result[0]->ret == true) {
                 $success = false;
-            }
+            } else
+                $rets .= ' ' . $result[0]->ret;
         }
 
         if($success)
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $rets;
         }
     }
     
-    public function AllOrders(){
+    public function Invoice_AllOrders(){
         $user = Session::get("user");
 
-        $result = DB::statement("SELECT @ret = Invoice_AllOrders('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
+        DB::statement("call Invoice_AllOrders('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @ret)", array());
 
-        if ($result == true)
+        $result = DB::select('select @ret as ret', array());
+        
+        if ($result[0]->ret == 0)
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $result[0]->ret;
         }
     }
 }
@@ -1596,32 +1607,38 @@ class OrderHeaderShipList extends OrderHeaderList{
 
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
+        $rets = '';
         foreach($numbers as $number){
-            $result = DB::statement("SELECT @ret = Order_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+            DB::statement("set @ret = Order_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
 
-            if ($result == true) {
+            $result = DB::select('select @ret as ret', array());
+
+            if ($result[0]->ret == true) {
                 $success = false;
-            }
+            } else
+                $rets .= ' ' . $result[0]->ret;
         }
 
         if($success)
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $rets;
         }
     }
     
     public function ShipAll(){
         $user = Session::get("user");
 
-        $result = DB::statement("SELECT @ret = Order_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+        DB::statement("set @ret = Order_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
 
-        if ($result == true)
+        $result = DB::select('select @ret as ret', array());
+        
+        if ($result[0]->ret == 0)
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $result[0]->ret;
         }
     }
 }

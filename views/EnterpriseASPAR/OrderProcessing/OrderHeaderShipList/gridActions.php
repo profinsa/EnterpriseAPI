@@ -1,39 +1,20 @@
 <script>
  function shipSelectedOrders(){
-     var orderNumbers = [], ind;
+     var OrderNumbers = [], ind;
 
      for(ind in gridItemsSelected)
-         orderNumbers.push(gridItemsSelected[ind].OrderNumber);
+         OrderNumbers.push(gridItemsSelected[ind].OrderNumber);
 
-     $.post("index.php?page=grid&action=<?php  echo $scope->action;  ?>&procedure=Shipped",{
-             "OrderNumbers" : orderNumbers.join(',')
-      })
-           .success(function(data) {
-               onlocation(window.location);
-           })
-           .error(function(err){
-               console.log(err);
-               alert('Something goes wrong');
-           });
+     serverProcedureCall('Shipped', { OrderNumbers :OrderNumbers.join(',') }, true);
  }
 
- function shipAllOrders(){
-     $.post("index.php?page=grid&action=<?php  echo $scope->action;  ?>&procedure=ShipAll",{})
-           .success(function(data) {
-               onlocation(window.location);
-           })
-           .error(function(err){
-               console.log(err);
-               alert('Something goes wrong');
-           });
- }
 </script>
 <a class="btn btn-info grid-actions-button" href="javascript:;" onclick="shipSelectedOrders()">
     <?php
 	echo $translation->translateLabel("Ship Selected Orders");
     ?>
 </a>
-<a class="btn btn-info grid-actions-button grid-last-actions-button" href="javascript:;" onclick="shipAllOrders()">
+<a class="btn btn-info grid-actions-button grid-last-actions-button" href="javascript:;" onclick="serverProcedureCall('ShipAll', {}, true);">
     <?php
 	echo $translation->translateLabel("Ship All Orders");
     ?>

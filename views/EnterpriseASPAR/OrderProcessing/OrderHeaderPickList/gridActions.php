@@ -1,39 +1,18 @@
 <script>
- function pickpSelectedOrders(){
-     var orderNumbers = [], ind;
+function pickupSelectedOrders(){
+    var OrderNumbers = [], ind;
+    for(ind in gridItemsSelected)
+        OrderNumbers.push(gridItemsSelected[ind].OrderNumber);
 
-     for(ind in gridItemsSelected)
-         orderNumbers.push(gridItemsSelected[ind].OrderNumber);
-
-     $.post("index.php?page=grid&action=<?php  echo $scope->action;  ?>&procedure=Picked",{
-             "OrderNumbers" : orderNumbers.join(',')
-      })
-           .success(function(data) {
-               onlocation(window.location);
-           })
-           .error(function(err){
-               console.log(err);
-               alert('Something goes wrong');
-           });
- }
-
- function pickAllOrders(){
-     $.post("index.php?page=grid&action=<?php  echo $scope->action;  ?>&procedure=PickAll",{})
-           .success(function(data) {
-               onlocation(window.location);
-           })
-           .error(function(err){
-               console.log(err);
-               alert('Something goes wrong');
-           });
- }
+    serverProcedureCall('Picked', { OrderNumbers :OrderNumbers.join(',') }, true);
+}
 </script>
-<a class="btn btn-info grid-actions-button" href="javascript:;" onclick="pickpSelectedOrders()">
+<a class="btn btn-info grid-actions-button" href="javascript:;" onclick="pickupSelectedOrders()">
     <?php
 	echo $translation->translateLabel("Pick Selected Orders");
     ?>
 </a>
-<a class="btn btn-info grid-actions-button grid-last-actions-button" href="javascript:;" onclick="pickAllOrders()">
+<a class="btn btn-info grid-actions-button grid-last-actions-button" href="javascript:;" onclick="serverProcedureCall('PickAll', {}, true);">
     <?php
 	echo $translation->translateLabel("Pick All Orders");
     ?>
