@@ -1381,9 +1381,9 @@ class ServiceOrderHeaderShipList extends ServiceOrderHeaderList{
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
         foreach($numbers as $number){
-            $result = DB::statement("SELECT @ret = ServiceOrder_ServicePerformed('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
-
-            if ($result == true) {
+            DB::statement("set @ret = ServiceOrder_ServicePerformed('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+            $result = DB::select("select @ret as ret");
+            if ($result[0]->ret == true) {
                 $success = false;
             }
         }
@@ -1399,13 +1399,13 @@ class ServiceOrderHeaderShipList extends ServiceOrderHeaderList{
     public function ServicePerformedAll(){
         $user = Session::get("user");
 
-        $result = DB::statement("SELECT @ret = ServiceOrder_ServicePerformedAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
-
-        if ($result == true)
+        DB::statement("set @ret = ServiceOrder_ServicePerformedAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+        $result = DB::select("select @ret as ret");
+        if (!$result[0]->ret)
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            $result[0]->ret;
         }
     }
 }
@@ -1423,9 +1423,9 @@ class ServiceOrderHeaderPickList extends ServiceOrderHeaderList{
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
         foreach($numbers as $number){
-            $result = DB::statement("SELECT @ret = ServiceOrder_FulfillServiceRequest('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
-
-            if ($result == true) {
+            DB::statement("set @ret = ServiceOrder_FulfillServiceRequest('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+            $result = DB::select("select @ret as ret");
+            if ($result[0]->ret) {
                 $success = false;
             }
         }
@@ -1441,13 +1441,13 @@ class ServiceOrderHeaderPickList extends ServiceOrderHeaderList{
     public function FulfillServiceRequestAll(){
         $user = Session::get("user");
 
-        $result = DB::statement("SELECT @ret = ServiceOrder_FulfillServiceRequestAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
-
-        if ($result == true)
+        DB::statement("set @ret = ServiceOrder_FulfillServiceRequestAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+        $result = DB::select("select @ret as ret");
+        if (!$result[0]->ret)
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $result[0]->ret;
         }
     }
 }
@@ -1459,7 +1459,7 @@ class ServiceOrderHeaderInvoiceList extends ServiceOrderHeaderList{
 	public $dashboardTitle ="Invoice Service Orders";
 	public $breadCrumbTitle ="Invoice Service Orders";
 
-    public function CreateFromOrder(){
+    public function ServiceInvoice_CreateFromOrder(){
         $user = Session::get("user");
 
         $numbers = explode(",", $_POST["OrderNumbers"]);
@@ -1473,24 +1473,23 @@ class ServiceOrderHeaderInvoiceList extends ServiceOrderHeaderList{
         }
 
         if($success){
-            header('Content-Type: application/json');
             echo "ok";
         }else{
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-            echo "failed";
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
         }
     }
     
-    public function AllServiceOrders(){
+    public function Invoice_AllServiceOrders(){
         $user = Session::get("user");
 
-        $result = DB::statement("SELECT @ret = Invoice_AllServiceOrders('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
-
-        if ($result == true)
+        DB::statement("set @ret = Invoice_AllServiceOrders('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+        $result = DB::select("select @ret as ret");
+        if (!$result[0]->ret)
             echo "ok";
         else {
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-            echo "failed";
+            http_response_code(400);
+            echo $result[0]->ret;
         }
     }
 }

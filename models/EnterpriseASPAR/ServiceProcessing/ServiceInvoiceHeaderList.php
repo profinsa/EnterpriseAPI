@@ -1255,7 +1255,6 @@ class ServiceInvoiceHeaderList extends gridDataSource{
         $recalc->serviceInvoiceRecalc(Session::get("user"), $_POST["InvoiceNumber"]);
 
         echo "ok";
-        return;
     }
 
     public function Post(){
@@ -1265,12 +1264,10 @@ class ServiceInvoiceHeaderList extends gridDataSource{
 
          $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
+            http_response_code(400);
+            echo $result[0]->PostingResult;
+         } else 
             echo "ok";
-            header('Content-Type: application/json');
-         }
     }
 
     public function Memorize(){
@@ -1289,12 +1286,48 @@ class ServiceInvoiceHeaderList extends gridDataSource{
 
 class gridData extends ServiceInvoiceHeaderList {}
 
-class ServiceInvoiceHeaderClosedList extends ServiceINvoiceHeaderList{
+class ServiceInvoiceHeaderClosedList extends ServiceInvoiceHeaderList{
     //	public $gridConditions = "((LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) ='service invoice') AND (Posted=1)  AND (ABS(InvoiceHeader.BalanceDue) < 0.005) AND (ABS(InvoiceHeader.Total) >= 0.005))";
     public $gridConditions = "((LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) ='service invoice') AND (Posted=1))";
 	public $dashboardTitle ="Closed Service Invoices";
 	public $breadCrumbTitle ="Closed Service Invoices";
     public $modes = ["grid", "view", "edit"];
+    public $features = ["selecting"];
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["InvoiceNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL ServiceInvoice_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo "ok";
+        else {
+             http_response_code(400);
+             echo $result[0]->SWP_RET_VALUE;
+        }
+    }
+    
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL ServiceInvoice_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)", array());
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+   }
 }
 
 ?>
