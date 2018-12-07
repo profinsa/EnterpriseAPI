@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 12/05/2018
+  Last Modified: 12/07/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -1275,7 +1275,6 @@ class ServiceOrderHeaderList extends gridDataSource{
         $recalc->recalcServiceOrder(Session::get("user"), $_POST["OrderNumber"]);
 
         echo "ok";
-        return;
     }
 
     public function Post(){
@@ -1285,12 +1284,10 @@ class ServiceOrderHeaderList extends gridDataSource{
 
          $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
+            http_response_code(400);
+            echo $result[0]->PostingResult;
+         } else 
             echo "ok";
-            header('Content-Type: application/json');
-         }
     }
 
     public function UnPost(){
@@ -1300,12 +1297,10 @@ class ServiceOrderHeaderList extends gridDataSource{
 
          $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
+            http_response_code(400);
+            echo $result[0]->PostingResult;
+         } else
             echo "ok";
-            header('Content-Type: application/json');
-         }
     }
 
     public function Memorize(){
@@ -1329,6 +1324,41 @@ class ServiceOrderHeaderClosedList extends ServiceOrderHeaderList{
 	public $dashboardTitle ="Closed Service Orders";
 	public $breadCrumbTitle ="Closed Service Orders";
     public $modes = ["grid", "view", "edit"];
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL ServiceOrder_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo "ok";
+        else {
+             http_response_code(400);
+             echo $result[0]->SWP_RET_VALUE;
+        }
+    }
+    
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL ServiceOrder_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)", array());
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+   }
 }
 
 class ServiceOrderHeaderHoldList extends ServiceOrderHeaderList{

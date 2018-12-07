@@ -1418,7 +1418,6 @@ class OrderHeaderClosedList extends OrderHeaderList {
             echo $result[0]->SWP_RET_VALUE;
         }
    }
-
 }
 
 class OrderHeaderBackList extends OrderHeaderList{
