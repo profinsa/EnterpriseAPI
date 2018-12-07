@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 11/30/2018
+  Last Modified: 12/07/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -1304,7 +1304,7 @@ class gridData extends gridDataSource{
         ];
     }
 
-    public function recalcQuote() {
+    public function Recalc() {
         $user = Session::get("user");
 
         $orderNumber = $_POST["OrderNumber"];
@@ -1355,28 +1355,6 @@ class gridData extends gridDataSource{
         DB::update("UPDATE OrderHeader set SubTotal='" . $SubTotal . "', DiscountAmount='" . $DiscountAmount . "', TaxableSubTotal='" . $TotalTaxable . "', BalanceDue='" . round($Total - $orderHeader->AmountPaid, $Precision) ."', TaxAmount='" .($TaxAmount + $HeaderTaxAmount) . "', Total='" . $Total . "' WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND OrderNumber='" . $orderNumber ."'");
     }
 
-    public function createFromQuote() {
-        $user = Session::get("user");
-
-        $recalc = new recalcHelper;
-
-        if ($recalc->lookForProcedure("Order_CreateFromQuote")) {
-            DB::statement("CALL Order_CreateFromQuote('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
-
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-
-            if($result[0]->SWP_RET_VALUE == -1) {
-                echo "error";
-                return response("failed", 400)->header('Content-Type', 'text/plain');
-            } else {
-                echo "ok";
-                header('Content-Type: application/json');
-            }
-        } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
-        }
-    }
-        
     public function getPage($id){
         if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
             $this->gridConditions .= "and OrderDate >= now() - INTERVAL 1 DAY";
@@ -1387,5 +1365,27 @@ class gridData extends gridDataSource{
             return $result;
         }
     }
+    
+    public function Order_CreateFromQuote() {
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        if ($recalc->lookForProcedure("Order_CreateFromQuote")) {
+            DB::statement("CALL Order_CreateFromQuote('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+
+            if($result[0]->SWP_RET_VALUE == -1) {
+                http_response_code(400);
+                echo $result[0]->SWP_RET_VALUE;
+            } else {
+                echo "ok";
+            }
+        } else {
+            echo "Procedure not found";
+            http_response_code(400);
+        }
+    }        
 }
 ?>
