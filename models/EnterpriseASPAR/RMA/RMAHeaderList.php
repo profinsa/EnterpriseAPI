@@ -1409,8 +1409,9 @@ class RMAHeaderReceiveList extends RMAHeaderList{
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND (Posted = 1 AND Approved = 1 AND IFNULL(Received,0) = 0 AND PurchaseNumber <> 'DEFAULT')";
     public $dashboardTitle ="Receive RMA's";
     public $breadCrumbTitle ="Receive RMA's";
+    public $modes = ["grid", "view"];
 
-    public function split() {
+    public function RMA_Split() {
         $user = Session::get("user");
 
         $recalc = new recalcHelper;
@@ -1421,15 +1422,28 @@ class RMAHeaderReceiveList extends RMAHeaderList{
             $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');
 
             if($result[0]->SWP_RET_VALUE == -1) {
-                echo "error";
-                return response("failed", 400)->header('Content-Type', 'text/plain');
-            } else {
+                http_response_code(400);
+                echo $result[0]->Success;
+            } else
                 echo "ok";
-                return response($result[0]->Success, 200)->header('Content-Type', 'text/plain');
-            }
         } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+            http_response_code(500);
+            echo "Procedure not found";
         }
+    }
+
+    public function RMAReceiving_Post() {
+        $user = Session::get("user");
+
+        DB::statement("CALL RMAReceiving_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
+
+        $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');
+
+        if($result[0]->SWP_RET_VALUE == -1) {
+            http_response_code(400);
+            echo $result[0]->Success;
+        } else 
+            echo "ok";
     }
 }
 
@@ -1437,5 +1451,6 @@ class RMAHeaderReceivedList extends RMAHeaderList{
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND (IFNULL(PurchaseHeader.Received,0)=1) AND (IFNULL(PurchaseHeader.Paid,0)=0)";
     public $dashboardTitle ="PurchaseHeader";
     public $breadCrumbTitle ="PurchaseHeader";
+    public $modes = ["grid", "view"];
 }
 ?>
