@@ -1,11 +1,11 @@
 <script>
- function copySelectedToHistory(){
-     var OrderNumbers = [], ind;
-     for(ind in gridItemsSelected)
-         OrderNumbers.push(gridItemsSelected[ind].OrderNumber);
+function copySelectedToHistory(){
+    var PurchaseNumbers = [], ind;
+    for(ind in gridItemsSelected)
+        PurchaseNumbers.push(gridItemsSelected[ind].PurchaseNumber);
 
-     serverProcedureCall('CopyToHistory', { OrderNumbers :OrderNumbers.join(',') }, true);
- }
+    serverProcedureCall('CopyToHistory', { PurchaseNumbers :PurchaseNumbers.join(',') }, true);
+}
 </script>
 <a class="btn btn-info grid-actions-button" href="javascript:;" onclick="copySelectedToHistory()">
     <?php
