@@ -1264,36 +1264,34 @@ class PurchaseHeaderList extends gridDataSource{
         $Total += ($Handling + $Freight + $HeaderTaxAmount);
 
         DB::update("UPDATE PurchaseHeader set SubTotal='" . $SubTotal . "', DiscountAmount='" . $DiscountAmount . "', TaxableSubTotal='" . $TotalTaxable . "', BalanceDue='" . round($Total - $purchaseHeader->AmountPaid, $Precision) ."', TaxAmount='" .($TaxAmount + $HeaderTaxAmount) . "', Total='" . $Total . "' WHERE PurchaseNumber='" . $purchaseNumber ."'");
+
+        echo "ok";
     }
 
-    public function PostPurchase(){
+    public function Post(){
         $user = Session::get("user");
 
          DB::statement("CALL Purchase_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
 
          $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
+             http_response_code(400);
+             $result[0]->PostingResult;
+         } else 
             echo "ok";
-            header('Content-Type: application/json');
-         }
     }
 
-    public function UnPostPurchase(){
+    public function UnPost(){
         $user = Session::get("user");
 
          DB::statement("CALL Purchase_Cancel('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@SWP_RET_VALUE)");
 
          $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
-            echo "ok";
-            header('Content-Type: application/json');
-         }
+             http_response_code(400);
+             echo $result[0]->SWP_RET_VALUE;
+         } else
+             echo "ok";
     }
 
     public function Memorize(){
