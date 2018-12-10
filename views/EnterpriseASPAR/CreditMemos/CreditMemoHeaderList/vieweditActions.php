@@ -1,14 +1,13 @@
-<a class="btn btn-info" href="javascript:;" onclick="callRecalc('<?php echo $headerItem["InvoiceNumber"]; ?>')">
+<a class="btn btn-info" href="javascript:;" onclick="callRecalc('<?php echo $headerItem["OrderNumber"]; ?>')">
     <?php
 	echo $translation->translateLabel("Recalc");
     ?>
 </a>
 <a class="btn btn-info" href="javascript:;" onclick="serverProcedureCall('Post', { InvoiceNumber : '<?php echo $headerItem["InvoiceNumber"]; ?>'}, true);">
-	<?php
-	    echo $translation->translateLabel("Post");
-	?>
+    <?php
+	echo $translation->translateLabel("Post");
+    ?>
 </a>    
-
 
 <a class="btn btn-info" href="javascript:;" onclick="serverProcedureCall('Memorize', { id : '<?php echo $ascope["item"]; ?>', Memorize : '<?php echo $headerItem["Memorize"]; ?>'}, true);">
     <?php
