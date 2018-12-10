@@ -25,13 +25,13 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 12/10/2018
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class PurchaseHeaderList extends gridDataSource{
 	public $tableName = "purchaseheader";
 	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND ((IFNULL(Received,0) = 0) OR (IFNULL(PurchaseHeader.Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT')";
 	public $dashboardTitle ="Purchases";
@@ -1324,4 +1324,100 @@ class gridData extends gridDataSource{
         }
     }
 }
+
+class gridData extends PurchaseHeaderList {
+}
+
+class PurchaseHeaderClosedList extends PurchaseHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) NOT IN('rma','debit memo')) AND  IFNULL(Received,0) = 1 AND UPPER(PurchaseNumber <> 'DEFAULT')";
+	public $dashboardTitle ="Closed Purchases";
+	public $breadCrumbTitle ="Closed Purchases";
+    public $modes = ["grid", "view", "edit"]; // list of enabled modes
+    public $features = ["selecting"]; //list enabled features
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["PurchaseNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Purchase_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@PostingResult,@SWP_RET_VALUE)");
+
+            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Purchase_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
+    }
+}
+
+class PurchaseHeaderApproveList extends PurchaseHeaderList{
+	public $gridConditions = "(IFNULL(PurchaseHeader.Posted,0)=1 AND IFNULL(Approved,0)=0 AND PurchaseNumber <> 'DEFAULT') AND (NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo'))";
+	public $dashboardTitle ="Approve Purchases";
+	public $breadCrumbTitle ="Approve Purchases";
+    public $modes = ["grid"]; // list of enabled modes
+    public $features = ["selecting"]; //list enabled features
+
+    public function PaymentApprove(){
+        $user = Session::get("user");
+
+        $paymentIDs = explode(",", $_POST["PaymentIDs"]);
+        $success = true;
+        foreach($paymentIDs as $paymentID){
+            DB::statement("CALL Payment_Approve('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $paymentID . "','" . $user["EmployeeID"] . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function PaymentApproveAll(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Payment_ApproveAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "',@SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
+    }
+}
+
+class PurchaseHeaderReceiveList extends PurchaseHeaderList{
+	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (PurchaseHeader.Posted = 1 AND Approved = 1 AND IFNULL(Received,0) = 0 AND PurchaseNumber <> 'DEFAULT')";
+	public $dashboardTitle ="Receive Purchases";
+	public $breadCrumbTitle ="Receive Purchases";
+    public $modes = ["grid", "view"]; // list of enabled modes
+}
+
+class PurchaseHeaderReceivedList extends PurchaseHeaderList{
+	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (IFNULL(PurchaseHeader.Received,0)=1) AND (IFNULL(PurchaseHeader.Paid,0)=0)";
+	public $dashboardTitle ="Received Purchases";
+	public $breadCrumbTitle ="Received Purchases";
+    public $modes = ["grid", "view"]; // list of enabled modes
+}
 ?>
+

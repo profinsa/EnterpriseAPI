@@ -36,7 +36,7 @@ class gridData extends gridDataSource{
 	public $dashboardTitle ="Purchases History";
 	public $breadCrumbTitle ="Purchases History";
 	public $idField ="PurchaseNumber";
-    public $modes = ["grid", "view", "edit"]; // list of enabled modes
+    public $modes = ["grid", "view"]; // list of enabled modes
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
 	public $gridFields = [
 		"PurchaseNumber" => [

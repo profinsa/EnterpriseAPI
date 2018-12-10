@@ -71,6 +71,11 @@ class controller{
         "EnterpriseASPAR/RMA/RMAHeaderReceiveList" => "EnterpriseASPAR/RMA/RMAHeaderList",
         "EnterpriseASPAR/RMA/RMAHeaderReceivedList" => "EnterpriseASPAR/RMA/RMAHeaderList",
 
+        "EnterpriseASPAP/Purchases/PurchaseHeaderClosedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
+        "EnterpriseASPAP/Purchases/PurchaseHeaderApproveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
+        "EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
+        "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
+        
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderInvoiceList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
@@ -247,11 +252,15 @@ class controller{
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
-                    "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList/" => [
+                    "EnterpriseASPAP/Purchases/PurchaseHeaderClosedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
-                    "EnterpriseASPAP/Purchases/PurchaseHeaderClosedList/" => [
+                    "EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
