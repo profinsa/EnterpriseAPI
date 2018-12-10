@@ -1,54 +1,54 @@
 <?php
-$GLOBALS["dialogChooserTypes"] = [];
-$GLOBALS["dialogChooserInputs"] = [];
+    $GLOBALS["dialogChooserTypes"] = [];
+    $GLOBALS["dialogChooserInputs"] = [];
 ?>
 
 <!-- edit and new -->
 <?php
-if(key_exists("back", $_GET)){
-    if(strpos($_GET["back"], "=" . $ascope["path"] . "&") === false){
-	$backhref = $_GET["back"] . "&back=" . urlencode($_GET["back"]);
-	$back = "&back=" . urlencode($_GET["back"]);
+    if(key_exists("back", $_GET)){
+	if(strpos($_GET["back"], "=" . $ascope["path"] . "&") === false){
+	    $backhref = $_GET["back"] . "&back=" . urlencode($_GET["back"]);
+	    $back = "&back=" . urlencode($_GET["back"]);
+	}else{
+	    $backhref = $linksMaker->makeGridLink($ascope["path"]);//$linksMaker->makeGridLink($ascope["path"]);
+	    $back = "&back=" . urlencode($linksMaker->makeGridLink($ascope["path"]));
+	}
     }else{
-	$backhref = $linksMaker->makeGridLink($ascope["path"]);//$linksMaker->makeGridLink($ascope["path"]);
-	$back = "&back=" . urlencode($linksMaker->makeGridLink($ascope["path"]));
+	$backhref = $linksMaker->makeGridLink($ascope["path"]);
+	$back = "";
     }
-}else{
-    $backhref = $linksMaker->makeGridLink($ascope["path"]);
-    $back = "";
-}
 
-function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
-    $user = $GLOBALS["user"];
-    $keyString = "";
-    if(key_exists("detailIdFields",$ctx["detailTable"])){
-        $values = [];
-        foreach($ctx["detailTable"]["detailIdFields"] as $value){
-            if(key_exists($value, $user))
-                $values[] = $user[$value];
-            else
-                $values[] = $row[$value];
-        }
-        $keyString = join("__", $values);
-    }else{
-        $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$ctx["detailTable"]["keyFields"][0]] . (count($ctx["detailTable"]["keyFields"]) > 1 ? "__" . $row[$ctx["detailTable"]["keyFields"][1]] : "");
+    function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
+	$user = $GLOBALS["user"];
+	$keyString = "";
+	if(key_exists("detailIdFields",$ctx["detailTable"])){
+            $values = [];
+            foreach($ctx["detailTable"]["detailIdFields"] as $value){
+		if(key_exists($value, $user))
+                    $values[] = $user[$value];
+		else
+                    $values[] = $row[$value];
+            }
+            $keyString = join("__", $values);
+	}else{
+            $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$ctx["detailTable"]["keyFields"][0]] . (count($ctx["detailTable"]["keyFields"]) > 1 ? "__" . $row[$ctx["detailTable"]["keyFields"][1]] : "");
+	}
+	if(!key_exists("editDisabled", $ctx["detailTable"])){
+	    echo "<a href=\"" . $linksMaker->makeEmbeddedgridItemViewLink($ctx["detailTable"]["viewPath"], $ascope["path"], $keyString, $ascope["item"]);
+	    echo "\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+	}
+	if(!key_exists("deleteDisabled", $ctx["detailTable"]))
+	    echo "<a href=\"javascript:;\" onclick=\"embeddedGridDelete('$keyString')\"><span class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a>";
     }
-    if(!key_exists("editDisabled", $ctx["detailTable"])){
-	echo "<a href=\"" . $linksMaker->makeEmbeddedgridItemViewLink($ctx["detailTable"]["viewPath"], $ascope["path"], $keyString, $ascope["item"]);
-	echo "\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
-    }
-    if(!key_exists("deleteDisabled", $ctx["detailTable"]))
-	echo "<a href=\"javascript:;\" onclick=\"embeddedGridDelete('$keyString')\"><span class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span></a>";
-}
 
-$dropdownDepends = [];
+    $dropdownDepends = [];
 ?>
 <div id="row_editor" class="row">
     <ul class="nav nav-tabs" role="tablist">
 	<?php
-	//render tabs like Main, Current etc
-	//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
-	foreach($data->editCategories as $key =>$value)
+	    //render tabs like Main, Current etc
+	    //uses $data(charOfAccounts model) as dictionaries which contains list of tab names
+	    foreach($data->editCategories as $key =>$value)
 	    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
 		echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 	?>
@@ -61,102 +61,102 @@ $dropdownDepends = [];
 	    <?php foreach($data->editCategories as $key =>$value):  ?>
 		<div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
 		    <?php
-		    //getting record.
-		    $category = $key;
-		    $curCategory = $key;
-		    $item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
-			    $data->getNewItem($ascope["item"], $category);
-		    //used as translated field name
-		    $translatedFieldName = '';
-		    $leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
-		    $rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : 6;
+			//getting record.
+			$category = $key;
+			$curCategory = $key;
+			$item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
+				$data->getNewItem($ascope["item"], $category);
+			//used as translated field name
+			$translatedFieldName = '';
+			$leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
+			$rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : 6;
 		    ?>
 		    <?php if(!property_exists($data, "detailPages") ||
 			     !key_exists($curCategory, $data->detailPages)||
 			     !key_exists("hideFields", $data->detailPages[$curCategory])):?>
 			<?php 
-			foreach($item as $key =>$value){
-			    $translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
-			    if(key_exists($key, $data->editCategories[$category])){
-				$disabledEdit =  (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  ||
-						 (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ||
-						 (key_exists("editPermissions", $data->editCategories[$category][$key]) &&
-						  $data->editCategories[$category][$key]["editPermissions"] == "admin" &&
-						  !$security->isAdmin())
-					       ? "readonly" : "";
-				switch($data->editCategories[$category][$key]["inputType"]){
-				    case "text" :
-					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"";
-					if(key_exists("formatFunction", $data->editCategories[$category][$key])){
-					    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
-					    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-					}
-					else
-					    echo formatField($data->editCategories[$category][$key], $value);
+			    foreach($item as $key =>$value){
+				$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
+				if(key_exists($key, $data->editCategories[$category])){
+				    $disabledEdit =  (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  ||
+						     (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ||
+						     (key_exists("editPermissions", $data->editCategories[$category][$key]) &&
+						      $data->editCategories[$category][$key]["editPermissions"] == "admin" &&
+						      !$security->isAdmin())
+						   ? "readonly" : "";
+				    switch($data->editCategories[$category][$key]["inputType"]){
+					case "text" :
+					    //renders text input with label
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"";
+					    if(key_exists("formatFunction", $data->editCategories[$category][$key])){
+						$formatFunction = $data->editCategories[$category][$key]["formatFunction"];
+						echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+					    }
+					    else
+						echo formatField($data->editCategories[$category][$key], $value);
 
-					echo"\" $disabledEdit></div></div>";
-					break;
-					
-				    case "datetime" :
-					//renders text input with label
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" $disabledEdit></div></div>";
-					break;
+					    echo"\" $disabledEdit></div></div>";
+					    break;
+					    
+					case "datetime" :
+					    //renders text input with label
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" $disabledEdit></div></div>";
+					    break;
 
-				    case "file" :
-					echo "<input class=\"file_attachment\" type=\"hidden\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"\" />";
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key . "_attachment" ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"file\" id=\"" . $key . "_attachment" ."\" name=\"" . $key . "_attachment" . "\" class=\"form-control\" value=\"";
-					echo"\" $disabledEdit></div></div>";
-					break;
+					case "file" :
+					    echo "<input class=\"file_attachment\" type=\"hidden\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"\" />";
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key . "_attachment" ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"file\" id=\"" . $key . "_attachment" ."\" name=\"" . $key . "_attachment" . "\" class=\"form-control\" value=\"";
+					    echo"\" $disabledEdit></div></div>";
+					    break;
 
-				    case "checkbox" :
-					if($disabledEdit != "")
-					    $disabledEdit = "disabled";
-					//renders checkbox input with label
-					echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"1\" " . ($value ? "checked" : "") ." $disabledEdit></div></div>";
-					break;
+					case "checkbox" :
+					    if($disabledEdit != "")
+						$disabledEdit = "disabled";
+					    //renders checkbox input with label
+					    echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"1\" " . ($value ? "checked" : "") ." $disabledEdit></div></div>";
+					    break;
 
-				    case "dialogChooser":
-					$dataProvider = $data->editCategories[$category][$key]["dataProvider"];
-					if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
-					    $GLOBALS["dialogChooserTypes"][$dataProvider] = $data->editCategories[$category][$key];
-					    $GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
-					}
-					$GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\"></div></div>";
-					break;
-				    case "dropdown" :
-					if($disabledEdit != ""){
-					    $disabledEdit = "disabled";
-					    echo "<input type=\"hidden\" name=\"$key\" value=\"$value\"/>";
-					}
-					//renders select with available values as dropdowns with label
-					echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\">" . $translatedFieldName . "</label><div class=\"col-md-$rightWidth\"><select class=\"form-control $key\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\" $disabledEdit>";
-					$method = $data->editCategories[$category][$key]["dataProvider"];
-					if(key_exists("depends", $data->editCategories[$category][$key])){
-					    $dropdownDepends[$key] = [
-						"depends" =>$data->editCategories[$category][$key]["depends"],
-						"data" => $data->$method()
-					    ];
-					    $types = [];
-					}
-					else
-					    $types = $data->$method();
+					case "dialogChooser":
+					    $dataProvider = $data->editCategories[$category][$key]["dataProvider"];
+					    if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
+						$GLOBALS["dialogChooserTypes"][$dataProvider] = $data->editCategories[$category][$key];
+						$GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
+					    }
+					    $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\"></div></div>";
+					    break;
+					case "dropdown" :
+					    if($disabledEdit != ""){
+						$disabledEdit = "disabled";
+						echo "<input type=\"hidden\" name=\"$key\" value=\"$value\"/>";
+					    }
+					    //renders select with available values as dropdowns with label
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\">" . $translatedFieldName . "</label><div class=\"col-md-$rightWidth\"><select class=\"form-control $key\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\" $disabledEdit>";
+					    $method = $data->editCategories[$category][$key]["dataProvider"];
+					    if(key_exists("depends", $data->editCategories[$category][$key])){
+						$dropdownDepends[$key] = [
+						    "depends" =>$data->editCategories[$category][$key]["depends"],
+						    "data" => $data->$method()
+						];
+						$types = [];
+					    }
+					    else
+						$types = $data->$method();
 
-					if($value)
-					    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
-					else
-					    echo "<option></option>";
+					    if($value)
+						echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
+					    else
+						echo "<option></option>";
 
-					foreach($types as $type)
-					if(!$value || $type["value"] != $value)
-					    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
-					echo"</select></div></div>";
-					break;
+					    foreach($types as $type)
+					    if(!$value || $type["value"] != $value)
+						echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+					    echo"</select></div></div>";
+					    break;
+				    }
 				}
 			    }
-			}
 			?>
 		    <?php endif; ?>
 		    <?php if(property_exists($data, "detailPages") && key_exists($curCategory, $data->detailPages)):?>
@@ -231,19 +231,19 @@ $dropdownDepends = [];
 			<?php else: ?>
 			    <div class="col-md-12 col-xs-12">
 				<?php
-				$getmethod = "get" . makeId($curCategory);
-				$deletemethod = "delete" . makeId($curCategory);
-				$rows = $data->$getmethod(key_exists("OrderNumber", $item) ? $item["OrderNumber"] : $item[$data->detailPages[$curCategory]["keyFields"][0]]);
-				//			echo json_encode($rows);
-				$detailTable = $data->detailPages[$curCategory];
-				$gridFields = $embeddedgridFields = $detailTable["gridFields"];
-				$deleteProcedure = "delete" . makeid($curCategory);
-				$embeddedgridContext = [
-				    "item" =>$item,
-				    "detailTable" => $detailTable
-				];
-				$embeddedGridClasses = $newButtonId = "new" . makeId($curCategory);
-				require __DIR__ . "/../embeddedgrid.php"; 
+				    $getmethod = "get" . makeId($curCategory);
+				    $deletemethod = "delete" . makeId($curCategory);
+				    $rows = $data->$getmethod(key_exists("OrderNumber", $item) ? $item["OrderNumber"] : $item[$data->detailPages[$curCategory]["keyFields"][0]]);
+				    //			echo json_encode($rows);
+				    $detailTable = $data->detailPages[$curCategory];
+				    $gridFields = $embeddedgridFields = $detailTable["gridFields"];
+				    $deleteProcedure = "delete" . makeid($curCategory);
+				    $embeddedgridContext = [
+					"item" =>$item,
+					"detailTable" => $detailTable
+				    ];
+				    $embeddedGridClasses = $newButtonId = "new" . makeId($curCategory);
+				    require __DIR__ . "/../embeddedgrid.php"; 
 				?>
 			    </div>
 			    <div id="<?php echo $newButtonId; ?>" class="row col-md-1">
@@ -292,25 +292,25 @@ $dropdownDepends = [];
 	    <?php endforeach; ?>
 	</div>
 	<?php
-	if(file_exists(__DIR__ . "/../" . $PartsPath . "editFooter.php"))
-	    require __DIR__ . "/../" . $PartsPath . "editFooter.php";
-	if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
-	    require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
+	    if(file_exists(__DIR__ . "/../" . $PartsPath . "editFooter.php"))
+		require __DIR__ . "/../" . $PartsPath . "editFooter.php";
+	    if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditFooter.php"))
+		require __DIR__ . "/../" . $PartsPath . "vieweditFooter.php";
 	?>
 	<div class="col-md-12 col-xs-12 row">
 	    <div  style="margin-top:10px" class="pull-right">
 		<!--
 		     renders buttons translated Save and Cancel using translation model
-		   -->
+		-->
 		<?php if($security->can("update")): ?>
 		    <a class="btn btn-info" id="saveButton" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 			<?php echo $translation->translateLabel("Save"); ?>
 		    </a>
 		    <?php 
-		    if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
-			require __DIR__ . "/../" . $PartsPath . "editActions.php";
-		    if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
-			require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
+			if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
+			    require __DIR__ . "/../" . $PartsPath . "editActions.php";
+			if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditActions.php"))
+			    require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
 		    ?>
 		<?php endif; ?>
 		<a class="btn btn-info" href="<?php echo ( $ascope["mode"] != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) . $back : $backhref ) ; ?>">

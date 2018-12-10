@@ -1318,4 +1318,48 @@ class CreditMemoHeaderClosedList extends CreditMemoHeaderList{
     }
 
 }
+
+class CreditMemoIssuePaymentsList extends CreditMemoHeaderList{
+	public $gridConditions = "(ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005) AND (LOWER(InvoiceHeader.TransactionTypeID) IN ('credit memo')) AND (InvoiceHeader.Posted = 1)";
+	public $dashboardTitle ="Issue Payments for Credit Memos";
+	public $breadCrumbTitle ="Issue Payments for Credit Memos";
+    public $modes = ["grid"];
+    public $features = ["selecting"]; //list enabled features
+
+    public function CreditMemo_CreatePayment(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["InvoiceNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL CreditMemo_CreatePayment('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
+    
+    public function CreditMemo_CreatePaymentsForAll(){
+        $user = Session::get("user");
+
+        DB::statement("CALL CreditMemo_CreatePaymentsForAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
+
+}
 ?>
