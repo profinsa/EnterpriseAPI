@@ -1334,15 +1334,17 @@ class RMAHeaderClosedList extends RMAHeaderList{
         foreach($numbers as $number){
             DB::statement("CALL RMA_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @v_PostingResult,@SWP_RET_VALUE)");
 
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @v_PostingResult as PostingResult');
             if($result[0]->SWP_RET_VALUE == -1)
                 $success = false;
         }
 
         if($success)
-            header('Content-Type: application/json');
-        else
-            return response("failed", 400)->header('Content-Type', 'text/plain');
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo $result[0]->PostingResult;
+        }
     }
     
     public function CopyAllToHistory(){
@@ -1353,8 +1355,10 @@ class RMAHeaderClosedList extends RMAHeaderList{
         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
         if($result[0]->SWP_RET_VALUE > -1)
             echo $result[0]->SWP_RET_VALUE;
-        else
-            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
+        else {
+            http_response_code(500);
+            echo $result[0]->SWP_RET_VALUE;
+        }
     }
 }
 
