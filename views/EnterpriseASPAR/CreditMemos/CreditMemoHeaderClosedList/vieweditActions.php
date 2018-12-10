@@ -1,4 +1,4 @@
-<a class="btn btn-info" href="javascript:;" onclick="callRecalc('<?php echo $headerItem["OrderNumber"]; ?>')">
+<a class="btn btn-info" href="javascript:;" onclick="callRecalc('<?php echo $headerItem["InvoiceNumber"]; ?>')">
     <?php
 	echo $translation->translateLabel("Recalc");
     ?>

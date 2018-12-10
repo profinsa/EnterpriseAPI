@@ -1253,7 +1253,15 @@ class RMAHeaderList extends gridDataSource{
         DB::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 
-    public function Post(){
+    public function Recalc(){
+        $recalc = new recalcHelper;
+
+        $recalc->recalcRMA(Session::get("user"), $_POST["PurchaseNumber"]);
+
+        echo "ok";
+    }
+
+        public function Post(){
         $user = Session::get("user");
 
         $recalc = new recalcHelper;
@@ -1263,24 +1271,17 @@ class RMAHeaderList extends gridDataSource{
 
             $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
             if($result[0]->SWP_RET_VALUE == -1) {
-                echo "error";
-                return response($result[0]->PostingResult, 400)->header('Content-Type', 'text/plain');
+                http_response_code(400);
+                echo $result[0]->PostingResult;
             } else {
                 echo "ok";
-                header('Content-Type: application/json');
             }
         } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+            http_response_code(500);
+            echo "Procedure not found";
         }
     }
-    public function Recalc(){
-        $recalc = new recalcHelper;
 
-        $recalc->recalcRMA(Session::get("user"), $_POST["PurchaseNumber"]);
-
-        echo "ok";
-        return;
-    }
     public function UnPost(){
         $user = Session::get("user");
 
@@ -1291,14 +1292,13 @@ class RMAHeaderList extends gridDataSource{
 
             $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
             if($result[0]->SWP_RET_VALUE == -1) {
+                http_response_code(400);
                 echo "error";
-                return response("failed", 400)->header('Content-Type', 'text/plain');
-            } else {
+            } else
                 echo "ok";
-                header('Content-Type: application/json');
-            }
         } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+            http_response_code(500);
+            echo "Procedure not found";
         }
     }
 
@@ -1318,6 +1318,7 @@ class RMAHeaderList extends gridDataSource{
 }
 
 class gridData extends RMAHeaderList {}
+
 class RMAHeaderClosedList extends RMAHeaderList{
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND ((IFNULL(Received,0) = 1) AND UPPER(PurchaseNumber) <> 'DEFAULT')";
     public $dashboardTitle ="Closed RMA's";
