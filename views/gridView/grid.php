@@ -71,7 +71,7 @@
 			    //this feature enabled in data model, if model has features propery
 			    if(property_exists($data, "features") && in_array("selecting", $data->features))
 				echo "<td><input type=\"checkbox\" onchange=\"gridSelectItem(event, '" . $current_row . "')\"></td>";
-			    echo "<td style=\"width:100%\">";
+			    echo "<td>";
 			    /*
 			       this column contains row actions like edit, remove, print etc.
 			       Each action may be any html code. For now usually we have two type actions:
