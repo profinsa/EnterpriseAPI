@@ -1,40 +1,39 @@
 <?php
-
 /*
-Name of Page: PurchaseContractHeaderList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\PurchaseContract\PurchaseContractHeaderList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/PurchaseContractHeaderList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\PurchaseContract\PurchaseContractHeaderList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\PurchaseContract\PurchaseContractHeaderList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 11/30/2018
-Last Modified by Nikita Zaharov
+  Name of Page: PurchaseContractHeaderList model
+   
+  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\PurchaseContract\PurchaseContractHeaderList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/PurchaseContractHeaderList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\PurchaseContract\PurchaseContractHeaderList.php
+  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\PurchaseContract\PurchaseContractHeaderList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 12/11/2018
+  Last Modified by Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	public $tableName = "purchasecontractheader";
-	public $dashboardTitle ="PurchaseContractHeader";
-	public $breadCrumbTitle ="PurchaseContractHeader";
+	public $dashboardTitle ="View Purchase Contracts";
+	public $breadCrumbTitle ="View Purchase Contracts";
 	public $idField ="PurchaseContractNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseContractNumber"];
 	public $gridFields = [

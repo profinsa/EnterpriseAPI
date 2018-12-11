@@ -1651,6 +1651,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "PurchaseTracking" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "QuoteHeader" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "OEEdit|ADSetup",

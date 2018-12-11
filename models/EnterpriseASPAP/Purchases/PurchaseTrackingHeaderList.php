@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/15/2017
+  Last Modified: 12/11/2018
   Last Modified by: Niktia Zaharov
 */
 
@@ -33,8 +33,8 @@ require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     public $tableName = "purchasetrackingheader";
-    public $dashboardTitle ="PurchaseTrackingHeader";
-    public $breadCrumbTitle ="PurchaseTrackingHeader";
+    public $dashboardTitle ="View Purchase Tracking";
+    public $breadCrumbTitle ="View Purchase Tracking";
     public $idField ="PurchaseNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
     public $gridFields = [
