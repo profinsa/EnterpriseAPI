@@ -75,7 +75,10 @@ class controller{
         "EnterpriseASPAP/Purchases/PurchaseHeaderApproveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
-        
+
+        "EnterpriseASPAP/DebitMemos/DebitMemoHeaderClosedList" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderList",
+        "EnterpriseASPAP/DebitMemos/DebitMemoHeaderPaymentsList" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderList",
+
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderInvoiceList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",

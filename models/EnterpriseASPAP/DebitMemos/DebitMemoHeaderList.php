@@ -25,14 +25,14 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 12/11/2018
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
-class gridData extends gridDataSource{
+class DebitMemoHeaderList extends gridDataSource{
     public $tableName = "purchaseheader";
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'debit memo') AND (ABS(IFNULL(PurchaseHeader.BalanceDue,0)) >= 0.005 OR ABS(IFNULL(PurchaseHeader.Total,0)) < 0.005 OR IFNULL(PurchaseHeader.Posted,0)=0)";
     public $dashboardTitle ="Debit Memos";
@@ -1198,5 +1198,55 @@ class gridData extends gridDataSource{
         DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
         echo "ok";
     }
+}
+
+class gridData extends DebitMemoHeaderList {}
+
+class DebitMemoHeaderClosedList extends DebitMemoHeaderList{
+    public $gridConditions = "(ABS(IFNULL(PurchaseHeader.BalanceDue, 0)) < 0.005) AND (ABS(IFNULL(PurchaseHeader.Total, 0)) >= 0.005) AND (LOWER(IFNULL(PurchaseHeader.TransactionTypeID, N'')) = 'debit memo') AND (IFNULL(PurchaseHeader.Posted, 0) = 1)"; 
+    public $dashboardTitle ="Closed Debit Memos";
+    public $breadCrumbTitle ="Closed Debit Memos";
+    public $modes = ["grid", "view"];
+    public $features = ["selecting"]; //list enabled features
+    public $idField ="PurchaseNumber";
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["PurchaseNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL DebitMemo_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL DebitMemo_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
+    }
+}
+
+class DebitMemoHeaderPaymentsList extends DebitMemoHeaderList{
+    public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'debit memo') AND (ABS(IFNULL(PurchaseHeader.Total, 0) - IFNULL(PurchaseHeader.AmountPaid, 0)) >= 0.005 AND ABS(IFNULL(PurchaseHeader.Total,0)) >= 0.005 AND IFNULL(PurchaseHeader.Posted,0)=1)";
+    public $dashboardTitle ="Apply Debit Memos to Payments ";
+    public $breadCrumbTitle ="Apply Debit Memos to Payments ";
+    public $modes = ["grid"];
+    public $features = ["selecting"];
 }
 ?>
