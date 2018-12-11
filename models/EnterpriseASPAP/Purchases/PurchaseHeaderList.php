@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 12/10/2018
+  Last Modified: 12/11/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -1417,7 +1417,35 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
 	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (PurchaseHeader.Posted = 1 AND Approved = 1 AND IFNULL(Received,0) = 0 AND PurchaseNumber <> 'DEFAULT')";
 	public $dashboardTitle ="Receive Purchases";
 	public $breadCrumbTitle ="Receive Purchases";
-    public $modes = ["grid", "view"]; // list of enabled modes
+    public $modes = ["grid"]; // list of enabled modes
+
+    public function Purchase_Split() {
+        $user = Session::get("user");
+
+        DB::statement("CALL Purchase_Split('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
+
+        $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');
+
+        if($result[0]->SWP_RET_VALUE == -1) {
+            http_response_code(400);
+            echo $result[0]->Success;
+        } else
+            echo "ok";
+    }
+
+    public function Receiving_Post() {
+        $user = Session::get("user");
+
+        DB::statement("CALL Receiving_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
+
+        $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');
+
+        if($result[0]->SWP_RET_VALUE == -1) {
+            http_response_code(400);
+            echo $result[0]->Success;
+        } else 
+            echo "ok";
+    }
 }
 
 class PurchaseHeaderReceivedList extends PurchaseHeaderList{

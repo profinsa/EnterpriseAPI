@@ -280,7 +280,10 @@
 		 for translation uses translation model
 		 for category(which tab is activated) uses $ascope of controller
 	    -->
-	    <?php if($security->can("update") && (property_exists($data, "modes")  && in_array("edit", $data->modes) || !property_exists($data, "modes"))): ?>
+	    <?php if($security->can("update") &&
+                     (property_exists($data, "modes") &&
+		      in_array("edit", $data->modes) ||
+		      !property_exists($data, "modes"))): ?>
 		<a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"] . $back); ?>">
 		    <?php echo $translation->translateLabel("Edit"); ?>
 		</a>

@@ -20,128 +20,128 @@
      Calls:
      model
 
-     Last Modified: 12/04/2018
+     Last Modified: 12/11/2018
      Last Modified by: Zaharov Nikita
 -->
 
 <?php
 
-$GLOBALS["dialogChooserTypes"] = [];
-$GLOBALS["dialogChooserInputs"] = [];
+    $GLOBALS["dialogChooserTypes"] = [];
+    $GLOBALS["dialogChooserInputs"] = [];
 
-function renderInput($ascope, $data, $category, $item, $key, $value){
-    switch($data->editCategories[$category][$key]["inputType"]){
-	case "text" :
-	    //renders text input with label
-	    echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control $key\" value=\"";
-	    if(key_exists("formatFunction", $data->editCategories[$category][$key])){
-		$formatFunction = $data->editCategories[$category][$key]["formatFunction"];
-		echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-	    }
-	    else
-		echo formatField($data->editCategories[$category][$key], $value);
+    function renderInput($ascope, $data, $category, $item, $key, $value){
+	switch($data->editCategories[$category][$key]["inputType"]){
+	    case "text" :
+		//renders text input with label
+		echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control $key\" value=\"";
+		if(key_exists("formatFunction", $data->editCategories[$category][$key])){
+		    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
+		    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+		}
+		else
+		    echo formatField($data->editCategories[$category][$key], $value);
 
-	    echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-	   .">";
-	    break;
-	    
-	case "datetime" :
-	    //renders text input with label
-	    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-		 ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-		.">";
-	    break;
+		echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+	       .">";
+		break;
+		
+	    case "datetime" :
+		//renders text input with label
+		echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+		     ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+		    .">";
+		break;
 
-	case "checkbox" :
-	    //renders checkbox input with label
-	    echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-	    echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"1\" " . ($value ? "checked" : "") ." " .
-		 ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit") || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
-		.">";
-	    break;
-	    
-	case "dialogChooser":
-	    $dataProvider = $data->editCategories[$category][$key]["dataProvider"];
-	    if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
-		$GLOBALS["dialogChooserTypes"][$dataProvider] = $data->editCategories[$category][$key];
-		$GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
-	    }
-	    $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-	    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\">";
-	    break;
+	    case "checkbox" :
+		//renders checkbox input with label
+		echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+		echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"1\" " . ($value ? "checked" : "") ." " .
+		     ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit") || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
+		    .">";
+		break;
+		
+	    case "dialogChooser":
+		$dataProvider = $data->editCategories[$category][$key]["dataProvider"];
+		if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
+		    $GLOBALS["dialogChooserTypes"][$dataProvider] = $data->editCategories[$category][$key];
+		    $GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
+		}
+		$GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
+		echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\">";
+		break;
 
-	case "dropdown" :
-	    //renders select with available values as dropdowns with label
-	    echo "<select class=\"form-control $key\" name=\"" . $key . "\" id=\"" . $key . "\">";
-	    $method = $data->editCategories[$category][$key]["dataProvider"];
-	    if(key_exists("dataProviderArgs", $data->editCategories[$category][$key])){
-		$args = [];
-		foreach($data->editCategories[$category][$key]["dataProviderArgs"] as $argname)
-		$args[$argname] = $item[$argname];
-		$types = $data->$method($args);
-	    }
-	    else
-		$types = $data->$method();
-	    if($value)
-		echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
-	    else
-		echo "<option></option>";
+	    case "dropdown" :
+		//renders select with available values as dropdowns with label
+		echo "<select class=\"form-control $key\" name=\"" . $key . "\" id=\"" . $key . "\">";
+		$method = $data->editCategories[$category][$key]["dataProvider"];
+		if(key_exists("dataProviderArgs", $data->editCategories[$category][$key])){
+		    $args = [];
+		    foreach($data->editCategories[$category][$key]["dataProviderArgs"] as $argname)
+		    $args[$argname] = $item[$argname];
+		    $types = $data->$method($args);
+		}
+		else
+		    $types = $data->$method();
+		if($value)
+		    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
+		else
+		    echo "<option></option>";
 
-	    foreach($types as $type)
-	    if(!$value || $type["value"] != $value)
-		echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
-	    echo"</select>";
-	    break;
-    }
-}
-
-function renderRow($translation, $ascope, $data, $category, $item, $key, $value){
-    if($key != "loadFrom"){
-	$translatedFieldName = $translation->translateLabel(
-	    key_exists("title", $data->editCategories[$category][$key]) ?
-	    $data->editCategories[$category][$key]["title"] :
-	    (key_exists($key, $data->columnNames) ?
-	     $data->columnNames[$key] :
-	     $key));
-	echo "<div class=\"form-group col-md-12 col-xs-12\"><label class=\"col-md-6 col-xs-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6 col-xs-6\">";
-	renderInput($ascope, $data, $category, $item, $key, $value);
-	echo "</div></div>";
-    }
-}
-
-function renderViewRow($translation, $data, $fieldsDefinition, $values, $key, $value){
-    echo "<tr><td class=\"title\">" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
-    echo formatValue($data, $fieldsDefinition, $values, $key, $value);
-    echo "</td></tr>";
-}
-
-function makeTableItems($values, $fieldsDefinition){
-    $leftItems = [];
-    $rightItems = [];
-    
-    $itemsHalf = 0;
-    $itemsCount = 0;
-    foreach($values as $key =>$value){
-	if(key_exists($key, $fieldsDefinition))
-	    $itemsCount++;
-    }
-    $itemsHalf = $itemsCount/2;
-
-    $itemsCount = 0;
-    foreach($values as $key =>$value){
-	if(key_exists($key, $fieldsDefinition)){
-	    if($itemsCount < $itemsHalf)
-		$leftItems[$key] = $value;
-	    else 
-		$rightItems[$key] = $value;
-	    $itemsCount++;
+		foreach($types as $type)
+		if(!$value || $type["value"] != $value)
+		    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+		echo"</select>";
+		break;
 	}
     }
-    return [
-	"leftItems" => $leftItems,
-	"rightItems" => $rightItems
-    ];
-}
+
+    function renderRow($translation, $ascope, $data, $category, $item, $key, $value){
+	if($key != "loadFrom"){
+	    $translatedFieldName = $translation->translateLabel(
+		key_exists("title", $data->editCategories[$category][$key]) ?
+		$data->editCategories[$category][$key]["title"] :
+		(key_exists($key, $data->columnNames) ?
+		 $data->columnNames[$key] :
+		 $key));
+	    echo "<div class=\"form-group col-md-12 col-xs-12\"><label class=\"col-md-6 col-xs-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6 col-xs-6\">";
+	    renderInput($ascope, $data, $category, $item, $key, $value);
+	    echo "</div></div>";
+	}
+    }
+
+    function renderViewRow($translation, $data, $fieldsDefinition, $values, $key, $value){
+	echo "<tr><td class=\"title\">" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
+	echo formatValue($data, $fieldsDefinition, $values, $key, $value);
+	echo "</td></tr>";
+    }
+
+    function makeTableItems($values, $fieldsDefinition){
+	$leftItems = [];
+	$rightItems = [];
+	
+	$itemsHalf = 0;
+	$itemsCount = 0;
+	foreach($values as $key =>$value){
+	    if(key_exists($key, $fieldsDefinition))
+		$itemsCount++;
+	}
+	$itemsHalf = $itemsCount/2;
+
+	$itemsCount = 0;
+	foreach($values as $key =>$value){
+	    if(key_exists($key, $fieldsDefinition)){
+		if($itemsCount < $itemsHalf)
+		    $leftItems[$key] = $value;
+		else 
+		    $rightItems[$key] = $value;
+		$itemsCount++;
+	    }
+	}
+	return [
+	    "leftItems" => $leftItems,
+	    "rightItems" => $rightItems
+	];
+    }
 ?>
 <div id="row_editor" class="row">
     <form id="itemData" class="form-material form-horizontal m-t-30 col-md-12 col-xs-12">
@@ -150,9 +150,9 @@ function makeTableItems($values, $fieldsDefinition){
 	
 	<div class="order-entry-header">
 	    <?php
-	    
-	    $headerItem = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], "...fields") :
-			  $data->getNewItem($ascope["item"], "...fields" );
+		
+		$headerItem = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], "...fields") :
+			      $data->getNewItem($ascope["item"], "...fields" );
 	    ?>
 	    <table class="col-md-12 col-xs-12 table">
 		<tbody>
@@ -197,11 +197,11 @@ function makeTableItems($values, $fieldsDefinition){
 	<?php if(key_exists("Main", $data->editCategories) && !property_exists($data, "makeTabs")): ?>
 	    <ul class="nav nav-pills" role="tablist">
 		<?php
-		//render tabs like Main, Current etc
-		//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
-		foreach($data->editCategories as $key =>$value)
-		if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
-		    echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#" . makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
+		    //render tabs like Main, Current etc
+		    //uses $data(charOfAccounts model) as dictionaries which contains list of tab names
+		    foreach($data->editCategories as $key =>$value)
+		    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
+			echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#" . makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 		?>
 	    </ul>
 	    <br/>
@@ -210,20 +210,20 @@ function makeTableItems($values, $fieldsDefinition){
 		    <?php if($key != '...fields'): ?>
 			<div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
 			    <?php
-			    //getting record.
-			    $item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
-				    $data->getNewItem($ascope["item"], $key);
-			    $tableCategories = $data->editCategories[$key];
-			    $tableItems = makeTableItems($item, $tableCategories);
-			    $items = $item;
-			    $category = $key;
+				//getting record.
+				$item = $ascope["mode"] == 'edit' ? $data->getEditItem($ascope["item"], $key) :
+					$data->getNewItem($ascope["item"], $key);
+				$tableCategories = $data->editCategories[$key];
+				$tableItems = makeTableItems($item, $tableCategories);
+				$items = $item;
+				$category = $key;
 			    ?>
 			    <div class=" col-md-5 col-xs-5">
 				<table class="table table-bordered order-entry-main-table ">
 				    <tbody id="row_viewer_tbody">
 					<?php
-					foreach($tableItems["leftItems"] as $key =>$value)
-					renderRow($translation, $ascope, $data, $category, $items, $key, $value);
+					    foreach($tableItems["leftItems"] as $key =>$value)
+					    renderRow($translation, $ascope, $data, $category, $items, $key, $value);
 					?>
 				    </tbody>
 				</table>
@@ -232,8 +232,8 @@ function makeTableItems($values, $fieldsDefinition){
 				<table class="table table-bordered order-entry-main-table">
 				    <tbody id="row_viewer_tbody">
 					<?php 
-					foreach($tableItems["rightItems"] as $key =>$value)
-					renderRow($translation, $ascope, $data, $category,  $items, $key, $value);
+					    foreach($tableItems["rightItems"] as $key =>$value)
+					    renderRow($translation, $ascope, $data, $category,  $items, $key, $value);
 					?>
 				    </tbody>
 				</table>
@@ -268,8 +268,8 @@ function makeTableItems($values, $fieldsDefinition){
 
 	<!-- Detail table -->
 	<?php
-	if(property_exists($data, "detailTable"))
-    	    require __DIR__ . "/components/detailGrid.php";
+	    if(property_exists($data, "detailTable"))
+    		require __DIR__ . "/components/detailGrid.php";
 	?>
 
 	<?php if(property_exists($data, "footerTable")): ?>
@@ -279,12 +279,12 @@ function makeTableItems($values, $fieldsDefinition){
 			<tr>
 			    <td colspan="5">
 				<?php
-				foreach($data->footerTable["flagsHeader"] as $key=>$value){
-				    echo "<div>";
-				    formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]);
-				    echo $translation->translateLabel($key);
-				    echo "</div>";
-				}			    
+				    foreach($data->footerTable["flagsHeader"] as $key=>$value){
+					echo "<div>";
+					formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]);
+					echo $translation->translateLabel($key);
+					echo "</div>";
+				    }			    
 				?>
 			    </td>
 			</tr>
@@ -350,10 +350,10 @@ function makeTableItems($values, $fieldsDefinition){
 	    </div>
 	<?php endif; ?>
 	<?php
-	if(file_exists(__DIR__ . "/../../" . $PartsPath . "editFooter.php"))
-	    require __DIR__ . "/../../../" . $PartsPath . "editFooter.php";
-	if(file_exists(__DIR__ . "/../../" . $PartsPath . "vieweditFooter.php"))
-	    require __DIR__ . "/../../../" . $PartsPath . "vieweditFooter.php";
+	    if(file_exists(__DIR__ . "/../../" . $PartsPath . "editFooter.php"))
+		require __DIR__ . "/../../../" . $PartsPath . "editFooter.php";
+	    if(file_exists(__DIR__ . "/../../" . $PartsPath . "vieweditFooter.php"))
+		require __DIR__ . "/../../../" . $PartsPath . "vieweditFooter.php";
 	?>
 
 	<div class="row col-md-12 col-xs-12">
@@ -361,17 +361,20 @@ function makeTableItems($values, $fieldsDefinition){
 		<!--
 		     renders buttons translated Save and Cancel using translation model
 		-->
-		<?php if($security->can("update")): ?>
+		<?php if($security->can("update") &&
+			 (property_exists($data, "modes") &&
+			  in_array("edit", $data->modes) ||
+			  !property_exists($data, "modes"))): ?>
 		    <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
 			<?php echo $translation->translateLabel("Save"); ?>
 		    </a>
-		    <?php 
+		<?php endif; ?>
+		<?php 
 		    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "editActions.php"))
 			require __DIR__ . "/../../../" . $PartsPath . "editActions.php";
 		    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "vieweditActions.php"))
 			require __DIR__ . "/../../../" . $PartsPath . "vieweditActions.php";
-		    ?>
-		<?php endif; ?>
+		?>
 		<a class="btn btn-info" href="<?php echo $ascope["mode"] != "new" ? $linksMaker->makeGridItemView($ascope["path"], $ascope["item"])  : $linksMaker->makeGridItemViewCancel($ascope["path"]) ; ?>">
 		    <?php echo $translation->translateLabel("Cancel"); ?>
 		</a>
