@@ -34,8 +34,9 @@ class gridData extends gridDataSource{
     public $tableName = "purchasecontractledgerhistory";
     public $dashboardTitle ="View Purchase Contract Ledger History";
     public $breadCrumbTitle ="View Purchase Contract Ledger History";
-    public $idField ="";
-    public $idFields = ;
+    public $idField ="PurchaseContractNumber";
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseContractNumber","PurchaseOrderNumber","PurchaseOrderLineNumber"];
+    public $modes = ["grid", "view"];
     public $gridFields = [
         "PurchaseOrderLineNumber" => [
             "dbType" => "varchar(36)",

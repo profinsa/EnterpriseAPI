@@ -36,6 +36,7 @@ class gridData extends gridDataSource{
 	public $breadCrumbTitle ="View Purchase Contracts History";
 	public $idField ="PurchaseContractNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseContractNumber"];
+    public $modes = ["grid", "view"];
 	public $gridFields = [
 		"PurchaseContractDate" => [
 			"dbType" => "timestamp",
