@@ -64,8 +64,8 @@ class controller{
         $user = $GLOBALS["user"] = $this->user = $_SESSION["user"];
                
         $data = new dashboardData();
-        $drill = new drillDowner($public_prefix);
-        $linksMaker = new linksMaker($public_prefix);
+        $drill = new drillDowner();
+        $linksMaker = new linksMaker();
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("procedure", $_GET)){
