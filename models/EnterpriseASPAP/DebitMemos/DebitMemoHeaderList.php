@@ -1163,12 +1163,10 @@ class DebitMemoHeaderList extends gridDataSource{
 
          $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
+             http_response_code(400);
+             echo $result[0]->PostingResult;
+         } else
             echo "ok";
-            header('Content-Type: application/json');
-         }
     }
 
     public function UnPost(){
@@ -1178,12 +1176,10 @@ class DebitMemoHeaderList extends gridDataSource{
 
          $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
+             http_response_code(400);
+             echo $result[0]->SWP_RET_VALUE;
+         } else
             echo "ok";
-            header('Content-Type: application/json');
-         }
     }
 
     public function Memorize(){
