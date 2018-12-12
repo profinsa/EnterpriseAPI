@@ -79,6 +79,12 @@ class controller{
         "EnterpriseASPAP/DebitMemos/DebitMemoHeaderClosedList" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderList",
         "EnterpriseASPAP/DebitMemos/DebitMemoHeaderPaymentsList" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderList",
 
+        "EnterpriseASPAP/Payments/PaymentsHeaderVoidList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
+        "EnterpriseASPAP/Payments/PaymentsHeaderClosedList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
+        "EnterpriseASPAP/Payments/PaymentsHeaderApproveList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
+        "EnterpriseASPAP/Payments/PaymentsHeaderIssueCreditMemoList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
+        "EnterpriseASPAP/Payments/PaymentsHeaderIssueList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
+
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
         "EnterpriseASPAP/ReturnToVendor/ReturnHeaderInvoiceList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",

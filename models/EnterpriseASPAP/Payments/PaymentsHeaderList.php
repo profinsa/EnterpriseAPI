@@ -25,13 +25,13 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 12/12/2018
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class PaymentsHeaderList extends gridDataSource{
     public $tableName = "paymentsheader";
     public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0)";
     public $dashboardTitle ="Payments";
@@ -828,6 +828,139 @@ class gridData extends gridDataSource{
         DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
         echo "ok";
     }
+}
+
+class gridData extends PaymentsHeaderList{}
+
+class PaymentsHeaderVoidList extends PaymentsHeaderList{
+    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND IFNULL(PaymentsHeader.Void,0)=0";
+    public $dashboardTitle ="Void Vouchers";
+    public $breadCrumbTitle ="Void Vouchers";
+    public $modes = ["grid", "view", "edit"];
+}
+
+class PaymentsHeaderClosedList extends PaymentsHeaderList{
+    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=1) AND (IFNULL(PaymentsHeader.Paid,0)=1)";
+    public $dashboardTitle ="Closed Payments";
+    public $breadCrumbTitle ="Closed Payments";
+    public $modes = ["view", "grid", "edit"];
+    public $features = ["selecting"];
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $PaymentIDs = explode(",", $_POST["PaymentIDs"]);
+        $success = true;
+        foreach($PaymentIDs as $paymentID){
+            DB::statement("CALL Payment_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $paymentID . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Payment_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
+    }
+}
+
+class PaymentsHeaderApproveList extends PaymentsHeaderList{
+    public $gridConditions = "(IFNULL(ApprovedForPayment,0)=0 AND Posted=1 AND IFNULL(Void,0)=0 AND PaymentID <> 'DEFAULT')";
+    public $dashboardTitle ="Approve Payments";
+    public $breadCrumbTitle ="Approve Payments";
+    public $modes = ["grid", "print"]; // list of enabled modes
+    public $features = ["selecting"]; //list enabled features
+
+    public function Approve(){
+        $user = Session::get("user");
+
+        $PaymentIds = explode(",", $_POST["PaymentIds"]);
+        $success = true;
+        foreach($PaymentIds as $PaymentId){
+            DB::statement("CALL Payment_Approve('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $PaymentId . "','" . $user["EmployeeID"] . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function ApproveAll(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Payment_ApproveAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "',@SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
+    }
+}
+
+class PaymentsHeaderIssueCreditMemoList extends PaymentsHeaderList{
+    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND PaymentsHeader.ApprovedForPayment=1 AND IFNULL(PaymentsHeader.Void,0)=0 AND PaymentsHeader.PaymentID <> 'DEFAULT'";
+    public $modes = ["grid"];
+    public $features = ["selecting"];
+    public $dashboardTitle ="Issue Credit Memo For Payments";
+    public $breadCrumbTitle ="Issue Credit Memo For Payments";
+
+    public function CreditMemoForSelected(){
+        $user = Session::get("user");
+
+        $PaymentIds = explode(",", $_POST["PaymentIds"]);
+        $success = true;
+        foreach($PaymentIds as $PaymentId){
+            DB::statement("CALL Payment_CreateCreditMemo('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $PaymentId . "',@SWP_RET_VALUE)");
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            header('Content-Type: application/json');
+        else
+            return response("failed", 400)->header('Content-Type', 'text/plain');
+    }
+    
+    public function CreditMemoForAll(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Payment_CreateCreditMemoForAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)");
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else
+            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
+    }
+}
+
+class PaymentsHeaderIssueList extends PaymentsHeaderList{
+    public $tableName = "paymentsheader";
+    public $gridConditions = "(IFNULL(ApprovedForPayment,0) = 1 AND IFNULL(CheckPrinted,0) = 0 AND IFNULL(Posted,0) = 1 AND IFNULL(Paid,0) = 0)";
+    public $dashboardTitle ="Issue Payments";
+    public $breadCrumbTitle ="Issue Payments";
 }
 ?>
 
