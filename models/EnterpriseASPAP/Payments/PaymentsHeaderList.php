@@ -837,7 +837,20 @@ class PaymentsHeaderVoidList extends PaymentsHeaderList{
     public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND IFNULL(PaymentsHeader.Void,0)=0";
     public $dashboardTitle ="Void Vouchers";
     public $breadCrumbTitle ="Void Vouchers";
-    public $modes = ["grid", "view", "edit"];
+    public $modes = ["grid", "view"];
+
+    public function Payment_Void(){
+        $user = Session::get("user");
+
+         DB::statement("CALL Payment_Void('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PaymentID"] . "',@PostingResult,@SWP_RET_VALUE)");
+
+         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1) {
+             http_response_code(400);
+             echo $result[0]->PostingResult;
+         } else
+             echo "ok";
+    }
 }
 
 class PaymentsHeaderClosedList extends PaymentsHeaderList{
