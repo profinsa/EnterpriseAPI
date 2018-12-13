@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/15/2017
+  Last Modified: 12/13/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -37,7 +37,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle ="Voided Payments";
     public $breadCrumbTitle ="Voided Payments";
     public $idField ="PaymentID";
-    public $modes = ["grid", "view", "edit"];
+    public $modes = ["grid", "view"];
     public $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentID"];
     public $gridFields = [
         "PaymentID" => [
