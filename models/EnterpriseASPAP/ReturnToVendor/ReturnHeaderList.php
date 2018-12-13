@@ -1238,9 +1238,9 @@ class ReturnHeaderPickList extends ReturnHeaderList{
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
         foreach($numbers as $number){
-            $result = DB::statement("SELECT @ret = Return_Picked('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
-
-            if ($result == true) {
+            DB::statement("set @ret = Return_Picked('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+            $result = DB::select("select @ret as ret");
+            if ($result[0]->ret) {
                 $success = false;
             }
         }
@@ -1249,20 +1249,21 @@ class ReturnHeaderPickList extends ReturnHeaderList{
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $result[0]->ret;
         }
     }
     
     public function PickAll(){
         $user = Session::get("user");
 
-        $result = DB::statement("SELECT @ret = Return_PickAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+        DB::statement("set @ret = Return_PickAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+        $result = DB::select("select @ret as ret");
 
-        if ($result == true)
+        if (!$result[0]->ret)
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $result[0]->ret;
         }
     }
 }

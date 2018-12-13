@@ -1,11 +1,11 @@
 <script>
-function pickupSelectedOrders(){
-    var OrderNumbers = [], ind;
-    for(ind in gridItemsSelected)
-        OrderNumbers.push(gridItemsSelected[ind].OrderNumber);
+ function pickupSelectedOrders(){
+     var OrderNumbers = [], ind;
+     for(ind in gridItemsSelected)
+         OrderNumbers.push(gridItemsSelected[ind].OrderNumber);
 
-    serverProcedureCall('Picked', { OrderNumbers :OrderNumbers.join(',') }, true);
-}
+     serverProcedureCall('Picked', { OrderNumbers :OrderNumbers.join(',') }, true);
+ }
 </script>
 <a class="btn btn-info grid-actions-button" href="javascript:;" onclick="pickupSelectedOrders()">
     <?php
