@@ -807,13 +807,12 @@ class PaymentsHeaderList extends gridDataSource{
 
          DB::statement("CALL Payment_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PaymentID"] . "',@Succes,@PostingResult,@SWP_RET_VALUE)");
 
-         $result = DB::select('select @Succes as Succes, @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+         $result = DB::select('select @Succes as Success, @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            return response($result[0]->PostingResult, 400)->header('Content-Type', 'text/plain');
-         } else {
-            echo "ok";
-            header('Content-Type: application/json');
-         }
+             http_response_code(400);
+             echo $result[0]->PostingResult;
+         } else
+             echo "ok";
     }
 
     public function Memorize(){
