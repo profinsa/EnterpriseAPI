@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 11/26/2018
+  Last Modified: 12/13/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -1187,45 +1187,27 @@ class ReturnHeaderList extends gridDataSource{
 	}
 
     public function Post(){
-        $recalc = new recalcHelper;
+        $user = Session::get("user");
+        DB::statement("CALL Return_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
 
-        if($recalc->lookForProcedure("Return_Post")) {
-            $user = Session::get("user");
-
-            DB::statement("CALL Return_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
-
-            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-            if($result[0]->SWP_RET_VALUE == -1) {
-                echo "error";
-                return response($result[0]->PostingResult, 400)->header('Content-Type', 'text/plain');
-            } else {
-                echo "ok";
-                header('Content-Type: application/json');
-            }
-        } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
-        }
+        $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE == -1) {
+            http_response_code(400);
+            echo $result[0]->PostingResult;
+        } else
+            echo "ok";
     }
 
     public function UnPost(){
-        $recalc = new recalcHelper;
+        $user = Session::get("user");
+        DB::statement("CALL Return_Cancel('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
 
-        if($recalc->lookForProcedure("Return_Cancel")) {
-            $user = Session::get("user");
-
-            DB::statement("CALL Return_Cancel('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
-
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-            if($result[0]->SWP_RET_VALUE == -1) {
-                echo "error";
-                return response("failed", 400)->header('Content-Type', 'text/plain');
-            } else {
-                echo "ok";
-                header('Content-Type: application/json');
-            }
-        } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
-        }
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE == -1) {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        } else
+            echo "ok";
     }
 
     public function Memorize(){
