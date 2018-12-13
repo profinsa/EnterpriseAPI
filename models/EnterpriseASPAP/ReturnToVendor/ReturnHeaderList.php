@@ -1280,9 +1280,10 @@ class ReturnHeaderShipList extends ReturnHeaderList{
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
         foreach($numbers as $number){
-            $result = DB::statement("SELECT @ret = Return_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+            DB::statement("set @ret = Return_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+            $result = DB::select("select @ret as ret");
 
-            if ($result == true) {
+            if ($result[0]->ret) {
                 $success = false;
             }
         }
@@ -1298,13 +1299,13 @@ class ReturnHeaderShipList extends ReturnHeaderList{
     public function ShipAll(){
         $user = Session::get("user");
 
-        $result = DB::statement("SELECT @ret = Return_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
-
-        if ($result == true)
+        DB::statement("set @ret = Return_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+        $result = DB::select("select @ret as ret");
+        if ($result[0])
             echo "ok";
         else {
             http_response_code(400);
-            echo "failed";
+            echo $result[0]->ret;
         }
     }
 }
