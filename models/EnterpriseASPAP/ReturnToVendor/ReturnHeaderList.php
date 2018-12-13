@@ -1317,7 +1317,7 @@ class ReturnHeaderInvoiceList extends ReturnHeaderList {
     public $dashboardTitle ="Invoice Shipped Returns";
     public $breadCrumbTitle ="Invoice Shipped Returns";
 
-    public function CreateFromReturn(){
+    public function ReturnInvoice_CreateFromReturn(){
         $user = Session::get("user");
 
         $numbers = explode(",", $_POST["OrderNumbers"]);
@@ -1330,25 +1330,24 @@ class ReturnHeaderInvoiceList extends ReturnHeaderList {
                 $success = false;
         }
 
-        if($success){
-            header('Content-Type: application/json');
+        if($success)
             echo "ok";
-        }else{
-            return response("failed", 400)->header('Content-Type', 'text/plain');
+        else{
+            http_response_code(400);
             echo "failed";
         }
     }
     
-    public function AllReturns(){
+    public function Invoice_AllReturns(){
         $user = Session::get("user");
 
-        $result = DB::statement("SELECT @ret = Invoice_AllReturns('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
-
-        if ($result == true)
+        DB::statement("call Invoice_AllReturns('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @ret)");
+        $result = DB::select("select @ret as ret");
+        if (!$result[0]->ret)
             echo "ok";
         else {
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-            echo "failed";
+            http_response_code(400);
+            $result[0]->ret;
         }
     }
 }
