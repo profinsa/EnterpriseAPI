@@ -1584,7 +1584,7 @@ $leftMenu = [
 		    ]
 		]
 	    ],
-	    [
+        /*	    [
 		"type" => "submenu",
 		"id" => "MRP",
 		"full" => $translation->translateLabel('MRP'),
@@ -1679,7 +1679,7 @@ $leftMenu = [
 			]
 		    ]
 		]
-	    ],
+	    ],*/
 	    /*
 	       [
 	       "type" => "submenu",
