@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 11/30/2018
+  Last Modified: 12/14/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -1165,23 +1165,16 @@ class ReturnInvoiceHeaderList extends gridDataSource{
 	}
 
     public function Post(){
-        $recalc = new recalcHelper;
+        $user = Session::get("user");
 
-        if($recalc->lookForProcedure("ReturnInvoice_Post2")) {
-            $user = Session::get("user");
+        DB::statement("CALL ReturnInvoice_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["InvoiceNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
 
-            DB::statement("CALL ReturnInvoice_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["InvoiceNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
-
-            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-            if($result[0]->SWP_RET_VALUE == -1) {
-                echo "error";
-                return response($result[0]->PostingResult, 400)->header('Content-Type', 'text/plain');
-            } else {
-                echo "ok";
-                header('Content-Type: application/json');
-            }
+        $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE == -1) {
+            http_response_code(400);
+            echo $result[0]->PostingResult;
         } else {
-            return response("Procedure not found", 400)->header('Content-Type', 'text/plain');
+            echo "ok";
         }
     }
 
@@ -1221,9 +1214,11 @@ class ReturnInvoiceHeaderClosedList extends ReturnInvoiceHeaderList{
         }
 
         if($success)
-            header('Content-Type: application/json');
-        else
-            return response("failed", 400)->header('Content-Type', 'text/plain');
+            echo "ok";
+        else{
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
     }
     
     public function CopyAllToHistory(){
@@ -1234,8 +1229,10 @@ class ReturnInvoiceHeaderClosedList extends ReturnInvoiceHeaderList{
         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
         if($result[0]->SWP_RET_VALUE > -1)
             echo $result[0]->SWP_RET_VALUE;
-        else
-            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
+        else{
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
     }
 }
 
