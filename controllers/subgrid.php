@@ -42,6 +42,7 @@ class controller{
     public $item = "0";
     public $dashboardTitle = "";
     public $breadCrumbTitle = "";
+    public $path = "";
 
     public function process($app){
         if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
@@ -54,7 +55,7 @@ class controller{
         require 'models/menuIdToHref.php';
         $linksMaker = new linksMaker();
 
-        $this->action = $_GET["action"];
+        $this->action = $this->path = $_GET["action"];
         $model_path = $menuIdToPath[$_GET["action"]];
         if(!file_exists('models/' . $model_path . '.php'))
             throw new Exception("model " . 'models/' . $model_path . '.php' . " is not found");
