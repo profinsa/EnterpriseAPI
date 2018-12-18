@@ -7,7 +7,7 @@
 					, JSON_PRETTY_PRINT); ?>,
      path : "<?php echo $ascope["path"]; ?>",
      data :  <?php echo json_encode($data, JSON_PRETTY_PRINT); ?>,
-     item : "<?php echo $ascope["item"]; ?>"
+     item : "<?php echo $ascope["item"]; ?>",
  };
 </script>
  

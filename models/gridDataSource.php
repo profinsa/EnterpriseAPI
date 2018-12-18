@@ -1369,7 +1369,7 @@ EOF;
             $keyFields = substr($keyFields, 0, -5);
 
         $columns = [];
-        $fakeColumns = [];
+        $fresult = [];
         if(key_exists("loadFrom", $this->editCategories[$type])){
             $key = $this->editCategories[$type]["loadFrom"]["key"];
             $keyValue = DB::select("SELECT {$this->editCategories[$type]["loadFrom"]["key"]} from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array())[0]->$key;
@@ -1379,8 +1379,12 @@ EOF;
             foreach($this->editCategories[$type] as $key=>$value){
                 if(!key_exists("fake", $value))
                     $columns[] = $key;
-                else
-                    $fakeColumns[] = $key;
+                else{
+                    if(key_exists("defaultValue", $this->editCategories[$type][$key]))
+                           $fresult[$key] = $this->editCategories[$type][$key]["defaultValue"];
+                    else
+                           $fresult[$key] = "";
+                }
                 if(key_exists("addFields", $value)){
                     $_fields = explode(",", $value["addFields"]);
                     foreach($_fields as $addfield)
@@ -1414,11 +1418,6 @@ EOF;
                         break;
                     }
                 }
-            }
-
-            $fresult = [];
-            foreach($fakeColumns as $value){
-                $fresult[$value] = "";
             }
 
             $result = array_merge($result,$fresult);

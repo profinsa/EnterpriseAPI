@@ -48,4 +48,30 @@
 	  alert(xhr.responseText);
       });
  }
+
+ function getCurrentPageValues(){
+     var values = {};
+     <?php
+	 if($ascope["mode"] == "view" || $ascope["mode"] == "edit"){
+	     if(property_exists($data, "editCategories")){
+		 $values = [];
+		 foreach($data->editCategories as $name=>$category){
+		     $cvalues = $data->getEditItem($ascope["item"], $name);
+		     foreach($cvalues as $key=>$value){
+			 $values[$key] = $value;
+		     }
+		     echo "values = " . json_encode($values, JSON_PRETTY_PRINT) . ";";
+		 }
+	     }
+	 }
+     ?>
+     var ind, elem;
+     for(ind in values){
+	 elem = $('#' + ind);
+	 if(elem.length)
+	     values[ind] = elem.val()
+     }
+     return values;
+     //     return ["ee", "ddd"];
+ }
 </script>

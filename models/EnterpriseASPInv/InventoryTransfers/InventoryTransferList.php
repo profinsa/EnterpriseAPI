@@ -36,7 +36,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle ="Transfer Inventory";
     public $breadCrumbTitle ="Transfer Inventory";
     public $idField ="ItemID";
-    public $modes = ["grid", "view", "edit"];
+    public $modes = ["grid", "view", "delete"];
     public $idFields = ["CompanyID","DivisionID","DepartmentID","ItemID", "WarehouseID", "WarehouseBinID"];
     public $gridFields = [
         "ItemID" => [
@@ -150,7 +150,8 @@ class gridData extends gridDataSource{
                 "fake" => "true",
                 "alwaysEdit" => "true",
                 "required" => false,
-                "defaultValue" => ""
+                "overrideDefault" => "true",
+                "defaultValue" => 0
             ]
         ]
     ];
@@ -170,17 +171,18 @@ class gridData extends gridDataSource{
         "TransferQty" => "Transfer Qty"
     ];
 
-    public function Transfer(){
+    public function Inventory_Transfer(){
         $user = Session::get("user");
 
-        DB::statement("CALL Inventory_Transfer('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ItemID"] . "','" . $_POST["WarehouseID"] . "','" . $_POST["WarehouseBinID"] . "','" . $_POST["TransferWarehouseID"] . "','" . $_POST["TransferWarehouseBinID"] . "','" . $_POST["TransferQty"] . "', @SWP_RET_VALUE)");
+        DB::statement("CALL Inventory_Transfer('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ItemID"] . "','" . $_POST["WarehouseID"] . "','" . $_POST["WarehouseBinID"] . "','" . $_POST["TransferWarehouseID"] . "','" . $_POST["TransferWarehouseBinID"] . "'," . $_POST["TransferQty"] . ", @SWP_RET_VALUE)");
 
         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
         if($result[0]->SWP_RET_VALUE > -1)
             echo $result[0]->SWP_RET_VALUE;
-        else
-            return response($result[0]->SWP_RET_VALUE, 400)->header('Content-Type', 'text/plain');
-        //('DINOS', 'DEFAULT', 'DEFAULT', 'Ichthyosaurs', 'WEST', 'Overflow', 'SOUTH', 'DEFAULT', 0, @ret);        echo "hophop";
+        else{
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
     }
 }
 ?>
