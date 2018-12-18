@@ -1,32 +1,32 @@
 <?php
 /*
-Name of Page: gridController
+  Name of Page: gridController
 
-Method: controller for many grid pages(like General Ledger pages etc), used for rendering page and interacting with it
+  Method: controller for many grid pages(like General Ledger pages etc), used for rendering page and interacting with it
 
-Date created: Nikita Zaharov, 21.02.2016
+  Date created: Nikita Zaharov, 21.02.2016
 
-Use: The controller is responsible for:
-- page rendering using view
-- handling XHR request(delete, update and new item in grid)
+  Use: The controller is responsible for:
+  - page rendering using view
+  - handling XHR request(delete, update and new item in grid)
 
-Input parameters:
-$app : application instance, object
+  Input parameters:
+  $app : application instance, object
 
-Output parameters:
-$scope: object, used by view, most like model
-$translation: model, it is responsible for translation in view
+  Output parameters:
+  $scope: object, used by view, most like model
+  $translation: model, it is responsible for translation in view
 
-Called from:
-+ index.php
+  Called from:
+  + index.php
 
-Calls:
-models/translation.php
-models/gridDataSource derevatives -- models who inherits from gridDataSource
-app from index.php
+  Calls:
+  models/translation.php
+  models/gridDataSource derevatives -- models who inherits from gridDataSource
+  app from index.php
 
-Last Modified: 07.25.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 12.18.2016
+  Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
@@ -109,6 +109,7 @@ class controller{
         
         $this->action = $this->path =  $_GET["action"];
         $model_path = $menuIdToPath[$_GET["action"]];
+
         $requireModelPath = key_exists($model_path, $this->redirectModel) ? $this->redirectModel[$model_path] : $model_path;
         if(!file_exists('models/' . $requireModelPath . '.php'))
             throw new Exception("model " . 'models/' . $requireModelPath . '.php' . " is not found");

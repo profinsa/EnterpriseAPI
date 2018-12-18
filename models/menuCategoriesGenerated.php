@@ -1,22 +1,22 @@
 <?php
 $leftMenu = [
     "My" => [
-	"type" => "category",
-	"title" => "My menu",
-	"data" => [
-	    [
-		"type" => "absoluteLink",
-		"title" => "Dashboard",
-		"link" => "index.php#/?page=dashboard",
-		"icon" => "linea-icon linea-basic"
-	    ],
-	    [
-		"type" => "absoluteLink",
-		"title" => "Tasks",
-		"link" => "index.php#/?page=dashboard&screen=Tasks",
-		"icon" => "linea-icon linea-basic"
-	    ],
-	]
+        "type" => "category",
+        "title" => "My menu",
+        "data" => [
+            [
+                "type" => "absoluteLink",
+                "title" => "Dashboard",
+                "link" => "index.php#/?page=dashboard",
+                "icon" => "linea-icon linea-basic"
+            ],
+            [
+                "type" => "absoluteLink",
+                "title" => "Tasks",
+                "link" => "index.php#/?page=dashboard&screen=Tasks",
+                "icon" => "linea-icon linea-basic"
+            ],
+        ]
     ],
     "Main" => [
 	"type" => "category",
@@ -1435,19 +1435,19 @@ $leftMenu = [
 			    ]
 			]
 		    ],
-		    [
+            [
 			"type" => "submenu",
 			"id" => "Inventory/InventoryTransfers",
 			"full" => $translation->translateLabel('Inventory Transfers'),
 			"short" => "In",
 			"data" => [
 			    [
-				"id" => "Inventory/WarehouseTransits/TransferInventory",
+				"id" => "Inventory/InventoryTransfers/TransferInventory",
 				"full" => $translation->translateLabel('Transfer Inventory'),
-				"href"=> "EnterpriseASPInv/WarehouseTransit/InventoryTransferList",
+				"href"=> "EnterpriseASPInv/InvetoryTranfers/InventoryTransferList",
 				"short" => "Ti"
 			    ]
-			]
+                ]
 		    ],
 		    [
 			"type" => "submenu",
