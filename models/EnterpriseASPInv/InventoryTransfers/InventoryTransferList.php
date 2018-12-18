@@ -177,7 +177,7 @@ class gridData extends gridDataSource{
         DB::statement("CALL Inventory_Transfer('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ItemID"] . "','" . $_POST["WarehouseID"] . "','" . $_POST["WarehouseBinID"] . "','" . $_POST["TransferWarehouseID"] . "','" . $_POST["TransferWarehouseBinID"] . "'," . $_POST["TransferQty"] . ", @SWP_RET_VALUE)");
 
         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-        if($result[0]->SWP_RET_VALUE > -1)
+        if($result[0]->SWP_RET_VALUE < -1)
             echo $result[0]->SWP_RET_VALUE;
         else{
             http_response_code(400);
