@@ -92,7 +92,6 @@ class gridData extends gridDataSource{
             "defaultValue" => "0"
         ]
     ];
-
     public $editCategories = [
         "Main" => [
             "ReceiptID" => [
@@ -366,7 +365,6 @@ class gridData extends gridDataSource{
         "ManagerSignature" => "ManagerSignature",
         "ManagerPassword" => "ManagerPassword"
     ];
-
     //getting rows for grid
     public function getPage($customer){
         $user = Session::get("user");
@@ -401,8 +399,6 @@ class gridData extends gridDataSource{
 EOF;
         
         $result = DB::select($query, array());
-
-
         $result = json_decode(json_encode($result), true);
         
         return $result;

@@ -13,6 +13,7 @@
     "AccountsReceivable/CashReceiptsProcessing/ViewCashReceiptsDetail" => "EnterpriseASPAR/CashReceipts/ReceiptsDetail",
     "AccountsReceivable/CashReceiptsProcessing/ViewCashReceiptsHistoryDetail" => "EnterpriseASPAR/CashReceipts/ReceiptsHistoryDetail",
     "AccountsReceivable/CashReceiptsProcessing/CashReceipts" => "EnterpriseASPAR/CashReceipts/CashReceiptsList",
+    "AccountsReceivable/CashReceiptsProcessing/CashReceiptInvoiceList" => "EnterpriseASPAR/CashReceipts/CashReceiptInvoiceList",
     "AccountsPayable/PurchaseProcessing/ViewPurchasesDetail" => "EnterpriseASPAP/Purchases/PurchaseDetail",
     "AccountsPayable/DebitMemos/ViewDebitMemoDetail" => "EnterpriseASPAP/DebitMemos/DebitMemoDetail",
     "AccountsPayable/DebitMemos/ViewDebitMemoHistoryDetail" => "EnterpriseASPAP/DebitMemos/DebitMemoHistoryDetail",
