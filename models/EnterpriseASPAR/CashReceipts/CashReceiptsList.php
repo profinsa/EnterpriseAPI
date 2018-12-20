@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/15/2017
+  Last Modified: 12/20/2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -33,65 +33,65 @@ require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
     public $tableName = "receiptsheader";
-    public $dashboardTitle ="Customer Receipts List";
-    public $breadCrumbTitle ="Customer Receipts List";
+    public $dashboardTitle ="View Customer Receipts List";
+    public $breadCrumbTitle ="View Customer Receipts List";
     public $idField ="CustomerID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
     public $modes = ["grid"]; // list of enabled modes
     public $gridFields = [
-            "ReceiptID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ReceiptTypeID" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CheckNumber" => [
-                "dbType" => "varchar(20)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "CustomerID" => [
-                "dbType" => "varchar(50)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "TransactionDate" => [
-                "dbType" => "timestamp",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "CurrencyID" => [
-                "dbType" => "varchar(3)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Amount" => [
-                "dbType" => "decimal(19,4)",
-                "inputType" => "text",
-                "formatFunction" => "currencyFormat",
-                "defaultValue" => ""
-            ],
-            "Status" => [
-                "dbType" => "varchar(10)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-           "UnAppliedAmount" => [
-                "dbType" => "decimal(19,4)",
-                "formatFunction" => "currencyFormat",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "Posted" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ]
-     ];
+        "ReceiptID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "ReceiptTypeID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CheckNumber" => [
+            "dbType" => "varchar(20)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "CustomerID" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "TransactionDate" => [
+            "dbType" => "timestamp",
+            "inputType" => "datetime",
+            "defaultValue" => "now"
+        ],
+        "CurrencyID" => [
+            "dbType" => "varchar(3)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "Amount" => [
+            "dbType" => "decimal(19,4)",
+            "inputType" => "text",
+            "formatFunction" => "currencyFormat",
+            "defaultValue" => ""
+        ],
+        "Status" => [
+            "dbType" => "varchar(10)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "UnAppliedAmount" => [
+            "dbType" => "decimal(19,4)",
+            "formatFunction" => "currencyFormat",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "Posted" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "checkbox",
+            "defaultValue" => "0"
+        ]
+    ];
 
     public $editCategories = [
         "Main" => [

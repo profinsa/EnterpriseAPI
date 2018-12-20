@@ -32,8 +32,8 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     public $tableName = "customerinformation";
-    public $dashboardTitle ="Cash Receipts - Customers";
-    public $breadCrumbTitle ="Cash Receipts - Customers";
+    public $dashboardTitle ="Process Cash Receipts";
+    public $breadCrumbTitle ="Process Cash Receipts";
     public $idField ="CustomerID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
     public $modes = ["grid"]; // list of enabled modes
