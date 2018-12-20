@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/15/2017
+  Last Modified: 12/20/2018
   Last Modified by: Zaharov Nikita
 */
 
@@ -160,7 +160,7 @@ class gridData extends gridDataSource{
             ]
         ],
 		"Memos" => [
-             "HeaderMemo1" => [
+            "HeaderMemo1" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
@@ -205,7 +205,7 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ]
-       ],
+        ],
         "...fields" => [
             "ReceiptID" => [
                 "dbType" => "varchar(36)",
@@ -612,7 +612,7 @@ class gridData extends gridDataSource{
             "inputType" => "text",
             "defaultValue" => ""
         ]
-   ];
+    ];
 
     public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
     //getting data for Customer Page
@@ -655,6 +655,7 @@ class gridData extends gridDataSource{
         
         return $result;
     }
+
 
     public $detailIdFields = ["CompanyID","DivisionID","DepartmentID","ReceiptID", "ReceiptDetailID"];
 	public $embeddedgridFields = [
@@ -707,18 +708,14 @@ class gridData extends gridDataSource{
         }
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
-
         $keyFields .= " AND ReceiptID='" . $id . "'";
-
         
         $result = DB::select("SELECT " . implode(",", $fields) . " from receiptsdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-
         $result = json_decode(json_encode($result), true);
         
         return $result;
     }
-
+    
     public function detailDelete(){
         $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","ReceiptID", "ReceiptDetailID"];
@@ -733,48 +730,29 @@ class gridData extends gridDataSource{
         DB::delete("DELETE from receiptsdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
     }
 
-    // CREATE DEFINER=`root`@`localhost` PROCEDURE `Receipt_Recalc2`(v_CompanyID NATIONAL VARCHAR(36),
-    // 	v_DivisionID NATIONAL VARCHAR(36),
-    // 	v_DepartmentID NATIONAL VARCHAR(36),
-    // 	v_ReceiptID  NATIONAL VARCHAR(36),INOUT SWP_Ret_Value INT)
-    // SWL_return:
-
-
-    // CREATE DEFINER=`root`@`localhost` PROCEDURE `Receipt_Post2`(v_CompanyID NATIONAL VARCHAR(36),
-    // 	v_DivisionID NATIONAL VARCHAR(36),
-    // 	v_DepartmentID NATIONAL VARCHAR(36),
-    // 	v_ReceiptID NATIONAL VARCHAR(36),
-    // 	INOUT v_Success INT  ,
-    // 	INOUT v_PostingResult NATIONAL VARCHAR(200) ,INOUT SWP_Ret_Value INT)
-    // SWL_return:
-    public function RecalcReceipt(){
+    public function Recalc(){
         $user = Session::get("user");
 
-         DB::statement("CALL Receipt_Recalc2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ReceiptID"] . "',@SWP_RET_VALUE)", array());
+        DB::statement("CALL Receipt_Recalc2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ReceiptID"] . "',@SWP_RET_VALUE)", array());
 
-         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
-            echo "ok";
-            header('Content-Type: application/json');
-         }
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE == -1)
+            http_response_code(400);
+            
+        echo $result[0]->SWP_RET_VALUE;
     }
-
-    public function PostReceipt(){
+    
+    public function Post(){
         $user = Session::get("user");
-
-         DB::statement("CALL Receipt_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ReceiptID"] . "',@Success,@PostingResult,@SWP_RET_VALUE)", array());
-
-         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE', array());
-         if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
-            echo "ok";
-            header('Content-Type: application/json');
-         }
+        
+        DB::statement("CALL Receipt_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ReceiptID"] . "',@Success,@PostingResult,@SWP_RET_VALUE)", array());
+        
+        $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE', array());
+        if($result[0]->SWP_RET_VALUE == -1){
+            http_response_code(400);
+            echo $result[0]->PostingResult;
+        }else
+            echo $result[0]->SWP_RET_VALUE;
     }
 
     public function Memorize(){
