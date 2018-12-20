@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class ReceiptsHeaderList extends gridDataSource{
     public $tableName = "receiptsheader";
     public $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Customer') AND (ReceiptsHeader.CreditAmount IS NULL OR ReceiptsHeader.CreditAmount <> 0 OR IFNULL(ReceiptsHeader.Posted,0) = 0)";
     public $dashboardTitle ="Receipts";
@@ -765,6 +765,55 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields, array());
+        echo "ok";
+    }
+}
+
+class gridData extends ReceiptsHeaderList {}
+
+class ReceiptsHeaderClosedList extends ReceiptsHeaderList{
+    public $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Customer') AND (NOT (ReceiptsHeader.CreditAmount IS NULL OR ReceiptsHeader.CreditAmount <> 0)) AND IFNULL(ReceiptsHeader.Posted,0) = 1";
+    public $dashboardTitle ="Closed Receipt";
+    public $breadCrumbTitle ="Closed Receipt";
+    public $modes = ["grid", "view", "edit"]; // list of enabled modes
+    public $features = ["selecting"]; //list enabled features
+
+    public function CopyToHistory(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["ReceiptIDs"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Receipt_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if(!$success)
+            http_response_status(400);
+
+        echo $result[0]->SWP_RET_VALUE;
+    }
+    
+    public function CopyAllToHistory(){
+        $user = Session::get("user");
+
+        //        echo json_encode($_POST, JSON_PRETTY_PRINT);
+        $items = DB::select("select " . $this->idField . " from " . $this->tableName . " WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?" . (property_exists($this, "gridConditions") ? " AND " . $this->gridConditions : ""), [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+
+        $idField = $this->idField;
+        foreach($items as $item)
+            DB::statement("CALL Receipt_CopyToHistory2(?, ?, ?, ?,@SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $item->$idField));
+
+        //we using iteration and call CopyToHistory2 because of CopyAllToHistory is broken
+        /*        DB::statement("CALL Receipt_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)", array());
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE <= -1)
+            http_response_status(400);
+            echo $result[0]->SWP_RET_VALUE;*/
         echo "ok";
     }
 }

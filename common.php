@@ -24,6 +24,6 @@ function defaultUser(){
 }
 
 function isDebug(){
-    return false;
+    return true;
 }
 ?>

@@ -66,6 +66,8 @@ class controller{
         "EnterpriseASPAR/CreditMemos/CreditMemoHeaderClosedList" => "EnterpriseASPAR/CreditMemos/CreditMemoHeaderList",
         "EnterpriseASPAR/CreditMemos/CreditMemoIssuePaymentsList" => "EnterpriseASPAR/CreditMemos/CreditMemoHeaderList",
 
+        "EnterpriseASPAR/CashReceipts/ReceiptsHeaderClosedList" => "EnterpriseASPAR/CashReceipts/ReceiptsHeaderList",
+
         "EnterpriseASPAR/RMA/RMAHeaderClosedList" => "EnterpriseASPAR/RMA/RMAHeaderList",
         "EnterpriseASPAR/RMA/RMAHeaderApproveList" => "EnterpriseASPAR/RMA/RMAHeaderList",
         "EnterpriseASPAR/RMA/RMAHeaderReceiveList" => "EnterpriseASPAR/RMA/RMAHeaderList",

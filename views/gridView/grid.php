@@ -3,7 +3,7 @@
 
      Method: renders content of screen in grid mode. 
 
-     Date created: Nikita Zaharov, 09.03.2016
+     Date created: Nikita Zaharov, 09.03.2017
 
      Use: used by views/gridView.php for rendering content in grid mode
      Data displayed as table. Each row is item and create and delete actions.
@@ -21,7 +21,7 @@
      grid model
      app as model
 
-     Last Modified: 07.25.2016
+     Last Modified: 07.25.2017
      Last Modified by: Nikita Zaharov
 -->
 
