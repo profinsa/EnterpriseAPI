@@ -111,3 +111,9 @@ adoptation for screen sizes
     max-width : 110px;
 }
 
+
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+}
