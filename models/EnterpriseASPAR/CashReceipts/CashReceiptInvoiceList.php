@@ -168,6 +168,10 @@ EOF;
         
         return $result;
     }
+
+    public function Receipt_Cash(){
+        echo "ok";
+    }
 }
 
 //Receipt_Cash

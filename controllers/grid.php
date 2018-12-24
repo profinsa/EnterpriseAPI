@@ -44,6 +44,7 @@ class controller{
     public $dashboardTitle = "";
     public $breadCrumbTitle = "";
     public $path;
+    public $pathPage;
     
     protected  $redirectModel = [
         "EnterpriseASPAR/OrderProcessing/OrderHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
@@ -126,7 +127,7 @@ class controller{
             $data = new gridData();
 
         preg_match("/\/(\w+)$/", $this->action, $page);
-        $page = $page[1];
+        $this->pathPage = $page = $page[1];
 
         $PartsPath = $model_path . "/";
         $_perm = new permissionsByFile();
