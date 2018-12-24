@@ -38,8 +38,8 @@
  }
  //calling procedure from server
 
- function serverProcedureCall(methodName, props, reloadPage){
-     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, props, 'text')
+ function serverProcedureCall(methodName, props, reloadPage, jsonRequest){
+     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, jsonRequest ? JSON.stringify(props) : props, 'text')
       .success(function(data) {
 	  if(reloadPage)
 	      onlocation(window.location);

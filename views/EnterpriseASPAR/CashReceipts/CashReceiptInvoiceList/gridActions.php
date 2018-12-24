@@ -1,10 +1,10 @@
 <script>
  function Receipt_Cash(){
-     var InvoiceNumbers = [], ind;
+     var rows = [], ind;
      for(ind in gridItemsSelected)
-         InvoiceNumbers.push(gridItemsSelected[ind].InvoiceNumber);
+         rows.push(gridItemsSelected[ind]);
 
-     serverProcedureCall('Receipt_Cash', { InvoiceNumbers :InvoiceNumbers.join(',') }, true);
+     serverProcedureCall('Receipt_Cash', rows, true, true);
  }
 </script>
 <a class="btn btn-info grid-actions-button" href="javascript:;" onclick="Receipt_Cash()">

@@ -66,12 +66,12 @@
 	}
     }
 
-    function renderInput($ascope, $data, $item, $key, $value, $keyString){
+    function renderInput($ascope, $data, $item, $key, $value, $keyString, $current_row){
 	$renderedString = "";
 	switch($data->gridFields[$key]["inputType"]){
 	    case "text" :
 		//renders text input with label
-		$renderedString = "<input style=\"display:inline\" type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this);\" class=\"form-control\" value=\"";
+		$renderedString = "<input style=\"display:inline\" type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this, '$key', '$current_row');\" class=\"form-control\" value=\"";
 		if(key_exists("formatFunction", $data->gridFields[$key])){
 		    $formatFunction = $data->gridFields[$key]["formatFunction"];
 		    $renderedString .=  $data->$formatFunction($item, "editCategories", $key, $value, false);
@@ -85,7 +85,7 @@
 
 	    case "datetime" :
 		//renders text input with label
-		$renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this);\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+		$renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this, '$key', '$current_row');\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
 				    ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "readonly" : "")
 				   .">";
 		break;
@@ -93,7 +93,7 @@
 	    case "checkbox" :
 		//renders checkbox input with label
 		$renderedString .=   "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-		$renderedString .=   "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this);\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+		$renderedString .=   "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this, '$key', '$current_row');\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
 				     ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view")) || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "disabled" : "")
 				    .">";
 		break;
@@ -103,12 +103,12 @@
 		if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"]))
 		    $GLOBALS["dialogChooserTypes"][$dataProvider] = "hophop";
 		$GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-		$renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\" onchange=\"gridChangeItem(this);\">";
+		$renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\" onchange=\"gridChangeItem(this, '$key', '$current_row');\">";
 		break;
 
 	    case "dropdown" :
 		//renders select with available values as dropdowns with label
-		$renderedString .=  "<select class=\"form-control subgrid-input\" name=\"" . $key . "\" id=\"{$keyString}___" . $key . "\" onchange=\"gridChangeItem(this);\">";
+		$renderedString .=  "<select class=\"form-control subgrid-input\" name=\"" . $key . "\" id=\"{$keyString}___" . $key . "\" onchange=\"gridChangeItem(this, '$key', '$current_row');\">";
 		$method = $data->gridFields[$key]["dataProvider"];
 		if(key_exists("dataProviderArgs", $data->gridFields[$key])){
 		    $args = [];
@@ -137,14 +137,10 @@
     <h3 class="box-title m-b-0"><?php echo $data->dashboardTitle ?></h3>
     <p class="text-muted m-b-30"><?php echo $data->dashboardTitle ?></p>
     <div class="table-responsive">
-	<script>
-	 <?php
-	     //getting data for table
-	     $rows = $data->getPage($ascope["item"]);
-	     if(property_exists($data, "features") && in_array("selecting", $data->features))
-		 echo "var gridItems = " . json_encode($rows) . ";";
-	 ?>
-	</script>
+	<?php
+	    //getting data for table
+	    $rows = $data->getPage($ascope["item"]);
+	?>
 	<table id="example23" class="table table-striped">
 	    <thead>
 		<tr>
@@ -232,7 +228,7 @@
 				foreach($data->gridFields as $column =>$columnDef){
 				    echo "<td>\n";
 				    if(key_exists("editable", $columnDef) && $columnDef["editable"])
-				    	echo renderInput($ascope, $data, $columnDef, $column, $row[$column], $keyString);
+				    	echo renderInput($ascope, $data, $columnDef, $column, $row[$column], $keyString, $current_row);
 				    else
 					echo renderGridValue($ascope, $data, $drill, $row, $column, $row[$column]);
 				    echo "</td>\n";
@@ -258,6 +254,10 @@
 	?>
     </div>
     <script>
+     <?php
+	 if(property_exists($data, "features") && in_array("selecting", $data->features))
+	     echo "var gridItems = " . json_encode($rows) . ";";
+     ?>
      var gridItemsSelected = window.gridItemsSelected = {};
      //select handler, fill out gridViewSelected by rows
      function gridSelectItem(event, item){
@@ -269,10 +269,10 @@
      }
      
      //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
-     function gridDeleteItem(item){
+     function gridDeleteItem(keyString){
 	 if(confirm("Are you sure?")){
 	     var itemData = $("#itemData");
-	     $.getJSON("index.php?page=<?php  echo $app->page . "&action=" . $scope->action ;  ?>&delete=true&id=" + item)
+	     $.getJSON("index.php?page=<?php  echo $app->page . "&action=" . $scope->action ;  ?>&delete=true&id=" + keyString)
 	      .success(function(data) {
 		  onlocation(window.location);
 	      })
@@ -282,23 +282,25 @@
 	 }
      }
 
+     var gridItemsChanged = {};
      //handler for item changing
-     function gridChangeItem(item){
+     function gridChangeItem(item, columnName, row){
 	 var keyAndId = item.id.split("___");
 	 //	 console.log(item.id);
 	 var obj = {
 	     "id" : keyAndId[0],
-	     "category" : "main"
+	     "category" : "main",
+	     "row" : row
 	 };
-	 obj[keyAndId[1]] = $(item).val();
+	 obj[keyAndId[1]] = gridItems[row][columnName] = $(item).val();
 	 console.log(JSON.stringify(obj, null, 3));
-/*	 $.post("", obj)
-	  .success(function(data) {
-	      onlocation(window.location);
-	  })
-	  .error(function(err){
-	      console.log('wrong');
-	  });*/
+	 /*	 $.post("", obj)
+	    .success(function(data) {
+	    onlocation(window.location);
+	    })
+	    .error(function(err){
+	    console.log('wrong');
+	    });*/
      }
     </script>
 </div>
