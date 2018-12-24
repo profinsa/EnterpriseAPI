@@ -171,15 +171,28 @@ EOF;
     }
 
     public function Receipt_Cash(){
-        $postData = file_get_contents('php://input');
-
+        $user = Session::get("user");
+        $postData = file_get_contents("php://input");
+        
         // `application/x-www-form-urlencoded`  `multipart/form-data`
         $data = parse_str($postData);
         // or
         // `application/json`
         $data = json_decode($postData, true);
-        echo json_encode($data);
+        $success = true;
+        foreach($data as $row){
+            DB::statement("CALL Receipt_Cash(?, ?, ?, ?, ?, 'Invoice', ?, FALSE, @Result, @SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["InvoiceNumber"], $row["InvoiceNumber"], $row["AmountToApply"]));
+        
+            $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE');
+            //           if($result[0]->Result == 0)
+            //  $success = false;
+        }
+        
+        if(!$success) {
+            http_response_code(400);
+            echo "failed";
+        } else {
+            echo "ok";
+        }
     }
 }
-
-//Receipt_Cash
