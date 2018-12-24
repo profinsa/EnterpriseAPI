@@ -1,186 +1,194 @@
 <!-- edit and new -->
 <div id="row_editor">
-    <ul class="nav nav-tabs">
-	<?php  
-	//render tabs like Main, Current etc
-	//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
-	foreach($data->editCategories as $key =>$value)
-	    echo "<li role=\"presentation\"". ( $scope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"" . $public_prefix . "/index#/grid/" . $scope["path"] . "/" .  $scope["mode"] ."/" . $key . "/" . $scope["item"] . "\">" . $translation->translateLabel($key) . "</a></li>";
+    <ul class="nav nav-tabs" role="tablist">
+	<?php
+	    //render tabs like Main, Current etc
+	    //uses $data(charOfAccounts model) as dictionaries which contains list of tab names
+	    foreach($data->editCategories as $key =>$value)
+	    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
+		echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 	?>
     </ul>
-    <div class="row">
-	<div class="col-md-9">
-	    <?php if($scope["category"] == "Main"): ?>
-		<form id="itemData" class="form-material form-horizontal m-t-30">
-		    <?php echo csrf_field(); ?>
-		    <input type="hidden" name="id" value="<?php echo $scope["item"]; ?>" />
-		    <input type="hidden" name="category" value="<?php echo $scope["category"]; ?>" />
-		    <?php
-		    //getting record.
-		    $item = $data->getEditItem($scope["item"], $scope["category"]);
-		    //used as translated field name
-		    $translatedFieldName = '';
-
-		    foreach($item as $key =>$value){
-			$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
-			if(key_exists($key, $data->editCategories[$scope["category"]])){
-			    switch($data->editCategories[$scope["category"]][$key]["inputType"]){
-				case "text" :
-				    //renders text input with label
-				    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
-				    if(key_exists("formatFunction", $data->editCategories[$scope["category"]][$key])){
-					$formatFunction = $data->editCategories[$scope["category"]][$key]["formatFunction"];
-					echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-				    }
-				    else
-					echo formatField($data->editCategories[$scope["category"]][$key], $value);
-
-				    echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "view")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
-				       ."></div></div>";
-				    break;
-				    
-				case "datetime" :
-				    //renders text input with label
-				    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-					 ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "view")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
-					."></div></div>";
-				    break;
-
-				case "checkbox" :
-				    //renders checkbox input with label
-				    echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-				    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
-					 ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "view") || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "disabled" : "")
-					."></div></div>";
-				    break;
-				    
-				case "dropdown" :
-				    //renders select with available values as dropdowns with label
-				    echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
-				    $method = $data->editCategories[$scope["category"]][$key]["dataProvider"];
-				    $types = $data->$method();
-				    if($value)
-					echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
-				    else
-					echo "<option></option>";
-
-				    foreach($types as $type)
-					if(!$value || $type["value"] != $value)
-					    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
-				    echo"</select></div></div>";
-				    break;
-			    }
-			}
-		    }
-		    ?>
-		</form>
-	    <?php elseif($scope["category"] == "Credits"): ?>
-		<?php 
-		$item = $data->getCreditsPage();
-		echo json_encode($item);
-		?>
-	    <?php elseif($scope["category"] == "Debits"): ?>
-		<?php
- 		$rows = $data->getDebitsPage();
-		?>
-		<!-- grid -->
-		<div id="grid_content" class="row">
-		    <div class="table-responsive">
-			<table id="example23" class="table table-striped table-bordered">
-			    <thead>
-				<tr>
-				    <?php
-				    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
-				    if(count($rows)){
-					foreach($rows[0] as $key =>$value)
-					    if(key_exists($key, $data->debitsFields))
-						echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
-				    }
-				    ?>
-				</tr>
-			    </thead>
-			    <tbody>
+    <div class="tab-content">
+	<?php foreach($data->editCategories as $key =>$value):  ?>
+	    <div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
+		<div class="row">
+		    <div class="col-md-9">
+			<?php if($key == "Main"): ?>
+			    <form id="itemData" class="form-material form-horizontal m-t-30">
+				<input type="hidden" name="id" value="<?php echo $ascope["item"]; ?>" />
+				<input type="hidden" name="category" value="<?php echo $ascope["category"]; ?>" />
 				<?php
-				//renders table rows using rows, getted in previous block
-				//also renders buttons like edit, delete of row
-				if(count($rows)){
-				    foreach($rows as $row){
-					$keyString = '';
-					foreach($data->idFields as $key){
-					    $keyString .= $row[$key] . "__";
-					}
-					$keyString = substr($keyString, 0, -2);
-					echo "<tr>";
-					foreach($row as $key=>$value)
-					    if(key_exists($key, $data->debitsFields)){
-						echo "<td>\n";
-						switch($data->debitsFields[$key]["inputType"]){
-						    case "checkbox" :
-							echo $value ? "True" : "False";
-							break;
-						    case "timestamp" :
-						    case "datetime" :
-							echo date("m/d/y", strtotime($value));
-							break;
-						    case "text":
-						    case "dropdown":
-							if(key_exists("formatFunction", $data->debitsFields[$key])){
-							    $formatFunction = $data->debitsFields[$key]["formatFunction"];
-							    echo $data->$formatFunction($row, "debitsFields", $key, $value, false);
-							}
-							else
-							    echo formatField($data->debitsFields[$key], $value);
-							break;
-						}
-						echo "</td>\n";
+				    //getting record.
+				    $item = $data->getEditItem($ascope["item"], $ascope["category"]);
+				    //used as translated field name
+				    $translatedFieldName = '';
+
+				    foreach($item as $key =>$value){
+					$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
+					if(key_exists($key, $data->editCategories[$ascope["category"]])){
+					    switch($data->editCategories[$ascope["category"]][$key]["inputType"]){
+						case "text" :
+						    //renders text input with label
+						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
+						    if(key_exists("formatFunction", $data->editCategories[$ascope["category"]][$key])){
+							$formatFunction = $data->editCategories[$ascope["category"]][$key]["formatFunction"];
+							echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+						    }
+						    else
+							echo formatField($data->editCategories[$ascope["category"]][$key], $value);
+
+						    echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "view")  || (key_exists("disabledNew", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+						   ."></div></div>";
+						    break;
+						    
+						case "datetime" :
+						    //renders text input with label
+						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+							 ( (key_exists("disabledEdit", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "view")  || (key_exists("disabledNew", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+							."></div></div>";
+						    break;
+
+						case "checkbox" :
+						    //renders checkbox input with label
+						    echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+							 ( (key_exists("disabledEdit", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "view") || (key_exists("disabledNew", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
+							."></div></div>";
+						    break;
+						    
+						case "dropdown" :
+						    //renders select with available values as dropdowns with label
+						    echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
+						    $method = $data->editCategories[$ascope["category"]][$key]["dataProvider"];
+						    $types = $data->$method();
+						    if($value)
+							echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
+						    else
+							echo "<option></option>";
+
+						    foreach($types as $type)
+						    if(!$value || $type["value"] != $value)
+							echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+						    echo"</select></div></div>";
+						    break;
 					    }
-					echo "</tr>";
+					}
 				    }
-				}
 				?>
-			    </tbody>
-			</table>
+			    </form>
+			<?php elseif($key == "Credits"): ?>
+			    <?php 
+				$item = $data->getCreditsPage();
+				echo json_encode($item);
+			    ?>
+			<?php elseif($key == "Debits"): ?>
+			    <?php
+ 				$rows = $data->getDebitsPage();
+			    ?>
+			    <!-- grid -->
+			    <div id="grid_content" class="row">
+				<div class="table-responsive">
+				    <table id="example23" class="table table-striped table-bordered">
+					<thead>
+					    <tr>
+						<?php
+						    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
+						    if(count($rows)){
+							foreach($rows[0] as $key =>$value)
+							if(key_exists($key, $data->debitsFields))
+							    echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
+						    }
+						?>
+					    </tr>
+					</thead>
+					<tbody>
+					    <?php
+						//renders table rows using rows, getted in previous block
+						//also renders buttons like edit, delete of row
+						if(count($rows)){
+						    foreach($rows as $row){
+							$keyString = '';
+							foreach($data->idFields as $key){
+							    $keyString .= $row[$key] . "__";
+							}
+							$keyString = substr($keyString, 0, -2);
+							echo "<tr>";
+							foreach($row as $key=>$value)
+							if(key_exists($key, $data->debitsFields)){
+							    echo "<td>\n";
+							    switch($data->debitsFields[$key]["inputType"]){
+								case "checkbox" :
+								    echo $value ? "True" : "False";
+								    break;
+								case "timestamp" :
+								case "datetime" :
+								    echo date("m/d/y", strtotime($value));
+								    break;
+								case "text":
+								case "dropdown":
+								    if(key_exists("formatFunction", $data->debitsFields[$key])){
+									$formatFunction = $data->debitsFields[$key]["formatFunction"];
+									echo $data->$formatFunction($row, "debitsFields", $key, $value, false);
+								    }
+								    else
+									echo formatField($data->debitsFields[$key], $value);
+								    break;
+							    }
+							    echo "</td>\n";
+							}
+							echo "</tr>";
+						    }
+						}
+					    ?>
+					</tbody>
+				    </table>
+				</div>
+				<script>
+				</script>
+			    </div>
+			<?php endif; ?>
 		    </div>
-		    <script>
-		    </script>
 		</div>
-	    <?php endif; ?>
-	</div>
+	    </div>
+	<?php endforeach; ?>
     </div>
-    <?php
-    if(file_exists(__DIR__ . "/" . "editFooter.php"))
-	require __DIR__ . "/" . "editFooter.php";
-    if(file_exists(__DIR__ . "/" . "vieweditFooter.php"))
-	require __DIR__ . "/" . "vieweditFooter.php";
-    ?>
-    
-    <div  style="margin-top:10px" class="pull-right">
-	<!--
-	     renders buttons translated Save and Cancel using translation model
-	   -->
-	<?php if($security->can("update")): ?>
-	    <a class="btn btn-info" onclick="<?php echo ($scope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
-		<?php echo $translation->translateLabel("Save"); ?>
+    <div class="row">
+	<?php
+	    if(file_exists(__DIR__ . "/" . "editFooter.php"))
+		require __DIR__ . "/" . "editFooter.php";
+	    if(file_exists(__DIR__ . "/" . "vieweditFooter.php"))
+		require __DIR__ . "/" . "vieweditFooter.php";
+	?>
+	
+	<div  style="margin-top:10px" class="pull-right">
+	    <!--
+		 renders buttons translated Save and Cancel using translation model
+	    -->
+	    <?php if($security->can("update")): ?>
+		<a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
+		    <?php echo $translation->translateLabel("Save"); ?>
+		</a>
+		<?php 
+		    if(file_exists(__DIR__ . "/". "editActions.php"))
+			require __DIR__ . "/". "editActions.php";
+		    if(file_exists(__DIR__ . "/" . "vieweditActions.php"))
+			require __DIR__ . "/" . "vieweditActions.php";
+		?>
+	    <?php endif; ?>
+	    <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemViewCancel($path); ?>">
+		<?php echo $translation->translateLabel("Cancel"); ?>
 	    </a>
-	    <?php 
-	    if(file_exists(__DIR__ . "/". "editActions.php"))
-		require __DIR__ . "/". "editActions.php";
-	    if(file_exists(__DIR__ . "/" . "vieweditActions.php"))
-		require __DIR__ . "/" . "vieweditActions.php";
-	    ?>
-	<?php endif; ?>
-	<a class="btn btn-info" href="<?php echo $public_prefix; ?>/index#/grid/<?php echo $scope["path"] . "/" .   "grid/Main/all" ; ?>">
-	    <?php echo $translation->translateLabel("Cancel"); ?>
-	</a>
+	</div>
     </div>
     <script>
      //handler of save button if we in new mode. Just doing XHR request to save data
      function createItem(){
 	 var itemData = $("#itemData");
-	 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] . "/insert" ?>", itemData.serialize(), null, 'json')
+	 $.post("<?php echo $linksMaker->makeGridItemNew($acope["path"]); ?>", itemData.serialize(), null, 'json')
 	  .success(function(data) {
 	      console.log('ok');
-	      window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"] . "/grid/Main/all"; ?>";
+	      window.location = "<?php echo $linksMaker->makeGridItemViewCancel($path); ?>";
 	  })
 	  .error(function(err){
 	      console.log('wrong');
@@ -189,9 +197,9 @@
      //handler of save button if we in edit mode. Just doing XHR request to save data
      function saveItem(){
 	 var itemData = $("#itemData");
-	 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"]; ?>/update", itemData.serialize(), null, 'json')
+	 $.post("<?php echo makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 	  .success(function(data) {
-	      window.location = "<?php echo $public_prefix; ?>/index#/grid/<?php  echo $scope["path"];  ?>/view/<?php  echo $scope["category"] . "/" . $scope["item"] ; ?>";
+	      window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) ; ?>";
 	  })
 	  .error(function(err){
 	      console.log('wrong');
@@ -217,9 +225,6 @@
  $(document).ready(function(){
  <?php endif; ?>
      console.log('loaded');
-     $.ajaxSetup({
-	 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-     });
      var table = $('#example23').DataTable( {
 	 dom : "",
 	 "bSort" : false
@@ -247,14 +252,14 @@
 	     //console.log(date,' eee');
 	     var d = new Date(date);
 	     return (d.getMonth() + 1) + 
-		   "/" +  d.getDate() +
-		   "/" +  d.getFullYear();
+		    "/" +  d.getDate() +
+		    "/" +  d.getFullYear();
 	 },
 	 toValue: function (date, format, language) {
 	     var d = new Date(date);
 	     return (d.getMonth() + 1) + 
-		   "/" +  d.getDate() +
-		   "/" +  d.getFullYear();
+		    "/" +  d.getDate() +
+		    "/" +  d.getFullYear();
 	 }
      }
  });

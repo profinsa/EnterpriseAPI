@@ -4,7 +4,7 @@ Name of Page: Bank Reconciliation  model
 
 Method: Model for gridView. It provides data from database and default values, column names and categories
 
-Date created: Nikita Zaharov, 17.03.2016
+Date created: Nikita Zaharov, 17.03.2017
 
 Use: this model used by views/gridView
 - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
@@ -25,15 +25,11 @@ used as model by gridView
 Calls:
 DB
 
-Last Modified: 08.15.2016
+Last Modified: 12.24.2018
 Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
-
-function numberToStr($strin){
-    return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
-}
 
 function formatCurrency($value){
     $afterdot = 2;
