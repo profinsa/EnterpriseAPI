@@ -67,34 +67,35 @@
     }
 
     function renderInput($ascope, $data, $item, $key, $value, $keyString){
+	$renderedString = "";
 	switch($data->gridFields[$key]["inputType"]){
 	    case "text" :
 		//renders text input with label
-		echo "<input style=\"display:inline\" type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this);\" class=\"form-control\" value=\"";
+		$renderedString = "<input style=\"display:inline\" type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this);\" class=\"form-control\" value=\"";
 		if(key_exists("formatFunction", $data->gridFields[$key])){
 		    $formatFunction = $data->gridFields[$key]["formatFunction"];
-		    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+		    $renderedString .=  $data->$formatFunction($item, "editCategories", $key, $value, false);
 		}
 		else
-		    echo formatField($data->gridFields[$key], $value);
+		    $renderedString .=  formatField($data->gridFields[$key], $value);
 
-		echo"\" " . ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-	       .">";
+		$renderedString .=  "\" " . ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+				   .">";
 		break;
 
 	    case "datetime" :
 		//renders text input with label
-		echo "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this);\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-		     ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-		    .">";
+		$renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this);\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+				    ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+				   .">";
 		break;
 
 	    case "checkbox" :
 		//renders checkbox input with label
-		echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-		echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this);\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
-		     ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view")) || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "disabled" : "")
-		    .">";
+		$renderedString .=   "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+		$renderedString .=   "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this);\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+				     ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view")) || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "disabled" : "")
+				    .">";
 		break;
 
 	    case "dialogChooser":
@@ -102,12 +103,12 @@
 		if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"]))
 		    $GLOBALS["dialogChooserTypes"][$dataProvider] = "hophop";
 		$GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-		echo "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\" onchange=\"gridChangeItem(this);\">";
+		$renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\" onchange=\"gridChangeItem(this);\">";
 		break;
 
 	    case "dropdown" :
 		//renders select with available values as dropdowns with label
-		echo "<select class=\"form-control subgrid-input\" name=\"" . $key . "\" id=\"{$keyString}___" . $key . "\" onchange=\"gridChangeItem(this);\">";
+		$renderedString .=  "<select class=\"form-control subgrid-input\" name=\"" . $key . "\" id=\"{$keyString}___" . $key . "\" onchange=\"gridChangeItem(this);\">";
 		$method = $data->gridFields[$key]["dataProvider"];
 		if(key_exists("dataProviderArgs", $data->gridFields[$key])){
 		    $args = [];
@@ -118,16 +119,17 @@
 		else
 		    $types = $data->$method();
 		if($value)
-		    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
+		    $renderedString .= "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
 		else
-		    echo "<option></option>";
+		    $renderedString .= "<option></option>";
 
 		foreach($types as $type)
 		if(!$value || $type["value"] != $value)
-		    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+		    $renderedString .=  "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
 		echo"</select>";
 		break;
 	}
+	return $renderedString;
     }
 ?>
 
@@ -149,8 +151,9 @@
 		    <?php
 			if(property_exists($data, "features") && in_array("selecting", $data->features))
 			    echo "<th></th>";
+			if(!property_exists($data, "modes") || count($data->modes) != 1 || !in_array("grid", $data->modes) || file_exists(__DIR__ . "/../" . $PartsPath . "gridRowActions.php"))
+			    echo "<th></th>";
 		    ?>
-		    <th></th>
 		    <?php
 			//renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 			if(count($rows)){
@@ -228,7 +231,10 @@
 				 */
 				foreach($data->gridFields as $column =>$columnDef){
 				    echo "<td>\n";
-				    echo renderGridValue($ascope, $data, $drill, $row, $column, $row[$column]);
+				    if(key_exists("editable", $columnDef) && $columnDef["editable"])
+				    	echo renderInput($ascope, $data, $columnDef, $column, $row[$column], $keyString);
+				    else
+					echo renderGridValue($ascope, $data, $drill, $row, $column, $row[$column]);
 				    echo "</td>\n";
 				}
 				echo "</tr>";

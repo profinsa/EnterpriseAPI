@@ -82,7 +82,8 @@ class gridData extends gridDataSource{
             "dbType" => "decimal(19,4)",
             "inputType" => "text",
             "formatFunction" => "currencyFormat",
-            "defaultValue" => ""
+            "defaultValue" => "",
+            "editable" => true
         ]
     ];
 
