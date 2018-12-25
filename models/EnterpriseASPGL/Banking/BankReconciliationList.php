@@ -372,6 +372,8 @@ class gridData extends gridDataSource{
         }
 
         DB::update("UPDATE bankreconciliationdetaildebits set " . $update_fields . " WHERE CompanyID='". $user["CompanyID"] . "' AND DivisionID='" . $user["DivisionID"] . "' AND DepartmentID='" . $user["DepartmentID"] . "' AND BankID='" . $_POST["BankID"] . "' AND BankRecDocumentNumber='" . $_POST["BankRecDocumentNumber"] . "'", array());
+
+        echo "ok";
     }
 
     //updating data of grid item
@@ -387,6 +389,8 @@ class gridData extends gridDataSource{
         }
 
         DB::update("UPDATE bankreconciliationdetailcredits set " . $update_fields . " WHERE CompanyID='". $user["CompanyID"] . "' AND DivisionID='" . $user["DivisionID"] . "' AND DepartmentID='" . $user["DepartmentID"] . "' AND BankID='" . $_POST["BankID"] . "' AND BankRecDocumentNumber='" . $_POST["BankRecDocumentNumber"] . "'", array());
+
+            echo "ok";
     }
 
     public function Post(){
@@ -399,9 +403,11 @@ class gridData extends gridDataSource{
         $result = DB::select('select @v_Success as v_Success, @SWP_RET_VALUE as SWP_RET_VALUE', array());
 
         if($result[0]->SWP_RET_VALUE > -1)
-            header('Content-Type: application/json');
-        else
-            return response(json_encode($result), 400)->header('Content-Type', 'text/plain');
+            echo "ok";
+        else{
+            http_response_code(400);
+            echo $result[0]->v_Success;
+        }
     }
     
     public function getBalance($item){
