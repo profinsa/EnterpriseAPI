@@ -10,6 +10,9 @@
 	?>
     </ul>
     <div class="tab-content">
+	<?php
+	    $item = $data->getEditItem($ascope["item"], "Main");
+	?>
 	<?php foreach($data->editCategories as $key =>$value):  ?>
 	    <div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
 		<div class="row">
@@ -17,10 +20,9 @@
 			<?php if($key == "Main"): ?>
 			    <form id="itemData" class="form-material form-horizontal m-t-30">
 				<input type="hidden" name="id" value="<?php echo $ascope["item"]; ?>" />
-				<input type="hidden" name="category" value="<?php echo $ascope["category"]; ?>" />
+				<input type="hidden" name="category" value="<?php echo $key; ?>" />
 				<?php
 				    //getting record.
-				    $item = $data->getEditItem($ascope["item"], $ascope["category"]);
 				    //used as translated field name
 				    $translatedFieldName = '';
 
@@ -78,17 +80,15 @@
 				?>
 			    </form>
 			<?php elseif($key == "Credits"): ?>
-			    <?php 
-				$item = $data->getCreditsPage();
-				echo json_encode($item);
-			    ?>
-			<?php elseif($key == "Debits"): ?>
-			    <?php
- 				$rows = $data->getDebitsPage();
-			    ?>
+			    <script>
+			     <?php
+ 				 $rows = $data->getCreditsPage($ascope["item"]);
+				 echo "var gridItems = " . json_encode($rows) . ";";
+			     ?>
+			    </script>
 			    <!-- grid -->
 			    <div id="grid_content" class="row">
-				<div class="table-responsive">
+				<div>
 				    <table id="example23" class="table table-striped table-bordered">
 					<thead>
 					    <tr>
@@ -105,21 +105,21 @@
 					<tbody>
 					    <?php
 						//renders table rows using rows, getted in previous block
-						//also renders buttons like edit, delete of row
 						if(count($rows)){
+						    $current_row = 0;
 						    foreach($rows as $row){
-							$keyString = '';
-							foreach($data->idFields as $key){
-							    $keyString .= $row[$key] . "__";
-							}
-							$keyString = substr($keyString, 0, -2);
+							//$keyString = '';
+							//foreach($data->idFields as $key){
+							//  $keyString .= $row[$key] . "__";
+							//}
+							//$keyString = substr($keyString, 0, -2);
 							echo "<tr>";
 							foreach($row as $key=>$value)
 							if(key_exists($key, $data->debitsFields)){
 							    echo "<td>\n";
 							    switch($data->debitsFields[$key]["inputType"]){
 								case "checkbox" :
-								    echo $value ? "True" : "False";
+								    echo "<input id=\"" . $key . "\" class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " onchange=\"reconciliationSelectItem(event, '" . $current_row . "', 'credit')\" />";
 								    break;
 								case "timestamp" :
 								case "datetime" :
@@ -138,6 +138,76 @@
 							    echo "</td>\n";
 							}
 							echo "</tr>";
+							$current_row++;
+						    }
+						}
+					    ?>
+					</tbody>
+				    </table>
+				</div>
+				<script>
+				</script>
+			    </div>
+			<?php elseif($key == "Debits"): ?>
+			    <script>
+			     <?php
+ 				 $rows = $data->getDebitsPage($ascope["item"]);
+				 echo "var gridItems = " . json_encode($rows) . ";";
+			     ?>
+			    </script>
+			    <!-- grid -->
+			    <div id="grid_content" class="row">
+				<div>
+				    <table id="example23" class="table table-striped table-bordered">
+					<thead>
+					    <tr>
+						<?php
+						    //renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
+						    if(count($rows)){
+							foreach($rows[0] as $key =>$value)
+							if(key_exists($key, $data->debitsFields))
+							    echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
+						    }
+						?>
+					    </tr>
+					</thead>
+					<tbody>
+					    <?php
+						//renders table rows using rows, getted in previous block
+						if(count($rows)){
+						    $current_row = 0;
+						    foreach($rows as $row){
+							//$keyString = '';
+							//foreach($data->idFields as $key){
+							//  $keyString .= $row[$key] . "__";
+							//}
+							//$keyString = substr($keyString, 0, -2);
+							echo "<tr>";
+							foreach($row as $key=>$value)
+							if(key_exists($key, $data->debitsFields)){
+							    echo "<td>\n";
+							    switch($data->debitsFields[$key]["inputType"]){
+								case "checkbox" :
+								    echo "<input id=\"" . $key . "\" class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " onchange=\"reconciliationSelectItem(event, '" . $current_row . "', 'debit')\" />";
+								    break;
+								case "timestamp" :
+								case "datetime" :
+								    echo date("m/d/y", strtotime($value));
+								    break;
+								case "text":
+								case "dropdown":
+								    if(key_exists("formatFunction", $data->debitsFields[$key])){
+									$formatFunction = $data->debitsFields[$key]["formatFunction"];
+									echo $data->$formatFunction($row, "debitsFields", $key, $value, false);
+								    }
+								    else
+									echo formatField($data->debitsFields[$key], $value);
+								    break;
+							    }
+							    echo "</td>\n";
+							}
+							echo "</tr>";
+							$current_row++;
 						    }
 						}
 					    ?>
@@ -148,6 +218,84 @@
 				</script>
 			    </div>
 			<?php endif; ?>
+		    </div>
+		    <script>
+		     var gridItemsSelected = window.gridItemsSelected = {};
+		     //select handler, fill out gridViewSelected by rows
+		     function reconciliationSelectItem(event, item, type){
+			 var value = event.currentTarget.checked ? 1 : 0;
+			 gridItems[item][event.currentTarget.id] = value;
+
+			 serverProcedureCall(type == 'debit' ? "updateDebitsItem" : "updateCreditsItem", gridItems[item], true);
+		     }
+		    </script>
+		    <div class="col-md-3">
+			<div class="table-responsive">
+			    <table class="table table-bordered">
+				<tbody>
+				    <?php
+					$balance = $data->getBalance($item);
+				    ?>
+				    <tr>
+					<td><?php echo $translation->translateLabel("Starting Balance"); ?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("Book"); ?></td>
+					<td><?php echo $balance["Book"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("Bank"); ?></td>
+					<td><?php echo $balance["Bank"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("+Total Credits"); ?></td>
+					<td><?php echo $balance["TotalCredits"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("+Total Debits"); ?></td>
+					<td><?php echo $balance["TotalDebits"];?></td>
+				    </tr>
+
+				    <tr>
+					<td><?php echo $translation->translateLabel("Adj. Book Balance"); ?></td>
+					<td><?php echo $balance["AdjBookBalance"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("+DebitsOS"); ?></td>
+					<td><?php echo $balance["DebitsOS"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("-CreditsOS"); ?></td>
+					<td><?php echo $balance["CreditsOS"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("Bank Balance"); ?></td>
+					<td><?php echo $balance["BankBalance"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("Stmt Balance"); ?></td>
+					<td><?php echo $balance["StmtBalance"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("Unreconciled"); ?></td>
+					<td><?php echo $balance["Unreconciled"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("End Book Balance"); ?></td>
+					<td><?php echo $balance["EndBookBalance"];?></td>
+				    </tr>
+
+				    <tr>
+					<td><?php echo $translation->translateLabel("Credits Cleared"); ?></td>
+					<td><?php echo $balance["CreditsCleared"];?></td>
+				    </tr>
+				    <tr>
+					<td><?php echo $translation->translateLabel("Debits Cleared"); ?></td>
+					<td><?php echo $balance["DebitsCleared"];?></td>
+				    </tr>
+				</tbody>
+			    </table>
+			</div>
 		    </div>
 		</div>
 	    </div>
@@ -176,7 +324,7 @@
 			require __DIR__ . "/" . "vieweditActions.php";
 		?>
 	    <?php endif; ?>
-	    <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemViewCancel($path); ?>">
+	    <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>">
 		<?php echo $translation->translateLabel("Cancel"); ?>
 	    </a>
 	</div>
@@ -185,10 +333,10 @@
      //handler of save button if we in new mode. Just doing XHR request to save data
      function createItem(){
 	 var itemData = $("#itemData");
-	 $.post("<?php echo $linksMaker->makeGridItemNew($acope["path"]); ?>", itemData.serialize(), null, 'json')
+	 $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 	  .success(function(data) {
 	      console.log('ok');
-	      window.location = "<?php echo $linksMaker->makeGridItemViewCancel($path); ?>";
+	      window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
 	  })
 	  .error(function(err){
 	      console.log('wrong');
@@ -197,7 +345,7 @@
      //handler of save button if we in edit mode. Just doing XHR request to save data
      function saveItem(){
 	 var itemData = $("#itemData");
-	 $.post("<?php echo makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+	 $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 	  .success(function(data) {
 	      window.location = "<?php echo $linksMaker->makeGridItemView($ascope["path"], $ascope["item"]) ; ?>";
 	  })

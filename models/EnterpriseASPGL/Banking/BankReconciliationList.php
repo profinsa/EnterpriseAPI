@@ -1,32 +1,32 @@
 <?php
 /*
-Name of Page: Bank Reconciliation  model
+  Name of Page: Bank Reconciliation  model
 
-Method: Model for gridView. It provides data from database and default values, column names and categories
+  Method: Model for gridView. It provides data from database and default values, column names and categories
 
-Date created: Nikita Zaharov, 17.03.2017
+  Date created: Nikita Zaharov, 17.03.2017
 
-Use: this model used by views/gridView
-- as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
-- for loading data from tables, updating, inserting and deleting
+  Use: this model used by views/gridView
+  - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
+  - for loading data from tables, updating, inserting and deleting
 
-Input parameters:
-$db: database instance
-methods has own parameters
+  Input parameters:
+  $db: database instance
+  methods has own parameters
 
-Output parameters:
-- dictionaries as public properties
-- methods has own output
+  Output parameters:
+  - dictionaries as public properties
+  - methods has own output
 
-Called from:
-created and used for ajax requests by Grid controller
-used as model by gridView
+  Called from:
+  created and used for ajax requests by Grid controller
+  used as model by gridView
 
-Calls:
-DB
+  Calls:
+  DB
 
-Last Modified: 12.24.2018
-Last Modified by: Nikita Zaharov
+  Last Modified: 12.25.2018
+  Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
@@ -291,9 +291,7 @@ class gridData extends gridDataSource{
         $result = DB::select("SELECT " . implode(",", $fields) . " from BankReconciliationDetailCredits" . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
-        $result = json_decode(json_encode($result), true);
-        
-        return $result;
+        return json_decode(json_encode($result), true);
     }
 
     public $debitsFields = [
@@ -356,19 +354,9 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
-        if(property_exists($this, "gridConditions")){
-            if($keyFields != "")
-                $keyFields .= " AND " . $this->gridConditions;
-            else
-                $keyFields = $this->gridConditions;
-        }
-        
-        $result = DB::select("SELECT " . implode(",", $fields) . " from BankReconciliationDetailDebits" . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from bankreconciliationdetaildebits" . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
-
-        $result = json_decode(json_encode($result), true);
-        
-        return $result;
+        return json_decode(json_encode($result), true);
     }
 
     //updating data of grid item
