@@ -275,10 +275,10 @@ class gridData extends gridDataSource{
         $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
 
         if($result[0]->SWP_RET_VALUE > -1)
-            echo json_encode($result);
+            echo "ok";
         else {
             http_response_code(400);
-            echo json_encode($result);
+            echo $result[0]->v_PostAsset;
         }
     }
     
@@ -290,10 +290,10 @@ class gridData extends gridDataSource{
         $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
 
         if($result[0]->SWP_RET_VALUE > -1)
-            echo json_encode($result);
+            echo "ok";
         else {
             http_response_code(400);
-            echo json_encode($result);
+            echo $result[0]->v_PostAsset;
         }
     }
     
@@ -305,10 +305,10 @@ class gridData extends gridDataSource{
         $result = $GLOBALS["capsule"]::select('select @v_Result as v_Result ,@SWP_RET_VALUE as SWP_RET_VALUE');
         
         if($result[0]->SWP_RET_VALUE > -1)
-            echo json_encode($result);
+            echo "ok";
         else {
             http_response_code(400);
-            echo json_encode($result);
+            echo $result[0]->v_Result;
         }
     }
 
@@ -319,10 +319,10 @@ class gridData extends gridDataSource{
 
         $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
         if($result[0]->SWP_RET_VALUE > -1)
-            echo json_encode($result);
+            echo "ok";
         else {
             http_response_code(400);
-            echo json_encode($result);
+            echo $result[0]->v_PostAsset;
         }
     }
 }
