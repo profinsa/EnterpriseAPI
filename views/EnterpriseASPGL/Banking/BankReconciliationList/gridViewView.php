@@ -6,7 +6,7 @@
 	    //uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 	    foreach($data->editCategories as $key =>$value)
 	    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
-		echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
+		echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ." id=\"$key\"><a href=\"#". makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 	?>
     </ul>
     <div class="tab-content">

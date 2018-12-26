@@ -1,4 +1,16 @@
 <script>
+
+ function getFormData($form){
+     var unindexed_array = $form.serializeArray();
+     var indexed_array = {};
+
+     $.map(unindexed_array, function(n, i){
+         indexed_array[n['name']] = n['value'];
+     });
+
+     return indexed_array;
+ }
+ 
  function generateKeyString(props){
      var key, keyString = "<?php echo $ascope["user"]["CompanyID"] . "__" . $ascope["user"]["DivisionID"] . "__" . $ascope["user"]["DepartmentID"] . "__"; ?>";
      for(key in props)
@@ -8,6 +20,9 @@
 
  //global object used for creatink links to any part of application
  var linksMaker = {
+     makeGridItemView : function(path, item, category){
+         return "index.php#/?page=grid&action=" + path + "&mode=view&category=" + (category ? category : "Main") + "&item=" + item;
+     },
      makeEmbeddedgridItemNewLink : function(viewpath, backpath, keyString, item){
 	 return "index.php#/?page=grid&action=" + viewpath + "&mode=new&category=Main&item=" + keyString + "&back=" + encodeURIComponent("index.php#/?page=grid&action=" + backpath + "&mode=view&category=Main&item=" + item);
      },

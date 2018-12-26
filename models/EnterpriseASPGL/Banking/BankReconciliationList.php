@@ -31,12 +31,15 @@
 
 require "./models/gridDataSource.php";
 
+    function numberToStr1($strin){
+        return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
+    }
 function formatCurrency($value){
     $afterdot = 2;
     if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts))
-        return numberToStr($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
+        return numberToStr1($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
     else
-        return numberToStr($value) . ".00";
+        return numberToStr1($value) . ".00";
 
 }
 
@@ -361,6 +364,7 @@ class gridData extends gridDataSource{
 
     public function getEditItem($id, $type){
         $user = Session::get("user");
+
         $result = parent::getEditItem($id, $type);
         $current_date = date("Y-m-d");
         $result["BankRecStartDate"] = date("Y-m-d", strtotime($current_date." -1 months"));
@@ -448,7 +452,7 @@ class gridData extends gridDataSource{
 
         DB::update("UPDATE bankreconciliationdetailcredits set " . $update_fields . " WHERE CompanyID='". $user["CompanyID"] . "' AND DivisionID='" . $user["DivisionID"] . "' AND DepartmentID='" . $user["DepartmentID"] . "' AND BankID='" . $_POST["BankID"] . "' AND BankRecDocumentNumber='" . $_POST["BankRecDocumentNumber"] . "'", array());
 
-            echo "ok";
+        echo "ok";
     }
 
     public function Post(){
@@ -460,6 +464,14 @@ class gridData extends gridDataSource{
 
         $result = DB::select('select @v_Success as v_Success, @SWP_RET_VALUE as SWP_RET_VALUE', array());
 
+        //echo $_POST["id"];
+        $_POST["BankRecStartDate"] = date("Y-m-d H:i:s", strtotime($_POST["BankRecStartDate"]));
+        $_POST["BankRecEndDate"] = date("Y-m-d H:i:s", strtotime($_POST["BankRecEndDate"]));
+        $form = array();
+        foreach ($_POST as $key => $value) {
+            $form[$key] = $value;
+}
+        echo json_encode(array_merge($this->getBalance($_POST), $form), JSON_PRETTY_PRINT);
         if($result[0]->SWP_RET_VALUE > -1)
             echo "ok";
         else{
