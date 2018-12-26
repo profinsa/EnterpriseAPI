@@ -25,7 +25,7 @@
   Calls:
   DB
 
-  Last Modified: 12.25.2018
+  Last Modified: 12.26.2018
   Last Modified by: Nikita Zaharov
 */
 
@@ -463,21 +463,48 @@ class gridData extends gridDataSource{
         DB::statement("CALL Bank_PostReconciliation('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $keyValues[3] . "', @v_Success ,@SWP_RET_VALUE)", array());
 
         $result = DB::select('select @v_Success as v_Success, @SWP_RET_VALUE as SWP_RET_VALUE', array());
+        if($result[0]->SWP_RET_VALUE > -1)
+          echo "ok";
+        else{
+          http_response_code(400);
+          echo $result[0]->v_Success;
+        }
 
-        //echo $_POST["id"];
         $_POST["BankRecStartDate"] = date("Y-m-d H:i:s", strtotime($_POST["BankRecStartDate"]));
         $_POST["BankRecEndDate"] = date("Y-m-d H:i:s", strtotime($_POST["BankRecEndDate"]));
         $form = array();
         foreach ($_POST as $key => $value) {
             $form[$key] = $value;
-}
-        echo json_encode(array_merge($this->getBalance($_POST), $form), JSON_PRETTY_PRINT);
-        if($result[0]->SWP_RET_VALUE > -1)
-            echo "ok";
-        else{
-            http_response_code(400);
-            echo $result[0]->v_Success;
         }
+        $values = array_merge($this->getBalance($_POST), $form);
+        
+        DB::statement("CALL Bank_CreateReconciliationSummary(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,@SWP_RET_VALUE)", array(
+            $user["CompanyID"],
+            $user["DivisionID"],
+            $user["DepartmentID"],
+            $values["GLBankAccount"],
+            $values["CurrencyID"],
+            $values["CurrencyExchangeRate"],
+            $values["BankRecEndDate"],
+            floatval($values["BankRecEndingBalance"]),
+            floatval($values["BankRecServiceCharge"]),
+            $values["GLServiceChargeAccount"],
+            floatval($values["BankRecIntrest"]),
+            $values["GLInterestAccount"],
+            floatval($values["BankRecAdjustment"]),
+            $values["GLAdjustmentAccount"],
+            floatval($values["BankRecOtherCharges"]),
+            $values["GLOtherChargesAccount"],
+            floatval($values["TotalCredits"]),
+            floatval($values["TotalDebits"]),
+            floatval($values["CreditsOS"]),
+            floatval($values["DebitsOS"]),
+            floatval($values["Bank"]),
+            floatval($values["Book"]),
+            floatval($values["Unreconciled"]),
+            floatval($values["EndBookBalance"]),
+            floatval($values["Bank"]),
+            $values["BankRecNotes"]));
     }
 }
 ?>
