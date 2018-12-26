@@ -359,6 +359,64 @@ class gridData extends gridDataSource{
         return json_decode(json_encode($result), true);
     }
 
+    public function getEditItem($id, $type){
+        $user = Session::get("user");
+        $result = parent::getEditItem($id, $type);
+        $current_date = date("Y-m-d");
+        $result["BankRecStartDate"] = date("Y-m-d", strtotime($current_date." -1 months"));
+        $result["BankRecEndDate"] = date("Y-m-d H:i:s");
+        $currencyID = DB::select("select CurrencyID from bankaccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND BankID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $result["BankID"]))[0]->CurrencyID;
+        $result["CurrencyID"] = $currencyID;
+        $result["CurrencyExchangeRate"] = DB::select("SELECT CurrencyExchangeRate from currencytypes WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CurrencyID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $currencyID))[0]->CurrencyExchangeRate;
+        return $result;
+    }
+        
+    public function getBalance($item){
+        $user = Session::get("user");
+        
+        $BankRecStartDate = $item["BankRecStartDate"] ? $item["BankRecStartDate"] : date_create()->sub(new DateInterval('P10D'))->format('Y-m-d H:i:s');
+        $BankRecEndDate = $item["BankRecEndDate"] ? $item["BankRecEndDate"] : date_create()->format('Y-m-d H:i:s');
+        DB::statement("CALL BankReconciliation_Prepare('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','{$item["BankID"]}', 0, '{$item["GLBankAccount"]}', '{$item["GLInterestAccount"]}','{$item["GLServiceChargeAccount"]}','{$item["GLOtherChargesAccount"]}','{$item["GLAdjustmentAccount"]}', '$BankRecStartDate', '$BankRecEndDate', @StartingBalance, @BookBalance, @PeriodBalance, @PeriodCredit, @PeriodDebit, @Result, @CreditBalanceSign, @SWP)", array());
+
+        $result = (array)DB::select('select @StartingBalance, @BookBalance, @PeriodBalance, @PeriodCredit, @PeriodDebit, @Result, @CreditBalanceSign, @SWP', array())[0];
+
+        $keyString = "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$item["BankID"]}";
+        $debits = $this->getDebitsPage($keyString);
+        $debitsCleared = 0;
+        foreach($debits as $row)
+            if($row["BankRecCleared"])
+                $debitsCleared += $row["BankRecAmount"] * $row["CurrencyExchangeRate"];
+
+        $credits = $this->getCreditsPage($keyString);
+        $creditsCleared = 0;
+        foreach($credits as $row)
+            if($row["BankRecCleared"])
+                $creditsCleared += $row["BankRecAmount"] * $row["CurrencyExchangeRate"];
+
+        $debitsOS = $result["@PeriodDebit"] - $debitsCleared;
+        $creditsOS = $result["@PeriodCredit"] - $creditsCleared;
+
+        $AdjBookBalance = $result["@StartingBalance"] - $result["@CreditBalanceSign"] * $result["@PeriodBalance"] + $item["BankRecIntrest"] - $item["BankRecServiceCharge"] - $item["BankRecOtherCharges"] - $item["BankRecAdjustment"];
+        $BankBalance = $AdjBookBalance - $result["@CreditBalanceSign"] * $debitsOS - $creditsOS;
+        $Unreconciled = $BankBalance - $item["BankRecEndingBalance"];
+        $EndBookBalance = $AdjBookBalance;
+        return [
+            "Book" => formatCurrency($result["@BookBalance"]),
+            "Bank" => formatCurrency($BankBalance),
+            "TotalCredits" => formatCurrency(0),
+            "TotalDebits" => formatCurrency(0),
+            "AdjBookBalance" => formatCurrency($AdjBookBalance),
+            "CreditsOS" => formatCurrency($creditsOS),
+            "DebitsOS" => formatCurrency($debitsOS),
+            "BankBalance" => formatCurrency(0),
+            "StmtBalance" => formatCurrency($item["BankRecEndingBalance"]),
+            "Unreconciled" => formatCurrency($Unreconciled),
+            "EndBookBalance" => formatCurrency($EndBookBalance),
+            "CreditsCleared" => formatCurrency($creditsCleared),
+            "DebitsCleared" => formatCurrency($debitsCleared)
+        ];
+    }
+
     //updating data of grid item
     public function updateDebitsItem(){
         $user = Session::get("user");
@@ -408,52 +466,6 @@ class gridData extends gridDataSource{
             http_response_code(400);
             echo $result[0]->v_Success;
         }
-    }
-    
-    public function getBalance($item){
-        $user = Session::get("user");
-        
-        $BankRecStartDate = $item["BankRecStartDate"] ? $item["BankRecStartDate"] : date_create()->sub(new DateInterval('P10D'))->format('Y-m-d H:i:s');
-        $BankRecEndDate = $item["BankRecEndDate"] ? $item["BankRecEndDate"] : date_create()->format('Y-m-d H:i:s');
-        DB::statement("CALL BankReconciliation_Prepare('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','{$item["BankID"]}', 0, '{$item["GLBankAccount"]}', '{$item["GLInterestAccount"]}','{$item["GLServiceChargeAccount"]}','{$item["GLOtherChargesAccount"]}','{$item["GLAdjustmentAccount"]}', '$BankRecStartDate', '$BankRecEndDate', @StartingBalance, @BookBalance, @PeriodBalance, @PeriodCredit, @PeriodDebit, @Result, @CreditBalanceSign, @SWP)", array());
-
-        $result = (array)DB::select('select @StartingBalance, @BookBalance, @PeriodBalance, @PeriodCredit, @PeriodDebit, @Result, @CreditBalanceSign, @SWP', array())[0];
-
-        $keyString = "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$item["BankID"]}";
-        $debits = $this->getDebitsPage($keyString);
-        $debitsCleared = 0;
-        foreach($debits as $row)
-            if($row["BankRecCleared"])
-                $debitsCleared += $row["BankRecAmount"] * $row["CurrencyExchangeRate"];
-
-        $credits = $this->getCreditsPage($keyString);
-        $creditsCleared = 0;
-        foreach($credits as $row)
-            if($row["BankRecCleared"])
-                $creditsCleared += $row["BankRecAmount"] * $row["CurrencyExchangeRate"];
-
-        $debitsOS = $result["@PeriodDebit"] - $debitsCleared;
-        $creditsOS = $result["@PeriodCredit"] - $creditsCleared;
-
-        $AdjBookBalance = $result["@StartingBalance"] - $result["@CreditBalanceSign"] * $result["@PeriodBalance"] + $item["BankRecIntrest"] - $item["BankRecServiceCharge"] - $item["BankRecOtherCharges"] - $item["BankRecAdjustment"];
-        $BankBalance = $AdjBookBalance - $result["@CreditBalanceSign"] * $debitsOS - $creditsOS;
-        $Unreconciled = $BankBalance - $item["BankRecEndingBalance"];
-        $EndBookBalance = $AdjBookBalance;
-        return [
-            "Book" => formatCurrency($result["@BookBalance"]),
-            "Bank" => formatCurrency($BankBalance),
-            "TotalCredits" => formatCurrency(0),
-            "TotalDebits" => formatCurrency(0),
-            "AdjBookBalance" => formatCurrency($AdjBookBalance),
-            "CreditsOS" => formatCurrency($creditsOS),
-            "DebitsOS" => formatCurrency($debitsOS),
-            "BankBalance" => formatCurrency(0),
-            "StmtBalance" => formatCurrency($item["BankRecEndingBalance"]),
-            "Unreconciled" => formatCurrency($Unreconciled),
-            "EndBookBalance" => formatCurrency($EndBookBalance),
-            "CreditsCleared" => formatCurrency($creditsCleared),
-            "DebitsCleared" => formatCurrency($debitsCleared)
-        ];
     }
 }
 ?>
