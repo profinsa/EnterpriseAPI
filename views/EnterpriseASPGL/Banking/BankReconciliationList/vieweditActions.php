@@ -3,14 +3,18 @@
     this is actions for BankReconciliation page.
     only client side logic. Sending request to stored procedures and handling result
   */
+ $('a[data-toggle="tab"]').on('shown', function (e) {
+     console.log(e.target) // activated tab
+     e.relatedTarget // previous tab
+ })
  function recalcClicked(){
-     onlocation(window.location);
+     onlocation(linksMaker.makeGridItemView("<?php echo $ascope["path"] ?>", "<?php echo $ascope["item"] ?>", $('li[role="presentation"].active').prop("textContent")));
  }
 
  function Post(){
      var itemData = $("#itemData");
      serverProcedureCall('Post', getFormData(itemData), false);
-     window.location = linksMaker.makeGridItemView("<?php echo $ascope["path"] ?>", "<?php echo $ascope["item"] ?>", $('li[role="presentation"].active').prop("id"));
+     onlocation(linksMaker.makeGridItemView("<?php echo $ascope["path"] ?>", "<?php echo $ascope["item"] ?>", $('li[role="presentation"].active').prop("textContent")));
  }
 
 </script>

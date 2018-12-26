@@ -6,7 +6,7 @@
 	    //uses $data(charOfAccounts model) as dictionaries which contains list of tab names
 	    foreach($data->editCategories as $key =>$value)
 	    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
-		echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ." id=\"$key\"><a href=\"#". makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
+		echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"". makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 	?>
     </ul>
     <div class="tab-content">
@@ -28,26 +28,26 @@
 
 				    foreach($item as $key =>$value){
 					$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
-					if(key_exists($key, $data->editCategories[$ascope["category"]])){
-					    switch($data->editCategories[$ascope["category"]][$key]["inputType"]){
+					if(key_exists($key, $data->editCategories["Main"])){
+					    switch($data->editCategories["Main"][$key]["inputType"]){
 						case "text" :
 						    //renders text input with label
 						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
-						    if(key_exists("formatFunction", $data->editCategories[$ascope["category"]][$key])){
-							$formatFunction = $data->editCategories[$ascope["category"]][$key]["formatFunction"];
+						    if(key_exists("formatFunction", $data->editCategories["Main"][$key])){
+							$formatFunction = $data->editCategories["Main"][$key]["formatFunction"];
 							echo $data->$formatFunction($item, "editCategories", $key, $value, false);
 						    }
 						    else
-							echo formatField($data->editCategories[$ascope["category"]][$key], $value);
+							echo formatField($data->editCategories["Main"][$key], $value);
 
-						    echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "view")  || (key_exists("disabledNew", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+						    echo"\" " . ( (key_exists("disabledEdit", $data->editCategories["Main"][$key]) && $ascope["mode"] == "view")  || (key_exists("disabledNew", $data->editCategories["Main"][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
 						   ."></div></div>";
 						    break;
 						    
 						case "datetime" :
 						    //renders text input with label
 						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-							 ( (key_exists("disabledEdit", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "view")  || (key_exists("disabledNew", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+							 ( (key_exists("disabledEdit", $data->editCategories["Main"][$key]) && $ascope["mode"] == "view")  || (key_exists("disabledNew", $data->editCategories["Main"][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
 							."></div></div>";
 						    break;
 
@@ -55,14 +55,14 @@
 						    //renders checkbox input with label
 						    echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
 						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
-							 ( (key_exists("disabledEdit", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "view") || (key_exists("disabledNew", $data->editCategories[$ascope["category"]][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
+							 ( (key_exists("disabledEdit", $data->editCategories["Main"][$key]) && $ascope["mode"] == "view") || (key_exists("disabledNew", $data->editCategories["Main"][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
 							."></div></div>";
 						    break;
 						    
 						case "dropdown" :
 						    //renders select with available values as dropdowns with label
 						    echo "<div class=\"form-group\"><label class=\"col-sm-6\">" . $translatedFieldName . "</label><div class=\"col-sm-6\"><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
-						    $method = $data->editCategories[$ascope["category"]][$key]["dataProvider"];
+						    $method = $data->editCategories["Main"][$key]["dataProvider"];
 						    $types = $data->$method();
 						    if($value)
 							echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
