@@ -25,10 +25,11 @@
   models/gridDataSource derevatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 12.18.2016
+  Last Modified: 12.28.2018
   Last Modified by: Nikita Zaharov
 */
 
+require 'models/users.php';
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
@@ -99,6 +100,8 @@ class controller{
     ];
 
     public function process($app){
+        $users = new users();
+        $users->checkLoginInUrl();
         if(!key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
             $_SESSION["user"] = false;
             http_response_code(401);

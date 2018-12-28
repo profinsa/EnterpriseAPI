@@ -2,6 +2,8 @@ error.log
 *~
 tools/AuditLogin.json
 tools/AuditTrail.json
+tools/pdfgenerator/node_modules
+tools/pdfgenerator/npm-debug.log
 views/reports/financials/worksheets/10columns.xlsx
 views/reports/financials/worksheets/sharedStrings.temp.xml
 views/reports/financials/worksheets/sheet1.temp.xml

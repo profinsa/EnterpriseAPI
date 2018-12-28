@@ -137,8 +137,8 @@
 		 return;
 	     }
 	     var match;
-	     if(path.search(/index.php\#\//) != -1){
-		 path = path.replace(/index.php\#\//, "index.php");
+	     if(path.search(/index\.php.*\#\//) != -1){
+		 path = path.replace(/index\.php.*\#\//, "index\.php");
 		 match = path.match(/grid\/(\w+)\/\w+\/(\w+)\//);
 		 //		 if(match)
 		     //		     sideBarSelectItem(findMenuItem(path));//match[1], match[2]);
