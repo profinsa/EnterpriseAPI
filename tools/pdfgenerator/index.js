@@ -8,6 +8,7 @@ function generate(url, filename, cb){
 	const browser = await puppeteer.launch({args: ['--no-sandbox']});
 	const page = await browser.newPage();
 	await page.goto(url, {waitUntil: 'networkidle2'});
+	await page.waitFor(1000);
 	await page.pdf({path: filename +'.pdf', format: 'A4'});
 	console.log("generating pdf for " + url);
 
@@ -43,7 +44,7 @@ app.get('/generatePdf', function (req, res){
 	return;
     }
 
-    var filename = url.replace(/[:/\\#\!]/g, "");
+    var filename = "export"; //url.replace(/[:/\\#\!]/g, "");
     generate(url, filename, function(){
 	//console.log("hi");
 	res.sendFile(__dirname + '/' + filename + '.pdf');
@@ -51,5 +52,5 @@ app.get('/generatePdf', function (req, res){
 });
 
 app.listen(3900, function () {
-    console.log('Fresenius server listening on port ' + 3900);
+    console.log('Pdf Generator server listening on port ' + 3900);
 });
