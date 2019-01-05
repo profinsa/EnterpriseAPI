@@ -1,27 +1,27 @@
 <?php
-$hpurchaseNumber = renderGridValue($scope, $data, $drill, $row, "PurchaseNumber", $row["PurchaseNumber"]);
-$hvendorID = renderGridValue($scope, $data, $drill, $row, "VendorID", $row["VendorID"]);
-$htotal = renderGridValue($scope, $data, $drill, $row, "Total", $row["Total"]);
-$hreceivingNumber = renderGridValue($scope, $data, $drill, $row, "RecivingNumber", $row["RecivingNumber"]);
-$hamountPaid = renderGridValue($scope, $data, $drill, $row, "AmountPaid", $row["AmountPaid"]);
-$hpaymentID = renderGridValue($scope, $data, $drill, $row, "PaymentID", $row["PaymentID"]);
-$hinvoiceNumber = renderGridValue($scope, $data, $drill, $row, "InvoiceNumber", $row["InvoiceNumber"]);
-$hamount = renderGridValue($scope, $data, $drill, $row, "Amount", $row["Amount"]);
-if($row["RecivingNumber"]){
-    $docreportsReceiving = <<<EOF
-    <a href="$public_prefix/docreports/receiving/{$row["RecivingNumber"]}" target="_blank">
+    $hpurchaseNumber = renderGridValue($ascope, $data, $drill, $row, "PurchaseNumber", $row["PurchaseNumber"]);
+    $hvendorID = renderGridValue($ascope, $data, $drill, $row, "VendorID", $row["VendorID"]);
+    $htotal = renderGridValue($ascope, $data, $drill, $row, "Total", $row["Total"]);
+    $hreceivingNumber = renderGridValue($ascope, $data, $drill, $row, "RecivingNumber", $row["RecivingNumber"]);
+    $hamountPaid = renderGridValue($ascope, $data, $drill, $row, "AmountPaid", $row["AmountPaid"]);
+    $hpaymentID = renderGridValue($ascope, $data, $drill, $row, "PaymentID", $row["PaymentID"]);
+    $hinvoiceNumber = renderGridValue($ascope, $data, $drill, $row, "InvoiceNumber", $row["InvoiceNumber"]);
+    $hamount = renderGridValue($ascope, $data, $drill, $row, "Amount", $row["Amount"]);
+    if($row["RecivingNumber"]){
+	$docreportsReceiving = <<<EOF
+    <a href="{$linksMaker->makeDocreportsLink("receiving", $row["RecivingNumber"])}" target="_blank">
       <span class="grid-action-button glyphicon glyphicon-print" aria-hidden="true"></span>
     </a>
 EOF;
-}
-else
-    $docreportsReceiving = "";
-     
-$_html = <<<EOF
+    }
+    else
+	$docreportsReceiving = "";
+    
+    $_html = <<<EOF
 <tr>
   <td>$hpurchaseNumber</td>
   <td>
-    <a href=$public_prefix/docreports/purchaseorder/{$row["PurchaseNumber"]} target="_blank">
+    <a href="{$linksMaker->makeDocreportsLink("purchaseorder", $row["PurchaseNumber"])}" target="_blank">
       <span class="grid-action-button glyphicon glyphicon-print" aria-hidden="true"></span>
     </a>
   </td>
@@ -36,7 +36,7 @@ $_html = <<<EOF
   <td>$hamountPaid</td>
   <td>$hpaymentID</td>
   <td>
-    <a href="$public_prefix/docreports/payment/{$row["PaymentID"]}" target="_blank">
+    <a href="{$linksMaker->makeDocreportsLink("payment", $row["PaymentID"])}" target="_blank">
       <span class="grid-action-button glyphicon glyphicon-print" aria-hidden="true"></span>
     </a>
   </td>
@@ -45,5 +45,5 @@ $_html = <<<EOF
   <td>$hamount</td>
 </tr>
 EOF;
-echo $_html;
+    echo $_html;
 ?>
