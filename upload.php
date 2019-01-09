@@ -11,7 +11,7 @@
             $file_type = $_FILES['file']['type'][$i];
             $file_ext = strtolower(end(explode('.',$_FILES['file']['name'][$i])));
             
-            $expensions= array("jpeg","jpg","png");
+            $expensions= array("jpeg","jpg","png", "gif");
             
             if(in_array($file_ext,$expensions)=== false){
                 $errors[]="extension not allowed, please choose a JPEG or PNG file.";
@@ -38,7 +38,7 @@
         if(empty($errors) == true) {
             echo "{ \"message\" : \"ok\", \"data\" : ". $files . "}";
         }else{
-            echo "{ \"message\" : \"error\"}";
+            echo "{ \"message\" : \"" . implode("&&", $errors) . "\"}";
         }
     }
 ?>
