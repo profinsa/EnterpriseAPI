@@ -180,8 +180,10 @@ EOF;
             DB::statement("CALL Receipt_Cash(?, ?, ?, ?, ?, 'Invoice', ?, FALSE, @Result, @SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["InvoiceNumber"], $row["InvoiceNumber"], $row["AmountToApply"]));
         
             $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE');
-            //           if($result[0]->Result == 0)
+            //            if($result[0]->Result == 0){
             //  $success = false;
+            //  echo $result[0]->Result;
+            //}
         }
         
         if(!$success) {

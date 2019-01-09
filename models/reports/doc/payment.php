@@ -1,29 +1,29 @@
 <?php
 /*
-Name of Page: doc reports invoice data source
+  Name of Page: doc reports payment data source
 
-Method: It provides data from database for docreports pages
+  Method: It provides data from database for docreports pages
 
-Date created: Nikita Zaharov, 17.04.2016
+  Date created: Nikita Zaharov, 01.09.2019
 
-Use: this model used for 
-- for loading data using stored procedures
+  Use: this model used for 
+  - for loading data using stored procedures
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-controllers/docreports
+  Called from:
+  controllers/docreports
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 05.05.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 01.09.2019
+  Last Modified by: Nikita Zaharov
 */
 
 function numberToStr($strin){
@@ -31,7 +31,6 @@ function numberToStr($strin){
 }
 
 require __DIR__ . "/docreportsbase.php";
-
 class docReportsData extends docReportsBase{
     protected $id = ""; //invoice number
 
@@ -40,9 +39,9 @@ class docReportsData extends docReportsBase{
     }
 
     public function getCurrencySymbol(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
-        $result =  $GLOBALS["capsule"]::select("select I.CurrencyID, C.CurrenycySymbol from InvoiceHeader I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.InvoiceNumber='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result =  DB::select("select I.CurrencyID, C.CurrenycySymbol from InvoiceHeader I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.InvoiceNumber='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         return [
             "id" => count($result) ? $result[0]->CurrencyID : "USD",
@@ -50,19 +49,11 @@ class docReportsData extends docReportsBase{
         ];
     }
 
-    public function getUser(){
-        $user = $_SESSION["user"];
-
-        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
-        
-        return $user;
-    }
-
     public function getHeaderData(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         
-        $conn =  $GLOBALS["capsule"]::connection()->getPdo();
-        $stmt = $conn->prepare("CALL RptDocInvoiceHeaderSingle('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "', '" . $this->id . "')");
+        $conn =  DB::connection()->getPdo();
+        $stmt = $conn->prepare("CALL RptDocPaymentsHeaderSingle('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "', '" . $this->id . "')");
         $rs = $stmt->execute();
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);
 
@@ -91,10 +82,10 @@ class docReportsData extends docReportsBase{
     }
 
     public function getDetailData(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         
-        $conn =  $GLOBALS["capsule"]::connection()->getPdo();
-        $stmt = $conn->prepare("CALL RptDocInvoiceDetailSingle('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "', '" . $this->id . "')");
+        $conn =  DB::connection()->getPdo();
+        $stmt = $conn->prepare("CALL RptDocPaymentsDetailSingle('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "', '" . $this->id . "')");
         $rs = $stmt->execute();
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);
 
