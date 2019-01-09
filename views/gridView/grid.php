@@ -153,9 +153,8 @@
 		    <?php
 			//renders table column headers using rows data, columnNames(dictionary for corresponding column name to ObjID) and translation model for translation
 			if(count($rows)){
-			    foreach($rows[0] as $key =>$value)
-			    if(key_exists($key, $data->gridFields))
-				echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
+			    foreach($data->gridFields as $key =>$value)
+			    echo "<th>" . $translation->translateLabel($data->columnNames[$key]) . "</th>";
 			}
 		    ?>
 		</tr>
