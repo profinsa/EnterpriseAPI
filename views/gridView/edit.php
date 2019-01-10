@@ -481,17 +481,24 @@
 		 data : formData,
 		 processData: false,  // tell jQuery not to process the data
 		 contentType: false,  // tell jQuery not to set contentType
+		 error: function(e) {
+			var errors = JSON.parse(e.responseText);
+			if(errors.message == 'error'){
+				for (var i = 0; i < errors.data.length; i++) {
+					alert(errors.data[i]);
+				}
+			}
+		 },
 		 success : function(e) {
-                     try{
+            try{
 			 var res = JSON.parse(e).data;
 			 var file_attachments = $(".file_attachment");
 
 			 for (var i = 0; i < res.length; i++) {
 			     file_attachments.val(res[i]);
 			 }
-                     }catch(e){}
-
-                     var insertRequest = $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+             }catch(e){}
+				     var insertRequest = $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 					  .success(function(rdata) {
 					      if(localStorage.getItem("autorecalcLink")){
 						  $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
@@ -525,11 +532,10 @@
      //handler of save button if we in edit mode. Just doing XHR request to save data
      function saveItem(){
 	 var itemData = $("#itemData");
-
+	
 	 if (validateForm(itemData)) {
-	     var attachments = $("input[type=file]");
-
-	     var formData = new FormData();
+		 var attachments = $("input[type=file]");
+		 var formData = new FormData();
 
 	     for (var i = 0; i < attachments.length; i++) {
 		 formData.append('file[]', attachments[i].files[0]);
@@ -541,19 +547,26 @@
 		 data : formData,
 		 processData: false,  // tell jQuery not to process the data
 		 contentType: false,  // tell jQuery not to set contentType
+		 error: function(e) {
+			var errors = JSON.parse(e.responseText);
+			if(errors.message == 'error'){
+				for (var i = 0; i < errors.data.length; i++) {
+					alert(errors.data[i]);
+				}
+			}
+		 },
 		 success : function(e) {
-                     try {
-			 var res = JSON.parse(e).data;
-			 var file_attachments = $(".file_attachment");
-
-			 for (var i = 0; i < res.length; i++) {
-			     file_attachments.val(res[i]);
-			 }
-                     }
-                     catch (e){}
+					try {
+					var res = JSON.parse(e).data;
+				var file_attachments = $(".file_attachment");
+				for (var i = 0; i < res.length; i++) {
+					file_attachments.val(res[i]);
+				}
+					}
+					catch (e){}
                      $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 		      .success(function(data) {
-			  //console.log(localStorage.getItem("autorecalcLink"));
+			//console.log(localStorage.getItem("autorecalcLink"));
 			  if(localStorage.getItem("autorecalcLink")){
 			      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
 			       .success(function(data) {
@@ -573,7 +586,7 @@
 			  console.log('wrong');
 		      });
 		 }
-	     });
+		 });
 	 }
      }
     </script>
