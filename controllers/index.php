@@ -26,10 +26,11 @@ Calls:
 models/translation.php
 app from index.php
 
-Last Modified: 02.21.2017
+Last Modified: 12.28.2018
 Last Modified by: Nikita Zaharov
 */
 
+require 'models/users.php';
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/drillDowner.php';
@@ -42,7 +43,9 @@ class controller{
     
     public function process($app){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
+        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $users = new users();
+            $users->checkLoginInUrl();
             if(key_exists("logout", $_GET) || !key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //Logout action or redirect to prevent access un logined users
                 $_SESSION["user"] = false;
                 header("Location: index.php?page=login");

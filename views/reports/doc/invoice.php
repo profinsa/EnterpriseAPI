@@ -1,71 +1,87 @@
 <?php
-$headerData = $data->getHeaderData();
-$detailData = $data->getDetailData();
-$user = $data->getUser();
-//echo json_encode($headerData);
-//echo "<br/><br/>";
-//echo json_encode($detailData);
-//return;
-//echo json_encode($user);
-$numberTitlesByType = [
-    "purchaseorder" => "Purchase"
-];
-$titlesByType = [
-    "invoice" => "Invoice",
-    "invoicehistory" => "Invoice",
-    "order" => "Order",
-    "orderhistory" => "Order",
-    "quote" => "Quote",
-    "serviceorder" => "Service Order",
-    "serviceorderhistory" => "Service Order",
-    "serviceinvoice" => "Service Invoice",
-    "serviceinvoicehistory" => "Service Invoice",
-    "creditmemo" => "Credit Memo",
-    "creditmemohistory" => "Credit Memo",
-    "purchaseorder" => "Purchase Order",
-    "debitmemo" => "Debit Memo",
-    "debitmemohistory" => "Debit Memo",
-    "rmaorder" => "RMA",
-    "returninvoice" => "Return"
-];
-$fieldsByType = [
-    "debitmemo" => [
-	"InvoiceDate" => "PurchaseDate",
-	"InvoiceNumber" => "PurchaseNumber",
-    ],
-    "purchaseorder" => [
-	"InvoiceDate" => "PurchaseDate",
-	"InvoiceNumber" => "PurchaseNumber",
-	"CustomerName" => "VendorName",
-	"CustomerAddress1" => "VendorAddress1",
-	"CustomerAddress2" => "VendorAddress2",
-	"CustomerAddress3" => "VendorAddress3",
-	"CustomerCity" => "VendorCity",
-	"CustomerState" => "VendorState",
-	"CustomerZip" => "VendorZip",
-	"CustomerCountry" => "VendorCountry",
-	"CustomerEmail" => "VendorEmail",
-	"CustomerPhone" => "VendorPhone"
-    ],
-    "rmaorder" => [
-	"InvoiceDate" => "PurchaseDate",
-	"InvoiceNumber" => "PurchaseNumber",
-    ],
-    "returninvoice" => [
-	"InvoiceDate" => "InvoiceDate",
-	"InvoiceNumber" => "InvoiceNumber",
-	"CustomerName" => "VendorName",
-	"CustomerAddress1" => "VendorAddress1",
-	"CustomerAddress2" => "VendorAddress2",
-	"CustomerAddress3" => "VendorAddress3",
-	"CustomerCity" => "VendorCity",
-	"CustomerState" => "VendorState",
-	"CustomerZip" => "VendorZip",
-	"CustomerCountry" => "VendorCountry",
-	"CustomerEmail" => "VendorEmail",
-	"CustomerPhone" => "VendorPhone"
-    ]
-];
+    $headerData = $data->getHeaderData();
+    $detailData = $data->getDetailData();
+    $user = $data->getUser();
+    //echo json_encode($headerData);
+    //echo "<br/><br/>";
+    //echo json_encode($detailData);
+    //return;
+    //echo json_encode($user);
+    $numberTitlesByType = [
+	"purchaseorder" => "Purchase"
+    ];
+    $titlesByType = [
+	"invoice" => "Invoice",
+	"invoicehistory" => "Invoice",
+	"order" => "Order",
+	"orderhistory" => "Order",
+	"quote" => "Quote",
+	"serviceorder" => "Service Order",
+	"serviceorderhistory" => "Service Order",
+	"serviceinvoice" => "Service Invoice",
+	"serviceinvoicehistory" => "Service Invoice",
+	"creditmemo" => "Credit Memo",
+	"creditmemohistory" => "Credit Memo",
+	"purchaseorder" => "Purchase Order",
+	"debitmemo" => "Debit Memo",
+	"debitmemohistory" => "Debit Memo",
+	"rmaorder" => "RMA",
+	"returninvoice" => "Return",
+	"receiving" => "Receiving"
+    ];
+    $fieldsByType = [
+	"debitmemo" => [
+	    "InvoiceDate" => "PurchaseDate",
+	    "InvoiceNumber" => "PurchaseNumber",
+	],
+	"purchaseorder" => [
+	    "InvoiceDate" => "PurchaseDate",
+	    "InvoiceNumber" => "PurchaseNumber",
+	    "CustomerName" => "VendorName",
+	    "CustomerAddress1" => "VendorAddress1",
+	    "CustomerAddress2" => "VendorAddress2",
+	    "CustomerAddress3" => "VendorAddress3",
+	    "CustomerCity" => "VendorCity",
+	    "CustomerState" => "VendorState",
+	    "CustomerZip" => "VendorZip",
+	    "CustomerCountry" => "VendorCountry",
+	    "CustomerEmail" => "VendorEmail",
+	    "CustomerPhone" => "VendorPhone"
+	],
+	"receiving" => [
+	    "InvoiceDate" => "PurchaseDate",
+	    "InvoiceNumber" => "PurchaseNumber",
+	    
+	    "CustomerName" => "VendorName",
+	    "CustomerAddress1" => "VendorAddress1",
+	    "CustomerAddress2" => "VendorAddress2",
+	    "CustomerAddress3" => "VendorAddress3",
+	    "CustomerCity" => "VendorCity",
+	    "CustomerState" => "VendorState",
+	    "CustomerZip" => "VendorZip",
+	    "CustomerCountry" => "VendorCountry",
+	    "CustomerEmail" => "VendorEmail",
+	    "CustomerPhone" => "VendorPhone"
+	],
+	"rmaorder" => [
+	    "InvoiceDate" => "PurchaseDate",
+	    "InvoiceNumber" => "PurchaseNumber",
+	],
+	"returninvoice" => [
+	    "InvoiceDate" => "InvoiceDate",
+	    "InvoiceNumber" => "InvoiceNumber",
+	    "CustomerName" => "VendorName",
+	    "CustomerAddress1" => "VendorAddress1",
+	    "CustomerAddress2" => "VendorAddress2",
+	    "CustomerAddress3" => "VendorAddress3",
+	    "CustomerCity" => "VendorCity",
+	    "CustomerState" => "VendorState",
+	    "CustomerZip" => "VendorZip",
+	    "CustomerCountry" => "VendorCountry",
+	    "CustomerEmail" => "VendorEmail",
+	    "CustomerPhone" => "VendorPhone"
+	]
+    ];
 ?>
 <div id="report" class="row">
     <div class="col-md-12" style="border: 1px solid black; padding:0px">
@@ -120,22 +136,41 @@ $fieldsByType = [
 		    <div><?php echo  $headerData["ShippingAddress3"];?></div>		    
 		    <div><?php echo  $headerData["ShippingCity"] . "  " . $headerData["ShippingState"] . "  " . $headerData["ShippingZip"] . "  " . $headerData["ShippingCountry"];?></div>		    
 		</div>
-		<div class="col-md-6 col-xs-6">
-		    <div><b>Bill To</b></div>
-		    <div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerName", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerName"]] : $headerData["CustomerName"]);?></div>
-		    <div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerAddress1", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerAddress1"]] : $headerData["CustomerAddress1"]);?></div>
-		    <div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerAddress2", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerAddress2"]] : $headerData["CustomerAddress2"]);?></div>
-		    <div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerAddress3", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerAddress3"]] : $headerData["CustomerAddress3"]);?></div>
-		    <div>
-			<?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerCity", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerCity"]] : $headerData["CustomerCity"]) . "  " 
-				 . (key_exists($type, $fieldsByType) && key_exists("CustomerState", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerState"]] : $headerData["CustomerState"]) . ", "
-				 . (key_exists($type, $fieldsByType) && key_exists("CustomerZip", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerZip"]] : $headerData["CustomerZip"]) . "  " 
-				 . (key_exists($type, $fieldsByType) && key_exists("CustomerCountry", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerCountry"]] : $headerData["CustomerCountry"]);
-			?>
-		    </div>   
-		    <div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerName", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerEmail"]] : $headerData["CustomerEmail"]);?></div>
-		    <div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerPhone", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerPhone"]] : $headerData["CustomerPhone"]);?></div>
-		</div>
+		<?php if($type == "receiving"): ?>
+		    <div class="col-md-6 col-xs-6">
+			<div><b>Remitt To</b></div>
+			<div><?php echo   $headerData["RemittToName"];?></div>
+			<div><?php echo  $headerData["RemittToAddress1"];?></div>
+			<div><?php echo  $headerData["RemittToAddress2"];?></div>
+			<div><?php echo  $headerData["RemittToAddress3"];?></div>
+			<div>
+			    <?php echo  $headerData["RemittToCity"] . "  " 
+				     . $headerData["RemittToState"] . ", "
+				     . $headerData["RemittToZip"] . "  " 
+				     . $headerData["RemittToCountry"];
+			    ?>
+			</div>   
+			<div><?php echo $headerData["RemittToEmail"];?></div>
+			<div><?php echo $headerData["RemittToPhone"];?></div>
+		    </div>
+		<?php else: ?>
+		    <div class="col-md-6 col-xs-6">
+			<div><b>Bill To</b></div>
+			<div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerName", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerName"]] : $headerData["CustomerName"]);?></div>
+			<div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerAddress1", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerAddress1"]] : $headerData["CustomerAddress1"]);?></div>
+			<div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerAddress2", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerAddress2"]] : $headerData["CustomerAddress2"]);?></div>
+			<div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerAddress3", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerAddress3"]] : $headerData["CustomerAddress3"]);?></div>
+			<div>
+			    <?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerCity", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerCity"]] : $headerData["CustomerCity"]) . "  " 
+				     . (key_exists($type, $fieldsByType) && key_exists("CustomerState", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerState"]] : $headerData["CustomerState"]) . ", "
+				     . (key_exists($type, $fieldsByType) && key_exists("CustomerZip", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerZip"]] : $headerData["CustomerZip"]) . "  " 
+				     . (key_exists($type, $fieldsByType) && key_exists("CustomerCountry", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerCountry"]] : $headerData["CustomerCountry"]);
+			    ?>
+			</div>   
+			<div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerName", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerEmail"]] : $headerData["CustomerEmail"]);?></div>
+			<div><?php echo  (key_exists($type, $fieldsByType) && key_exists("CustomerPhone", $fieldsByType[$type]) ? $headerData[$fieldsByType[$type]["CustomerPhone"]] : $headerData["CustomerPhone"]);?></div>
+		    </div>
+		<?php endif; ?>
 	    </div>
 	    <table class="col-md-12 col-xs-12 invoice-table-ship">
 		<tbody>
@@ -166,7 +201,7 @@ $fieldsByType = [
 			</td>
 		    </tr>
 		    <tr>
-			<?php if($type == "rmaorder" || $type == "purchaseorder"): ?>
+			<?php if($type == "rmaorder" || $type == "purchaseorder" || $type == "receiving"): ?>
 			    <td>
 				<?php echo  $headerData["OrderedBy"];?>
 			    </td>
@@ -254,19 +289,19 @@ $fieldsByType = [
 	    <tbody>
 		<?php if($detailData): ?>
 		    <?php 
-		    foreach($detailData as $row){
-			echo "<tr style=\"height:10px;\">";
-			echo "<td>" . $row["ItemID"] . "</td>";
-			if($type == "purchaseorder"){
-			    echo "<td>" . $row["WarehouseID"] . "</td>";
-			    echo "<td>" . $row["WarehouseBinID"] . "</td>";
+			foreach($detailData as $row){
+			    echo "<tr style=\"height:10px;\">";
+			    echo "<td>" . $row["ItemID"] . "</td>";
+			    if($type == "purchaseorder"){
+				echo "<td>" . $row["WarehouseID"] . "</td>";
+				echo "<td>" . $row["WarehouseBinID"] . "</td>";
+			    }
+			    echo "<td>" . $row["Description"] . "</td>";
+			    echo "<td>" . $row["OrderQty"] . "</td>";
+			    echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["ItemUnitPrice"] . "</td>";
+			    echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["Total"] . "</td>";
+			    echo "</tr>";
 			}
-			echo "<td>" . $row["Description"] . "</td>";
-			echo "<td>" . $row["OrderQty"] . "</td>";
-			echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["ItemUnitPrice"] . "</td>";
-			echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["Total"] . "</td>";
-			echo "</tr>";
-		    }
 		    ?>
 		<?php else: ?>
 		    <tr style="height:10px;">
@@ -290,10 +325,10 @@ $fieldsByType = [
 	    <table class="invoice-table-summary">
 		<tbody>
 		    <?php 
-		    if(!key_exists("SubTotal", $headerData) && !key_exists("Subtotal", $headerData))
-			$headerData["SubTotal"] = "0.00";
-		    else if(key_exists("Subtotal", $headerData))
-			$headerData["SubTotal"] = $headerData["Subtotal"];			
+			if(!key_exists("SubTotal", $headerData) && !key_exists("Subtotal", $headerData))
+			    $headerData["SubTotal"] = "0.00";
+			else if(key_exists("Subtotal", $headerData))
+			    $headerData["SubTotal"] = $headerData["Subtotal"];			
 		    ?>
 		    <tr>
 			<td>
@@ -357,26 +392,26 @@ $fieldsByType = [
     </div>
 </div>
 <!-- <script>
- function printPDF(){
+     function printPDF(){
      var doc = new jsPDF();          
      var elementHandler = {
-	 '#ignorePDF': function (element, renderer) {
-	     return true;
-	 }
+     '#ignorePDF': function (element, renderer) {
+     return true;
+     }
      };
      var source =  window.document.getElementsByTagName("body")[0];
      doc.fromHTML(
-	 source,
-	 0,
-	 0,
-	 {
-	     'elementHandlers': elementHandler
-	 });
+     source,
+     0,
+     0,
+     {
+     'elementHandlers': elementHandler
+     });
      doc.output("dataurlnewwindow"); 
      console.log(doc);
- }
-</script>
-<button onclick="printPDF()">
-PDF
-</button>
+     }
+     </script>
+     <button onclick="printPDF()">
+     PDF
+     </button>
 -->

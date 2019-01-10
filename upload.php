@@ -12,7 +12,12 @@
             $file_type = $_FILES['file']['type'][$i];
             $file_ext = strtolower(end(explode('.',$_FILES['file']['name'][$i])));
             
+<<<<<<< HEAD
             $expensions= array("jpeg","jpg","png");
+=======
+            $expensions= array("jpeg","jpg","png", "gif");
+            
+>>>>>>> 4413331a95793ecae91ad087e23b0b1008c7326d
             if(in_array($file_ext,$expensions)=== false){
                 $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
             }
@@ -37,8 +42,12 @@
         if(empty($errors) == true) {
             echo "{ \"message\" : \"ok\", \"data\" : ". $files . "}";
         }else{
+<<<<<<< HEAD
             http_response_code(400);
             echo "{ \"message\" : \"error\", \"data\" : ". json_encode($errors) . "}";
+=======
+            echo "{ \"message\" : \"" . implode("&&", $errors) . "\"}";
+>>>>>>> 4413331a95793ecae91ad087e23b0b1008c7326d
         }
     }
 ?>

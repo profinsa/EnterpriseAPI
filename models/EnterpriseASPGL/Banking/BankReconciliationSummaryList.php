@@ -5,6 +5,7 @@ class gridData extends gridDataSource{
     public $tableName = "bankreconciliationsummary";
     public $dashboardTitle ="Reconciliation Summary";
     public $breadCrumbTitle ="Reconciliation Summary";
+    public $modes = ["grid", "view", "edit"];
     public $idField ="BankRecID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","BankRecID"];
     public $gridFields = [

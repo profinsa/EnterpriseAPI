@@ -1,31 +1,31 @@
 <?php
 /*
-Name of Page: docreports controller
+  Name of Page: docreports controller
 
-Method: controller for docreports pages
+  Method: controller for docreports pages
 
-Date created: Nikita Zaharov, 03.05.2016
+  Date created: Nikita Zaharov, 03.05.2017
 
-Use: The controller is responsible for:
-- page rendering using view
+  Use: The controller is responsible for:
+  - page rendering using view
 
-Input parameters:
-$app : application instance, object
+  Input parameters:
+  $app : application instance, object
 
-Output parameters:
-$scope: object, used by view, most like model
-$translation: model, it is responsible for translation in view
+  Output parameters:
+  $scope: object, used by view, most like model
+  $translation: model, it is responsible for translation in view
 
-Called from:
-+ index.php
+  Called from:
+  + index.php
 
-Calls:
-models/translation.php
-models/autoreports.php
-app from index.php
+  Calls:
+  models/translation.php
+  models/autoreports.php
+  app from index.php
 
-Last Modified: 05.05.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 01.09.2019
+  Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
@@ -77,8 +77,11 @@ class controller{
             "rmaorder" => "invoice",
             "purchaseorder" => "invoice",
             "returninvoice" => "invoice",
+            "receiving" => "invoice",
             "customertransactions" => "customertransactions",
-            "customerstatements" => "customerstatements"
+            "customerstatements" => "customerstatements",
+            "payment" => "payment"
+            
         ];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

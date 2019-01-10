@@ -30,7 +30,9 @@ function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
 }
 
-class docReportsData{
+require __DIR__ . "/docreportsbase.php";
+
+class docReportsData extends docReportsBase{
     protected $id = ""; //invoice number
 
     public function __construct($id){

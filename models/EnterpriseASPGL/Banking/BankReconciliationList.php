@@ -1,46 +1,45 @@
 <?php
 /*
-Name of Page: Bank Reconciliation  model
+  Name of Page: Bank Reconciliation  model
 
-Method: Model for gridView. It provides data from database and default values, column names and categories
+  Method: Model for gridView. It provides data from database and default values, column names and categories
 
-Date created: Nikita Zaharov, 17.03.2016
+  Date created: Nikita Zaharov, 17.03.2017
 
-Use: this model used by views/gridView
-- as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
-- for loading data from tables, updating, inserting and deleting
+  Use: this model used by views/gridView
+  - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
+  - for loading data from tables, updating, inserting and deleting
 
-Input parameters:
-$db: database instance
-methods has own parameters
+  Input parameters:
+  $db: database instance
+  methods has own parameters
 
-Output parameters:
-- dictionaries as public properties
-- methods has own output
+  Output parameters:
+  - dictionaries as public properties
+  - methods has own output
 
-Called from:
-created and used for ajax requests by Grid controller
-used as model by gridView
+  Called from:
+  created and used for ajax requests by Grid controller
+  used as model by gridView
 
-Calls:
-DB
+  Calls:
+  DB
 
-Last Modified: 08.15.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 12.26.2018
+  Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
 
-function numberToStr($strin){
-    return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
-}
-
+    function numberToStr1($strin){
+        return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
+    }
 function formatCurrency($value){
     $afterdot = 2;
     if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts))
-        return numberToStr($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
+        return numberToStr1($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
     else
-        return numberToStr($value) . ".00";
+        return numberToStr1($value) . ".00";
 
 }
 
@@ -295,9 +294,7 @@ class gridData extends gridDataSource{
         $result = DB::select("SELECT " . implode(",", $fields) . " from BankReconciliationDetailCredits" . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
-        $result = json_decode(json_encode($result), true);
-        
-        return $result;
+        return json_decode(json_encode($result), true);
     }
 
     public $debitsFields = [
@@ -360,66 +357,24 @@ class gridData extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
 
-        if(property_exists($this, "gridConditions")){
-            if($keyFields != "")
-                $keyFields .= " AND " . $this->gridConditions;
-            else
-                $keyFields = $this->gridConditions;
-        }
-        
-        $result = DB::select("SELECT " . implode(",", $fields) . " from BankReconciliationDetailDebits" . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from bankreconciliationdetaildebits" . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
+        return json_decode(json_encode($result), true);
+    }
 
-        $result = json_decode(json_encode($result), true);
-        
+    public function getEditItem($id, $type){
+        $user = Session::get("user");
+
+        $result = parent::getEditItem($id, $type);
+        $current_date = date("Y-m-d");
+        $result["BankRecStartDate"] = date("Y-m-d", strtotime($current_date." -1 months"));
+        $result["BankRecEndDate"] = date("Y-m-d H:i:s");
+        $currencyID = DB::select("select CurrencyID from bankaccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND BankID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $result["BankID"]))[0]->CurrencyID;
+        $result["CurrencyID"] = $currencyID;
+        $result["CurrencyExchangeRate"] = DB::select("SELECT CurrencyExchangeRate from currencytypes WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CurrencyID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $currencyID))[0]->CurrencyExchangeRate;
         return $result;
     }
-
-    //updating data of grid item
-    public function updateDebitsItem(){
-        $user = Session::get("user");
         
-        $update_fields = "";
-        foreach($_POST as $name=>$value){
-            if($update_fields == "")
-                $update_fields = $name . "='" . $_POST[$name] . "'";
-            else
-                $update_fields .= "," . $name . "='" . $_POST[$name] . "'";
-        }
-
-        DB::update("UPDATE bankreconciliationdetaildebits set " . $update_fields . " WHERE CompanyID='". $user["CompanyID"] . "' AND DivisionID='" . $user["DivisionID"] . "' AND DepartmentID='" . $user["DepartmentID"] . "' AND BankID='" . $_POST["BankID"] . "' AND BankRecDocumentNumber='" . $_POST["BankRecDocumentNumber"] . "'", array());
-    }
-
-    //updating data of grid item
-    public function updateCreditsItem(){
-        $user = Session::get("user");
-        
-        $update_fields = "";
-        foreach($_POST as $name=>$value){
-            if($update_fields == "")
-                $update_fields = $name . "='" . $_POST[$name] . "'";
-            else
-                $update_fields .= "," . $name . "='" . $_POST[$name] . "'";
-        }
-
-        DB::update("UPDATE bankreconciliationdetailcredits set " . $update_fields . " WHERE CompanyID='". $user["CompanyID"] . "' AND DivisionID='" . $user["DivisionID"] . "' AND DepartmentID='" . $user["DepartmentID"] . "' AND BankID='" . $_POST["BankID"] . "' AND BankRecDocumentNumber='" . $_POST["BankRecDocumentNumber"] . "'", array());
-    }
-
-    public function Post(){
-        $user = Session::get("user");
-
-        $keyValues = explode("__", $_POST["id"]);
-
-        DB::statement("CALL Bank_PostReconciliation('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $keyValues[3] . "', @v_Success ,@SWP_RET_VALUE)", array());
-
-        $result = DB::select('select @v_Success as v_Success, @SWP_RET_VALUE as SWP_RET_VALUE', array());
-
-        if($result[0]->SWP_RET_VALUE > -1)
-            header('Content-Type: application/json');
-        else
-            return response(json_encode($result), 400)->header('Content-Type', 'text/plain');
-    }
-    
     public function getBalance($item){
         $user = Session::get("user");
         
@@ -464,6 +419,92 @@ class gridData extends gridDataSource{
             "CreditsCleared" => formatCurrency($creditsCleared),
             "DebitsCleared" => formatCurrency($debitsCleared)
         ];
+    }
+
+    //updating data of grid item
+    public function updateDebitsItem(){
+        $user = Session::get("user");
+        
+        $update_fields = "";
+        foreach($_POST as $name=>$value){
+            if($update_fields == "")
+                $update_fields = $name . "='" . $_POST[$name] . "'";
+            else
+                $update_fields .= "," . $name . "='" . $_POST[$name] . "'";
+        }
+
+        DB::update("UPDATE bankreconciliationdetaildebits set " . $update_fields . " WHERE CompanyID='". $user["CompanyID"] . "' AND DivisionID='" . $user["DivisionID"] . "' AND DepartmentID='" . $user["DepartmentID"] . "' AND BankID='" . $_POST["BankID"] . "' AND BankRecDocumentNumber='" . $_POST["BankRecDocumentNumber"] . "'", array());
+
+        echo "ok";
+    }
+
+    //updating data of grid item
+    public function updateCreditsItem(){
+        $user = Session::get("user");
+        
+        $update_fields = "";
+        foreach($_POST as $name=>$value){
+            if($update_fields == "")
+                $update_fields = $name . "='" . $_POST[$name] . "'";
+            else
+                $update_fields .= "," . $name . "='" . $_POST[$name] . "'";
+        }
+
+        DB::update("UPDATE bankreconciliationdetailcredits set " . $update_fields . " WHERE CompanyID='". $user["CompanyID"] . "' AND DivisionID='" . $user["DivisionID"] . "' AND DepartmentID='" . $user["DepartmentID"] . "' AND BankID='" . $_POST["BankID"] . "' AND BankRecDocumentNumber='" . $_POST["BankRecDocumentNumber"] . "'", array());
+
+        echo "ok";
+    }
+
+    public function Post(){
+        $user = Session::get("user");
+
+        $keyValues = explode("__", $_POST["id"]);
+
+        DB::statement("CALL Bank_PostReconciliation('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $keyValues[3] . "', @v_Success ,@SWP_RET_VALUE)", array());
+
+        $result = DB::select('select @v_Success as v_Success, @SWP_RET_VALUE as SWP_RET_VALUE', array());
+        if($result[0]->SWP_RET_VALUE > -1)
+          echo "ok";
+        else{
+          http_response_code(400);
+          echo $result[0]->v_Success;
+        }
+
+        $_POST["BankRecStartDate"] = date("Y-m-d H:i:s", strtotime($_POST["BankRecStartDate"]));
+        $_POST["BankRecEndDate"] = date("Y-m-d H:i:s", strtotime($_POST["BankRecEndDate"]));
+        $form = array();
+        foreach ($_POST as $key => $value) {
+            $form[$key] = $value;
+        }
+        $values = array_merge($this->getBalance($_POST), $form);
+        
+        DB::statement("CALL Bank_CreateReconciliationSummary(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,@SWP_RET_VALUE)", array(
+            $user["CompanyID"],
+            $user["DivisionID"],
+            $user["DepartmentID"],
+            $values["GLBankAccount"],
+            $values["CurrencyID"],
+            $values["CurrencyExchangeRate"],
+            $values["BankRecEndDate"],
+            floatval($values["BankRecEndingBalance"]),
+            floatval($values["BankRecServiceCharge"]),
+            $values["GLServiceChargeAccount"],
+            floatval($values["BankRecIntrest"]),
+            $values["GLInterestAccount"],
+            floatval($values["BankRecAdjustment"]),
+            $values["GLAdjustmentAccount"],
+            floatval($values["BankRecOtherCharges"]),
+            $values["GLOtherChargesAccount"],
+            floatval($values["TotalCredits"]),
+            floatval($values["TotalDebits"]),
+            floatval($values["CreditsOS"]),
+            floatval($values["DebitsOS"]),
+            floatval($values["Bank"]),
+            floatval($values["Book"]),
+            floatval($values["Unreconciled"]),
+            floatval($values["EndBookBalance"]),
+            floatval($values["Bank"]),
+            $values["BankRecNotes"]));
     }
 }
 ?>

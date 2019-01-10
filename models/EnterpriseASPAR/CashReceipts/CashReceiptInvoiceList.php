@@ -1,36 +1,34 @@
 <?php
 /*
   Name of Page: Cash Receipt Invoice List model
-   
+   
   Method: It provides data from database and default values, column names and categories
-   
+   
   Date created: 12/20/2018 Nikita Zaharov
-   
+   
   Use: this model used by views for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
   - for loading data from tables, updating, inserting and deleting
-   
+   
   Input parameters:
   $db: database instance
   methods have their own parameters
-   
+   
   Output parameters:
   - dictionaries as public properties
   - methods have their own output
-   
+   
   Called from:
   created and used for ajax requests by controllers
   used as model by views
-   
+   
   Calls:
   MySql Database
-   
+   
   Last Modified: 12/20/2018
   Last Modified by: Zaharov Nikita
 */
-
 require "./models/gridDataSource.php";
-
 class gridData extends gridDataSource{
     public $tableName = "invoiceheader";
     public $dashboardTitle ="View Cash Receipt Invoices List";
@@ -82,10 +80,10 @@ class gridData extends gridDataSource{
             "dbType" => "decimal(19,4)",
             "inputType" => "text",
             "formatFunction" => "currencyFormat",
-            "defaultValue" => ""
+            "defaultValue" => "",
+            "editable" => true
         ]
     ];
-
     public $editCategories = [
         "Main" => [
             "InvoiceNumber" => [
@@ -168,6 +166,31 @@ EOF;
         
         return $result;
     }
+    public function Receipt_Cash(){
+        $user = Session::get("user");
+        $postData = file_get_contents("php://input");
+        
+        // `application/x-www-form-urlencoded`  `multipart/form-data`
+        $data = parse_str($postData);
+        // or
+        // `application/json`
+        $data = json_decode($postData, true);
+        $success = true;
+        foreach($data as $row){
+            DB::statement("CALL Receipt_Cash(?, ?, ?, ?, ?, 'Invoice', ?, FALSE, @Result, @SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["InvoiceNumber"], $row["InvoiceNumber"], $row["AmountToApply"]));
+        
+            $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE');
+            //            if($result[0]->Result == 0){
+            //  $success = false;
+            //  echo $result[0]->Result;
+            //}
+        }
+        
+        if(!$success) {
+            http_response_code(400);
+            echo "failed";
+        } else {
+            echo "ok";
+        }
+    }
 }
-
-//Receipt_Cash
