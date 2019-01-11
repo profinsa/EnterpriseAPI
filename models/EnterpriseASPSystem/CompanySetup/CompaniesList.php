@@ -839,6 +839,16 @@ class gridData extends gridDataSource{
                 "inputType" => "imageFile",
                 "defaultValue" => ""
             ],
+            "MediumLogo" => [
+                "dbType" => "varchar(255)",
+                "inputType" => "imageFile",
+                "defaultValue" => ""
+            ],
+            "SmallLogo" => [
+                "dbType" => "varchar(255)",
+                "inputType" => "imageFile",
+                "defaultValue" => ""
+            ],
         ]
     ];
     public $columnNames = [
@@ -971,7 +981,10 @@ class gridData extends gridDataSource{
         "ShareCustomers" => "Share Customers",
         "ShareVendors" => "Share Vendors",
         "ShareItems" => "Share Items",
-        "ShareWarehouses" => "Share Warehouses"
+        "ShareWarehouses" => "Share Warehouses",
+        "Logo" => "Large Logo",
+        "MediumLogo" => "Medium Logo",
+        "SmallLogo" => "Small Logo"
     ];
 
     public function CreateCompany(){
