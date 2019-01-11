@@ -135,7 +135,7 @@ class gridData extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
-				"DownloadLocation" => [
+            "DownloadLocation" => [
 				"dbType" => "varchar(120)",
 				"inputType" => "text",
 				"defaultValue" => ""
@@ -624,51 +624,109 @@ class gridData extends gridDataSource{
         "ItemUnitPrice" => "Item Unit Price"
 	];
     
-    public $transactionsIdFields = ["CompanyID","DivisionID","DepartmentID","ItemID"];
-	public $transactionsFields = [
-		"TransactionType" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
-		],
-		"TransactionNumber" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
-		],
-		"TransactionDate" => [
-			"dbType" => "datetime",
-			"inputType" => "datetime"
-		],
-		"TransactionAmount" => [
-            "dbType" => "decimal(19,4)",
-            "format" => "{0:n}",
-            "inputType" => "text"
-		],
-        "CurrencyID" =>	[
-            "dbType" => "varchar(3)",
-            "inputType" => "dropdown",
+    public $detailPages = [
+        "Item Transactions" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/OrderProcessing/OrderTrackingDetail",
+            "newKeyField" => "ItemID",
+            "keyFields" => ["ItemID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","ItemID"],
+            "gridFields" => [
+                "TransactionType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TransactionAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "CurrencyID" =>	[
+                    "dbType" => "varchar(3)",
+                    "inputType" => "dropdown",
+                ],
+                "CVID" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ],
+                "ItemCost" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "ItemUnitPrice" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ]
+            ]
         ],
-		"CVID" => [
-			"dbType" => "varchar(50)",
-			"inputType" => "text"
-		],
-		"ItemCost" => [
-            "dbType" => "decimal(19,4)",
-            "format" => "{0:n}",
-            "inputType" => "text"
-		],
-		"ItemUnitPrice" => [
-            "dbType" => "decimal(19,4)",
-            "format" => "{0:n}",
-            "inputType" => "text"
-		]
-	];
-    
+        "Item Transactions History" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            "editDisabled" => "true",
+            "viewPath" => "AccountsReceivable/ProjectsJobs/ViewProjects",
+            "newKeyField" => "ItemID",
+            "keyFields" => ["ItemID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","ItemID"],
+            "gridFields" => [
+                "TransactionType" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "TransactionDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "TransactionAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "CurrencyID" =>	[
+                    "dbType" => "varchar(3)",
+                    "inputType" => "dropdown",
+                ],
+                "CVID" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ],
+                "ItemCost" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "ItemUnitPrice" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ]
+            ]
+        ]
+    ];
+
     //getting rows for grid
-    public function getTransactions($ItemID, $type){
+    public function getTransactionsWithType($ItemID, $type){
         $user = $_SESSION["user"];
         $keyFields = "";
         $fields = [];
-        foreach($this->transactionsFields as $key=>$value){
+        foreach($this->detailPages["Item Transactions"]["gridFields"] as $key=>$value){
             $fields[] = $key;
             if(key_exists("addFields", $value)){
                 $_fields = explode(",", $value["addFields"]);
@@ -676,7 +734,7 @@ class gridData extends gridDataSource{
                     $fields[] = $addfield;
             }
         }
-        foreach($this->transactionsIdFields as $key){
+        foreach($this->detailPages["Item Transactions"]["detailIdFields"] as $key){
             switch($key){
             case "CompanyID" :
                 $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
@@ -703,6 +761,14 @@ class gridData extends gridDataSource{
         $result = json_decode(json_encode($result), true);
         
         return $result;
+    }
+    
+    public function getItemTransactions($ID){
+        return $this->getTransactionsWithType($ID, "normal");
+    }
+    
+    public function getItemTransactionsHistory($ID){
+        return $this->getTransactionsWithType($ID, "history");
     }
 }
 ?>
