@@ -1,25 +1,21 @@
 <?php
-    if(isset($_FILES['file'])){
+    if(isset($_FILES['imageFile'])){
         $errors = array();
         
         $files = "[";
 
-        $count = count($_FILES['file']['name']);
+        $count = count($_FILES['imageFile']['name']);
         for ($i=0; $i<$count; $i++) {
-            $file_name = $_FILES['file']['name'][$i];
-            $file_size = $_FILES['file']['size'][$i];
-            $file_tmp = $_FILES['file']['tmp_name'][$i];
-            $file_type = $_FILES['file']['type'][$i];
-            $file_ext = strtolower(end(explode('.',$_FILES['file']['name'][$i])));
+            $file_name = $_FILES['imageFile']['name'][$i];
+            $file_size = $_FILES['imageFile']['size'][$i];
+            $file_tmp = $_FILES['imageFile']['tmp_name'][$i];
+            $file_type = $_FILES['imageFile']['type'][$i];
+            $file_ext = strtolower(end(explode('.',$_FILES['imageFile']['name'][$i])));
             
-<<<<<<< HEAD
-            $expensions= array("jpeg","jpg","png");
-=======
             $expensions= array("jpeg","jpg","png", "gif");
             
->>>>>>> 4413331a95793ecae91ad087e23b0b1008c7326d
             if(in_array($file_ext,$expensions)=== false){
-                $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+                $errors[] = "extension not allowed, please choose a JPEG, JPG, PNG or GIF file.";
             }
 
             if($file_size > 10485760) {
@@ -42,12 +38,8 @@
         if(empty($errors) == true) {
             echo "{ \"message\" : \"ok\", \"data\" : ". $files . "}";
         }else{
-<<<<<<< HEAD
             http_response_code(400);
-            echo "{ \"message\" : \"error\", \"data\" : ". json_encode($errors) . "}";
-=======
             echo "{ \"message\" : \"" . implode("&&", $errors) . "\"}";
->>>>>>> 4413331a95793ecae91ad087e23b0b1008c7326d
         }
     }
 ?>

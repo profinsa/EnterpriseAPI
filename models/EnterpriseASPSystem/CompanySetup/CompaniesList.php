@@ -836,7 +836,7 @@ class gridData extends gridDataSource{
         "Logos" => [
             "Logo" => [
                 "dbType" => "varchar(255)",
-                "inputType" => "file",
+                "inputType" => "imageFile",
                 "defaultValue" => ""
             ],
         ]
