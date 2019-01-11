@@ -125,6 +125,11 @@ class gridData extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
+			"Picture" => [
+				"dbType" => "varchar(80)",
+				"inputType" => "imageFile",
+				"defaultValue" => ""
+			],
 			"LargePictureURL" => [
 				"dbType" => "varchar(80)",
 				"inputType" => "text",
@@ -533,6 +538,7 @@ class gridData extends gridDataSource{
 		"SalesDescription" => "Sales Description",
 		"PurchaseDescription" => "Purchase Description",
 		"PictureURL" => "Picture URL",
+		"Picture" => "Picture",
 		"LargePictureURL" => "Large Picture URL",
 		"ItemWeight" => "Item Weight",
 		"ItemWeightMetric" => "Item Weight Metric",
