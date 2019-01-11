@@ -77,6 +77,11 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(80)",
                 "inputType" => "text",
                 "defaultValue" => ""
+            ],
+            "FamilyPicture" => [
+                "dbType" => "varchar(80)",
+                "inputType" => "imageFile",
+                "defaultValue" => ""
             ]
         ]
     ];
@@ -86,7 +91,8 @@ class gridData extends gridDataSource{
         "FamilyName" => "Family Name",
         "FamilyDescription" => "Family Description",
         "FamilyLongDescription" => "Family Long Description",
-        "FamilyPictureURL" => "Family Picture URL"
+        "FamilyPictureURL" => "Family Picture URL",
+        "FamilyPicture" => "Family Picture"
     ];
 }
 ?>
