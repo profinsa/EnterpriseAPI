@@ -289,16 +289,6 @@ class gridData extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
-			"Price" => [
-				"dbType" => "decimal(19,4)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"ItemPricingCode" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
 			"PricingMethods" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "text",
@@ -511,10 +501,44 @@ class gridData extends gridDataSource{
 			]
 		],
         "Pricing Code" => [
+            "loadFrom" => [
+                "method" => "getPricingCode",
+                "key" => "ItemID"
+            ],
             "ItemID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text"
-            ]
+            ],
+			"ItemPricingCode" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Price" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"MSRP" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"SalesPrice" => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"SaleStartDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => ""
+			],
+			"SaleEndDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => ""
+			],
         ],
         "VAT Maintenance" => [
 			"VATItem" => [
@@ -672,6 +696,27 @@ class gridData extends gridDataSource{
         "VATCreditingRight" => "VAT Crediting Right",
         "VATSupply" => "VAT Supply" 
 	];
+
+    public function getPricingCode($id){
+        $user = Session::get("user");
+        //        $result = DB::select("SELECT ItemPricingCode from inventoryitems WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ItemID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $id));
+        $pricingCodeResult = DB::select("SELECT ItemID, ItemPricingCode, Price, MSRP, SalesPrice, SaleStartDate, SaleEndDate from inventorypricingcode WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ItemID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $id));
+
+        //echo "LALALAL" . json_encode($pricingCodeResult, JSON_PRETTY_PRINT) . $id;
+        //return [];
+        if(count($pricingCodeResult))
+            return json_decode(json_encode($pricingCodeResult), true)[0];
+        else
+            return [
+                "ItemID" => $id,
+                "ItemPricingCode" => "",
+                "Price" => "0.00",
+                "MSRP" => "0.00",
+                "SalesPrice" => "0.00",
+                "SaleStartDate" => "",
+                "SaleEndDate" => ""
+            ];
+    }
     
     public $detailPages = [
         "Item Transactions" => [
@@ -772,7 +817,7 @@ class gridData extends gridDataSource{
 
     //getting rows for grid
     public function getTransactionsWithType($ItemID, $type){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $keyFields = "";
         $fields = [];
         foreach($this->detailPages["Item Transactions"]["gridFields"] as $key=>$value){
