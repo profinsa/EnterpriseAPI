@@ -510,6 +510,49 @@ class gridData extends gridDataSource{
 				"defaultValue" => ""
 			]
 		],
+        "Pricing Code" => [
+            "ItemID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ]
+        ],
+        "VAT Maintenance" => [
+			"VATItem" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+            "VATItemType" => [
+                "dbType" => "nvarchar(36)",
+                "inputType" => "text"
+            ],
+			"VATExcluded" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"VATInvestibleItem" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"VATCreditingRight" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"VATSupply" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			]
+        ],
+        "Inventory Assemblies" => [
+            "ItemID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ]
+        ],
         "Item Transactions" => [
             "ItemID" => [
                 "dbType" => "varchar(50)",
@@ -621,7 +664,13 @@ class gridData extends gridDataSource{
 		"TrackingNumber" => "Tracking Number",
         "CVID" => "CVID",
         "ItemCost" => "Item Cost",
-        "ItemUnitPrice" => "Item Unit Price"
+        "ItemUnitPrice" => "Item Unit Price",
+        "VATItem" => "VAT Item",
+        "VATItemType" => "VAT Item Type",
+        "VATExcluded" => "VAT Excluded",
+        "VATInvestibleItem" => "VAT Investible Item",
+        "VATCreditingRight" => "VAT Crediting Right",
+        "VATSupply" => "VAT Supply" 
 	];
     
     public $detailPages = [
