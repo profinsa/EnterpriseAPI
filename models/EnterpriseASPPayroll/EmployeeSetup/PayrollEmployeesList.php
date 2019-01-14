@@ -335,26 +335,275 @@ class gridData extends gridDataSource{
 			]
 		],
 		"Payroll Employees Details" => [
-			"Approved" => [
+			"loadFrom" => [
+                "method" => "getPayrollEmployeesDetails",
+                "key" => "EmployeeID"
+			],
+			"EmployeeID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"PayYN" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
 			],
-			"ApprovedBy" => [
-				"dbType" => "varchar(36)",
+			"PayType" => [
+				"dbType" => "varchar(50)",
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
-			"ApprovedDate" => [
+			"PayFrequency" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Salary " => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"HourlyRate " => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CommissionCalc"  => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ComissionPerc"  => [
+				"dbType" => "float",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"OvertimeRate"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"FICAYN" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			// "FICAMedYN" => [
+			// 	"dbType" => "tinyint(1)",
+			// 	"inputType" => "checkbox",
+			// 	"defaultValue" => "0"
+			// ],
+			"FITYN" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			// "FUTAYN" => [
+			// 	"dbType" => "tinyint(1)",
+			// 	"inputType" => "checkbox",
+			// 	"defaultValue" => "0"
+			// ],
+			// "SUTAYN" => [
+			// 	"dbType" => "tinyint(1)",
+			// 	"inputType" => "checkbox",
+			// 	"defaultValue" => "0"
+			// ],
+			// "SITYN" => [
+			// 	"dbType" => "tinyint(1)",
+			// 	"inputType" => "checkbox",
+			// 	"defaultValue" => "0"
+			// ],
+			// "SDIYN" => [
+			// 	"dbType" => "tinyint(1)",
+			// 	"inputType" => "checkbox",
+			// 	"defaultValue" => "0"
+			// ],
+			// "LocalYN" => [
+			// 	"dbType" => "tinyint(1)",
+			// 	"inputType" => "checkbox",
+			// 	"defaultValue" => "0"
+			// ],
+			// "LUIYN" => [
+			// 	"dbType" => "tinyint(1)",
+			// 	"inputType" => "checkbox",
+			// 	"defaultValue" => "0"
+			// ],
+			"FederalAllowance"  => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"StateAllowance"  => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CountyAllowance"  => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CityAllowance"  => [
+				"dbType" => "int(11)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"FederalWithholdingAmount"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"StateWithholdingAmount"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CountyWithhoddingAmount"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CityWithhoddingAmount"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"FederalFilingStatus"  => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"StateFilingStatus"  => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CountyFilingStatus"  => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CityFilingStatus"  => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"MaleFemale"  => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Amount"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"NetAmount"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Additions"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"Deductions"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"PreTaxedAmount"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"BlankCheckHourlyRate"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"BlankCheckOvertimeRate"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"YearToDateFIT"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"YearToDateFICAMed"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"YearToDateRegularHours"  => [
+				"dbType" => "doduble",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"YearToDateOvertimeHours"  => [
+				"dbType" => "doduble",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LastGross"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LastAGI"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LastFICA"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LastFIT"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LastCommissionAmount"  => [
+				"dbType" => "decimal(19,4)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LastHours"  => [
+				"dbType" => "doduble",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"LastPayDate"  => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
 				"defaultValue" => "now"
 			],
-			"EnteredBy" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			]
+			// "Approved" => [
+			// 	"dbType" => "tinyint(1)",
+			// 	"inputType" => "checkbox",
+			// 	"defaultValue" => "0"
+			// ],
+			// "ApprovedBy" => [
+			// 	"dbType" => "varchar(36)",
+			// 	"inputType" => "text",
+			// 	"defaultValue" => ""
+			// ],
+			// "ApprovedDate" => [
+			// 	"dbType" => "datetime",
+			// 	"inputType" => "datetime",
+			// 	"defaultValue" => "now"
+			// ],
+			// "EnteredBy" => [
+			// 	"dbType" => "varchar(36)",
+			// 	"inputType" => "text",
+			// 	"defaultValue" => ""
+			// ]
 		]
 ];
 	public $columnNames = [
@@ -414,8 +663,44 @@ class gridData extends gridDataSource{
 		"Approved" => "Approved",
 		"ApprovedBy" => "Approved By",
 		"ApprovedDate" => "Approved Date",
-		"EnteredBy" => "Entered By"
+		"EnteredBy" => "Entered By",
+		"PayType" => "Pay Type",
+		"PayFrequency" => "Pay Frequency",
+		"HourlyRate" => "Hourly Rate",
+		"CommissionCalc"  => "Commission Calc (0: for sales, 1: for profit)",
+		"ComissionPerc"  => "Comission Perc",
+		"OvertimeRate"  => "Overtime Rate",
+		"FederalAllowance"  => "Federal Allowance",
+		"StateAllowance"  => "State Allowance",
+		"CountyAllowance"  => "County Allowance",
+		"CityAllowance"  => "City Allowance",
+		"FederalWithholdingAmount"  => "Federal Withholding Amount",
+		"StateWithholdingAmount"  => "State Withholding Amount",
+		"CountyWithhoddingAmount"  => "County Withhodding Amount",
+		"CityWithhoddingAmount"  => "City Withhodding Amount",
+		"FederalFilingStatus"  => "Federal Filing Status",
+		"StateFilingStatus"  => "State Filing Status",
+		"CountyFilingStatus"  => "County Filing Status",
+		"CityFilingStatus"  => "City Filing Status",
+		"MaleFemale"  => "Male Female (M, F)",
+		"NetAmount"  => "Net Amount",
+		"PreTaxedAmount"  => "Pre Taxed Amount",
+		"BlankCheckHourlyRate"  => "Blank Check Hourly Rate",
+		"BlankCheckOvertimeRate"  => "Blank Check Overtime Rate",
+		"YearToDateFIT"  => "Year To Date FIT",
+		"YearToDateFICAMed"  => "Year To Date FICA ",
+		"YearToDateRegularHours"  => "Year To Date Regular Hours",
+		"YearToDateOvertimeHours"  => "Year To Date Overtime Hours",
+		"LastCommissionAmount"  => "Last Commission Amount",
+		"LastHours"  => "Last Hours",
+		"LastPayDate"  => "Last Pay Date"
 	];
+	public function getPayrollEmployeesDetails($id){
+        $user = Session::get("user");
+        $payrollEmployeesDetailsResult = DB::select("SELECT * from payrollemployeesdetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $id));
+        if(count($payrollEmployeesDetailsResult))
+            return json_decode(json_encode($payrollEmployeesDetailsResult), true)[0];
+    }
 }
 ?>
 
