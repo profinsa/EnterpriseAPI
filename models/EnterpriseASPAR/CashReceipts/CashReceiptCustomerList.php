@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/15/2017
+  Last Modified: 01/15/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -66,7 +66,6 @@ class gridData extends gridDataSource{
 
     public $editCategories = [
         "Main" => [
-
             "CustomerID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
@@ -834,5 +833,45 @@ class gridData extends gridDataSource{
         "Hot" => "Hot",
         "PrimaryInterest" => "PrimaryInterest"
     ];
+    
+    //getting rows for grid
+    public function getPage($customer){
+        $user = Session::get("user");
+        $query = <<<EOF
+			SELECT     CashReceiptCustomer.CompanyID AS CompanyID, CashReceiptCustomer.DivisionID AS DivisionID,
+			CashReceiptCustomer.DepartmentID AS DepartmentID, CashReceiptCustomer.CustomerID AS CustomerID,
+			CashReceiptCustomer.AccountStatus AS AccountStatus, CashReceiptCustomer.CustomerName AS CustomerName,
+			CashReceiptCustomer.CustomerPhone AS CustomerPhone, CashReceiptCustomer.CustomerLogin AS CustomerLogin,
+			CashReceiptCustomer.CustomerPassword AS CustomerPassword, CashReceiptCustomer.CustomerTypeID AS CustomerTypeID
+			FROM         CustomerInformation AS CashReceiptCustomer
+			WHERE(
+			CashReceiptCustomer.CompanyID = '{$user["CompanyID"]}' AND
+			CashReceiptCustomer.DivisionID = '{$user["DivisionID"]}' AND
+			CashReceiptCustomer.DepartmentID = '{$user["DepartmentID"]}' AND
+			(EXISTS
+			(SELECT     ReceiptID
+			FROM          ReceiptsHeader
+			WHERE      CashReceiptCustomer.CompanyID = ReceiptsHeader.CompanyID AND
+			CashReceiptCustomer.DivisionID = ReceiptsHeader.DivisionID AND
+			CashReceiptCustomer.DepartmentID = ReceiptsHeader.DepartmentID AND
+			CashReceiptCustomer.CustomerID = ReceiptsHeader.CustomerID AND ReceiptsHeader.ReceiptClassID != 'Vendor' AND
+			(ReceiptsHeader.CreditAmount IS NULL OR
+			ReceiptsHeader.CreditAmount != 0)) OR
+			EXISTS
+			(SELECT     InvoiceNumber
+			FROM          InvoiceHeader
+			WHERE      CashReceiptCustomer.CompanyID = InvoiceHeader.CompanyID AND
+			CashReceiptCustomer.DivisionID = InvoiceHeader.DivisionID AND
+			CashReceiptCustomer.DepartmentID = InvoiceHeader.DepartmentID AND
+			CashReceiptCustomer.CustomerID = InvoiceHeader.CustomerID AND TransactionTypeID = 'Credit Memo' AND
+			InvoiceHeader.Posted = 1 AND (IFNULL(InvoiceHeader.Total, 0) - IFNULL(InvoiceHeader.AmountPaid, 0)) > 0.005 AND
+			IFNULL(InvoiceHeader.Total, 0) >= 0.005)))
+EOF;
+        
+        $result = DB::select($query, array());
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
 }
 ?>

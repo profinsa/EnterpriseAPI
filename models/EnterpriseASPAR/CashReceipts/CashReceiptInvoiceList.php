@@ -166,6 +166,7 @@ EOF;
         
         return $result;
     }
+
     public function Receipt_Cash(){
         $user = Session::get("user");
         $postData = file_get_contents("php://input");
