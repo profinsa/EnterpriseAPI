@@ -300,7 +300,7 @@
     "Payroll/EmployeeSetup/ViewEmployeesEvents" => "EnterpriseASPPayroll/EmployeeTools/PayrollEmployeesEventsList",
     "Payroll/EmployeeSetup/ViewEmployeesEventTypes" => "EnterpriseASPPayroll/EmployeeTools/PayrollEmployeesEventTypesList",
     "Payroll/EmployeeSetup/ViewEmployeesTimesheets" => "EnterpriseASPPayroll/EmployeeTools/PayrollEmployeesTimesheetHeaderList",
-    "Payroll/PayrollProcessing/PayEmployees" => "EnterpriseASPPayroll/PayrollProcessing/PayrollPayEmployees",
+    "Payroll/PayrollProcessing/PayEmployees" => "EnterpriseASPPayroll/PayrollProcessing/PayrollPayEmployeesList",
     "Payroll/PayrollProcessing/PayrollRegister" => "EnterpriseASPPayroll/PayrollProcessing/PayrollRegisterList",
     "Payroll/PayrollProcessing/PayrollChecks" => "EnterpriseASPPayroll/PayrollProcessing/PayrollChecksList",
     "Payroll/PayrollProcessing/PayrollCheckTypes" => "EnterpriseASPPayroll/PayrollProcessing/PayrollCheckTypeList",

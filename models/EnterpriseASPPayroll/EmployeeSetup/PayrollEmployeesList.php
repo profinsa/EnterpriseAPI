@@ -575,7 +575,7 @@ class gridData extends gridDataSource{
 				"defaultValue" => ""
 			],
 			"LastHours"  => [
-				"dbType" => "doduble",
+				"dbType" => "double",
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
