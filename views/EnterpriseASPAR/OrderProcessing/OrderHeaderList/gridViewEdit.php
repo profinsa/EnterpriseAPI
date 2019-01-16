@@ -340,6 +340,7 @@
 				    <?php if($key != "Tax" && $key != "Total"): ?>
 					<?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
 				    <?php else: ?>
+					<input type="hidden" name="<?php echo $key; ?>" value="<?php echo $headerItem[$value]; ?>">
 					<div class="pull-right"><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?></div>
 				    <?php endif; ?>
 				</td>
