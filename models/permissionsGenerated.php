@@ -517,6 +517,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "GenericReport" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "HelpMessageBoard" => [
         "select" => "any",
         "update" => "any",

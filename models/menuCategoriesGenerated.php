@@ -2187,6 +2187,13 @@ $leftMenu = [
 		"full" => $translation->translateLabel('Reports'),
 		"short" => "Re",
 		"data" => [
+				    [
+					"id" => "Reports/GenericReport",
+					"type" => "relativeLink",
+					"full" => $translation->translateLabel('Generic Report'),
+					"href"=> "page=grid&action=Reports/Autoreport/GenericReportDetail&mode=new&category=Main&item=" . $keyString,
+					"short" => "Pr"
+				    ],
 		    [
 			"type" => "submenu",
 			"id" => "Reports/AccountsReceivableReports",

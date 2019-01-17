@@ -1,31 +1,31 @@
 <?php
 /*
-Name of Page: autoreports controller
+  Name of Page: autoreports controller
 
-Method: controller for autoreports pages
+  Method: controller for autoreports and generic report pages
 
-Date created: Nikita Zaharov, 14.02.2016
+  Date created: Nikita Zaharov, 14.02.2017
 
-Use: The controller is responsible for:
-- page rendering using view
+  Use: The controller is responsible for:
+  - page rendering using view
 
-Input parameters:
-$app : application instance, object
+  Input parameters:
+  $app : application instance, object
 
-Output parameters:
-$scope: object, used by view, most like model
-$translation: model, it is responsible for translation in view
+  Output parameters:
+  $scope: object, used by view, most like model
+  $translation: model, it is responsible for translation in view
 
-Called from:
-+ index.php
+  Called from:
+  + index.php
 
-Calls:
-models/translation.php
-models/autoreports.php
-app from index.php
+  Calls:
+  models/translation.php
+  models/autoreports.php
+  app from index.php
 
-Last Modified: 17.02.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 01.17.2019
+  Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
@@ -60,7 +60,7 @@ class controller{
         //  return response('permissions not found', 500)->header('Content-Type', 'text/plain');
 
         $this->user = $_SESSION["user"];
-               
+
         $data = new autoreportsData($source = (key_exists("source", $_GET) ? $_GET["source"] : $_GET["getreport"]));
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

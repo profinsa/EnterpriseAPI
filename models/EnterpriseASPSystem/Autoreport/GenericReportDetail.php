@@ -1,56 +1,35 @@
 <?php
 /*
-Name of Page: autoreports data sourcee
-
-Method: It provides data from database for autoreports page
-
-Date created: Nikita Zaharov, 10.04.2017
-
-Use: this model used for 
-- getting columns of table
-- for loading data using stored procedures
-
-Input parameters:
-$capsule: database instance
-methods has own parameters
-
-Output parameters:
-- methods has own output
-
-Called from:
-controllers/autoreports
-
-Calls:
-sql
-
-Last Modified: 01.17.2019
-Last Modified by: Nikita Zaharov
+  Name of Page:
+  Method:
+  Date created: Eugene Tetarenko
+  Use:
+  Input parameters:
+  Output parameters:
+  Called from:
+  Calls:
+  Last Modified: 01/17/2019
+  Last Modified by:  Nikita Zaharov
 */
 
-require __DIR__ . "/gridDataSource.php";
+require __DIR__ . "/../../autoreports.php";
 
 /*function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
     }*/
 
-
-class autoreportsData extends gridDataSource{
-    protected $reportName = "";
-    protected $datasortOption = [];
-
-    public function __construct($reportName = "generic"){
-        if(isset($reportName))
-            $this->reportName = $reportName;
-    }
+class gridData extends autoreportsData{
+    public $dashboardTitle ="Generic Report";
+    public $breadCrumbTitle ="Generic Report";
 
     public function getOperators(){
         return [">", ">=", "<", "<=", "=", "!=", "LIKE"];
     }
 
     public function getParameters($reportName = "generic"){
-        $user = $_SESSION["user"];
-        $dbname = $GLOBALS["capsule"]::connection()->getDatabaseName();
-        $result = $GLOBALS["capsule"]::select("SELECT * FROM information_schema.parameters WHERE SPECIFIC_NAME = '" . $this->reportName . "'");
+        $user = Session::get("user");
+        $dbname = DB::connection()->getDatabaseName();
+        $result = DB::select("SELECT * FROM information_schema.parameters WHERE SPECIFIC_NAME = '" . $reportName . "'");
         $params = [];
         foreach($result as $value)
             if($value->SPECIFIC_SCHEMA == $dbname)
@@ -59,9 +38,10 @@ class autoreportsData extends gridDataSource{
     }
 
     public function getParametersForEnter(){
-        $user = $_SESSION["user"];
-        $dbname = $GLOBALS["capsule"]::connection()->getDatabaseName();
-        $result = $GLOBALS["capsule"]::select("SELECT * FROM information_schema.parameters WHERE SPECIFIC_NAME = '" . $this->reportName . "'");
+        $user = Session::get("user");
+        $reportName = $_POST["reportName"];
+        $dbname = DB::connection()->getDatabaseName();
+        $result = DB::select("SELECT * FROM information_schema.parameters WHERE SPECIFIC_NAME = '" . $reportName . "'");
         $params = [];
         $count = 0;
         foreach($result as $value){
@@ -75,8 +55,9 @@ class autoreportsData extends gridDataSource{
     }
     
     public function getColumns(){
-        $user = $_SESSION["user"];
-        $params = $this->getParameters();
+        $user = Session::get("user");
+        $reportName = $_POST["reportName"];
+        $params = $this->getParameters($reportName);
         $optional = "";
         $paramsCount = count($params);
 
@@ -91,8 +72,8 @@ class autoreportsData extends gridDataSource{
             }
         }
         
-        $conn =  $GLOBALS["capsule"]::connection()->getPdo();
-        $stmt = $conn->prepare("CALL " . $this->reportName . "('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "'" . $optional . ")");
+        $conn =  DB::connection()->getPdo();
+        $stmt = $conn->prepare("CALL " . $reportName . "('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "'" . $optional . ")");
         $rs = $stmt->execute();
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);
         //        $result = DB::select("CALL " . $this->reportName . "('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "')", array());
@@ -125,7 +106,7 @@ class autoreportsData extends gridDataSource{
     }
     
     public function getData($nototal=false){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
         $params = $this->getParameters();
         $optional = "";
         $paramsCount = count($params);
@@ -147,7 +128,7 @@ class autoreportsData extends gridDataSource{
             if(key_exists($column, $_GET))
                 $options[$column] = explode(",", $_GET[$column]);
         
-        $conn =  $GLOBALS["capsule"]::connection()->getPdo();
+        $conn =  DB::connection()->getPdo();
         $stmt = $conn->prepare("CALL " . $this->reportName . "('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "'" . $optional . ")");
         $rs = $stmt->execute();
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);
@@ -281,5 +262,5 @@ class autoreportsData extends gridDataSource{
         //        echo json_encode($res);
         return $result;
     }
-    
 }
+?>

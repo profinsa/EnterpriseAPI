@@ -10,7 +10,7 @@
 
        Method: It render main autoreports page
 
-       Date created: Nikita Zaharov, 10.04.2016
+       Date created: Nikita Zaharov, 10.04.2017
 
        Use: renders autoreports page, contains:
        - parameters table
@@ -29,7 +29,7 @@
        Calls:
        sql
 
-       Last Modified: 17.04.2016
+       Last Modified: 17.04.2017
        Last Modified by: Nikita Zaharov
      */
     $params = $data->getParametersForEnter();
