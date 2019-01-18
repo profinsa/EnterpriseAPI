@@ -38,11 +38,19 @@ public $idField ="undefined";
 public $idFields = ["CompanyID","DivisionID","DepartmentID"];
 public $gridFields = [
 
-"SystemMessageAt" => [
-    "dbType" => "datetime",
-    "format" => "{0:d}",
-    "inputType" => "datetime"
-]
+// "SystemMessageAt" => [
+//     "dbType" => "datetime",
+//     "format" => "{0:d}",
+//     "inputType" => "datetime"
+// ],
+"SystemMessageBy" => [
+    "dbType" => "varchar(36)",
+    "inputType" => "text"
+    ],
+    "SystemMessage" => [
+        "dbType" => "varchar(120)",
+        "inputType" => "text",
+    ]
 ];
 
 public $editCategories = [
