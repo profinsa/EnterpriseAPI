@@ -27,17 +27,11 @@
 				    "params" => '',
 				    "columns" => ''],
 
-	    "Vehicles" => ["label" => $translation->translateLabel("Vehicles"),    
-			   "link" => $public_prefix . "/index#/autoreports/RptListVehiclesHeader?id=77896561&title=Vehicles",
-			   "reportName" => "RptListVehiclesHeader",
-			   "params" => '',
-			   "columns" => ''],
-
-	    "Service Orders" => ["label" => $translation->translateLabel("Service Orders"),
+/*	    "Service Orders" => ["label" => $translation->translateLabel("Service Orders"),
 				 "link" => $public_prefix . "/index#/autoreports/RptListServiceOrders?id=190699898&title=Service Orders",
 				 "reportName" => "RptListServiceOrders",
 				 "params" => '',
-				 "columns" => ''],
+				 "columns" => ''],*/
 
 	    "Order Headers" => ["label" => $translation->translateLabel("Order Headers"),
 				"link" => $public_prefix . "/index#/autoreports/RptListOrderHeader?id=1906978020&title=Order Headers",
@@ -68,12 +62,6 @@
 				       "reportName" => "RptListInvoiceDetail",
 				       "params" => '',
 				       "columns" => ''],
-
-	    "Parts" => ["label" => $translation->translateLabel('Parts'),
-			"link" => $public_prefix . "/index#/autoreports/RptListParts?id=1554973463&title=Parts",
-			"reportName" => "RptListParts",
-			"params" => '',
-			"columns" => ''],
 
 	    "Inventory By Warehouse" => ["label" => $translation->translateLabel('Inventory By Warehouse'),
 					 "link" => $public_prefix . "/index#/autoreports/RptListInventoryByWarehouse?id=1554976766&title=Inventory By Warehouse",
@@ -1022,6 +1010,7 @@
 	     "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
 	 })
 	  .success(function(data) {
+	      console.log('COLUMNS');
 	      autoreportsColumns = [];
 	      currentEditedColumn = false;
 	      currentEditedData;
@@ -1092,6 +1081,7 @@
 	      }
 	  })
 	  .error(function(err){
+	      echo('EEEEEEEEE');
 	      alert('Something goes wrong');
 	  });		
  }
@@ -1106,7 +1096,6 @@
      // console.log($('#report-type').val());
      // console.log($('#report-type option:selected').text());
      updatePage();
-     console.log('dfdfdfd');
  });
 </script>
 

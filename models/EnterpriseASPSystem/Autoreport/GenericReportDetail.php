@@ -51,7 +51,8 @@ class gridData extends autoreportsData{
                 $count++;
             }
         }
-        return $params;
+        header('Content-Type: application/json');
+        echo json_encode($params, JSON_PRETTY_PRINT);
     }
     
     public function getColumns(){
@@ -78,6 +79,7 @@ class gridData extends autoreportsData{
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);
         //        $result = DB::select("CALL " . $this->reportName . "('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "')", array());
 
+        header('Content-Type: application/json');
         if(count($result)){
             $meta = [];
             $mcounter = 0;
@@ -89,10 +91,10 @@ class gridData extends autoreportsData{
                     $columns[$key] = $meta[$key];
             }
         
-            return $columns;
+            echo json_encode($columns, JSON_PRETTY_PRINT);
             //        return [];
         }else{
-            return false;
+            echo json_encode([]);
         }
     }
 
