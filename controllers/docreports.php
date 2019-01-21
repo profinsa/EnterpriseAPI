@@ -21,7 +21,7 @@
 
   Calls:
   models/translation.php
-  models/autoreports.php
+  models/reports/doc/*
   app from index.php
 
   Last Modified: 01.09.2019

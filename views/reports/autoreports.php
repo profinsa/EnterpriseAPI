@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <?php
-    require __DIR__ . '/uiItems/dashboard.php';
-   // require __DIR__ . '/format.php';
+    require __DIR__ . '/../uiItems/dashboard.php';
+   // require __DIR__ . '/../format.php';
     ?>
     
     <?php
@@ -29,7 +29,7 @@
        Calls:
        sql
 
-       Last Modified: 17.04.2017
+       Last Modified: 21.01.2019
        Last Modified by: Nikita Zaharov
      */
     $params = $data->getParametersForEnter();

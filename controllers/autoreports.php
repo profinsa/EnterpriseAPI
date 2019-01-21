@@ -34,6 +34,10 @@ require 'models/permissionsGenerated.php';
 // require "common.php";
 require "models/drillDowner.php";
 
+function numberToStr($strin){
+    return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
+}
+
 class controller{
     public $user = false;
     public $action = "";
@@ -50,7 +54,7 @@ class controller{
             exit;
         }
 
-        require 'models/autoreports.php';
+        require 'models/reports/autoreports.php';
         
         //$_perm = new permissionsByFile();
         //preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
@@ -77,9 +81,9 @@ class controller{
                require 'models/menuCategoriesGenerated.php';
                if(key_exists("getreport", $_GET)){
                    $content = $_GET["type"];
-                   require 'views/autoreports/container.php';
+                   require 'views/reports/autoreports/container.php';
                }else
-                   require 'views/autoreports.php';
+                   require 'views/reports/autoreports.php';
         }
     }
 }

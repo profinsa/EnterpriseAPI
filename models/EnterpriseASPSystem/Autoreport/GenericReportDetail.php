@@ -12,7 +12,7 @@
   Last Modified by:  Nikita Zaharov
 */
 
-require __DIR__ . "/../../autoreports.php";
+require __DIR__ . "/../../reports/autoreports.php";
 
 /*function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);

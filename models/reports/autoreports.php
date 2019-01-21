@@ -1,38 +1,33 @@
 <?php
 /*
-Name of Page: autoreports data sourcee
+  Name of Page: autoreports data sourcee
 
-Method: It provides data from database for autoreports page
+  Method: It provides data from database for autoreports page
 
-Date created: Nikita Zaharov, 10.04.2017
+  Date created: Nikita Zaharov, 10.04.2017
 
-Use: this model used for 
-- getting columns of table
-- for loading data using stored procedures
+  Use: this model used for 
+  - getting columns of table
+  - for loading data using stored procedures
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-controllers/autoreports
+  Called from:
+  controllers/autoreports
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 01.17.2019
-Last Modified by: Nikita Zaharov
+  Last Modified: 01.17.2019
+  Last Modified by: Nikita Zaharov
 */
 
-require __DIR__ . "/gridDataSource.php";
-
-/*function numberToStr($strin){
-    return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
-    }*/
-
+require __DIR__ . "/../gridDataSource.php";
 
 class autoreportsData extends gridDataSource{
     protected $reportName = "";
