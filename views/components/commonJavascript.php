@@ -31,6 +31,9 @@
      },
      makeProcedureLink : function (path, procedure){
          return "index.php?page=grid&action=" + path + "&procedure=" + procedure;
+     },
+     makeAutoreportsViewLink : function(type, name, id, title, options){
+         return "index.php?page=autoreports&getreport=" + name + "&type=" + type + "&title=" + title + "&" + options;
      }
  };
 

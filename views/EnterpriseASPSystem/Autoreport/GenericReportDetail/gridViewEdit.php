@@ -1,5 +1,7 @@
 <div id="row_editor" class="row">
+		       
     <?php
+		       $public_prefix = '';
 	$reportTypes = [
 	    "Information" => ["label" => $translation->translateLabel("Information"),
 			      "link" => $public_prefix . "/index#/autoreports/RptListCustomerInformation?id=1202975512&title=Customer Information",
@@ -1016,8 +1018,8 @@
      var reportTypes = <?php echo json_encode($reportTypes) ?>;
      var header = <?php json_encode($_GET);?>
 
-	 $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/getParametersForEnter",{
-	     "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"],
+	 $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getParametersForEnter"); ?>",{
+	     "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
 	 })
 	  .success(function(data) {
 	      autoreportsColumns = [];
@@ -1029,8 +1031,8 @@
 	      reportTypes[$('#report-type option:selected').text()]["params"] = data;
 	      if (!data.length || header[data[0].PARAMETER_NAME]) {
 		  // getColumns
-		  $.post("<?php echo $public_prefix; ?>/grid/<?php  echo $scope["path"] ;  ?>/procedure/getColumns",{
-		      "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"],
+		  $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getColumns"); ?>",{
+		      "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
 		  })
 		   .success(function(data) {
 		       reportTypes[$('#report-type option:selected').text()]["columns"] = data;
@@ -1063,13 +1065,15 @@
 			   );
 		       }
 
-		       document.getElementById("getreportexplorer").href = "<?php echo $public_prefix; ?>" + "/autoreports/getreport/" + reportTypes[$('#report-type option:selected').text()]["reportName"] + "?type=explorer&title=" + $('#report-type option:selected').text();
-		       document.getElementById("getreportscreen").href = "<?php echo $public_prefix; ?>" + "/autoreports/getreport/" + reportTypes[$('#report-type option:selected').text()]["reportName"] + "?type=screen&title=" + $('#report-type option:selected').text();
-		       document.getElementById("getreportpdf").href = "<?php echo $public_prefix; ?>" + "/autoreports/getreport/" + reportTypes[$('#report-type option:selected').text()]["reportName"] + "?type=pdf&title=" + $('#report-type option:selected').text();
-		       document.getElementById("getreporttext").href = "<?php echo $public_prefix; ?>" + "/autoreports/getreport/" + reportTypes[$('#report-type option:selected').text()]["reportName"] + "?type=text&title=" + $('#report-type option:selected').text();
-		       document.getElementById("getreportexcel").href = "<?php echo $public_prefix; ?>" + "/autoreports/getreport/" + reportTypes[$('#report-type option:selected').text()]["reportName"] + "?type=excel&title=" + $('#report-type option:selected').text();
-		       document.getElementById("getreportcopy").href = "<?php echo $public_prefix; ?>" + "/autoreports/getreport/" + reportTypes[$('#report-type option:selected').text()]["reportName"] + "?type=copy&title=" + $('#report-type option:selected').text();
-		       document.getElementById("getreportchart").href = "<?php echo $public_prefix; ?>" + "/autoreports/getreport/" + reportTypes[$('#report-type option:selected').text()]["reportName"] + "?type=chart&title=" + $('#report-type option:selected').text();
+		       var reportName = reportTypes[$('#report-type option:selected').text()]["reportName"],
+			   reportTitle = $('#report-type option:selected').text();
+		       document.getElementById("getreportexplorer").href = linksMaker.makeAutoreportsViewLink("explorer", reportName , "", reportTitle, "");
+		       document.getElementById("getreportscreen").href = linksMaker.makeAutoreportsViewLink("screen", reportName , "", reportTitle, "");
+		       document.getElementById("getreportpdf").href = linksMaker.makeAutoreportsViewLink("pdf", reportName , "", reportTitle, "");
+		       document.getElementById("getreporttext").href = linksMaker.makeAutoreportsViewLink("text", reportName , "", reportTitle, "");
+		       document.getElementById("getreportexcel").href = linksMaker.makeAutoreportsViewLink("excel", reportName , "", reportTitle, "");
+		       document.getElementById("getreportcopy").href = linksMaker.makeAutoreportsViewLink("copy", reportName , "", reportTitle, "");
+		       document.getElementById("getreportchart").href = linksMaker.makeAutoreportsViewLink("chart", reportName , "", reportTitle, "");
 
 		       getreportexplorerhref = document.getElementById("getreportexplorer").href;
 		       getreportscreenhref = document.getElementById("getreportscreen").href;

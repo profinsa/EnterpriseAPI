@@ -94,4 +94,8 @@ class linksMaker{
     function makeDocreportsLink($type, $id){
         return "index.php?page=docreports&type=$type&id=$id"; 
     }
+
+    function makeAutoreportsViewLink($type, $name, $id, $title, $options){
+        return "index.php?page=autoreports&getreport=$name&type=$type&title=$title&$options";
+    }
 }
