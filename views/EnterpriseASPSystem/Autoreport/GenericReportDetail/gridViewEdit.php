@@ -787,8 +787,18 @@
 //	foreach($reportTypes as $name
     ?>
     <div style="margin-top:10px;"></div>
-    <select id="report-type" style="width: 400px;" onchange="onChangeReport(event);">
-    </select>
+    <div class="col-md-12">
+	<div class="col-md-7">
+	    <select id="report-type" style="width: 400px;" onchange="onChangeReport(event);">
+	    </select>
+	</div>
+	<div class="col-md-5">
+	    <div class=" pull-right">
+		<a class="btn btn-info" href="javascript:reportConfigurationSave();">Save Report As</a>
+		<a class="btn btn-info" href="javascript:reportConfigurationDelete();">Delete Saved Report</a>
+	    </div>
+	</div>
+    </div>
     <h3 style="margin-top:20px;">
 	<?php echo $translation->translateLabel("Report Columns"); ?>
     </h3>
@@ -833,9 +843,10 @@
  var editedColumns = {};
  var orderMax = 2;
  var reportTypes = <?php echo json_encode($reportTypes, JSON_PRETTY_PRINT); ?>;
- var header = <?php echo json_encode($_GET, JSON_PRETTY_PRINT);?>
+ var header = <?php echo json_encode($_GET, JSON_PRETTY_PRINT);?>;
+ var columnsDefaults = {};
 
-     var getreportexplorerhref = document.getElementById("getreportexplorer").href;
+ var getreportexplorerhref = document.getElementById("getreportexplorer").href;
  var getreportscreenhref = document.getElementById("getreportscreen").href;
  var getreportpdfhref = document.getElementById("getreportpdf").href;
  var getreporttexthref = document.getElementById("getreporttext").href;
@@ -985,6 +996,8 @@
 	 params[ind] = autoreportsColumns[ind].join(",");
      }
 
+     //     console.log(JSON.stringify(autoreportsColumns, null, 3));
+     
      document.getElementById("getreportexplorer").href = getreportexplorerhref + "&" + $.param(params);
      document.getElementById("getreportscreen").href = getreportscreenhref + "&" + $.param(params);
      document.getElementById("getreportpdf").href = getreportpdfhref + "&" + $.param(params);
@@ -1005,8 +1018,7 @@
 	 "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
      })
       .success(function(data) {
-	  console.log('COLUMNS');
-	  autoreportsColumns = [];
+	  autoreportsColumns = {};
 	  currentEditedColumn = false;
 	  currentEditedData;
 	  editedColumns = {};
@@ -1021,25 +1033,36 @@
 	       .success(function(data) {
 		   reportTypes[$('#report-type option:selected').text()]["columns"] = data;
 
-		   var columnsDefaults = {};
+		   columnsDefaults = {};
 		   var ind;
-		   for(ind in data){
-		       console.log(ind);
-		       columnsDefaults[ind] = [
-			   "True",
-			   data[ind]["native_type"] == "NEWDECIMAL" || data[ind]["native_type"] == "DECIMAL" ? "True" : "False",
-			   !ind ? 1 : -1,
-			   "ASC",
-			   "None",
-			   ""
-		       ];
+		   var columnsDefaultsSaved = localStorage.getItem("reportsEngineSavedReport");
+		   if(columnsDefaultsSaved){
+		       columnsDefaults = JSON.parse(columnsDefaultsSaved);
+		       autoreportsColumns = {};
+		       for(ind in columnsDefaults)
+			   autoreportsColumns[ind] =[
+			       columnsDefaults[ind].show,
+			       columnsDefaults[ind].total,
+			       columnsDefaults[ind].order,
+			       columnsDefaults[ind].direction,
+			       columnsDefaults[ind].operator,
+			       columnsDefaults[ind].criteria,
+			   ];
+		   }else {
+		       for(ind in data){
+			   columnsDefaults[ind] = {
+			       show : "True",
+			       total : data[ind]["native_type"] == "NEWDECIMAL" || data[ind]["native_type"] == "DECIMAL" ? "True" : "False",
+			       order : !ind ? 1 : -1,
+			       direction : "ASC",
+			       operator : "None",
+			       criteria : ""
+			   };
+		       }
 		   }
-
 		   _html = '';
-		   console.log(JSON.stringify(columnsDefaults, null, 3));
 		   for(ind in columnsDefaults){
-		       _html += "<tr><td id=\"" + ind + "actions\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\" onclick=\"autoreportsChangeColumn('" + ind + "')\"></span></td><td>" + ind + "</td><td id=\"" + ind + "show\">" + columnsDefaults[ind][0] + "</td><td id=\"" + ind + "total\">" + columnsDefaults[ind][1] + "</td><td id=\"" + ind + "order\">" + columnsDefaults[ind][2] + "</td><td id=\"" + ind + "direction\">" + columnsDefaults[ind][3] + "</td><td id=\"" + ind + "operator\">" + columnsDefaults[ind][4] + "</td><td id=\"" + ind + "criteria\">" + columnsDefaults[ind][5] + "</td></tr>"
-		   //		       );
+		       _html += "<tr><td id=\"" + ind + "actions\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\" onclick=\"autoreportsChangeColumn('" + ind + "')\"></span></td><td>" + ind + "</td><td id=\"" + ind + "show\">" + columnsDefaults[ind].show + "</td><td id=\"" + ind + "total\">" + columnsDefaults[ind].total + "</td><td id=\"" + ind + "order\">" + columnsDefaults[ind].order + "</td><td id=\"" + ind + "direction\">" + columnsDefaults[ind].direction + "</td><td id=\"" + ind + "operator\">" + columnsDefaults[ind].operator + "</td><td id=\"" + ind + "criteria\">" + columnsDefaults[ind].criteria + "</td></tr>";
 		   }
 		   $("#table-body").html(_html);
 
@@ -1070,15 +1093,38 @@
 	  }
       })
       .error(function(err){
-	  echo('EEEEEEEEE');
 	  alert('Something goes wrong');
       });		
  }
 
- onChangeReport  = function (event) {
+ function onChageReport(event){
      // console.log($('#report-type').val());
      // console.log($('#report-type option:selected').text());
      updatePage();
+ }
+
+ function reportConfigurationSave(){
+     //    console.log(JSON.stringify(columnsDefaults, null, 3));
+     var ind, dataToSave =  {};     
+     for(ind in columnsDefaults){
+	 dataToSave[ind] = {
+	     show : $("#" + ind + "show").html(),
+	     total : $("#" + ind + "total").html(),
+	     order : $("#" + ind + "order").html(),
+	     direction : $("#" + ind + "direction").html(),
+	     operator : $("#" + ind + "operator").html(),
+	     criteria : $("#" + ind + "criteria").html()
+	 }
+     }
+     //     console.log(JSON.stringify(dataToSave, null, 3));
+     localStorage.setItem("reportsEngineSavedReport", JSON.stringify(dataToSave));
+     //	 dataToSave
+//     console.log('saving');
+ }
+
+ function reportConfigurationDelete(){
+     localStorage.removeItem("reportsEngineSavedReport");
+  //   console.log('deleting');
  }
 
  // console.log($('#report-type').val());
@@ -1091,7 +1137,6 @@
      _html += "</option>";     
  }
  $("#report-type").html(_html);
- 
  updatePage();
 </script>
 
