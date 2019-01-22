@@ -8,10 +8,11 @@
   Output parameters:
   Called from:
   Calls:
-  Last Modified: 01/17/2019
+  Last Modified: 01/23/2019
   Last Modified by:  Nikita Zaharov
 */
 
+require __DIR__ . "/reportTypes.php";
 require __DIR__ . "/../../reports/autoreports.php";
 
 /*function numberToStr($strin){
@@ -35,6 +36,13 @@ class gridData extends autoreportsData{
             if($value->SPECIFIC_SCHEMA == $dbname)
                 $params[] = $value;
         return $params;
+    }
+
+    public function getReportTypes(){
+        $user = Session::get("user");
+        $translation = new translation($user["language"]);
+        header('Content-Type: application/json');
+        echo json_encode(getStandardReportTypes($translation), JSON_PRETTY_PRINT);
     }
 
     public function getParametersForEnter(){
