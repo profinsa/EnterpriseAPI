@@ -875,7 +875,7 @@
      if(filled == plength){
 	 window.location = window.location.href + "&" + $.param(params);
      }
-     console.log(filled, plength);
+//     console.log(filled, plength);
  }
 
  function autoreportsChangeColumn(name){
@@ -1013,9 +1013,9 @@
 
  var updatePage = function () {
      var _html = '';
-     
+     var reportTitle = $('#report-type option:selected').text();
      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getParametersForEnter"); ?>",{
-	 "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
+	 "reportName" : reportTypes[reportTitle]["reportName"]
      })
       .success(function(data) {
 	  autoreportsColumns = {};
@@ -1028,16 +1028,17 @@
 	  if (!data.length || header[data[0].PARAMETER_NAME]) {
 	      // getColumns
 	      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getColumns"); ?>",{
-		  "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
+		  "reportName" : reportTypes[reportTitle]["reportName"]
 	      })
 	       .success(function(data) {
-		   reportTypes[$('#report-type option:selected').text()]["columns"] = data;
+		   reportTypes[reportTitle]["columns"] = data;
 
 		   columnsDefaults = {};
 		   var ind;
-		   var columnsDefaultsSaved = localStorage.getItem("reportsEngineSavedReport");
-		   if(columnsDefaultsSaved){
-		       columnsDefaults = JSON.parse(columnsDefaultsSaved);
+		   var savedReports = localStorage.getItem("reportsEngineSavedReports");
+		   if(savedReports && (savedReports = JSON.parse(savedReports)) && savedReports[reportTitle]){
+		       columnsDefaults = savedReports[reportTitle];
+		       //console.log(savedReports, reportTitle);
 		       autoreportsColumns = {};
 		       for(ind in columnsDefaults)
 			   autoreportsColumns[ind] =[
@@ -1066,8 +1067,7 @@
 		   }
 		   $("#table-body").html(_html);
 
-		   var reportName = reportTypes[$('#report-type option:selected').text()]["reportName"],
-		       reportTitle = $('#report-type option:selected').text();
+		   var reportName = reportTypes[$('#report-type option:selected').text()]["reportName"];
 		   document.getElementById("getreportexplorer").href = linksMaker.makeAutoreportsViewLink("explorer", reportName , "", reportTitle, "");
 		   document.getElementById("getreportscreen").href = linksMaker.makeAutoreportsViewLink("screen", reportName , "", reportTitle, "");
 		   document.getElementById("getreportpdf").href = linksMaker.makeAutoreportsViewLink("pdf", reportName , "", reportTitle, "");
@@ -1097,7 +1097,7 @@
       });		
  }
 
- function onChageReport(event){
+ function onChangeReport(event){
      // console.log($('#report-type').val());
      // console.log($('#report-type option:selected').text());
      updatePage();
@@ -1105,7 +1105,7 @@
 
  function reportConfigurationSave(){
      //    console.log(JSON.stringify(columnsDefaults, null, 3));
-     var ind, dataToSave =  {};     
+     var reportTitle = $('#report-type option:selected').text(), ind, dataToSave =  {};     
      for(ind in columnsDefaults){
 	 dataToSave[ind] = {
 	     show : $("#" + ind + "show").html(),
@@ -1117,14 +1117,27 @@
 	 }
      }
      //     console.log(JSON.stringify(dataToSave, null, 3));
-     localStorage.setItem("reportsEngineSavedReport", JSON.stringify(dataToSave));
+     var savedReports = localStorage.getItem("reportsEngineSavedReports");
+     if(savedReports)
+	 savedReports = JSON.parse(savedReports);
+     else
+	 savedReports = {};
+
+     savedReports[reportTitle] = dataToSave;
+     localStorage.setItem("reportsEngineSavedReports", JSON.stringify(savedReports));
      //	 dataToSave
-//     console.log('saving');
+     //     console.log('saving');
  }
 
  function reportConfigurationDelete(){
-     localStorage.removeItem("reportsEngineSavedReport");
-  //   console.log('deleting');
+     var reportTitle = $('#report-type option:selected').text();     
+     var savedReports = localStorage.getItem("reportsEngineSavedReports");
+     if(savedReports){
+	 savedReports = JSON.parse(savedReports);
+	 savedReports[reportTitle] = undefined;
+	 localStorage.setItem("reportsEngineSavedReports", JSON.stringify(savedReports));
+     }
+     //   console.log('deleting');
  }
 
  // console.log($('#report-type').val());
