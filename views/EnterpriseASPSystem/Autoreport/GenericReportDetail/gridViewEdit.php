@@ -1,9 +1,9 @@
 <div id="row_editor" class="row">
 		       
     <?php
-		       $public_prefix = '';
+	$public_prefix = '';
 	$reportTypes = [
-	    "Information" => ["label" => $translation->translateLabel("Information"),
+	    "Customer Information" => ["label" => $translation->translateLabel("Customer Information"),
 			      "link" => $public_prefix . "/index#/autoreports/RptListCustomerInformation?id=1202975512&title=Customer Information",
 			      "reportName" => "RptListCustomerInformation",
 			      "params" => '',
@@ -783,16 +783,11 @@
 				"params" => '',
 				"columns" => ''],
 	];
+
+//	foreach($reportTypes as $name
     ?>
     <div style="margin-top:10px;"></div>
     <select id="report-type" style="width: 400px;" onchange="onChangeReport(event);">
-	<?php
-	    foreach($reportTypes as $key=>$value) {
-		echo "<option value=\"" . $value["link"] . "\">";
-		echo $value["label"];
-		echo "</option>";
-	    }
-	?>
     </select>
     <h3 style="margin-top:20px;">
 	<?php echo $translation->translateLabel("Report Columns"); ?>
@@ -837,15 +832,16 @@
  var currentEditedData;
  var editedColumns = {};
  var orderMax = 2;
+ var reportTypes = <?php echo json_encode($reportTypes, JSON_PRETTY_PRINT); ?>;
+ var header = <?php echo json_encode($_GET, JSON_PRETTY_PRINT);?>
 
- var getreportexplorerhref = document.getElementById("getreportexplorer").href;
+     var getreportexplorerhref = document.getElementById("getreportexplorer").href;
  var getreportscreenhref = document.getElementById("getreportscreen").href;
  var getreportpdfhref = document.getElementById("getreportpdf").href;
  var getreporttexthref = document.getElementById("getreporttext").href;
  var getreportexcelhref = document.getElementById("getreportexcel").href;
  var getreportcopyhref = document.getElementById("getreportcopy").href;
  var getreportcharthref = document.getElementById("getreportchart").href;
-
 
  function autoreportsFillParameter(param, event){
      var params = {};
@@ -1003,87 +999,80 @@
  }
 
  var updatePage = function () {
-     var reportTypes = <?php echo json_encode($reportTypes) ?>;
-     var header = <?php json_encode($_GET);?>
+     var _html = '';
+     
+     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getParametersForEnter"); ?>",{
+	 "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
+     })
+      .success(function(data) {
+	  console.log('COLUMNS');
+	  autoreportsColumns = [];
+	  currentEditedColumn = false;
+	  currentEditedData;
+	  editedColumns = {};
+	  orderMax = 2;
 
-	 $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getParametersForEnter"); ?>",{
-	     "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
-	 })
-	  .success(function(data) {
-	      console.log('COLUMNS');
-	      autoreportsColumns = [];
-	      currentEditedColumn = false;
-	      currentEditedData;
-	      editedColumns = {};
-	      orderMax = 2;
+	  reportTypes[$('#report-type option:selected').text()]["params"] = data;
+	  if (!data.length || header[data[0].PARAMETER_NAME]) {
+	      // getColumns
+	      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getColumns"); ?>",{
+		  "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
+	      })
+	       .success(function(data) {
+		   reportTypes[$('#report-type option:selected').text()]["columns"] = data;
 
-	      reportTypes[$('#report-type option:selected').text()]["params"] = data;
-	      if (!data.length || header[data[0].PARAMETER_NAME]) {
-		  // getColumns
-		  $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getColumns"); ?>",{
-		      "reportName" : reportTypes[$('#report-type option:selected').text()]["reportName"]
-		  })
-		   .success(function(data) {
-		       reportTypes[$('#report-type option:selected').text()]["columns"] = data;
+		   var columnsDefaults = {};
+		   var ind;
+		   for(ind in data){
+		       console.log(ind);
+		       columnsDefaults[ind] = [
+			   "True",
+			   data[ind]["native_type"] == "NEWDECIMAL" || data[ind]["native_type"] == "DECIMAL" ? "True" : "False",
+			   !ind ? 1 : -1,
+			   "ASC",
+			   "None",
+			   ""
+		       ];
+		   }
 
-		       var columnsDefaults = [];
-		       var colcounter = 0;
+		   _html = '';
+		   console.log(JSON.stringify(columnsDefaults, null, 3));
+		   for(ind in columnsDefaults){
+		       _html += "<tr><td id=\"" + ind + "actions\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\" onclick=\"autoreportsChangeColumn('" + ind + "')\"></span></td><td>" + ind + "</td><td id=\"" + ind + "show\">" + columnsDefaults[ind][0] + "</td><td id=\"" + ind + "total\">" + columnsDefaults[ind][1] + "</td><td id=\"" + ind + "order\">" + columnsDefaults[ind][2] + "</td><td id=\"" + ind + "direction\">" + columnsDefaults[ind][3] + "</td><td id=\"" + ind + "operator\">" + columnsDefaults[ind][4] + "</td><td id=\"" + ind + "criteria\">" + columnsDefaults[ind][5] + "</td></tr>"
+		   //		       );
+		   }
+		   $("#table-body").html(_html);
 
-		       var keys = Object.keys(data);
+		   var reportName = reportTypes[$('#report-type option:selected').text()]["reportName"],
+		       reportTitle = $('#report-type option:selected').text();
+		   document.getElementById("getreportexplorer").href = linksMaker.makeAutoreportsViewLink("explorer", reportName , "", reportTitle, "");
+		   document.getElementById("getreportscreen").href = linksMaker.makeAutoreportsViewLink("screen", reportName , "", reportTitle, "");
+		   document.getElementById("getreportpdf").href = linksMaker.makeAutoreportsViewLink("pdf", reportName , "", reportTitle, "");
+		   document.getElementById("getreporttext").href = linksMaker.makeAutoreportsViewLink("text", reportName , "", reportTitle, "");
+		   document.getElementById("getreportexcel").href = linksMaker.makeAutoreportsViewLink("excel", reportName , "", reportTitle, "");
+		   document.getElementById("getreportcopy").href = linksMaker.makeAutoreportsViewLink("copy", reportName , "", reportTitle, "");
+		   document.getElementById("getreportchart").href = linksMaker.makeAutoreportsViewLink("chart", reportName , "", reportTitle, "");
 
-		       for (var i = 0; i < keys.length; i++) {
-			   columnsDefaults[keys[i]] = [
-			       "True",
-			       data[keys[i]]["native_type"] == "NEWDECIMAL" || data[keys[i]]["native_type"] == "DECIMAL" ? "True" : "False",
-			       !colcounter ? 1 : -1,
-			       "ASC",
-			       "None",
-			       ""
-			   ];
-			   colcounter++;
-		       }
-		       var select = document.getElementById('table-body');
-
-		       while (select.firstChild) {
-			   select.removeChild(select.firstChild);
-		       }
-		       var keysDefaults = Object.keys(columnsDefaults);
-		       for (var i = 0; i < keysDefaults.length; i++) {
-			   $('#table-body').append(
-			       "<tr><td id=\"" + keysDefaults[i] + "actions\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\" onclick=\"autoreportsChangeColumn('" + keysDefaults[i] + "')\"></span></td><td>" + keysDefaults[i] + "</td><td id=\"" + keysDefaults[i] + "show\">" + columnsDefaults[keysDefaults[i]][0] + "</td><td id=\"" + keysDefaults[i] + "total\">" + columnsDefaults[keysDefaults[i]][1] + "</td><td id=\"" + keysDefaults[i] + "order\">" + columnsDefaults[keysDefaults[i]][2] + "</td><td id=\"" + keysDefaults[i] + "direction\">" + columnsDefaults[keysDefaults[i]][3] + "</td><td id=\"" + keysDefaults[i] + "operator\">" + columnsDefaults[keysDefaults[i]][4] + "</td><td id=\"" + keysDefaults[i] + "criteria\">" + columnsDefaults[keysDefaults[i]][5] + "</td></tr>"
-			   );
-		       }
-
-		       var reportName = reportTypes[$('#report-type option:selected').text()]["reportName"],
-			   reportTitle = $('#report-type option:selected').text();
-		       document.getElementById("getreportexplorer").href = linksMaker.makeAutoreportsViewLink("explorer", reportName , "", reportTitle, "");
-		       document.getElementById("getreportscreen").href = linksMaker.makeAutoreportsViewLink("screen", reportName , "", reportTitle, "");
-		       document.getElementById("getreportpdf").href = linksMaker.makeAutoreportsViewLink("pdf", reportName , "", reportTitle, "");
-		       document.getElementById("getreporttext").href = linksMaker.makeAutoreportsViewLink("text", reportName , "", reportTitle, "");
-		       document.getElementById("getreportexcel").href = linksMaker.makeAutoreportsViewLink("excel", reportName , "", reportTitle, "");
-		       document.getElementById("getreportcopy").href = linksMaker.makeAutoreportsViewLink("copy", reportName , "", reportTitle, "");
-		       document.getElementById("getreportchart").href = linksMaker.makeAutoreportsViewLink("chart", reportName , "", reportTitle, "");
-
-		       getreportexplorerhref = document.getElementById("getreportexplorer").href;
-		       getreportscreenhref = document.getElementById("getreportscreen").href;
-		       getreportpdfhref = document.getElementById("getreportpdf").href;
-		       getreporttexthref = document.getElementById("getreporttext").href;
-		       getreportexcelhref = document.getElementById("getreportexcel").href;
-		       getreportcopyhref = document.getElementById("getreportcopy").href;
-		       getreportcharthref = document.getElementById("getreportchart").href;
-		       autoreportsSaveColumn();
-		   })
-		   .error(function(err){
-		       alert('Something goes wrong');
-		   });
-	      } else {
-		  reportTypes[$('#report-type option:selected').text()]["columns"] = false;
-	      }
-	  })
-	  .error(function(err){
-	      echo('EEEEEEEEE');
-	      alert('Something goes wrong');
-	  });		
+		   getreportexplorerhref = document.getElementById("getreportexplorer").href;
+		   getreportscreenhref = document.getElementById("getreportscreen").href;
+		   getreportpdfhref = document.getElementById("getreportpdf").href;
+		   getreporttexthref = document.getElementById("getreporttext").href;
+		   getreportexcelhref = document.getElementById("getreportexcel").href;
+		   getreportcopyhref = document.getElementById("getreportcopy").href;
+		   getreportcharthref = document.getElementById("getreportchart").href;
+		   autoreportsSaveColumn();
+	       })
+	       .error(function(err){
+		   alert('Something goes wrong');
+	       });
+	  } else {
+	      reportTypes[$('#report-type option:selected').text()]["columns"] = false;
+	  }
+      })
+      .error(function(err){
+	  echo('EEEEEEEEE');
+	  alert('Something goes wrong');
+      });		
  }
 
  onChangeReport  = function (event) {
@@ -1092,10 +1081,17 @@
      updatePage();
  }
 
- $(document).ready(function () {
-     // console.log($('#report-type').val());
-     // console.log($('#report-type option:selected').text());
-     updatePage();
- });
+ // console.log($('#report-type').val());
+ // console.log($('#report-type option:selected').text());
+ 
+ var ind, _html = '';
+ for(ind in reportTypes) {
+     _html += "<option value=\"" + reportTypes[ind]["link"] + "\">";
+     _html += reportTypes[ind]["label"];
+     _html += "</option>";     
+ }
+ $("#report-type").html(_html);
+ 
+ updatePage();
 </script>
 
