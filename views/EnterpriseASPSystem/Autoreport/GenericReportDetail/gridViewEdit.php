@@ -7,8 +7,8 @@
 	</div>
 	<div class="col-md-5">
 	    <div class=" pull-right">
-		<a class="btn btn-info" href="javascript:reportConfigurationSave();">Save Report As</a>
-		<a class="btn btn-info" href="javascript:reportConfigurationDelete();">Delete Saved Report</a>
+		<a class="btn btn-info" href="javascript:reportConfigurationSave();">Save configuration</a>
+		<a class="btn btn-info" href="javascript:reportConfigurationDelete();">Delete configuration</a>
 	    </div>
 	</div>
     </div>
@@ -50,22 +50,23 @@
     </div>
 </div>
 <script>
- var autoreportsColumns = [];
- var currentEditedColumn = false;
- var currentEditedData;
- var editedColumns = {};
- var orderMax = 2;
- var reportTypes = [];
- var queryParams = <?php echo json_encode($_GET, JSON_PRETTY_PRINT);?>;
- var columnsDefaults = {};
+ var autoreportsColumns = [],
+     currentEditedColumn = false,
+     currentEditedData,
+     editedColumns = {},
+     orderMax = 2,
+     reportTypes = [],
+     reportTitle,
+     queryParams = <?php echo json_encode($_GET, JSON_PRETTY_PRINT);?>,
+     columnsDefaults = {};
 
- var getreportexplorerhref = document.getElementById("getreportexplorer").href;
- var getreportscreenhref = document.getElementById("getreportscreen").href;
- var getreportpdfhref = document.getElementById("getreportpdf").href;
- var getreporttexthref = document.getElementById("getreporttext").href;
- var getreportexcelhref = document.getElementById("getreportexcel").href;
- var getreportcopyhref = document.getElementById("getreportcopy").href;
- var getreportcharthref = document.getElementById("getreportchart").href;
+ var getreportexplorerhref = document.getElementById("getreportexplorer").href,
+     getreportscreenhref = document.getElementById("getreportscreen").href,
+     getreportpdfhref = document.getElementById("getreportpdf").href,
+     getreporttexthref = document.getElementById("getreporttext").href,
+     getreportexcelhref = document.getElementById("getreportexcel").href,
+     getreportcopyhref = document.getElementById("getreportcopy").href,
+     getreportcharthref = document.getElementById("getreportchart").href;
 
  function autoreportsFillParameter(param, event){
      var params = {};
@@ -224,8 +225,9 @@
      autoreportsChangeColumnBack(name, currentEditedData);
  }
 
- function updatePage(reportTitle) {
+ function updatePage(){
      var _html = '';
+     console.log(reportTitle);
      if(!reportTitle)//load from select if don't have as arg
 	 reportTitle = $('#report-type option:selected').text();
      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getParametersForEnter"); ?>",{
@@ -238,7 +240,7 @@
 	  editedColumns = {};
 	  orderMax = 2;
 
-	  reportTypes[$('#report-type option:selected').text()]["params"] = data;
+	  reportTypes[reportTitle]["params"] = data;
 	  if (!data.length || queryParams[data[0].PARAMETER_NAME]) {
 	      // getColumns
 	      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getColumns"); ?>",{
@@ -281,7 +283,7 @@
 		   }
 		   $("#table-body").html(_html);
 
-		   var reportName = reportTypes[$('#report-type option:selected').text()]["reportName"];
+		   var reportName = reportTypes[reportTitle]["reportName"];
 		   document.getElementById("getreportexplorer").href = linksMaker.makeAutoreportsViewLink("explorer", reportName , "", reportTitle, "");
 		   document.getElementById("getreportscreen").href = linksMaker.makeAutoreportsViewLink("screen", reportName , "", reportTitle, "");
 		   document.getElementById("getreportpdf").href = linksMaker.makeAutoreportsViewLink("pdf", reportName , "", reportTitle, "");
@@ -303,7 +305,7 @@
 		   alert('Something goes wrong');
 	       });
 	  } else {
-	      reportTypes[$('#report-type option:selected').text()]["columns"] = false;
+	      reportTypes[reportTitle]["columns"] = false;
 	  }
       })
       .error(function(err){
@@ -314,12 +316,14 @@
  function onChangeReport(event){
      // console.log($('#report-type').val());
      // console.log($('#report-type option:selected').text());
+     reportTitle = $('#report-type option:selected').text();
+     console.log(reportTitle);
      updatePage();
  }
 
  function reportConfigurationSave(){
      //    console.log(JSON.stringify(columnsDefaults, null, 3));
-     var reportTitle = $('#report-type option:selected').text(), ind, dataToSave =  {};     
+     var ind, dataToSave =  {};     
      for(ind in columnsDefaults){
 	 dataToSave[ind] = {
 	     show : $("#" + ind + "show").html(),
@@ -344,7 +348,6 @@
  }
 
  function reportConfigurationDelete(){
-     var reportTitle = $('#report-type option:selected').text();     
      var savedReports = localStorage.getItem("reportsEngineSavedReports");
      if(savedReports){
 	 savedReports = JSON.parse(savedReports);
@@ -369,13 +372,13 @@
 	  _html += "</option>";     
       }
       $("#report-type").html(_html);
-      var reportTitle;
       if(queryParams.hasOwnProperty("report")){
 	  reportTitle = queryParams.report;
 	  $("#report-type").css("display", "none");
-      }
-      console.log(reportTitle);
-      updatePage(reportTitle);
+      }else
+      reportTitle = $('#report-type option:selected').text();
+      
+      updatePage();
   });
 </script>
 
