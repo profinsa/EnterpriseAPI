@@ -56,7 +56,7 @@
  var editedColumns = {};
  var orderMax = 2;
  var reportTypes = [];
- var header = <?php echo json_encode($_GET, JSON_PRETTY_PRINT);?>;
+ var queryParams = <?php echo json_encode($_GET, JSON_PRETTY_PRINT);?>;
  var columnsDefaults = {};
 
  var getreportexplorerhref = document.getElementById("getreportexplorer").href;
@@ -224,9 +224,10 @@
      autoreportsChangeColumnBack(name, currentEditedData);
  }
 
- var updatePage = function () {
+ function updatePage(reportTitle) {
      var _html = '';
-     var reportTitle = $('#report-type option:selected').text();
+     if(!reportTitle)//load from select if don't have as arg
+	 reportTitle = $('#report-type option:selected').text();
      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getParametersForEnter"); ?>",{
 	 "reportName" : reportTypes[reportTitle]["reportName"]
      })
@@ -238,7 +239,7 @@
 	  orderMax = 2;
 
 	  reportTypes[$('#report-type option:selected').text()]["params"] = data;
-	  if (!data.length || header[data[0].PARAMETER_NAME]) {
+	  if (!data.length || queryParams[data[0].PARAMETER_NAME]) {
 	      // getColumns
 	      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getColumns"); ?>",{
 		  "reportName" : reportTypes[reportTitle]["reportName"]
@@ -358,7 +359,8 @@
  
  $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "getReportTypes"); ?>",{})
   .success(function(data) {
-      console.log(data);
+      //      console.log(data);
+
       reportTypes = data;
       var ind, _html = '';
       for(ind in reportTypes) {
@@ -367,7 +369,13 @@
 	  _html += "</option>";     
       }
       $("#report-type").html(_html);
-      updatePage();
+      var reportTitle;
+      if(queryParams.hasOwnProperty("report")){
+	  reportTitle = queryParams.report;
+	  $("#report-type").css("display", "none");
+      }
+      console.log(reportTitle);
+      updatePage(reportTitle);
   });
 </script>
 
