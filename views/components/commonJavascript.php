@@ -1,5 +1,4 @@
 <script>
-
  function getFormData($form){
      var unindexed_array = $form.serializeArray();
      var indexed_array = {};
@@ -34,6 +33,9 @@
      },
      makeAutoreportsViewLink : function(type, name, id, title, options){
          return "index.php?page=autoreports&getreport=" + name + "&type=" + type + "&title=" + title + "&" + options;
+     },
+     makeReportsEngineLink : function(report){
+         return  "index.php#/?page=grid&action=Reports/Autoreport/GenericReportDetail&mode=new&category=Main&item=" + generateKeyString() + "&report=" + report;
      }
  };
 

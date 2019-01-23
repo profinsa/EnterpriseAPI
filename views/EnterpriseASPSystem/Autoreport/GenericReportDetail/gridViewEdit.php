@@ -343,8 +343,8 @@
 
      savedReports[reportTitle] = dataToSave;
      localStorage.setItem("reportsEngineSavedReports", JSON.stringify(savedReports));
-     //	 dataToSave
-     //     console.log('saving');
+     
+     leftMenuUpdateSavedReports();
  }
 
  function reportConfigurationDelete(){
@@ -354,7 +354,8 @@
 	 savedReports[reportTitle] = undefined;
 	 localStorage.setItem("reportsEngineSavedReports", JSON.stringify(savedReports));
      }
-     //   console.log('deleting');
+
+     leftMenuUpdateSavedReports();
  }
 
  // console.log($('#report-type').val());

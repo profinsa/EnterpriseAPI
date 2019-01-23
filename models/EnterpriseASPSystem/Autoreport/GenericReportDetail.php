@@ -20,8 +20,8 @@ require __DIR__ . "/../../reports/autoreports.php";
     }*/
 
 class gridData extends autoreportsData{
-    public $dashboardTitle ="Generic Report";
-    public $breadCrumbTitle ="Generic Report";
+    public $dashboardTitle ="Reports Engine";
+    public $breadCrumbTitle ="Reports Engine";
 
     public function getOperators(){
         return [">", ">=", "<", "<=", "=", "!=", "LIKE"];

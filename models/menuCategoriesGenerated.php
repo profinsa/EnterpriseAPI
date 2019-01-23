@@ -2196,6 +2196,13 @@ $leftMenu = [
 				    ],
 		    [
 			"type" => "submenu",
+			"id" => "Reports/SavedReports",
+			"full" => $translation->translateLabel('Saved Reports'),
+			"short" => "Ac",
+			"data" => []
+            ],
+		    [
+			"type" => "submenu",
 			"id" => "Reports/AccountsReceivableReports",
 			"full" => $translation->translateLabel('Accounts Receivable Reports'),
 			"short" => "Ac",
