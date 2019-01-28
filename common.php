@@ -4,6 +4,7 @@ function config(){
         "theme" => 'none',
         //"theme" => 'dark', uncomment for dark theme
         "title" => 'Integral Accounting X',
+        "loginForm" => "login",
         "db_host" => "localhost",
         "db_user" => "enterprise",
         "db_password" => "enterprise",
