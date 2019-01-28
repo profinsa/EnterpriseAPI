@@ -1521,7 +1521,7 @@ table.dataTable thead .sorting:after {
 }
 .white-box {
   background: #ffffff;
-  padding: 25px;
+  padding: 15px;
   margin-bottom: 15px;
 }
 .white-box .box-title {
@@ -3586,7 +3586,7 @@ Basic List
 .table > tfoot > tr > th,
 .table > thead > tr > td,
 .table > thead > tr > th {
-  padding: 15px 8px;
+  padding: 5px 2px;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
