@@ -31,7 +31,7 @@ class users{
             return false;
         $result = json_decode(json_encode($result), true);
         $result = $result[0];
-        $GLOBALS["capsule"]::insert("INSERT INTO auditlogin(CompanyID,DivisionID,DepartmentID,EmployeeID,LoginDateTime,IPAddress) values('" . $result["CompanyID"] . "','" . $result["DivisionID"] ."','" . $result["DepartmentID"] . "','" . $result["EmployeeID"] . "',CURDATE(),'" . $_SERVER['REMOTE_ADDR'] ."')");
+        $GLOBALS["capsule"]::insert("INSERT INTO auditlogin(CompanyID,DivisionID,DepartmentID,EmployeeID,LoginDateTime,IPAddress) values('" . $result["CompanyID"] . "','" . $result["DivisionID"] ."','" . $result["DepartmentID"] . "','" . $result["EmployeeID"] . "', NOW(),'" . $_SERVER['REMOTE_ADDR'] ."')");
             
         $result["accesspermissions"] = json_decode(json_encode($GLOBALS["capsule"]::select("SELECT * FROM accesspermissions WHERE CompanyID='" . $result["CompanyID"] . "' AND DivisionID='" . $result["DivisionID"] ."' AND DepartmentID='" . $result["DepartmentID"] . "' AND EmployeeID='" . $result["EmployeeID"] . "'")), true)[0];
         $companyName = $GLOBALS["capsule"]::select("SELECT CompanyName from companies WHERE CompanyID='" . $result['CompanyID'] . "'", array());

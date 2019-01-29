@@ -21,7 +21,7 @@
      grid model
      app as model
 
-     Last Modified: 12.21.2018
+     Last Modified: 01.29.2019
      Last Modified by: Nikita Zaharov
 -->
 
@@ -40,6 +40,9 @@
 		return date("m/d/y", strtotime($value));
 		break;
 	    case "text":
+	    case "dateTimeFull" :
+		echo $value;
+		break;
 	    case "dropdown":
 		switch($key){
 		    case "CustomerID" :

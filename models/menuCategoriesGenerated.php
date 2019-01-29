@@ -1849,12 +1849,6 @@ $leftMenu = [
 				"full" => $translation->translateLabel('Employee Security'),
 				"href"=> "EnterpriseASPSystem/CompanySetup/AccessPermissionsList",
 				"short" => "Em"
-			    ],
-			    [
-				"id" => "Payroll/EmployeeManagement/EmployeeLoginHistory",
-				"full" => $translation->translateLabel('Employee Login History'),
-				"href"=> "EnterpriseASPSystem/CompanySetup/AuditLoginHistoryList",
-				"short" => "Em"
 			    ]
 			]
 		    ],

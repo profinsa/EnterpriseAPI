@@ -136,14 +136,18 @@
 					    echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
 					    switch($data->editCategories[$category][$key]["inputType"]){
 						case "imageFile" :
-							echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"uploads/" . $value . "\">";
-							break;
+						    echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"uploads/" . $value . "\">";
+						    break;
 						case "checkbox" :
 						    echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
 						    break;
 						case "timestamp" :
 						case "datetime" :
 						    echo date("m/d/y", strtotime($value));
+						    break;
+						case "dateTimeFull" :
+						    echo $value;
+//						    echo date("Y-m-d H:i:s", strtotime($value));
 						    break;
 						case "text":
 						case "dialogChooser":
@@ -156,8 +160,8 @@
 							echo formatField($data->editCategories[$category][$key], $value);						    break;
 					    }
 					    echo "</td></tr>";
-					}
-				    }
+						    }
+						    }
 				?>
 			    </tbody>
 			</table>
