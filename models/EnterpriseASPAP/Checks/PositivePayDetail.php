@@ -111,19 +111,20 @@ class gridData extends gridDataSource{
         ];
 
         $fileContent = implode(",", $columns) . "\n";
-    
+
         foreach($result as $row){
             if ((strtotime($row->CheckDate) >= strtotime($StartDate)) && (strtotime($row->CheckDate) <= strtotime($EndDate))) {
                 $amount = $row->Amount;
                 if (preg_match('/([-+\d]+)\.(\d+)/', $row->Amount, $numberParts)) {
-                    $amount = preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $numberParts[1]) . '.' . substr($numberParts[2], 0, 2);
+                    $amount = preg_replace('/\B(?=(\d{3})+(?!\d))/', '', $numberParts[1]) . '.' . substr($numberParts[2], 0, 2);
                 }
 
                 $fileContent .= $BankAccountNumber[0]->BankAccountNumber . "," . $row->CheckNumber . "," . date("Y-m-d H:i:s", strtotime($row->CheckDate)) . "," . $amount . "," . "\n";
             }
         }
     
-        return $fileContent;
+        header('Content-Type: application/csv');
+        echo $fileContent;
     }
     
     public function getNewItem($id, $type){            

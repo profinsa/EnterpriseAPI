@@ -41,6 +41,7 @@ class gridData extends autoreportsData{
     public function getReportTypes(){
         $user = Session::get("user");
         $translation = new translation($user["language"]);
+        
         header('Content-Type: application/json');
         echo json_encode(getStandardReportTypes($translation), JSON_PRETTY_PRINT);
     }
