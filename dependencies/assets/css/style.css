@@ -5157,7 +5157,7 @@ ul.list-icons li i {
   border-left: 3px solid #4F5467;
 }
 #side-menu > li > a {
-  padding: 15px 30px 15px 15px;
+  padding: 5px 30px 5px 15px;
 }
 #side-menu > li > a:hover,
 #side-menu > li > a:focus {
@@ -5178,7 +5178,7 @@ ul.list-icons li i {
 .sidebar .arrow {
   position: absolute;
   right: 15px;
-  top: 18px;
+  top: 8px;
 }
 .sidebar .nav-second-level .arrow {
   right: 15px;

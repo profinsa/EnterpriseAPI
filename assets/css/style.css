@@ -117,3 +117,20 @@ adoptation for screen sizes
     content: none !important;
   }
 }
+
+.sidebar .nav-second-level li a {
+    padding: 5px 15px 5px 43px;
+}
+
+.sidebar .nav-second-level .arrow {
+    right: 15px;
+    top: 8px;
+}
+
+.sidebar .nav-third-level li a {
+    padding: 5px 15px 5px 52px;
+}
+
+.sidebar .nav-fourth-level li {
+    padding: 0px 15px 0px 5px;
+}
