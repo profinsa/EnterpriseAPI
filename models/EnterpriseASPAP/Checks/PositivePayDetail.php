@@ -25,12 +25,12 @@
   Calls:
   MySql Database
 
-  Last Modified: 09/14/2017
-  Last Modified by: Tetarenko Eugene
+  Last Modified: 01/29/2018
+  Last Modified by: Nikita Zaharov
 */
 
 
-require "./models/gridDataSource.php";
+require __DIR__ . "/../../gridDataSource.php";
 
 class gridData extends gridDataSource{
     public $dashboardTitle ="Positive Pay";
@@ -94,7 +94,6 @@ class gridData extends gridDataSource{
         $BankAccountNumber = DB::select("SELECT BankAccountNumber from bankaccounts WHERE GLBankAccount='" . $GLBankAccount . "'  AND CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         // paymentsheader.CheckDate > '" . date("Y-m-d H:i:s", $StartDate) . "' AND paymentsheader.CheckDate < '" . date("Y-m-d H:i:s", $EndDate) . "'
-
         $result = DB::select("
         SELECT paymentchecks.CheckNumber, paymentsheader.CheckDate, paymentchecks.Amount
         FROM paymentchecks
@@ -123,8 +122,8 @@ class gridData extends gridDataSource{
                 $fileContent .= $BankAccountNumber[0]->BankAccountNumber . "," . $row->CheckNumber . "," . date("Y-m-d H:i:s", strtotime($row->CheckDate)) . "," . $amount . "," . "\n";
             }
         }
-        echo $fileContent;
-        // return $fileContent;
+    
+        return $fileContent;
     }
     
     public function getNewItem($id, $type){            
