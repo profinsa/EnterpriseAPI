@@ -134,3 +134,13 @@ adoptation for screen sizes
 .sidebar .nav-fourth-level li {
     padding: 0px 15px 0px 5px;
 }
+
+.form-horizontal .form-group {
+    margin-left: 5px;
+    margin-right: -7.5px;
+    margin-bottom: 5px;
+}
+
+.label {
+    margin-top: 5px;
+}
