@@ -1,36 +1,36 @@
 <?php
 /*
-Name of Page: Login
+  Name of Page: Login
 
-Method: This is controller for login page. It contains logic for user verification and captcha generation
+  Method: This is controller for login page. It contains logic for user verification and captcha generation
 
-Date created: Nikita Zaharov, 08.02.2017
+  Date created: Nikita Zaharov, 08.02.2017
 
-Use: controller is used by index.php, load by GET request parameter - page=login.
+  Use: controller is used by index.php, load by GET request parameter - page=login.
 
-The controller is responsible for:
-+ loading data models and rendering login page
-+ user verification and login on request
-+ captcha generating and updating
+  The controller is responsible for:
+  + loading data models and rendering login page
+  + user verification and login on request
+  + captcha generating and updating
 
-Input parameters:
-$app : application instance, object
+  Input parameters:
+  $app : application instance, object
 
-Output parameters:
-$scope: object, used by view, most like model
-$translation: model, it is responsible for translation in view
+  Output parameters:
+  $scope: object, used by view, most like model
+  $translation: model, it is responsible for translation in view
 
-Called from:
-+ index.php
+  Called from:
+  + index.php
 
-Calls:
-models/translation.php
-models/users.php
-models/companies.php
-app from index.php
+  Calls:
+  models/translation.php
+  models/users.php
+  models/companies.php
+  app from index.php
 
-Last Modified: 14.05.2018
-Last Modified by: Nikita Zaharov
+  Last Modified: 30.01.2019
+  Last Modified by: Nikita Zaharov
 */
 
 use Gregwar\Captcha\CaptchaBuilder;
@@ -62,6 +62,7 @@ class controller{
     public function process($app){
         $user = false;
         $users = new users();
+        $config = config();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {//login request process
             $wrong_captcha = false;
             if($_POST["captcha"] != $_SESSION["captcha"])
@@ -103,8 +104,7 @@ class controller{
             $translation = new translation( $_SESSION["user"]["language"]);
             $companies = new companies();
             $scope = $this;
-
-            require 'views/login.php';
+            require "views/{$config["loginForm"]}.php";
         }
     }
 }
