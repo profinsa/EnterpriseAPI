@@ -68,11 +68,16 @@ class controller{
             if($_POST["captcha"] != $_SESSION["captcha"])
                 $wrong_captcha = true;
 
-            if(($user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])) &&
+            if(($config["loginForm"] == "login" ?
+                $user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"]):
+                $user = $users->searchSimple($_POST["name"], $_POST["password"])) &&
                ($user["accesspermissions"]["RestrictSecurityIP"] ? $user["accesspermissions"]["IPAddress"] == $_SERVER['REMOTE_ADDR'] : true) &&
                !$wrong_captcha){//access granted, captcha is matched                 
                 $app->renderUi = false;
-                $user["language"] = $_POST["language"];
+                if($config["loginForm"] == "login")
+                    $user["language"] = $_POST["language"];
+                else
+                    $user["language"] = "English";
                 $_SESSION["user"] = $user;
                 header('Content-Type: application/json');
                 echo json_encode(array(
