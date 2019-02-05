@@ -71,14 +71,16 @@
  }
  //calling procedure from server
 
- function serverProcedureCall(methodName, props, reloadPage, jsonRequest){
+ function serverProcedureCall(methodName, props, reloadPage, jsonRequest, successAlert){
      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, jsonRequest ? JSON.stringify(props) : props, 'text')
       .success(function(data) {
-	  if(reloadPage)
+	  if(successAlert)
+              alert(data);	  
+          if(reloadPage)
 	      onlocation(window.location);
       })
       .error(function(xhr){
-	  alert(xhr.responseText);
+          alert(xhr.responseText);
       });
  }
 

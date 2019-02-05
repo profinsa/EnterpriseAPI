@@ -25,7 +25,7 @@
    Calls:
    MySql Database
     
-   Last Modified: 09/01/2019
+   Last Modified: 05/02/2019
    Last Modified by: Nikita Zaharov
  */
 
@@ -1061,10 +1061,13 @@ class gridData extends gridDataSource{
                                $key != "InvoiceNumber"&&
                                $key != "OrderNumber"&&
                                $key != "EmployeeID"&&
+                               $key != "ShipToID"&&
+                               $key != "TaxBracket"&&
+                               $key != "ReceiptID"&&
                                $key != "PurchaseNumber")
                                 $query .= "NULL,";
                             else
-                                $query .= $pdo->quote($value) . ",";
+                                $query .= ($pdo->quote($value) == "'0000-00-00 00:00:00'" ? "NOW()" : $pdo->quote($value)) . ",";
                         }
                         $query = substr($query, 0, -1);
                         $query .= "),";
@@ -1073,7 +1076,8 @@ class gridData extends gridDataSource{
                     try {
                         DB::insert($query, array());
                     } catch (\Illuminate\Database\QueryException $ex) {
-                        echo 'Выброшено исключение: ',  $ex->getMessage(), "\n";
+                        //http_response_code(500);
+                        //echo 'Exception: ',  $ex->getMessage(), "\n";
                     } //              $response .= $query;
                 }else{
                     foreach($data as $row){
@@ -1090,7 +1094,10 @@ class gridData extends gridDataSource{
                                $key != "ContactLogID"&&
                                $key != "InvoiceNumber"&&
                                $key != "OrderNumber"&&
+                               $key != "ShipToID"&&
                                $key != "EmployeeID"&&
+                               $key != "Industry"&&
+                               $key != "ChartType"&&
                                $key != "PurchaseNumber")
                                 $query .= "NULL,";
                             else
@@ -1101,14 +1108,15 @@ class gridData extends gridDataSource{
                         try {
                             DB::insert($query, array());
                         } catch (\Illuminate\Database\QueryException $ex) {
-                            echo 'Выброшено исключение: ',  $ex->getMessage(), "\n";
+                            //                            http_response_code(500);
+                            //echo 'Exception: ',  $ex->getMessage(), "\n";
                         } //              $response .= $query;
                     }
                 }
             }
         }
 
-        echo "ok";
+        echo "New Company Successfully Created!\nNew Companies are a seperate business entity, please logout and log back into the new company to begin using it";
     }
 
     public function RenameCompany(){
@@ -1162,13 +1170,6 @@ class gridData extends gridDataSource{
         Session::set("user", $user);
         
         echo "ok";
-        /*         if($result[0]->SWP_RET_VALUE == -1) {
-                   echo "error";
-                   return response("failed", 400)->header('Content-Type', 'text/plain');
-                   } else {
-                   echo "ok";
-                   return response("failed", 200)->header('Content-Type', 'text/plain');
-                   }*/
     }
 }
 ?>

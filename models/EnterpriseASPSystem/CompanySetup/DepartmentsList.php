@@ -4,7 +4,7 @@
    
   Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\DepartmentsList.php It provides data from database and default values, column names and categories
    
-  Date created: 02/16/2017  Kenna Fetterman
+  Date created: 02/16/2017 Nikita Zaharov
    
   Use: this model used by views/DepartmentsList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/11/2017
+  Last Modified: 05/02/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -201,8 +201,11 @@ class gridData extends gridDataSource{
         $DepartmentID = $_POST["DepartmentID"];
         $pdo = DB::connection()->getPdo();
         $result = DB::select("select * FROM Departments WHERE CompanyID='{$user["CompanyID"]}' AND DivisionID='{$user["DivisionID"]}' AND DepartmentID='$DepartmentID'", array());
-        if(count($result))
-            return response("Department Already Exists", 400)->header('Content-Type', 'text/plain');
+        if(count($result)){
+            http_response_code(400);
+            echo "Department Already Exists";
+            return;
+        }
                 
         $result = DB::select("show tables", array());
         foreach($result as $key=>$row){
@@ -213,6 +216,17 @@ class gridData extends gridDataSource{
                $row->Tables_in_myenterprise != "dtproperties" &&
                $row->Tables_in_myenterprise != "gl detail by date" &&
                $row->Tables_in_myenterprise != "gl details" &&
+               $row->Tables_in_myenterprise != "customerhistorytransactions" &&
+               $row->Tables_in_myenterprise != "customertransactions" &&
+               $row->Tables_in_myenterprise != "itemhistorytransactions" &&
+               $row->Tables_in_myenterprise != "itemtransactions" &&
+               $row->Tables_in_myenterprise != "jointpaymentsdetail" &&
+               $row->Tables_in_myenterprise != "jointpaymentsheader" &&
+               $row->Tables_in_myenterprise != "payrollcommision" &&
+               $row->Tables_in_myenterprise != "projecthistorytransactions" &&
+               $row->Tables_in_myenterprise != "projecttransactions" &&
+               $row->Tables_in_myenterprise != "vendorhistorytransactions" &&
+               $row->Tables_in_myenterprise != "vendortransactions" &&
                !preg_match("/history$/", $row->Tables_in_myenterprise) &&
                !preg_match("/^audit/", $row->Tables_in_myenterprise) &&
                !preg_match("/^report/", $row->Tables_in_myenterprise) &&
@@ -255,10 +269,13 @@ class gridData extends gridDataSource{
                                $key != "InvoiceNumber"&&
                                $key != "OrderNumber"&&
                                $key != "EmployeeID"&&
+                               $key != "ShipToID"&&
+                               $key != "TaxBracket"&&
+                               $key != "ReceiptID"&&
                                $key != "PurchaseNumber")
                                 $query .= "NULL,";
                             else
-                                $query .= $pdo->quote($value) . ",";
+                                $query .= ($pdo->quote($value) == "'0000-00-00 00:00:00'" ? "NOW()" : $pdo->quote($value)) . ",";
                         }
                         $query = substr($query, 0, -1);
                         $query .= "),";
@@ -267,7 +284,8 @@ class gridData extends gridDataSource{
                     try {
                         DB::insert($query, array());
                     } catch (\Illuminate\Database\QueryException $ex) {
-                        echo 'Выброшено исключение: ',  $ex->getMessage(), "\n";
+                        //http_response_code(500);
+                        //echo 'Exception: ',  $ex->getMessage(), "\n";
                     } //              $response .= $query;
                 }else{
                     foreach($data as $row){
@@ -285,6 +303,9 @@ class gridData extends gridDataSource{
                                $key != "InvoiceNumber"&&
                                $key != "OrderNumber"&&
                                $key != "EmployeeID"&&
+                               $key != "ShipToID"&&
+                               $key != "Industry"&&
+                               $key != "ChartType"&&
                                $key != "PurchaseNumber")
                                 $query .= "NULL,";
                             else
@@ -295,14 +316,15 @@ class gridData extends gridDataSource{
                         try {
                             DB::insert($query, array());
                         } catch (\Illuminate\Database\QueryException $ex) {
-                            echo 'Выброшено исключение: ',  $ex->getMessage(), "\n";
+                            //http_response_code(500);
+                            //echo 'Exeception: ',  $ex->getMessage(), "\n";
                         } //              $response .= $query;
                     }
                 }
             }
         }
 
-        echo "ok";
+        echo "New Department Successfully Created!\nNew Departments are a seperate business entity, please logout and log back into the new company to begin using it";
     }
 }
 ?>

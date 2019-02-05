@@ -58,15 +58,9 @@
 
 <script>
  $('#createCompany').click(function(){
-     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "CreateCompany"); ?>", {
+     serverProcedureCall('CreateCompany', {
          "CompanyID": $('#companyID').val()
-     })
-      .success(function(data) {
-          onlocation(window.location);
-      })
-      .error(function(xhr){
-          alert(xhr.responseText);
-      });
+     }, true, undefined, true);
  });
  
  function createCompany() {

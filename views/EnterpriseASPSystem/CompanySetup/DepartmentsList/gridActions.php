@@ -28,19 +28,13 @@
 </div><!-- /.modal -->
 <script>
  $('#createDepartment').click(function(){
-     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "CreateDepartment"); ?>", {
+     serverProcedureCall('CreateDepartment', {
          "DepartmentID": $('#departmentID').val()
-     })
-      .success(function(data) {
-          onlocation(window.location);
-      })
-      .error(function(xhr){
-          alert(xhr.responseText);
-      });
+     }, true, undefined, true);
  });
  function createDepartment($orderNumber) {
      $('#createDepartmentDialog').modal('show');
-}
+ }
 </script>
 <a class="btn btn-info grid-actions-button" href="javascript:;" onclick="createDepartment()">
     <?php

@@ -28,19 +28,13 @@
 </div><!-- /.modal -->
 <script>
  $('#createDivision').click(function(){
-     $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "CreateDivision"); ?>", {
+     serverProcedureCall('CreateDivision', {
          "DivisionID": $('#divisionID').val()
-     })
-      .success(function(data) {
-          onlocation(window.location);
-      })
-      .error(function(xhr){
-          alert(xhr.responseText);
-      });
+     }, true, undefined, true);
  });
  function createDivision($orderNumber) {
      $('#createDivisionDialog').modal('show');
-}
+ }
 </script>
 <a class="btn btn-info grid-actions-button" href="javascript:;" onclick="createDivision()">
     <?php
