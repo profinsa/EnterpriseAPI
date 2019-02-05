@@ -63,6 +63,8 @@ class controller{
         $user = false;
         $users = new users();
         $config = config();
+        if(key_exists("loginform", $_GET))
+            $config["loginForm"] = $_GET["loginform"]; 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {//login request process
             $wrong_captcha = false;
             if($_POST["captcha"] != $_SESSION["captcha"])

@@ -20,7 +20,7 @@
 	    <div class="cssload-speeding-wheel"></div>
 	</div>
 	<section id="wrapper" class="login">
-	    <div class="login-box login-box-position">
+	    <div class="login-box login-box-position" style="margin-top:10%">
 		<div class="white-box">
 		    <form id="loginform" class="form-horizontal form-material" method="POST">
 			<input type="hidden" name="page" value="login">
@@ -66,7 +66,7 @@
 	<script>
 	 var loginform = $('#loginform');
 	 loginform.submit(function(e){
-	     var req = $.post("index.php?page=login", loginform.serialize(), null, 'json')
+	     var req = $.post("index.php?page=login&loginform=<?php echo $config["loginForm"]; ?>", loginform.serialize(), null, 'json')
 			.success(function(data) {
 			    window.location = "index.php#/?page=dashboard";
 			})
