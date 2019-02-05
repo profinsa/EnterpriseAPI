@@ -71,20 +71,26 @@ class controller{
                 $wrong_captcha = true;
 
             if(($config["loginForm"] == "login" ?
-                $user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"]):
-                $user = $users->searchSimple($_POST["name"], $_POST["password"])) &&
-               ($user["accesspermissions"]["RestrictSecurityIP"] ? $user["accesspermissions"]["IPAddress"] == $_SERVER['REMOTE_ADDR'] : true) &&
-               !$wrong_captcha){//access granted, captcha is matched                 
+               $user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"]) &&
+               ($user["accesspermissions"]["RestrictSecurityIP"] ? $user["accesspermissions"]["IPAddress"] == $_SERVER['REMOTE_ADDR'] : true):
+               $user = $users->searchSimple($_POST["name"], $_POST["password"])) &&
+               !$wrong_captcha){
+                //access granted, captcha is matched
+                $companies = [];
                 $app->renderUi = false;
-                if($config["loginForm"] == "login")
+                if($config["loginForm"] == "login"){
                     $user["language"] = $_POST["language"];
-                else
-                    $user["language"] = "English";
-                $_SESSION["user"] = $user;
+                    $_SESSION["user"] = $user;
+                }else {
+                    $companies = $user;
+                    //    $user["language"] = "English";
+                }
+
                 header('Content-Type: application/json');
                 echo json_encode(array(
+                    "companies" => $companies,
                     "message" =>  "ok"
-                ));
+                ), JSON_PRETTY_PRINT);
             }else{//something wrong: captcha, company, username, password. Generating new captcha
                 $this->captchaBuilder->build();
                 $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();

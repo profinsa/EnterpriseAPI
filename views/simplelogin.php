@@ -16,6 +16,66 @@
 	 }
 	</style>
 	<!-- Preloader -->
+	<div id="chooseDepartmentDialog" class="modal fade  bs-example-modal-lg" tabindex="-1" role="dialog">
+	    <div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+		    <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">
+			    <?php echo $translation->translateLabel("Choose your Company, Division and Department"); ?>
+			</h4>
+		    </div>
+		    <div class="modal-body">
+			<form>
+			    <div class="form-group">
+				<div class="row">
+ 				    <div class="col-xs-6">
+					<label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Company"); ?>:</label>
+				    </div>
+				    <div class="col-xs-6">
+					<select name="company" id="icompany" class="form-control pull-right row b-none" onchange="companySelect(event);">
+					    <option>DEFAULT</option>
+					</select>
+				    </div>
+				</div>
+			    </div>
+			    <div class="form-group">
+				<div class="row">
+ 				    <div class="col-xs-6">
+					<label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Division"); ?>:</label>
+				    </div>
+				    <div class="col-xs-6">
+					<select name="division" id="idivision" class="form-control pull-right row b-none" onchange="divisionSelect(event);">
+					    <option>DEFAULT</option>
+					</select>
+				    </div>
+				</div>
+			    </div>
+			    <div class="form-group">
+				<div class="row">
+ 				    <div class="col-xs-6">
+					<label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Department"); ?>:</label>
+				    </div>
+				    <div class="col-xs-6">
+					<select name="department" id="idepartment" class="form-control pull-right row b-none">
+					    <option>DEFAULT</option>
+					</select>
+				    </div>
+				</div>
+			    </div>
+			</form>
+		    </div>
+		    <div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal" id="chooseDepartment">
+			    <?php echo $translation->translateLabel("Ok"); ?>
+			</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">
+			    <?php echo $translation->translateLabel("Cancel"); ?>
+			</button>
+		    </div>
+		</div><!-- /.modal-content -->
+	    </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 	<div class="preloader">
 	    <div class="cssload-speeding-wheel"></div>
 	</div>
@@ -65,10 +125,22 @@
 	</section>
 	<script>
 	 var loginform = $('#loginform');
+	 var companies, company, division;
 	 loginform.submit(function(e){
 	     var req = $.post("index.php?page=login&loginform=<?php echo $config["loginForm"]; ?>", loginform.serialize(), null, 'json')
 			.success(function(data) {
-			    window.location = "index.php#/?page=dashboard";
+			    $('#chooseDepartmentDialog').modal('show');
+			    companies = data.companies;
+			    var companies_options = '',
+				icompany = $("#icompany")[0],
+				ind;
+
+			    for(ind in companies)
+				companies_options += '<option>' + ind + '</option>';
+
+			    icompany.innerHTML = companies_options;
+			    //			    console.log(data);
+			    //			    window.location = "index.php#/?page=dashboard";
 			})
 			.error(function(err){
 			    var res = err.responseJSON;
@@ -89,6 +161,44 @@
 			});
 	     return false;
 	 });
+	 
+	 $('#chooseDepartment').click(function(){
+	     console.log($('#departmentID').val());
+	     //serverProcedureCall('CreateDepartment', {
+	     //		 "DepartmentID": $('#departmentID').val()
+	     //	     }, true, undefined, true);
+	 });
+
+	 function companySelect(event){
+	     var idivision = $("#idivision")[0],
+		 division_options = '',
+		 ind,
+		 divisions;
+	     
+	     company = event.target.value;
+
+	     divisions = companies[company];
+
+	     for(ind in divisions)
+		 division_options += '<option>' + ind + '</option>';
+	     
+	     idivision.innerHTML = division_options;
+	 }
+
+	 function divisionSelect(event){
+	     var ideparment = $("#idepartments")[0],
+		 department_options = '',
+		 ind,
+		 departments;
+
+	     division = event.target.value;
+
+	     departments = companies[company][division];
+	     
+	     for(ind in departments)
+		 department_options += '<option>' + ind + '</option>';
+	     idepartment.innerHTML = department_options;
+	 }
 	</script>
 	<?php
 	    require 'footer.php';

@@ -47,17 +47,27 @@ class users{
         if(!$result)
             return false;
         $result = json_decode(json_encode($result), true);
-        $result = $result[0];
+        $companies = [];
+        foreach($result as $user){
+            if(!key_exists($user["CompanyID"], $companies))
+                $companies[$user["CompanyID"]] = [];
+            if(!key_exists($user["DivisionID"], $companies[$user["CompanyID"]]))
+                $companies[$user["CompanyID"]][$user["DivisionID"]] = [];
+            if(!key_exists($user["DepartmentID"], $companies[$user["CompanyID"]][$user["DivisionID"]]))
+                $companies[$user["CompanyID"]][$user["DivisionID"]][$user["DepartmentID"]] = $user["EmployeeID"];
+                                                                    //            $companies[$user["CompanyID"]] = $user;
+        }
+        /*        $result = $result[0];
         $GLOBALS["capsule"]::insert("INSERT INTO auditlogin(CompanyID,DivisionID,DepartmentID,EmployeeID,LoginDateTime,IPAddress) values('" . $result["CompanyID"] . "','" . $result["DivisionID"] ."','" . $result["DepartmentID"] . "','" . $result["EmployeeID"] . "', NOW(),'" . $_SERVER['REMOTE_ADDR'] ."')");
             
         $result["accesspermissions"] = json_decode(json_encode($GLOBALS["capsule"]::select("SELECT * FROM accesspermissions WHERE CompanyID='" . $result["CompanyID"] . "' AND DivisionID='" . $result["DivisionID"] ."' AND DepartmentID='" . $result["DepartmentID"] . "' AND EmployeeID='" . $result["EmployeeID"] . "'")), true)[0];
         $companyName = $GLOBALS["capsule"]::select("SELECT CompanyName from companies WHERE CompanyID='" . $result['CompanyID'] . "'", array());
         if(!$companyName)
             return false;
-        $companyName = json_decode(json_encode($companyName), true);
-        $result['CompanyName'] = $companyName[0]['CompanyName'];
-        $result['selectedCompany'] = $companyName[0]['CompanyName'];
-        return $result;
+            $companyName = json_decode(json_encode($companyName), true);*/
+        //$result['CompanyName'] = $companyName[0]['CompanyName'];
+        //$result['selectedCompany'] = $companyName[0]['CompanyName'];
+        return $companies;
     }
 
     //login user from GET parameters like that index.php?CompanyID=Noxxan&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo
