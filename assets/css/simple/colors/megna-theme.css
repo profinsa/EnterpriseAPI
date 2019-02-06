@@ -1,0 +1,67 @@
+.navbar-inverse {
+    background-color: #e8eced !important;
+    border-color: transparent;
+}
+
+@media screen and (min-width: 768px) {
+    /* #header .navbar-header {
+        background-color: #01c0c8;
+    } */
+
+    #header .navbar-right {
+        background-color: #01c0c8 !important;
+    }
+}
+
+.sidebar-toggler{
+    background:#e8eced !important;
+}
+
+div.sidebar-toggler a{
+    color:black !important;
+    text-decoration:none;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: gray;
+}
+
+.navbar-inverse .navbar-nav>li.sidebar-active>a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+    color: black;
+    background-color: transparent;
+}
+
+li.top-bar-link .dropdown-toggle{
+    color:white !important;
+}
+li.top-bar-link .dropdown-toggle:hover{
+    color:black !important;
+}
+
+.bs-glyphicons {
+    background-color: #01c0c8 !important;
+}
+
+.bs-glyphicons li {
+    background-color: #01c0c8;
+    color: white !important;
+}
+
+.bs-glyphicons li:hover {
+    color:black !important;
+}
+
+.bs-glyphicons li a{
+    background-color: #01c0c8;
+    color: white !important;
+}
+
+.bs-glyphicons li a:hover {
+    color:black !important;
+    text-decoration: none;
+}
+
