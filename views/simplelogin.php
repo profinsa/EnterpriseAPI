@@ -33,7 +33,7 @@
 					<label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Company"); ?>:</label>
 				    </div>
 				    <div class="col-xs-6">
-					<select name="company" id="icompany" class="form-control pull-right row b-none" onchange="companySelect(event);">
+					<select name="company" id="icompany" class="form-control pull-right row b-none" onchange="companySelect(event.target.value);">
 					    <option>DEFAULT</option>
 					</select>
 				    </div>
@@ -45,7 +45,7 @@
 					<label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Division"); ?>:</label>
 				    </div>
 				    <div class="col-xs-6">
-					<select name="division" id="idivision" class="form-control pull-right row b-none" onchange="divisionSelect(event);">
+					<select name="division" id="idivision" class="form-control pull-right row b-none" onchange="divisionSelect(event.target.value);">
 					    <option>DEFAULT</option>
 					</select>
 				    </div>
@@ -139,6 +139,11 @@
 				companies_options += '<option>' + ind + '</option>';
 
 			    icompany.innerHTML = companies_options;
+			    var companyName = Object.keys(companies)[0],
+				divisionName = Object.keys(companies[companyName])[0];
+			    
+			    companySelect(companyName);
+			    divisionSelect(divisionName);
 			    //			    console.log(data);
 			    //			    window.location = "index.php#/?page=dashboard";
 			})
@@ -169,35 +174,37 @@
 	     //	     }, true, undefined, true);
 	 });
 
-	 function companySelect(event){
+	 function companySelect(value){
 	     var idivision = $("#idivision")[0],
 		 division_options = '',
 		 ind,
 		 divisions;
-	     
-	     company = event.target.value;
 
+	     company = value;
 	     divisions = companies[company];
 
 	     for(ind in divisions)
 		 division_options += '<option>' + ind + '</option>';
 	     
 	     idivision.innerHTML = division_options;
+
+	     divisionSelect(Object.keys(companies[company])[0]);
 	 }
 
-	 function divisionSelect(event){
+	 function divisionSelect(value){
+	     console.log('eee');
 	     var ideparment = $("#idepartments")[0],
 		 department_options = '',
 		 ind,
 		 departments;
 
-	     division = event.target.value;
-
+	     division = value;
 	     departments = companies[company][division];
 	     
 	     for(ind in departments)
 		 department_options += '<option>' + ind + '</option>';
 	     idepartment.innerHTML = department_options;
+	     console.log(department_options);
 	 }
 	</script>
 	<?php
