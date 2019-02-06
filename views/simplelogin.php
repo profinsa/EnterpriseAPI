@@ -144,7 +144,10 @@
 			    
 			    companySelect(companyName);
 			    divisionSelect(divisionName);
-			    if(Object.keys(companies).length == 1)
+			    if(Object.keys(companies).length == 1 &&
+			       Object.keys(companies[companyName]).length &&
+			       Object.keys(companies[companyName][divisionName]).length
+			    )
 				loginAfterCompanyChoose();
 			    else
 				$('#chooseDepartmentDialog').modal('show');
