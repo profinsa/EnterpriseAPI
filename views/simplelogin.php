@@ -22,7 +22,7 @@
 		    <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<h4 class="modal-title">
-			    <?php echo $translation->translateLabel("Choose your Company, Division and Department"); ?>
+			    <?php echo $translation->translateLabel("Choose Company"); ?>
 			</h4>
 		    </div>
 		    <div class="modal-body">
@@ -130,7 +130,6 @@
 	 loginform.submit(function(e){
 	     var req = $.post("index.php?page=login&loginform=<?php echo $config["loginForm"]; ?>", loginform.serialize(), null, 'json')
 			.success(function(data) {
-			    $('#chooseDepartmentDialog').modal('show');
 			    companies = data.companies;
 			    var companies_options = '',
 				icompany = $("#icompany")[0],
@@ -145,6 +144,10 @@
 			    
 			    companySelect(companyName);
 			    divisionSelect(divisionName);
+			    if(Object.keys(companies).length == 1)
+				loginAfterCompanyChoose();
+			    else
+				$('#chooseDepartmentDialog').modal('show');
 			    //			    console.log(data);
 			    //			    window.location = "index.php#/?page=dashboard";
 			})
@@ -167,8 +170,8 @@
 			});
 	     return false;
 	 });
-	 
-	 $('#chooseDepartment').click(function(){
+
+	 function loginAfterCompanyChoose(){
 	     var loginform = $('#loginform'),
 		 companyform = $('#companyform');
 	     console.log(companyform.serialize());
@@ -180,8 +183,8 @@
 	     //serverProcedureCall('CreateDepartment', {
 	     //		 "DepartmentID": $('#departmentID').val()
 	     //	     }, true, undefined, true);
-	 });
-
+	 }
+	 
 	 function companySelect(value){
 	     var idivision = $("#idivision")[0],
 		 division_options = '',
@@ -212,6 +215,8 @@
 		 department_options += '<option>' + ind + '</option>';
 	     idepartment.innerHTML = department_options;
 	 }
+	 
+	 $('#chooseDepartment').click(loginAfterCompanyChoose);
 	</script>
 	<?php
 	    require 'footer.php';
