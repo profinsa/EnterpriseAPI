@@ -7,7 +7,7 @@
             <li>
                 <div class="row">
                     <div class="col-md-6" style="width: 70px">
-                        <img id="mini_avatar" style="cursor: pointer" onclick="changeAvatarOpen()" class="img-responsive user-photo" src="<?php echo $user['PictureURL'] ? $public_prefix . '\uploads\\' . $user['PictureURL'] : $public_prefix . '/assets/images/avatar_2x.png'; ?>">
+                        <img id="mini_avatar" style="cursor: pointer" onclick="changeAvatarOpen()" class="img-responsive user-photo" src="<?php echo $user['PictureURL'] ? 'uploads\\' . $user['PictureURL'] : 'assets/images/avatar_2x.png'; ?>">
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
@@ -20,7 +20,7 @@
                     </div>                        
                     <div class="form-group">
                         <label><?php echo $translation->translateLabel('Email Address'); ?></label>
-                        <p><?php echo $user["email"];?></p>
+			<p><?php echo (key_exists("email", $user) ? $user["email"] : "");?></p>
                     </div>                        
                 </div>
                 <div>
@@ -40,13 +40,12 @@
                     <?php echo $translation->translateLabel('Release Record Locks'); ?>
                 </a>
                 <form id="lockData" class="form-material form-horizontal m-t-30">
-                    <?php echo csrf_field(); ?>
                     <input type="hidden" name="category" value="Main" />
                     <input type="hidden" name="EmployeeID"  value="<?php echo $user["EmployeeID"]; ?>" />
                 </form>
             </li>
             <li>
-            <a href="<?php echo $public_prefix; ?>/login" class="nav-link">
+            <a href="index.php?page=login" class="nav-link">
                 <?php echo $translation->translateLabel('Log out'); ?>
             </a>
             </li>
@@ -91,7 +90,6 @@
      localStorage.setItem('gridViewDefaultRowsInGrid', gridViewDefaultRowsInGrid = 10);
  
  $(document).ready(function () {
-     var prefix = "<?php echo $public_prefix; ?>";
      var showLeftMenu = localStorage.getItem('showLeftMenu');
 
      if (showLeftMenu == "true") {
@@ -127,13 +125,13 @@
 //      if ($('#iconbar-control').prop("checked")) {
 //          $('.bs-glyphicons').show();
 //          setTimeout(function() {
-//             $('#view_css').attr('href', prefix + '/assets/css/views/iconbar.css');
+//             $('#view_css').attr('href', 'assets/css/views/iconbar.css');
 //         }, 0);
 
 //      } else {
 //          $('.bs-glyphicons').hide();
 //          setTimeout(function() {
-//             $('#view_css').attr('href', prefix + '/assets/css/views/standart.css');
+//             $('#view_css').attr('href', 'assets/css/views/standart.css');
 //         }, 0);
 
 //      }
@@ -152,9 +150,8 @@
 
  function changeTheme(event) {
      localStorage.setItem("theme", event.target.className);
-     var prefix = "<?php echo $public_prefix; ?>";
      $('.working').removeClass('working');
-     $('#theme_css').attr('href', prefix + '/assets/css/colors/' + event.target.className + '.css');
+     $('#theme_css').attr('href', 'assets/css/colors/' + event.target.className + '.css');
      $(event.target).addClass('working');
  }
 

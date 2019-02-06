@@ -85,9 +85,9 @@
 		    <div class="left-iconbar-collapse collapse navbar-collapse navbar-body"  style="height: 100% !important;">
 			<?php
 			    require "nav/sidebar.php";
-			    /*			require "nav/topbar.php";
-			       require "nav/right-sidebar.php";
-			       require "nav/favbar.php";*/
+			    require "nav/topbar.php";
+			    require "nav/right-sidebar.php";
+			    require "nav/favbar.php";
 			?>
 		    </div>
 		</div>

@@ -8,10 +8,9 @@
     <div class="modal-body">
         <div style="margin-top:10px;"></div>
         <form class="form-material form-horizontal m-t-30">
-        <?php echo csrf_field(); ?>
         <div class="row">
         <div class="col-md-6 col-xs-6">
-            <img id="avatar_preview" class="img-responsive user-photo" src="<?php echo $user['PictureURL'] ? $public_prefix . '\uploads\\' . $user['PictureURL'] : $public_prefix . '/assets/images/avatar_2x.png'; ?>">
+            <img id="avatar_preview" class="img-responsive user-photo" src="<?php echo $user['PictureURL'] ? 'uploads\\' . $user['PictureURL'] : 'assets/images/avatar_2x.png'; ?>">
         </div>
         <div class="col-md-6 col-xs6">
             <!-- <input class="file_attachment" type="hidden" name="profile_image_input" id="profile_image_input" value="" /> -->
@@ -38,7 +37,7 @@
         var avatar = $('#avatar_attachment');
         avatar.val("");
         // $('#avatar_preview')
-        //             .attr('src', "<?php echo $public_prefix; ?>/assets/images/avatar_2x.png")
+        //             .attr('src', "assets/images/avatar_2x.png")
         //             .width(176)
         //             .height(176);
     }
@@ -70,7 +69,7 @@
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
             });
         $.ajax({
-        url : '<?php echo $public_prefix; ?>/upload.php',
+        url : 'upload.php',
         type : 'POST',
         data : formData,
         processData: false,  // tell jQuery not to process the data
@@ -91,7 +90,7 @@
                 $('#change-avatar-dialog').modal('hide');
                 var timestamp = new Date().getTime();
                 $('#mini_avatar')
-                            .attr('src', "<?php echo $public_prefix . '/uploads/'?>" + res[0] + '?' +timestamp );
+                            .attr('src', "'uploads/'?>" + res[0] + '?' +timestamp );
 
             })
             .error(function(err){

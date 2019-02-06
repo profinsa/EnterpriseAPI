@@ -1,6 +1,7 @@
 <ul id="topbarMenu" class="nav navbar navbar-nav navbar-right top-bar hide-on-handsheld" style="width: 100% !important; padding-left: 10px; z-index:100">
-    <?php    
-	foreach ($menuCategories as $key=>$item){
+    <?php
+        $public_prefix = "";
+	foreach ($leftMenu["Main"]["data"] as $key=>$item){
             if($item["type"] == "submenu" && $security->checkMenu($item["id"])){
 		echo "<li class=\"dropdown top-bar-link\">";
 		echo "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded\"false\">"  . $item["full"] . "</a>";
@@ -86,9 +87,9 @@
              </a>
              
              <ul class="dropdown-menu pull-right" style="width: 300px">
-             <li><a href="<?php echo $linksMaker->makeEmbeddedgridItemNewLinkWithDirectBack("Payroll/EmployeeSetup/ViewTaskList", "$public_prefix/index#/dashboard", "new", "") ?>" class="nav-link">Add Task</a></li>
-             <li><a href="<?php echo $linksMaker->makeEmbeddedgridItemNewLinkWithDirectBack("CRMHelpDesk/CRM/ViewLeads", "$public_prefix/index#/dashboard", "new", "") ?>" class="nav-link">Add Follow-up</a></li>
-             <li><a href="<?php echo $linksMaker->makeEmbeddedgridItemNewLinkWithDirectBack("AccountsReceivable/Customers/ViewCustomers", "$public_prefix/index#/dashboard", "new", "") ?>" class="nav-link">Add Customer Contact</a></li>
+             <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBackPayroll/EmployeeSetup/ViewTaskList\", \"$public_prefix/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Task</a></li>
+             <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(CRMHelpDesk/CRM/ViewLeads\", \"$public_prefix/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Follow-up</a></li>
+             <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(AccountsReceivable/Customers/ViewCustomers, $public_prefix/index#/dashboard, new, )" ?>" class="nav-link">Add Customer Contact</a></li>
              </ul>
 	     </li>
              <li class="top-bar-link2 float-right">

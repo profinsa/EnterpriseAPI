@@ -153,7 +153,7 @@
         var shortcutsRaw = localStorage.getItem('shortcuts');
         var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
 
-        var hh = "<?php echo $public_prefix; ?>" + "/index#/grid/" + id + "/grid/Main/all";
+        var hh = "index#/grid/" + id + "/grid/Main/all";
         $('#MyShortcuts').append(
             '<li id="' + id + '"style="height:60px; width: 100%"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" href="' + hh + '" class="nav-link">' + shortcuts[id].label + '</a></li>'
         );
