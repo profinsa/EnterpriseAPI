@@ -26,7 +26,7 @@
 			</h4>
 		    </div>
 		    <div class="modal-body">
-			<form>
+			<form id="companyform">
 			    <div class="form-group">
 				<div class="row">
  				    <div class="col-xs-6">
@@ -83,6 +83,7 @@
 	    <div class="login-box login-box-position" style="margin-top:10%">
 		<div class="white-box">
 		    <form id="loginform" class="form-horizontal form-material" method="POST">
+			<input type="hidden" name="language" value="English">
 			<input type="hidden" name="page" value="login">
 			<div class="row" style="padding-bottom:20px">
 			    <div class="col-md-4"></div>
@@ -168,7 +169,14 @@
 	 });
 	 
 	 $('#chooseDepartment').click(function(){
-	     console.log($('#departmentID').val());
+	     var loginform = $('#loginform'),
+		 companyform = $('#companyform');
+	     console.log(companyform.serialize());
+	     var req = $.post("index.php?page=login", loginform.serialize() + "&" + companyform.serialize(), null, 'json')
+			.success(function(data) {
+			    window.location = "index.php#/?page=dashboard";
+			});
+	     //		 console.log($('#departmentID').val());
 	     //serverProcedureCall('CreateDepartment', {
 	     //		 "DepartmentID": $('#departmentID').val()
 	     //	     }, true, undefined, true);
@@ -192,7 +200,6 @@
 	 }
 
 	 function divisionSelect(value){
-	     console.log('eee');
 	     var ideparment = $("#idepartments")[0],
 		 department_options = '',
 		 ind,
@@ -204,7 +211,6 @@
 	     for(ind in departments)
 		 department_options += '<option>' + ind + '</option>';
 	     idepartment.innerHTML = department_options;
-	     console.log(department_options);
 	 }
 	</script>
 	<?php

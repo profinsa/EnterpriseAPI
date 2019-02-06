@@ -71,7 +71,7 @@ class controller{
                 $wrong_captcha = true;
 
             if(($config["loginForm"] == "login" ?
-               $user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"]) &&
+                ($user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])) &&
                ($user["accesspermissions"]["RestrictSecurityIP"] ? $user["accesspermissions"]["IPAddress"] == $_SERVER['REMOTE_ADDR'] : true):
                $user = $users->searchSimple($_POST["name"], $_POST["password"])) &&
                !$wrong_captcha){
