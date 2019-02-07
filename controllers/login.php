@@ -69,7 +69,7 @@ class controller{
             $wrong_captcha = false;
             if($_POST["captcha"] != $_SESSION["captcha"])
                 $wrong_captcha = true;
-
+            $interface = $_SESSION["user"]["interface"];
             if(($config["loginForm"] == "login" ?
                 ($user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])) &&
                ($user["accesspermissions"]["RestrictSecurityIP"] ? $user["accesspermissions"]["IPAddress"] == $_SERVER['REMOTE_ADDR'] : true):
@@ -86,6 +86,7 @@ class controller{
                     //    $user["language"] = "English";
                 }
 
+                $_SESSION["user"]["interface"] = $interface;
                 header('Content-Type: application/json');
                 echo json_encode(array(
                     "companies" => $companies,
@@ -114,9 +115,11 @@ class controller{
                 $_SESSION["user"] = ["language" => "English"];
 
             $this->user = $_SESSION["user"];
+            $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
             $translation = new translation( $_SESSION["user"]["language"]);
             $companies = new companies();
             $scope = $this;
+
             require "views/{$config["loginForm"]}.php";
         }
     }

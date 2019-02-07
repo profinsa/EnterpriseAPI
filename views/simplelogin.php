@@ -1,7 +1,7 @@
 <!DOCTYPE html>  
 <html lang="en">
     <?php
-	require 'header.php';
+	require 'interfaces/default/header.php';
     ?>
     <body>
 	<style>
@@ -222,7 +222,7 @@
 	 $('#chooseDepartment').click(loginAfterCompanyChoose);
 	</script>
 	<?php
-	    require 'footer.php';
+	    require 'interfaces/default/footer.php';
 	?>
     </body>
 </html>

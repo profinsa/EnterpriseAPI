@@ -27,7 +27,7 @@
   models/translation.php
   app from index.php
 
-  Last Modified: 07.04.2016
+  Last Modified: 07.02.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -51,8 +51,8 @@ class controller{
                                    $defaultUser["Division"],
                                    $defaultUser["Department"]);                 
                                    
+            $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
             $translate = new translation($defaultUser["Language"]);
-
             
             $language = (!empty($_GET['language'])) ? $_GET['language'] : $defaultUser["Language"];
             $language = in_array($language, $translate->languages) ? $language : $defaultUser["Language"];
