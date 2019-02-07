@@ -151,7 +151,7 @@
  function changeTheme(event) {
      localStorage.setItem("theme", event.target.className);
      $('.working').removeClass('working');
-     $('#theme_css').attr('href', 'assets/css/colors/' + event.target.className + '.css');
+     $('#theme_css').attr('href', 'assets/css/simple/colors/' + event.target.className + '.css');
      $(event.target).addClass('working');
  }
 

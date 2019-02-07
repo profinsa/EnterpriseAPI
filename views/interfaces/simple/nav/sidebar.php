@@ -3,14 +3,9 @@
         <?php
                                         $public_prefix = '';
             $iconbarCategories = [
-                "Accounting" => [
-                    "label" => $translation->translateLabel('ACCOUNTING'),
-                    "link" => $public_prefix . "/index#/dashboard",
-                    "iconclass" => "calendar"
-                ],
                 "Customer" => [
                     "label" => $translation->translateLabel('CUSTOMER'),
-                    "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomers/grid/Main/all",
+                    "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
                     "iconclass" => "user",
                     "topbar" => [
                         "Add Customer" => [
@@ -26,84 +21,19 @@
                                 "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomerFinancials/grid/Main/all",
                                 "label" => $translation->translateLabel('View Customer Financials'),
                                 ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewShipToLocations/grid/Main/all",
-                                "label" => $translation->translateLabel('View Ship To Locations'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewShipForLocations/grid/Main/all",
-                                "label" => $translation->translateLabel('View Ship For Locations'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCreditReferences/grid/Main/all",
-                                "label" => $translation->translateLabel('View Credit References'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomerContacts/grid/Main/all",
-                                "label" => $translation->translateLabel('View Customer Contacts'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewContactLog/grid/Main/all",
-                                "label" => $translation->translateLabel('View Contact Log'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewComments/grid/Main/all",
-                                "label" => $translation->translateLabel('View Comments'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCommentTypes/grid/Main/all",
-                                "label" => $translation->translateLabel('View Comment Types'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewAccountStatus/grid/Main/all",
-                                "label" => $translation->translateLabel('View Account Status'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewItemXref/grid/Main/all",
-                                "label" => $translation->translateLabel('View Item Xref'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewPriceXref/grid/Main/all",
-                                "label" => $translation->translateLabel('View Price Xref'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomerReferences/grid/Main/all",
-                                "label" => $translation->translateLabel('View Customer References'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomerSatisfactions/grid/Main/all",
-                                "label" => $translation->translateLabel('View Customer Satisfactions'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomerTypes/grid/Main/all",
-                                "label" => $translation->translateLabel('View Customer Types'),
-                                ]
                         ],
                         "Reports" => [
                             [
                                 "link" => $public_prefix . "/index#/autoreports/RptListCustomerInformation?id=1202975512&title=Customer Information",
                                 "label" => $translation->translateLabel("Information"),
-                            ],
-                            [
-                                "link" => $public_prefix . "/index#/autoreports/RptListCustomerCreditReferences?id=1170975398&title=Customer Credit References",
-                                "label" => $translation->translateLabel("Credit References"),
-                            ],
-                            [
-                                "link" => $public_prefix . "/index#/autoreports/RptListCustomerShipForLocations?id=1250975683&title=Customer Ship For Locations",
-                                "label" => $translation->translateLabel("Ship For Locations"),
-                            ],
-                            [
-                                "link" => $public_prefix . "/index#/autoreports/RptListCustomerShipToLocations?id=1266975740&title=Customer Ship To Locations",
-                                "label" => $translation->translateLabel("Ship To Locations"),
-                            ],
-                          
+                            ]
                         ]
 
                     ]
                 ],
-                "Vehicle" => [
+                "Vendor" => [
                     "label" => $translation->translateLabel('Vendor'),
-                    "link" => $public_prefix . "/index#/grid/Inventory/Vehicles/ViewVehicles/grid/Main/all",
+                    "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
                     "iconclass" => "user",
                     "topbar" => [
                         "Add Vehicle" => [
@@ -129,6 +59,26 @@
 
                     ]
                 ],
+                "Items" => [
+                    "label" => $translation->translateLabel('Items'),
+                    "link" => "index.php#/?page=dashboard",
+                    "iconclass" => "list",
+                    "topbar" => [
+                        "Counter Sale" => [
+                            "link" => $public_prefix . "/index#/grid/Inventory/PartsDepartment/PartsInvoice/new/Main/new",
+                            "label" => $translation->translateLabel('Counter Sale')
+                        ],
+                        "Setup" => [
+                            "node" => "Inventory",
+                        ],
+                        "Reports" => [
+                            [
+                                "link" => $public_prefix . "/index#/autoreports/RptListParts?id=1554973463&title=Parts",
+                                "label" => $translation->translateLabel('Parts'),
+                                ],
+                        ],
+                    ],
+                ],
                 "Sales" => [
                     "label" => $translation->translateLabel('SALES'),
                     "iconclass" => "list-alt",
@@ -151,21 +101,6 @@
                             "label" => $translation->translateLabel('Desking'),
                             "link" => $public_prefix . "/index#/dashboard?screen=Desking",
                         ],
-                        "Floor Plan" => [
-                            "label" => $translation->translateLabel('Floor Plan'),
-                            "link" => $public_prefix . "/index#/dashboard?screen=FloorPlan",
-                        ],
-                        "FI" => [
-                            "label" => $translation->translateLabel('F & I'),
-                            "link" => $public_prefix . "/index#/dashboard?screen=FI",
-                        ],
-                        "BHPH Payment" => [
-                            "label" => $translation->translateLabel('BHPH Payment'),
-                            "link" => $public_prefix . "/index#/dashboard?screen=BuyHerePayHere",
-                        ],            
-                        "Setup" => [
-                            "node" => "AccountsReceivable",
-                        ],
                         "Reports" => [
                             [
                             "link"=> $public_prefix . "/index#/autoreports/RptSalesCustomerSalesDetail?id=479496937&title=Customer Sales Detail",
@@ -176,270 +111,23 @@
                             "link"=> $public_prefix . "/index#/autoreports/RptSalesCustomerSalesSummary?id=1834645779&title=Customer Sales Summary",
                             "label"=> $translation->translateLabel("Sales Summary"),
                             ],
-
-                            [
-                            "link"=> $public_prefix . "/index#/autoreports/RptSalesProfitibilityByCustomer?id=1091847302&title=Profitibility By Customer",
-                            "label"=> $translation->translateLabel("Profit by Customer"),
-                            ],
-
-                            [
-                            "link"=> $public_prefix . "/index#/autoreports/RptSalesProfitibilityByInvoice?id=1107847359&title=Profitibility By Invoice",
-                            "label"=> $translation->translateLabel("Profit By Invoice"),
-                            ],
-
                         ]
                     ],
 
                 ],
-                /*                "Service" => [
-                    "label" => $translation->translateLabel('SERVICE'),
-                    "link" => $public_prefix . "/index#/dashboard?screen=ServiceManager",
-                    "iconclass" => "briefcase",
-                    "topbar" => [
-                        "Add RO" => [
-                            "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceProcessing/ViewServiceOrders/new/Main/new",
-                            "label" => $translation->translateLabel('Add RO')
-                        ],
-                        "Lend Car" => [
-                        ],
-                        "Setup" => [
-                            [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceProcessing/ViewServiceOrders/grid/Main/all",
-                                "label" => $translation->translateLabel('View Repair Orders'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceProcessing/FulfillServiceOrders/grid/Main/all",
-                                "label" => $translation->translateLabel('Fulfill Repair Orders'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceProcessing/PerformServiceOrders/grid/Main/all",
-                                "label" => $translation->translateLabel('Perform Repair Orders'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceProcessing/InvoiceServiceOrders/grid/Main/all",
-                                "label" => $translation->translateLabel('Invoice Repair Orders'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceProcessing/ViewServiceInvoices/grid/Main/all",
-                                "label" => $translation->translateLabel('View Repair Invoices'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/ViewServiceQuotes/grid/Main/all",
-                                "label" => $translation->translateLabel('View Repair Estimates'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/ViewServiceOrders/grid/Main/all",
-                                "label" => $translation->translateLabel('View Repair Orders'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/ServiceOrdersonHold/grid/Main/all",
-                                "label" => $translation->translateLabel('Repair Orders on Hold'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/ClosedServiceOrders/grid/Main/all",
-                                "label" => $translation->translateLabel('Closed Repair Orders'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/ServiceOrderHistory/grid/Main/all",
-                                "label" => $translation->translateLabel('Repair Order History'),
-                                ],
-
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/FulfillServiceOrders/grid/Main/all",
-                                "label" => $translation->translateLabel('Fulfill Repair Orders'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/PerformServiceOrders/grid/Main/all",
-                                "label" => $translation->translateLabel('Perform Repair Orders'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/InvoiceServiceOrders/grid/Main/all",
-                                "label" => $translation->translateLabel('Invoice Repair Orders'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/ViewServiceInvoices/grid/Main/all",
-                                "label" => $translation->translateLabel('View Repair Invoices'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/ClosedServiceInvoices/grid/Main/all",
-                                "label" => $translation->translateLabel('Closed Repair Invoices'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/ServiceScreens/ServiceInvoiceHistory/grid/Main/all",
-                                "label" => $translation->translateLabel('Repair Invoice History'),
-                                ],
-                        
-                                ],
-                        "Reports" => [
-                            [
-                                "link" => $public_prefix . "/index#/autoreports/RptListServiceOrders?id=190699898&title=Service Orders",
-                                "label" => $translation->translateLabel("Service Orders"),
-                            ],    
-                            [
-                            "link" => $public_prefix . "/index#/autoreports/RptListOrderHeader?id=1906978020&title=Order Headers",
-                            "label" => $translation->translateLabel("Order Headers"),
-                            ],
-                            [
-                            "link" => $public_prefix . "/index#/autoreports/RptListOrderDetail?id=1890977963&title=Order Detail Items",
-                            "label" => $translation->translateLabel("Order Detail"),
-                            ],
-                            [
-                            "link" => $public_prefix . "/index#/autoreports/RptListOrderTypes?id=1922978077&title=Order Types",
-                            "label" => $translation->translateLabel("Order Types"),
-                            ],
-                            [
-                            "link" => $public_prefix . "/index#/autoreports/RptListInvoiceHeader?id=1698977279&title=Invoice Headers",
-                            "label" => $translation->translateLabel("Invoice Headers"),
-                            ],
-                            [
-                            "link" => $public_prefix . "/index#/autoreports/RptListInvoiceDetail?id=1682977222&title=Invoice Detail Items",
-                            "label" => $translation->translateLabel("Invoice Detail Items"),
-                            ],
-                        ],
-
-                    ]
-
-                    ],*/
-                "Parts" => [
-                    "label" => $translation->translateLabel('Items'),
-                    "link" => $public_prefix . "/index#/dashboard?screen=Parts",
-                    "iconclass" => "list",
-                    "topbar" => [
-                        "Counter Sale" => [
-                            "link" => $public_prefix . "/index#/grid/Inventory/PartsDepartment/PartsInvoice/new/Main/new",
-                            "label" => $translation->translateLabel('Counter Sale')
-                        ],
-                        "Add Part" => [
-                            "link" => $public_prefix . "/index#/grid/Inventory/PartsDepartment/EnterViewParts/new/Main/new",
-                            "label" => $translation->translateLabel('Add Part')
-                        ],
-                        "Check Stock" => [
-                            "link" => $public_prefix . "/index#/grid/Inventory/PartsDepartment/PartsLookup/grid/Main/all",
-                            "label" => $translation->translateLabel('Check Stock')
-                        ],
-                        "Order Part" => [
-                            "link" => $public_prefix . "/index#/grid/Inventory/PartsDepartment/PurchaseParts/new/Main/new",
-                            "label" => $translation->translateLabel('Order Part')
-                        ],
-                        "Receive Part" => [
-                            "link" => $public_prefix . "/index#/grid/Inventory/PartsDepartment/ReceivePart/grid/Main/all",
-                            "label" => $translation->translateLabel('Receive Part')
-                        ],
-                        "Adjustment" => [
-                            "link" => $public_prefix . "/index#/grid/Inventory/InventoryAdjustments/ViewAdjustments/new/Main/new",
-                            "label" => $translation->translateLabel('Adjustment')
-                        ],
-                        "Setup" => [
-                            "node" => "Inventory",
-                        ],
-                        "Reports" => [
-                            [
-                                "link" => $public_prefix . "/index#/autoreports/RptListParts?id=1554973463&title=Parts",
-                                "label" => $translation->translateLabel('Parts'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/autoreports/RptListInventoryByWarehouse?id=1554976766&title=Inventory By Warehouse",
-                                "label" => $translation->translateLabel('Inventory By Warehouse'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/autoreports/RptInventoryLowStockAlert?id=546973175&title=Inventory Low Stock Alert",
-                                "label" => $translation->translateLabel('Low Stock Alert'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/autoreports/RptListInventoryItems?id=1031323084&title=Items",
-                                "label" => $translation->translateLabel('Items'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/autoreports/RptListInventoryCategories?id=1570976823&title=Item Categories",
-                                "label" => $translation->translateLabel('Item Categories'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/autoreports/RptListInventoryFamilies?id=1586976880&title=Item Families",
-                                "label" => $translation->translateLabel('Item Families'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/autoreports/RptListInventoryItemTypes?id=1602976937&title=Item Types",
-                                "label" => $translation->translateLabel('Item Types'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/autoreports/RptListInventoryPricingCode?id=1634977051&title=Item Pricing Codes",
-                                "label" => $translation->translateLabel('Item Pricing Codes'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/autoreports/RptListInventoryPricingMethods?id=1650977108&title=Item Pricing Methods",
-                                "label" => $translation->translateLabel('Item Pricing Methods'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/autoreports/RptListInventorySerialNumbers?id=1666977165&title=Item Serial Numbers",
-                                "label" => $translation->translateLabel('Item Serial Numbers'),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptSalesItemSalesDetail?id=543497165&title=Item Sales Detail",
-                                    "label" => $translation->translateLabel("Item Sales Detail"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptSalesItemSalesSummary?id=1866645893&title=Item Sales Summary",
-                                    "label" => $translation->translateLabel("Item Sales Summary"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptSalesItemHistoryDetail?id=511497051&title=Item Sales History Detail",
-                                    "label" => $translation->translateLabel("Item Sales History Detail"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptSalesItemHistorySummary?id=1850645836&title=Item Sales History Summary",
-                                    "label" => $translation->translateLabel("Item Sales History Summary"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptSalesProfitibilityByItem?id=607497393&title=Profitibility By Item",
-                                    "label" => $translation->translateLabel("Profitibility By Item"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptInventoryTop10ItemsBySales?id=1075847245&title=Top 10 Items By Sales",
-                                    "label" => $translation->translateLabel("Top 10 Items By Sales"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptInventoryTop10ItemsByProfit?id=1059847188&title=Top 10 Items By Profit",
-                                    "label" => $translation->translateLabel("Top 10 Items By Profit"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptInventoryValuationReport?id=967322856&title=Inventory Valuation Report",
-                                    "label" => $translation->translateLabel("Inventory Valuation Report"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptInventoryValuationReportAverage?id=983322913&title=Inventory Valuation Report Average",
-                                    "label" => $translation->translateLabel("Inventory Valuation Report Average"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptInventoryValuationReportFIFO?id=999322970&title=Inventory Valuation Report FIFO",
-                                    "label" => $translation->translateLabel("Inventory Valuation Report FIFO"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptInventoryValuationReportLIFO?id=1015323027&title=Inventory Valuation Report LIFO",
-                                    "label" => $translation->translateLabel("Inventory Valuation Report LIFO"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptListInventoryAssemblies?id=1538976709&title=Inventory Assemblies",
-                                    "label" => $translation->translateLabel("Inventory Assemblies"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptListInventoryAdjustments?id=1506976595&title=Inventory Adjustments",
-                                    "label" => $translation->translateLabel("Inventory Adjustments"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptListInventoryAdjustmentsDetail?id=1522976652&title=Inventory Adjustments Detail",
-                                    "label" => $translation->translateLabel("Inventory Adjustments Detail"),
-                                ],
-                                [
-                                    "link" => $public_prefix . "/index#/autoreports/RptListInventoryAdjustmentTypes?id=1490976538&title=Inventory Adjustment Types",
-                                    "label" => $translation->translateLabel("Inventory Adjustment Types"),
-                                ],
-
-                        ],
-                    ],
+                "Purchase" => [
+                    "label" => $translation->translateLabel('PURCHASE'),
+                    "link" => "index.php#/?page=dashboard",
+                    "iconclass" => "calendar"
                 ],
-                "Reporting" => [
-                    "label" => $translation->translateLabel('Report Engine'),
-                    "link" => $public_prefix . "/index#/grid/Reports/Autoreport/GenericReportDetail/new/Main/" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
+                "Accounting" => [
+                    "label" => $translation->translateLabel('ACCOUNTING'),
+                    "link" => "index.php#/?page=dashboard",
+                    "iconclass" => "calendar"
+                ],
+                "Reports" => [
+                    "label" => $translation->translateLabel('Reports'),
+                    "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
                     "iconclass" => "stats"
                 ],
                 "Favorits" => [
@@ -448,29 +136,13 @@
                     "iconclass" => "heart"
                 ],
                 "Setup" => [
-                    "label" => $translation->translateLabel('TOOLS'),
+                    "label" => $translation->translateLabel('Setup'),
                     // "link" => $public_prefix . "/index#/grid/SystemSetup/CompanySetup/CompanySetup/view/Main/" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
                     "iconclass" => "cog",
                     "topbar" => [
                         "Add User" => [
                             "link" => $public_prefix . "/index#/grid/SystemSetup/SecuritySetup/SecuritySetup/new/Main/new",
                             "label" => $translation->translateLabel('Add User')
-                        ],
-                        "User Security" => [
-                            "link" => $public_prefix . "/index#/grid/SystemSetup/SecuritySetup/SecuritySetup/view/Main/" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"] . '__' . $user["EmployeeID"],
-                            "label" => $translation->translateLabel('User Security')
-                        ],
-                        "Audit" => [
-                            "link" => $public_prefix . "/index#/grid/SystemSetup/SecuritySetup/AuditDescription/grid/Main/all",
-                            "label" => $translation->translateLabel('Audit')
-                        ],
-                        "Integrations" => [
-                            "link" => $public_prefix . "/index#/grid/SystemSetup/CompanySetup/CompanyIntegrations/grid/Main/all",
-                            "label" => $translation->translateLabel('Integrations')
-                        ],
-                        "Global Settings" => [
-                            "link" => $public_prefix . "/index#/grid/SystemSetup/CompanySetup/CompanySetup/view/Main/" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
-                            "label" => $translation->translateLabel('Global Settings')
                         ],
                     ]
                 ],

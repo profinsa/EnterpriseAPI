@@ -38,6 +38,10 @@ class linksMaker{
         return "index.php?page=grid&action=$path&new=true";
     }
 
+    function makeGridItemNewPartial($path){
+        return "index.php#/?page=grid&action=$path&mode=new";
+    }    
+
     function makeGridItemView($path, $item){
         return "index.php#/?page=grid&action=$path&mode=view&category=Main&item=$item";
     }
