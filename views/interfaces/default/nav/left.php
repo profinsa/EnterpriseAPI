@@ -1,7 +1,7 @@
 <!-- Left navbar-header -->
 <div class="navbar-default sidebar sidebar-lift" role="navigation">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-	<?php include './views/nav/leftUser.php'; ?>
+	<?php include './views/interfaces/default/nav/leftUser.php'; ?>
 	<ul class="nav" id="side-menu">	    
 	    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
 		<!-- input-group -->

@@ -11,11 +11,11 @@
                     echo "<li class=\"dropdown-submenu\">";
 		    if(!key_exists("type", $subitem)){
 			$href = preg_match("/^http/", $subitem["href"]) ?
-				$subitem["href"] : $public_prefix . "/index#/grid/" . (key_exists("href_ended", $subitem) ? $ssubitem["href_ended"] : $subitem["id"] . "/grid/Main/all");
+				$subitem["href"] : "index.php#/?page=grid&action=" . (key_exists("href_ended", $subitem) ? $ssubitem["href_ended"] : $subitem["id"]);
 			echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $subitem["full"] ."</a></li>";
 			//			echo "<a class=\"mysubmenu\" href=\"#\"><div class=\"row\"><span style=\"float:left\">" . $subitem["full"] . "</span><span class=\"glyphicon glyphicon-menu-right pull-right\" style=\"margin-top:2px;\"></span></div></a>\n";
 		    }else if($subitem["type"] == "relativeLink") {
-			$href = $public_prefix . (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "" : "/index#") . $subitem["href"];
+			$href = (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "index.php?" : "index.php#/?") . $subitem["href"];
 			echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $subitem["full"] ."</a></li>";
 		    }else if($subitem["type"] == "item"){
 			//$href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . (key_exists("href_ended", $subitem) ? $subitem["href_ended"] : $subitem["id"] . "/grid/Main/all");
@@ -25,7 +25,7 @@
 			foreach($subitem["data"] as $ssubitem){
 			    if(!key_exists("type", $ssubitem)){
 				// $href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . $ssubitem["id"] . "/grid/main/all";
-				$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"] . "/grid/Main/all");
+				$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : "index.php#/?page=grid&action=" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"]);
 				echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $ssubitem) && $ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $ssubitem["full"] ."</a></li>";
 			    }else if($ssubitem["type"] == "submenu"){
 				//echo json_encode($ssubitem["data"]);
@@ -33,14 +33,14 @@
 				    if(key_exists("type", $sssubitem) && $sssubitem["type"] == "submenu"){
 				    }else{
 					if(key_exists("type", $sssubitem) && $sssubitem["type"] == "relativeLink")
-					    $href = $public_prefix . (key_exists("target", $sssubitem) && $sssubitem["target"] == "_blank" ? "" : "/index#") . $sssubitem["href"];
+					    $href = (key_exists("target", $sssubitem) && $sssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") . $sssubitem["href"];
 					else
-					    $href = preg_match("/^http/", $sssubitem["href"]) ? $sssubitem["href"] : $public_prefix . "/index#/grid/" . $sssubitem["id"] . "/grid/main/all";
+					    $href = preg_match("/^http/", $sssubitem["href"]) ? $sssubitem["href"] : "index.php#/?page=grid&action=" . $sssubitem["id"];
 					echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $sssubitem) && $sssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $sssubitem["full"] ."</a></li>";
 				    }
 				}
 			    }else if($ssubitem["type"] == "relativeLink"){
-				$href = $public_prefix . (key_exists("target", $ssubitem) && $ssubitem["target"] == "_blank" ? "" : "/index#") . $ssubitem["href"];
+				$href = (key_exists("target", $ssubitem) && $ssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") . $ssubitem["href"];
 				echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $ssubitem) && $ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $ssubitem["full"] ."</a></li>";
 			    }
 			}
