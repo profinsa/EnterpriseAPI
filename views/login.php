@@ -1,7 +1,7 @@
 <!DOCTYPE html>  
 <html lang="en">
     <?php
-	require 'header.php';
+	require 'interfaces/default/header.php';
     ?>
     <body>
 	<style>
@@ -196,7 +196,7 @@
 
 	</script>
 	<?php
-	    require 'footer.php';
+	    require 'interfaces/default/footer.php';
 	?>
     </body>
 </html>

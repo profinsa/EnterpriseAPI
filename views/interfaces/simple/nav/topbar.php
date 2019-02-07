@@ -309,7 +309,7 @@
  }
 
  function changeLanguage(event){
-     $.getJSON("<?php echo $public_prefix; ?>/language/" + event.target.value)
+     $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
       .success(function(data) {
           location.reload();
       })
@@ -320,11 +320,7 @@
 
  function startSearch() {
      var input = $('input#search-input-id');
-     $.ajaxSetup({
-         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-     });
-
-     $.post("<?php echo $public_prefix; ?>/grid/AccountsReceivable/OrderScreens/ViewOrders/procedure/searchCustomer",{
+     $.post("<?php echo $linksMaker->makeProcedureLink("AccountsReceivable/OrderScreens/ViewOrders", "searchCustomer") ?>",{
          searchText: input.val(),
      })
       .success(function(jsondata) {
@@ -347,7 +343,7 @@
                   var CustomerFirstName = data[i].CustomerFirstName ? data[i].CustomerFirstName : '';
                   var CustomerLastName = data[i].CustomerLastName ? data[i].CustomerLastName : '';
                   $('#search-table tbody').append(
-                      '<tr class="context-menu-row"><td><a href="<?php echo $public_prefix;?>/index#/grid/AccountsReceivable/Customers/ViewCustomers/view/Main/' + encodeURIComponent(keyString) + '"><span class="grid-action-button glyphicon glyphicon-edit" aria-hidden="true"></span></a></td><td>' + CustomerFirstName + '</td><td>' + CustomerLastName + '</td></tr>'
+                      '<tr class="context-menu-row"><td><a href="<?php echo $linksMaker->makeGridItemView("AccountsReceivable/Customers/ViewCustomers", ""); ?>' + encodeURIComponent(keyString) + '"><span class="grid-action-button glyphicon glyphicon-edit" aria-hidden="true"></span></a></td><td>' + CustomerFirstName + '</td><td>' + CustomerLastName + '</td></tr>'
                   );
               }
           }
@@ -391,63 +387,63 @@
          if(e.keyCode == 13)
              {
                  $(this).trigger("enterKey");
-             }
-     });
+ }
+ });
 
-     
-     input.bind('focus', function() {
-         // if(input.val() === txt) {
-         //     input.val('');
-         // }
-         // $(this).animate({color: '#000'}, 300); // text color
-         $(this).parent().animate({
-             width: outerWidth + 'px',
-             backgroundColor: '#fff', // background color
-             // paddingRight: '43px'
-         }, 0, function() {
-             if(!(input.val() === '' || input.val() === txt)) {
-                 // if(!($.browser.msie && $.browser.version < 9)) {
-                 //     submit.fadeIn(300);
-                 // } else {
-                 submit.css({display: 'block'});
-                 // }
-             }
-         }).addClass('focus');
-     }).bind('blur', function() {
-         // $(this).animate({color: '#b4bdc4'}, 300); // text color
-         $(this).parent().animate({
-             width: width + 'px',
-             backgroundColor: '#e8edf1', // background color
-             // paddingRight: '15px'
-         }, 0, function() {
-             if(input.val() === '') {
-                 input.val(txt)
-             }
-         }).removeClass('focus');
-         // if(!($.browser.msie && $.browser.version < 9)) {
-         //     submit.fadeOut(100);
-         // } else {
-         setTimeout(function () {
-             submit.css({display: 'none'});
-         }, 1000);
-
-         // submit.css({display: 'none'});
-         // }    
-     }).keyup(function() {
-         if(input.val() === '') {
-             // if(!($.browser.msie && $.browser.version < 9)) {
-             //     submit.fadeOut(300);
-             // } else {
-             submit.css({display: 'none'});
-             // }
-         } else {
+ 
+ input.bind('focus', function() {
+     // if(input.val() === txt) {
+     //     input.val('');
+     // }
+     // $(this).animate({color: '#000'}, 300); // text color
+     $(this).parent().animate({
+         width: outerWidth + 'px',
+         backgroundColor: '#fff', // background color
+         // paddingRight: '43px'
+     }, 0, function() {
+         if(!(input.val() === '' || input.val() === txt)) {
              // if(!($.browser.msie && $.browser.version < 9)) {
              //     submit.fadeIn(300);
              // } else {
              submit.css({display: 'block'});
              // }
          }
-     });
+     }).addClass('focus');
+ }).bind('blur', function() {
+     // $(this).animate({color: '#b4bdc4'}, 300); // text color
+     $(this).parent().animate({
+         width: width + 'px',
+         backgroundColor: '#e8edf1', // background color
+         // paddingRight: '15px'
+     }, 0, function() {
+         if(input.val() === '') {
+             input.val(txt)
+         }
+     }).removeClass('focus');
+     // if(!($.browser.msie && $.browser.version < 9)) {
+     //     submit.fadeOut(100);
+     // } else {
+     setTimeout(function () {
+         submit.css({display: 'none'});
+     }, 1000);
+
+     // submit.css({display: 'none'});
+     // }    
+ }).keyup(function() {
+     if(input.val() === '') {
+         // if(!($.browser.msie && $.browser.version < 9)) {
+         //     submit.fadeOut(300);
+         // } else {
+         submit.css({display: 'none'});
+         // }
+     } else {
+         // if(!($.browser.msie && $.browser.version < 9)) {
+         //     submit.fadeIn(300);
+         // } else {
+         submit.css({display: 'block'});
+         // }
+     }
+ });
  }
  initSearch();
 </script>

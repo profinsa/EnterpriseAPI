@@ -19,8 +19,7 @@
 
 	$keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
 
-//	require "menuCategoriesGenerated.php";
-//	require "menuActions.php";
+	//	require "menuActions.php";
 
 	$menuCategories["Dashboard"] = [
 	    "type" => "blank",
@@ -75,7 +74,7 @@
             <div id="navbar">
 		<div class="navbar navbar-inverse left-iconbar-wrapper" role="navigation">
 		    <div class="navbar-header top-bar logo-container">
-			<a class="navbar-brand nav-link logo-link" href="index#/dashboard"><img id="logosection"  src="" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
+			<a class="navbar-brand nav-link logo-link" href="index.php#/?page=dashboard"><img id="logosection"  src="assets/images/stfb-logo.gif" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
 		    </div>
 		    <!-- <button type="button" class="navbar-toggle hide-on-small" data-toggle="collapse" data-target=".navbar-body">
 			 <span class="icon-bar"></span>
@@ -170,8 +169,8 @@
 		 return;
 	     }
              var match;
-             if(path.search(/index\#\//) != -1){
-		 path = path.replace(/index\#\//, "");
+             if(path.search(/index\.php.*\#\//) != -1){
+		 path = path.replace(/index\.php.*\#\//, "index\.php");
 		 // match = path.match(/grid\/(\w+)\/\w+\/(\w+)\//);
 		 //		 console.log();
 		 var item = findMenuItem(path);
