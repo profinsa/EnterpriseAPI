@@ -4,7 +4,7 @@
 
   Method: controller for many grid pages(like General Ledger pages etc), used for rendering page and interacting with it
 
-  Date created: Nikita Zaharov, 21.02.2016
+  Date created: Nikita Zaharov, 21.02.2017
 
   Use: The controller is responsible for:
   - page rendering using view
@@ -25,7 +25,7 @@
   models/gridDataSource derevatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 12.28.2018
+  Last Modified: 07.02.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -38,6 +38,7 @@ require 'models/linksMaker.php';
 
 class controller{
     public $user = false;
+    public $interface = "default";
     public $action = "";
     public $mode = "grid";
     public $category = "Main";
@@ -109,6 +110,7 @@ class controller{
             exit;
         }
 
+        $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
         require 'models/menuIdToHref.php';
         $drill = new drillDowner();
         $linksMaker = new linksMaker();
@@ -364,8 +366,9 @@ class controller{
                     $this->item = $_GET["item"];
                 
                 $security->setModel($data, $this->item, $this->mode);
-        
+                
                 $scope = $this;
+                $user = $this->user;
                 $ascope = json_decode(json_encode($scope), true);
 
                 $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];

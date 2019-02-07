@@ -29,18 +29,21 @@
      grid model
      app as model
    -
-     Last Modified: 12.04.2018
+     Last Modified: 07.02.2019
      Last Modified by: Nikita Zaharov
 -->
 <?php
-include './views/components/context.php';
-include './views/components/commonJavascript.php';
-include './views/components/common.php';
+    include './views/components/context.php';
+    include './views/components/commonJavascript.php';
+    include './views/components/common.php';
 ?>
 
 <div class="container-fluid">
     <?php
-    require './views/uiItems/dashboard.php';
+	if($ascope["interface"] == "default")
+	    require './views/uiItems/dashboard.php';
+	else
+	    require __DIR__ . '/interfaces/' . $ascope["interface"] . '/breadcrumbs.php';
     ?>
     <div class="col-sm-12">
 	<div class="white-box">

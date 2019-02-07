@@ -38,6 +38,7 @@ require 'models/linksMaker.php';
 
 class controller{
     public $user = false;
+    public $interface = "default";
     public $dashboardTitle = "Accounting Dashboard";
     public $breadCrumbTitle = "Accounting Dashboard";
     
@@ -52,7 +53,7 @@ class controller{
                 exit;
             }
             
-            $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
+            $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
             $drill = new drillDowner();
             $linksMaker = new linksMaker();
             $this->user = $user = $_SESSION["user"];
