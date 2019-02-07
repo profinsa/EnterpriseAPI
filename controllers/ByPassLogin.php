@@ -1,34 +1,34 @@
 <?php
 /*
-Name of Page: ByPassLogin
+  Name of Page: ByPassLogin
 
-Method: This is controller for ByPassLogin page. It contains simple logic for log in as default user and redirecting to index
+  Method: This is controller for ByPassLogin page. It contains simple logic for log in as default user and redirecting to index
 
-Date created: Nikita Zaharov, 13.02.2016
+  Date created: Nikita Zaharov, 13.02.2017
 
-Use: controller is used by index.php, load by GET request parameter - page=ByPassLogin.
+  Use: controller is used by index.php, load by GET request parameter - page=ByPassLogin.
 
-The controller is responsible for:
-+ log in as default user
-+ redirecting to index
+  The controller is responsible for:
+  + log in as default user
+  + redirecting to index
 
-Input parameters:
-$db: database instance
-$app : application instance, object
+  Input parameters:
+  $db: database instance
+  $app : application instance, object
 
-Output parameters:
-none
+  Output parameters:
+  none
 
-Called from:
-+ index.php
+  Called from:
+  + index.php
 
-Calls:
-models/users.php
-models/translation.php
-app from index.php
+  Calls:
+  models/users.php
+  models/translation.php
+  app from index.php
 
-Last Modified: 07.04.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 07.04.2016
+  Last Modified by: Nikita Zaharov
 */
 
 require 'models/users.php';

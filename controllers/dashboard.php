@@ -1,32 +1,32 @@
 <?php
 /*
-Name of Page: dashboard controller
+  Name of Page: dashboard controller
 
-Method: controller for dashboard pages(GeneralLedger and other). Used for rendering page and interacting with it
+  Method: controller for dashboard pages(GeneralLedger and other). Used for rendering page and interacting with it
 
-Date created: Nikita Zaharov, 5.04.2016
+  Date created: Nikita Zaharov, 5.04.2017
 
-Use: The controller is responsible for:
-- page rendering using view
-- handling XHR request(delete, update and new item in grid)
+  Use: The controller is responsible for:
+  - page rendering using view
+  - handling XHR request(delete, update and new item in grid)
 
-Input parameters:
-$app : application instance, object
+  Input parameters:
+  $app : application instance, object
 
-Output parameters:
-$scope: object, used by view, most like model
-$translation: model, it is responsible for translation in view
+  Output parameters:
+  $scope: object, used by view, most like model
+  $translation: model, it is responsible for translation in view
 
-Called from:
-+ index.php
+  Called from:
+  + index.php
 
-Calls:
-models/translation.php
-models/dashboard/*
-app from index.php
+  Calls:
+  models/translation.php
+  models/dashboard/*
+  app from index.php
 
-Last Modified: 08.11.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 07.02.2019
+  Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
@@ -37,8 +37,10 @@ require 'models/linksMaker.php';
 
 class controller{
     public $user = false;
+    public $interface = "default";
     public $category = "GeneralLedger";
     public $path;
+    public $mode = "dashboard";
 
     public function process($app){
         if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
@@ -63,6 +65,7 @@ class controller{
 
         $user = $GLOBALS["user"] = $this->user = $_SESSION["user"];
                
+        $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
         $data = new dashboardData();
         $drill = new drillDowner();
         $linksMaker = new linksMaker();
@@ -78,6 +81,8 @@ class controller{
             $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
           
             $scope = $this;
+            $ascope = json_decode(json_encode($scope), true);
+            
             if(key_exists("mode", $_GET))
                 $this->mode = $_GET["mode"];
             
