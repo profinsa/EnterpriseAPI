@@ -10,30 +10,42 @@
                         <img id="mini_avatar" style="cursor: pointer" onclick="changeAvatarOpen()" class="img-responsive user-photo" src="<?php echo $user['PictureURL'] ? 'uploads\\' . $user['PictureURL'] : 'assets/images/avatar_2x.png'; ?>">
                     </div>
                     <div class="col-md-6">
-                    <div class="form-group">
-                        <label><?php echo $translation->translateLabel('Username'); ?></label>
-                        <p><?php echo $user["EmployeeUserName"];?></p>
+			<div class="form-group">
+                            <label><?php echo $translation->translateLabel('Username'); ?></label>
+                            <p><?php echo $user["EmployeeUserName"];?></p>
+			</div>
+			<div class="form-group">
+                            <label><?php echo $translation->translateLabel('Full Name'); ?></label>
+                            <p><?php echo $user["EmployeeName"];?></p>
+			</div>                        
+			<div class="form-group">
+                            <label><?php echo $translation->translateLabel('Email Address'); ?></label>
+			    <p><?php echo (key_exists("email", $user) ? $user["email"] : "");?></p>
+			</div>                        
                     </div>
-                    <div class="form-group">
-                        <label><?php echo $translation->translateLabel('Full Name'); ?></label>
-                        <p><?php echo $user["EmployeeName"];?></p>
-                    </div>                        
-                    <div class="form-group">
-                        <label><?php echo $translation->translateLabel('Email Address'); ?></label>
-			<p><?php echo (key_exists("email", $user) ? $user["email"] : "");?></p>
-                    </div>                        
-                </div>
-                <div>
+		</div>
             </li>
             <li>
-            <select class="form-control" onchange="changeLanguage(event);">
-                <option><?php echo $user["language"]; ?></option>
-                <?php
-                foreach($translation->languages as $value)
-                if($value != $user["language"])
-                    echo "<option>" . $value . "</option>";
-                ?>
-            </select>
+                <label><?php echo $translation->translateLabel('Language'); ?></label>
+		<select class="form-control" onchange="changeLanguage(event);">
+                    <option><?php echo $user["language"]; ?></option>
+                    <?php
+			foreach($translation->languages as $value)
+			if($value != $user["language"])
+			    echo "<option>" . $value . "</option>";
+                    ?>
+		</select>
+            </li>
+            <li>
+                <label><?php echo $translation->translateLabel('Interface'); ?></label>
+		<select class="form-control" onchange="changeInterface(event.target.value);">
+                    <option><?php echo $user["interface"]; ?></option>
+                    <?php
+			foreach(["simple","default"] as $value)
+			if($value != $user["interface"])
+			    echo "<option>" . $value . "</option>";
+                    ?>
+		</select>
             </li>
             <li>
                 <a href="javascript:unlockMyRecords();" class="nav-link">
@@ -45,9 +57,9 @@
                 </form>
             </li>
             <li>
-            <a href="index.php?page=login" class="nav-link">
-                <?php echo $translation->translateLabel('Log out'); ?>
-            </a>
+		<a href="index.php?page=login" class="nav-link">
+                    <?php echo $translation->translateLabel('Log out'); ?>
+		</a>
             </li>
         </ul>
         <ul id="themecolors">
@@ -71,19 +83,20 @@
         <ul id="rightbar-help-section">
             <li>
                 <label for="homanyrows">
-                            <?php echo $translation->translateLabel("Rows in grid"); ?>
+                    <?php echo $translation->translateLabel("Rows in grid"); ?>
                 </label>
                 <select id="howmanyrows" stIconbar="margin-left: 30px;" onchange="changeDefaultRowsInGrid(this);">
                 </select>
             </li>
-            <li>
-                <a style="color: #999; width: 100%; margin-left: 0px" target="_blank" href="http://dms.newtechautomotiveservices.com:8084/EnterpriseHelp/usermanual/index.php">
-                    Help Documentation
-                </a>
-            </li>
+	    <!--             <li>
+                 <a style="color: #999; width: 100%; margin-left: 0px" target="_blank" href="http://dms.newtechautomotiveservices.com:8084/EnterpriseHelp/usermanual/index.php">
+                 Help Documentation
+                 </a>
+		 </li> -->
         </ul>
     </div>
 </div>
+
 <script>
  var gridViewDefaultRowsInGrid = localStorage.getItem('gridViewDefaultRowsInGrid');
  if(!gridViewDefaultRowsInGrid)
@@ -93,18 +106,18 @@
      var showLeftMenu = localStorage.getItem('showLeftMenu');
 
      if (showLeftMenu == "true") {
-         $('#left-menu-control').attr('checked', true);
+	 $('#left-menu-control').attr('checked', true);
      } else {
-         $('.left-menu').hide();
+	 $('.left-menu').hide();
      }
 
-    //  var showIconbar = localStorage.getItem('showIconbar');
+     //  var showIconbar = localStorage.getItem('showIconbar');
 
-    //  if (showIconbar == "true") {
-    //      $('#iconbar-control').attr('checked', true);
-    //  } else {
-    //      $('.bs-glyphicons').hide();
-    //  }
+     //  if (showIconbar == "true") {
+     //      $('#iconbar-control').attr('checked', true);
+     //  } else {
+     //      $('.bs-glyphicons').hide();
+     //  }
 
      var rowOptions = [10, 25, 50,100];
      var howmanyrows = $("#howmanyrows"), ind, _html = "";
@@ -115,28 +128,28 @@
 
  function showLefMenu() {
      if ($('#left-menu-control').prop("checked")) {
-         $('.left-menu').show();
+	 $('.left-menu').show();
      } else {
-         $('.left-menu').hide();
+	 $('.left-menu').hide();
      }
      localStorage.setItem("showLeftMenu", $('#left-menu-control').prop("checked"));
  }
-//  function showIconbar() {
-//      if ($('#iconbar-control').prop("checked")) {
-//          $('.bs-glyphicons').show();
-//          setTimeout(function() {
-//             $('#view_css').attr('href', 'assets/css/views/iconbar.css');
-//         }, 0);
+ //  function showIconbar() {
+ //      if ($('#iconbar-control').prop("checked")) {
+ //          $('.bs-glyphicons').show();
+ //          setTimeout(function() {
+ //             $('#view_css').attr('href', 'assets/css/views/iconbar.css');
+ //         }, 0);
 
-//      } else {
-//          $('.bs-glyphicons').hide();
-//          setTimeout(function() {
-//             $('#view_css').attr('href', 'assets/css/views/standart.css');
-//         }, 0);
+ //      } else {
+ //          $('.bs-glyphicons').hide();
+ //          setTimeout(function() {
+ //             $('#view_css').attr('href', 'assets/css/views/standart.css');
+ //         }, 0);
 
-//      }
-//      localStorage.setItem("showIconbar", $('#iconbar-control').prop("checked"));
-//  }
+ //      }
+ //      localStorage.setItem("showIconbar", $('#iconbar-control').prop("checked"));
+ //  }
 
  function unlockMyRecords(){
      var itemData = $("#lockData");
@@ -158,4 +171,13 @@
  function changeDefaultRowsInGrid(item){
      localStorage.setItem('gridViewDefaultRowsInGrid', gridViewDefaultRowsInGrid = parseInt($(item).val()));
  }
+ function changeInterface(name){
+     $.post("<?php echo $linksMaker->makeProcedureLink("Payroll/EmployeeManagement/ViewEmployees", "changeInterface"); ?>&interface=" + name, null, null, 'json').success(function(data){
+	 location.reload();
+     })
+      .error(function(data){
+	  console.log(data);
+      });
+ }
+
 </script>

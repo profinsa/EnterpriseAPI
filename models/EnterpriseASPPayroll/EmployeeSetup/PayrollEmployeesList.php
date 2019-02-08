@@ -1,34 +1,34 @@
 <?php
-
 /*
-Name of Page: PayrollEmployeesList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/PayrollEmployeesList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/08/2017
-Last Modified by: Kenna Fetterman
+  Name of Page: PayrollEmployeesList model
+   
+  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017 Zaharov Nikita
+   
+  Use: this model used by views/PayrollEmployeesList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesList.php
+  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPPayroll\EmployeeSetup\PayrollEmployeesList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/02/2019
+  Last Modified by: Zaharov Nikita
 */
+
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
 	public $tableName = "payrollemployees";
@@ -695,11 +695,19 @@ class gridData extends gridDataSource{
 		"LastHours"  => "Last Hours",
 		"LastPayDate"  => "Last Pay Date"
 	];
+    
 	public function getPayrollEmployeesDetails($id){
         $user = Session::get("user");
         $payrollEmployeesDetailsResult = DB::select("SELECT * from payrollemployeesdetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $id));
         if(count($payrollEmployeesDetailsResult))
             return json_decode(json_encode($payrollEmployeesDetailsResult), true)[0];
+    }
+
+    public function changeInterface(){
+        $user = Session::get("user");
+        $user["interface"] = $_GET["interface"];
+        Session::set("user", $user);
+        echo '{ "message" : "ok"}';
     }
 }
 ?>

@@ -28,7 +28,7 @@
 	    </li>
 	</ul>
 	<ul class="nav navbar-top-links navbar-right pull-right">
-	    <li style="position:relative; right:-10px;">
+	    <li style="position:relative; right:3px;">
 		<div class="dropdown" style="margin-top:13px; margin-right:0px;">
 		    <button class="btn btn-default dropdown-toggle" type="button" id="langChooserDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white; border:0px; background-color:inherit;">
 			<?php echo $scope->user["language"]; ?>
@@ -37,9 +37,25 @@
 		    <ul class="dropdown-menu lang-chooser-popup" aria-labelledby="langChooserDropdown" aria-expanded="false">
 			<li><a href="javascript:;" data-value="<?php echo $scope->user["language"]; ?>" class="lang-item"><img src="assets/images/langs/<?php echo $scope->user["language"]; ?>.png">  <?php echo $scope->user["language"]; ?></a></li>
 			<?php
-			foreach($translation->languages as $value)
+			    foreach($translation->languages as $value)
 			    if($value != $scope->user["language"])
 				echo "<li><a href=\"javascript:;\" data-value=\"$value\" class=\"lang-item\"><img src=\"assets/images/langs/{$value}.png\">  " . $value . "</a></li>";
+			?>
+		    </ul>
+		</div>
+	    </li>
+	    <li style="position:relative; right:-3px;">
+		<div class="dropdown" style="margin-top:13px; margin-right:0px;">
+		    <button class="btn btn-default dropdown-toggle" type="button" id="interfaceChooserDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white; border:0px; background-color:inherit;">
+			<?php echo $scope->user["interface"]; ?>
+			<span class="caret"></span>
+		    </button>
+		    <ul class="dropdown-menu interface-chooser-popup" aria-labelledby="interfaceChooserDropdown" aria-expanded="false">
+			<li><a href="javascript:;" data-value="<?php echo $scope->user["interface"]; ?>" class="lang-item"><?php echo $scope->user["interface"]; ?></a></li>
+			<?php
+			    foreach(["simple", "default"] as $value)
+			    if($value != $scope->user["interface"])
+				echo "<li><a href=\"javascript:;\" data-value=\"$value\" class=\"lang-item\">" . $value . "</a></li>";
 			?>
 		    </ul>
 		</div>
@@ -61,11 +77,25 @@
      var current = "<?php echo $scope->user["language"]; ?>";
      if(lang != current)
 	 $.getJSON("index.php?page=language&setLanguage=" + lang)
-	     .success(function(data) {
-		 location.reload();
-	     })
-	     .error(function(err){
-		 console.log('something going wrong');
-	     });
+	  .success(function(data) {
+	      location.reload();
+	  })
+	  .error(function(err){
+	      console.log('something going wrong');
+	  });
+ });
+
+ $(".interface-chooser-popup li a").click(function(){
+     var item = $(this), name = item.data('value');
+     item.parents(".dropdown").find('.btn').html(item.text() + ' <span class="caret"></span>');
+     item.parents(".dropdown").find('.btn').val(name);
+     var current = "<?php echo $scope->user["interface"]; ?>";
+     if(name != current)
+	 $.post("<?php echo $linksMaker->makeProcedureLink("Payroll/EmployeeManagement/ViewEmployees", "changeInterface"); ?>&interface=" + name, null, null, 'json').success(function(data){
+	     location.reload();
+	 })
+	  .error(function(data){
+	      console.log(data);
+	  });
  });
 </script>
