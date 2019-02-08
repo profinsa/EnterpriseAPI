@@ -1,224 +1,328 @@
 <div class="bs-glyphicons">
     <ul class="bs-glyphicons-list" style="margin-top: 9px">
         <?php
-                                        $public_prefix = '';
+            $public_prefix = '';
             $iconbarCategories = [
                 "Customer" => [
-                    "label" => $translation->translateLabel('CUSTOMER'),
+                    "full" => $translation->translateLabel('CUSTOMER'),
                     "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
                     "iconclass" => "user",
-                    "topbar" => [
-                        "Add Customer" => [
-                            "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomers/new/Main/new",
-                            "label" => $translation->translateLabel('Add Customer')
-                        ],
-                        "Setup" => [
-                            [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomers/grid/Main/all",
-                                "label" => $translation->translateLabel('View Customers'),
-                                ],
-                                [
-                                "link" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomerFinancials/grid/Main/all",
-                                "label" => $translation->translateLabel('View Customer Financials'),
-                                ],
-                        ],
-                        "Reports" => [
-                            [
-                                "link" => $public_prefix . "/index#/autoreports/RptListCustomerInformation?id=1202975512&title=Customer Information",
-                                "label" => $translation->translateLabel("Information"),
-                            ]
-                        ]
-
-                    ]
-                ],
-                "Vendor" => [
-                    "label" => $translation->translateLabel('Vendor'),
-                    "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
-                    "iconclass" => "user",
-                    "topbar" => [
-                        "Add Vehicle" => [
-                            "link" => $public_prefix . "/index#/grid/Inventory/Vehicles/ViewVehicles/new/Main/new",
-                            "label" => $translation->translateLabel('Add Vehicle')
-                        ],
-                        "Setup" => [
-                            [
-                            "link" => $public_prefix . "/index#/grid/Inventory/Vehicles/ViewVehicles/grid/Main/all",
-                            "label" => $translation->translateLabel('View Vehicles'),
-                            ],
-                            [
-                            "link" => $public_prefix . "/index#/grid/SystemSetup/ManufacturerSetup/ManufacturerSetup/grid/Main/all",
-                            "label" => $translation->translateLabel('Vehicle Setup'),
-                            ]                    
-                        ],
-                        "Reports" => [
-                            [
-                                "link" => $public_prefix . "/index#/autoreports/RptListVehiclesHeader?id=77896561&title=Vehicles",
-                                "label" => $translation->translateLabel("Vehicles"),    
-                            ]
-                        ]
-
-                    ]
-                ],
-                "Items" => [
-                    "label" => $translation->translateLabel('Items'),
-                    "link" => "index.php#/?page=dashboard",
-                    "iconclass" => "list",
-                    "topbar" => [
-                        "Counter Sale" => [
-                            "link" => $public_prefix . "/index#/grid/Inventory/PartsDepartment/PartsInvoice/new/Main/new",
-                            "label" => $translation->translateLabel('Counter Sale')
-                        ],
-                        "Setup" => [
-                            "node" => "Inventory",
-                        ],
-                        "Reports" => [
-                            [
-                                "link" => $public_prefix . "/index#/autoreports/RptListParts?id=1554973463&title=Parts",
-                                "label" => $translation->translateLabel('Parts'),
-                                ],
-                        ],
-                    ],
-                ],
-                "Sales" => [
-                    "label" => $translation->translateLabel('SALES'),
-                    "iconclass" => "list-alt",
                     "data" => [
                         [
-                        "link" => $public_prefix . "/index#/grid/AccountsReceivable/OrderScreens/ViewQuotes/grid/Main/all",
-                        "label" => $translation->translateLabel('View Quotes')
-                        ],
+			    "type" => "absoluteLink",
+			    "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/Customers/ViewCustomers"),
+			    "full" => $translation->translateLabel('New Customer')
+			],
                         [
-                        "link" => $public_prefix . "/index#/grid/AccountsReceivable/OrderProcessing/ViewOrders/grid/Main/all",
-                        "label" => $translation->translateLabel('View Orders')
-                        ],
+			    "id" => "AccountsReceivable/Customers/ViewCustomers",
+			    "full" => $translation->translateLabel('View Customers')
+			],
                         [
-                        "link" => $public_prefix . "/index#/grid/AccountsReceivable/OrderProcessing/ViewInvoices/grid/Main/all",
-                        "label" => $translation->translateLabel('View Invoices')
-                        ]
-                    ],
-                    "topbar" => [
-                        "Desking" => [
-                            "label" => $translation->translateLabel('Desking'),
-                            "link" => $public_prefix . "/index#/dashboard?screen=Desking",
-                        ],
-                        "Reports" => [
-                            [
-                            "link"=> $public_prefix . "/index#/autoreports/RptSalesCustomerSalesDetail?id=479496937&title=Customer Sales Detail",
-                            "label"=> $translation->translateLabel("Sales Detail"),
-                            ],
+			    "id" => "AccountsReceivable/Customers/ViewCustomerFinancials",
+			    "full" => $translation->translateLabel('View Customer Balances')
+			],
+		    ],
+		    "topbar" => [
+			"Add Customer" => [
+			    "id" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomers/new/Main/new",
+			    "full" => $translation->translateLabel('Add Customer')
+			],
+			"Setup" => [
+			    [
+				"id" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomers/grid/Main/all",
+				"full" => $translation->translateLabel('View Customers'),
+			    ],
+			    [
+				"id" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomerFinancials/grid/Main/all",
+				"full" => $translation->translateLabel('View Customer Financials'),
+			    ],
+			],
+			"Reports" => [
+			    [
+				"id" => $public_prefix . "/index#/autoreports/RptListCustomerInformation?id=1202975512&title=Customer Information",
+				"full" => $translation->translateLabel("Information"),
+			    ]
+			]
 
-                            [
-                            "link"=> $public_prefix . "/index#/autoreports/RptSalesCustomerSalesSummary?id=1834645779&title=Customer Sales Summary",
-                            "label"=> $translation->translateLabel("Sales Summary"),
-                            ],
-                        ]
-                    ],
+		    ]
+		],
+		"Vendor" => [
+		    "full" => $translation->translateLabel('VENDOR'),
+		    "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
+		    "iconclass" => "user",
+		    "data" => [
+                        [
+			    "type" => "absoluteLink",
+			    "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/Vendors/ViewVendors"),
+			    "full" => $translation->translateLabel('New Vendor')
+			],
+                        [
+			    "id" => "AccountsPayable/Vendors/ViewVendors",
+			    "full" => $translation->translateLabel('View Vendors')
+			],
+                        [
+			    "id" => "AccountsPayable/Vendors/ViewVendorFinancials",
+			    "full" => $translation->translateLabel('View Vendors Balances')
+			],
+		    ],
+		    "topbar" => [
+			"Add Vehicle" => [
+			    "id" => $public_prefix . "/index#/grid/Inventory/Vehicles/ViewVehicles/new/Main/new",
+			    "full" => $translation->translateLabel('Add Vehicle')
+			],
+			"Setup" => [
+			    [
+				"id" => $public_prefix . "/index#/grid/Inventory/Vehicles/ViewVehicles/grid/Main/all",
+				"full" => $translation->translateLabel('View Vehicles'),
+			    ],
+			    [
+				"id" => $public_prefix . "/index#/grid/SystemSetup/ManufacturerSetup/ManufacturerSetup/grid/Main/all",
+				"full" => $translation->translateLabel('Vehicle Setup'),
+			    ]                    
+			],
+			"Reports" => [
+			    [
+				"id" => $public_prefix . "/index#/autoreports/RptListVehiclesHeader?id=77896561&title=Vehicles",
+				"full" => $translation->translateLabel("Vehicles"),    
+			    ]
+			]
 
-                ],
-                "Purchase" => [
-                    "label" => $translation->translateLabel('PURCHASE'),
-                    "link" => "index.php#/?page=dashboard",
-                    "iconclass" => "calendar"
-                ],
-                "Accounting" => [
-                    "label" => $translation->translateLabel('ACCOUNTING'),
-                    "link" => "index.php#/?page=dashboard",
-                    "iconclass" => "calendar"
-                ],
-                "Reports" => [
-                    "label" => $translation->translateLabel('Reports'),
-                    "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
-                    "iconclass" => "stats"
-                ],
-                "Favorits" => [
-                    "label" => $translation->translateLabel('FAVORITES'),
-                    "favorits" => true,
-                    "iconclass" => "heart"
-                ],
-                "Setup" => [
-                    "label" => $translation->translateLabel('Setup'),
-                    // "link" => $public_prefix . "/index#/grid/SystemSetup/CompanySetup/CompanySetup/view/Main/" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
-                    "iconclass" => "cog",
-                    "topbar" => [
-                        "Add User" => [
-                            "link" => $public_prefix . "/index#/grid/SystemSetup/SecuritySetup/SecuritySetup/new/Main/new",
-                            "label" => $translation->translateLabel('Add User')
-                        ],
-                    ]
-                ],
-                "Help" => [
-                    "label" => $translation->translateLabel('HELP'),
-                    "link" => "https://stfbinc.helpdocs.com",
-                    "target" => "_blank",
-                    "iconclass" => "question-sign"                    
-                ]
-            ];
+		    ]
+		],
+		"Items" => [
+		    "full" => $translation->translateLabel('ITEM'),
+		    "link" => "index.php#/?page=dashboard",
+		    "iconclass" => "list",
+		    "data" => [
+                        [
+			    "id" => "Inventory/ItemsStock/ViewInventoryItems",
+			    "full" => $translation->translateLabel('List Invetory') //FIXME
+			],
+                        [
+			    "id" => "Inventory/ItemsStock/ViewInventoryItems",
+			    "full" => $translation->translateLabel('View Items')
+			],
+                        [
+			    "type" => "absoluteLink",
+			    "href" => $linksMaker->makeGridItemNewPartial("Inventory/ItemsStock/ViewInventoryItems"),
+			    "full" => $translation->translateLabel('New Item')
+			],
+		    ],
+		    "topbar" => [
+			"Counter Sale" => [
+			    "id" => $public_prefix . "/index#/grid/Inventory/PartsDepartment/PartsInvoice/new/Main/new",
+			    "full" => $translation->translateLabel('Counter Sale')
+			],
+			"Setup" => [
+			    "node" => "Inventory",
+			],
+			"Reports" => [
+			    [
+				"id" => $public_prefix . "/index#/autoreports/RptListParts?id=1554973463&title=Parts",
+				"full" => $translation->translateLabel('Parts'),
+			    ],
+			],
+		    ],
+		],
+		"Sales" => [
+		    "full" => $translation->translateLabel('SALES'),
+		    "iconclass" => "list-alt",
+		    "data" => [
+                        [
+			    "type" => "absoluteLink",
+			    "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/OrderProcessing/ViewInvoices"),
+			    "full" => $translation->translateLabel('New Invoice')
+			],
+			[
+			    "id" => "AccountsReceivable/OrderProcessing/ViewInvoices",
+			    "full" => $translation->translateLabel('View Invoices')
+			]
+		    ],
+		    "topbar" => [
+			"Desking" => [
+			    "full" => $translation->translateLabel('Desking'),
+			    "id" => $public_prefix . "/index#/dashboard?screen=Desking",
+			],
+			"Reports" => [
+			    [
+				"id" => $public_prefix . "/index#/autoreports/RptSalesCustomerSalesDetail?id=479496937&title=Customer Sales Detail",
+				"full" => $translation->translateLabel("Sales Detail"),
+			    ],
 
-            foreach ($iconbarCategories as $key=>$item){
-                if (!key_exists("favorits", $item)) {
-                    echo '<li onmouseenter="onShowSubMenu(event);" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'fillByTypical(\''. $key . '\');'  : 'fillTopmenu();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["label"] . '</span></a>';
-                    if (key_exists("data", $item)) {
-                        echo "<ul onmouseenter=\"onShowSubMenu(event);\" onmouseleave=\"onHideSubMenu(event);\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
-                            foreach($item["data"] as $subitem) {
-                                echo '<li style="height:60px"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" href="' . $subitem["link"] . '" class="nav-link">' . $subitem["label"] .'</a></li>';
-                            }
-                        echo '</ul>';
-                    }
-                    echo '</li>';
-                } else {
-                    echo '<li  onmouseenter="onShowSubMenu(event);" onmouseleave="onHideSubMenu(event);" ><a onclick="fillByFavorits();" style="cursor: pointer" class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["label"] . '</span></a>';
-                    foreach ($menuCategories as $key=>$item){
-                        if ($item["type"] == "custom") {
-                            echo "<ul onmouseenter=\"onShowSubMenu(event);\" onmouseleave=\"onHideSubMenu(event);\" id=\"" . $item["id"] . "\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
-                            foreach($item["actions"] as $key=>$subitem) {
-                                echo '<li id="' . $subitem["id"] . '"onclick="' . $subitem["action"] . '"  style="height:60px; width: 100%"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" href="javascript:;" class="nav-link">' . $subitem["full"] .'</a></li>';
-                            }
-                            echo '</ul>';
-                        }
-                    }
-                    echo '</li>';
-                }
-            }
+			    [
+				"id" => $public_prefix . "/index#/autoreports/RptSalesCustomerSalesSummary?id=1834645779&title=Customer Sales Summary",
+				"full"=> $translation->translateLabel("Sales Summary"),
+			    ],
+			]
+		    ],
+
+		],
+		"Purchase" => [
+		    "full" => $translation->translateLabel('PURCHASE'),
+		    "link" => "index.php#/?page=dashboard",
+		    "iconclass" => "calendar",
+		    "data" => [
+                        [
+			    "type" => "absoluteLink",
+			    "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/PurchaseProcessing/ViewPurchases"),
+			    "full" => $translation->translateLabel('New Purchase')
+			],
+			[
+			    "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
+			    "full" => $translation->translateLabel('View Purchases')
+			],
+			[
+			    "id" => "AccountsPayable/PurchaseProcessing/ReceivePurchases",
+			    "full" => $translation->translateLabel('Receive Purchase')
+			]
+		    ],
+		],
+		"Accounting" => [
+		    "full" => $translation->translateLabel('ACCOUNTING'),
+		    "link" => "index.php#/?page=dashboard",
+		    "iconclass" => "calendar",
+		    "data" => [
+                        [
+			    "type" => "absoluteLink",
+			    "href" => $linksMaker->makeGridItemNewPartial("GeneralLedger/Ledger/ViewGLTransactions"),
+			    "full" => $translation->translateLabel('New GL Transaction')
+			],
+                        [
+			    "type" => "absoluteLink",
+			    "href" => $linksMaker->makeGridItemNewPartial("Payroll/EmployeeManagement/ViewEmployees"),
+			    "full" => $translation->translateLabel('New Employee')
+			],
+			[
+			    "id" => "ccountsPayable/Checks/QuickCheck",
+			    "full" => $translation->translateLabel('Quick Check')
+			],
+			[
+			    "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
+			    "full" => $translation->translateLabel('Receive Payment') //FIXME
+			],
+			[
+			    "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
+			    "full" => $translation->translateLabel('Make Payment') //FIXME
+			],
+		    ]
+		],
+		"Reports" => [
+		    "full" => $translation->translateLabel('REPORTS'),
+		    "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
+		    "iconclass" => "stats",
+		    "data" => [
+			[
+			    "type" => "absoluteLink",
+			    "href" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
+			    "full" => $translation->translateLabel('Reports Engine')
+			],
+			[
+			    "type" => "relativeLink",
+			    "href" => "page=financials&type=gaap&module=main",
+			    "full" => $translation->translateLabel('Financial Statements')
+			],
+		    ]
+		],
+		"Favorits" => [
+		    "full" => $translation->translateLabel('FAVORITES'),
+		    "favorits" => true,
+		    "iconclass" => "heart"
+		],
+		"Help" => [
+		    "full" => $translation->translateLabel('HELP'),
+		    "link" => "https://stfbinc.helpdocs.com",
+		    "target" => "_blank",
+		    "iconclass" => "question-sign",
+                    "data" => [
+			[
+			    "type" => "absoluteLink",
+			    "target" => "_blank",
+			    "href" => "https://stfbinc.teamwork.com/support/",
+			    "full" => $translation->translateLabel('New Ticket')
+			],
+			[
+			    "type" => "absoluteLink",
+			    "target" => "_blank",
+			    "href" => "https://stfbinc.helpdocs.com",
+			    "full" => $translation->translateLabel('Help System')
+			],
+		    ]
+		]
+	    ];
+
+	    foreach ($iconbarCategories as $key=>$item){
+		if (!key_exists("favorits", $item)) {
+		    echo '<li onmouseenter="onShowSubMenu(event);" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'fillByTypical(\''. $key . '\');'  : 'fillTopmenu();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
+		    if (key_exists("data", $item)) {
+			echo "<ul onmouseenter=\"onShowSubMenu(event);\" onmouseleave=\"onHideSubMenu(event);\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
+			foreach($item["data"] as $subitem) {
+			    $href = "";
+			    if(!key_exists("type", $subitem))
+				$href = $linksMaker->makeGridLink($subitem["id"]);
+			    else if($subitem["type"] == 'relativeLink')
+				$href = "index.php#/?" . $subitem["href"];
+			    else if($subitem["type"] == 'absoluteLink')
+				$href = $subitem["href"];
+			    
+			    echo '<li style="height:60px"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" ' . (key_exists("target", $subitem) ? 'target="' . $subitem["target"] . '"' : '') . ' href="' . $href . '" class="nav-link">' . $subitem["full"] .'</a></li>';
+			}
+			echo '</ul>';
+		    }
+		    echo '</li>';
+		} else {
+		    echo '<li  onmouseenter="onShowSubMenu(event);" onmouseleave="onHideSubMenu(event);" ><a onclick="fillByFavorits();" style="cursor: pointer" class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
+		    foreach ($menuCategories as $key=>$item){
+			if ($item["type"] == "custom") {
+			    echo "<ul onmouseenter=\"onShowSubMenu(event);\" onmouseleave=\"onHideSubMenu(event);\" id=\"" . $item["id"] . "\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
+			    foreach($item["actions"] as $key=>$subitem) {
+				echo '<li id="' . $subitem["id"] . '"onclick="' . $subitem["action"] . '"  style="height:60px; width: 100%"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" href="javascript:;" class="nav-link">' . $subitem["full"] .'</a></li>';
+			    }
+			    echo '</ul>';
+			}
+		    }
+		    echo '</li>';
+		}
+	    }
         ?>
     </ul>
 </div>
 <script>
 
-function onShowSubMenu(e) {
-    var menu = $(e.target).find('ul');
-    $(menu[0]).css({display: 'block'});
-    $(menu[0]).css({top: 'auto'});
-}
+ function onShowSubMenu(e) {
+     var menu = $(e.target).find('ul');
+     $(menu[0]).css({display: 'block'});
+     $(menu[0]).css({top: 'auto'});
+ }
 
-function onHideSubMenu(e) {
-    $('.iconbarsubmenu').css("display", "none");
-    submenuToggled = false;
-}
+ function onHideSubMenu(e) {
+     $('.iconbarsubmenu').css("display", "none");
+     submenuToggled = false;
+ }
 
-$(document).click(function(e){
-    $('.iconbarsubmenu').css("display", "none");
-    submenuToggled = false;
-});
+ $(document).click(function(e){
+     $('.iconbarsubmenu').css("display", "none");
+     submenuToggled = false;
+ });
 
-var submenuToggled;
-$('.dropdown-submenu a.mysubmenu').on("mouseover", function(e){
-    if (submenuToggled) {
-        $(submenuToggled).next('ul').toggle();
-    }
-    submenuToggled = this;
-    $(this).next('ul').toggle();
-    e.stopPropagation();
-    e.preventDefault();
-});
-$('.dropdown-submenu a.mysubmenu').on("mouseout", function(e){
-    if (submenuToggled) {
-        $(submenuToggled).next('ul').toggle();
-    }
-    submenuToggled = this;
-    $(this).next('ul').toggle();
-    e.stopPropagation();
-    e.preventDefault();
-});
+ var submenuToggled;
+ $('.dropdown-submenu a.mysubmenu').on("mouseover", function(e){
+     if (submenuToggled) {
+         $(submenuToggled).next('ul').toggle();
+     }
+     submenuToggled = this;
+     $(this).next('ul').toggle();
+     e.stopPropagation();
+     e.preventDefault();
+ });
+ $('.dropdown-submenu a.mysubmenu').on("mouseout", function(e){
+     if (submenuToggled) {
+         $(submenuToggled).next('ul').toggle();
+     }
+     submenuToggled = this;
+     $(this).next('ul').toggle();
+     e.stopPropagation();
+     e.preventDefault();
+ });
 
  var sidebarItems = $(".collapse-sidebar-item");
  var twoLevelItems = $(".collapse-sidebar-two-level-item");
@@ -305,19 +409,19 @@ $('.dropdown-submenu a.mysubmenu').on("mouseout", function(e){
      $('.nav-item-level2, .nav-item-level3, .nav-item-level4').removeClass('left-iconbar-active');
  }
 
-function iconbarDeselectAll() {
-    $('.bs-glyphicons li, .bs-glyphicons li a').removeClass('left-iconbar-active');
-}
+ function iconbarDeselectAll() {
+     $('.bs-glyphicons li, .bs-glyphicons li a').removeClass('left-iconbar-active');
+ }
 
  function sideBarSelectItem(object){
      var shortcuts = $("#MyShortcuts"), scChildren = shortcuts.children(), ind = 0;
      if(scChildren.length > 1){
 	 while(ind != scChildren.length){
 	     if(scChildren[ind].id == object.item.id){
-		//  $("li").removeClass('active');
-		//  $(scChildren[ind]).addClass('active');
-		//  shortcuts.parent().collapse("show");
-		//  shortcuts.parent().css("display:block");
+		 //  $("li").removeClass('active');
+		 //  $(scChildren[ind]).addClass('active');
+		 //  shortcuts.parent().collapse("show");
+		 //  shortcuts.parent().css("display:block");
 		 return;
 	     }
 	     ind++;
@@ -327,10 +431,10 @@ function iconbarDeselectAll() {
 	     var scChildren = shortcuts.children(), ind = 0;
 	     while(ind != scChildren.length){
 		 if(scChildren[ind].id == object.item.id){
-		    //  $(scChildren[ind]).addClass('active');
+		     //  $(scChildren[ind]).addClass('active');
 		     //console.log(scChildren[ind]);
-		    //  shortcuts.parent().collapse("show");
-		    //  shortcuts.parent().css("display:block");
+		     //  shortcuts.parent().collapse("show");
+		     //  shortcuts.parent().css("display:block");
 		     //		 shortcuts.parent().collapse("hide");
 		     //		 shortcuts.parent().collapse("show");
 		 }
@@ -380,7 +484,7 @@ function iconbarDeselectAll() {
  }
 
  function setIconbarActive(object){
-    //  console.log(object.parentNode);
+     //  console.log(object.parentNode);
      iconbarDeselectAll();
      $(object).addClass("left-iconbar-active");
      $(object.parentNode).addClass("left-iconbar-active");
@@ -427,44 +531,44 @@ function iconbarDeselectAll() {
      });
  })();
 
-// function createFavItem(id) {
-//     var shortcutsRaw = localStorage.getItem('shortcuts');
-//     var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
+ // function createFavItem(id) {
+ //     var shortcutsRaw = localStorage.getItem('shortcuts');
+ //     var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
 
-//     var hh = "" + "/index#/grid/" + id + "/grid/Main/all";
+ //     var hh = "" + "/index#/grid/" + id + "/grid/Main/all";
 
-//     $('#custom-toolbar').append(
-//         '<li style="float: left" id="' + id + '"class="top-bar-link"><a href="' + hh+ '" style="padding: 5px 7px !important">' + shortcuts[id].label + '</a></li>'
-//     );
-// }
+ //     $('#custom-toolbar').append(
+ //         '<li style="float: left" id="' + id + '"class="top-bar-link"><a href="' + hh+ '" style="padding: 5px 7px !important">' + shortcuts[id].label + '</a></li>'
+ //     );
+ // }
 
-// function clearCustomToolbar() {
-//     // var parent = document.getElementById('custom-toolbar');
-//     // while (parent.firstChild) {
-//     //     parent.removeChild(parent.firstChild);
-//     // }
-// }
-// function compare(a,b) {
-//     if (a.order < b.order)
-//         return -1;
-//     if (a.order > b.order)
-//         return 1;
-//     return 0;
-// }
+ // function clearCustomToolbar() {
+ //     // var parent = document.getElementById('custom-toolbar');
+ //     // while (parent.firstChild) {
+ //     //     parent.removeChild(parent.firstChild);
+ //     // }
+ // }
+ // function compare(a,b) {
+ //     if (a.order < b.order)
+ //         return -1;
+ //     if (a.order > b.order)
+ //         return 1;
+ //     return 0;
+ // }
 
-function fillByFavorits() {
-    // clearCustomToolbar();
-    // var shortcutsRaw = localStorage.getItem('shortcuts');
-    // var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
-    // var keys = Object.keys(shortcuts).map(function (key) {
-    //     return shortcuts[key];
-    // }).sort(compare);
-    // // var keys = Object.keys(shortcuts);
-    // var parent = document.getElementById('custom-toolbar');
+ function fillByFavorits() {
+     // clearCustomToolbar();
+     // var shortcutsRaw = localStorage.getItem('shortcuts');
+     // var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
+     // var keys = Object.keys(shortcuts).map(function (key) {
+     //     return shortcuts[key];
+     // }).sort(compare);
+     // // var keys = Object.keys(shortcuts);
+     // var parent = document.getElementById('custom-toolbar');
 
-    // for (var i = 0; i < keys.length; i++) {
-    //     createFavItem(keys[i].id);
-    // }
-}
+     // for (var i = 0; i < keys.length; i++) {
+     //     createFavItem(keys[i].id);
+     // }
+ }
 
 </script>

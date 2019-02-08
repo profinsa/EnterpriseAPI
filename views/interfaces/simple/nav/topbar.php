@@ -242,7 +242,7 @@
 
  function createTypicalItem(id, item) {
      $('#topbarMenu').append(
-         '<li class="dropdown top-bar-link"><a href="' + item.link + '"  class="nav-link">' + item.label + '</a></li>'
+         '<li class="dropdown top-bar-link"><a href="' + item.id + '"  class="nav-link">' + item.full + '</a></li>'
      );
  }
  
