@@ -40,7 +40,7 @@
 			],
                         [
 			    "id" => "AccountsPayable/Vendors/ViewVendorFinancials",
-			    "full" => $translation->translateLabel('View Vendors Balances')
+			    "full" => $translation->translateLabel('View Vendor Balances')
 			],
 		    ],
 		    "topbar" => $leftMenu["Main"]["data"][3]["data"][0]["data"]
@@ -192,7 +192,7 @@
 			    else if($subitem["type"] == 'absoluteLink')
 				$href = $subitem["href"];
 			    
-			    echo '<li style="height:60px"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" ' . (key_exists("target", $subitem) ? 'target="' . $subitem["target"] . '"' : '') . ' href="' . $href . '" class="nav-link">' . $subitem["full"] .'</a></li>';
+			    echo '<li style="height:60px; width:auto; text-align:left;"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 10px; padding-left: 10px;" ' . (key_exists("target", $subitem) ? 'target="' . $subitem["target"] . '"' : '') . ' href="' . $href . '" class="nav-link">' . $subitem["full"] .'</a></li>';
 			}
 			echo '</ul>';
 		    }
