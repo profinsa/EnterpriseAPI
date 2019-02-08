@@ -12,6 +12,16 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<script src="dependencies/assets/js/spin.min.js"></script>
+	<?php
+	    require __DIR__ . '/../../components/commonJavascript.php';
+	?>
+	<style> <!-- FAST STYLE FIXES FIXMEEEE -->
+	 @media screen and (min-width: 768px){
+	     .navbar .navbar-right {
+		 height : auto !important;
+	     }
+	 }
+	</style>
     </head>
     <?php
 	$menuCategories = [];

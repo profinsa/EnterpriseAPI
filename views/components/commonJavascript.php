@@ -1,4 +1,8 @@
 <script>
+ function makeId(id){
+     return id.replace(/[\s\$\&\/]+/g, "");
+ }
+ 
  function downloadFile(filename, text) {
      var element = document.createElement('a');
      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -32,6 +36,9 @@
 
  //global object used for creatink links to any part of application
  var linksMaker = {
+     makeGridLink : function makeGridLink(path){
+         return "index.php#/?page=grid&action=" + path + "&mode=grid&category=Main&item=all";
+     },
      makeGridItemView : function(path, item, category){
          return "index.php#/?page=grid&action=" + path + "&mode=view&category=" + (category ? category : "Main") + "&item=" + item;
      },

@@ -1,4 +1,4 @@
-<ul id="topbarMenu" class="nav navbar navbar-nav navbar-right top-bar hide-on-handsheld" style="width: 100% !important; padding-left: 10px; z-index:100">
+<ul id="topbarMenu" class="nav navbar navbar-nav navbar-right top-bar hide-on-handsheld" style="width: 100% !important; padding-left: 10px; z-index:100; height:auto;">
     <?php
         $public_prefix = "";
 	foreach ($leftMenu["Main"]["data"] as $key=>$item){
@@ -242,13 +242,13 @@
 
  function createTypicalItem(id, item) {
      $('#topbarMenu').append(
-         '<li class="dropdown top-bar-link"><a href="' + item.id + '"  class="nav-link">' + item.full + '</a></li>'
+         '<li class="dropdown top-bar-link"><a href="' + linksMaker.makeGridLink(item.id) + '"  class="nav-link">' + item.full + '</a></li>'
      );
  }
  
  function createTypicalSubItem(id, item) {
      $('#' + id).append(
-         '<li><a href="' + item.link + '"  class="mysubmenu">' + item.label + '</a></li>'
+         '<li><a href="' + linksMaker.makeGridLink(item.id) + '"  class="mysubmenu">' + item.full + '</a></li>'
      );
  }
 
@@ -275,34 +275,48 @@
      // topbarChildren = $('#topbarMenu').clone();
      clearTopbarmenu();
 
-     var items = <?php echo json_encode($iconbarCategories); ?>;
+     var items = <?php echo json_encode($iconbarCategories); ?>,
+	 topbar = items[key].topbar,
+	 ind, iind;
 
+     for(ind in topbar){
+	 if(!topbar[ind].hasOwnProperty("data")){
+             createTypicalItem(topbar[ind], topbar[ind]);
+	 }else{
+	     createTypicalRootItem(makeId(topbar[ind].id));
+	     
+	     for(iind in topbar[ind].data)
+		 createTypicalSubItem(makeId(topbar[ind].id), topbar[ind].data[iind])
+	 }
+     }
+
+     return;
      var keys = Object.keys(items[key].topbar);
 
      for (var i = 0; i < keys.length; i++) {
          if (Array.isArray(items[key].topbar[keys[i]])) {
              if (!items[key].topbar[keys[i]].length) {
-                 createTypicalItem(keys[i], {
-                     link: '#',
-                     label: keys[i]
-                 });
+		 createTypicalItem(keys[i], {
+		     id: '#',
+		     full: keys[i]
+		 });
              } else {
-                 createTypicalRootItem(keys[i]);
-                 for (var j = 0; j < items[key].topbar[keys[i]].length; j++) {
-                     createTypicalSubItem(keys[i], items[key].topbar[keys[i]][j])
-                 }
+		 createTypicalRootItem(keys[i]);
+		 for (var j = 0; j < items[key].topbar[keys[i]].length; j++) {
+		     createTypicalSubItem(keys[i], items[key].topbar[keys[i]][j])
+		 }
              }
          } else {
              if (items[key].topbar[keys[i]].hasOwnProperty('node')) {
-                 createTypicalRootItem(keys[i]);
-                 var nodes = topbarChildren.find('#' + items[key].topbar[keys[i]].node).clone().children();
-                 
-                 for ( var k = 0; k < nodes.length; k++) {
-                     $('#' + keys[i]).append(nodes[k]);
-                 }
-                 initTopbarEvents();
+		 createTypicalRootItem(keys[i]);
+		 var nodes = topbarChildren.find('#' + items[key].topbar[keys[i]].node).clone().children();
+		 
+		 for ( var k = 0; k < nodes.length; k++) {
+		     $('#' + keys[i]).append(nodes[k]);
+		 }
+		 initTopbarEvents();
              } else {
-                 createTypicalItem(keys[i], items[key].topbar[keys[i]]);
+		 createTypicalItem(keys[i], items[key].topbar[keys[i]]);
              }
          }
      }
@@ -387,63 +401,63 @@
          if(e.keyCode == 13)
              {
                  $(this).trigger("enterKey");
- }
- });
+	     }
+     });
 
- 
- input.bind('focus', function() {
-     // if(input.val() === txt) {
-     //     input.val('');
-     // }
-     // $(this).animate({color: '#000'}, 300); // text color
-     $(this).parent().animate({
-         width: outerWidth + 'px',
-         backgroundColor: '#fff', // background color
-         // paddingRight: '43px'
-     }, 0, function() {
-         if(!(input.val() === '' || input.val() === txt)) {
+     
+     input.bind('focus', function() {
+	 // if(input.val() === txt) {
+	 //     input.val('');
+	 // }
+	 // $(this).animate({color: '#000'}, 300); // text color
+	 $(this).parent().animate({
+             width: outerWidth + 'px',
+             backgroundColor: '#fff', // background color
+             // paddingRight: '43px'
+	 }, 0, function() {
+             if(!(input.val() === '' || input.val() === txt)) {
+		 // if(!($.browser.msie && $.browser.version < 9)) {
+		 //     submit.fadeIn(300);
+		 // } else {
+		 submit.css({display: 'block'});
+		 // }
+             }
+	 }).addClass('focus');
+     }).bind('blur', function() {
+	 // $(this).animate({color: '#b4bdc4'}, 300); // text color
+	 $(this).parent().animate({
+             width: width + 'px',
+             backgroundColor: '#e8edf1', // background color
+             // paddingRight: '15px'
+	 }, 0, function() {
+             if(input.val() === '') {
+		 input.val(txt)
+             }
+	 }).removeClass('focus');
+	 // if(!($.browser.msie && $.browser.version < 9)) {
+	 //     submit.fadeOut(100);
+	 // } else {
+	 setTimeout(function () {
+             submit.css({display: 'none'});
+	 }, 1000);
+
+	 // submit.css({display: 'none'});
+	 // }    
+     }).keyup(function() {
+	 if(input.val() === '') {
+             // if(!($.browser.msie && $.browser.version < 9)) {
+             //     submit.fadeOut(300);
+             // } else {
+             submit.css({display: 'none'});
+             // }
+	 } else {
              // if(!($.browser.msie && $.browser.version < 9)) {
              //     submit.fadeIn(300);
              // } else {
              submit.css({display: 'block'});
              // }
-         }
-     }).addClass('focus');
- }).bind('blur', function() {
-     // $(this).animate({color: '#b4bdc4'}, 300); // text color
-     $(this).parent().animate({
-         width: width + 'px',
-         backgroundColor: '#e8edf1', // background color
-         // paddingRight: '15px'
-     }, 0, function() {
-         if(input.val() === '') {
-             input.val(txt)
-         }
-     }).removeClass('focus');
-     // if(!($.browser.msie && $.browser.version < 9)) {
-     //     submit.fadeOut(100);
-     // } else {
-     setTimeout(function () {
-         submit.css({display: 'none'});
-     }, 1000);
-
-     // submit.css({display: 'none'});
-     // }    
- }).keyup(function() {
-     if(input.val() === '') {
-         // if(!($.browser.msie && $.browser.version < 9)) {
-         //     submit.fadeOut(300);
-         // } else {
-         submit.css({display: 'none'});
-         // }
-     } else {
-         // if(!($.browser.msie && $.browser.version < 9)) {
-         //     submit.fadeIn(300);
-         // } else {
-         submit.css({display: 'block'});
-         // }
-     }
- });
+	 }
+     });
  }
  initSearch();
 </script>

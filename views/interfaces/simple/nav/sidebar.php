@@ -22,29 +22,7 @@
 			    "full" => $translation->translateLabel('View Customer Balances')
 			],
 		    ],
-		    "topbar" => [
-			"Add Customer" => [
-			    "id" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomers/new/Main/new",
-			    "full" => $translation->translateLabel('Add Customer')
-			],
-			"Setup" => [
-			    [
-				"id" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomers/grid/Main/all",
-				"full" => $translation->translateLabel('View Customers'),
-			    ],
-			    [
-				"id" => $public_prefix . "/index#/grid/AccountsReceivable/Customers/ViewCustomerFinancials/grid/Main/all",
-				"full" => $translation->translateLabel('View Customer Financials'),
-			    ],
-			],
-			"Reports" => [
-			    [
-				"id" => $public_prefix . "/index#/autoreports/RptListCustomerInformation?id=1202975512&title=Customer Information",
-				"full" => $translation->translateLabel("Information"),
-			    ]
-			]
-
-		    ]
+		    "topbar" => $leftMenu["Main"]["data"][2]["data"][0]["data"]
 		],
 		"Vendor" => [
 		    "full" => $translation->translateLabel('VENDOR'),
@@ -65,29 +43,7 @@
 			    "full" => $translation->translateLabel('View Vendors Balances')
 			],
 		    ],
-		    "topbar" => [
-			"Add Vehicle" => [
-			    "id" => $public_prefix . "/index#/grid/Inventory/Vehicles/ViewVehicles/new/Main/new",
-			    "full" => $translation->translateLabel('Add Vehicle')
-			],
-			"Setup" => [
-			    [
-				"id" => $public_prefix . "/index#/grid/Inventory/Vehicles/ViewVehicles/grid/Main/all",
-				"full" => $translation->translateLabel('View Vehicles'),
-			    ],
-			    [
-				"id" => $public_prefix . "/index#/grid/SystemSetup/ManufacturerSetup/ManufacturerSetup/grid/Main/all",
-				"full" => $translation->translateLabel('Vehicle Setup'),
-			    ]                    
-			],
-			"Reports" => [
-			    [
-				"id" => $public_prefix . "/index#/autoreports/RptListVehiclesHeader?id=77896561&title=Vehicles",
-				"full" => $translation->translateLabel("Vehicles"),    
-			    ]
-			]
-
-		    ]
+		    "topbar" => $leftMenu["Main"]["data"][3]["data"][0]["data"]
 		],
 		"Items" => [
 		    "full" => $translation->translateLabel('ITEM'),
@@ -108,21 +64,7 @@
 			    "full" => $translation->translateLabel('New Item')
 			],
 		    ],
-		    "topbar" => [
-			"Counter Sale" => [
-			    "id" => $public_prefix . "/index#/grid/Inventory/PartsDepartment/PartsInvoice/new/Main/new",
-			    "full" => $translation->translateLabel('Counter Sale')
-			],
-			"Setup" => [
-			    "node" => "Inventory",
-			],
-			"Reports" => [
-			    [
-				"id" => $public_prefix . "/index#/autoreports/RptListParts?id=1554973463&title=Parts",
-				"full" => $translation->translateLabel('Parts'),
-			    ],
-			],
-		    ],
+		    "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
 		],
 		"Sales" => [
 		    "full" => $translation->translateLabel('SALES'),
@@ -138,24 +80,7 @@
 			    "full" => $translation->translateLabel('View Invoices')
 			]
 		    ],
-		    "topbar" => [
-			"Desking" => [
-			    "full" => $translation->translateLabel('Desking'),
-			    "id" => $public_prefix . "/index#/dashboard?screen=Desking",
-			],
-			"Reports" => [
-			    [
-				"id" => $public_prefix . "/index#/autoreports/RptSalesCustomerSalesDetail?id=479496937&title=Customer Sales Detail",
-				"full" => $translation->translateLabel("Sales Detail"),
-			    ],
-
-			    [
-				"id" => $public_prefix . "/index#/autoreports/RptSalesCustomerSalesSummary?id=1834645779&title=Customer Sales Summary",
-				"full"=> $translation->translateLabel("Sales Summary"),
-			    ],
-			]
-		    ],
-
+		    "topbar" => $leftMenu["Main"]["data"][2]["data"]
 		],
 		"Purchase" => [
 		    "full" => $translation->translateLabel('PURCHASE'),
@@ -176,6 +101,7 @@
 			    "full" => $translation->translateLabel('Receive Purchase')
 			]
 		    ],
+		    "topbar" => $leftMenu["Main"]["data"][3]["data"]
 		],
 		"Accounting" => [
 		    "full" => $translation->translateLabel('ACCOUNTING'),
@@ -204,7 +130,8 @@
 			    "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
 			    "full" => $translation->translateLabel('Make Payment') //FIXME
 			],
-		    ]
+		    ],
+		    "topbar" => $leftMenu["Main"]["data"]
 		],
 		"Reports" => [
 		    "full" => $translation->translateLabel('REPORTS'),
@@ -221,7 +148,8 @@
 			    "href" => "page=financials&type=gaap&module=main",
 			    "full" => $translation->translateLabel('Financial Statements')
 			],
-		    ]
+		    ],
+		    "topbar" => $leftMenu["Main"]["data"][7]["data"]
 		],
 		"Favorits" => [
 		    "full" => $translation->translateLabel('FAVORITES'),
