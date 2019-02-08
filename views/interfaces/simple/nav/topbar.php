@@ -277,11 +277,74 @@
 
      var items = <?php echo json_encode($iconbarCategories); ?>,
 	 topbar = items[key].topbar,
-	 ind, iind;
+	 ind, iind, iiind, iiiind, item, subitem, ssubitem, sssubitem, _html = '', href;
 
      for(ind in topbar){
+	 item = topbar[ind];
+	 if(item["type"] == "submenu"){// && $security->checkMenu($item["id"])){ FIXME
+ 	     _html += "<li class=\"dropdown top-bar-link\">";
+	     _html += "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded\"false\">" + item["full"] + "</a>";
+
+	     _html += '<ul id="' + item["id"] + '"class="dropdown-menu" style="width: 300px">';
+	     for(iind in item.data){
+		 subitem = item.data[iind];
+		 _html += "<li class=\"dropdown-submenu\">";
+		 if(!subitem.hasOwnProperty("type")){
+		     href = subitem["href"].search(/^http/) != -1 ?
+			    subitem["href"] : "index.php#/?page=grid&action=" + (subitem.hasOwnProperty("href_ended") ? subitem["href_ended"] : subitem["id"]);
+		     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (subitem.hasOwnProperty("target") && subitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + subitem["full"] +"</a></li>";
+		     //			echo "<a class=\"mysubmenu\" href=\"#\"><div class=\"row\"><span style=\"float:left\">" + $subitem["full"] + "</span><span class=\"glyphicon glyphicon-menu-right pull-right\" style=\"margin-top:2px;\"></span></div></a>\n";
+		 }else if(subitem["type"] == "relativeLink") {
+		     href = (subitem.hasOwnProperty("target") && subitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + subitem["href"];
+		     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (subitem.hasOwnProperty("target") && subitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + subitem["full"] +"</a></li>";
+		 }else if(subitem["type"] == "item"){
+		     //$href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix + "/index#/grid/" + (key_exists("href_ended", $subitem) ? $subitem["href_ended"] : $subitem["id"] + "/grid/Main/all");
+		 }else if(subitem["type"] == "submenu"){
+		     _html += "<a class=\"mysubmenu\" href=\"#\"><div class=\"row\"><span style=\"float:left\">" + subitem["full"] + "</span><span class=\"glyphicon glyphicon-menu-right pull-right\" style=\"margin-top:2px;\"></span></div></a>\n";
+		     _html += "<ul class=\"dropdown-menu\" style=\"width: 300px\">";
+		     for(iiind in subitem["data"]){
+			 ssubitem = subitem["data"][iiind];
+			 if(!ssubitem.hasOwnProperty("type")){
+			     // $href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix + "/index#/grid/" . $ssubitem["id"] . "/grid/main/all";
+			     href = ssubitem["href"].search(/^http/) != -1 ? ssubitem["href"] : "index.php#/?page=grid&action=" + (ssubitem.hasOwnProperty("href_ended") ? ssubitem["href_ended"] : ssubitem["id"]);
+			     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>";
+			 }else if(ssubitem["type"] == "submenu"){
+			     //echo json_encode($ssubitem["data"]);
+			     for(iiiind in ssubitem["data"]){
+				 sssubitem = ssubitem["data"][iiiind];
+				 if(sssubitem.hasOwnProperty("type") && sssubitem["type"] == "submenu"){
+				 }else{
+				     if(sssubitem.hasOwnProperty("type") && sssubitem["type"] == "relativeLink")
+					 href = (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + sssubitem["href"];
+				     else
+					 href = sssubitem["href"].search(/^http/) != -1 ? sssubitem["href"] : "index.php#/?page=grid&action=" + $sssubitem["id"];
+				     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + sssubitem["full"] +"</a></li>";
+				 }
+			     }
+			 }else if(ssubitem["type"] == "relativeLink"){
+			     href = (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + ssubitem["href"];
+			     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>";
+			 }
+		     }
+		     _html += "</ul>";
+		 };
+		 _html += "</li>";
+	     }
+	     _html += "</ul></li>";
+	 }else{
+ 	     _html += "<li class=\"top-bar-link\">";
+	     _html += "<a href=\"" + "index.php#/?page=grid&action=" + (item.hasOwnProperty("href_ended") ? item["href_ended"] : item["id"]) + "\" role=\"button\">" + item["full"] + "</a>";
+	     _html += "</li>";
+	 }
+     }
+
+     $('#topbarMenu').html(_html);
+     initTopbarEvents();
+
+     return;
+     for(ind in topbar){
 	 if(!topbar[ind].hasOwnProperty("data")){
-             createTypicalItem(topbar[ind], topbar[ind]);
+	     createTypicalItem(topbar[ind], topbar[ind]);
 	 }else{
 	     createTypicalRootItem(makeId(topbar[ind].id));
 	     
@@ -294,20 +357,20 @@
      var keys = Object.keys(items[key].topbar);
 
      for (var i = 0; i < keys.length; i++) {
-         if (Array.isArray(items[key].topbar[keys[i]])) {
-             if (!items[key].topbar[keys[i]].length) {
+	 if (Array.isArray(items[key].topbar[keys[i]])) {
+	     if (!items[key].topbar[keys[i]].length) {
 		 createTypicalItem(keys[i], {
 		     id: '#',
 		     full: keys[i]
 		 });
-             } else {
+	     } else {
 		 createTypicalRootItem(keys[i]);
 		 for (var j = 0; j < items[key].topbar[keys[i]].length; j++) {
 		     createTypicalSubItem(keys[i], items[key].topbar[keys[i]][j])
 		 }
-             }
-         } else {
-             if (items[key].topbar[keys[i]].hasOwnProperty('node')) {
+	     }
+	 } else {
+	     if (items[key].topbar[keys[i]].hasOwnProperty('node')) {
 		 createTypicalRootItem(keys[i]);
 		 var nodes = topbarChildren.find('#' + items[key].topbar[keys[i]].node).clone().children();
 		 
@@ -315,62 +378,62 @@
 		     $('#' + keys[i]).append(nodes[k]);
 		 }
 		 initTopbarEvents();
-             } else {
+	     } else {
 		 createTypicalItem(keys[i], items[key].topbar[keys[i]]);
-             }
-         }
+	     }
+	 }
      }
  }
 
  function changeLanguage(event){
      $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
       .success(function(data) {
-          location.reload();
+	  location.reload();
       })
       .error(function(err){
-          console.log('something going wrong');
+	  console.log('something going wrong');
       });
  }
 
  function startSearch() {
      var input = $('input#search-input-id');
      $.post("<?php echo $linksMaker->makeProcedureLink("AccountsReceivable/OrderScreens/ViewOrders", "searchCustomer") ?>",{
-         searchText: input.val(),
+	 searchText: input.val(),
      })
       .success(function(jsondata) {
-          $("#search-table-wrapper-id").show();
-          if (table) {
-              table.destroy();
-              table = null;
-              $('#search-table tbody').empty();
-          }
-          var select = $('#search-table tbody')[0];
-          
-          while (select.firstChild) {
-              select.removeChild(select.firstChild);
-          }
+	  $("#search-table-wrapper-id").show();
+	  if (table) {
+	      table.destroy();
+	      table = null;
+	      $('#search-table tbody').empty();
+	  }
+	  var select = $('#search-table tbody')[0];
+	  
+	  while (select.firstChild) {
+	      select.removeChild(select.firstChild);
+	  }
 
-          var data = JSON.parse(jsondata);
-          if (data) {
-              for (var i = 0; i < data.length; i++) {
-                  var keyString = '<?php echo $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__"; ?>' + data[i].CustomerID;
-                  var CustomerFirstName = data[i].CustomerFirstName ? data[i].CustomerFirstName : '';
-                  var CustomerLastName = data[i].CustomerLastName ? data[i].CustomerLastName : '';
-                  $('#search-table tbody').append(
-                      '<tr class="context-menu-row"><td><a href="<?php echo $linksMaker->makeGridItemView("AccountsReceivable/Customers/ViewCustomers", ""); ?>' + encodeURIComponent(keyString) + '"><span class="grid-action-button glyphicon glyphicon-edit" aria-hidden="true"></span></a></td><td>' + CustomerFirstName + '</td><td>' + CustomerLastName + '</td></tr>'
-                  );
-              }
-          }
+	  var data = JSON.parse(jsondata);
+	  if (data) {
+	      for (var i = 0; i < data.length; i++) {
+		  var keyString = '<?php echo $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__"; ?>' + data[i].CustomerID;
+		  var CustomerFirstName = data[i].CustomerFirstName ? data[i].CustomerFirstName : '';
+		  var CustomerLastName = data[i].CustomerLastName ? data[i].CustomerLastName : '';
+		  $('#search-table tbody').append(
+		      '<tr class="context-menu-row"><td><a href="<?php echo $linksMaker->makeGridItemView("AccountsReceivable/Customers/ViewCustomers", ""); ?>' + encodeURIComponent(keyString) + '"><span class="grid-action-button glyphicon glyphicon-edit" aria-hidden="true"></span></a></td><td>' + CustomerFirstName + '</td><td>' + CustomerLastName + '</td></tr>'
+		  );
+	      }
+	  }
 
-          // setTimeout(function() {
-          table = $('#search-table').DataTable({
-              destroy: true,
-              filter: false,
-          });                
+	  // setTimeout(function() {
+	  table = $('#search-table').DataTable({
+	      destroy: true,
+	      filter: false,
+	  });                
 	  //            }, 1);
       })
       .error(function(err){
-          console.log(err);
+	  console.log(err);
       });
 
  }
@@ -384,23 +447,23 @@
      var txt = input.val();
 
      input.mouseenter(function() {
-         if (input.val()) {
-             $("#search-table-wrapper-id").show();                
-         }
+	 if (input.val()) {
+	     $("#search-table-wrapper-id").show();                
+	 }
      });
 
      $("#search-table-wrapper-id").mouseleave(function() {
-         $("#search-table-wrapper-id").hide();
+	 $("#search-table-wrapper-id").hide();
      });
 
      input.bind("enterKey",function(e){
-         startSearch();
+	 startSearch();
      });
 
      input.keyup(function(e){
-         if(e.keyCode == 13)
-             {
-                 $(this).trigger("enterKey");
+	 if(e.keyCode == 13)
+	     {
+		 $(this).trigger("enterKey");
 	     }
      });
 
@@ -411,51 +474,51 @@
 	 // }
 	 // $(this).animate({color: '#000'}, 300); // text color
 	 $(this).parent().animate({
-             width: outerWidth + 'px',
-             backgroundColor: '#fff', // background color
-             // paddingRight: '43px'
+	     width: outerWidth + 'px',
+	     backgroundColor: '#fff', // background color
+	     // paddingRight: '43px'
 	 }, 0, function() {
-             if(!(input.val() === '' || input.val() === txt)) {
+	     if(!(input.val() === '' || input.val() === txt)) {
 		 // if(!($.browser.msie && $.browser.version < 9)) {
 		 //     submit.fadeIn(300);
 		 // } else {
 		 submit.css({display: 'block'});
 		 // }
-             }
+	     }
 	 }).addClass('focus');
      }).bind('blur', function() {
 	 // $(this).animate({color: '#b4bdc4'}, 300); // text color
 	 $(this).parent().animate({
-             width: width + 'px',
-             backgroundColor: '#e8edf1', // background color
-             // paddingRight: '15px'
+	     width: width + 'px',
+	     backgroundColor: '#e8edf1', // background color
+	     // paddingRight: '15px'
 	 }, 0, function() {
-             if(input.val() === '') {
+	     if(input.val() === '') {
 		 input.val(txt)
-             }
+	     }
 	 }).removeClass('focus');
 	 // if(!($.browser.msie && $.browser.version < 9)) {
 	 //     submit.fadeOut(100);
 	 // } else {
 	 setTimeout(function () {
-             submit.css({display: 'none'});
+	     submit.css({display: 'none'});
 	 }, 1000);
 
 	 // submit.css({display: 'none'});
 	 // }    
      }).keyup(function() {
 	 if(input.val() === '') {
-             // if(!($.browser.msie && $.browser.version < 9)) {
-             //     submit.fadeOut(300);
-             // } else {
-             submit.css({display: 'none'});
-             // }
+	     // if(!($.browser.msie && $.browser.version < 9)) {
+	     //     submit.fadeOut(300);
+	     // } else {
+	     submit.css({display: 'none'});
+	     // }
 	 } else {
-             // if(!($.browser.msie && $.browser.version < 9)) {
-             //     submit.fadeIn(300);
-             // } else {
-             submit.css({display: 'block'});
-             // }
+	     // if(!($.browser.msie && $.browser.version < 9)) {
+	     //     submit.fadeIn(300);
+	     // } else {
+	     submit.css({display: 'block'});
+	     // }
 	 }
      });
  }
