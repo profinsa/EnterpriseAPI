@@ -1,7 +1,4 @@
 <script>
- function makeId(id){
-     return id.replace(/[\s\$\&\/]+/g, "");
- }
  
  function downloadFile(filename, text) {
      var element = document.createElement('a');
@@ -28,10 +25,12 @@
  }
  
  function generateKeyString(props){
+     <?php if(isset($ascope)): ?>
      var key, keyString = "<?php echo $ascope["user"]["CompanyID"] . "__" . $ascope["user"]["DivisionID"] . "__" . $ascope["user"]["DepartmentID"] . "__"; ?>";
      for(key in props)
 	 keyString += props[key];
      return keyString;
+     <?php endif; ?>
  }
 
  //global object used for creatink links to any part of application
@@ -78,6 +77,7 @@
  }
  //calling procedure from server
 
+ <?php if(isset($ascope)): ?>
  function serverProcedureCall(methodName, props, reloadPage, jsonRequest, successAlert){
      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, jsonRequest ? JSON.stringify(props) : props, 'text')
       .success(function(data) {
@@ -90,19 +90,22 @@
           alert(xhr.responseText);
       });
  }
+ <?php endif; ?>
 
  function getCurrentPageValues(){
      var values = {};
      <?php
-	 if($ascope["mode"] == "view" || $ascope["mode"] == "edit"){
-	     if(property_exists($data, "editCategories")){
-		 $values = [];
-		 foreach($data->editCategories as $name=>$category){
-		     $cvalues = $data->getEditItem($ascope["item"], $name);
-		     foreach($cvalues as $key=>$value){
-			 $values[$key] = $value;
+	 if(isset($ascope)){
+	     if($ascope["mode"] == "view" || $ascope["mode"] == "edit"){
+		 if(property_exists($data, "editCategories")){
+		     $values = [];
+		     foreach($data->editCategories as $name=>$category){
+			 $cvalues = $data->getEditItem($ascope["item"], $name);
+			 foreach($cvalues as $key=>$value){
+			     $values[$key] = $value;
+			 }
+			 echo "values = " . json_encode($values, JSON_PRETTY_PRINT) . ";";
 		     }
-		     echo "values = " . json_encode($values, JSON_PRETTY_PRINT) . ";";
 		 }
 	     }
 	 }

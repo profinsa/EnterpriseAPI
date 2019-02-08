@@ -12,6 +12,8 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<script src="dependencies/assets/js/spin.min.js"></script>
+	<script>
+	</script>
 	<?php
 	    require __DIR__ . '/../../components/commonJavascript.php';
 	?>
