@@ -107,7 +107,7 @@
 	<!--<a class="minimizer top-bar-shower-off top-bar-toggler" href="javascript:toggleTopBar()">
              <span id="topBarShower" class="glyphicon glyphicon glyphicon-menu-down"></span>
 	     </a>-->
-	<?php /*require "footer.php";*/ ?>
+	<?php require "footer.php"; ?>
 	<div id="content" class="container content top-bar-offset" style="background: #ffffff; padding-bottom:10px">
             <?php
 		if(isset($content))

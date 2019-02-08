@@ -38,6 +38,9 @@
     include './views/components/common.php';
 ?>
 
+<script>
+ var datatableInitialized = false;
+</script>
 <div class="container-fluid">
     <?php
 	if($ascope["interface"] == "default")
@@ -61,33 +64,33 @@
 		 + edit
 		 page is showed after click edit on view screen.
 		 contains tabs with fileds and values. Values is available for changing.
-	       -->
+	    -->
 	    <!-- formating staff -->
 	    <?php require "format.php"; ?>
 	    <?php if($scope->mode == 'grid'): ?>
 		<?php
-		if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewGrid.php"))
-		    require __DIR__ . "/" . $PartsPath . "gridViewGrid.php";
-		else
-		    require "views/gridView/grid.php";
+		    if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewGrid.php"))
+			require __DIR__ . "/" . $PartsPath . "gridViewGrid.php";
+		    else
+			require "views/gridView/grid.php";
 		?>
 	    <?php elseif($scope->mode == 'view'): ?>
 		<?php
-		if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewView.php"))
-		    require __DIR__ . "/" . $PartsPath . "gridViewView.php";
-		else if(key_exists($PartsPath, $redirectView) && file_exists(__DIR__ . "/" . $redirectView[$PartsPath]["view"] . "gridViewView.php"))
-		    require __DIR__ . "/" . $redirectView[$PartsPath]["view"] . "gridViewView.php";
-		else
-		    require "views/gridView/view.php";
+		    if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewView.php"))
+			require __DIR__ . "/" . $PartsPath . "gridViewView.php";
+		    else if(key_exists($PartsPath, $redirectView) && file_exists(__DIR__ . "/" . $redirectView[$PartsPath]["view"] . "gridViewView.php"))
+			require __DIR__ . "/" . $redirectView[$PartsPath]["view"] . "gridViewView.php";
+		    else
+			require "views/gridView/view.php";
 		?>
 	    <?php elseif($scope->mode == 'edit' || $scope->mode == 'new'): ?>
 		<?php
-		if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewEdit.php"))
-		    require __DIR__ . "/" . $PartsPath . "gridViewEdit.php";
-		else if(key_exists($PartsPath, $redirectView) && file_exists(__DIR__ . "/" . $redirectView[$PartsPath]["edit"] . "gridViewEdit.php"))
-		    require __DIR__ . "/" . $redirectView[$PartsPath]["edit"] . "gridViewEdit.php";
-		else
-		    require "views/gridView/edit.php";
+		    if(file_exists(__DIR__ . "/" . $PartsPath . "gridViewEdit.php"))
+			require __DIR__ . "/" . $PartsPath . "gridViewEdit.php";
+		    else if(key_exists($PartsPath, $redirectView) && file_exists(__DIR__ . "/" . $redirectView[$PartsPath]["edit"] . "gridViewEdit.php"))
+			require __DIR__ . "/" . $redirectView[$PartsPath]["edit"] . "gridViewEdit.php";
+		    else
+			require "views/gridView/edit.php";
 		?>
 	    <?php endif; ?>
 	</div>
@@ -100,7 +103,11 @@
      text-align : center !important;
  }
 </style>
+<?php if($ascope["interface"] == "simple"): ?>
+<?php endif; ?>
+
 <script language="javascript" type="text/javascript">
+ <?php if($ascope["interface"] == "default"): ?>
  if(!$.fn.DataTable.isDataTable("#example23")){
      $('#example23').DataTable( {
 	 pageLength : gridViewDefaultRowsInGrid,
@@ -115,7 +122,47 @@
 	 dom : "frtlip",
      });
  }
+ <?php elseif($ascope["interface"] == "simple"): ?>
+ if(!datatableInitialized){
+     datatableInitialized = true;
+     try{
+	 console.log("DDDDDDDDD");
+	 var table = $('#example23').DataTable( {
+	     <?php  echo (!property_exists($data, "features") || !in_array("disabledGridPageUI", $data->features) ? "" : "dom : \"tip\","); ?>
+	     pageLength : gridViewDefaultRowsInGrid,
+	     buttons: [
+		 'copy', 'csv', 'excel', 'pdf', 'print'
+	     ]
+	 });
+	 console.log(table);
+	 var buttons = $('.dt-buttons-container');
+	 var dtbuttons = table.buttons().container();
+	 dtbuttons.prepend($(".new-button-action"));
+	 dtbuttons.prepend($(".grid-actions-button"));
+	 dtbuttons.addClass("col-md-12 pull-right");
+	 buttons.append(dtbuttons);
+	 
+	 $('.dt-button').addClass("btn btn-info");
+	 $('.dt-button').css("margin-left", "3px");
+	 $('.grid-actions-button').css("margin-left", "3px");
+	 $('.dt-button').removeClass("dt-button buttons-html5");
 
+	 // Order by the grouping
+	 $('#example tbody').on( 'click', 'tr.group', function () {
+	     var currentOrder = table.order()[0];
+	     if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+		 table.order( [ 2, 'desc' ] ).draw();
+	     }
+	     else {
+		 table.order( [ 2, 'asc' ] ).draw();
+	     }
+	 });
+     }catch(e){
+	 //just a stub
+     }
+ }
+
+ <?php endif; ?>
  $('.fdatetime').datepicker({
      autoclose : true,
      orientation : "bottom",
@@ -125,14 +172,14 @@
 	     //console.log(date,' eee');
 	     var d = new Date(date);
 	     return (d.getMonth() + 1) + 
-		   "/" +  d.getDate() +
-		   "/" +  d.getFullYear();
+		    "/" +  d.getDate() +
+		    "/" +  d.getFullYear();
 	 },
 	 toValue: function (date, format, language) {
 	     var d = new Date(date);
 	     return (d.getMonth() + 1) + 
-		   "/" +  d.getDate() +
-		   "/" +  d.getFullYear();
+		    "/" +  d.getDate() +
+		    "/" +  d.getFullYear();
 	 }
      }
  }); 
