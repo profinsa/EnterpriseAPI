@@ -51,7 +51,6 @@ class controller{
                                    $defaultUser["Division"],
                                    $defaultUser["Department"]);                 
                                    
-            $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
             $translate = new translation($defaultUser["Language"]);
             
             $language = (!empty($_GET['language'])) ? $_GET['language'] : $defaultUser["Language"];
@@ -60,6 +59,7 @@ class controller{
             $user["language"] = (!empty($_GET['language'])) ? $_GET['language'] : $defaultUser["Language"];
 
             $_SESSION["user"] = $user;
+            $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
 
             header("Location: index.php#/?page=dashboard");
             exit;
