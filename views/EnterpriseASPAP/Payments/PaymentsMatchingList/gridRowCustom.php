@@ -45,5 +45,5 @@ EOF;
   <td>$hamount</td>
 </tr>
 EOF;
-    echo $_html;
+echo $_html;
 ?>

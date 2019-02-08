@@ -51,7 +51,7 @@
 	</style>
     </head>
     <body style="padding:10px; font-family: Arial;">
-	<?php require __DIR__ . "/../../footer.php"; ?>
+	<?php require __DIR__ . "/../../interfaces/default/footer.php"; ?>
 	<div id="content" class="container-fluid" style="background: #ffffff; padding-bottom:10px;">
 	    <?php
 	    if(isset($content))

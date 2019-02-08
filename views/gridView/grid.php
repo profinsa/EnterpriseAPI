@@ -41,7 +41,7 @@
 		break;
 	    case "text":
 	    case "dateTimeFull" :
-		echo $value;
+		return $value;
 		break;
 	    case "dropdown":
 		switch($key){
