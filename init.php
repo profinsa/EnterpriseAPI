@@ -41,7 +41,7 @@ class Session{
     }
 }
 
-$config = config();
+$config = $GLOBALS["config"] = config();
 $capsule->addConnection([
     "driver" => "mysql",
     "host" => $config["db_host"],

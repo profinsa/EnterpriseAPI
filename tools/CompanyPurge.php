@@ -1,9 +1,10 @@
 <?php
 include './init.php';
 
-$companiesStr = "2,3,102";
+//$companiesStr = "Test";
+//$companiesStr = '';
 $companies = explode(",",$companiesStr);
-$companies = '';
+//$companies = '';
 foreach($tables as $tableName){
     $desc = DB::select("describe $tableName", array());
     $keys = 0;
@@ -16,7 +17,8 @@ foreach($tables as $tableName){
 
 $whereBlock = "";
 $whereParts = [];
-if($companies != ""){
+echo json_encode($companies);
+if(count($companies)){
     foreach($companies as $company)
         $whereParts[] = "CompanyID='$company'";
 }else{

@@ -1,32 +1,32 @@
 <?php
 /*
-Name of Page: Unlock model
+  Name of Page: Unlock model
 
-Method: Model for gridView. It provides data from database and default values, column names and categories
+  Method: Model for gridView. It provides data from database and default values, column names and categories
 
-Date created: Nikita Zaharov, 09.14.2017
+  Date created: Nikita Zaharov, 09.14.2017
 
-Use: this model used by gridView for:
-- as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
-- for loading data from tables, updating, inserting and deleting
+  Use: this model used by gridView for:
+  - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
+  - for loading data from tables, updating, inserting and deleting
 
-Input parameters:
-$db: database instance
-methods has own parameters
+  Input parameters:
+  $db: database instance
+  methods has own parameters
 
-Output parameters:
-- dictionaries as public properties
-- methods has own output
+  Output parameters:
+  - dictionaries as public properties
+  - methods has own output
 
-Called from:
-created and used for ajax requests by Grid controller
-used as model by gridView
+  Called from:
+  created and used for ajax requests by Grid controller
+  used as model by gridView
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 09.28.2017
-Last Modified by: Nikita Zaharov
+  Last Modified: 11.02.2019
+  Last Modified by: Nikita Zaharov
 */
 
 require __DIR__ . "/../../gridDataSource.php";
@@ -41,22 +41,23 @@ class gridData extends gridDataSource{
     ];
 
     public function unlockTables($EmployeeID){
+        $databaseName = "Tables_in_" . $GLOBALS["config"]["db_base"];
         $user = Session::get("user");
 
         $result = DB::select("show tables", array());
         foreach($result as $key=>$row){
-            if($row->Tables_in_myenterprise != "activeemployee" &&
-               $row->Tables_in_myenterprise != "audittrail" &&
-               $row->Tables_in_myenterprise != "translation" &&
-               $row->Tables_in_myenterprise != "translations" &&
-               $row->Tables_in_myenterprise != "dtproperties" &&
-               $row->Tables_in_myenterprise != "gl detail by date" &&
-               $row->Tables_in_myenterprise != "gl details" &&
-               !preg_match("/history$/", $row->Tables_in_myenterprise) &&
-               !preg_match("/^audit/", $row->Tables_in_myenterprise) &&
-               !preg_match("/^report/", $row->Tables_in_myenterprise) &&
-               !preg_match("/report$/", $row->Tables_in_myenterprise))
-            $tables[] = $row->Tables_in_myenterprise;
+            if($row->$databaseName != "activeemployee" &&
+               $row->$databaseName != "audittrail" &&
+               $row->$databaseName != "translation" &&
+               $row->$databaseName != "translations" &&
+               $row->$databaseName != "dtproperties" &&
+               $row->$databaseName != "gl detail by date" &&
+               $row->$databaseName != "gl details" &&
+               !preg_match("/history$/", $row->$databaseName) &&
+               !preg_match("/^audit/", $row->$databaseName) &&
+               !preg_match("/^report/", $row->$databaseName) &&
+               !preg_match("/report$/", $row->$databaseName))
+            $tables[] = $row->$databaseName;
         }
 
         foreach($tables as $tableName){

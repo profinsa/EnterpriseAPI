@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 05/02/2019
+  Last Modified: 11/02/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -211,30 +211,31 @@ class gridData extends gridDataSource{
         }
                 
         $result = DB::select("show tables", array());
+        $databaseName = "Tables_in_" . $GLOBALS["config"]["db_base"];
         foreach($result as $key=>$row){
-            if($row->Tables_in_myenterprise != "activeemployee" &&
-               $row->Tables_in_myenterprise != "audittrail" &&
-               $row->Tables_in_myenterprise != "translation" &&
-               $row->Tables_in_myenterprise != "translations" &&
-               $row->Tables_in_myenterprise != "dtproperties" &&
-               $row->Tables_in_myenterprise != "gl detail by date" &&
-               $row->Tables_in_myenterprise != "gl details" &&
-               $row->Tables_in_myenterprise != "customerhistorytransactions" &&
-               $row->Tables_in_myenterprise != "customertransactions" &&
-               $row->Tables_in_myenterprise != "itemhistorytransactions" &&
-               $row->Tables_in_myenterprise != "itemtransactions" &&
-               $row->Tables_in_myenterprise != "jointpaymentsdetail" &&
-               $row->Tables_in_myenterprise != "jointpaymentsheader" &&
-               $row->Tables_in_myenterprise != "payrollcommision" &&
-               $row->Tables_in_myenterprise != "projecthistorytransactions" &&
-               $row->Tables_in_myenterprise != "projecttransactions" &&
-               $row->Tables_in_myenterprise != "vendorhistorytransactions" &&
-               $row->Tables_in_myenterprise != "vendortransactions" &&
-               !preg_match("/history$/", $row->Tables_in_myenterprise) &&
-               !preg_match("/^audit/", $row->Tables_in_myenterprise) &&
-               !preg_match("/^report/", $row->Tables_in_myenterprise) &&
-               !preg_match("/report$/", $row->Tables_in_myenterprise))
-            $tables[] = $row->Tables_in_myenterprise;
+            if($row->$databaseName != "activeemployee" &&
+               $row->$databaseName != "audittrail" &&
+               $row->$databaseName != "translation" &&
+               $row->$databaseName != "translations" &&
+               $row->$databaseName != "dtproperties" &&
+               $row->$databaseName != "gl detail by date" &&
+               $row->$databaseName != "gl details" &&
+               $row->$databaseName != "customerhistorytransactions" &&
+               $row->$databaseName != "customertransactions" &&
+               $row->$databaseName != "itemhistorytransactions" &&
+               $row->$databaseName != "itemtransactions" &&
+               $row->$databaseName != "jointpaymentsdetail" &&
+               $row->$databaseName != "jointpaymentsheader" &&
+               $row->$databaseName != "payrollcommision" &&
+               $row->$databaseName != "projecthistorytransactions" &&
+               $row->$databaseName != "projecttransactions" &&
+               $row->$databaseName != "vendorhistorytransactions" &&
+               $row->$databaseName != "vendortransactions" &&
+               !preg_match("/history$/", $row->$databaseName) &&
+               !preg_match("/^audit/", $row->$databaseName) &&
+               !preg_match("/^report/", $row->$databaseName) &&
+               !preg_match("/report$/", $row->$databaseName))
+            $tables[] = $row->$databaseName;
         }
 
         foreach($tables as $tableName){
