@@ -36,5 +36,4 @@ foreach($tables as $tableName){
         $tablesColumns[$tableName] = $desc;
 }
 
-echo json_encode($tablesColumns, JSON_PRETTY_PRINT);
 ?>

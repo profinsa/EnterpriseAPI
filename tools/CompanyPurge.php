@@ -3,8 +3,8 @@ include './init.php';
 
 //$companiesStr = "Test";
 //$companiesStr = '';
-$companies = explode(",",$companiesStr);
-//$companies = '';
+//$companies = explode(",",$companiesStr);
+$companies = [];
 foreach($tables as $tableName){
     $desc = DB::select("describe $tableName", array());
     $keys = 0;

@@ -108,7 +108,7 @@
              <span id="topBarShower" class="glyphicon glyphicon glyphicon-menu-down"></span>
 	     </a>-->
 	<?php require "footer.php"; ?>
-	<div id="content" class="container content top-bar-offset" style="background: #ffffff; padding-bottom:10px">
+	<div id="content" class="container content top-bar-offset" style="background: #ffffff; padding-bottom:10px; padding-right:0px; padding-left:0px;">
             <?php
 		if(isset($content))
 		    require $content;

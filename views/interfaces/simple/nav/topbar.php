@@ -246,7 +246,7 @@
      topbarMenuElement.html(_html);
      initTopbarEvents();
 
-     $("#content").css("margin-top", (parseInt(topbarMenuElement.css("height")) + 30) + 'px');
+     $("#content").css("margin-top", (parseInt(topbarMenuElement.css("height")) + 20) + 'px');
  }
 
  function changeLanguage(event){
