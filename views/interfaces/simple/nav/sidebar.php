@@ -180,9 +180,9 @@
 
 	    foreach ($iconbarCategories as $key=>$item){
 		if (!key_exists("favorits", $item)) {
-		    echo '<li onmouseenter="onShowSubMenu(event);" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'topbarMenuRender(\''. $key . '\');'  : 'topbarMenuRender();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
+		    echo '<li onmouseenter="onShowSubMenu(event, ' . "'$key'" . ');" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'topbarMenuRender(\''. $key . '\');'  : 'topbarMenuRender();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
 		    if (key_exists("data", $item)) {
-			echo "<ul onmouseenter=\"onShowSubMenu(event);\" onmouseleave=\"onHideSubMenu(event);\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
+			echo "<ul onmouseenter=\"onShowSubMenu(event, " . "'$key'" . ");\" onmouseleave=\"onHideSubMenu(event);\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
 			foreach($item["data"] as $subitem) {
 			    $href = "";
 			    if(!key_exists("type", $subitem))
@@ -198,10 +198,10 @@
 		    }
 		    echo '</li>';
 		} else {
-		    echo '<li  onmouseenter="onShowSubMenu(event);" onmouseleave="onHideSubMenu(event);" ><a onclick="fillByFavorits();" style="cursor: pointer" class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
+		    echo '<li  onmouseenter="onShowSubMenu(event, ' . "'$key'" . ');" onmouseleave="onHideSubMenu(event);" ><a onclick="fillByFavorits();" style="cursor: pointer" class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
 		    foreach ($menuCategories as $key=>$item){
 			if ($item["type"] == "custom") {
-			    echo "<ul onmouseenter=\"onShowSubMenu(event);\" onmouseleave=\"onHideSubMenu(event);\" id=\"" . $item["id"] . "\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
+			    echo "<ul onmouseenter=\"onShowSubMenu(event, " . "'$key'" . ");\" onmouseleave=\"onHideSubMenu(event);\" id=\"" . $item["id"] . "\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
 			    foreach($item["actions"] as $key=>$subitem) {
 				echo '<li id="' . $subitem["id"] . '"onclick="' . $subitem["action"] . '"  style="height:60px; width: 100%"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" href="javascript:;" class="nav-link">' . $subitem["full"] .'</a></li>';
 			    }
@@ -216,10 +216,17 @@
 </div>
 <script>
 
- function onShowSubMenu(e) {
+ function onShowSubMenu(e, name) {
      var menu = $(e.target).find('ul');
      $(menu[0]).css({display: 'block'});
-     $(menu[0]).css({top: 'auto'});
+     console.log(name);
+     if(name == "Customer")
+	 $(menu[0]).css({top: (parseInt($('#topbarMenu').css("height")) + 50) + 'px'});
+     else if(parseInt($('#topbarMenu').css("height")) > 100 && name == "Vendor")
+	 $(menu[0]).css({top: (parseInt($('#topbarMenu').css("height")) + 50) + 'px'});
+     else
+	 $(menu[0]).css({top: 'auto'});
+
  }
 
  function onHideSubMenu(e) {
@@ -235,7 +242,7 @@
  var submenuToggled;
  $('.dropdown-submenu a.mysubmenu').on("mouseover", function(e){
      if (submenuToggled) {
-         $(submenuToggled).next('ul').toggle();
+	 $(submenuToggled).next('ul').toggle();
      }
      submenuToggled = this;
      $(this).next('ul').toggle();
@@ -244,7 +251,7 @@
  });
  $('.dropdown-submenu a.mysubmenu').on("mouseout", function(e){
      if (submenuToggled) {
-         $(submenuToggled).next('ul').toggle();
+	 $(submenuToggled).next('ul').toggle();
      }
      submenuToggled = this;
      $(this).next('ul').toggle();
@@ -258,10 +265,10 @@
  function onhidden(e) {
      $(e.currentTarget).css('display', 'none');
      var $sidebar   = $("#sidebar"),
-         $content = $("#content");
+	 $content = $("#content");
      $content.height('100%');
      if($sidebar.height() > $content.height())
-         $content.height($sidebar.height());
+	 $content.height($sidebar.height());
      e.stopPropagation();
  }
  sidebarItems.on('hidden.bs.collapse', onhidden);
@@ -271,16 +278,16 @@
      sideBarCloseAll();
      $(e.currentTarget).css('display', 'block');
      var $sidebar   = $("#sidebar"),
-         $content = $("#content");
+	 $content = $("#content");
      if($sidebar.height() > $content.height())
-         $content.css("height", $sidebar.height() + "px");
+	 $content.css("height", $sidebar.height() + "px");
      e.stopPropagation();
  });
  sidebarItems.on("shown.bs.collapse", function(e){
      var $sidebar   = $("#sidebar"),
-         $content = $("#content");
+	 $content = $("#content");
      if($sidebar.height() > $content.height())
-         $content.css("height", ($sidebar.height() + 20) + "px");
+	 $content.css("height", ($sidebar.height() + 20) + "px");
  });
 
  twoLevelItems.on('show.bs.collapse', function(e){
@@ -290,32 +297,32 @@
      sideBarCloseTwoLevelAll();
      $(e.currentTarget).css('display', 'block');
      var $sidebar   = $("#sidebar"),
-         $content = $("#content");
+	 $content = $("#content");
      if($sidebar.height() > $content.height())
-         $content.css("height", $sidebar.height() + "px");
+	 $content.css("height", $sidebar.height() + "px");
      e.stopPropagation();
  });
  twoLevelItems.on("shown.bs.collapse", function(e){
      var $sidebar   = $("#sidebar"),
-         $content = $("#content");
+	 $content = $("#content");
      if($sidebar.height() > $content.height())
-         $content.css("height", ($sidebar.height() + 20) + "px");
+	 $content.css("height", ($sidebar.height() + 20) + "px");
  });
 
  threeLevelItems.on('show.bs.collapse', function(e){
      sideBarCloseThreeLevelAll();
      $(e.currentTarget).css('display', 'block');
      var $sidebar   = $("#sidebar"),
-         $content = $("#content");
+	 $content = $("#content");
      if($sidebar.height() > $content.height())
-         $content.css("height", $sidebar.height() + "px");
+	 $content.css("height", $sidebar.height() + "px");
      e.stopPropagation();
  });
  threeLevelItems.on("shown.bs.collapse", function(e){
      var $sidebar   = $("#sidebar"),
-         $content = $("#content");
+	 $content = $("#content");
      if($sidebar.height() > $content.height())
-         $content.css("height", ($sidebar.height() + 20) + "px");
+	 $content.css("height", ($sidebar.height() + 20) + "px");
  });
 
  function sideBarCloseAll(){
@@ -371,43 +378,43 @@
 	 }, 1500);
      }
      if(!object)
-         return;
+	 return;
      var _item = $(document.getElementById("list" + object.menu.id)), sitem, ssitem;
      //console.log(object, _item);
      if(!_item.hasClass('in')){
-         sideBarCloseAll();
-         setTimeout(function(){
+	 sideBarCloseAll();
+	 setTimeout(function(){
 	     _item.collapse('show');
 	     _item.css('display', 'block');
-         }, 500);
+	 }, 500);
      }
 
      if(object.hasOwnProperty("submenu")){
-         sitem = $(document.getElementById("list" + object.submenu.id.replace(/\//g, "")));
-         if(!sitem.hasClass('in')){
+	 sitem = $(document.getElementById("list" + object.submenu.id.replace(/\//g, "")));
+	 if(!sitem.hasClass('in')){
 	     sideBarCloseTwoLevelAll();
 	     setTimeout(function(){
 		 sitem.collapse('show');
 		 sitem.css('display', 'block');
 	     }, 500);
-         }
+	 }
      }
 
      if(object.hasOwnProperty("subsubmenu")){
-         ssitem = $(document.getElementById("list" + object.subsubmenu.id.replace(/\//g, "")));
-         if(!ssitem.hasClass('in')){
+	 ssitem = $(document.getElementById("list" + object.subsubmenu.id.replace(/\//g, "")));
+	 if(!ssitem.hasClass('in')){
 	     sideBarCloseThreeLevelAll();
 	     setTimeout(function(){
 		 sitem.collapse('show');
 		 ssitem.css('display', 'block');
 	     }, 500);
-         }
+	 }
      }
 
      var selItem = document.getElementById(object.item.id);
      if(!$(selItem).hasClass("left-iconbar-active")){
-         sideBarDeselectAll();
-         $('.selItebs-glyphicons lim, .selItebs-glyphicons lim a').addClass("left-iconbar-active");
+	 sideBarDeselectAll();
+	 $('.selItebs-glyphicons lim, .selItebs-glyphicons lim a').addClass("left-iconbar-active");
      }
  }
 
@@ -421,41 +428,41 @@
  var sidebarToggled = true;
  function toggleSideBar(){
      if(sidebarToggled){
-         $('body').addClass('minimized');
-         $('#logosection').addClass("hide-logo");
-         $('#sideBarHider')[0].style.display = 'none';
-         $('#sideBarShower')[0].style.display = 'block';
-         sidebarToggled = false;
+	 $('body').addClass('minimized');
+	 $('#logosection').addClass("hide-logo");
+	 $('#sideBarHider')[0].style.display = 'none';
+	 $('#sideBarShower')[0].style.display = 'block';
+	 sidebarToggled = false;
      }else{
-         $('body').removeClass('minimized');
-         $('#logosection').removeClass("hide-logo");
-         $('#sideBarHider')[0].style.display = 'block';
-         $('#sideBarShower')[0].style.display = 'none';
-         sidebarToggled = true;
+	 $('body').removeClass('minimized');
+	 $('#logosection').removeClass("hide-logo");
+	 $('#sideBarHider')[0].style.display = 'block';
+	 $('#sideBarShower')[0].style.display = 'none';
+	 sidebarToggled = true;
      }
  }
  (function(){
      var $sidebar   = $("#sidebar"),
-         $window    = $(window),
-         offset     = $sidebar.offset(),
-         topPadding = 20,
-         $content = $("#content");
+	 $window    = $(window),
+	 offset     = $sidebar.offset(),
+	 topPadding = 20,
+	 $content = $("#content");
 
      $window.scroll(function(){
-         var wscroll = $window.scrollTop();
-         if(!wscroll){
-             $sidebar.css("top", topPadding + 'px');
-         }else if(wscroll){
-             //     console.log($sidebar.height(), $(".sidebar-toggler").offset());
-             //console.log(wscroll, $sidebar.height(), $window.height());
-             if(wscroll < $sidebar.height() - $window.height() + 150)
-                 $sidebar.css("top", (wscroll * -1) + 'px');
-             else
-                 $sidebar.css("bottom", '0px');
-             //    $sidebar.stop().animate({
-             // marginTop: $window.scrollTop() - offset.top + topPadding
-             //   });
-         }
+	 var wscroll = $window.scrollTop();
+	 if(!wscroll){
+	     $sidebar.css("top", topPadding + 'px');
+	 }else if(wscroll){
+	     //     console.log($sidebar.height(), $(".sidebar-toggler").offset());
+	     //console.log(wscroll, $sidebar.height(), $window.height());
+	     if(wscroll < $sidebar.height() - $window.height() + 150)
+		 $sidebar.css("top", (wscroll * -1) + 'px');
+	     else
+		 $sidebar.css("bottom", '0px');
+	     //    $sidebar.stop().animate({
+	     // marginTop: $window.scrollTop() - offset.top + topPadding
+	     //   });
+	 }
      });
  })();
 
