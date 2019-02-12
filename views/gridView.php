@@ -43,7 +43,7 @@
 </script>
 <div class="container-fluid" style="<?php  echo $ascope["interface"] == "simple" ? "margin-left:0px; margin-right:0px;" : ""; ?>">
     <?php if($ascope["interface"] == "default")
-	require __DIR__ . '/views/uiItems/dashboard.php';
+	require __DIR__ . '/interfaces/default/uiItems/dashboard.php';
     ?>
 
     <?php if($ascope["interface"] == "simple"): ?>
