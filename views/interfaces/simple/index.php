@@ -220,6 +220,7 @@
 
 	 function main(){
 	     topbarMenuRender();
+	     topbarUpdateSavedReports();
 	     
              <?php if(isset($sscope)): ?> <!-- FIXME -->
              sideBarSelectItem("<?php echo  $scope["pathFolder"] . "\",\"" . $ascope["pathPage"];?>");

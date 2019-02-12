@@ -205,7 +205,7 @@
 		     //$href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix + "/index#/grid/" + (key_exists("href_ended", $subitem) ? $subitem["href_ended"] : $subitem["id"] + "/grid/Main/all");
 		 }else if(subitem["type"] == "submenu"){
 		     _html += "<a class=\"mysubmenu\" href=\"#\"><div class=\"row\"><span style=\"float:left\">" + subitem["full"] + "</span><span class=\"glyphicon glyphicon-menu-right pull-right\" style=\"margin-top:2px;\"></span></div></a>\n";
-		     _html += "<ul class=\"dropdown-menu\" style=\"width: 300px\">";
+		     _html += "<ul id=\"container" + subitem["id"] + "\" class=\"dropdown-menu\" style=\"width: 300px\">";
 		     for(iiind in subitem["data"]){
 			 ssubitem = subitem["data"][iiind];
 			 if(!ssubitem.hasOwnProperty("type")){
@@ -249,6 +249,41 @@
      $("#content").css("margin-top", (parseInt(topbarMenuElement.css("height")) + 20) + 'px');
  }
 
+ function topbarMenuGetContainer(id){
+     return {
+	 element : document.getElementById("container" + id),
+	 insertItems : function(children){
+	     var ind, _html = '';
+	     //<li><a href=\"" + href + "\" class=\"nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>
+	     for(ind in children)
+		 _html += "<li id=\"" + children[ind].id + "\"><a class=\"nav-link\" href=\"" + children[ind].href + "\">" + children[ind].title + "</a></li>";
+	     $(this.element).html(_html);
+	 }
+     };
+ }
+ function topbarUpdateSavedReports(){
+     //     return;
+     var container = topbarMenuGetContainer("Reports/SavedReports");
+     
+     var savedReports = localStorage.getItem("reportsEngineSavedReports"), items = [];
+     if(savedReports){
+	 savedReports = JSON.parse(savedReports);
+	 for(ind in savedReports)
+	     items.push({
+		 type : "relativeLink",
+		 id : "Reports/SavedReports/" + ind,
+		 href : "index.php#/?page=grid&action=Reports/Autoreport/GenericReportDetail&mode=new&category=Main&item=<?php echo "{$user["CompanyID"]}__{$user["DivisionID"]}_{$user["DepartmentID"]}"; ?>&report=" + ind,
+		 title : ind
+	     });
+	 container.insertItems(items);
+     }
+ }
+
+ //for API compatibility with default interface
+ function leftMenuUpdateSavedReports(){
+   topbarUpdateSavedReports();
+ }
+ 
  function changeLanguage(event){
      $.getJSON("index.php?page=language&setLanguage=" + event.target.value)
       .success(function(data) {
