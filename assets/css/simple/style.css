@@ -1240,3 +1240,20 @@
   display: none;
   cursor: pointer;
 }
+
+/*
+ styles for compact
+*/
+.form-horizontal .form-group {
+    margin-left: 5px;
+    margin-right: -7.5px;
+    margin-bottom: 5px;
+}
+
+.label {
+    margin-top: 5px;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    padding: 5px 2px;
+}

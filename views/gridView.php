@@ -45,12 +45,11 @@
     <?php
 	if($ascope["interface"] == "default")
 	    require './views/uiItems/dashboard.php';
-//	else
-//	    require __DIR__ . '/interfaces/' . $ascope["interface"] . '/breadcrumbs.php';
+	else
+	    require __DIR__ . '/interfaces/' . $ascope["interface"] . '/breadcrumbs.php';
     ?>
     <div class="col-sm-12">
 	<div class="white-box">
-	    <?php  require __DIR__ . '/interfaces/' . $ascope["interface"] . '/breadcrumbs.php'; ?>
 	    <!--
 		 This is conditional page generation.
 		 Contains four pages:
