@@ -1,57 +1,4 @@
-<ul id="topbarMenu" class="nav navbar navbar-nav navbar-right top-bar hide-on-handsheld" style="width: 100% !important; padding-left: 10px; z-index:100; height:auto;">
-    <?php
-        $public_prefix = "";
-	foreach ($leftMenu["Main"]["data"] as $key=>$item){
-            if($item["type"] == "submenu" && $security->checkMenu($item["id"])){
-		echo "<li class=\"dropdown top-bar-link\">";
-		echo "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded\"false\">"  . $item["full"] . "</a>";
-
-		echo '<ul id="' . $item["id"] . '"class="dropdown-menu" style="width: 300px">';
-		foreach($item["data"] as $key=>$subitem){
-                    echo "<li class=\"dropdown-submenu\">";
-		    if(!key_exists("type", $subitem)){
-			$href = preg_match("/^http/", $subitem["href"]) ?
-				$subitem["href"] : "index.php#/?page=grid&action=" . (key_exists("href_ended", $subitem) ? $ssubitem["href_ended"] : $subitem["id"]);
-			echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $subitem["full"] ."</a></li>";
-			//			echo "<a class=\"mysubmenu\" href=\"#\"><div class=\"row\"><span style=\"float:left\">" . $subitem["full"] . "</span><span class=\"glyphicon glyphicon-menu-right pull-right\" style=\"margin-top:2px;\"></span></div></a>\n";
-		    }else if($subitem["type"] == "relativeLink") {
-			$href = (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "index.php?" : "index.php#/?") . $subitem["href"];
-			echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $subitem["full"] ."</a></li>";
-		    }else if($subitem["type"] == "item"){
-			//$href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix . "/index#/grid/" . (key_exists("href_ended", $subitem) ? $subitem["href_ended"] : $subitem["id"] . "/grid/Main/all");
-		    }else if($subitem["type"] == "submenu"){
-			echo "<a class=\"mysubmenu\" href=\"#\"><div class=\"row\"><span style=\"float:left\">" . $subitem["full"] . "</span><span class=\"glyphicon glyphicon-menu-right pull-right\" style=\"margin-top:2px;\"></span></div></a>\n";
-			echo "<ul class=\"dropdown-menu\" style=\"width: 300px\">";
-			foreach($subitem["data"] as $ssubitem){
-			    if(!key_exists("type", $ssubitem)){
-				// $href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix . "/index#/grid/" . $ssubitem["id"] . "/grid/main/all";
-				$href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : "index.php#/?page=grid&action=" . (key_exists("href_ended", $ssubitem) ? $ssubitem["href_ended"] : $ssubitem["id"]);
-				echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $ssubitem) && $ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $ssubitem["full"] ."</a></li>";
-			    }else if($ssubitem["type"] == "submenu"){
-				//echo json_encode($ssubitem["data"]);
-				foreach($ssubitem["data"] as $sssubitem){
-				    if(key_exists("type", $sssubitem) && $sssubitem["type"] == "submenu"){
-				    }else{
-					if(key_exists("type", $sssubitem) && $sssubitem["type"] == "relativeLink")
-					    $href = (key_exists("target", $sssubitem) && $sssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") . $sssubitem["href"];
-					else
-					    $href = preg_match("/^http/", $sssubitem["href"]) ? $sssubitem["href"] : "index.php#/?page=grid&action=" . $sssubitem["id"];
-					echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $sssubitem) && $sssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $sssubitem["full"] ."</a></li>";
-				    }
-				}
-			    }else if($ssubitem["type"] == "relativeLink"){
-				$href = (key_exists("target", $ssubitem) && $ssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") . $ssubitem["href"];
-				echo "<li><a href=\"" . $href . "\" class=\"nav-link\"" . (key_exists("target", $ssubitem) && $ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $ssubitem["full"] ."</a></li>";
-			    }
-			}
-			echo "</ul>";
-		    };
-		    echo "</li>";
-		}
-		echo "</ul></li>";
-	    }
-	}
-    ?>
+<ul id="topbarMenu" class="nav navbar navbar-nav navbar-right top-bar hide-on-handsheld" style="width: 100% !important; padding-left: 10px; z-index:100; height:auto; padding-right:100px;">
 </ul>
 <div class="custom-menu-bar">
     <ul id="custom-toolbar" class="nav">
@@ -145,10 +92,10 @@
  }, 1000);
 </script>
 <script>
- var topSubmenuToggled;
- var topbarChildren = $('#topbarMenu').clone();
- var stylebarToggled = false;
- var table = null;
+ var topSubmenuToggled,
+     stylebarToggled = false,
+     table = null,
+     topbarmenuCategories = <?php echo json_encode($leftMenu["Main"]["data"], JSON_PRETTY_PRINT) ?>;
  
  $(document).click(function(e){
      // $("#search-table-wrapper-id").hide();
@@ -230,54 +177,11 @@
 
  }
 
- initTopbarEvents();
-
- function createTypicalRootItem(id) {
-     $('#topbarMenu').append(
-         '<li class="dropdown top-bar-link"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded"false" aria-haspopup="true">' + id + '</a>' + 
-         '<ul id="' + id + '"class="dropdown-menu" style="width: 300px"></ul></li>'
-     );
- }
-
-
- function createTypicalItem(id, item) {
-     $('#topbarMenu').append(
-         '<li class="dropdown top-bar-link"><a href="' + linksMaker.makeGridLink(item.id) + '"  class="nav-link">' + item.full + '</a></li>'
-     );
- }
- 
- function createTypicalSubItem(id, item) {
-     $('#' + id).append(
-         '<li><a href="' + linksMaker.makeGridLink(item.id) + '"  class="mysubmenu">' + item.full + '</a></li>'
-     );
- }
-
- function clearTopbarmenu() {
-     var select = document.getElementById('topbarMenu');
-     
-     while (select.firstChild) {
-         select.removeChild(select.firstChild);
-     }
- }
-
- function fillTopmenu() {
-     // topbarChildren = $('#topbarMenu').topbarChildren();
-
-     clearTopbarmenu();
-
-     $('#topbarMenu').append(topbarChildren);
-     initTopbarEvents();
- }
-
- // fillTopmenu();
-
- function fillByTypical(key) {
-     // topbarChildren = $('#topbarMenu').clone();
-     clearTopbarmenu();
-
-     var items = <?php echo json_encode($iconbarCategories); ?>,
-	 topbar = items[key].topbar,
+ function topbarMenuRender(key) {
+     var items = <?php echo json_encode($iconbarCategories, JSON_PRETTY_PRINT); ?>,
+	 topbar = key ? items[key].topbar : topbarmenuCategories,
 	 ind, iind, iiind, iiiind, item, subitem, ssubitem, sssubitem, _html = '', href;
+     console.log(menuCategories);
 
      for(ind in topbar){
 	 item = topbar[ind];
@@ -338,51 +242,11 @@
 	 }
      }
 
-     $('#topbarMenu').html(_html);
+     var topbarMenuElement = $('#topbarMenu');
+     topbarMenuElement.html(_html);
      initTopbarEvents();
 
-     return;
-     for(ind in topbar){
-	 if(!topbar[ind].hasOwnProperty("data")){
-	     createTypicalItem(topbar[ind], topbar[ind]);
-	 }else{
-	     createTypicalRootItem(makeId(topbar[ind].id));
-	     
-	     for(iind in topbar[ind].data)
-		 createTypicalSubItem(makeId(topbar[ind].id), topbar[ind].data[iind])
-	 }
-     }
-
-     return;
-     var keys = Object.keys(items[key].topbar);
-
-     for (var i = 0; i < keys.length; i++) {
-	 if (Array.isArray(items[key].topbar[keys[i]])) {
-	     if (!items[key].topbar[keys[i]].length) {
-		 createTypicalItem(keys[i], {
-		     id: '#',
-		     full: keys[i]
-		 });
-	     } else {
-		 createTypicalRootItem(keys[i]);
-		 for (var j = 0; j < items[key].topbar[keys[i]].length; j++) {
-		     createTypicalSubItem(keys[i], items[key].topbar[keys[i]][j])
-		 }
-	     }
-	 } else {
-	     if (items[key].topbar[keys[i]].hasOwnProperty('node')) {
-		 createTypicalRootItem(keys[i]);
-		 var nodes = topbarChildren.find('#' + items[key].topbar[keys[i]].node).clone().children();
-		 
-		 for ( var k = 0; k < nodes.length; k++) {
-		     $('#' + keys[i]).append(nodes[k]);
-		 }
-		 initTopbarEvents();
-	     } else {
-		 createTypicalItem(keys[i], items[key].topbar[keys[i]]);
-	     }
-	 }
-     }
+     $("#content").css("margin-top", (parseInt(topbarMenuElement.css("height")) + 30) + 'px');
  }
 
  function changeLanguage(event){
@@ -523,4 +387,5 @@
      });
  }
  initSearch();
+
 </script>

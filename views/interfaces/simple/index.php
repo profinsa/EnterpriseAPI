@@ -219,6 +219,8 @@
 	 });
 
 	 function main(){
+	     topbarMenuRender();
+	     
              <?php if(isset($sscope)): ?> <!-- FIXME -->
              sideBarSelectItem("<?php echo  $scope["pathFolder"] . "\",\"" . $ascope["pathPage"];?>");
              <?php endif; ?>

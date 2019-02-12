@@ -126,7 +126,6 @@
  if(!datatableInitialized){
      datatableInitialized = true;
      try{
-	 console.log("DDDDDDDDD");
 	 var table = $('#example23').DataTable( {
 	     <?php  echo (!property_exists($data, "features") || !in_array("disabledGridPageUI", $data->features) ? "" : "dom : \"tip\","); ?>
 	     pageLength : gridViewDefaultRowsInGrid,
@@ -134,7 +133,6 @@
 		 'copy', 'csv', 'excel', 'pdf', 'print'
 	     ]
 	 });
-	 console.log(table);
 	 var buttons = $('.dt-buttons-container');
 	 var dtbuttons = table.buttons().container();
 	 dtbuttons.prepend($(".new-button-action"));

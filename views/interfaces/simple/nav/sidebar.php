@@ -180,7 +180,7 @@
 
 	    foreach ($iconbarCategories as $key=>$item){
 		if (!key_exists("favorits", $item)) {
-		    echo '<li onmouseenter="onShowSubMenu(event);" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'fillByTypical(\''. $key . '\');'  : 'fillTopmenu();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
+		    echo '<li onmouseenter="onShowSubMenu(event);" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'topbarMenuRender(\''. $key . '\');'  : 'topbarMenuRender();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
 		    if (key_exists("data", $item)) {
 			echo "<ul onmouseenter=\"onShowSubMenu(event);\" onmouseleave=\"onHideSubMenu(event);\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
 			foreach($item["data"] as $subitem) {

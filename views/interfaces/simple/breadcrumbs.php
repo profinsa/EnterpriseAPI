@@ -16,7 +16,7 @@
     </div>
     <div class="col-mm-4 pull-right" style="text-align: right">
 	<ol class="breadcrumb">
-	    <li><a href="index#/dashboard">Dashboard</a></li>
+	    <li><a href="index.php#/?page=dashboard">Dashboard</a></li>
 	    <li class="active"><?php echo $data->breadCrumbTitle ?></li>
 	</ol>
     </div>
