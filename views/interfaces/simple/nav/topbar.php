@@ -196,11 +196,11 @@
 		 if(!subitem.hasOwnProperty("type")){
 		     href = subitem["href"].search(/^http/) != -1 ?
 			    subitem["href"] : "index.php#/?page=grid&action=" + (subitem.hasOwnProperty("href_ended") ? subitem["href_ended"] : subitem["id"]);
-		     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (subitem.hasOwnProperty("target") && subitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + subitem["full"] +"</a></li>";
+		     _html += "<li><a href=\"" + href + "\" class=\"nav-link menu-nav-link\"" + (subitem.hasOwnProperty("target") && subitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + subitem["full"] +"</a></li>";
 		     //			echo "<a class=\"mysubmenu\" href=\"#\"><div class=\"row\"><span style=\"float:left\">" + $subitem["full"] + "</span><span class=\"glyphicon glyphicon-menu-right pull-right\" style=\"margin-top:2px;\"></span></div></a>\n";
 		 }else if(subitem["type"] == "relativeLink") {
 		     href = (subitem.hasOwnProperty("target") && subitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + subitem["href"];
-		     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (subitem.hasOwnProperty("target") && subitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + subitem["full"] +"</a></li>";
+		     _html += "<li><a href=\"" + href + "\" class=\"nav-link menu-nav-link\"" + (subitem.hasOwnProperty("target") && subitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + subitem["full"] +"</a></li>";
 		 }else if(subitem["type"] == "item"){
 		     //$href = preg_match("/^http/", $subitem["href"]) ? $subitem["href"] : $public_prefix + "/index#/grid/" + (key_exists("href_ended", $subitem) ? $subitem["href_ended"] : $subitem["id"] + "/grid/Main/all");
 		 }else if(subitem["type"] == "submenu"){
@@ -211,7 +211,7 @@
 			 if(!ssubitem.hasOwnProperty("type")){
 			     // $href = preg_match("/^http/", $ssubitem["href"]) ? $ssubitem["href"] : $public_prefix + "/index#/grid/" . $ssubitem["id"] . "/grid/main/all";
 			     href = ssubitem["href"].search(/^http/) != -1 ? ssubitem["href"] : "index.php#/?page=grid&action=" + (ssubitem.hasOwnProperty("href_ended") ? ssubitem["href_ended"] : ssubitem["id"]);
-			     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>";
+			     _html += "<li><a href=\"" + href + "\" class=\"nav-link menu-nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>";
 			 }else if(ssubitem["type"] == "submenu"){
 			     //echo json_encode($ssubitem["data"]);
 			     for(iiiind in ssubitem["data"]){
@@ -222,12 +222,12 @@
 					 href = (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + sssubitem["href"];
 				     else
 					 href = sssubitem["href"].search(/^http/) != -1 ? sssubitem["href"] : "index.php#/?page=grid&action=" + $sssubitem["id"];
-				     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + sssubitem["full"] +"</a></li>";
+				     _html += "<li><a href=\"" + href + "\" class=\"nav-link menu-nav-link\"" + (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + sssubitem["full"] +"</a></li>";
 				 }
 			     }
 			 }else if(ssubitem["type"] == "relativeLink"){
 			     href = (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + ssubitem["href"];
-			     _html += "<li><a href=\"" + href + "\" class=\"nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>";
+			     _html += "<li><a href=\"" + href + "\" class=\"nav-link menu-nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>";
 			 }
 		     }
 		     _html += "</ul>";
@@ -256,7 +256,7 @@
 	     var ind, _html = '';
 	     //<li><a href=\"" + href + "\" class=\"nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>
 	     for(ind in children)
-		 _html += "<li id=\"" + children[ind].id + "\"><a class=\"nav-link\" href=\"" + children[ind].href + "\">" + children[ind].title + "</a></li>";
+		 _html += "<li id=\"" + children[ind].id + "\"><a class=\"nav-link menu-nav-link\" href=\"" + children[ind].href + "\">" + children[ind].title + "</a></li>";
 	     $(this.element).html(_html);
 	 }
      };

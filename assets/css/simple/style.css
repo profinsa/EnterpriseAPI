@@ -625,7 +625,10 @@
   .float-right {
       float: right !important;
   }
-  
+
+  .menu-nav-link {
+      padding-left : 10px !important;
+  }
   /*.nav-link{
       color:gray !important;
   }*/
