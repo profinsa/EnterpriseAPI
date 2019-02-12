@@ -148,7 +148,7 @@
     //getting data for table
     $rows = $data->getPage($ascope["item"]);
 ?>
-<table id="example23" class="table table-striped">
+<table id="example23" class="table table-striped <?php echo $ascope["interface"] == "simple" ?  "table-bordered" : ""?>">
     <thead>
 	<tr>
 	    <?php
@@ -249,9 +249,9 @@
 </table>
 <?php if(!property_exists($data, "features") || !in_array("disabledGridPageUI", $data->features)): ?>
 	</div>
-	<div>
+	<div class="dt-buttons-container row col-md-12">
 	    <?php if((!property_exists($data, "modes") || in_array("new", $data->modes)) && $security->can("insert")): ?>
-		<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page; ?>&action=<?php echo $scope->action ?>&mode=new&category=Main">
+		<a class="btn btn-info new-button-action dt-button waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page; ?>&action=<?php echo $scope->action ?>&mode=new&category=Main">
 		    <?php echo $translation->translateLabel("New"); ?>
 		</a>
 	    <?php endif; ?>
@@ -261,55 +261,55 @@
 	    ?>
 	</div>
 <?php endif; ?>
-    <script>
-     <?php
-	 if(property_exists($data, "features") && in_array("selecting", $data->features))
-	     echo "var gridItems = " . json_encode($rows) . ";";
-     ?>
-     var gridItemsSelected = window.gridItemsSelected = {};
-     //select handler, fill out gridViewSelected by rows
-     function gridSelectItem(event, item){
-	 if(event.currentTarget.checked)
-             gridItemsSelected[item] = gridItems[item];
-	 else
-	     delete gridItemsSelected[item];
-	 console.log(JSON.stringify(gridItemsSelected));
+<script>
+ <?php
+     if(property_exists($data, "features") && in_array("selecting", $data->features))
+	 echo "var gridItems = " . json_encode($rows) . ";";
+ ?>
+ var gridItemsSelected = window.gridItemsSelected = {};
+ //select handler, fill out gridViewSelected by rows
+ function gridSelectItem(event, item){
+     if(event.currentTarget.checked)
+         gridItemsSelected[item] = gridItems[item];
+     else
+	 delete gridItemsSelected[item];
+     console.log(JSON.stringify(gridItemsSelected));
+ }
+ 
+ //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
+ function gridDeleteItem(keyString){
+     if(confirm("Are you sure?")){
+	 var itemData = $("#itemData");
+	 $.getJSON("index.php?page=<?php  echo $app->page . "&action=" . $scope->action ;  ?>&delete=true&id=" + keyString)
+	  .success(function(data) {
+	      onlocation(window.location);
+	  })
+	  .error(function(err){
+	      console.log('wrong');
+	  });
      }
-     
-     //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
-     function gridDeleteItem(keyString){
-	 if(confirm("Are you sure?")){
-	     var itemData = $("#itemData");
-	     $.getJSON("index.php?page=<?php  echo $app->page . "&action=" . $scope->action ;  ?>&delete=true&id=" + keyString)
-	      .success(function(data) {
-		  onlocation(window.location);
-	      })
-	      .error(function(err){
-		  console.log('wrong');
-	      });
-	 }
-     }
+ }
 
-     var gridItemsChanged = {};
-     //handler for item changing
-     function gridChangeItem(item, columnName, row){
-	 var keyAndId = item.id.split("___");
-	 //	 console.log(item.id);
-	 var obj = {
-	     "id" : keyAndId[0],
-	     "category" : "main",
-	     "row" : row
-	 };
-	 obj[keyAndId[1]] = gridItems[row][columnName] = $(item).val();
-	 console.log(JSON.stringify(obj, null, 3));
-	 /*	 $.post("", obj)
-	    .success(function(data) {
-	    onlocation(window.location);
-	    })
-	    .error(function(err){
-	    console.log('wrong');
-	    });*/
-     }
-    </script>
+ var gridItemsChanged = {};
+ //handler for item changing
+ function gridChangeItem(item, columnName, row){
+     var keyAndId = item.id.split("___");
+     //	 console.log(item.id);
+     var obj = {
+	 "id" : keyAndId[0],
+	 "category" : "main",
+	 "row" : row
+     };
+     obj[keyAndId[1]] = gridItems[row][columnName] = $(item).val();
+     console.log(JSON.stringify(obj, null, 3));
+     /*	 $.post("", obj)
+	.success(function(data) {
+	onlocation(window.location);
+	})
+	.error(function(err){
+	console.log('wrong');
+	});*/
+ }
+</script>
 </div>
 

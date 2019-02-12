@@ -42,6 +42,7 @@ class controller{
     public $user = false;
     public $action = "";
     public $mode = "autoreports";
+    public $interface = "default";
     public $dashboardTitle = "";
     public $breadCrumbTitle = "";
     public $path;
@@ -63,19 +64,22 @@ class controller{
         // else
         //  return response('permissions not found', 500)->header('Content-Type', 'text/plain');
 
-        $this->user = $_SESSION["user"];
+        $this->user = $GLOBALS["user"] = $_SESSION["user"];               
 
         $data = new autoreportsData($source = (key_exists("source", $_GET) ? $_GET["source"] : $_GET["getreport"]));
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
             $translation = new translation($this->user["language"]);
+            $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
             $drill = new drillDowner();
 
             if(key_exists("title", $_GET))
                 $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Report: " ) . $translation->translateLabel($_GET["title"]);
             
                $scope = $this;
+               $ascope = json_decode(json_encode($scope), true);
+               $user = $this->user;
 
                $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
                require 'models/menuCategoriesGenerated.php';

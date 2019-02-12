@@ -1,6 +1,6 @@
 <div class="row bg-title" style="margin-bottom: 15px; margin-top:20px;">
     <div class="col-md-8">
-	<h4 class="page-title" style="display: inline-block; float: left"><?php echo $data->dashboardTitle . '  -  ' . $user["EmployeeUserName"] . ' '. $user["EmployeeName"]; ?></h4>
+	<h4 class="page-title" style="display: inline-block; float: left"><?php echo $scope->dashboardTitle . '  -  ' . $user["EmployeeUserName"] . ' '. $user["EmployeeName"]; ?></h4>
     <div id="MyFavorit" style="margin-top: 7px">
     </div>
 	<?php if(isset($ascope) && key_exists("mode", $ascope) && isset($data) && method_exists($data, "lockedBy") &&  $ascope["mode"] == "view"): ?>
@@ -17,7 +17,7 @@
     <div class="col-mm-4 pull-right" style="text-align: right">
 	<ol class="breadcrumb">
 	    <li><a href="index.php#/?page=dashboard">Dashboard</a></li>
-	    <li class="active"><?php echo $data->breadCrumbTitle ?></li>
+	    <li class="active"><?php echo $scope->breadCrumbTitle ?></li>
 	</ol>
     </div>
 </div>

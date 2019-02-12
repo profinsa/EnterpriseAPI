@@ -1,44 +1,52 @@
 <div class="container-fluid">
+    <?php if($ascope["interface"] == "default")
+	require __DIR__ . '/../uiItems/dashboard.php';
+    ?>
+
+    <?php if($ascope["interface"] == "simple"): ?>
+	<div style="margin-left: 25px; margin-bottom:-25px; margin-top:30px;">
+	    <?php require __DIR__ . '/../interfaces/' . $ascope["interface"] . '/breadcrumbs.php'; ?>
+	</div>
+    <?php endif; ?>
     <?php
-    require __DIR__ . '/../uiItems/dashboard.php';
-   // require __DIR__ . '/../format.php';
+	// require __DIR__ . '/../format.php';
     ?>
     
     <?php
-    /*
-       Name of Page: autoreports view
+	/*
+	   Name of Page: autoreports view
 
-       Method: It render main autoreports page
+	   Method: It render main autoreports page
 
-       Date created: Nikita Zaharov, 10.04.2017
+	   Date created: Nikita Zaharov, 10.04.2017
 
-       Use: renders autoreports page, contains:
-       - parameters table
-       - column settings
-       - actions to show report
+	   Use: renders autoreports page, contains:
+	   - parameters table
+	   - column settings
+	   - actions to show report
 
-       Input parameters:
-       $data: data source
+	   Input parameters:
+	   $data: data source
 
-       Output parameters:
-       html
+	   Output parameters:
+	   html
 
-       Called from:
-       controllers/autoreports
+	   Called from:
+	   controllers/autoreports
 
-       Calls:
-       sql
+	   Calls:
+	   sql
 
-       Last Modified: 21.01.2019
-       Last Modified by: Nikita Zaharov
-     */
-    $params = $data->getParametersForEnter();
-    //echo json_encode($params);
+	   Last Modified: 12.02.2019
+	   Last Modified by: Nikita Zaharov
+	 */
+	$params = $data->getParametersForEnter();
+	//echo json_encode($params);
 
-    if(!count($params) || key_exists($params[0]->PARAMETER_NAME, $_GET))
-	$columns = $data->getColumns();
-    else
-	$columns = false;
+	if(!count($params) || key_exists($params[0]->PARAMETER_NAME, $_GET))
+	    $columns = $data->getColumns();
+	else
+	    $columns = false;
 
     ?>
     
@@ -57,9 +65,9 @@
 		    </thead>
 		    <tbody>
 			<?php
-			foreach($params as $param){
-			    echo "<tr><td>" . $param->PARAMETER_NAME . "</td><td><input type=\"text\" onchange=\"autoreportsFillParameter('" . $param->PARAMETER_NAME . "', event);\" value=\"" . (key_exists($param->PARAMETER_NAME, $_GET) ? $_GET[$param->PARAMETER_NAME] : "") . "\"></td></tr>";
-			}
+			    foreach($params as $param){
+				echo "<tr><td>" . $param->PARAMETER_NAME . "</td><td><input type=\"text\" onchange=\"autoreportsFillParameter('" . $param->PARAMETER_NAME . "', event);\" value=\"" . (key_exists($param->PARAMETER_NAME, $_GET) ? $_GET[$param->PARAMETER_NAME] : "") . "\"></td></tr>";
+			    }
 			?>
 		    </tbody>
 		</table>
@@ -70,10 +78,10 @@
 	    <script>
 	     var params = {
 		 <?php
-		 $strparams = "";
-		 foreach($params as $param)
+		     $strparams = "";
+		     foreach($params as $param)
 		     $strparams .= $param->PARAMETER_NAME . " : null,";
-		 echo substr($strparams, 0, -1);
+		     echo substr($strparams, 0, -1);
 		 ?>
 	     };
 	     function autoreportsFillParameter(param, event){
@@ -115,23 +123,23 @@
 			</thead>
 			<tbody>
 			    <?php
-			    $columnsDefaults = [];
-			    $colcounter = 0;
-			    foreach($columns as $columnname=>$meta){
-				$columnsDefaults[$columnname] = [
-				    "True",
-				    $meta["native_type"] == "NEWDECIMAL" || $meta["native_type"] == "DECIMAL" ? "True" : "False",
-				    !$colcounter ? 1 : -1,
-				    "ASC",
-				    "None",
-				    ""
-				];
-				$colcounter++;
-			    }
+				$columnsDefaults = [];
+				$colcounter = 0;
+				foreach($columns as $columnname=>$meta){
+				    $columnsDefaults[$columnname] = [
+					"True",
+					$meta["native_type"] == "NEWDECIMAL" || $meta["native_type"] == "DECIMAL" ? "True" : "False",
+					!$colcounter ? 1 : -1,
+					"ASC",
+					"None",
+					""
+				    ];
+				    $colcounter++;
+				}
 
-			    foreach($columnsDefaults as $columnname=>$column){
-				echo "<tr><td id=\"" . $columnname . "actions\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\" onclick=\"autoreportsChangeColumn('" . $columnname . "')\"></span></td><td>" . $columnname . "</td><td id=\"" . $columnname . "show\">" . $column[0] . "</td><td id=\"" . $columnname . "total\">" . $column[1] . "</td><td id=\"" . $columnname . "order\">" . $column[2] . "</td><td id=\"" . $columnname . "direction\">" . $column[3] . "</td><td id=\"" . $columnname . "operator\">" . $column[4] . "</td><td id=\"" . $columnname . "criteria\">" . $column[5] . "</td>".  "</tr>";
-			    }
+				foreach($columnsDefaults as $columnname=>$column){
+				    echo "<tr><td id=\"" . $columnname . "actions\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\" onclick=\"autoreportsChangeColumn('" . $columnname . "')\"></span></td><td>" . $columnname . "</td><td id=\"" . $columnname . "show\">" . $column[0] . "</td><td id=\"" . $columnname . "total\">" . $column[1] . "</td><td id=\"" . $columnname . "order\">" . $column[2] . "</td><td id=\"" . $columnname . "direction\">" . $column[3] . "</td><td id=\"" . $columnname . "operator\">" . $column[4] . "</td><td id=\"" . $columnname . "criteria\">" . $column[5] . "</td>".  "</tr>";
+				}
 			    ?>
 			</tbody>
 		    </table>
