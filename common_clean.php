@@ -8,7 +8,7 @@ function config(){
         "db_host" => "localhost",
         "db_user" => "enterprise",
         "db_password" => "enterprise",
-        "db_base" => "enterprise",
+        "db_base" => "cleanenterprise",
         "loginLogo" => "assets/images/stfb-logo.gif"
     );
 }
