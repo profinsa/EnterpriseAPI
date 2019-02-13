@@ -4,7 +4,7 @@
    
   Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\InvoiceHeaderList.php It provides data from database and default values, column names and categories
    
-  Date created: 02/16/2017  Kenna Fetterman
+  Date created: 02/16/2017 Nikita Zaharov
    
   Use: this model used by views/InvoiceHeaderList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 12/05/2018
+  Last Modified: 13/02/2019
   Last Modified by: Zaharov Nikita
 */
 
