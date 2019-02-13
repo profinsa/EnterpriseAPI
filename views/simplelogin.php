@@ -178,7 +178,7 @@
 	     var loginform = $('#loginform'),
 		 companyform = $('#companyform');
 	     console.log(companyform.serialize());
-	     var req = $.post("index.php?page=login", loginform.serialize() + "&" + companyform.serialize(), null, 'json')
+	     var req = $.post("index.php?page=login<?php echo key_exists("config", $_GET) ? "&config={$_GET["config"]}" : ""; ?>", loginform.serialize() + "&" + companyform.serialize(), null, 'json')
 			.success(function(data) {
 			    window.location = "index.php#/?page=dashboard";
 			});

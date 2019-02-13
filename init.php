@@ -1,6 +1,14 @@
-<?php 
-require 'common.php';
-require 'vendor/autoload.php';
+<?php
+session_start();
+
+if((key_exists("config", $_GET) && ($configName = $_GET["config"]) != 'default') ||
+   (key_exists("configName", $_SESSION) && ($configName = $_SESSION["configName"]) != 'default') && (!key_exists("page", $_GET) || ($_GET["page"] != 'ByPassLogin' && $_GET["page"] != 'login'))){
+    require $configName . '.php';
+    $_SESSION["configName"] = $configName;
+}else{
+    $_SESSION["configName"] = 'default';
+    require 'common.php';
+}                                                                                                                            require 'vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
@@ -37,7 +45,7 @@ class Session{
         return $_SESSION[$key];
     }
     public static function set($key, $value){
-	return $_SESSION[$key] = $value;
+        return $_SESSION[$key] = $value;
     }
 }
 

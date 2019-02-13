@@ -31,7 +31,6 @@
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
-// require "common.php";
 require "models/drillDowner.php";
 
 function numberToStr($strin){

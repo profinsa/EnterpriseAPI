@@ -86,8 +86,6 @@ function fatal_handler() {
 
 register_shutdown_function("fatal_handler");
 try{
-    session_start();
-
     $_app = new app();
     
     $_app->loginLogo = $config["loginLogo"];
