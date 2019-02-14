@@ -25,7 +25,7 @@
   Calls:
   DB
 
-  Last Modified: 12.26.2018
+  Last Modified: 14.02.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -369,9 +369,17 @@ class gridData extends gridDataSource{
         $current_date = date("Y-m-d");
         $result["BankRecStartDate"] = date("Y-m-d", strtotime($current_date." -1 months"));
         $result["BankRecEndDate"] = date("Y-m-d H:i:s");
-        $currencyID = DB::select("select CurrencyID from bankaccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND BankID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $result["BankID"]))[0]->CurrencyID;
-        $result["CurrencyID"] = $currencyID;
-        $result["CurrencyExchangeRate"] = DB::select("SELECT CurrencyExchangeRate from currencytypes WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CurrencyID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $currencyID))[0]->CurrencyExchangeRate;
+        
+        $bankAccount = DB::select("select CurrencyID from bankaccounts WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND BankID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $result["BankID"]));
+        if(count($bankAccount))
+            $currencyID = $bankAccount[0]->CurrencyID;
+        else
+            $currencyID = "";
+        if($currencyID){ //fast fix, we need find currency exchange rate of company currency
+            $result["CurrencyID"] = $currencyID;
+            $result["CurrencyExchangeRate"] = DB::select("SELECT CurrencyExchangeRate from currencytypes WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CurrencyID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $currencyID))[0]->CurrencyExchangeRate; //FIXME
+        }else
+            $result["CurrencyExchangeRate"] = 1;
         return $result;
     }
         
