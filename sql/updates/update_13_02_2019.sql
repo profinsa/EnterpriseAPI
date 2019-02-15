@@ -559,8 +559,8 @@ Revision History:
       SET v_ConvertedItemCost = fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_ItemCost*v_CurrencyExchangeRate, 
       v_CompanyCurrencyID);
       SET @SWV_Error = 0;
-      SET v_ReturnStatus = Inventory_CreateILTransaction(v_CompanyID,v_DivisionID,v_DepartmentID,v_TranDate,v_ItemID,'Invoice',
-      v_InvoiceNumber,v_InvoiceLineNumber,v_OrderQty,v_ConvertedItemCost);
+      CALL Inventory_CreateILTransaction2(v_CompanyID,v_DivisionID,v_DepartmentID,v_TranDate,v_ItemID,'Invoice',
+      v_InvoiceNumber,v_InvoiceLineNumber,v_OrderQty,v_ConvertedItemCost, v_ReturnStatus);
       IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 	-- An error occured, go to the error handler
 	
@@ -614,8 +614,8 @@ Revision History:
          SET SWP_Ret_Value = -1;
       end if;
       SET @SWV_Error = 0;
-      SET v_ReturnStatus = SerialNumber_Invoice_Get(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID,v_WarehouseBinID,
-      v_SerialNumber,v_ItemID,v_InvoiceNumber,v_InvoiceLineNumber);
+      CALL SerialNumber_Invoice_Get2(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID,v_WarehouseBinID,
+      v_SerialNumber,v_ItemID,v_InvoiceNumber,v_InvoiceLineNumber, v_ReturnStatus);
       IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 	
          CLOSE cInvoiceDetail;
@@ -694,7 +694,7 @@ parameters	@CompanyID NVARCHAR(36),
 		@ReceiptID output parameter; stores the new created invoice number; if @ReceiptID is N'' then exit the procedure
 */
    SET @SWV_Error = 0;
-   SET v_ReturnStatus = Receipt_CreateFromInvoice(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceNumber,v_ReceiptID);
+   CALL Receipt_CreateFromInvoice2(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceNumber,v_ReceiptID, v_ReturnStatus);
    IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 
       SET v_ErrorMessage = 'Creating receipt from invoice failed';
@@ -756,7 +756,7 @@ parameters	@CompanyID NVARCHAR(36),
       SET v_ConvertedAmount = fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_Amount*v_CurrencyExchangeRate, 
       v_CompanyCurrencyID);
       SET @SWV_Error = 0;
-      SET v_ReturnStatus = ReceiptCash_CreateGLTransaction(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceNumber,v_ConvertedAmount);
+      CALL ReceiptCash_CreateGLTransaction2(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceNumber,v_ConvertedAmount, v_ReturnStatus);
       IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 	-- An error occured, go to the error handler
 	
@@ -772,7 +772,7 @@ parameters	@CompanyID NVARCHAR(36),
 
 -- Adjust Customer Finacials information
    SET @SWV_Error = 0;
-   SET v_ReturnStatus = Invoice_AdjustCustomerFinancials2(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceNumber);
+   CALL Invoice_AdjustCustomerFinancials(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceNumber, v_ReturnStatus);
    IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 -- An error occured, go to the error handler
 
@@ -788,7 +788,7 @@ parameters	@CompanyID NVARCHAR(36),
    IF UPPER(v_TransactionTypeID) <> 'RETURN' then
 
       SET @SWV_Error = 0;
-      SET v_ReturnStatus = CustomerFinancials_ReCalc2(v_CompanyID,v_DivisionID,v_DepartmentID,v_CustomerID);
+      CALL CustomerFinancials_ReCalc(v_CompanyID,v_DivisionID,v_DepartmentID,v_CustomerID, v_ReturnStatus);
       IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 	-- An error occured, go to the error handler
 	
@@ -978,7 +978,7 @@ Revision History:
    START TRANSACTION;
 
    SET @SWV_Error = 0;
-   CALL TaxGroup_GetTotalPercent(v_CompanyID,v_DivisionID,v_DepartmentID,v_HeaderTaxGroupID,v_HeaderTaxPercent);
+   CALL TaxGroup_GetTotalPercent2(v_CompanyID,v_DivisionID,v_DepartmentID,v_HeaderTaxGroupID,v_HeaderTaxPercent);
    IF @SWV_Error <> 0 then
 
       SET v_ErrorMessage = 'Procedure call TaxGroup_GetTotalPercent failed';
@@ -992,7 +992,7 @@ Revision History:
    SET v_HeaderTaxPercent = IFNULL(v_HeaderTaxPercent,0);
 
    SET @SWV_Error = 0;
-   CALL VerifyCurrency(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceDate,1,v_CompanyCurrencyID,
+   CALL VerifyCurrency2(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceDate,1,v_CompanyCurrencyID,
    v_CurrencyID,v_CurrencyExchangeRate);
    IF @SWV_Error <> 0 then
 
@@ -1566,9 +1566,9 @@ SET v_ErrorMessage = 'Invoice_CreateAssembly call failed';
    v_SerialNumber;
    WHILE NO_DATA = 0 DO
       SET @SWV_Error = 0;
-      SET v_ReturnStatus = SerialNumber_Get(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID,v_WarehouseBinID,
+      CALL SerialNumber_Get2(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID,v_WarehouseBinID,
       v_SerialNumber,v_ItemID,NULL,NULL,v_InvoiceNumber,v_InvoiceLineNumber,
-      v_InvoiceQty);
+      v_InvoiceQty, v_ReturnStatus);
       IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 	
          CLOSE cInvoiceDetail;
@@ -1771,6 +1771,871 @@ Revision History:
    SET SWP_Ret_Value = -1;
 END;
 
+
+
+
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+-- Stored procedure definition script Inventory_CreateILTransaction2 for MySQL
+-- Generated by (c) Ispirer SQLWays 4.0 Build 219 Licensed to STFB
+-- Timestamp: Tue Jul 28 16:20:00 2015
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS Inventory_CreateILTransaction2;
+//
+CREATE        PROCEDURE Inventory_CreateILTransaction2(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_TransDate DATETIME,
+	v_ItemID NATIONAL VARCHAR(36),
+	v_TransactionType NATIONAL VARCHAR(36),
+	v_TransactionNumber NATIONAL VARCHAR(36),
+	v_TransactionLineNumber DECIMAL,
+	v_Quantity BIGINT,
+	v_CostPerUnit DECIMAL(19,4),INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+/*
+Name of stored procedure: Inventory_CreateILTransaction
+Method: 
+	Fixes any physical inventory adjustment in the InventoryLedgerTable,
+	recalculates inventory costing and updates all item cost for all opened orders
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@TransDate DATETIME		 - the date of the transaction
+	@ItemID NVARCHAR(36)		 - the Id of inventory item
+	@TransactionType NVARCHAR(36)	 - the transaction type (i.e. Receiving, Invoice and so on)
+	@TransactionNumber NVARCHAR(36)	 - the ID of transaction that cause inventory adjustment
+	@TransactionLineNumber DECIMAL	 - the ID of detail transaction item related with specifed ItemID
+	@Quantity BIGINT		 - the quantity of adjusted inventory items (can be negative or positive)
+	@CostPerUnit MONEY		 - the cost of inventory item unit
+
+Output Parameters:
+
+	NONE
+
+Called From:
+
+	InventoryAdjustments_Post, Invoice_Post, Receiving_UpdateInventoryCosting, ReturnInvoice_Post
+
+Calls:
+
+	Inventory_RecalcItemCost, Error_InsertError, Error_InsertErrorDetail
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+
+   DECLARE v_DefaultInventoryCostingMethod CHAR(1);
+   DECLARE v_NewCostPerUnit DECIMAL(19,4);
+
+   DECLARE v_CompanyCurrencyID NATIONAL VARCHAR(3);
+   DECLARE NO_DATA INT DEFAULT 0;
+   DECLARE v_ErrorID INT;
+   DECLARE v_PrevQuantity BIGINT;
+   DECLARE v_CurQuantity BIGINT;
+   DECLARE v_CalcQuantity BIGINT;
+   DECLARE v_InsQuantity BIGINT;
+   DECLARE v_CurCostPerUnit DECIMAL(19,4);
+   DECLARE SWV_CurNum INT DEFAULT 0;
+   DECLARE cInventoryLedger CURSOR FOR
+   SELECT Quantity, CostPerUnit FROM InventoryLedger
+   WHERE 
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   ItemID = v_ItemID AND
+   Quantity > 0
+   ORDER BY  
+   TransDate ASC;
+   DECLARE cInventoryLedger2 CURSOR  FOR SELECT Quantity, CostPerUnit FROM InventoryLedger
+   WHERE 
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   ItemID = v_ItemID AND
+   Quantity > 0
+   ORDER BY  
+   TransDate DESC;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+      SET NO_DATA = -2;
+   END;
+   DECLARE CONTINUE HANDLER FOR NOT FOUND SET NO_DATA = -1;
+   SET @SWV_Error = 0;
+   IF IFNULL(v_Quantity,0) = 0 OR IFNULL(v_CostPerUnit,0) = 0 then
+
+      SET SWP_Ret_Value = 1;
+      LEAVE SWL_return;
+   end if;
+   IF(IFNULL(v_ItemID,N'') = N'' OR IFNULL(v_TransactionType,N'') = N'' OR IFNULL(v_TransactionNumber,N'') = N'') then
+
+      SET v_ErrorMessage = 'Invalid input parameters for Inventory_CreateILTransaction';
+      ROLLBACK;
+-- the error handler
+
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_CreateILTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+
+   select   IFNULL(CurrencyID,N'') INTO v_CompanyCurrencyID FROM Companies WHERE CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID   LIMIT 1;
+
+
+-- get @DefaultInventoryCostingMethod 
+   select   IFNULL(DefaultInventoryCostingMethod,'F') INTO v_DefaultInventoryCostingMethod FROM
+   Companies WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID;
+
+
+   START TRANSACTION;
+
+   SET v_TransDate = IFNULL(v_TransDate,CURRENT_TIMESTAMP);
+
+   IF v_Quantity > 0 then
+
+      SET @SWV_Error = 0;
+      INSERT INTO InventoryLedger(CompanyID,
+		DivisionID,
+		DepartmentID,
+		TransDate,
+		ItemID,
+		TransactionType,
+		TransNumber,
+		ILLineNumber,
+		Quantity,
+		CostPerUnit,
+		TotalCost)
+	VALUES(v_CompanyID,
+		v_DivisionID,
+		v_DepartmentID,
+		v_TransDate,
+		v_ItemID,
+		v_TransactionType,
+		v_TransactionNumber,
+		v_TransactionLineNumber,
+		v_Quantity,
+		v_CostPerUnit,
+		fnRound(v_CompanyID, v_DivisionID, v_DepartmentID, Abs(v_Quantity)*v_CostPerUnit, v_CompanyCurrencyID));
+	
+      IF @SWV_Error <> 0 then
+	-- An error occured, go to the error handler
+	
+         SET v_ErrorMessage = 'Insert in InventoryTransaction failed';
+         ROLLBACK;
+-- the error handler
+
+         IF v_ErrorMessage <> '' then
+
+	
+            CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_CreateILTransaction',
+            v_ErrorMessage,v_ErrorID);
+            CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+         end if;
+         SET SWP_Ret_Value = -1;
+      end if;
+
+	-- Recalculate inventory costing
+      SET @SWV_Error = 0;
+      CALL Inventory_RecalcItemCost2(v_CompanyID,v_DivisionID,v_DepartmentID,v_ItemID,v_Quantity,v_CostPerUnit,
+      v_NewCostPerUnit, v_ReturnStatus);
+      IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+	-- An error occured, go to the error handler
+	
+         SET v_ErrorMessage = 'Inventory_RecalcItemCost call failed';
+         ROLLBACK;
+-- the error handler
+
+         IF v_ErrorMessage <> '' then
+
+	
+            CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_CreateILTransaction',
+            v_ErrorMessage,v_ErrorID);
+            CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+         end if;
+         SET SWP_Ret_Value = -1;
+      end if;
+   end if;
+
+
+   IF v_Quantity < 0 then
+
+	
+      select   SUM(-Quantity) INTO v_PrevQuantity FROM
+      InventoryLedger WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      ItemID = v_ItemID AND
+      Quantity < 0;
+      SET v_PrevQuantity = IFNULL(v_PrevQuantity,0);
+      SET v_CalcQuantity = -v_Quantity;
+      IF v_DefaultInventoryCostingMethod = 'F' OR v_DefaultInventoryCostingMethod = 'L' then
+		
+         IF v_DefaultInventoryCostingMethod = 'F' then
+				
+					
+            SET SWV_CurNum = 0;
+         ELSE 
+            IF v_DefaultInventoryCostingMethod = 'L' then
+				
+					
+               SET SWV_CurNum = 1;
+            end if;
+         end if;
+         IF SWV_CurNum = 0 THEN
+            OPEN cInventoryLedger;
+         ELSE
+            OPEN cInventoryLedger2;
+         END IF;
+         SET NO_DATA = 0;
+         IF SWV_CurNum = 0 THEN
+            FETCH cInventoryLedger INTO v_CurQuantity,v_CurCostPerUnit;
+         ELSE
+            FETCH cInventoryLedger2 INTO v_CurQuantity,v_CurCostPerUnit;
+         END IF;
+         WHILE NO_DATA = 0 DO
+            IF v_CalcQuantity > 0 then
+				
+               SET v_PrevQuantity = v_PrevQuantity -v_CurQuantity;
+               IF v_PrevQuantity < 0 then
+					
+                  SET v_PrevQuantity = -v_PrevQuantity;
+                  IF v_PrevQuantity >= v_CalcQuantity then
+						
+                     SET v_InsQuantity = v_CalcQuantity;
+                     SET v_CalcQuantity = 0;
+                  ELSE
+                     SET v_InsQuantity = v_PrevQuantity;
+                     SET v_CalcQuantity = v_CalcQuantity -v_PrevQuantity;
+                  end if;
+                  SET v_PrevQuantity = 0;
+                  SET v_TransDate = TIMESTAMPADD(SECOND,1,v_TransDate);
+                  SET @SWV_Error = 0;
+                  INSERT INTO InventoryLedger(CompanyID,
+							DivisionID,
+							DepartmentID,
+							TransDate,
+							ItemID,
+							TransactionType,
+							TransNumber,
+							ILLineNumber,
+							Quantity,
+							CostPerUnit,
+							TotalCost)
+						VALUES(v_CompanyID,
+							v_DivisionID,
+							v_DepartmentID,
+							v_TransDate,
+							v_ItemID,
+							v_TransactionType,
+							v_TransactionNumber,
+							v_TransactionLineNumber,
+							-v_InsQuantity,
+							v_CurCostPerUnit,
+							fnRound(v_CompanyID, v_DivisionID, v_DepartmentID, Abs(v_InsQuantity)*v_CurCostPerUnit, v_CompanyCurrencyID));
+						
+                  IF @SWV_Error <> 0 then
+						-- An error occured, go to the error handler
+						
+                     IF SWV_CurNum = 0 THEN
+                        CLOSE cInventoryLedger;
+                     ELSE
+                        CLOSE cInventoryLedger2;
+                     END IF;
+							
+                     SET v_ErrorMessage = 'Insert in InventoryTransaction failed';
+                     ROLLBACK;
+-- the error handler
+
+                     IF v_ErrorMessage <> '' then
+
+	
+                        CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_CreateILTransaction',
+                        v_ErrorMessage,v_ErrorID);
+                        CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+                     end if;
+                     SET SWP_Ret_Value = -1;
+                  end if;
+               end if;
+            end if;
+            SET NO_DATA = 0;
+            IF SWV_CurNum = 0 THEN
+               FETCH cInventoryLedger INTO v_CurQuantity,v_CurCostPerUnit;
+            ELSE
+               FETCH cInventoryLedger2 INTO v_CurQuantity,v_CurCostPerUnit;
+            END IF;
+         END WHILE;
+         IF SWV_CurNum = 0 THEN
+            CLOSE cInventoryLedger;
+         ELSE
+            CLOSE cInventoryLedger2;
+         END IF;
+			
+
+			-- Recalculate inventory costing
+         SET @SWV_Error = 0;
+         CALL Inventory_RecalcItemCost2(v_CompanyID,v_DivisionID,v_DepartmentID,v_ItemID,v_Quantity,v_CostPerUnit,
+         v_NewCostPerUnit, v_ReturnStatus);
+         IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+			-- An error occured, go to the error handler
+			
+            SET v_ErrorMessage = 'Inventory_RecalcItemCost call failed';
+            ROLLBACK;
+-- the error handler
+
+            IF v_ErrorMessage <> '' then
+
+	
+               CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_CreateILTransaction',
+               v_ErrorMessage,v_ErrorID);
+               CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+            end if;
+            SET SWP_Ret_Value = -1;
+         end if;
+		-- @DefaultInventoryCostingMethod = 'A'
+      ELSE
+         SET @SWV_Error = 0;
+         INSERT INTO InventoryLedger(CompanyID,
+					DivisionID,
+					DepartmentID,
+					TransDate,
+					ItemID,
+					TransactionType,
+					TransNumber,
+					ILLineNumber,
+					Quantity,
+					CostPerUnit,
+					TotalCost)
+				VALUES(v_CompanyID,
+					v_DivisionID,
+					v_DepartmentID,
+					v_TransDate,
+					v_ItemID,
+					v_TransactionType,
+					v_TransactionNumber,
+					v_TransactionLineNumber,
+					v_Quantity,
+					v_CostPerUnit,
+					fnRound(v_CompanyID, v_DivisionID, v_DepartmentID, Abs(v_Quantity)*v_CostPerUnit, v_CompanyCurrencyID));
+				
+         IF @SWV_Error <> 0 then
+				-- An error occured, go to the error handler
+				
+            SET v_ErrorMessage = 'Insert in InventoryTransaction failed';
+            ROLLBACK;
+-- the error handler
+
+            IF v_ErrorMessage <> '' then
+
+	
+               CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_CreateILTransaction',
+               v_ErrorMessage,v_ErrorID);
+               CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+            end if;
+            SET SWP_Ret_Value = -1;
+         end if;
+      end if;
+   end if;
+
+
+
+-- Everything is OK
+   COMMIT;
+	
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+
+
+-- if an error occured in the procedure this code will be executed
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   ROLLBACK;
+-- the error handler
+
+   IF v_ErrorMessage <> '' then
+
+	
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_CreateILTransaction',
+      v_ErrorMessage,v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+   end if;
+   SET SWP_Ret_Value = -1;
+END;
+
+
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+-- Stored procedure definition script Inventory_RecalcItemCost2 for MySQL
+-- Generated by (c) Ispirer SQLWays 4.0 Build 219 Licensed to STFB
+-- Timestamp: Tue Jul 28 16:20:00 2015
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS Inventory_RecalcItemCost2;
+//
+CREATE      PROCEDURE Inventory_RecalcItemCost2(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_ItemID NATIONAL VARCHAR(36),
+	v_IncomeQuantity BIGINT,
+	v_IncomeCostPerUnit DECIMAL(19,4),
+	INOUT v_ItemCost DECIMAL(19,4) ,INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+
+
+
+/*
+Name of stored procedure: Inventory_RecalcItemCost
+Method: 
+	Recalculates different types of cost and updates cost of all opened orders
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@ItemID NVARCHAR(36)		 - the ID of inventory item
+
+Output Parameters:
+
+	@ItemCost MONEY 		 - returns the item cost that corresponds default company costing method
+
+Called From:
+
+	Inventory_CreateILTransaction
+
+Calls:
+
+	Inventory_RecalcFIFOCost, Inventory_RecalcLIFOCost, Inventory_RecalcAverageCost, Error_InsertError, Error_InsertErrorDetail
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+   DECLARE v_RunningQuantitySold FLOAT;
+
+
+   DECLARE v_DefaultInventoryCostingMethod NATIONAL VARCHAR(1);
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+   SET @SWV_Error = 0;
+   START TRANSACTION;
+-- Get total Qty of all sold items
+   select   IFNULL(-SUM(IFNULL(Quantity,0)),0) INTO v_RunningQuantitySold FROM InventoryLedger WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   ItemID = v_ItemID AND
+   Quantity < 0;
+
+
+-- Recalculate FIFO costing
+   SET @SWV_Error = 0;
+   CALL Inventory_RecalcFIFOCost(v_CompanyID,v_DivisionID,v_DepartmentID,v_ItemID,v_RunningQuantitySold, v_ReturnStatus);
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'Inventory_RecalcFIFOCost call failed';
+      ROLLBACK;
+-- the error handler
+
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_RecalcItemCost',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- Recalculate LIFO costing
+   SET @SWV_Error = 0;
+   CALL Inventory_RecalcLIFOCost2(v_CompanyID,v_DivisionID,v_DepartmentID,v_ItemID,v_RunningQuantitySold, v_ReturnStatus);
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'Inventory_RecalcLIFOCost call failed';
+      ROLLBACK;
+-- the error handler
+
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_RecalcItemCost',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+
+-- Recalculate Average costing
+   SET @SWV_Error = 0;
+   CALL Inventory_RecalcAverageCost(v_CompanyID,v_DivisionID,v_DepartmentID,v_ItemID,v_IncomeQuantity,v_IncomeCostPerUnit, v_ReturnStatus);
+
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'Inventory_RecalcAverageCost call failed';
+      ROLLBACK;
+-- the error handler
+
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_RecalcItemCost',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- return default itme cost  that possibly was changed during recalculation
+   select   IFNULL(DefaultInventoryCostingMethod,'F') INTO v_DefaultInventoryCostingMethod FROM
+   Companies WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID;
+
+   select(CASE(v_DefaultInventoryCostingMethod)
+   WHEN 'F' THEN FIFOCost
+   WHEN 'L' THEN LIFOCost
+   WHEN 'A' THEN AverageCost
+   END) INTO v_ItemCost FROM
+   InventoryItems WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   ItemID = v_ItemID;
+
+
+
+-- Everything is OK
+   COMMIT;
+	
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+
+
+-- if an error occured in the procedure this code will be executed
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   ROLLBACK;
+-- the error handler
+
+   IF v_ErrorMessage <> '' then
+
+	
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_RecalcItemCost',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+   end if;
+   SET SWP_Ret_Value = -1;
+END;
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+-- Stored procedure definition script Inventory_RecalcFIFOCost for MySQL
+-- Generated by (c) Ispirer SQLWays 4.0 Build 219 Licensed to STFB
+-- Timestamp: Tue Jul 28 16:20:00 2015
+
+DELIMITER //
+DROP FUNCTION IF EXISTS Inventory_RecalcFIFOCost2;
+//
+CREATE       FUNCTION Inventory_RecalcFIFOCost2(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_ItemID NATIONAL VARCHAR(36),
+	v_RunningQuantitySold BIGINT)
+RETURNS FLOAT
+BEGIN
+	DECLARE SWP_Ret_Value INT;
+	CALL Inventory_RecalcFIFOCost(v_CompanyID, v_DivisionID, v_DepartmentID, v_ItemID, v_RunningQuantitySold, SWP_Ret_Value);
+	RETURN SWP_Ret_Value;
+
+END;
+
+
+
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+-- Stored procedure definition script Inventory_RecalcFIFOCost for MySQL
+-- Generated by (c) Ispirer SQLWays 4.0 Build 219 Licensed to STFB
+-- Timestamp: Tue Jul 28 16:20:00 2015
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS Inventory_RecalcFIFOCost;
+//
+CREATE       PROCEDURE Inventory_RecalcFIFOCost(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_ItemID NATIONAL VARCHAR(36),
+	v_RunningQuantitySold BIGINT,INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+
+
+
+/*
+Name of stored procedure: Inventory_RecalcFIFOCost
+Method: 
+	Recalculates FIFO cost and updates cost of all opened orders
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@ItemID NVARCHAR(36)		 - the inventory item ID
+	@RunningQuantitySold BIGINT	 - total Qty of all sold items
+
+Output Parameters:
+
+	NONE
+
+Called From:
+
+	Inventory_RecalcItemCost
+
+Calls:
+
+	Order_UpdateCosting, Error_InsertError, Error_InsertErrorDetail
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+
+   DECLARE v_Quantity BIGINT;
+   DECLARE v_CostPerUnit DECIMAL(19,4);
+   DECLARE v_OldFIFOCost DECIMAL(19,4);
+
+-- Store the old FIFO cost 
+   DECLARE NO_DATA INT DEFAULT 0;
+   DECLARE v_DefaultInventoryCostingMethod NATIONAL VARCHAR(1);
+   DECLARE v_ErrorID INT;
+   DECLARE cQty CURSOR FOR
+   SELECT 
+   IFNULL(Quantity,0), IFNULL(CostPerUnit,0)
+   FROM 
+   InventoryLedger
+   WHERE 
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   ItemID = v_ItemID AND
+   IFNULL(Quantity,0) > 0
+   ORDER BY TransDate;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+      SET NO_DATA = -2;
+   END;
+   DECLARE CONTINUE HANDLER FOR NOT FOUND SET NO_DATA = -1;
+   select   IFNULL(FIFOCost,0) INTO v_OldFIFOCost FROM
+   InventoryItems WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   ItemID = v_ItemID;
+-- if there is no such Item in the Inventory table, do nothing
+   IF ROW_COUNT() = 0 then
+
+      SET SWP_Ret_Value = 0;
+      LEAVE SWL_return;
+   end if;
+
+
+   START TRANSACTION;
+
+   OPEN cQty;
+
+   SET NO_DATA = 0;
+   FETCH cQty INTO v_Quantity,v_CostPerUnit;
+-- Scan all InventoryLedger items with positive Quantities 
+-- from the start of the table
+-- to find income item transaction from which the last sold was made
+   WHILE NO_DATA = 0 AND v_RunningQuantitySold >= 0 DO
+      SET v_RunningQuantitySold = v_RunningQuantitySold -v_Quantity;
+      IF v_RunningQuantitySold >= 0 then
+	
+         SET NO_DATA = 0;
+         FETCH cQty INTO v_Quantity,v_CostPerUnit;
+      end if;
+   END WHILE;
+
+
+   CLOSE cQty;
+
+-- Now we have the new item cost stored in @CostPerUnit variable
+-- If it was changed, we will update FIFO cost in InventoryItems table 
+-- and the item cost in all opened orders
+   IF v_OldFIFOCost <> v_CostPerUnit AND v_CostPerUnit <> 0 then
+
+      UPDATE
+      InventoryItems
+      SET
+      FIFOCost = v_CostPerUnit
+      WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      ItemID = v_ItemID;
+      select   IFNULL(DefaultInventoryCostingMethod,'F') INTO v_DefaultInventoryCostingMethod FROM
+      Companies WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID;
+	-- If Company DefaultInventoryCostingMethod is FIFO
+	-- update item cost in all opened orders
+      IF v_DefaultInventoryCostingMethod = 'F' then
+	
+		-- Recalculate FIFO costing
+         SET @SWV_Error = 0;
+         SET v_ReturnStatus = Order_UpdateCosting(v_CompanyID,v_DivisionID,v_DepartmentID,v_ItemID,v_CostPerUnit);
+         IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+		-- An error occured, go to the error handler
+		
+            SET v_ErrorMessage = 'Order_UpdateCosting call failed';
+            ROLLBACK;
+-- the error handler
+
+            IF v_ErrorMessage <> '' then
+
+	
+               CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_RecalcFIFOCost',v_ErrorMessage,
+               v_ErrorID);
+               CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+            end if;
+            SET SWP_Ret_Value = -1;
+         end if;
+      end if;
+   end if;
+
+
+
+-- Everything is OK
+   COMMIT;
+	
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+
+
+-- if an error occured in the procedure this code will be executed
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   ROLLBACK;
+-- the error handler
+
+   IF v_ErrorMessage <> '' then
+
+	
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Inventory_RecalcFIFOCost',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ItemID',v_ItemID);
+   end if;
+   SET SWP_Ret_Value = -1;
+END;
 
 
 
