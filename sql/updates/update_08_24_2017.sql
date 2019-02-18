@@ -1,1 +1,0 @@
-ALTER TABLE companies ADD COLUMN MasterReportingCompany tinyint(1) after Logo, ADD COLUMN ShareEmployees tinyint(1) after MasterReportingCompany, ADD COLUMN ShareCustomers tinyint(1) after ShareEmployees, ADD COLUMN ShareVendors tinyint(1) after ShareCustomers, ADD COLUMN ShareItems tinyint(1) after ShareVendors, ADD COLUMN ShareWarehouses tinyint(1) after ShareItems;

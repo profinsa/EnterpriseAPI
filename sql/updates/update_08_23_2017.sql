@@ -1,1 +1,0 @@
-alter table companies add column Logo nvarchar(255) after SystemDates;
