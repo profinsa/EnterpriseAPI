@@ -40,6 +40,13 @@
 		return date("m/d/y", strtotime($value));
 		break;
 	    case "text":
+//		if(key_exists("formatFunction", $data->gridFields[$key])){
+//		    $formatFunction = $data->gridFields[$key]["formatFunction"];
+//		    echo $data->$formatFunction($item, "gridFields", $key, $value, false);
+//		}
+//		else
+		    echo formatField($data->gridFields[$key], $value);
+		break;
 	    case "dateTimeFull" :
 		return $value;
 		break;
