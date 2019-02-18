@@ -26,14 +26,14 @@
 	</style>
     </head>
     <?php
-	$menuCategories = [];
+	$menuCategories = $leftMenu["Main"]["data"];
 	$menuActions = [];
 
 	$keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
 
 	//	require "menuActions.php";
 
-	$menuCategories["Dashboard"] = [
+/*	$menuCategories["Dashboard"] = [
 	    "type" => "blank",
 	    "data" => [
 		"id" => "Dashboard",
@@ -42,7 +42,7 @@
 		"href" => "dashboard",
 	    ]
 	];
-
+*/
 	$menuCategories["MyShortcuts"] = [
             "type" => "custom",
             "id" => "MyShortcuts",
@@ -58,7 +58,7 @@
             ]
 	];
 
-	$menuCategories["Documentation"] = [
+/*	$menuCategories["Documentation"] = [
 	    "type" => "item",
 	    "data" => [
 		"id" => "Documentation",
@@ -67,18 +67,7 @@
 		"href" => "http://dms.newtechautomotiveservices.com:8084/EnterpriseHelp/usermanual/index.php",
 		"Target" => "_Blank"
 	    ]
-	];
-
-	// $menuCategories["SupportTicket"] = [
-	// "type" => "item",
-	// "data" => [
-	//     "id" => "Support",
-	//     "full" => $translation->translateLabel('Support Ticket'),
-	//     "short" => "ST",
-	//     "href" => "https://stfbinc.teamwork.com/support/",
-	//     "Target" => "_Blank"
-	// ]
-	// ];
+	    ];*/
 
     ?>
     <body onload="main();" style="min-height: 800px;" class="">

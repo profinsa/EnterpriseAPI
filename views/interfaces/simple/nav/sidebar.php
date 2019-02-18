@@ -219,7 +219,6 @@
  function onShowSubMenu(e, name) {
      var menu = $(e.target).find('ul');
      $(menu[0]).css({display: 'block'});
-     console.log(name);
      if(name == "Customer")
 	 $(menu[0]).css({top: (parseInt($('#topbarMenu').css("height")) + 50) + 'px'});
      else if(parseInt($('#topbarMenu').css("height")) > 100 && name == "Vendor")
