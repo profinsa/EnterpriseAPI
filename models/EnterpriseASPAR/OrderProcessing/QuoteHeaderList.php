@@ -4,7 +4,7 @@
 
   Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\QuoteHeaderList.php It provides data from database and default values, column names and categories
 
-  Date created: 02/16/2017  Kenna Fetterman
+  Date created: 02/16/2017 NikitaZaharov
 
   Use: this model used by views/QuoteHeaderList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -1369,22 +1369,15 @@ class gridData extends gridDataSource{
     public function Order_CreateFromQuote() {
         $user = Session::get("user");
 
-        $recalc = new recalcHelper;
+        DB::statement("CALL Order_CreateFromQuote('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
 
-        if ($recalc->lookForProcedure("Order_CreateFromQuote")) {
-            DB::statement("CALL Order_CreateFromQuote('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
 
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-
-            if($result[0]->SWP_RET_VALUE == -1) {
-                http_response_code(400);
-                echo $result[0]->SWP_RET_VALUE;
-            } else {
-                echo "ok";
-            }
-        } else {
-            echo "Procedure not found";
+        if($result[0]->SWP_RET_VALUE == -1) {
             http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        } else {
+            echo "ok";
         }
     }        
 }
