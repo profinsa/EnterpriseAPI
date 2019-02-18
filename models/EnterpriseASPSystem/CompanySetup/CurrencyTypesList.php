@@ -4,7 +4,7 @@
    
   Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPSystem\CompanySetup\CurrencyTypesList.php It provides data from database and default values, column names and categories
    
-  Date created: 02/16/2017  Kenna Fetterman
+  Date created: 02/16/2017 Nikita Zaharov
    
   Use: this model used by views/CurrencyTypesList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -25,8 +25,8 @@
   Calls:
   MySql Database
    
-  Last Modified: 04/07/2017
-  Last Modified by: Kenna Fetterman
+  Last Modified: 18/02/2019
+  Last Modified by: Nikita Zaharov
 */
 require "./models/gridDataSource.php";
 
@@ -65,6 +65,7 @@ class gridData extends gridDataSource{
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
                 "inputType" => "text",
+                "disabledEdit" => "true",
                 "defaultValue" => ""
             ],
             "CurrencyType" => [
