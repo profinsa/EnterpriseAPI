@@ -381,6 +381,9 @@
     "SystemSetup/EDISetup/EDIDocumentDirections" => "EnterpriseASPSystem/EDISetup/EDIDirectionList",
     "SystemSetup/EDISetup/EDIExceptions" => "EnterpriseASPSystem/EDISetup/EDIExceptionsList",
     "SystemSetup/EDISetup/EDIExceptionTypes" => "EnterpriseASPSystem/EDISetup/EDIExceptionTypesList",
+    "SystemSetup/EDISetup/EDIAddresses" => "EnterpriseASPSystem/EDISetup/EDIAddressesList",
+    "SystemSetup/EDISetup/EDIStatements" => "EnterpriseASPSystem/EDISetup/EDIStatementsList",
+    "SystemSetup/EDISetup/EDIStatementsHistory" => "EnterpriseASPSystem/EDISetup/EDIStatementsHistoryList",
     "Reports/Financials/ExcelWorksheets" => "reports/Worksheets/Worksheet",
     "Reports/Autoreport/GenericReportDetail" => "EnterpriseASPSystem/Autoreport/GenericReportDetail"
 ];

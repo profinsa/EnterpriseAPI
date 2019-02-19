@@ -439,6 +439,24 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "EDIAddresses" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "EDIStatements" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "EDIStatementsHistory" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "ErrorLog" => [
         "select" => "any",
         "update" => "any",

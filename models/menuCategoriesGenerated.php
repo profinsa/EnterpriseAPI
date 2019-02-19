@@ -3840,6 +3840,24 @@ $leftMenu = [
 		       "full" => $translation->translateLabel('EDI Exception Types'),
 		       "href"=> "EnterpriseASPSystem/EDISetup/EDIExceptionTypesList",
 		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIAddresses",
+		       "full" => $translation->translateLabel('EDI Addresses'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIAddressesList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIStatements",
+		       "full" => $translation->translateLabel('EDI Statements'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIStatementsList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIStatementsHistory",
+		       "full" => $translation->translateLabel('EDI Statements History'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIStatementsHistoryList",
+		       "short" => "ED"
 		       ]
 		       ]
 		       ]
