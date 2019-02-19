@@ -1340,22 +1340,15 @@ class OrderHeaderList extends gridDataSource{
     public function contractCreateFromOrder() {
         $user = Session::get("user");
 
-        $recalc = new recalcHelper;
+        DB::statement("CALL Contract_CreateFromOrder('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
 
-        if ($recalc->lookForProcedure("Contract_CreateFromOrder")) {
-            DB::statement("CALL Contract_CreateFromOrder('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
 
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-
-            if($result[0]->SWP_RET_VALUE == -1) {
-                echo "error";
-                http_response_code(400);
-            } else {
-                echo "ok";
-            }
-        } else {
+        if($result[0]->SWP_RET_VALUE == -1) {
+            echo "error";
             http_response_code(400);
-            echo "Procedure not found";
+        } else {
+            echo "ok";
         }
     }
     

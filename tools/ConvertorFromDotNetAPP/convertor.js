@@ -30,10 +30,10 @@ var fs = require('fs');
 var mysql = require('mysql');
 
 var mysql_config = {
-    host     : 'localhost',
+    host     : '192.168.56.107',
     user     : 'root',
     password : '32167',
-    database : 'integralx'
+    database : 'myenterprise'
 };
 
 //var outputFormat = "newtech";
@@ -505,5 +505,49 @@ function make_all(){
     fs.writeFileSync('models/menuIdToHref.php', menuIdToPath);
 }
 
+function generate_model_by_table(tablename){
+    getFieldsFromTable(tablename, function(err, fields){
+	console.log(JSON.stringify(fields, null, 3));
+	if(err){
+	    console.log(err);
+	    return;
+	}
+	    
+	var ind;
+	var group  = {};
+	for(ind in fields){
+	    //		console.log(fields[ind]);
+	 //   if(!file.columnNames.hasOwnProperty(ind))
+	//	file.columnNames[ind] = ind;
+	    group[ind] = {
+		defaultValue : ""
+	    };
+	    group[ind].dbType = fields[ind].Type;
+	    if(fields[ind].Type == 'datetime' || fields[ind].Type == 'timestamp'){
+		group[ind].inputType = 'datetime';
+		group[ind].defaultValue = 'now';
+	    }else if(group[ind].dbType == "tinyint(1)"){
+		group[ind].inputType = 'checkbox';
+		group[ind].defaultValue = '0';		
+	    }else
+		group[ind].inputType = "text";
+	}
+	var find, content = '';
+	for(find in group){
+	    content += "\n\"" + find + "\" => [\n" +
+		"\"dbType\" => \"" + group[find].dbType + "\",\n" +
+		"\"inputType\" => \"" + group[find].inputType + "\",\n" +
+		"\"defaultValue\" => \"" + group[find].defaultValue + "\"\n" +
+		(group[find].hasOwnProperty("disabledEdit") ? ",\"disabledEdit\" => \"" + group[find].disabledEdit + "\"\n" : "") +
+		"],"; 
+	}
+	content += "\n\n";
+	for(find in group)
+	    content += "\"" + find + "\" => \"" + find + "\",\n";
+	console.log(content);
+    });
+}
 
-make_all();
+generate_model_by_table("ediaddresses");
+
+//make_all();
