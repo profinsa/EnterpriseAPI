@@ -3804,7 +3804,7 @@ $leftMenu = [
 			    ]
 			]
 		    ],
-		    /*    [
+		    [
 		       "type" => "submenu",
 		       "id" => "SystemSetup/EDISetup",
 		       "full" => $translation->translateLabel('EDI Setup '),
@@ -3842,7 +3842,7 @@ $leftMenu = [
 		       "short" => "ED"
 		       ]
 		       ]
-		       ]*/
+		       ]
 		]
 	    ]
 	]

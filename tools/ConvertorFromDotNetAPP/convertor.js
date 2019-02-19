@@ -3,11 +3,11 @@
 
  Method: It read *List.aspx files and created models for using it in integral accounting enterprise x
 
- Date created: Nikita Zaharov, 06.03.2016
+ Date created: Nikita Zaharov, 06.03.2017
 
  Use: 
  reads *List.aspx files, extracts table name, fileds, types and other and then created model for
- use in integralx project as screen. Also it generate menu model for menu(sidebar items with links)
+ use in EnterpriseX project as screen. Also it generate menu model for menu(sidebar items with links)
 
  Input parameters:
  directory which contains .aspx files or pat to .aspx file
@@ -22,7 +22,7 @@
  Calls:
  mysql
 
- Last Modified: 24.04.2016
+ Last Modified: 19.02.2019
  Last Modified by: Nikita Zaharov
  */
 
@@ -37,16 +37,14 @@ var mysql_config = {
 };
 
 //var outputFormat = "newtech";
-var outputFormat = "integralx";
+var outputFormat = "EnterpriseX";
 
 function isEmpty(object) {
     return JSON.stringify(object) == '{}';
 }
 
-var connection = mysql.createConnection(mysql_config);
-
+var connection = mysql.createConnection(mysql_config);    
 connection.connect();
-
 function getFieldsFromTable(table, cb){
     connection.query('describe ' + table, function (error, results, fields) {
 	var ind, _fields = {};
@@ -73,8 +71,8 @@ function generate_model(file, title, menuTitle, tableFields, cb){
 	content += "namespace App\\Models;\n require __DIR__ . \"/../../../Models/gridDataSource.php\";\n"; //for laravel
 	content += "class gridData extends gridDataSource{\n"; //for laravel
     }else{
-	content += "require \"./models/gridDataSource.php\";\n"; //for intergralx
-	content += "class gridData extends gridDataSource{\n"; //for intergralx
+	content += "require \"./models/gridDataSource.php\";\n"; //for EnterpriseX
+	content += "class gridData extends gridDataSource{\n"; //for EnterpriseX
     }
     content += "protected $tableName = \"" + file.tableName + "\";\n";
 
@@ -125,10 +123,10 @@ function generate_model(file, title, menuTitle, tableFields, cb){
 
     content += "public $columnNames = [\n";
     fields = file.columnNames;
-    for(find in fields){
+    for(find in fields)
 	content += "\n\"" + find + "\" => \"" + fields[find] + "\",";
-	//generate_model(
-    }
+    //generate_model(
+    
     content = content.substring(0, content.length - 1);
     content += "];\n";
     
@@ -507,7 +505,7 @@ function make_all(){
 
 function generate_model_by_table(tablename){
     getFieldsFromTable(tablename, function(err, fields){
-	console.log(JSON.stringify(fields, null, 3));
+//	console.log(JSON.stringify(fields, null, 3));
 	if(err){
 	    console.log(err);
 	    return;
@@ -532,7 +530,17 @@ function generate_model_by_table(tablename){
 	    }else
 		group[ind].inputType = "text";
 	}
-	var find, content = '';
+	var find, content = "<?php\n";
+	content += "require \"./models/gridDataSource.php\";\n";
+	content += "class gridData extends gridDataSource{\n";
+	content += "public $tableName = \"" + tablename + "\";\n";
+
+	content += "public $dashboardTitle =\"" + tablename + "\";\n";
+	content += "public $breadCrumbTitle =\"" + tablename + "\";\n";
+	content += "public $idField =\"\";\n";
+	content += "public $idFields = [];\n";
+
+	content += "public $gridFields = [";
 	for(find in group){
 	    content += "\n\"" + find + "\" => [\n" +
 		"\"dbType\" => \"" + group[find].dbType + "\",\n" +
@@ -541,13 +549,66 @@ function generate_model_by_table(tablename){
 		(group[find].hasOwnProperty("disabledEdit") ? ",\"disabledEdit\" => \"" + group[find].disabledEdit + "\"\n" : "") +
 		"],"; 
 	}
-	content += "\n\n";
+	content = content.substring(0, content.length - 1);
+	content += "\n];\n\n";
+	
+	content += "public $editCategories = [";
+	for(find in group){
+	    content += "\n\"" + find + "\" => [\n" +
+		"\"dbType\" => \"" + group[find].dbType + "\",\n" +
+		"\"inputType\" => \"" + group[find].inputType + "\",\n" +
+		"\"defaultValue\" => \"" + group[find].defaultValue + "\"\n" +
+		(group[find].hasOwnProperty("disabledEdit") ? ",\"disabledEdit\" => \"" + group[find].disabledEdit + "\"\n" : "") +
+		"],"; 
+	}
+	content = content.substring(0, content.length - 1);
+	content += "];\n";
+
+	content += "public $columnNames = [\n";
 	for(find in group)
 	    content += "\"" + find + "\" => \"" + find + "\",\n";
-	console.log(content);
+	
+	content = content.substring(0, content.length - 2);
+	content += "];\n";
+	
+	content += "}?>\n";
+//	content += "\n\n";
+	fs.writeFileSync('models/' + tablename + '.php', content);
+//	console.log(content);
+//	process.exit();
     });
 }
 
-generate_model_by_table("ediaddresses");
 
-//make_all();
+    
+function main(){
+    //generate_model_by_table("ediaddresses");
+    //make_all();
+}
+
+//main();
+
+var EDITables = [
+    'ediaddresses',
+    'edidirection',
+    'edidocumenttypes',
+    'ediexceptions',
+    'ediexceptiontypes',
+    'ediinvoicedetail',
+    'ediinvoiceheader',
+    'ediitems',
+    'ediorderdetail',
+    'ediorderheader',
+    'edipaymentsdetail',
+    'edipaymentsheader',
+    'edipurchasedetail',
+    'edipurchaseheader',
+    'edireceiptsdetail',
+    'edireceiptsheader',
+    'edisetup',
+    'edistatements',
+    'edistatementshistory',
+];
+var ind;
+for(ind in EDITables)
+    generate_model_by_table(EDITables[ind]);
