@@ -481,6 +481,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "EDIItems" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "ErrorLog" => [
         "select" => "any",
         "update" => "any",
