@@ -3858,6 +3858,12 @@ $leftMenu = [
 		       "full" => $translation->translateLabel('EDI Statements History'),
 		       "href"=> "EnterpriseASPSystem/EDISetup/EDIStatementsHistoryList",
 		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIInvoices",
+		       "full" => $translation->translateLabel('EDI Invoices'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIInvoiceHeaderList",
+		       "short" => "ED"
 		       ]
 		       ]
 		       ]

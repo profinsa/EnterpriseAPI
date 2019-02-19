@@ -457,6 +457,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "EDIInvoiceHeader" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "ErrorLog" => [
         "select" => "any",
         "update" => "any",

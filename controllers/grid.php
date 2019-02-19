@@ -25,7 +25,7 @@
   models/gridDataSource derevatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 07.02.2019
+  Last Modified: 19.02.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -354,6 +354,10 @@ class controller{
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
                     "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderHistoryList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPSystem/EDISetup/EDIInvoiceHeaderList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ]

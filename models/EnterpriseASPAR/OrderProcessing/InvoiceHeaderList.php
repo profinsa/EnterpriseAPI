@@ -1068,7 +1068,7 @@ class InvoiceHeaderList extends gridDataSource{
         "ProjectID" => "ProjectID"
 	];
 
-        public $customerFields = [
+    public $customerFields = [
         "CustomerID" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
