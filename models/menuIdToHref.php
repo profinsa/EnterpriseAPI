@@ -385,6 +385,7 @@
     "SystemSetup/EDISetup/EDIStatements" => "EnterpriseASPSystem/EDISetup/EDIStatementsList",
     "SystemSetup/EDISetup/EDIStatementsHistory" => "EnterpriseASPSystem/EDISetup/EDIStatementsHistoryList",
     "SystemSetup/EDISetup/EDIInvoices" => "EnterpriseASPSystem/EDISetup/EDIInvoiceHeaderList",
+    "SystemSetup/EDISetup/InvoiceDetail" => "EnterpriseASPSystem/EDISetup/EDIInvoiceDetail",
     "Reports/Financials/ExcelWorksheets" => "reports/Worksheets/Worksheet",
     "Reports/Autoreport/GenericReportDetail" => "EnterpriseASPSystem/Autoreport/GenericReportDetail"
 ];

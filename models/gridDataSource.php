@@ -1466,7 +1466,11 @@ EOF;
             ],
             "banktransactions" => [
                 "tables" => ["banktransactions"]
-            ]
+            ],
+            "ediinvoiceheader" => [
+                //"columns" => "InvoiceNumber",
+                "tables" => ["ediinvoiceheader"]
+            ],
         ];
         $columnMax = 0;
         if(key_exists($this->tableName, $forDirtyAutoincrement)){

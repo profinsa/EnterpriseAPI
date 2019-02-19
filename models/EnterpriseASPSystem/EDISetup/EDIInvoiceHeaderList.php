@@ -539,7 +539,7 @@ class gridData extends gridDataSource{
                 "fieldsToFill" => [
                     "TermsID" => "TermID",
                     "CustomerShipToID" => "ShipToID",
-                    "CustomerShipForID" => "ShipForID",
+                    //                 "CustomerShipForID" => "ShipForID",
                     "CurrencyID" => "CurrencyID",
                     //                    CASE
                     //WHEN IFNULL(CurrencyID,N'') = N'' THEN v_CompanyCurrencyID
@@ -580,20 +580,20 @@ class gridData extends gridDataSource{
 				"inputType" => "datetime",
 				"defaultValue" => "now"
 			],
-			"ShipForID" => [
+            /*			"ShipForID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getShipForIDS",
                 "dataProviderArgs" => ["CustomerID", "ShipToID"],
 				"defaultValue" => ""
-			],
-			"ShipToID" => [
+                ],*/
+            /*			"ShipToID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
                 "dataProvider" => "getShipToIDS",
                 "dataProviderArgs" => ["CustomerID"],
 				"defaultValue" => ""
-			],
+                ],*/
 			"ShipMethodID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
@@ -636,17 +636,17 @@ class gridData extends gridDataSource{
 				"inputType" => "datetime",
 				"defaultValue" => "now"
 			],
-			"SystemDate" => [
+            /*			"SystemDate" => [
 				"dbType" => "timestamp",
 				"inputType" => "datetime",
 				"defaultValue" => "now"
-			],
-			"Memorize" => [
+                ],*/
+            /*			"Memorize" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
 				"defaultValue" => "0",
                 "disabledEdit" => "true"
-			],
+                ],*/
 			"PurchaseOrderNumber" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "text",
@@ -787,13 +787,13 @@ class gridData extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
-			"CashTendered" => [
+            /*			"CashTendered" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
 				"defaultValue" => "",
                 "currencyField" => "CurrencyID",
                 "formatFunction" => "currencyFormat"
-            ],
+                ],*/
 			"AmountPaid" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
@@ -812,7 +812,7 @@ class gridData extends gridDataSource{
         ]
     ];
 
-        public $headTableOne = [
+    public $headTableOne = [
         "Invoice Number" => "InvoiceNumber",
         "Invoice Date" => "InvoiceDate",
         "Order Number" => "OrderNumber",
@@ -822,8 +822,8 @@ class gridData extends gridDataSource{
 
     public $headTableTwo = [
         "Customer ID" => "CustomerID",
-        "Ship To" => "ShipToID",
-        "Ship For" => "ShipForID",
+        //"Ship To" => "ShipToID",
+        //        "Ship For" => "ShipForID",
         "Warehouse" => "WarehouseID"
     ];
 
@@ -836,7 +836,7 @@ class gridData extends gridDataSource{
     ];
 
     public $detailTable = [
-        "viewPath" => "AccountsReceivable/OrderProcessing/ViewInvoicesDetail",
+        "viewPath" => "SystemSetup/EDISetup/InvoiceDetail",
         "newKeyField" => "InvoiceNumber",
         "keyFields" => ["InvoiceNumber", "InvoiceLineNumber"]
     ];
@@ -844,7 +844,7 @@ class gridData extends gridDataSource{
     public $footerTable = [
         "flagsHeader" => [
             "Backordered" => "Backordered",
-            "Memorized" => "Memorize"
+            //            "Memorized" => "Memorize"
         ],
         "flags" => [
             ["Posted", "Posted", "PostedDate", "Posted Date"],
@@ -947,7 +947,15 @@ class gridData extends gridDataSource{
         "HeaderMemo7" => "Header Memo 7",
         "HeaderMemo8" => "Header Memo 8",
         "HeaderMemo9" => "Header Memo 9",
-        "AllowanceDiscountPerc" => "Allowance Discount Perc"
+        "AllowanceDiscountPerc" => "Allowance Discount Perc",
+        "OrderQty" => "Qty",
+        "ItemID" => "Item ID",
+        "Description" => "Description",
+        "ItemUOM" => "UOM",
+        "ItemUnitPrice" => "Price",
+        "Total" => "Total",
+        "GLSalesAccount" => "Sales Account",
+        "ProjectID" => "ProjectID"
     ];
     public $customerFields = [
         "CustomerID" => [
@@ -1140,7 +1148,7 @@ class gridData extends gridDataSource{
         $keyFields .= " AND InvoiceNumber='" . $id . "'";
 
         
-        $result = DB::select("SELECT " . implode(",", $fields) . " from invoicedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from ediinvoicedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
