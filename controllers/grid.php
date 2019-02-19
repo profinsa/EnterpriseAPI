@@ -360,6 +360,10 @@ class controller{
                     "EnterpriseASPSystem/EDISetup/EDIInvoiceHeaderList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPSystem/EDISetup/EDIOrderHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ]
                 ];
                 if(key_exists("mode", $_GET))

@@ -3860,6 +3860,12 @@ $leftMenu = [
 		       "short" => "ED"
 		       ],
 		       [
+		       "id" => "SystemSetup/EDISetup/EDIOrders",
+		       "full" => $translation->translateLabel('EDI Orders'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIOrderHeaderList",
+		       "short" => "ED"
+		       ],
+		       [
 		       "id" => "SystemSetup/EDISetup/EDIInvoices",
 		       "full" => $translation->translateLabel('EDI Invoices'),
 		       "href"=> "EnterpriseASPSystem/EDISetup/EDIInvoiceHeaderList",
