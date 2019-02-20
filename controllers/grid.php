@@ -364,8 +364,12 @@ class controller{
                     "EnterpriseASPSystem/EDISetup/EDIOrderHeaderList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ] ,
+                    "EnterpriseASPSystem/EDISetup/EDIReceiptsHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ]
-                ];
+               ];
                 if(key_exists("mode", $_GET))
                     $this->mode = $_GET["mode"];
                 if(key_exists("category", $_GET))

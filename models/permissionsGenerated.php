@@ -481,6 +481,18 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "EDIReceiptsHeader" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "EDIReceipts" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "EDIItems" => [
         "select" => "any",
         "update" => "any",

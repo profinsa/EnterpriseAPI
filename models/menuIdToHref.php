@@ -388,6 +388,8 @@
     "SystemSetup/EDISetup/InvoiceDetail" => "EnterpriseASPSystem/EDISetup/EDIInvoiceDetail",
     "SystemSetup/EDISetup/EDIOrders" => "EnterpriseASPSystem/EDISetup/EDIOrderHeaderList",
     "SystemSetup/EDISetup/OrderDetail" => "EnterpriseASPSystem/EDISetup/EDIOrderDetail",
+    "SystemSetup/EDISetup/EDIReceipts" => "EnterpriseASPSystem/EDISetup/EDIReceiptsHeaderList",
+    "SystemSetup/EDISetup/EDIReceiptsDetail" => "EnterpriseASPSystem/EDISetup/EDIReceiptsDetail",
     "SystemSetup/EDISetup/EDIItems" => "EnterpriseASPSystem/EDISetup/EDIItemsList",
     "Reports/Financials/ExcelWorksheets" => "reports/Worksheets/Worksheet",
     "Reports/Autoreport/GenericReportDetail" => "EnterpriseASPSystem/Autoreport/GenericReportDetail"

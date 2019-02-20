@@ -38,14 +38,6 @@ class gridData extends gridDataSource{
     public $idField ="ReceiptID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","ReceiptID", "ReceiptDetailID"];
     public $gridFields = [
-        "ReceiptID" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "text"
-        ],
-        "ReceiptDetailID" => [
-            "dbType" => "bigint(20)",
-            "inputType" => "text"
-        ], 
 		"DocumentNumber" => [
 			"dbType" => "varchar(36)",
 			"inputType" => "text"
@@ -67,7 +59,7 @@ class gridData extends gridDataSource{
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
             "inputType" => "text"
-        ],
+        ]
     ];
 
     public $editCategories = [
