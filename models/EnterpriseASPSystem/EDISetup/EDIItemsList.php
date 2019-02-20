@@ -100,12 +100,14 @@ class gridData extends gridDataSource{
             ],
             "EDIDirectionTypeID" => [
                 "dbType" => "varchar(1)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getEDIDirectionTypeIDs",
                 "defaultValue" => ""
             ],
             "EDIDocumentTypeID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getEDIDocumentTypeIDs",
                 "defaultValue" => ""
             ],
             "EDIOpen" => [

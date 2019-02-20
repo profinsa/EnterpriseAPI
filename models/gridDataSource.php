@@ -1232,6 +1232,36 @@ EOF;
         return $res;
     }
 
+    //getting list of available EDI Direction types
+    public function getEDIDirectionTypeIDs(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT DirectionTypeID as ID from edidirection WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($user["CompanyID"], $user["DivisionID"],$user["DepartmentID"]));
+
+        foreach($result as $key=>$value)
+            $res[$value->ID] = [
+                "title" => $value->ID,
+                "value" => $value->ID
+            ];
+        
+        return $res;
+    }
+
+    //getting list of available EDI Document types
+    public function getEDIDocumentTypeIDs(){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT EDIDocumentTypeID as ID from edidocumenttypes WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($user["CompanyID"], $user["DivisionID"],$user["DepartmentID"]));
+
+        foreach($result as $key=>$value)
+            $res[$value->ID] = [
+                "title" => $value->ID,
+                "value" => $value->ID
+            ];
+        
+        return $res;
+    }
+    
     public function Inventory_PopulateItemInfo(){
         $user = Session::get("user");
 
