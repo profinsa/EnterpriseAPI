@@ -790,7 +790,7 @@ class PaymentsHeaderList extends gridDataSource{
 
     public function detailDelete(){
         $user = Session::get("user");
-        $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentsID", "PaymentDetailID"];
+        $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentID", "PaymentDetailID"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
         $fcount = 0;
