@@ -373,7 +373,7 @@ class controller{
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
-                    "EnterpriseASPSystem/EDISetup/EDIPaymentHeaderList/" => [
+                    "EnterpriseASPSystem/EDISetup/EDIPaymentsHeaderList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ]

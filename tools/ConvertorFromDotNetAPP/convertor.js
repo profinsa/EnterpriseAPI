@@ -552,7 +552,7 @@ function generate_model_by_table(tablename){
 	content = content.substring(0, content.length - 1);
 	content += "\n];\n\n";
 	
-	content += "public $editCategories = [";
+	content += "public $editCategories = [\n \"Main\" => [";
 	for(find in group){
 	    content += "\n\"" + find + "\" => [\n" +
 		"\"dbType\" => \"" + group[find].dbType + "\",\n" +
@@ -562,16 +562,16 @@ function generate_model_by_table(tablename){
 		"],"; 
 	}
 	content = content.substring(0, content.length - 1);
-	content += "];\n";
+	content += "]\n];\n";
 
 	content += "public $columnNames = [\n";
 	for(find in group)
 	    content += "\"" + find + "\" => \"" + find + "\",\n";
 	
 	content = content.substring(0, content.length - 2);
-	content += "];\n";
+	content += "\n];\n";
 	
-	content += "}?>\n";
+	content += "}\n?>\n";
 //	content += "\n\n";
 	fs.writeFileSync('models/' + tablename + '.php', content);
 //	console.log(content);

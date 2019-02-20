@@ -3884,9 +3884,9 @@ $leftMenu = [
 		       "short" => "ED"
 		       ],
 		       [
-		       "id" => "SystemSetup/EDISetup/EDIPayment",
+		       "id" => "SystemSetup/EDISetup/EDIPayments",
 		       "full" => $translation->translateLabel('EDI Payments'),
-		       "href"=> "EnterpriseASPSystem/EDISetup/EDIPaymentHeaderList",
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIPaymentsHeaderList",
 		       "short" => "ED"
 		       ],
 		       [

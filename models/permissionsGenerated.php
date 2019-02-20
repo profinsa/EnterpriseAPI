@@ -505,13 +505,13 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
-    "EDIPaymentHeader" => [
+    "EDIPaymentsHeader" => [
         "select" => "any",
         "update" => "any",
         "insert" => "any",
         "delete" => "any",
     ],
-    "EDIPayment" => [
+    "EDIPayments" => [
         "select" => "any",
         "update" => "any",
         "insert" => "any",

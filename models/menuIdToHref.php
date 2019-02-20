@@ -392,8 +392,8 @@
     "SystemSetup/EDISetup/EDIReceiptsDetail" => "EnterpriseASPSystem/EDISetup/EDIReceiptsDetail",
     "SystemSetup/EDISetup/EDIPurchase" => "EnterpriseASPSystem/EDISetup/EDIPurchaseHeaderList",
     "SystemSetup/EDISetup/EDIPurchaseDetail" => "EnterpriseASPSystem/EDISetup/EDIPurchaseDetail",
-    "SystemSetup/EDISetup/EDIPayment" => "EnterpriseASPSystem/EDISetup/EDIPaymentHeaderList",
-    "SystemSetup/EDISetup/EDIPaymentDetail" => "EnterpriseASPSystem/EDISetup/EDIPaymentDetail",
+    "SystemSetup/EDISetup/EDIPayments" => "EnterpriseASPSystem/EDISetup/EDIPaymentsHeaderList",
+    "SystemSetup/EDISetup/EDIPaymentsDetail" => "EnterpriseASPSystem/EDISetup/EDIPaymentsDetail",
     "SystemSetup/EDISetup/EDIItems" => "EnterpriseASPSystem/EDISetup/EDIItemsList",
     "Reports/Financials/ExcelWorksheets" => "reports/Worksheets/Worksheet",
     "Reports/Autoreport/GenericReportDetail" => "EnterpriseASPSystem/Autoreport/GenericReportDetail"

@@ -1,12 +1,12 @@
 <?php
 /*
-  Name of Page: PaymentsHeaderList model
+  Name of Page: EDI Payments Header
    
-  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderList.php It provides data from database and default values, column names and categories
+  Method: Model for grid view It provides data from database and default values, column names and categories
    
-  Date created: 02/16/2017 Zaharov Nikita
+  Date created: 20/02/2019 Zaharov Nikita
    
-  Use: this model used by views/PaymentsHeaderList for:
+  Use: this model used by gridView for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
   - for loading data from tables, updating, inserting and deleting
    
@@ -19,25 +19,23 @@
   - methods have their own output
    
   Called from:
-  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderList.php
-  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderList.php
+  created and used for ajax requests by grid controllers
+  used as model by views
    
   Calls:
   MySql Database
    
-  Last Modified: 12/13/2018
+  Last Modified: 20/02/2019
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
-
-class PaymentsHeaderList extends gridDataSource{
-    public $tableName = "paymentsheader";
-    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0)";
-    public $dashboardTitle ="Payments";
-    public $breadCrumbTitle ="Payments";
-    public $idField ="PaymentID";
-    public $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentID"];
+class gridData extends gridDataSource{
+    public $tableName = "edipaymentsheader";
+    public $dashboardTitle ="EDI Payments";
+    public $breadCrumbTitle ="EDI Payments";
+	public $idField ="PaymentID";
+	public $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentID"];
     public $gridFields = [
         "PaymentID" => [
             "dbType" => "varchar(36)",
@@ -51,16 +49,22 @@ class PaymentsHeaderList extends gridDataSource{
             "dbType" => "varchar(36)",
             "inputType" => "text"
         ],
+        "EDIDirectionTypeID" => [
+            "dbType" => "varchar(1)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "EDIDocumentTypeID" => [
+            "dbType" => "varchar(3)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
         "CheckNumber" => [
             "dbType" => "varchar(20)",
             "inputType" => "text"
         ],
         "VendorID" => [
             "dbType" => "varchar(50)",
-            "inputType" => "text"
-        ],
-        "VendorInvoiceNumber" => [
-            "dbType" => "varchar(36)",
             "inputType" => "text"
         ],
         "PaymentDate" => [
@@ -93,8 +97,13 @@ class PaymentsHeaderList extends gridDataSource{
 
     public $editCategories = [
         "Main" => [
-            "VendorInvoiceNumber" => [
-                "dbType" => "varchar(36)",
+            "EDIDirectionTypeID" => [
+                "dbType" => "varchar(1)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "EDIDocumentTypeID" => [
+                "dbType" => "varchar(3)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
@@ -107,11 +116,6 @@ class PaymentsHeaderList extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
-            "PurchaseDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
             ],
             "GLBankAccount" => [
                 "dbType" => "varchar(36)",
@@ -139,11 +143,6 @@ class PaymentsHeaderList extends gridDataSource{
                 "defaultValue" => ""
             ], 
            "InvoiceNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "BatchControlNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => ""
@@ -244,50 +243,6 @@ class PaymentsHeaderList extends gridDataSource{
                 "defaultValue" => ""
             ]
         ],
-        "Approval" => [
-            "ApprovedBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "dropdown",
-                "dataProvider" => "getPayrollEmployees",
-                "defaultValue" => ""
-            ],
-            "EnteredBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "dropdown",
-                "dataProvider" => "getPayrollEmployees",
-                "defaultValue" => ""
-            ],
-            "Signature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SignaturePassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "SupervisorPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerSignature" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ManagerPassword" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ]
-        ],
         "...fields" => [
             "Void" => [
                 "dbType" => "tinyint(1)",
@@ -313,11 +268,6 @@ class PaymentsHeaderList extends gridDataSource{
                 "dbType" => "datetime",
                 "inputType" => "datetime",
                 "defaultValue" => "now"
-            ],
-            "Memorize" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
             ],
             "Cleared" => [
                 "dbType" => "tinyint(1)",
@@ -383,12 +333,6 @@ class PaymentsHeaderList extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
-            "BatchControlTotal" => [
-                "dbType" => "decimal(19,4)",
-                "format" => "{0:n}",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
             "PaymentID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
@@ -401,11 +345,6 @@ class PaymentsHeaderList extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "dataProvider" => "getPaymentTypes",
-                "defaultValue" => ""
-            ],
-            "VendorInvoiceNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
                 "defaultValue" => ""
             ],
             "CheckNumber" => [
@@ -425,16 +364,6 @@ class PaymentsHeaderList extends gridDataSource{
                 "inputType" => "dialogChooser",
                 "dataProvider" => "getVendors",
                 "defaultValue" => ""
-            ],
-            "DueToDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "PurchaseDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
             ],
             "GLBankAccount" => [
                 "dbType" => "varchar(36)",
@@ -465,101 +394,173 @@ class PaymentsHeaderList extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
-            "ApprovedBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "EnteredBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "BatchControlNumber" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
             ]
         ]
     ];
-    public $columnNames = [
-        "PaymentID" => "Payment ID",
-        "InvoiceNumber" => "Purchase Number",
-        "PaymentTypeID" => "Payment Type",
-        "CheckNumber" => "Check Number",
-        "VendorID" => "Vendor ID",
-        "VendorInvoiceNumber" => "Vendor Invoice Number",
-        "PaymentDate" => "Payment Date",
-        "CurrencyID" => "Currency ID",
-        "Amount" => "Amount",
-        "Cleared" => "Cleared",
-        "Posted" => "Posted",
-        "Reconciled" => "Reconciled",
-        "CheckPrinted" => "Check Printed",
-        "CheckDate" => "Check Date",
-        "Paid" => "Paid",
-        "Memorize" => "Memorize",
-        "PaymentClassID" => "Payment Class ID",
-        "SystemDate" => "System Date",
-        "DueToDate" => "Due To Date",
-        "PurchaseDate" => "Purchase Date",
-        "UnAppliedAmount" => "UnApplied Amount",
-        "GLBankAccount" => "GL Bank Account",
-        "PaymentStatus" => "Payment Status",
-        "Void" => "Void",
-        "Notes" => "Notes",
-        "CurrencyExchangeRate" => "Currency Exchange Rate",
-        "CreditAmount" => "Credit Amount",
-        "SelectedForPayment" => "Selected For Payment",
-        "SelectedForPaymentDate" => "Selected For Payment Date",
-        "ApprovedForPayment" => "Approved For Payment",
-        "ApprovedForPaymentDate" => "Approved For Payment Date",
-        "Credit" => "Credit",
-        "ApprovedBy" => "Approved By",
-        "EnteredBy" => "Entered By",
-        "BatchControlNumber" => "Batch Control Number",
-        "BatchControlTotal" => "Batch Control Total",
-        "Signature" => "Signature",
-        "SignaturePassword" => "Signature Password",
-        "SupervisorSignature" => "Supervisor Signature",
-        "SupervisorPassword" => "Supervisor Password",
-        "ManagerSignature" => "Manager Signature",
-        "ManagerPassword" => "Manager Password",
-        "OrderQty" => "Qty",
-        "ItemID" => "Item ID",
-        "Description" => "Description",
-        "ItemUOM" => "UOM",
-        "ItemUnitPrice" => "Price",
-        "Total" => "Total",
-        "GLPurchaseAccount" => "Purchase Account",
-        "ProjectID" => "ProjectID",
-        "VendorID" => "Vendor ID",
-        "AccountStatus" => "Accounts Status",
-        "VendorName" => "Name",
-        "VendorAddress1" => "Addr 1",
-        "VendorAddress2" => "Addr 2",
-        "VendorAddress3" => "Addr 3",
-        "VendorCity" => "City",
-        "VendorState" => "State",
-        "VendorZip" => "Zip",
-        "VendorCountry" => "Country",
-        "VendorPhone" => "Phone",
-        "VendorFax" => "Fax",
-        "VendorEmail" => "Email",
-        "VendorWebPage" => "Web",
-        "Attention" => "Attention",
-		"PayedID" => "Sub Vendor",
-        "DocumentNumber" => "Doc #",
-        "DocumentDate" => "Doc Date",
-		"GLExpenseAccount" => "Account",
-        "AppliedAmount" =>	"Amount",
-		"ProjectID" => "Project ID"
+    
+    public $editCategoriesEDI = [
+        "Main" => [
+            "PaymentID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "PaymentTypeID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "EDIDirectionTypeID" => [
+                "dbType" => "varchar(1)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "EDIDocumentTypeID" => [
+                "dbType" => "varchar(3)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "EDIOpen" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "CheckNumber" => [
+                "dbType" => "varchar(20)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CheckPrinted" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "CheckDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "Paid" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "PaymentDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "PaymentClassID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "SystemDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "Amount" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "UnAppliedAmount" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLBankAccount" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "PaymentStatus" => [
+                "dbType" => "varchar(10)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Void" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Notes" => [
+                "dbType" => "varchar(255)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CurrencyID" => [
+                "dbType" => "varchar(3)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CurrencyExchangeRate" => [
+                "dbType" => "float",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CreditAmount" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "SelectedForPayment" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "SelectedForPaymentDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "ApprovedForPayment" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ApprovedForPaymentDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "Cleared" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "InvoiceNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Posted" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Reconciled" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Credit" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ]
+        ]
     ];
+
 
     public $headTableOne = [
         "Payment ID" => "PaymentID",
-        "Due Date" => "DueToDate",
         "Payment Type ID" => "PaymentTypeID",
         "Vendor ID" => "VendorID"
     ];
@@ -567,14 +568,13 @@ class PaymentsHeaderList extends gridDataSource{
     public $customerField = "VendorID";
     
     public $detailTable = [
-        "viewPath" => "AccountsPayable/VoucherProcessing/ViewVouchersDetail",
+        "viewPath" => "SystemSetup/EDISetup/EDIPaymentsDetail",
         "newKeyField" => "PaymentID",
         "keyFields" => ["PaymentID", "PaymentDetailID"],
     ];
 
     public $footerTable = [
         "flagsHeader" => [
-            "Memorized" => "Memorize"
         ],
         "flags" => [
             ["Void", "Void"],
@@ -589,7 +589,6 @@ class PaymentsHeaderList extends gridDataSource{
             ["ApprovedForPayment", "Approved For Payment", "ApprovedForPaymentDate", "Approved Date"]
         ],
         "totalFields" => [
-            "Batch Control Total" => "BatchControlTotal",
             "UnApplied Amount" => "UnAppliedAmount",
             "Credit Amount" => "CreditAmount",
             "Amount" => "Amount"
@@ -780,7 +779,7 @@ class PaymentsHeaderList extends gridDataSource{
         $keyFields .= " AND PaymentID='" . $id . "'";
 
         
-        $result = DB::select("SELECT " . implode(",", $fields) . " from paymentsdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from edipaymentsdetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -799,196 +798,52 @@ class PaymentsHeaderList extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        DB::delete("DELETE from paymentsdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+        DB::delete("DELETE from edipaymentsdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 
-    public function Post(){
-        $user = Session::get("user");
-
-         DB::statement("CALL Payment_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PaymentID"] . "',@Succes,@PostingResult,@SWP_RET_VALUE)");
-
-         $result = DB::select('select @Succes as Success, @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-             http_response_code(400);
-             echo $result[0]->PostingResult;
-         } else
-             echo "ok";
-    }
-
-    public function Recalc(){} //nothing to recalc, may be
-
-    public function Memorize(){
-        $user = Session::get("user");
-        $keyValues = explode("__", $_POST["id"]);
-        $keyFields = "";
-        $fcount = 0;
-        foreach($this->idFields as $key)
-            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
-        echo "ok";
-    }
-}
-
-class gridData extends PaymentsHeaderList{}
-
-class PaymentsHeaderVoidList extends PaymentsHeaderList{
-    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND IFNULL(PaymentsHeader.Void,0)=0";
-    public $dashboardTitle ="Void Vouchers";
-    public $breadCrumbTitle ="Void Vouchers";
-    public $modes = ["grid", "view"];
-
-    public function Payment_Void(){
-        $user = Session::get("user");
-
-         DB::statement("CALL Payment_Void('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PaymentID"] . "',@PostingResult,@SWP_RET_VALUE)");
-
-         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-             http_response_code(400);
-             echo $result[0]->PostingResult;
-         } else
-             echo "ok";
-    }
-}
-
-class PaymentsHeaderClosedList extends PaymentsHeaderList{
-    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=1) AND (IFNULL(PaymentsHeader.Paid,0)=1)";
-    public $dashboardTitle ="Closed Payments";
-    public $breadCrumbTitle ="Closed Payments";
-    public $modes = ["view", "grid", "edit"];
-    public $features = ["selecting"];
-
-    public function CopyToHistory(){
-        $user = Session::get("user");
-
-        $PaymentIDs = explode(",", $_POST["PaymentIDs"]);
-        $success = true;
-        foreach($PaymentIDs as $paymentID){
-            DB::statement("CALL Payment_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $paymentID . "',@SWP_RET_VALUE)");
-
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-            if($result[0]->SWP_RET_VALUE == -1)
-                $success = false;
-        }
-
-        if($success)
-            echo "ok";
-        else{
-            http_respose_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
-    }
-    
-    public function CopyAllToHistory(){
-        $user = Session::get("user");
-
-        DB::statement("CALL Payment_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
-
-        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-        if($result[0]->SWP_RET_VALUE > -1)
-            echo $result[0]->SWP_RET_VALUE;
-        else{
-            http_respose_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
-    }
-}
-
-class PaymentsHeaderApproveList extends PaymentsHeaderList{
-    public $gridConditions = "(IFNULL(ApprovedForPayment,0)=0 AND Posted=1 AND IFNULL(Void,0)=0 AND PaymentID <> 'DEFAULT')";
-    public $dashboardTitle ="Approve Payments";
-    public $breadCrumbTitle ="Approve Payments";
-    public $modes = ["grid", "print"]; // list of enabled modes
-    public $features = ["selecting"]; //list enabled features
-
-    public function Approve(){
-        $user = Session::get("user");
-
-        $PaymentIds = explode(",", $_POST["PaymentIDs"]);
-        $success = true;
-        foreach($PaymentIds as $PaymentId){
-            DB::statement("CALL Payment_Approve('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $PaymentId . "','" . $user["EmployeeID"] . "',@SWP_RET_VALUE)");
-
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-            if($result[0]->SWP_RET_VALUE == -1)
-                $success = false;
-        }
-
-        if($success)
-            echo "ok";
-        else {
-            http_response_code(400);
-            echo "failed";
-        }
-    }
-    
-    public function ApproveAll(){
-        $user = Session::get("user");
-
-        DB::statement("CALL Payment_ApproveAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "',@SWP_RET_VALUE)");
-
-        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-        if($result[0]->SWP_RET_VALUE > -1)
-            echo $result[0]->SWP_RET_VALUE;
-        else {
-            http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
-    }
-}
-
-class PaymentsHeaderIssueCreditMemoList extends PaymentsHeaderList{
-    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND PaymentsHeader.ApprovedForPayment=1 AND IFNULL(PaymentsHeader.Void,0)=0 AND PaymentsHeader.PaymentID <> 'DEFAULT'";
-    public $modes = ["grid"];
-    public $features = ["selecting"];
-    public $dashboardTitle ="Issue Credit Memo For Payments";
-    public $breadCrumbTitle ="Issue Credit Memo For Payments";
-
-    public function Payment_CreateCreditMemo(){
-        $user = Session::get("user");
-
-        $PaymentIds = explode(",", $_POST["PaymentIDs"]);
-        $success = true;
-        foreach($PaymentIds as $PaymentId){
-            DB::statement("CALL Payment_CreateCreditMemo('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $PaymentId . "',@SWP_RET_VALUE)");
-
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-            if($result[0]->SWP_RET_VALUE == -1)
-                $success = false;
-        }
-
-        if($success)
-            echo "ok";
-        else{
-            http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
-    }
-    
-    public function Payment_CreateCreditMemoForAll(){
-        $user = Session::get("user");
-
-        DB::statement("CALL Payment_CreateCreditMemoForAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)");
-
-        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-        if($result[0]->SWP_RET_VALUE > -1)
-            echo $result[0]->SWP_RET_VALUE;
-        else{
-            http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
-    }
-}
-
-class PaymentsHeaderIssueList extends PaymentsHeaderList{
-    public $tableName = "paymentsheader";
-    public $gridConditions = "(IFNULL(ApprovedForPayment,0) = 1 AND IFNULL(CheckPrinted,0) = 0 AND IFNULL(Posted,0) = 1 AND IFNULL(Paid,0) = 0)";
-    public $dashboardTitle ="Issue Vouchers";
-    public $breadCrumbTitle ="Issue Vouchers";
-    public $modes = ["grid"];
-    public $features = ["selecting"];
+    public $columnNames = [
+        "PaymentID" => "Payment ID",
+        "PaymentTypeID" => "Payment Type ID",
+        "EDIDirectionTypeID" => "Direction Type ID",
+        "EDIDocumentTypeID" => "Document Type ID",
+        "EDIOpen" => "EDI Open",
+        "CheckNumber" => "Check Number",
+        "CheckPrinted" => "Check Printed",
+        "CheckDate" => "Check Date",
+        "Paid" => "Paid",
+        "PaymentDate" => "Payment Date",
+        "PaymentClassID" => "Payment Class ID",
+        "VendorID" => "Vendor ID",
+        "SystemDate" => "System Date",
+        "Amount" => "Amount",
+        "UnAppliedAmount" => "Un Applied Amount",
+        "GLBankAccount" => "GL Bank Account",
+        "PaymentStatus" => "Payment Status",
+        "Void" => "Void",
+        "Notes" => "Notes",
+        "CurrencyID" => "Currency ID",
+        "CurrencyExchangeRate" => "Currency Exchange Rate",
+        "CreditAmount" => "Credit Amount",
+        "SelectedForPayment" => "Selected For Payment",
+        "SelectedForPaymentDate" => "Selected For Payment Date",
+        "ApprovedForPayment" => "Approved For Payment",
+        "ApprovedForPaymentDate" => "Approved For Payment Date",
+        "Cleared" => "Cleared",
+        "InvoiceNumber" => "Invoice Number",
+        "Posted" => "Posted",
+        "Reconciled" => "Reconciled",
+        "Credit" => "Credit",
+        "PayedID" => "Payed ID",
+        "DocumentNumber" => "Document Number",
+        "DocumentDate" => "Document Date",
+        "CurrencyID" => "Currency ID",
+        "CurrencyExchangeRate" => "Currency Exchange Rate",
+        "DiscountTaken" => "Discount Taken",
+        "WriteOffAmount" => "Write Off Amount",
+        "AppliedAmount" => "Applied Amount",
+        "Cleared" => "Cleared",
+        "GLExpenseAccount" => "GL Expense Account",
+        "ProjectID" => "Project ID"
+    ];
 }
 ?>
-
