@@ -1,58 +1,67 @@
 <?php
 /*
-  Name of Page: PurchaseHeaderList model
-   
-  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php It provides data from database and default values, column names and categories
-   
-  Date created: 02/16/2017 Zaharov Nikita
-   
-  Use: this model used by views/PurchaseHeaderList for:
+  Name of Page: EDI Purchase Header
+
+  Method: Model for grid and detail sceens. It provides data from database and default values, column names and categories
+
+  Date created: 20/02/2019 Zaharov Nikita
+
+  Use: this model used by gridView for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
   - for loading data from tables, updating, inserting and deleting
-   
+
   Input parameters:
   $db: database instance
   methods have their own parameters
-   
+
   Output parameters:
   - dictionaries as public properties
   - methods have their own output
-   
+
   Called from:
-  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php
-  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php
-   
+  created and used for ajax requests by controllers
+  used as model by 
+
   Calls:
   MySql Database
-   
-  Last Modified: 12/11/2018
-  Last Modified by: Nikita Zaharov
+
+  Last Modified: 20/02/2019
+  Last Modified by: Zaharov Nikita
 */
 
 require "./models/gridDataSource.php";
-
-class PurchaseHeaderList extends gridDataSource{
-	public $tableName = "purchaseheader";
-	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND ((IFNULL(Received,0) = 0) OR (IFNULL(PurchaseHeader.Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT')";
-	public $dashboardTitle ="Purchases";
-	public $breadCrumbTitle ="Purchases";
+class gridData extends gridDataSource{
+    public $tableName = "edipurchaseheader";
+    public $dashboardTitle ="EDI Purchases";
+    public $breadCrumbTitle ="EDI Purchases";
 	public $idField ="PurchaseNumber";
-    //	public $modes = ["grid", "view", "edit];
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
-	public $gridFields = [
-		"PurchaseNumber" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
-		],
-		"TransactionTypeID" => [
-			"dbType" => "varchar(36)",
-			"inputType" => "text"
-		],
-		"PurchaseDate" => [
-			"dbType" => "timestamp",
-			"format" => "{0:d}",
-			"inputType" => "datetime"
-		],
+    public $gridFields = [
+        "PurchaseNumber" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "PurchaseTypeID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "EDIDirectionTypeID" => [
+            "dbType" => "varchar(1)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "EDIDocumentTypeID" => [
+            "dbType" => "varchar(3)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "PurchaseDate" => [
+            "dbType" => "datetime",
+            "inputType" => "datetime",
+            "defaultValue" => "now"
+        ],
 		"VendorID" => [
 			"dbType" => "varchar(50)",
 			"inputType" => "text"
@@ -61,35 +70,37 @@ class PurchaseHeaderList extends gridDataSource{
 			"dbType" => "varchar(3)",
 			"inputType" => "text"
 		],
-		"Total" => [
-			"dbType" => "decimal(19,4)",
-			"format" => "{0:n}",
-			"inputType" => "text"
-		],
-		"Shipped" => [
-			"dbType" => "tinyint(1)",
-			"inputType" => "checkbox"
-		],
-		"ShipDate" => [
-			"dbType" => "datetime",
-			"format" => "{0:d}",
-			"inputType" => "datetime"
-		],
+        "Total" => [
+            "dbType" => "decimal(19,4)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "Shipped" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "checkbox",
+            "defaultValue" => "0"
+        ],
+        "ShipDate" => [
+            "dbType" => "datetime",
+            "inputType" => "datetime",
+            "defaultValue" => "now"
+        ],
         "TrackingNumber" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-		"Received" => [
-			"dbType" => "tinyint(1)",
-			"inputType" => "checkbox"
-		],
+        "Received" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "checkbox",
+            "defaultValue" => "0"
+        ],
         "RecivingNumber" => [
-            "dbType" => "varchar(50)",
+            "dbType" => "varchar(20)",
             "inputType" => "text",
             "defaultValue" => ""
         ]
-	];
+    ];
 
 	public $editCategories = [
 		"Main" => [
@@ -104,11 +115,6 @@ class PurchaseHeaderList extends gridDataSource{
 				"defaultValue" => ""
 			],
 			"ShippingAddress2" => [
-				"dbType" => "varchar(50)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"ShippingAddress3" => [
 				"dbType" => "varchar(50)",
 				"inputType" => "text",
 				"defaultValue" => ""
@@ -442,58 +448,6 @@ class PurchaseHeaderList extends gridDataSource{
 				"defaultValue" => ""
 			]
 		],
-		"Approval" => [
-			"Approved" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-			],
-			"ApprovedBy" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"ApprovedDate" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-			],
-			"EnteredBy" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"Signature" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"SignaturePassword" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"SupervisorSignature" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"SupervisorPassword" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"ManagerSignature" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
-			"ManagerPassword" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			]
-		],
         "...fields" => [
             "OrderNumber" => [
                 "dbType" => "varchar(36)",
@@ -536,11 +490,6 @@ class PurchaseHeaderList extends gridDataSource{
                 "dbType" => "varchar(3)",
                 "inputType" => "text"
             ],
-			"TransactionTypeID" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "dropdown",
-                "dataProvider" => "getARTransactionTypes",
-			],
 			"PurchaseCancelDate" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
@@ -592,17 +541,6 @@ class PurchaseHeaderList extends gridDataSource{
 				"dbType" => "datetime",
 				"inputType" => "datetime",
 				"defaultValue" => "now"
-			],
-			"SystemDate" => [
-				"dbType" => "timestamp",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-			],
-			"Memorize" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0",
-                "disabledEdit" => "true"
 			],
             "TaxGroupID" => [
 				"dbType" => "varchar(36)",
@@ -679,16 +617,6 @@ class PurchaseHeaderList extends gridDataSource{
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
                 ],*/
-            "Approved" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-			],
-			"ApprovedDate" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-                ],
 			"Printed" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
@@ -734,11 +662,6 @@ class PurchaseHeaderList extends gridDataSource{
 				"inputType" => "checkbox",
 				"defaultValue" => "0"
 			],*/
-			"InvoiceNumber" => [
-				"dbType" => "varchar(20)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
 			"Posted" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
@@ -781,8 +704,7 @@ class PurchaseHeaderList extends gridDataSource{
 
     public $headTableOne = [
         "Purchase Number" => "PurchaseNumber",
-        "Purchase Date" => "PurchaseDate",
-        "Transaction Type" => "TransactionTypeID",
+        "Purchase Date" => "PurchaseDate"
     ];
 
     public $headTableTwo = [
@@ -802,19 +724,17 @@ class PurchaseHeaderList extends gridDataSource{
     public $customerField = "VendorID";
     
     public $detailTable = [
-        "viewPath" => "AccountsPayable/PurchaseProcessing/ViewPurchasesDetail",
+        "viewPath" => "SystemSetup/EDISetup/EDIPurchaseDetail",
         "newKeyField" => "PurchaseNumber",
         "keyFields" => ["PurchaseNumber", "PurchaseLineNumber"],
     ];
 
     public $footerTable = [
         "flagsHeader" => [
-            "Memorized" => "Memorize"
         ],
         "flags" => [
             ["Posted", "Posted", "PostedDate", "Posted Date"],
             ["Printed", "Printed", "PrintedDate", "Printed Date"],
-            ["Approved", "Approved", "ApprovedDate", "Approved Date"],
             ["Received", "Received", "ReceivedDate", "Received Date"],
             ["Shipped", "Shipped", "PurchaseShipDate", "Shipped Date"],
         ],
@@ -829,127 +749,6 @@ class PurchaseHeaderList extends gridDataSource{
         ]
     ];
     
-	public $columnNames = [
-		"PurchaseNumber" => "Purchase Number",
-		"TransactionTypeID" => "Transaction Type",
-		"PurchaseDate" => "Purchase Date",
-		"VendorID" => "Vendor ID",
-		"CurrencyID" => "CurrencyID",
-		"Total" => "Total",
-		"Shipped" => "Shipped",
-		"ShipDate" => "Ship Date",
-		"Received" => "Received",
-		"PurchaseDueDate" => "Purchase Due Date",
-		"PurchaseShipDate" => "Purchase Ship Date",
-		"PurchaseCancelDate" => "Purchase Cancel Date",
-		"PurchaseDateRequested" => "Purchase Date Requested",
-		"SystemDate" => "System Date",
-		"Memorize" => "Memorize",
-		"OrderNumber" => "Order Number",
-		"VendorInvoiceNumber" => "Vendor Invoice Number",
-		"OrderedBy" => "Ordered By",
-		"TaxExemptID" => "Tax Exempt ID",
-		"TaxGroupID" => "Tax Group ID",
-		"TermsID" => "Terms ID",
-		"CurrencyExchangeRate" => "Currency Exchange Rate",
-		"Subtotal" => "Subtotal",
-		"DiscountPers" => "Discount Pers",
-		"DiscountAmount" => "Discount Amount",
-		"TaxPercent" => "Tax Percent",
-		"TaxAmount" => "Tax Amount",
-		"TaxableSubTotal" => "Taxable Sub Total",
-		"Freight" => "Freight",
-		"TaxFreight" => "Tax Freight",
-		"Handling" => "Handling",
-		"Advertising" => "Advertising",
-		"ShipToWarehouse" => "Ship To Warehouse",
-		"WarehouseID" => "Warehouse ID",
-		"ShipMethodID" => "Ship Method ID",
-		"ShippingName" => "Shipping Name",
-		"ShippingAddress1" => "Shipping Address 1",
-		"ShippingAddress2" => "Shipping Address 2",
-		"ShippingAddress3" => "Shipping Address 3",
-		"ShippingCity" => "Shipping City",
-		"ShippingState" => "Shipping State",
-		"ShippingZip" => "Shipping Zip",
-		"ShippingCountry" => "Shipping Country",
-		"Paid" => "Paid",
-		"PaymentID" => "Payment ID",
-		"PaymentMethodID" => "Payment Method ID",
-		"PaymentDate" => "Payment Date",
-		"GLPurchaseAccount" => "GL Purchase Account",
-		"AmountPaid" => "Amount Paid",
-		"BalanceDue" => "Balance Due",
-		"UndistributedAmount" => "Undistributed Amount",
-		"CheckNumber" => "Check Number",
-		"CheckDate" => "Check Date",
-		"PaidDate" => "Paid Date",
-		"CreditCardTypeID" => "Credit Card Type ID",
-		"CreditCardName" => "Credit Card Name",
-		"CreditCardNumber" => "Credit Card Number",
-		"CreditCardExpDate" => "Credit Card Exp Date",
-		"CreditCardCSVNumber" => "Credit Card CSV Number",
-		"CreditCardBillToZip" => "Credit Card Bill To Zip",
-		"CreditCardValidationCode" => "Credit Card Validation Code",
-		"CreditCardApprovalNumber" => "Credit Card Approval Number",
-		"Approved" => "Approved",
-		"ApprovedBy" => "Approved By",
-		"ApprovedDate" => "Approved Date",
-		"Printed" => "Printed",
-		"PrintedDate" => "Printed Date",
-		"TrackingNumber" => "Tracking #",
-		"ReceivedDate" => "Received Date",
-		"RecivingNumber" => "Reciving #",
-		"Posted" => "Posted",
-		"PostedDate" => "Posted Date",
-		"CommissionPaid" => "Commission Paid",
-		"CommissionSelectToPay" => "Commission Select To Pay",
-		"OriginalPurchaseNumber" => "Original Purchase Number",
-		"OriginalPurchaseDate" => "Original Purchase Date",
-		"HeaderMemo1" => "Memo 1",
-		"HeaderMemo2" => "Memo 2",
-		"HeaderMemo3" => "Memo 3",
-		"HeaderMemo4" => "Memo 4",
-		"HeaderMemo5" => "Memo 5",
-		"HeaderMemo6" => "Memo 6",
-		"HeaderMemo7" => "Memo 7",
-		"HeaderMemo8" => "Memo 8",
-		"HeaderMemo9" => "Memo 9",
-		"EnteredBy" => "Entered By",
-		"Signature" => "Signature",
-		"SignaturePassword" => "Signature Password",
-		"SupervisorSignature" => "Supervisor Signature",
-		"SupervisorPassword" => "Supervisor Password",
-		"ManagerSignature" => "Manager Signature",
-		"ManagerPassword" => "Manager Password",
-		"PurchaseContractNumber" => "Purchase Contract Number",
-		"IncomeTaxRate" => "Income Tax Rate",
-		"InvoiceNumber" => "Invoice Number",
-        "OrderQty" => "Qty",
-        "ItemID" => "Item ID",
-        "Description" => "Description",
-        "ItemUOM" => "UOM",
-        "ItemUnitPrice" => "Price",
-        "Total" => "Total",
-        "GLPurchaseAccount" => "Purchase Account",
-        "ProjectID" => "ProjectID",
-        "VendorID" => "Vendor ID",
-        "AccountStatus" => "Accounts Status",
-        "VendorName" => "Name",
-        "VendorAddress1" => "Addr 1",
-        "VendorAddress2" => "Addr 2",
-        "VendorAddress3" => "Addr 3",
-        "VendorCity" => "City",
-        "VendorState" => "State",
-        "VendorZip" => "Zip",
-        "VendorCountry" => "Country",
-        "VendorPhone" => "Phone",
-        "VendorFax" => "Fax",
-        "VendorEmail" => "Email",
-        "VendorWebPage" => "Web",
-        "Attention" => "Attention"
-	];
-
     public $vendorFields = [
         "VendorID" => [
             "dbType" => "varchar(50)",
@@ -1146,7 +945,7 @@ class PurchaseHeaderList extends gridDataSource{
         $keyFields .= " AND PurchaseNumber='" . $id . "'";
 
         
-        $result = DB::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from edipurchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
 
         $result = json_decode(json_encode($result), true);
@@ -1165,294 +964,494 @@ class PurchaseHeaderList extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         
-        DB::delete("DELETE from purchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
-    }
-
-    public function getPrecision($currencyID) {
-        $user = Session::get("user");
-
-        $result = DB::select("SELECT CurrencyPrecision from currencytypes WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND CurrencyID='" . $currencyID . "'" , array());
-
-        if ($result) {
-            return $result[0]->CurrencyPrecision;
-        } else {
-            return 2;
-        }
-    }
-
-    public function recalcPurcahseDetail($currencyPrecision, $purchaseDetail) {
-        $DiscountPerc = $purchaseDetail->DiscountPerc;
-        $Qty = $purchaseDetail->OrderQty;
-        $Taxable = $purchaseDetail->Taxable;
-        $TaxPercent = $purchaseDetail->TaxPercent;
-        $ItemUnitPrice = $purchaseDetail->ItemUnitPrice;
-        $SubTotal = round($Qty * $ItemUnitPrice, $currencyPrecision);
-
-        $ItemDiscountAmount = round($Qty * $ItemUnitPrice * $DiscountPerc / 100, $currencyPrecision);
-        $ItemTotal = round($Qty * $ItemUnitPrice * (100 - $DiscountPerc) / 100, $currencyPrecision);
-
-        if ($Taxable == "1") {
-            $ItemTaxAmount = round(($ItemTotal * $TaxPercent) / 100, $currencyPrecision);
-            $TaxAmount = $ItemTaxAmount;
-            $ItemTotalTaxable = $ItemTotal;
-            $ItemTotal += $ItemTaxAmount;
-        } else {
-            $TaxAmount = 0;
-            $ItemTotalTaxable = 0;
-        }
-
-        return [
-            "ItemTotalTaxable" => $ItemTotalTaxable,
-            "ItemDiscountAmount" => $ItemDiscountAmount,
-
-            // for row updating PurchaseDetail
-            "TaxAmount" => $TaxAmount,
-            "Total" => $ItemTotal,
-            "SubTotal" => $SubTotal
-        ];
-    }
-
-    public function Recalc() {
-        $user = Session::get("user");
-
-        $purchaseNumber = $_POST["PurchaseNumber"];
-
-        $result = DB::select("SELECT * from PurchaseHeader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PurchaseNumber='" . $purchaseNumber . "'", array());
-
-        $purchaseHeader = $result[0];
-
-        $SubTotal = 0;
-        $Total = 0;
-        $TotalTaxable = 0;
-        $TaxAmount = 0;
-        $HeaderTaxAmount = 0;
-        $ItemTotalTaxable = 0;
-        $ItemDiscountAmount = 0;
-        $DiscountAmount = 0;
-
-        $Precision = $this->getPrecision($purchaseHeader->CurrencyID);
-
-        $purchaseDetails = DB::select("SELECT * from PurchaseDetail WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PurchaseNumber='" . $purchaseNumber . "'", array());
-
-        foreach($purchaseDetails as $purchaseDetail) {
-            $detailResult = $this->recalcPurcahseDetail($Precision, $purchaseDetail);
-            $SubTotal += $detailResult["SubTotal"];
-            $Total += $detailResult["Total"];
-            $TotalTaxable += $detailResult["ItemTotalTaxable"];
-            $DiscountAmount += $detailResult["ItemDiscountAmount"];
-            $TaxAmount += $detailResult["TaxAmount"];
-
-            DB::update("UPDATE PurchaseDetail set TaxAmount='" . $detailResult["TaxAmount"] . "', Total='" . $detailResult["Total"] . "', SubTotal='" . $detailResult["SubTotal"] . "' WHERE PurchaseLineNumber='" . $purchaseDetail->PurchaseLineNumber ."'");
-        }
-
-
-        $Handling = $purchaseHeader->Handling;
-        $HeaderTaxPercent = $purchaseHeader->TaxPercent;
-
-
-        if($Handling > 0) {
-            $HeaderTaxAmount = round($Handling * $HeaderTaxPercent / 100, $Precision);
-        }
-
-        $Freight = $purchaseHeader->Freight;
-        $TaxFreight = $purchaseHeader->TaxFreight;
-
-        if (($Freight > 0) && ($TaxFreight == "1")) {
-            $HeaderTaxAmount = round($HeaderTaxAmount + $Freight * $HeaderTaxPercent / 100, $Precision);
-        }
-
-        $Total += ($Handling + $Freight + $HeaderTaxAmount);
-
-        DB::update("UPDATE PurchaseHeader set SubTotal='" . $SubTotal . "', DiscountAmount='" . $DiscountAmount . "', TaxableSubTotal='" . $TotalTaxable . "', BalanceDue='" . round($Total - $purchaseHeader->AmountPaid, $Precision) ."', TaxAmount='" .($TaxAmount + $HeaderTaxAmount) . "', Total='" . $Total . "' WHERE PurchaseNumber='" . $purchaseNumber ."'");
-
-        echo "ok";
-    }
-
-    public function Post(){
-        $user = Session::get("user");
-
-         DB::statement("CALL Purchase_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
-
-         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-             http_response_code(400);
-             $result[0]->PostingResult;
-         } else 
-            echo "ok";
-    }
-
-    public function UnPost(){
-        $user = Session::get("user");
-
-         DB::statement("CALL Purchase_Cancel('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@SWP_RET_VALUE)");
-
-         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-             http_response_code(400);
-             echo $result[0]->SWP_RET_VALUE;
-         } else
-             echo "ok";
-    }
-
-    public function Memorize(){
-        $user = Session::get("user");
-        $keyValues = explode("__", $_POST["id"]);
-        $keyFields = "";
-        $fcount = 0;
-        foreach($this->idFields as $key)
-            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
-        echo "ok";
+        DB::delete("DELETE from edipurchasedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
     
-    public function getPage($id){
-        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
-            $this->gridConditions .= "and PurchaseDate >= now() - INTERVAL 1 DAY";
-            $result = parent::getPage($id);
-            return $result;
-        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "receivedtoday"){
-            $this->gridConditions .= "and Received=0 and PurchaseDate >= now() - INTERVAL 1 DAY";
-            $result = parent::getPage($id);
-            return $result;
-        }else{
-            $result = parent::getPage($id);
-            return $result;
-        }
-    }
-}
-
-class gridData extends PurchaseHeaderList {
-}
-
-class PurchaseHeaderClosedList extends PurchaseHeaderList{
-	public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) NOT IN('rma','debit memo')) AND  IFNULL(Received,0) = 1 AND UPPER(PurchaseNumber <> 'DEFAULT')";
-	public $dashboardTitle ="Closed Purchases";
-	public $breadCrumbTitle ="Closed Purchases";
-    public $modes = ["grid", "view", "edit"]; // list of enabled modes
-    public $features = ["selecting"]; //list enabled features
-
-    public function CopyToHistory(){
-        $user = Session::get("user");
-
-        $numbers = explode(",", $_POST["PurchaseNumbers"]);
-        $success = true;
-        foreach($numbers as $number){
-            DB::statement("CALL Purchase_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@PostingResult,@SWP_RET_VALUE)");
-
-            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-            if($result[0]->SWP_RET_VALUE == -1)
-                $success = false;
-        }
-
-        if($success)
-            echo "ok";
-        else {
-            http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
-    }
-
-    public function CopyAllToHistory(){
-        $user = Session::get("user");
-
-        DB::statement("CALL Purchase_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)");
-
-        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-        if($result[0]->SWP_RET_VALUE > -1)
-            echo $result[0]->SWP_RET_VALUE;
-        else {
-            http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
-    }
-}
-
-class PurchaseHeaderApproveList extends PurchaseHeaderList{
-	public $gridConditions = "(IFNULL(PurchaseHeader.Posted,0)=1 AND IFNULL(Approved,0)=0 AND PurchaseNumber <> 'DEFAULT') AND (NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo'))";
-	public $dashboardTitle ="Approve Purchases";
-	public $breadCrumbTitle ="Approve Purchases";
-    public $modes = ["grid"]; // list of enabled modes
-    public $features = ["selecting"]; //list enabled features
-
-    public function Purchase_Approve(){
-        $user = Session::get("user");
-
-        $purchaseIDs = explode(",", $_POST["PurchaseNumbers"]);
-        $success = true;
-        foreach($purchaseIDs as $purchaseID){
-            DB::statement("CALL Purchase_Approve('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $purchaseID . "','" . $user["EmployeeID"] . "',@SWP_RET_VALUE)");
-
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-            if($result[0]->SWP_RET_VALUE == -1)
-                $success = false;
-        }
-
-        if($success)
-            echo "ok";
-        else {
-            http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
-    }
+    public $editCategoriess = [
+        "Main" => [
+            "PurchaseNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "PurchaseTypeID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "EDIDirectionTypeID" => [
+                "dbType" => "varchar(1)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "EDIDocumentTypeID" => [
+                "dbType" => "varchar(3)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "EDIOpen" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "PurchaseDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "PurchaseDueDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "PurchaseShipDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "PurchaseCancelDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "PurchaseDateRequested" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "OrderNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorInvoiceNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "OrderedBy" => [
+                "dbType" => "varchar(15)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TaxExemptID" => [
+                "dbType" => "varchar(20)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TaxGroupID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorID" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "WarehouseID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ShipToWarehouse" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ShippingName" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ShippingAddress1" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ShippingAddress2" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ShippingCity" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ShippingState" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ShippingZip" => [
+                "dbType" => "varchar(10)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ShippingCountry" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ShipMethodID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TermsID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "PaymentMethodID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CurrencyID" => [
+                "dbType" => "varchar(3)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CurrencyExchangeRate" => [
+                "dbType" => "float",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Subtotal" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "DiscountPers" => [
+                "dbType" => "float",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "DiscountAmount" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TaxPercent" => [
+                "dbType" => "float",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TaxAmount" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TaxableSubTotal" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Freight" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TaxFreight" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Handling" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Advertising" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Total" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "AmountPaid" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "BalanceDue" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "UndistributedAmount" => [
+                "dbType" => "decimal(19,4)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GLPurchaseAccount" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Printed" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "PrintedDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "Shipped" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ShipDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "TrackingNumber" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Received" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ReceivedDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "RecivingNumber" => [
+                "dbType" => "varchar(20)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Paid" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "CheckNumber" => [
+                "dbType" => "varchar(20)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CheckDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "PaidDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "CreditCardTypeID" => [
+                "dbType" => "varchar(15)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CreditCardName" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CreditCardNumber" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CreditCardExpDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "CreditCardCSVNumber" => [
+                "dbType" => "varchar(5)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CreditCardBillToZip" => [
+                "dbType" => "varchar(10)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CreditCardValidationCode" => [
+                "dbType" => "varchar(20)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CreditCardApprovalNumber" => [
+                "dbType" => "varchar(20)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Posted" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "PostedDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "HeaderMemo1" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "HeaderMemo2" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "HeaderMemo3" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "HeaderMemo4" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "HeaderMemo5" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "HeaderMemo6" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "HeaderMemo7" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "HeaderMemo8" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "HeaderMemo9" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]
+        ]
+    ];
     
-    public function Purchase_ApproveAll(){
-        $user = Session::get("user");
-
-        DB::statement("CALL Purchase_ApproveAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "',@SWP_RET_VALUE)");
-
-        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-
-        if($result[0]->SWP_RET_VALUE > -1)
-            echo $result[0]->SWP_RET_VALUE;
-        else {
-            http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
-    }
-}
-
-class PurchaseHeaderReceiveList extends PurchaseHeaderList{
-	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (PurchaseHeader.Posted = 1 AND Approved = 1 AND IFNULL(Received,0) = 0 AND PurchaseNumber <> 'DEFAULT')";
-	public $dashboardTitle ="Receive Purchases";
-	public $breadCrumbTitle ="Receive Purchases";
-    public $modes = ["grid"]; // list of enabled modes
-
-    public function Purchase_Split() {
-        $user = Session::get("user");
-
-        DB::statement("CALL Purchase_Split('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
-
-        $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');
-
-        if($result[0]->SWP_RET_VALUE == -1) {
-            http_response_code(400);
-            echo $result[0]->Success;
-        } else
-            echo "ok";
-    }
-
-    public function Receiving_Post() {
-        $user = Session::get("user");
-
-        DB::statement("CALL Receiving_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
-
-        $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');
-
-        if($result[0]->SWP_RET_VALUE == -1) {
-            http_response_code(400);
-            echo $result[0]->Success;
-        } else 
-            echo "ok";
-    }
-}
-
-class PurchaseHeaderReceivedList extends PurchaseHeaderList{
-	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (IFNULL(PurchaseHeader.Received,0)=1) AND (IFNULL(PurchaseHeader.Paid,0)=0)";
-	public $dashboardTitle ="Received Purchases";
-	public $breadCrumbTitle ="Received Purchases";
-    public $modes = ["grid", "view"]; // list of enabled modes
+    public $columnNames = [
+        "PurchaseNumber" => "Purchase Number ",
+        "PurchaseTypeID" => "Purchase Type ID",
+        "EDIDirectionTypeID" => "Direction Type ID",
+        "EDIDocumentTypeID" => "Document Type ID",
+        "EDIOpen" => "EDI Open",
+        "PurchaseDate" => "Purchase Date",
+        "PurchaseDueDate" => "Purchase Due Date",
+        "PurchaseShipDate" => "Purchase Ship Date",
+        "PurchaseCancelDate" => "Purchase Cancel Date",
+        "PurchaseDateRequested" => "Purchase Date Requested",
+        "OrderNumber" => "Order Number",
+        "VendorInvoiceNumber" => "Vendor Invoice Number",
+        "OrderedBy" => "Ordered By",
+        "TaxExemptID" => "TaxExempt ID",
+        "TaxGroupID" => "TaxGroup ID",
+        "VendorID" => "Vendor ID",
+        "WarehouseID" => "Warehouse ID",
+        "ShipToWarehouse" => "Ship To Warehouse",
+        "ShippingName" => "Shipping Name",
+        "ShippingAddress1" => "Shipping Address 1",
+        "ShippingAddress2" => "Shipping Address 2",
+        "ShippingCity" => "Shipping City",
+        "ShippingState" => "Shipping State",
+        "ShippingZip" => "Shipping Zip",
+        "ShippingCountry" => "Shipping Country",
+        "ShipMethodID" => "Ship Method ID",
+        "TermsID" => "Terms ID",
+        "PaymentMethodID" => "Payment Method ID",
+        "CurrencyID" => "Currency ID",
+        "CurrencyExchangeRate" => "Currency Exchange Rate",
+        "Subtotal" => "Subtotal",
+        "DiscountPers" => "Discount Pers",
+        "DiscountAmount" => "Discount Amount",
+        "TaxPercent" => "Tax Percent",
+        "TaxAmount" => "Tax Amount",
+        "TaxableSubTotal" => "Taxable SubTotal",
+        "Freight" => "Freight",
+        "TaxFreight" => "Tax Freight",
+        "Handling" => "Handling",
+        "Advertising" => "Advertising",
+        "Total" => "Total",
+        "AmountPaid" => "Amount Paid",
+        "BalanceDue" => "Balance Due",
+        "UndistributedAmount" => "Undistributed Amount",
+        "GLPurchaseAccount" => "GL Purchase Account",
+        "Printed" => "Printed",
+        "PrintedDate" => "PrintedDate",
+        "Shipped" => "Shipped",
+        "ShipDate" => "ShipDate",
+        "TrackingNumber" => "Tracking Number",
+        "Received" => "Received",
+        "ReceivedDate" => "Received Date",
+        "RecivingNumber" => "Reciving #",
+        "Paid" => "Paid",
+        "CheckNumber" => "Check Number",
+        "CheckDate" => "Check Date",
+        "PaidDate" => "Paid Date",
+        "CreditCardTypeID" => "Credit Card Type ID",
+        "CreditCardName" => "Credit Card Name",
+        "CreditCardNumber" => "Credit Card Number",
+        "CreditCardExpDate" => "Credit Card ExpDate",
+        "CreditCardCSVNumber" => "Credit Card CSV Number",
+        "CreditCardBillToZip" => "Credit Card Bill To Zip",
+        "CreditCardValidationCode" => "Credit Card Validation Code",
+        "CreditCardApprovalNumber" => "Credit Card Approval Number",
+        "Posted" => "Posted",
+        "PostedDate" => "Posted Date",
+        "HeaderMemo1" => "Memo 1",
+        "HeaderMemo2" => "Memo 2",
+        "HeaderMemo3" => "Memo 3",
+        "HeaderMemo4" => "Memo 4",
+        "HeaderMemo5" => "Memo 5",
+        "HeaderMemo6" => "Memo 6",
+        "HeaderMemo7" => "Memo 7",
+        "HeaderMemo8" => "Memo 8",
+        "HeaderMemo9" => "Memo 9",
+        "OrderQty" => "Qty",
+        "ItemID" => "Item ID",
+        "Description" => "Description",
+        "ItemUOM" => "UOM",
+        "ItemUnitPrice" => "Price",
+        "Total" => "Total",
+        "GLPurchaseAccount" => "Purchase Account",
+        "ProjectID" => "ProjectID",
+        "VendorID" => "Vendor ID",
+        "AccountStatus" => "Accounts Status",
+        "VendorName" => "Name",
+        "VendorAddress1" => "Addr 1",
+        "VendorAddress2" => "Addr 2",
+        "VendorAddress3" => "Addr 3",
+        "VendorCity" => "City",
+        "VendorState" => "State",
+        "VendorZip" => "Zip",
+        "VendorCountry" => "Country",
+        "VendorPhone" => "Phone",
+        "VendorFax" => "Fax",
+        "VendorEmail" => "Email",
+        "VendorWebPage" => "Web",
+        "Attention" => "Attention"
+    ];
 }
 ?>
-

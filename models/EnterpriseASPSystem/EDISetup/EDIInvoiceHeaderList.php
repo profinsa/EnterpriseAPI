@@ -4,7 +4,7 @@
 
   Method: Model for grid and detail sceens. It provides data from database and default values, column names and categories
 
-  Date created: 19/02/2019 NikitaZaharov
+  Date created: 19/02/2019 Zaharov Nikita
 
   Use: this model used by gridView for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -27,6 +27,7 @@
 
   Last Modified: 19/02/2019
   Last Modified by: Zaharov Nikita
+
 */
 
 require "./models/gridDataSource.php";

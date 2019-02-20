@@ -1501,6 +1501,22 @@ EOF;
                 //"columns" => "InvoiceNumber",
                 "tables" => ["ediinvoiceheader"]
             ],
+            "ediorderheader" => [
+                //"columns" => "InvoiceNumber",
+                "tables" => ["ediorderheader"]
+            ],
+            "edipurchaseheader" => [
+                //"columns" => "InvoiceNumber",
+                "tables" => ["edipurchaseheader"]
+            ],
+            "edireceiptsheader" => [
+                //"columns" => "InvoiceNumber",
+                "tables" => ["edireceiptsheader"]
+            ],
+            "edipaymentheader" => [
+                //"columns" => "InvoiceNumber",
+                "tables" => ["edipayementheader"]
+            ],
         ];
         $columnMax = 0;
         if(key_exists($this->tableName, $forDirtyAutoincrement)){

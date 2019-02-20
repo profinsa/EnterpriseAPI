@@ -493,6 +493,30 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "EDIPurchaseHeader" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "EDIPurchase" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "EDIPaymentHeader" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "EDIPayment" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "EDIItems" => [
         "select" => "any",
         "update" => "any",
