@@ -1170,5 +1170,37 @@ class gridData extends gridDataSource{
         
         DB::delete("DELETE from ediinvoicedetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
     }
+
+    public function uploadExcel(){
+        if(isset($_FILES['file'])){
+            $errors = array();
+        
+            $files = "[";
+
+            //            $count = count($_FILES['file']['name']);
+            $file_name = $_FILES['file']['name'][0];
+            $file_size = $_FILES['file']['size'][0];
+            $file_tmp = $_FILES['file']['tmp_name'][0];
+            $file_type = $_FILES['file']['type'][0];
+
+            if($file_size > 10485760) 
+                $errors[] = 'File size must be less than 10 MB';
+
+            $date = new DateTime();
+            if(empty($errors) == true) {
+                move_uploaded_file($file_tmp, __DIR__ . "/../../../uploads/" . $date->getTimestamp() . "_" . $file_name);
+            }
+
+            if(empty($errors) == true) 
+                echo "ok";
+            else{
+                http_response_code(400);
+                echo implode("&&", $errors);
+            }
+        }else{
+            http_response_code(400);
+            echo "failed";
+        }
+    }
 }
 ?>

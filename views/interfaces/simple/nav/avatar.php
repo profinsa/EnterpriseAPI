@@ -32,76 +32,73 @@
 </div><!-- /.modal -->
 
 <script>
-    function changeAvatarOpen() {
-        $('#change-avatar-dialog').appendTo('body').modal('show');
-        var avatar = $('#avatar_attachment');
-        avatar.val("");
-        // $('#avatar_preview')
-        //             .attr('src', "assets/images/avatar_2x.png")
-        //             .width(176)
-        //             .height(176);
-    }
-    function previewAvatar(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+ function changeAvatarOpen() {
+     $('#change-avatar-dialog').appendTo('body').modal('show');
+     var avatar = $('#avatar_attachment');
+     avatar.val("");
+     // $('#avatar_preview')
+     //             .attr('src', "assets/images/avatar_2x.png")
+     //             .width(176)
+     //             .height(176);
+ }
+ function previewAvatar(input) {
+     if (input.files && input.files[0]) {
+         var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('#avatar_preview')
-                    .attr('src', e.target.result)
-                    .width(176)
-                    .height(176);
-            };
+         reader.onload = function (e) {
+             $('#avatar_preview')
+                 .attr('src', e.target.result)
+                 .width(176)
+                 .height(176);
+         };
 
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    function saveAvatar() {
-        var attachments = $("input[type=file]");
+         reader.readAsDataURL(input.files[0]);
+     }
+ }
+ function saveAvatar() {
+     var attachments = $("input[type=file]");
 
-        var formData = new FormData();
+     var formData = new FormData();
 
-        formData.append('filename', "<?php echo $user["CompanyID"] ?>_<?php echo $user["DivisionID"] ?>_<?php echo $user["DepartmentID"] ?>_<?php echo $user["EmployeeID"] ?>");
+     formData.append('filename', "<?php echo $user["CompanyID"] ?>_<?php echo $user["DivisionID"] ?>_<?php echo $user["DepartmentID"] ?>_<?php echo $user["EmployeeID"] ?>");
 
-        for (var i = 0; i < attachments.length; i++) {
-        formData.append('file[]', attachments[i].files[0]);
-        }
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-            });
-        $.ajax({
-        url : 'upload.php',
-        type : 'POST',
-        data : formData,
-        processData: false,  // tell jQuery not to process the data
-        contentType: false,  // tell jQuery not to set contentType
-        success : function(e) {
-            var res;
-            res = JSON.parse(e).data;
-            // var file_attachments = $(".file_attachment");
-            $.post("<?php echo $linksMaker->makeProcedureLink("Payroll/EmployeeSetup/ViewEmployees", "changePictureURL"); ?>",{
-                "PictureURL" : res[0],
-            "EmployeeID" : "<?php echo $user["EmployeeID"] ?>",
-            "CompanyID" : "<?php echo $user["CompanyID"] ?>",
-            "DivisionID" : "<?php echo $user["DivisionID"] ?>",
-            "DepartmentID" : "<?php echo $user["DepartmentID"] ?>"
-            })
-            .success(function(data) {
-                // onlocation(window.location);
-                $('#change-avatar-dialog').modal('hide');
-                var timestamp = new Date().getTime();
-                $('#mini_avatar')
-                            .attr('src', "'uploads/'?>" + res[0] + '?' +timestamp );
+     for (var i = 0; i < attachments.length; i++) {
+         formData.append('file[]', attachments[i].files[0]);
+     }
+     $.ajax({
+         url : 'upload.php',
+         type : 'POST',
+         data : formData,
+         processData: false,  // tell jQuery not to process the data
+         contentType: false,  // tell jQuery not to set contentType
+         success : function(e) {
+             var res;
+             res = JSON.parse(e).data;
+             // var file_attachments = $(".file_attachment");
+             $.post("<?php echo $linksMaker->makeProcedureLink("Payroll/EmployeeSetup/ViewEmployees", "changePictureURL"); ?>",{
+                 "PictureURL" : res[0],
+		 "EmployeeID" : "<?php echo $user["EmployeeID"] ?>",
+		 "CompanyID" : "<?php echo $user["CompanyID"] ?>",
+		 "DivisionID" : "<?php echo $user["DivisionID"] ?>",
+		 "DepartmentID" : "<?php echo $user["DepartmentID"] ?>"
+             })
+              .success(function(data) {
+                  // onlocation(window.location);
+                  $('#change-avatar-dialog').modal('hide');
+                  var timestamp = new Date().getTime();
+                  $('#mini_avatar')
+                      .attr('src', "'uploads/'?>" + res[0] + '?' +timestamp );
 
-            })
-            .error(function(err){
-                alert('Something goes wrong');
-            });
-            // for (var i = 0; i < res.length; i++) {
-            //     file_attachments.val(res[i]);
-            // }
-            // }catch(e){
-            // }
-        }
-        });
-    }
+              })
+              .error(function(err){
+                  alert('Something goes wrong');
+              });
+             // for (var i = 0; i < res.length; i++) {
+             //     file_attachments.val(res[i]);
+             // }
+             // }catch(e){
+             // }
+         }
+     });
+ }
 </script>
