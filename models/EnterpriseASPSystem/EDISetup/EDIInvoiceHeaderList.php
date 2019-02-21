@@ -1174,12 +1174,24 @@ class gridData extends gridDataSource{
     }
 
     public function uploadExcel(){
+        $user = Session::get("user");
+        $correctNamesToEDI = [
+            "TransactionDate" => "InvoiceDate",
+            "Transaction Number" => "InvoiceNumber",
+            "Customer ID" => "CustomerID",
+            "Customer Name" => "CustomerName",
+            "Item ID" => "ItemID",
+            "ItemName" => "ItemName",
+            "Quantity" => "OrderQty" ,
+            "Unit Price" => "ItemUnitPrice",
+            "Total Amount" => "Total",
+            "Payment Method" => "PaymentMethodID",
+            "Currency" => "CurrencyID",
+            "Exchange Rate" => "CurrencyExchangeRate"
+        ];
+        $rowsWithNames = [];
         if(isset($_FILES['file'])){
             $errors = array();
-        
-            $files = "[";
-
-            //            $count = count($_FILES['file']['name']);
             $file_name = $_FILES['file']['name'][0];
             $file_size = $_FILES['file']['size'][0];
             $file_tmp = $_FILES['file']['tmp_name'][0];
@@ -1197,24 +1209,30 @@ class gridData extends gridDataSource{
                 $rows = $xls->rows();
                 $rowsCount = count($rows);
                 $ind = 0;
-                $rowsWithNames = [];
                 while($ind != $rowsCount){
                     if($ind != 0){
                         $rowsWithNames[$ind - 1] = [];
                         //echo json_encode($rows[$ind], JSON_PRETTY_PRINT);
                         foreach($rows[$ind] as $key=>$value)
-                            $rowsWithNames[$ind - 1][$rows[0][$key]] = $value;
-                        echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
+                            $rowsWithNames[$ind - 1][$correctNamesToEDI[$rows[0][$key]]] = $value;
+                        //                        echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
                     }
                     $ind++;
                 }
+
+                //foreach(
                 //                echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
                 //                print_r(  ); // dump first sheet
                 //                print_r( $xls->rows(1)); /// dump second sheet
             } else {
                 echo SimpleXLSX::parseError();
             }            
-
+            
+            foreach($rowsWithNames as $row){
+                usleep(100);
+                DB::insert("insert into ediinvoiceheader (CompanyID, DivisionID, DepartmentID, InvoiceNumber, InvoiceDate, CustomerID, PaymentMethodID, CurrencyID, CurrencyExchangeRate) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["InvoiceDate"]}', '{$row["CustomerID"]}', '{$row["PaymentMethodID"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}')", array());
+            }
+            
             if(empty($errors) == true) 
                 echo "ok";
             else{
