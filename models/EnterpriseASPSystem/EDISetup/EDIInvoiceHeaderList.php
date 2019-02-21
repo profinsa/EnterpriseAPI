@@ -31,6 +31,8 @@
 */
 
 require "./models/gridDataSource.php";
+require "./dependencies/php/simplexls.php";
+
 class gridData extends gridDataSource{
     public $tableName = "ediinvoiceheader";
     public $dashboardTitle ="EDI Invoices";
@@ -1187,9 +1189,31 @@ class gridData extends gridDataSource{
                 $errors[] = 'File size must be less than 10 MB';
 
             $date = new DateTime();
-            if(empty($errors) == true) {
-                move_uploaded_file($file_tmp, __DIR__ . "/../../../uploads/" . $date->getTimestamp() . "_" . $file_name);
-            }
+            $newFilePath = __DIR__ . "/../../../uploads/" . $date->getTimestamp() . "_" . $file_name;
+            if(empty($errors) == true) 
+                move_uploaded_file($file_tmp, $newFilePath);
+
+            if ( $xls = SimpleXLS::parse($newFilePath)) {
+                $rows = $xls->rows();
+                $rowsCount = count($rows);
+                $ind = 0;
+                $rowsWithNames = [];
+                while($ind != $rowsCount){
+                    if($ind != 0){
+                        $rowsWithNames[$ind - 1] = [];
+                        //echo json_encode($rows[$ind], JSON_PRETTY_PRINT);
+                        foreach($rows[$ind] as $key=>$value)
+                            $rowsWithNames[$ind - 1][$rows[0][$key]] = $value;
+                        echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
+                    }
+                    $ind++;
+                }
+                //                echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
+                //                print_r(  ); // dump first sheet
+                //                print_r( $xls->rows(1)); /// dump second sheet
+            } else {
+                echo SimpleXLSX::parseError();
+            }            
 
             if(empty($errors) == true) 
                 echo "ok";
