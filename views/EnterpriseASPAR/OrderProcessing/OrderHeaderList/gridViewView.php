@@ -20,50 +20,50 @@
      Calls:
      model
 
-     Last Modified: 12/04/2018
+     Last Modified: 20/02/2019
      Last Modified by: Zaharov Nikita
 -->
 <?php
 
-function renderRow($translation, $data, $fieldsDefinition, $values, $key, $value){
-    echo "<tr><td class=\"title\">" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
-    echo formatValue($data, $fieldsDefinition, $values, $key, $value);
-    echo "</td></tr>";
-}
-
-function makeTableItems($values, $fieldsDefinition){
-    $leftItems = [];
-    $rightItems = [];
-    
-    $itemsHalf = 0;
-    $itemsCount = 0;
-    foreach($values as $key =>$value){
-	if(key_exists($key, $fieldsDefinition))
-	    $itemsCount++;
+    function renderRow($translation, $data, $fieldsDefinition, $values, $key, $value){
+	echo "<tr><td class=\"title\">" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
+	echo formatValue($data, $fieldsDefinition, $values, $key, $value);
+	echo "</td></tr>";
     }
-    $itemsHalf = $itemsCount/2;
 
-    $itemsCount = 0;
-    foreach($values as $key =>$value){
-	if(key_exists($key, $fieldsDefinition)){
-	    if($itemsCount < $itemsHalf)
-		$leftItems[$key] = $value;
-	    else 
-		$rightItems[$key] = $value;
-	    $itemsCount++;
+    function makeTableItems($values, $fieldsDefinition){
+	$leftItems = [];
+	$rightItems = [];
+	
+	$itemsHalf = 0;
+	$itemsCount = 0;
+	foreach($values as $key =>$value){
+	    if(key_exists($key, $fieldsDefinition))
+		$itemsCount++;
 	}
+	$itemsHalf = $itemsCount/2;
+
+	$itemsCount = 0;
+	foreach($values as $key =>$value){
+	    if(key_exists($key, $fieldsDefinition)){
+		if($itemsCount < $itemsHalf)
+		    $leftItems[$key] = $value;
+		else 
+		    $rightItems[$key] = $value;
+		$itemsCount++;
+	    }
+	}
+	return [
+	    "leftItems" => $leftItems,
+	    "rightItems" => $rightItems
+	];
     }
-    return [
-	"leftItems" => $leftItems,
-	"rightItems" => $rightItems
-    ];
-}
 ?>
 
 <div id="row_viewer" class="row">
     <div class="order-entry-header">
 	<?php
-	$headerItem = $data->getEditItem($ascope["item"], "...fields");
+	    $headerItem = $data->getEditItem($ascope["item"], "...fields");
 	?>
 	<table class="col-md-12 col-xs-12 table">
 	    <tbody>
@@ -108,11 +108,11 @@ function makeTableItems($values, $fieldsDefinition){
     <?php if(key_exists("Main", $data->editCategories) && !property_exists($data, "makeTabs")): ?>
 	<ul class="nav nav-pills" role="tablist">
 	    <?php
-	    //render tabs like Main, Current etc
-	    //uses $data(charOfAccounts model) as dictionaries which contains list of tab names
-	    foreach($data->editCategories as $key =>$value)
-	    if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
-		echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"" . makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
+		//render tabs like Main, Current etc
+		//uses $data(charOfAccounts model) as dictionaries which contains list of tab names
+		foreach($data->editCategories as $key =>$value)
+		if($key != '...fields') //making tab links only for usual categories, not for ...fields, reserved only for the data
+		    echo "<li role=\"presentation\"". ( $ascope["category"] == $key ? " class=\"active\"" : "")  ."><a href=\"#". makeId($key) . "\" aria-controls=\"" . makeId($key) . "\" role=\"tab\" data-toggle=\"tab\">" . $translation->translateLabel($key) . "</a></li>";
 	    ?>
 	</ul>
 	<br/>
@@ -121,31 +121,35 @@ function makeTableItems($values, $fieldsDefinition){
 	    <?php foreach($data->editCategories as $key =>$value):  ?>
 		<div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
 		    <?php
-		    if($key == "Customer"){
-			$customerInfo = $data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : "CustomerID"]);
-			$tableItems = makeTableItems($customerInfo, $data->customerFields);
-			$tableCategories = $data->customerFields;
-			$items = $customerInfo;
-		    }else if($key == "Vendor"){
-			$vendorInfo = $data->getVendorInfo($headerItem[property_exists($data, "vendorField") ? $data->vendorField : "VendorID"]);
-			$tableItems = makeTableItems($vendorInfo, $data->vendorFields);
-			$tableCategories = $data->vendorFields;
-			$items = $vendorInfo;
-		    }
-		    else {
-			$item = $data->getEditItem($ascope["item"], $key);
-			$tableCategories = $data->editCategories[$key];
-			$tableItems = makeTableItems($item, $tableCategories);
-			$items = $item;
-		    }
+			if($key == "Customer"){
+			    $customerInfo = $data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : "CustomerID"]);
+			    if($customerInfo != null){
+				$tableItems = makeTableItems($customerInfo, $data->customerFields);
+				$tableCategories = $data->customerFields;
+				$items = $customerInfo;
+			    }
+                	}else if($key == "Vendor"){
+			    $vendorInfo = $data->getVendorInfo($headerItem[property_exists($data, "vendorField") ? $data->vendorField : "VendorID"]);
+			    if($vendorInfo != null){
+				$tableItems = makeTableItems($vendorInfo, $data->vendorFields);
+				$tableCategories = $data->vendorFields;
+				$items = $vendorInfo;
+			    }
+			}
+			else {
+			    $item = $data->getEditItem($ascope["item"], $key);
+			    $tableCategories = $data->editCategories[$key];
+			    $tableItems = makeTableItems($item, $tableCategories);
+			    $items = $item;
+			}
 		    ?>
 		    <div class="table-responsive col-md-12 col-xs-12 row">
 			<div class=" col-md-5 col-xs-5">
 			    <table class="table table-bordered order-entry-main-table ">
 				<tbody id="row_viewer_tbody">
 				    <?php 
-				    foreach($tableItems["leftItems"] as $key =>$value)
-				    renderRow($translation, $data, $tableCategories, $items, $key, $value);
+					foreach($tableItems["leftItems"] as $key =>$value)
+					renderRow($translation, $data, $tableCategories, $items, $key, $value);
 				    ?>
 				</tbody>
 			    </table>
@@ -154,8 +158,8 @@ function makeTableItems($values, $fieldsDefinition){
 			    <table class="table table-bordered order-entry-main-table">
 				<tbody id="row_viewer_tbody">
 				    <?php 
-				    foreach($tableItems["rightItems"] as $key =>$value)
-				    renderRow($translation, $data, $tableCategories,  $items,$key, $value);
+					foreach($tableItems["rightItems"] as $key =>$value)
+					renderRow($translation, $data, $tableCategories,  $items,$key, $value);
 				    ?>
 				</tbody>
 			    </table>
@@ -191,8 +195,8 @@ function makeTableItems($values, $fieldsDefinition){
 
     <!-- Detail table -->
     <?php
-    if(property_exists($data, "detailTable"))
-    	require __DIR__ . "/components/detailGrid.php";
+	if(property_exists($data, "detailTable"))
+    	    require __DIR__ . "/components/detailGrid.php";
     ?>
 
     <!-- footer table -->
@@ -203,10 +207,10 @@ function makeTableItems($values, $fieldsDefinition){
 		    <tr>
 			<td>
 			    <?php
-			    foreach($data->footerTable["flagsHeader"] as $key=>$value){
-				formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]);
-				echo $translation->translateLabel($key);
-			    }			    
+				foreach($data->footerTable["flagsHeader"] as $key=>$value){
+				    formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]);
+				    echo $translation->translateLabel($key);
+				}			    
 			    ?>
 			</td>
 			<td>
@@ -263,10 +267,10 @@ function makeTableItems($values, $fieldsDefinition){
     <?php endif; ?>
     
     <?php
-    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "viewFooter.php"))
-	require __DIR__ . "/../../../" . $PartsPath . "viewFooter.php";
-    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "vieweditFooter.php"))
-	require __DIR__ . "/../../../" . $PartsPath . "vieweditFooter.php";
+	if(file_exists(__DIR__ . "/../../../" . $PartsPath . "viewFooter.php"))
+	    require __DIR__ . "/../../../" . $PartsPath . "viewFooter.php";
+	if(file_exists(__DIR__ . "/../../../" . $PartsPath . "vieweditFooter.php"))
+	    require __DIR__ . "/../../../" . $PartsPath . "vieweditFooter.php";
     ?>
 
     <div class="col-md-12 col-xs-12 row">
@@ -281,10 +285,10 @@ function makeTableItems($values, $fieldsDefinition){
 		    <?php echo $translation->translateLabel("Edit"); ?>
 		</a>
 		<?php
-		if(file_exists(__DIR__ . "/../../../" . $PartsPath . "viewActions.php"))
-		    require __DIR__ . "/../../../" . $PartsPath . "viewActions.php";
-		if(file_exists(__DIR__ . "/../../../" . $PartsPath . "vieweditActions.php"))
-		    require __DIR__ . "/../../../" . $PartsPath . "vieweditActions.php";
+		    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "viewActions.php"))
+			require __DIR__ . "/../../../" . $PartsPath . "viewActions.php";
+		    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "vieweditActions.php"))
+			require __DIR__ . "/../../../" . $PartsPath . "vieweditActions.php";
 		?>
 	    <?php endif; ?>
 	    <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>">

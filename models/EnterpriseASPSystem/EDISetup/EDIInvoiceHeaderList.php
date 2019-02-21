@@ -1070,7 +1070,7 @@ class gridData extends gridDataSource{
         
         $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
-        $result = json_decode(json_encode($id ? $result[0] : $result), true);
+        $result = json_decode(json_encode($id ? (count($result) ? $result[0] : null) : $result), true);
         
         return $result;
     }
@@ -1181,7 +1181,7 @@ class gridData extends gridDataSource{
             "Customer ID" => "CustomerID",
             "Customer Name" => "CustomerName",
             "Item ID" => "ItemID",
-            "ItemName" => "ItemName",
+            "ItemName" => "Description",
             "Quantity" => "OrderQty" ,
             "Unit Price" => "ItemUnitPrice",
             "Total Amount" => "Total",
@@ -1229,8 +1229,8 @@ class gridData extends gridDataSource{
             }            
             
             foreach($rowsWithNames as $row){
-                usleep(100);
-                DB::insert("insert into ediinvoiceheader (CompanyID, DivisionID, DepartmentID, InvoiceNumber, InvoiceDate, CustomerID, PaymentMethodID, CurrencyID, CurrencyExchangeRate) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["InvoiceDate"]}', '{$row["CustomerID"]}', '{$row["PaymentMethodID"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}')", array());
+                DB::insert("insert into ediinvoiceheader (CompanyID, DivisionID, DepartmentID, InvoiceNumber, InvoiceDate, CustomerID, PaymentMethodID, CurrencyID, CurrencyExchangeRate, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["InvoiceDate"]}', '{$row["CustomerID"]}', '{$row["PaymentMethodID"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Total"]}')", array());
+                DB::insert("insert into ediinvoicedetail (CompanyID, DivisionID, DepartmentID, InvoiceNumber, ItemID, Description, CurrencyID, CurrencyExchangeRate, OrderQty, ItemUnitPrice, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["ItemID"]}', '{$row["Description"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["OrderQty"]}', '{$row["ItemUnitPrice"]}', '{$row["Total"]}')", array());
             }
             
             if(empty($errors) == true) 
