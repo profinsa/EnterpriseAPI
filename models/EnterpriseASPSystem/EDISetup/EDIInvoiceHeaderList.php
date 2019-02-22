@@ -1194,10 +1194,12 @@ class gridData extends gridDataSource{
         if(isset($_FILES['file'])){
             $rowsWithNames = $excelImport->getDataFromUploadedFile($correctNamesToEDI);
             //FIXME checking on existing records in ediinvoiceheader
-            
             foreach($rowsWithNames as $row){
-                DB::insert("insert into ediinvoiceheader (CompanyID, DivisionID, DepartmentID, InvoiceNumber, InvoiceDate, CustomerID, PaymentMethodID, CurrencyID, CurrencyExchangeRate, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["InvoiceDate"]}', '{$row["CustomerID"]}', '{$row["PaymentMethodID"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Total"]}')", array());
-                DB::insert("insert into ediinvoicedetail (CompanyID, DivisionID, DepartmentID, InvoiceNumber, ItemID, Description, CurrencyID, CurrencyExchangeRate, OrderQty, ItemUnitPrice, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["ItemID"]}', '{$row["Description"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["OrderQty"]}', '{$row["ItemUnitPrice"]}', '{$row["Total"]}')", array());
+                if(!count(DB::select("select * from ediinvoiceheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND InvoiceNumber=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["InvoiceNumber"]]))){
+            
+                    DB::insert("insert into ediinvoiceheader (CompanyID, DivisionID, DepartmentID, InvoiceNumber, InvoiceDate, CustomerID, PaymentMethodID, CurrencyID, CurrencyExchangeRate, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["InvoiceDate"]}', '{$row["CustomerID"]}', '{$row["PaymentMethodID"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Total"]}')", array());
+                    DB::insert("insert into ediinvoicedetail (CompanyID, DivisionID, DepartmentID, InvoiceNumber, ItemID, Description, CurrencyID, CurrencyExchangeRate, OrderQty, ItemUnitPrice, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["ItemID"]}', '{$row["Description"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["OrderQty"]}', '{$row["ItemUnitPrice"]}', '{$row["Total"]}')", array());
+                }
             }
             
             if(empty($errors) == true) 
@@ -1261,31 +1263,33 @@ class gridData extends gridDataSource{
         }
 
         foreach($invoices as $invoice){
-            $insertHeaderValues = [];
-            foreach($this->postHeaderFields as $key){
-                if($key == "CompanyID")
-                    $insertHeaderValues[] = "'{$user["CompanyID"]}'";
-                else if($key == "DivisionID")
-                    $insertHeaderValues[] = "'{$user["DivisionID"]}'";
-                else if($key == "CompanyID")
-                    $insertHeaderValues[] = "'{$user["DivisionID"]}'";
-                else
-                    $insertHeaderValues[] = "'{$invoice["header"][$key]}'";
-            }
-            $insertDetailValues = [];
-            foreach($this->postDetailFields as $key){
-                if($key == "CompanyID")
-                    $insertDetailValues[] = "'{$user["CompanyID"]}'";
-                else if($key == "DivisionID")
-                    $insertDetailValues[] = "'{$user["DivisionID"]}'";
-                else if($key == "CompanyID")
-                    $insertDetailValues[] = "'{$user["DivisionID"]}'";
-                else
-                    $insertDetailValues[] = "'{$invoice["detail"][$key]}'";
-            }
+            if(!count(DB::select("select * from invoiceheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND InvoiceNumber=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $invoice["header"]["InvoiceNumber"]]))){
+                    $insertHeaderValues = [];
+                    foreach($this->postHeaderFields as $key){
+                        if($key == "CompanyID")
+                            $insertHeaderValues[] = "'{$user["CompanyID"]}'";
+                        else if($key == "DivisionID")
+                            $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                        else if($key == "CompanyID")
+                            $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                        else
+                            $insertHeaderValues[] = "'{$invoice["header"][$key]}'";
+                    }
+                    $insertDetailValues = [];
+                    foreach($this->postDetailFields as $key){
+                        if($key == "CompanyID")
+                            $insertDetailValues[] = "'{$user["CompanyID"]}'";
+                        else if($key == "DivisionID")
+                            $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                        else if($key == "CompanyID")
+                            $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                        else
+                            $insertDetailValues[] = "'{$invoice["detail"][$key]}'";
+                    }
 
-            DB::insert("insert into invoiceheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
-            DB::insert("insert into invoicedetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+                    DB::insert("insert into invoiceheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
+                    DB::insert("insert into invoicedetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+                }
         }
 
         echo "ok";
@@ -1319,32 +1323,34 @@ class gridData extends gridDataSource{
 
        
         foreach($invoices as $invoice){
-            $insertHeaderValues = [];
-            foreach($this->postHeaderFields as $key){
-                if($key == "CompanyID")
-                    $insertHeaderValues[] = "'{$user["CompanyID"]}'";
-                else if($key == "DivisionID")
-                    $insertHeaderValues[] = "'{$user["DivisionID"]}'";
-                else if($key == "CompanyID")
-                    $insertHeaderValues[] = "'{$user["DivisionID"]}'";
-                else
-                    $insertHeaderValues[] = "'{$invoice["header"][$key]}'";
-            }
-            $insertDetailValues = [];
-            foreach($this->postDetailFields as $key){
-                if($key == "CompanyID")
-                    $insertDetailValues[] = "'{$user["CompanyID"]}'";
-                else if($key == "DivisionID")
-                    $insertDetailValues[] = "'{$user["DivisionID"]}'";
-                else if($key == "CompanyID")
-                    $insertDetailValues[] = "'{$user["DivisionID"]}'";
-                else
-                    $insertDetailValues[] = "'{$invoice["detail"][$key]}'";
-            }
+            if(!count(DB::select("select * from invoiceheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND InvoiceNumber=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $invoice["header"]["InvoiceNumber"]]))){
+                $insertHeaderValues = [];
+                foreach($this->postHeaderFields as $key){
+                    if($key == "CompanyID")
+                        $insertHeaderValues[] = "'{$user["CompanyID"]}'";
+                    else if($key == "DivisionID")
+                        $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                    else if($key == "CompanyID")
+                        $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                    else
+                        $insertHeaderValues[] = "'{$invoice["header"][$key]}'";
+                }
+                $insertDetailValues = [];
+                foreach($this->postDetailFields as $key){
+                    if($key == "CompanyID")
+                        $insertDetailValues[] = "'{$user["CompanyID"]}'";
+                    else if($key == "DivisionID")
+                        $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                    else if($key == "CompanyID")
+                        $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                    else
+                        $insertDetailValues[] = "'{$invoice["detail"][$key]}'";
+                }
 
-            usleep(50);
-            DB::insert("insert into invoiceheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
-            DB::insert("insert into invoicedetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+                usleep(50);
+                DB::insert("insert into invoiceheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
+                DB::insert("insert into invoicedetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+            }
         }
         
         echo json_encode($numbers, JSON_PRETTY_PRINT);

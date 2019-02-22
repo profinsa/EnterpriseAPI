@@ -627,8 +627,10 @@ class gridData extends gridDataSource{
             //            echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
             //print_r($rowsWithNames);
             foreach($rowsWithNames as $row){
-                DB::insert("insert into edireceiptsheader (CompanyID, DivisionID, DepartmentID, ReceiptID, TransactionDate, ReceiptTypeID, CustomerID, EDIDirectionTypeID, CurrencyID, CurrencyExchangeRate, Amount) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["ReceiptID"]}', '{$row["TransactionDate"]}', 'CASH', '{$row["CustomerID"]}', 'I', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Amount"]}')", array());
-                DB::insert("insert into edireceiptsdetail (CompanyID, DivisionID, DepartmentID, ReceiptID, DocumentNumber, DetailMemo1, CurrencyID, CurrencyExchangeRate, DetailMemo2, DetailMemo3, AppliedAmount) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["ReceiptID"]}', '{$row["ItemID"]}', '{$row["Description"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["OrderQty"]}', '{$row["ItemUnitPrice"]}', '{$row["Amount"]}')", array());
+                if(!count(DB::select("select * from edireceiptsheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ReceiptID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["ReceiptID"]]))){
+                    DB::insert("insert into edireceiptsheader (CompanyID, DivisionID, DepartmentID, ReceiptID, TransactionDate, ReceiptTypeID, CustomerID, EDIDirectionTypeID, CurrencyID, CurrencyExchangeRate, Amount) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["ReceiptID"]}', '{$row["TransactionDate"]}', 'CASH', '{$row["CustomerID"]}', 'I', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Amount"]}')", array());
+                    DB::insert("insert into edireceiptsdetail (CompanyID, DivisionID, DepartmentID, ReceiptID, DocumentNumber, DetailMemo1, CurrencyID, CurrencyExchangeRate, DetailMemo2, DetailMemo3, AppliedAmount) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["ReceiptID"]}', '{$row["ItemID"]}', '{$row["Description"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["OrderQty"]}', '{$row["ItemUnitPrice"]}', '{$row["Amount"]}')", array());
+                }
             }
 
             if(empty($errors) == true) 
