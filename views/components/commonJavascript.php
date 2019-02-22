@@ -91,6 +91,18 @@
       });
  }
  <?php endif; ?>
+ function serverProcedureAnyCall(path, methodName, props, cb, jsonRequest, successAlert){
+     $.post(linksMaker.makeProcedureLink(path, methodName), jsonRequest ? JSON.stringify(props) : props, 'text')
+      .success(function(data) {
+	  if(successAlert)
+	      alert(data);	  
+          if(cb)
+	      cb();
+      })
+      .error(function(xhr){
+          alert(xhr.responseText);
+      });
+ }
 
  function getCurrentPageValues(){
      var values = {};

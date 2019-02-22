@@ -43,6 +43,7 @@
          processData: false,  // tell jQuery not to process the data
          contentType: false,  // tell jQuery not to set contentType
          success : function(e) {
+	     
 	     onlocation(window.location);
          }
      });
@@ -51,9 +52,32 @@
      // }, true, undefined, true);
  };
  
+ function postSelected(){
+     var InvoiceNumbers = [], ind;
+     for(ind in gridItemsSelected)
+         InvoiceNumbers.push(gridItemsSelected[ind].InvoiceNumber);
+
+     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostSelected', { InvoiceNumbers :InvoiceNumbers.join(',') }, function(){
+	 var ind;
+	 for(ind in InvoiceNumbers)
+	     serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'Post', { InvoiceNumber :InvoiceNumbers[ind] }, function(){
+		 console.log('hhh');
+	 });
+     });
+ }
 </script>
 <a class="btn btn-info grid-actions-button" href="javascript:;" onclick="$('#uploadExcelModal').modal('show')">
     <?php
 	echo $translation->translateLabel("Upload Excel");
+    ?>
+</a>
+<a class="btn btn-info grid-actions-button" href="javascript:;" onclick="postSelected()">
+    <?php
+	echo $translation->translateLabel("Post Selected");
+    ?>
+</a>
+<a class="btn btn-info grid-actions-button grid-last-actions-button" href="javascript:;" onclick="serverProcedureCall('PostAll', {}, true);">
+    <?php
+	echo $translation->translateLabel("Post All");
     ?>
 </a>

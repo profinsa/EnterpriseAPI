@@ -1211,22 +1211,84 @@ class gridData extends gridDataSource{
         }
     }
 
+    public $postHeaderFields = [
+        "CompanyID",
+        "DivisionID",
+        "DepartmentID",
+        "InvoiceNumber",
+        "InvoiceDate",
+        "CustomerID",
+        "Total",
+        "PaymentMethodID",
+        "CurrencyID",
+        "CurrencyExchangeRate"
+    ];
+    
+    public $postDetailFields = [
+        "CompanyID",
+        "DivisionID",
+        "DepartmentID",
+        "InvoiceNumber",
+        "ItemID",
+        "Description",
+        "OrderQty" ,
+        "ItemUnitPrice",
+        "Total",
+        "CurrencyID",
+        "CurrencyExchangeRate"
+    ];
+
     public function PostSelected(){
         $user = Session::get("user");
 
         $numbers = explode(",", $_POST["InvoiceNumbers"]);
         $success = true;
+        $invoices = [];
 
-        echo json_encode($numbers);        
-        /*        foreach($numbers as $number){
-            DB::statement("CALL Order_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)", array());
+        foreach($numbers as $number){
+            $invoiceHeader = (array)DB::select("select * from ediinvoiceheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND InvoiceNumber=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number])[0];
+            $invoiceDetail = (array)DB::select("select * from ediinvoicedetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND InvoiceNumber=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number])[0];
+            
+            $invoices[] = [
+                "header" => $invoiceHeader,
+                "detail" => $invoiceDetail
+            ];
 
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
-            if($result[0]->SWP_RET_VALUE == -1)
-                $success = false;
+            //           if($result[0]->SWP_RET_VALUE == -1)
+            //  $success = false;
         }
 
-        if($success)
+        foreach($invoices as $invoice){
+            $insertHeaderValues = [];
+            foreach($this->postHeaderFields as $key){
+                if($key == "CompanyID")
+                    $insertHeaderValues[] = "'{$user["CompanyID"]}'";
+                else if($key == "DivisionID")
+                    $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                else if($key == "CompanyID")
+                    $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                else
+                    $insertHeaderValues[] = "'{$invoice["header"][$key]}'";
+            }
+            $insertDetailValues = [];
+            foreach($this->postDetailFields as $key){
+                if($key == "CompanyID")
+                    $insertDetailValues[] = "'{$user["CompanyID"]}'";
+                else if($key == "DivisionID")
+                    $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                else if($key == "CompanyID")
+                    $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                else
+                    $insertDetailValues[] = "'{$invoice["detail"][$key]}'";
+            }
+
+            DB::insert("insert into invoiceheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
+            DB::insert("insert into invoicedetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+        }
+            
+        //        echo json_encode($invoices);
+            
+        /*        if($success)
             echo "ok";
         else {
              http_response_code(400);
