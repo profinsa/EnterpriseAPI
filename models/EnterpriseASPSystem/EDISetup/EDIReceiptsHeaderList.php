@@ -540,7 +540,7 @@ class gridData extends gridDataSource{
         
         $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
-        $result = json_decode(json_encode($id ? $result[0] : $result), true);
+        $result = json_decode(json_encode($id ? (count($result) ? $result[0] : null) : $result), true);
         
         return $result;
     }
@@ -609,9 +609,9 @@ class gridData extends gridDataSource{
         $excelImport = new excelImport();
         $user = Session::get("user");
         $correctNamesToEDI = [
-            "Transaction Date" => "PaymentDate",
-            "TransactionNumber" => "PaymentID",
-            "Vendor ID" => "VendorID",
+            "Transaction Date" => "TransactionDate",
+            "TransactionNumber" => "ReceiptID",
+            "Vendor ID" => "CustomerID",
             "Vendor Name" => "VendorName",
             "Item ID" => "ItemID",
             "Item Name" => "Description",
@@ -625,12 +625,12 @@ class gridData extends gridDataSource{
             $rowsWithNames = $excelImport->getDataFromUploadedFile($correctNamesToEDI);
 
             //            echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
-            print_r($rowsWithNames);
-            //foreach($rowsWithNames as $row){
-                //                DB::insert("insert into ediinvoiceheader (CompanyID, DivisionID, DepartmentID, InvoiceNumber, InvoiceDate, CustomerID, PaymentMethodID, CurrencyID, CurrencyExchangeRate, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["InvoiceDate"]}', '{$row["CustomerID"]}', '{$row["PaymentMethodID"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Total"]}')", array());
-                //       DB::insert("insert into ediinvoicedetail (CompanyID, DivisionID, DepartmentID, InvoiceNumber, ItemID, Description, CurrencyID, CurrencyExchangeRate, OrderQty, ItemUnitPrice, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["ItemID"]}', '{$row["Description"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["OrderQty"]}', '{$row["ItemUnitPrice"]}', '{$row["Total"]}')", array());
-            //            }
-            echo "eeeee";
+            //print_r($rowsWithNames);
+            foreach($rowsWithNames as $row){
+                DB::insert("insert into edireceiptsheader (CompanyID, DivisionID, DepartmentID, ReceiptID, TransactionDate, ReceiptTypeID, CustomerID, EDIDirectionTypeID, CurrencyID, CurrencyExchangeRate, Amount) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["ReceiptID"]}', '{$row["TransactionDate"]}', 'CASH', '{$row["CustomerID"]}', 'I', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Amount"]}')", array());
+                DB::insert("insert into edireceiptsdetail (CompanyID, DivisionID, DepartmentID, ReceiptID, DocumentNumber, DetailMemo1, CurrencyID, CurrencyExchangeRate, DetailMemo2, DetailMemo3, AppliedAmount) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["ReceiptID"]}', '{$row["ItemID"]}', '{$row["Description"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["OrderQty"]}', '{$row["ItemUnitPrice"]}', '{$row["Amount"]}')", array());
+            }
+
             if(empty($errors) == true) 
                 echo "ok";
             else{
