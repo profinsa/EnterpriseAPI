@@ -25,9 +25,8 @@
   Calls:
   MySql Database
 
-  Last Modified: 19/02/2019
+  Last Modified: 21/02/2019
   Last Modified by: Zaharov Nikita
-
 */
 
 require "./models/gridDataSource.php";

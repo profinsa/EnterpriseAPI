@@ -4,7 +4,7 @@
    
   Method: It provides data from database and default values, column names and categories
    
-  Date created: 20/02/2017 Nikita Zaharov
+  Date created: 20/02/2019 Nikita Zaharov
    
   Use: this model used by views for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -25,11 +25,13 @@
   Calls:
   MySql Database
    
-  Last Modified: 20/02/2019
+  Last Modified: 22/02/2019
   Last Modified by: Zaharov Nikita
 */
 
 require "./models/gridDataSource.php";
+require "./models/excelImport.php";
+
 class gridData extends gridDataSource{
     public $tableName = "edireceiptsheader";
     public $dashboardTitle ="EDI Receipts";
@@ -603,6 +605,44 @@ class gridData extends gridDataSource{
         return $result;
     }
 
+    public function uploadExcel(){
+        $excelImport = new excelImport();
+        $user = Session::get("user");
+        $correctNamesToEDI = [
+            "Transaction Date" => "PaymentDate",
+            "TransactionNumber" => "PaymentID",
+            "Vendor ID" => "VendorID",
+            "Vendor Name" => "VendorName",
+            "Item ID" => "ItemID",
+            "Item Name" => "Description",
+            "Quantity" => "OrderQty" ,
+            "Unit Price" => "ItemUnitPrice",
+            "Total Amount" => "Amount",
+            "Currency" => "CurrencyID",
+            "Exchange Rate" => "CurrencyExchangeRate"
+        ];
+        if(isset($_FILES['file'])){
+            $rowsWithNames = $excelImport->getDataFromUploadedFile($correctNamesToEDI);
+
+            //            echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
+            print_r($rowsWithNames);
+            //foreach($rowsWithNames as $row){
+                //                DB::insert("insert into ediinvoiceheader (CompanyID, DivisionID, DepartmentID, InvoiceNumber, InvoiceDate, CustomerID, PaymentMethodID, CurrencyID, CurrencyExchangeRate, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["InvoiceDate"]}', '{$row["CustomerID"]}', '{$row["PaymentMethodID"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Total"]}')", array());
+                //       DB::insert("insert into ediinvoicedetail (CompanyID, DivisionID, DepartmentID, InvoiceNumber, ItemID, Description, CurrencyID, CurrencyExchangeRate, OrderQty, ItemUnitPrice, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["ItemID"]}', '{$row["Description"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["OrderQty"]}', '{$row["ItemUnitPrice"]}', '{$row["Total"]}')", array());
+            //            }
+            echo "eeeee";
+            if(empty($errors) == true) 
+                echo "ok";
+            else{
+                http_response_code(400);
+                echo implode("&&", $errors);
+            }
+        }else{
+            http_response_code(400);
+            echo "failed";
+        }
+    }
+    
     public $columnNames = [
         "ReceiptID" => "Receipt ID",
         "ReceiptTypeID" => "Receipt Type ID",
