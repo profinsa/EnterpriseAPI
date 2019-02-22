@@ -29,8 +29,8 @@
   Last Modified by: Zaharov Nikita
 */
 
+require "./models/excelImport.php";
 require "./models/gridDataSource.php";
-require "./dependencies/php/simplexls.php";
 
 class gridData extends gridDataSource{
     public $tableName = "ediinvoiceheader";
@@ -38,6 +38,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="EDI Invoices";
 	public $idField ="InvoiceNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID", "InvoiceNumber"];
+    public $features = ["selecting"];
     public $gridFields = [
         "InvoiceNumber" => [
             "dbType" => "varchar(36)",
@@ -1174,6 +1175,7 @@ class gridData extends gridDataSource{
 
     public function uploadExcel(){
         $user = Session::get("user");
+        $excelImport = new excelImport();
         $correctNamesToEDI = [
             "TransactionDate" => "InvoiceDate",
             "Transaction Number" => "InvoiceNumber",
@@ -1190,42 +1192,7 @@ class gridData extends gridDataSource{
         ];
         $rowsWithNames = [];
         if(isset($_FILES['file'])){
-            $errors = array();
-            $file_name = $_FILES['file']['name'][0];
-            $file_size = $_FILES['file']['size'][0];
-            $file_tmp = $_FILES['file']['tmp_name'][0];
-            $file_type = $_FILES['file']['type'][0];
-
-            if($file_size > 10485760) 
-                $errors[] = 'File size must be less than 10 MB';
-
-            $date = new DateTime();
-            $newFilePath = __DIR__ . "/../../../uploads/" . $date->getTimestamp() . "_" . $file_name;
-            if(empty($errors) == true) 
-                move_uploaded_file($file_tmp, $newFilePath);
-
-            if ( $xls = SimpleXLS::parse($newFilePath)) {
-                $rows = $xls->rows();
-                $rowsCount = count($rows);
-                $ind = 0;
-                while($ind != $rowsCount){
-                    if($ind != 0){
-                        $rowsWithNames[$ind - 1] = [];
-                        //echo json_encode($rows[$ind], JSON_PRETTY_PRINT);
-                        foreach($rows[$ind] as $key=>$value)
-                            $rowsWithNames[$ind - 1][$correctNamesToEDI[$rows[0][$key]]] = $value;
-                        //                        echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
-                    }
-                    $ind++;
-                }
-
-                //foreach(
-                //                echo json_encode($rowsWithNames, JSON_PRETTY_PRINT);
-                //                print_r(  ); // dump first sheet
-                //                print_r( $xls->rows(1)); /// dump second sheet
-            } else {
-                echo SimpleXLSX::parseError();
-            }            
+            $rowsWithNames = $excelImport->getDataFromUploadedFile($correctNamesToEDI);
             
             foreach($rowsWithNames as $row){
                 DB::insert("insert into ediinvoiceheader (CompanyID, DivisionID, DepartmentID, InvoiceNumber, InvoiceDate, CustomerID, PaymentMethodID, CurrencyID, CurrencyExchangeRate, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["InvoiceDate"]}', '{$row["CustomerID"]}', '{$row["PaymentMethodID"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Total"]}')", array());
@@ -1243,5 +1210,41 @@ class gridData extends gridDataSource{
             echo "failed";
         }
     }
+
+    public function PostSelected(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["InvoiceNumbers"]);
+        $success = true;
+
+        echo json_encode($numbers);        
+        /*        foreach($numbers as $number){
+            DB::statement("CALL Order_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo "ok";
+        else {
+             http_response_code(400);
+             echo $result[0]->SWP_RET_VALUE;
+             }*/
+    }
+    
+    public function PostAll(){
+        $user = Session::get("user");
+
+        echo "hahaha";
+        /*        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+            }*/
+   }
 }
 ?>
