@@ -61,8 +61,21 @@
 	 var ind;
 	 for(ind in InvoiceNumbers)
 	     serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'Post', { InvoiceNumber :InvoiceNumbers[ind] }, function(){
-		 console.log('hhh');
-	 });
+		 console.log('invoices posted');
+	     });
+     });
+ }
+
+ function postAll(){
+     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostAll', {}, function(data){
+	 var invoices = JSON.parse(data), ind;
+	 var invoice = invoices.shift();
+	 function postInvoice(){
+	     var invoice = invoices.shift();
+	     if(invoice)
+		 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'Post', { InvoiceNumber : invoice.InvoiceNumber }, postInvoice);
+	 }
+	 postInvoice();
      });
  }
 </script>
@@ -76,7 +89,7 @@
 	echo $translation->translateLabel("Post Selected");
     ?>
 </a>
-<a class="btn btn-info grid-actions-button grid-last-actions-button" href="javascript:;" onclick="serverProcedureCall('PostAll', {}, true);">
+<a class="btn btn-info grid-actions-button grid-last-actions-button" href="javascript:;" onclick="postAll()">
     <?php
 	echo $translation->translateLabel("Post All");
     ?>

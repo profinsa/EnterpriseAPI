@@ -1193,6 +1193,7 @@ class gridData extends gridDataSource{
         $rowsWithNames = [];
         if(isset($_FILES['file'])){
             $rowsWithNames = $excelImport->getDataFromUploadedFile($correctNamesToEDI);
+            //FIXME checking on existing records in ediinvoiceheader
             
             foreach($rowsWithNames as $row){
                 DB::insert("insert into ediinvoiceheader (CompanyID, DivisionID, DepartmentID, InvoiceNumber, InvoiceDate, CustomerID, PaymentMethodID, CurrencyID, CurrencyExchangeRate, Total) values('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}', '{$row["InvoiceNumber"]}', '{$row["InvoiceDate"]}', '{$row["CustomerID"]}', '{$row["PaymentMethodID"]}', '{$row["CurrencyID"]}', '{$row["CurrencyExchangeRate"]}', '{$row["Total"]}')", array());
@@ -1242,6 +1243,7 @@ class gridData extends gridDataSource{
         $user = Session::get("user");
 
         $numbers = explode(",", $_POST["InvoiceNumbers"]);
+        //FIXME checking on existing records in invoiceheader
         $success = true;
         $invoices = [];
 
@@ -1285,7 +1287,8 @@ class gridData extends gridDataSource{
             DB::insert("insert into invoiceheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
             DB::insert("insert into invoicedetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
         }
-            
+
+        echo "ok";
         //        echo json_encode($invoices);
             
         /*        if($success)
@@ -1299,7 +1302,52 @@ class gridData extends gridDataSource{
     public function PostAll(){
         $user = Session::get("user");
 
-        echo "hahaha";
+        $numbers = DB::select("select InvoiceNumber from ediinvoiceheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        //FIXME checking on existing records in invoiceheader
+        $success = true;
+        $invoices = [];
+
+        foreach($numbers as $number){
+            $invoiceHeader = (array)DB::select("select * from ediinvoiceheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND InvoiceNumber=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number->InvoiceNumber])[0];
+            $invoiceDetail = (array)DB::select("select * from ediinvoicedetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND InvoiceNumber=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number->InvoiceNumber])[0];
+            
+            $invoices[] = [
+                "header" => $invoiceHeader,
+                "detail" => $invoiceDetail
+            ];
+        }
+
+       
+        foreach($invoices as $invoice){
+            $insertHeaderValues = [];
+            foreach($this->postHeaderFields as $key){
+                if($key == "CompanyID")
+                    $insertHeaderValues[] = "'{$user["CompanyID"]}'";
+                else if($key == "DivisionID")
+                    $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                else if($key == "CompanyID")
+                    $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                else
+                    $insertHeaderValues[] = "'{$invoice["header"][$key]}'";
+            }
+            $insertDetailValues = [];
+            foreach($this->postDetailFields as $key){
+                if($key == "CompanyID")
+                    $insertDetailValues[] = "'{$user["CompanyID"]}'";
+                else if($key == "DivisionID")
+                    $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                else if($key == "CompanyID")
+                    $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                else
+                    $insertDetailValues[] = "'{$invoice["detail"][$key]}'";
+            }
+
+            usleep(50);
+            DB::insert("insert into invoiceheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
+            DB::insert("insert into invoicedetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+        }
+        
+        echo json_encode($numbers, JSON_PRETTY_PRINT);
         /*        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
         if($result[0]->SWP_RET_VALUE > -1)
             echo $result[0]->SWP_RET_VALUE;

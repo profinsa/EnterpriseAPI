@@ -97,7 +97,7 @@
 	  if(successAlert)
 	      alert(data);	  
           if(cb)
-	      cb();
+	      cb(data);
       })
       .error(function(xhr){
           alert(xhr.responseText);
