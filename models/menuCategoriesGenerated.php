@@ -3830,7 +3830,6 @@ $leftMenu = [
 		       "full" => $translation->translateLabel('EDI Setup '),
 		       "short" => "ED",
 		       "data" => [
-
 		       [
 		       "id" => "SystemSetup/EDISetup/EDISetup",
 		       "full" => $translation->translateLabel('EDI Setup'),
@@ -3918,7 +3917,109 @@ $leftMenu = [
 		       ]
 		       ]
 		]
-	    ]
+	    ],
+	    [
+		"type" => "submenu",
+		"id" => "SystemSetup",
+		"full" => $translation->translateLabel('Tools'),
+		"short" => "Sy",
+        "icon" => "wrench",
+		"data" => [
+
+		    [
+			"type" => "submenu",
+			"id" => "SystemSetup/CompanySetup",
+			"full" => $translation->translateLabel('File Import'),
+			"short" => "Co",
+			"data" => [
+		       [
+		       "id" => "SystemSetup/EDISetup/EDISetup",
+		       "full" => $translation->translateLabel('EDI Setup'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDISetupList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIDocumentTypes",
+		       "full" => $translation->translateLabel('EDI Document Types'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIDocumentTypesList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIDocumentDirections",
+		       "full" => $translation->translateLabel('EDI Document Directions'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIDirectionList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIExceptions",
+		       "full" => $translation->translateLabel('EDI Exceptions'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIExceptionsList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIExceptionTypes",
+		       "full" => $translation->translateLabel('EDI Exception Types'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIExceptionTypesList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIAddresses",
+		       "full" => $translation->translateLabel('EDI Addresses'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIAddressesList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIStatements",
+		       "full" => $translation->translateLabel('EDI Statements'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIStatementsList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIStatementsHistory",
+		       "full" => $translation->translateLabel('EDI Statements History'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIStatementsHistoryList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIOrders",
+		       "full" => $translation->translateLabel('EDI Orders'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIOrderHeaderList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIInvoices",
+		       "full" => $translation->translateLabel('EDI Invoices'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIInvoiceHeaderList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIPurchase",
+		       "full" => $translation->translateLabel('EDI Purchases'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIPurchaseHeaderList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIReceipts",
+		       "full" => $translation->translateLabel('EDI Receipts'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIReceiptsHeaderList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIPayments",
+		       "full" => $translation->translateLabel('EDI Payments'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIPaymentsHeaderList",
+		       "short" => "ED"
+		       ],
+		       [
+		       "id" => "SystemSetup/EDISetup/EDIItems",
+		       "full" => $translation->translateLabel('EDI Items'),
+		       "href"=> "EnterpriseASPSystem/EDISetup/EDIIItemsList",
+		       "short" => "ED"
+		       ]
+            ]
+        ]
+      ]
+]
 	]
     ],
     "Support" => [
