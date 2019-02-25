@@ -3,7 +3,7 @@
 
      Method: render page with selecting gaap financials reports
 
-     Date created: Nikita Zaharov, 26.04.2016
+     Date created: Nikita Zaharov, 26.04.2017
 
      Use: this model used for 
    - for loading data using stored procedures
@@ -20,14 +20,19 @@
      Calls:
      nothing, just make redirect
 
-     Last Modified: 08.08.2016
+     Last Modified: 25.02.2019
      Last Modified by: Nikita Zaharov
    -->
 <div class="container-fluid">
-    <?php
-    require __DIR__ . '/../../../uiItems/dashboard.php';
-    // require __DIR__ . '/format.php';
+    <?php if($ascope["interface"] == "default")
+	require __DIR__ . '/../../../interfaces/default/uiItems/dashboard.php';
     ?>
+
+    <?php if($ascope["interface"] == "simple"): ?>
+	<div style="margin-left: 25px; margin-bottom:-25px; margin-top:30px;">
+	    <?php require __DIR__ . '/../../../interfaces/' . $ascope["interface"] . '/breadcrumbs.php'; ?>
+	</div>
+    <?php endif; ?>
     
     <div class="col-sm-12 white-box">
 	<div id="report" class="row">
@@ -99,9 +104,11 @@
 			<option>
 			    YTD
 			</option>
+			<?php if($overridenType == "ifrs"): ?>
 			<option>
 			    Comparative
 			</option>
+			<?php endif; ?>
 		    </select>
 		</div>
 	    </div>

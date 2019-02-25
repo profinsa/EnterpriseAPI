@@ -1,31 +1,31 @@
 <?php
 /*
-Name of Page: financials reports controller
+  Name of Page: financials reports controller
 
-Method: controller for financials report pages
+  Method: controller for financials report pages
 
-Date created: Nikita Zaharov, 09.05.2016
+  Date created: Nikita Zaharov, 09.05.2017
 
-Use: The controller is responsible for:
-- page rendering using view
+  Use: The controller is responsible for:
+  - page rendering using view
 
-Input parameters:
-$app : application instance, object
+  Input parameters:
+  $app : application instance, object
 
-Output parameters:
-$scope: object, used by view, most like model
-$translation: model, it is responsible for translation in view
+  Output parameters:
+  $scope: object, used by view, most like model
+  $translation: model, it is responsible for translation in view
 
-Called from:
-+ index.php
+  Called from:
+  + index.php
 
-Calls:
-models/translation.php
-models/financials/*.php
-app from index.php
+  Calls:
+  models/translation.php
+  models/financials/*.php
+  app from index.php
 
-Last Modified: 11.05.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 25.02.2019
+  Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
@@ -38,6 +38,7 @@ class controller{
     public $action = "";
     public $mode = "financials";
     public $path;
+    public $interface = "default";
     public $breadCrumbTitle = "GAAP Financial Statements";
     public $dashboardTitle = "GAAP Financial Statements";
         
@@ -50,6 +51,10 @@ class controller{
         }
 
         $type = $_GET["type"];
+        $overridenType = $type;
+        if($type == "ifrs")
+            $type = "gaap";
+        
         $module = $_GET["module"];
         
         //$_perm = new permissionsByFile();
@@ -60,6 +65,7 @@ class controller{
         //  return response('permissions not found', 500)->header('Content-Type', 'text/plain');
 
         $this->user = $_SESSION["user"];
+        $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
                
         $GLOBALS["user"] = $user = $this->user;
         $path = $type . "/" . $module;
@@ -84,6 +90,11 @@ class controller{
         $translation = new translation($user["language"]);
 
         $app->title = $data->title;
+        if($overridenType == 'ifrs'){
+            $app->title = preg_replace('/(GAAP)/', 'IFRS', $app->title);
+            $this->breadCrumbTitle = preg_replace('/(GAAP)/', 'IFRS', $this->breadCrumbTitle);
+            $this->dashboardTitle = preg_replace('/(GAAP)/', 'IFRS', $this->dashboardTitle);
+        }
 
         $templates = [
             "gaap" => [
@@ -135,6 +146,7 @@ class controller{
                 $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Report: " ) . $translation->translateLabel($_GET["title"]);
             
                $scope = $this;
+               $ascope = json_decode(json_encode($scope), true);
 
                $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
                $content = $templates[$type][$module] . ".php";

@@ -259,6 +259,13 @@ $leftMenu = [
 				"short" => "Le"
 			    ],
 			    [
+				"id" => "Financials/GaapMain",
+				"type" => "relativeLink",
+				"full" => $translation->translateLabel('IFRS Financials'),
+				"href"=> "page=financials&type=ifrs&module=main",
+				"short" => "Le"
+			    ],
+			    [
 				"type" => "submenu",
 				"id" => "Financialsials/GaapAgedReports",
 				"full" => $translation->translateLabel('Gaap Aged Reports'),
@@ -272,14 +279,14 @@ $leftMenu = [
 					"href"=> "page=financials&type=gaap&module=AgedPayablesSummary",
 					"short" => "Ag"
 				    ],
-				    [
+/*				    [
 					"id" => "Financials/GaapAgedReports/AgedPayablesComparative",
 					"full" => $translation->translateLabel('Aged Payables Comparative'),
 					"type" => "relativeLink",
 					"target" => "_blank",
 					"href"=> "page=financials&type=gaap&module=AgedPayablesSummaryComparative",
 					"short" => "Ag"
-				    ],
+				    ],*/
 				    [
 					"id" => "Financials/GaapAgedReports/AgedPayablesYTD",
 					"full" => $translation->translateLabel('Aged Payables YTD'),
@@ -296,14 +303,14 @@ $leftMenu = [
 					"href"=> "page=financials&type=gaap&module=AgedReceivablesSummary",
 					"short" => "Ag"
 				    ],
-				    [
+/*				    [
 					"id" => "Financials/GaapAgedReports/AgedReceivablesComparative",
 					"full" => $translation->translateLabel('Aged Receivables Comparative'),
 					"type" => "relativeLink",
 					"target" => "_blank",
 					"href"=> "page=financials&type=gaap&module=AgedReceivablesSummaryComparative",
 					"short" => "Ag"
-				    ],
+				    ],*/
 				    [
 					"id" => "Financials/GaapAgedReports/AgedReceivablesYTD",
 					"full" => $translation->translateLabel('Aged Receivables YTD'),
@@ -315,6 +322,62 @@ $leftMenu = [
 				]
 			    ],
 			    [
+			       "type" => "submenu",
+			       "id" => "Reports/Financials/IFRSAgedReports",
+			       "full" => $translation->translateLabel('IFRS Aged Reports'),
+			       "short" => "IF",
+			       "data" => [
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayables",
+			       "full" => $translation->translateLabel('Aged Payables'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=ifrs&module=AgedPayablesSummary",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayablesComparative",
+			       "full" => $translation->translateLabel('Aged Payables Comparative'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=ifrs&module=AgedPayablesSummaryComparative",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayablesYTD",
+			       "full" => $translation->translateLabel('Aged Payables YTD'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=ifrs&module=AgedPayablesSummaryYTD",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivables",
+			       "full" => $translation->translateLabel('Aged Receivables'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=ifrs&module=AgedReceivablesSummary",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivablesComparative",
+			       "full" => $translation->translateLabel('Aged Receivables Comparative'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=ifrs&module=AgedReceivablesSummaryComparative",
+			       "short" => "Ag"
+			       ],
+			       [
+			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivablesYTD",
+			       "full" => $translation->translateLabel('Aged Receivables YTD'),
+					"type" => "relativeLink",
+					"target" => "_blank",
+					"href"=> "page=financials&type=ifrs&module=AgedReceivablesSummaryYTD",
+			       "short" => "Ag"
+			       ]
+			]
+],
+			    [
 				"id" => "Financials/GaapWorksheets",
 				"type" => "relativeLink",
 				"target" => "_blank",
@@ -322,50 +385,7 @@ $leftMenu = [
 				"href"=> "page=financials&type=common&module=worksheets",
 				"short" => "Le"
 			    ]
-			    /*[
-			       "type" => "submenu",
-			       "id" => "Reports/Financials/IFRSAgedReports",
-			       "full" => $translation->translateLabel('IFRS Aged Reports'),
-			       "short" => "IF",
-			       "data" => [
-
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayables",
-			       "full" => $translation->translateLabel('Aged Payables'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedPayablesSummary",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayablesComparative",
-			       "full" => $translation->translateLabel('Aged Payables Comparative'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedPayablesSummaryComparative",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedPayablesYTD",
-			       "full" => $translation->translateLabel('Aged Payables YTD'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedPayablesSummaryYTD",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivables",
-			       "full" => $translation->translateLabel('Aged Receivables'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummary",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivablesComparative",
-			       "full" => $translation->translateLabel('Aged Receivables Comparative'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummaryComparative",
-			       "short" => "Ag"
-			       ],
-			       [
-			       "id" => "Reports/Financials/IFRSAgedReports/AgedReceivablesYTD",
-			       "full" => $translation->translateLabel('Aged Receivables YTD'),
-			       "href"=> "reports/IFRSFinancials/RptIFRSAgedReceivablesSummaryYTD",
-			       "short" => "Ag"
-			       ]*/
-			]
+            ]
 		    ],
 	    [
 		"type" => "submenu",
