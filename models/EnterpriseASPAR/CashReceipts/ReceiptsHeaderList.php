@@ -755,6 +755,25 @@ class ReceiptsHeaderList extends gridDataSource{
             echo $result[0]->SWP_RET_VALUE;
     }
 
+    public function PostSelected(){
+        $user = Session::get("user");
+        
+        $numbers = explode(",", $_POST["ReceiptIDs"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Receipt_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@Success,@PostingResult,@SWP_RET_VALUE)", array());
+        
+            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if(!$success)
+            http_response_status(400);
+
+        echo $result[0]->SWP_RET_VALUE;
+    }
+
     public function Memorize(){
         $user = Session::get("user");
         $keyValues = explode("__", $_POST["id"]);

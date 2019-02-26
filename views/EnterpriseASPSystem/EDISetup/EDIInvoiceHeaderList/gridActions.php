@@ -58,11 +58,10 @@
          InvoiceNumbers.push(gridItemsSelected[ind].InvoiceNumber);
 
      serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostSelected', { InvoiceNumbers :InvoiceNumbers.join(',') }, function(){
-	 var ind;
-	 for(ind in InvoiceNumbers)
-	     serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'Post', { InvoiceNumber :InvoiceNumbers[ind] }, function(){
-		 console.log('invoices posted');
-	     });
+	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumber : InvoiceNumbers.join(',') }, function(){
+	     onlocation(location);
+	     console.log('invoices posted');
+	 });
      });
  }
 
@@ -73,8 +72,8 @@
 	 for(ind in invoices)
 	     invoicesArr.push(invoices[ind].InvoiceNumber);
 
-//	 console.log(invoicesArr.join(','));
 	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumbers : invoicesArr.join(',') }, function(){
+	     onlocation(location);
 	     console.log("posted");
 	 });
      });

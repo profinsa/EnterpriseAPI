@@ -1354,13 +1354,6 @@ class gridData extends gridDataSource{
         }
         
         echo json_encode($numbers, JSON_PRETTY_PRINT);
-        /*        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
-        if($result[0]->SWP_RET_VALUE > -1)
-            echo $result[0]->SWP_RET_VALUE;
-        else {
-            http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-            }*/
    }
 }
 ?>

@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 22/02/2019
+  Last Modified: 26/02/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -38,6 +38,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="EDI Receipts";
     public $idField ="ReceiptID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","ReceiptID"];
+    public $features = ["selecting"];
     public $gridFields = [
         "ReceiptID" => [
             "dbType" => "varchar(36)",
@@ -645,6 +646,151 @@ class gridData extends gridDataSource{
         }
     }
     
+    public $postHeaderFields = [
+        "CompanyID",
+        "DivisionID",
+        "DepartmentID",
+        "ReceiptID",
+        "ReceiptTypeID",
+        "TransactionDate",
+        "CustomerID",
+        "Amount",
+        "CurrencyID",
+        "CurrencyExchangeRate"
+    ];
+    
+    public $postDetailFields = [
+        "CompanyID",
+        "DivisionID",
+        "DepartmentID",
+        "ReceiptID",
+        "AppliedAmount",
+        "CurrencyID",
+        "CurrencyExchangeRate"
+    ];
+    
+    public function PostSelected(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["ReceiptIDs"]);
+        //FIXME checking on existing records in receiptsheader
+        $success = true;
+        $receipts = [];
+
+        foreach($numbers as $number){
+            $receiptHeader = (array)DB::select("select * from edireceiptsheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ReceiptID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number])[0];
+            $receiptDetail = (array)DB::select("select * from edireceiptsdetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ReceiptID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number])[0];
+            
+            $receipts[] = [
+                "header" => $receiptHeader,
+                "detail" => $receiptDetail
+            ];
+
+            //           if($result[0]->SWP_RET_VALUE == -1)
+            //  $success = false;
+        }
+
+        foreach($receipts as $receipt){
+            if(!count(DB::select("select * from receiptsheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ReceiptID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $receipt["header"]["ReceiptID"]]))){
+                $insertHeaderValues = [];
+                foreach($this->postHeaderFields as $key){
+                    if($key == "CompanyID")
+                        $insertHeaderValues[] = "'{$user["CompanyID"]}'";
+                    else if($key == "DivisionID")
+                        $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                    else if($key == "CompanyID")
+                        $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                    else
+                        $insertHeaderValues[] = "'{$receipt["header"][$key]}'";
+                }
+                $insertDetailValues = [];
+                foreach($this->postDetailFields as $key){
+                    if($key == "CompanyID")
+                        $insertDetailValues[] = "'{$user["CompanyID"]}'";
+                    else if($key == "DivisionID")
+                        $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                    else if($key == "CompanyID")
+                        $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                    else
+                        $insertDetailValues[] = "'{$receipt["detail"][$key]}'";
+                }
+
+                
+                DB::insert("insert into receiptsheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
+                DB::insert("insert into receiptsdetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+            }
+        }
+
+        echo "ok";
+        //        echo json_encode($invoices);
+            
+        /*        if($success)
+                  echo "ok";
+                  else {
+                  http_response_code(400);
+                  echo $result[0]->SWP_RET_VALUE;
+                  }*/
+    }
+    
+    public function PostAll(){
+        $user = Session::get("user");
+
+        $numbers = DB::select("select ReceiptID from edireceiptsheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        //FIXME checking on existing records in receiptheader
+        $success = true;
+        $receipts = [];
+
+        foreach($numbers as $number){
+            $receiptHeader = (array)DB::select("select * from edireceiptsheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ReceiptID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number->ReceiptID])[0];
+            $receiptDetail = (array)DB::select("select * from edireceiptsdetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ReceiptID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number->ReceiptID])[0];
+            
+            $receipts[] = [
+                "header" => $receiptHeader,
+                "detail" => $receiptDetail
+            ];
+        }
+
+       
+        foreach($receipts as $receipt){
+            if(!count(DB::select("select * from receiptsheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ReceiptID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $receipt["header"]["ReceiptID"]]))){
+                $insertHeaderValues = [];
+                foreach($this->postHeaderFields as $key){
+                    if($key == "CompanyID")
+                        $insertHeaderValues[] = "'{$user["CompanyID"]}'";
+                    else if($key == "DivisionID")
+                        $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                    else if($key == "CompanyID")
+                        $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                    else
+                        $insertHeaderValues[] = "'{$receipt["header"][$key]}'";
+                }
+                $insertDetailValues = [];
+                foreach($this->postDetailFields as $key){
+                    if($key == "CompanyID")
+                        $insertDetailValues[] = "'{$user["CompanyID"]}'";
+                    else if($key == "DivisionID")
+                        $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                    else if($key == "CompanyID")
+                        $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                    else
+                        $insertDetailValues[] = "'{$receipt["detail"][$key]}'";
+                }
+
+                DB::insert("insert into receiptsheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
+                usleep(50);
+                DB::insert("insert into receiptsdetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+            }
+        }
+        
+        echo json_encode($numbers, JSON_PRETTY_PRINT);
+        /*        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
+                  if($result[0]->SWP_RET_VALUE > -1)
+                  echo $result[0]->SWP_RET_VALUE;
+                  else {
+                  http_response_code(400);
+                  echo $result[0]->SWP_RET_VALUE;
+                  }*/
+    }
     public $columnNames = [
         "ReceiptID" => "Receipt ID",
         "ReceiptTypeID" => "Receipt Type ID",

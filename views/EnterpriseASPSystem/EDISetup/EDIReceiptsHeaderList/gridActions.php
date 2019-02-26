@@ -48,9 +48,47 @@
      });
  };
  
+ function postSelected(){
+     var ReceiptIDs = [], ind;
+     for(ind in gridItemsSelected)
+         ReceiptIDs.push(gridItemsSelected[ind].ReceiptID);
+
+     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostSelected', { ReceiptIDs :ReceiptIDs.join(',') }, function(){
+	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs :ReceiptIDs.join(',') }, function(){
+	     onlocation(location);
+	     console.log('receipts posted');
+	 });
+     });
+ }
+
+ function postAll(){
+     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostAll', {}, function(data){
+	 var receipts = JSON.parse(data), ind;
+	 var receiptsArr = [];
+	 for(ind in receipts)
+	     receiptsArr.push(receipts[ind].ReceiptID);
+
+	 //	 console.log(receiptsArr.join(','));
+	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
+	     onlocation(location);
+	     console.log("receipts posted");
+	 });
+     });
+ }
+
 </script>
 <a class="btn btn-info grid-actions-button" href="javascript:;" onclick="$('#uploadExcelModal').modal('show')">
     <?php
 	echo $translation->translateLabel("Upload Excel");
+    ?>
+</a>
+<a class="btn btn-info grid-actions-button" href="javascript:;" onclick="postSelected()">
+    <?php
+	echo $translation->translateLabel("Post Selected");
+    ?>
+</a>
+<a class="btn btn-info grid-actions-button grid-last-actions-button" href="javascript:;" onclick="postAll()">
+    <?php
+	echo $translation->translateLabel("Post All");
     ?>
 </a>
