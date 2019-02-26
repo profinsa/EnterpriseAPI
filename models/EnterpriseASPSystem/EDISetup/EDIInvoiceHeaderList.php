@@ -1347,8 +1347,8 @@ class gridData extends gridDataSource{
                         $insertDetailValues[] = "'{$invoice["detail"][$key]}'";
                 }
 
-                usleep(50);
                 DB::insert("insert into invoiceheader (" . implode(',', $this->postHeaderFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
+                usleep(50);
                 DB::insert("insert into invoicedetail (" . implode(',', $this->postDetailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
             }
         }

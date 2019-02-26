@@ -69,13 +69,14 @@
  function postAll(){
      serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostAll', {}, function(data){
 	 var invoices = JSON.parse(data), ind;
-	 var invoice = invoices.shift();
-	 function postInvoice(){
-	     var invoice = invoices.shift();
-	     if(invoice)
-		 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'Post', { InvoiceNumber : invoice.InvoiceNumber }, postInvoice);
-	 }
-	 postInvoice();
+	 var invoicesArr = [];
+	 for(ind in invoices)
+	     invoicesArr.push(invoices[ind].InvoiceNumber);
+
+//	 console.log(invoicesArr.join(','));
+	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumbers : invoicesArr.join(',') }, function(){
+	     console.log("posted");
+	 });
      });
  }
 </script>

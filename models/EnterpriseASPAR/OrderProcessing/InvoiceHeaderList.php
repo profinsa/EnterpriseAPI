@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 13/02/2019
+  Last Modified: 26/02/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -1298,7 +1298,7 @@ class InvoiceHeaderList extends gridDataSource{
 
         $details =  DB::select("SELECT * from InvoiceDetail WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND InvoiceNumber='" . $invoiceNumber . "'", array());
         
-        $recalc->calculate(Session::get("user"), $this, $header, $details, "InvoiceNumber", $invoiceNumber);
+        $recalc->calculate($user, $this, $header, $details, "InvoiceNumber", $invoiceNumber);
         return "ok";
     }
 
@@ -1314,6 +1314,27 @@ class InvoiceHeaderList extends gridDataSource{
          } else {
             echo "ok" . $result[0]->PostingResult;
          }
+    }
+    
+    public function PostSelected(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["InvoiceNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Invoice_Control('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@PostingResult,@SWP_RET_VALUE)", array());
+            
+            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo $result[0]->SWP_RET_VALUE;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
     }
 
     public function Memorize(){
