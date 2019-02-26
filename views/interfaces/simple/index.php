@@ -71,6 +71,8 @@
 
     ?>
     <body onload="main();" style="min-height: 800px;" class="">
+	<?php
+	?>
 	<header id="header">
             <div id="navbar">
 		<div class="navbar navbar-inverse left-iconbar-wrapper" role="navigation">

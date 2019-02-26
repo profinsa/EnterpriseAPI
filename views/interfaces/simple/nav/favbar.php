@@ -153,7 +153,7 @@
      var shortcutsRaw = localStorage.getItem('shortcuts');
      var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
 
-     var hh = "index#/grid/" + id + "/grid/Main/all";
+     var hh = "index.php#/?page=grid&action=" + id;
      $('#MyShortcuts').append(
          '<li id="' + id + '"style="height:60px; width: 100%"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" href="' + hh + '" class="nav-link">' + shortcuts[id].label + '</a></li>'
      );
@@ -326,7 +326,6 @@
  }
 
  function custormizeShortcutsOpen() {
-     console.log("HOAHAHA");
      function compare(a,b) {
          if (a.order < b.order)
              return -1;
@@ -335,7 +334,7 @@
          return 0;
      }
 
-     $('#customize-icon-bar').modal('show');
+     $('#customize-icon-bar').appendTo('body').modal('show');
      currentShortcut = null; 
      var shortcutsRaw = localStorage.getItem('shortcuts');
      var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
@@ -412,7 +411,7 @@
      $("#ShortcutLabelEdit").val(shortcuts[currentShortcut].label);
      $("#ShortcutDescriptionEdit").val(shortcuts[currentShortcut].description);
      $('#customize-icon-bar').modal('hide');
-     $('#customize-icon-bar-edit').modal('show');
+     $('#customize-icon-bar-edit').appendTo('body').modal('show');
  }
 
  function custormizeShortcutsAddOpen() {
@@ -461,7 +460,7 @@
 
      currentShortcut = null;
      $('#customize-icon-bar').modal('hide');
-     $('#customize-icon-bar-add').modal('show');
+     $('#customize-icon-bar-add').appendTo('body').modal('show');
  }
 
  $('#customize-icon-bar-add').on('hidden.bs.modal', function () {

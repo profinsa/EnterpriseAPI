@@ -1,34 +1,34 @@
 <div id="change-avatar-dialog" class="modal" tabindex="-1" role="dialog">
-<div class="modal-dialog" role="document" style="display:table; width: 400px !important">
-    <div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Change Avatar</h4>
-    </div>
-    <div class="modal-body">
-        <div style="margin-top:10px;"></div>
-        <form class="form-material form-horizontal m-t-30">
-        <div class="row">
-        <div class="col-md-6 col-xs-6">
-            <img id="avatar_preview" class="img-responsive user-photo" src="<?php echo $user['PictureURL'] ? 'uploads\\' . $user['PictureURL'] : 'assets/images/avatar_2x.png'; ?>">
-        </div>
-        <div class="col-md-6 col-xs6">
-            <!-- <input class="file_attachment" type="hidden" name="profile_image_input" id="profile_image_input" value="" /> -->
-            <input onchange="previewAvatar(this);" type="file" id="avatar_attachment" name="avatar_attachment" class="form-control" value="" />
-        </div>
-        </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveAvatar()">
-        <?php echo $translation->translateLabel("Save"); ?>
-        </button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">
-        <?php echo $translation->translateLabel("Cancel"); ?>
-        </button>
-    </div>
-    </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+    <div class="modal-dialog" role="document" style="display:table; width: 400px !important">
+	<div class="modal-content">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">Change Avatar</h4>
+	    </div>
+	    <div class="modal-body">
+		<div style="margin-top:10px;"></div>
+		<form class="form-material form-horizontal m-t-30">
+		    <div class="row">
+			<div class="col-md-6 col-xs-6">
+			    <img id="avatar_preview" class="img-responsive user-photo" src="<?php echo $user['PictureURL'] ? 'uploads\\' . $user['PictureURL'] : 'assets/images/avatar_2x.png'; ?>">
+			</div>
+			<div class="col-md-6 col-xs6">
+			    <!-- <input class="file_attachment" type="hidden" name="profile_image_input" id="profile_image_input" value="" /> -->
+			    <input onchange="previewAvatar(this);" type="file" id="avatar_attachment" name="avatar_attachment" class="form-control" value="" />
+			</div>
+		    </div>
+		</form>
+	    </div>
+	    <div class="modal-footer">
+		<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveAvatar()">
+		    <?php echo $translation->translateLabel("Save"); ?>
+		</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal">
+		    <?php echo $translation->translateLabel("Cancel"); ?>
+		</button>
+	    </div>
+	</div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <script>
