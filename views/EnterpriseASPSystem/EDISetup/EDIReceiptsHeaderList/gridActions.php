@@ -53,11 +53,12 @@
      for(ind in gridItemsSelected)
          ReceiptIDs.push(gridItemsSelected[ind].ReceiptID);
 
-     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostSelected', { ReceiptIDs :ReceiptIDs.join(',') }, function(){
-	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs :ReceiptIDs.join(',') }, function(){
+     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostSelected', { ReceiptIDs :ReceiptIDs.join(',') }, function(data){
+	 console.log(data);
+/*	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs :ReceiptIDs.join(',') }, function(){
 	     onlocation(location);
 	     console.log('receipts posted');
-	 });
+	 });*/
      });
  }
 
@@ -68,11 +69,12 @@
 	 for(ind in receipts)
 	     receiptsArr.push(receipts[ind].ReceiptID);
 
+	 console.log(data);
 	 //	 console.log(receiptsArr.join(','));
-	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
+	 /*serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
 	     onlocation(location);
 	     console.log("receipts posted");
-	 });
+	 });*/
      });
  }
 

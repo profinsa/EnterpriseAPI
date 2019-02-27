@@ -1297,17 +1297,17 @@ class gridData extends gridDataSource{
 
         $this->checkRecordsForCustomer(
             [
-                "header" => "ediinvoiceheader",
-                "detail" => "ediinvoicedetail"
+                "header" => $tablesFrom["header"],
+                "detail" => $tablesFrom["detail"]
             ],
-            "InvoiceNumber",
+            $keyField,
             $records);
         $this->checkRecordsForItem(
             [
-                "header" => "ediinvoiceheader",
-                "detail" => "ediinvoicedetail"
+                "header" => $tablesFrom["header"],
+                "detail" => $tablesFrom["detail"]
             ],
-            "InvoiceNumber",
+            $keyField,
             $records);
         
         foreach($records as $record){
