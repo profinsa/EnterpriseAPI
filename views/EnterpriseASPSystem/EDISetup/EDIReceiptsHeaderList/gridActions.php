@@ -77,7 +77,7 @@
 
 	 console.log(data);
 	 //	 console.log(receiptsArr.join(','));
-	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
+	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(data){
 	     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'WriteErrors', JSON.parse(data), function(data){
 		 onlocation(location);
 	     });
