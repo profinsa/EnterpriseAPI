@@ -60,9 +60,10 @@
 	     receiptsArr.push(receipts[ind]);
 	 
 	 console.log(data);
-	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
-	     onlocation(location);
-	     console.log('receipts posted');
+	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(data){
+	     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'WriteErrors', JSON.parse(data), function(data){
+		 onlocation(location);
+	     });
 	 });
      });
  }
@@ -77,8 +78,9 @@
 	 console.log(data);
 	 //	 console.log(receiptsArr.join(','));
 	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
-	     onlocation(location);
-	     console.log("receipts posted");
+	     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'WriteErrors', JSON.parse(data), function(data){
+		 onlocation(location);
+	     });
 	 });
      });
  }

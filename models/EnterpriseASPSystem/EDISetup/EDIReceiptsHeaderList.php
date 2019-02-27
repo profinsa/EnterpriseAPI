@@ -730,6 +730,16 @@ class gridData extends gridDataSource{
         return $postedNumbers;
     }
     
+    public function WriteErrors(){
+        $user = Session::get("user");
+
+        foreach($_POST as $number=>$value)
+            if($value != "ok")
+                DB::update("UPDATE edireceiptsheader SET Errors = CONCAT(IFNULL(Errors,''), '$value. ') WHERE ReceiptID=?", [$number]);
+            else
+                DB::delete("DELETE from edireceiptsheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ReceiptID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number]);
+    }
+    
     public function PostSelected(){
         $user = Session::get("user");
 
