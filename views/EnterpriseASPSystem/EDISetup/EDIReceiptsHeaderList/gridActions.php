@@ -57,7 +57,7 @@
 	 var receipts = JSON.parse(data), ind;
 	 var receiptsArr = [];
 	 for(ind in receipts)
-	     receiptsArr.push(receipts[ind].ReceiptID);
+	     receiptsArr.push(receipts[ind]);
 	 
 	 console.log(data);
 	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
@@ -72,7 +72,7 @@
 	 var receipts = JSON.parse(data), ind;
 	 var receiptsArr = [];
 	 for(ind in receipts)
-	     receiptsArr.push(receipts[ind].ReceiptID);
+	     receiptsArr.push(receipts[ind]);
 
 	 console.log(data);
 	 //	 console.log(receiptsArr.join(','));

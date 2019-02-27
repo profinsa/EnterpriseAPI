@@ -1314,7 +1314,7 @@ class gridData extends gridDataSource{
             if(!count(DB::select("select * from {$tablesTo["header"]} WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND $keyField=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $record["header"][$keyField]]))&&
                !key_exists("error", $record)
             ){
-                $postedNumber[] = $record["header"][$keyField];
+                $postedNumbers[] = $record["header"][$keyField];
                 $insertHeaderValues = [];
                 foreach($headerFields as $key){
                     if($key == "CompanyID")

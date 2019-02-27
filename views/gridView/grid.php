@@ -280,7 +280,7 @@
          gridItemsSelected[item] = gridItems[item];
      else
 	 delete gridItemsSelected[item];
-     console.log(JSON.stringify(gridItemsSelected));
+     //console.log(JSON.stringify(gridItemsSelected));
  }
  
  //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
@@ -308,7 +308,7 @@
 	 "row" : row
      };
      obj[keyAndId[1]] = gridItems[row][columnName] = $(item).val();
-     console.log(JSON.stringify(obj, null, 3));
+     //console.log(JSON.stringify(obj, null, 3));
      /*	 $.post("", obj)
 	.success(function(data) {
 	onlocation(window.location);

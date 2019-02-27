@@ -61,10 +61,10 @@
 	 var invoices = JSON.parse(data), ind;
 	 var invoicesArr = [];
 	 for(ind in invoices)
-	     invoicesArr.push(invoices[ind].InvoiceNumber);
+	     invoicesArr.push(invoices[ind]);
 	 
 	 console.log(data);
-	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumber : invoicesArr.join(',') }, function(){
+	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumbers : invoicesArr.join(',') }, function(){
 	     onlocation(location);
 	     console.log('invoices posted');
 	 });
@@ -76,7 +76,7 @@
 	 var invoices = JSON.parse(data), ind;
 	 var invoicesArr = [];
 	 for(ind in invoices)
-	     invoicesArr.push(invoices[ind].InvoiceNumber);
+	     invoicesArr.push(invoices[ind]);
 
 	 console.log(data);
 	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumbers : invoicesArr.join(',') }, function(){
