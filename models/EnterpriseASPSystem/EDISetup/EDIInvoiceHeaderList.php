@@ -45,11 +45,11 @@ class gridData extends gridDataSource{
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "OrderNumber" => [
+        /*        "OrderNumber" => [
             "dbType" => "varchar(36)",
             "inputType" => "text",
             "defaultValue" => ""
-        ],
+            ],*/
         "EDIDirectionTypeID" => [
             "dbType" => "varchar(1)",
             "inputType" => "text",
@@ -75,7 +75,12 @@ class gridData extends gridDataSource{
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "ShipDate" => [
+        "Errors" => [
+            "dbType" => "varchar(255)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        /*        "ShipDate" => [
             "dbType" => "datetime",
             "inputType" => "datetime",
             "defaultValue" => "now"
@@ -84,7 +89,7 @@ class gridData extends gridDataSource{
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
-        ],
+            ],*/
     ];
 
     public $editCategories = [
@@ -165,6 +170,11 @@ class gridData extends gridDataSource{
             ],
             "TaxGroupID" => [
                 "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Errors" => [
+                "dbType" => "varchar(255)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ]
@@ -958,7 +968,8 @@ class gridData extends gridDataSource{
         "ItemUnitPrice" => "Price",
         "Total" => "Total",
         "GLSalesAccount" => "Sales Account",
-        "ProjectID" => "ProjectID"
+        "ProjectID" => "ProjectID",
+        "Errors" => "Errors"
     ];
     public $customerFields = [
         "CustomerID" => [
@@ -1241,18 +1252,38 @@ class gridData extends gridDataSource{
         "CurrencyExchangeRate"
     ];
 
-    /*
-      plan
-      move insert logic to separated function
-      rename Post to Copy or something like that
-      implemented checking on customer and item existing, 
-      copy only valid records
-      write errors to unvalid records
-     */
+    public function checkRecordsForCustomer($tablesFrom, $keyField, &$records){
+        $user = Session::get("user");
+        
+        foreach($records as &$record){
+            $customerRecord = (array)DB::select("select CustomerID from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CustomerID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $record["header"]["CustomerID"]]);
+            if(!count($customerRecord)){
+                DB::update("UPDATE {$tablesFrom["header"]} SET Errors = 'Customer not found. ' WHERE $keyField=?", [$record["header"][$keyField]]);
+                $record["error"] = true;
+            }else{
+                DB::update("UPDATE {$tablesFrom["header"]} SET Errors = '' WHERE $keyField=?", [$record["header"][$keyField]]);
+            }
+            //echo "Customer {$record["header"]["CustomerID"]} not found\n";
+        }
+    }
+
+    public function checkRecordsForItem($tablesFrom, $keyField, &$records){
+        $user = Session::get("user");
+
+        foreach($records as &$record){
+            $customerRecord = (array)DB::select("select ItemID from inventoryitems WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ItemID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $record["detail"]["ItemID"]]);
+            if(!count($customerRecord)){
+                DB::update("UPDATE {$tablesFrom["header"]} SET Errors = CONCAT(IFNULL(Errors,''), 'Item not found. ') WHERE $keyField=?", [$record["header"][$keyField]]);
+                $record["error"] = true;
+            //echo "Item {$record["detail"]["ItemID"]} not found\n";
+            }
+        }
+    }
 
     public function copyRecordsToAnotherTable($tablesFrom, $tablesTo, $headerFields, $detailFields, $keyField, $keys){
         $user = Session::get("user");
         $records = [];
+        $postedNumbers = [];
 
         foreach($keys as $key){
             $header = (array)DB::select("select * from {$tablesFrom["header"]} WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND $keyField=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $key])[0];
@@ -1264,46 +1295,74 @@ class gridData extends gridDataSource{
             ];
         }
 
+        $this->checkRecordsForCustomer(
+            [
+                "header" => "ediinvoiceheader",
+                "detail" => "ediinvoicedetail"
+            ],
+            "InvoiceNumber",
+            $records);
+        $this->checkRecordsForItem(
+            [
+                "header" => "ediinvoiceheader",
+                "detail" => "ediinvoicedetail"
+            ],
+            "InvoiceNumber",
+            $records);
+        
         foreach($records as $record){
-            if(!count(DB::select("select * from {$tablesTo["header"]} WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND $keyField=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $record["header"][$keyField]]))){
-                    $insertHeaderValues = [];
-                    foreach($headerFields as $key){
-                        if($key == "CompanyID")
-                            $insertHeaderValues[] = "'{$user["CompanyID"]}'";
-                        else if($key == "DivisionID")
-                            $insertHeaderValues[] = "'{$user["DivisionID"]}'";
-                        else if($key == "CompanyID")
-                            $insertHeaderValues[] = "'{$user["DivisionID"]}'";
-                        else
-                            $insertHeaderValues[] = "'{$record["header"][$key]}'";
-                    }
-                    $insertDetailValues = [];
-                    foreach($detailFields as $key){
-                        if($key == "CompanyID")
-                            $insertDetailValues[] = "'{$user["CompanyID"]}'";
-                        else if($key == "DivisionID")
-                            $insertDetailValues[] = "'{$user["DivisionID"]}'";
-                        else if($key == "CompanyID")
-                            $insertDetailValues[] = "'{$user["DivisionID"]}'";
-                        else
-                            $insertDetailValues[] = "'{$record["detail"][$key]}'";
-                    }
-
-                    //echo "insert into {$tablesTo["header"]} (" . implode(',', $headerFields) . ") values (" . implode(',', $insertHeaderValues) . ")\n";
-                    //echo "insert into {$tablesTo["detail"]} (" . implode(',', $detailFields) . ") values (" . implode(',', $insertDetailValues) . ")\n";
-                    DB::insert("insert into {$tablesTo["header"]} (" . implode(',', $headerFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
-                    DB::insert("insert into {$tablesTo["detail"]} (" . implode(',', $detailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+            if(!count(DB::select("select * from {$tablesTo["header"]} WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND $keyField=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $record["header"][$keyField]]))&&
+               !key_exists("error", $record)
+            ){
+                $postedNumber[] = $record["header"][$keyField];
+                $insertHeaderValues = [];
+                foreach($headerFields as $key){
+                    if($key == "CompanyID")
+                        $insertHeaderValues[] = "'{$user["CompanyID"]}'";
+                    else if($key == "DivisionID")
+                        $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                    else if($key == "CompanyID")
+                        $insertHeaderValues[] = "'{$user["DivisionID"]}'";
+                    else
+                        $insertHeaderValues[] = "'{$record["header"][$key]}'";
                 }
+                $insertDetailValues = [];
+                foreach($detailFields as $key){
+                    if($key == "CompanyID")
+                        $insertDetailValues[] = "'{$user["CompanyID"]}'";
+                    else if($key == "DivisionID")
+                        $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                    else if($key == "CompanyID")
+                        $insertDetailValues[] = "'{$user["DivisionID"]}'";
+                    else
+                        $insertDetailValues[] = "'{$record["detail"][$key]}'";
+                }
+
+                echo "insert into {$tablesTo["header"]} (" . implode(',', $headerFields) . ") values (" . implode(',', $insertHeaderValues) . ")\n";
+                echo "insert into {$tablesTo["detail"]} (" . implode(',', $detailFields) . ") values (" . implode(',', $insertDetailValues) . ")\n";
+                //DB::insert("insert into {$tablesTo["header"]} (" . implode(',', $headerFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
+                //usleep(500);
+                //DB::insert("insert into {$tablesTo["detail"]} (" . implode(',', $detailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+            }
         }
+
+        return $postedNumbers;
     }
     
+    /*
+      plan
+      rename Post to Copy or something like that
+      copy only valid records
+      write errors to unvalid records
+     */
+
     public function PostSelected(){
         $user = Session::get("user");
 
         $numbers = explode(",", $_POST["InvoiceNumbers"]);
         //FIXME checking on existing records in invoiceheader
         $success = true;
-        $this->copyRecordsToAnotherTable(
+        $postedNumbers = $this->copyRecordsToAnotherTable(
             [
                 "header" => "ediinvoiceheader",
                 "detail" => "ediinvoicedetail"
@@ -1318,7 +1377,7 @@ class gridData extends gridDataSource{
             $numbers
         );
 
-        echo json_encode($numbers, JSON_PRETTY_PRINT);
+        echo json_encode($postedNumbers, JSON_PRETTY_PRINT);
     }
     
     public function PostAll(){
@@ -1330,9 +1389,7 @@ class gridData extends gridDataSource{
         foreach($numberRecords as $record)
             $numbers[] = $record->InvoiceNumber;
 
-        //print_r($numbers);
-        //        return;
-        $this->copyRecordsToAnotherTable(
+        $postedNumbers = $this->copyRecordsToAnotherTable(
             [
                 "header" => "ediinvoiceheader",
                 "detail" => "ediinvoicedetail"
@@ -1346,8 +1403,8 @@ class gridData extends gridDataSource{
             "InvoiceNumber",
             $numbers
         );
-        
-        echo json_encode($numbers, JSON_PRETTY_PRINT);
+
+        echo json_encode($postedNumbers, JSON_PRETTY_PRINT);
    }
 }
 ?>
