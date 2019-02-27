@@ -759,19 +759,18 @@ class ReceiptsHeaderList extends gridDataSource{
         $user = Session::get("user");
         
         $numbers = explode(",", $_POST["ReceiptIDs"]);
-        $success = true;
+        $ret = [];
         foreach($numbers as $number){
             DB::statement("CALL Receipt_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@Success,@PostingResult,@SWP_RET_VALUE)", array());
         
             $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE', array());
             if($result[0]->SWP_RET_VALUE == -1)
-                $success = false;
+                $ret[$number] = $result[0]->PostingResult;
+            else
+                $ret[$number] = "ok";
         }
 
-        if(!$success)
-            http_response_status(400);
-
-        echo $result[0]->SWP_RET_VALUE;
+        echo json_encode($ret, JSON_PRETTY_PRINT);
     }
 
     public function Memorize(){

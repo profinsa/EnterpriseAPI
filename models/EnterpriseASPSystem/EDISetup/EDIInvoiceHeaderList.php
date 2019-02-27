@@ -1349,11 +1349,19 @@ class gridData extends gridDataSource{
         return $postedNumbers;
     }
     
+
+    public function WriteErrors(){
+        $user = Session::get("user");
+
+        foreach($_POST as $number=>$value)
+            if($value != "ok")
+                DB::update("UPDATE ediinvoiceheader SET Errors = CONCAT(IFNULL(Errors,''), '$value. ') WHERE InvoiceNumber=?", [$number]);
+            else
+                DB::delete("DELETE from ediinvoiceheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND InvoiceNumber=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $number]);
+    }
     /*
       plan
       rename Post to Copy or something like that
-      copy only valid records
-      write errors to unvalid records
      */
 
     public function PostSelected(){

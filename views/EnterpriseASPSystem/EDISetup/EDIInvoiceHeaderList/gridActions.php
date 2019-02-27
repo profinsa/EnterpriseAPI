@@ -63,10 +63,11 @@
 	 for(ind in invoices)
 	     invoicesArr.push(invoices[ind]);
 	 
-	 console.log(data);
-	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumbers : invoicesArr.join(',') }, function(){
-	     onlocation(location);
-	     console.log('invoices posted');
+	 //	 console.log(data);
+	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumbers : invoicesArr.join(',') }, function(data){
+	     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'WriteErrors', JSON.parse(data), function(data){
+		 onlocation(location);
+	     });
 	 });
      });
  }
@@ -78,12 +79,12 @@
 	 for(ind in invoices)
 	     invoicesArr.push(invoices[ind]);
 
-	 console.log(data);
-	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumbers : invoicesArr.join(',') }, function(){
-	     onlocation(location);
-	     console.log("posted");
+	 //	 console.log(data);
+	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumbers : invoicesArr.join(',') }, function(data){
+	     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'WriteErrors', JSON.parse(data), function(data){
+		 onlocation(location);
+	     });
 	 });
-	 
      });
  }
 </script>
