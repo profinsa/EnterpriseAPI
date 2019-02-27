@@ -58,11 +58,16 @@
          InvoiceNumbers.push(gridItemsSelected[ind].InvoiceNumber);
 
      serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostSelected', { InvoiceNumbers :InvoiceNumbers.join(',') }, function(data){
+	 var invoices = JSON.parse(data), ind;
+	 var invoicesArr = [];
+	 for(ind in invoices)
+	     invoicesArr.push(invoices[ind].InvoiceNumber);
+	 
 	 console.log(data);
-/*	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumber : InvoiceNumbers.join(',') }, function(){
+	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumber : invoicesArr.join(',') }, function(){
 	     onlocation(location);
 	     console.log('invoices posted');
-	 });*/
+	 });
      });
  }
 
@@ -74,12 +79,11 @@
 	     invoicesArr.push(invoices[ind].InvoiceNumber);
 
 	 console.log(data);
-	 /*
 	 serverProcedureAnyCall("AccountsReceivable/OrderProcessing/ViewInvoices", 'PostSelected', { InvoiceNumbers : invoicesArr.join(',') }, function(){
 	     onlocation(location);
 	     console.log("posted");
 	 });
-	 */
+	 
      });
  }
 </script>

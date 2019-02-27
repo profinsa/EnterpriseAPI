@@ -54,11 +54,16 @@
          ReceiptIDs.push(gridItemsSelected[ind].ReceiptID);
 
      serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'PostSelected', { ReceiptIDs :ReceiptIDs.join(',') }, function(data){
+	 var receipts = JSON.parse(data), ind;
+	 var receiptsArr = [];
+	 for(ind in receipts)
+	     receiptsArr.push(receipts[ind].ReceiptID);
+	 
 	 console.log(data);
-/*	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs :ReceiptIDs.join(',') }, function(){
+	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
 	     onlocation(location);
 	     console.log('receipts posted');
-	 });*/
+	 });
      });
  }
 
@@ -71,10 +76,10 @@
 
 	 console.log(data);
 	 //	 console.log(receiptsArr.join(','));
-	 /*serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
+	 serverProcedureAnyCall("AccountsReceivable/CashReceiptsScreens/ViewCashReceipts", 'PostSelected', { ReceiptIDs : receiptsArr.join(',') }, function(){
 	     onlocation(location);
 	     console.log("receipts posted");
-	 });*/
+	 });
      });
  }
 

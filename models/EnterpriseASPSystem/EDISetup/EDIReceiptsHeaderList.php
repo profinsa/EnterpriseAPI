@@ -719,11 +719,11 @@ class gridData extends gridDataSource{
                         $insertDetailValues[] = "'{$record["detail"][$key]}'";
                 }
 
-                echo "insert into {$tablesTo["header"]} (" . implode(',', $headerFields) . ") values (" . implode(',', $insertHeaderValues) . ")\n";
-                echo "insert into {$tablesTo["detail"]} (" . implode(',', $detailFields) . ") values (" . implode(',', $insertDetailValues) . ")\n";
-                //DB::insert("insert into {$tablesTo["header"]} (" . implode(',', $headerFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
+                //  echo "insert into {$tablesTo["header"]} (" . implode(',', $headerFields) . ") values (" . implode(',', $insertHeaderValues) . ")\n";
+                //echo "insert into {$tablesTo["detail"]} (" . implode(',', $detailFields) . ") values (" . implode(',', $insertDetailValues) . ")\n";
+                DB::insert("insert into {$tablesTo["header"]} (" . implode(',', $headerFields) . ") values (" . implode(',', $insertHeaderValues) . ")", []);
                 //usleep(500);
-                //DB::insert("insert into {$tablesTo["detail"]} (" . implode(',', $detailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
+                DB::insert("insert into {$tablesTo["detail"]} (" . implode(',', $detailFields) . ") values (" . implode(',', $insertDetailValues) . ")", []);
             }
         }
 
