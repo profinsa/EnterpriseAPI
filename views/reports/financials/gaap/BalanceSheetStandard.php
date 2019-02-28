@@ -3,7 +3,7 @@
 
      Method: render report page
 
-     Date created: Nikita Zaharov, 27.04.2016
+     Date created: Nikita Zaharov, 27.04.2017
 
      Use: this model used for 
    - for loading data using stored procedures
@@ -20,7 +20,7 @@
      Calls:
      datasource
 
-     Last Modified: 2.05.2016
+     Last Modified: 2.05.2017
      Last Modified by: Nikita Zaharov
    -->
 <div id="report" class="row">

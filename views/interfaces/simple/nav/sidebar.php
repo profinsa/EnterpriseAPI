@@ -51,7 +51,7 @@
 		    "iconclass" => "list",
 		    "data" => [
                         [
-			    "id" => "Inventory/ItemsStock/ViewInventoryItems",
+			    "id" => "Inventory/ItemsStock/ViewInventoryOnHand",
 			    "full" => $translation->translateLabel('List Invetory') //FIXME
 			],
                         [
@@ -118,16 +118,16 @@
 			    "href" => $linksMaker->makeGridItemNewPartial("Payroll/EmployeeManagement/ViewEmployees"),
 			    "full" => $translation->translateLabel('New Employee')
 			],
-			[
+                        /*			[
 			    "id" => "ccountsPayable/Checks/QuickCheck",
 			    "full" => $translation->translateLabel('Quick Check')
-			],
+                ],*/
 			[
-			    "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
+			    "id" => "AccountsReceivable/CashReceiptsProcessing/ViewCashReceipts",
 			    "full" => $translation->translateLabel('Receive Payment') //FIXME
 			],
 			[
-			    "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
+			    "id" => "AccountsPayable/VoucherScreens/ViewVouchers",
 			    "full" => $translation->translateLabel('Make Payment') //FIXME
 			],
 		    ],
@@ -146,7 +146,12 @@
 			[
 			    "type" => "relativeLink",
 			    "href" => "page=financials&type=gaap&module=main",
-			    "full" => $translation->translateLabel('Financial Statements')
+			    "full" => $translation->translateLabel('Financial Statements GAAP')
+			],
+			[
+			    "type" => "relativeLink",
+			    "href" => "page=financials&type=ifrs&module=main",
+			    "full" => $translation->translateLabel('Financial Statements IFRS')
 			],
 		    ],
 		    "topbar" => $leftMenu["Main"]["data"][7]["data"]
