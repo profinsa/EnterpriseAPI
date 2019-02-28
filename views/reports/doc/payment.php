@@ -38,20 +38,20 @@
 		<table class="col-md-12 col-xs-12">
 		    <tr>
 			<td rowspan="3" style="width:10%">
-			    <img src="<?php echo  $user["company"]->CompanyLogoUrl;?>">
+			    <img src="<?php echo  $user["company"]["CompanyLogoUrl"];?>">
 			</td>
 			<td style="width:90%; font-size:16pt; font-weight:bold;">
-			    <?php echo  $user["company"]->CompanyName;?>
+			    <?php echo  $user["company"]["CompanyName"];?>
 			</td>
 		    </tr>
 		    <tr>
 			<td style="width:90%">
-			    <?php echo  $user["company"]->CompanyAddress1 . ", " . $user["company"]->CompanyCity . ", " . $user["company"]->CompanyState . ", " . $user["company"]->CompanyZip;?>
+			    <?php echo  $user["company"]["CompanyAddress1"] . ", " . $user["company"]["CompanyCity"] . ", " . $user["company"]["CompanyState"] . ", " . $user["company"]["CompanyZip"];?>
 			</td>
 		    </tr>
 		    <tr>
 			<td style="width:90%">
-			    <?php echo  $user["company"]->CompanyPhone . ", " . $user["company"]->CompanyEmail . ", <span>" . $user["company"]->CompanyWebAddress;?></span>
+			    <?php echo  $user["company"]["CompanyPhone"] . ", " . $user["company"]["CompanyEmail"] . ", <span>" . $user["company"]["CompanyWebAddress"];?></span>
 			</td>
 		    </tr>
 		</table>

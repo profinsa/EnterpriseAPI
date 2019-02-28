@@ -1,29 +1,29 @@
 <?php
 /*
-Name of Page: doc reports invoice data source
+  Name of Page: doc reports invoice data source
 
-Method: It provides data from database for docreports pages
+  Method: It provides data from database for docreports pages
 
-Date created: Nikita Zaharov, 20.04.2016
+  Date created: Nikita Zaharov, 20.04.2017
 
-Use: this model used for 
-- for loading data using stored procedures
+  Use: this model used for 
+  - for loading data using stored procedures
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-controllers/docreports
+  Called from:
+  controllers/docreports
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 05.05.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 28.02.2019
+  Last Modified by: Nikita Zaharov
 */
 
 function numberToStr($strin){
@@ -50,9 +50,6 @@ class docReportsData{
 
     public function getUser(){
         $user = $_SESSION["user"];
-
-        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
-        
         return $user;
     }
 

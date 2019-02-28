@@ -4,7 +4,7 @@
 
    Method: It provides data from database for docreports pages
 
-   Date created: Nikita Zaharov, 19.04.2016
+   Date created: Nikita Zaharov, 19.04.2017
 
    Use: this model used for 
    - for loading data using stored procedures
@@ -22,7 +22,7 @@
    Calls:
    sql
 
-   Last Modified: 05.05.2016
+   Last Modified: 28.02.2019
    Last Modified by: Nikita Zaharov
  */
 
@@ -50,9 +50,6 @@ class docReportsData{
 
     public function getUser(){
         $user = $_SESSION["user"];
-
-        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
-        
         return $user;
     }
 

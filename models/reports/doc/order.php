@@ -50,8 +50,6 @@ class docReportsData{
 
     public function getUser(){
         $user = $_SESSION["user"];
-        $user["company"] = $GLOBALS["capsule"]::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] ."' and DivisionID='" . $user["DivisionID"] . "' and DepartmentID='" . $user["DepartmentID"] . "'", array())[0];
-        
         return $user;
     }
 
