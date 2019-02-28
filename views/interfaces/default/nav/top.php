@@ -6,16 +6,14 @@
 	    <a class="logo" href="index.php">
 		<b>
 		    <!--This is dark logo icon-->
-		    <img src="assets/images/stfb-logo.gif" style="width:60px; height:60px" alt="home" class="dark-logo" />
+		    <img src="<?php echo  $user["company"]["MediumLogo"];?>" style="width:60px; height:60px" alt="home" class="dark-logo" />
 		    <!--This is light logo icon-->
-		    <img src="assets/images/stfb-logo.gif" style="width:60px; height:60px"  alt="home" class="light-logo" />
+		    <img src="<?php echo  $user["company"]["MediumLogo"];?>" style="width:60px; height:60px"  alt="home" class="light-logo" />
 		</b>
-		<span class="hidden-xs">
-		    <!--This is dark logo text-->
-		    <img src="assets/images/stfb-logo.gif" alt="home" class="dark-logo" />
-		    <!--This is light logo text-->
-		    <img src="assets/images/stfb-logo.gif" alt="home" class="light-logo" />
-		</span>
+		<!--  		<span class="hidden-xs">
+		<img src="<?php echo  $user["company"]["MediumLogo"];?>" alt="home" class="dark-logo" />
+		<img src="<?php echo  $user["company"]["MediumLogo"];?>" alt="home" class="light-logo" />
+		</span> -->
 	    </a>
 	</div>
 	<ul class="nav navbar-top-links navbar-left hidden-xs">

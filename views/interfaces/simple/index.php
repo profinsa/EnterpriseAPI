@@ -77,7 +77,7 @@
             <div id="navbar">
 		<div class="navbar navbar-inverse left-iconbar-wrapper" role="navigation">
 		    <div class="navbar-header top-bar logo-container">
-			<a class="navbar-brand nav-link logo-link" href="index.php#/?page=dashboard"><img id="logosection"  src="assets/images/stfb-logo.gif" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
+			<a class="navbar-brand nav-link logo-link" href="index.php#/?page=dashboard"><img id="logosection"  src="<?php echo  $user["company"]["MediumLogo"];?>" class="logo"><span class="home-icon glyphicon glyphicon-th-large" title="Home"></span></a>
 		    </div>
 		    <!-- <button type="button" class="navbar-toggle hide-on-small" data-toggle="collapse" data-target=".navbar-body">
 			 <span class="icon-bar"></span>
