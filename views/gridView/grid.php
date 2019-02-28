@@ -45,7 +45,7 @@
 //		    echo $data->$formatFunction($item, "gridFields", $key, $value, false);
 //		}
 //		else
-		    echo formatField($data->gridFields[$key], $value);
+		return  formatField($data->gridFields[$key], $value);
 		break;
 	    case "dateTimeFull" :
 		return $value;
