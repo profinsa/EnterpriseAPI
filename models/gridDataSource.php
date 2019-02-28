@@ -2,9 +2,9 @@
 /*
   Name of Page: gridDataSource class
 
-  Method: ancestor for GeneralLedger/* models. It provides data from database
+  Method: ancestor for all gridView models. It provides data from database
 
-  Date created: Nikita Zaharov, 02.17.2017
+  Date created: Nikita Zaharov, 17.02.2017
 
   Use: this model used for
   - for loading data from tables, updating, inserting and deleting
@@ -17,12 +17,12 @@
   - methods has own output
 
   Called from:
-  inherited by models/GeneralLedger/*
+  inherited by all gridView models
 
   Calls:
   sql
 
-  Last Modified: 01/11/2019
+  Last Modified: 28/02/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -1533,12 +1533,17 @@ EOF;
    
     //getting data for new record
     public function getNewItem($id, $type){            
+        $user = Session::get("user");
+        
         $values = [];
 
         foreach($this->idFields as $value)
             $idDefaults[] = "$value='DEFAULT'";
 
+        //loading default values from Company record
         $defaultRecord = DB::select("select * from {$this->tableName} WHERE " . implode(" AND ", $idDefaults), array());
+        $defaultCompanyRecord = DB::select("select * from companies WHERE CompanyID=?", [$user["CompanyID"]])[0];
+        $defaultCompanyRecord->CurrencyExchangeRate = DB::select("select CurrencyExchangeRate from currencytypes WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CurrencyID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $defaultCompanyRecord->CurrencyID])[0]->CurrencyExchangeRate;
         if(count($defaultRecord))
             $defaultRecord = $defaultRecord[0];
         else
@@ -1551,9 +1556,16 @@ EOF;
                 if ($struct->Field == $key) {
                     if(!key_exists("defaultOverride", $this->editCategories[$type][$key]) &&
                        !key_exists("dirtyAutoincrement", $this->editCategories[$type][$key])){
+                        /*loading default values in order: 
+                          -column default value
+                          -default value from default record
+                          -default value from company record
+                         */
                         $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
                         if($defaultRecord && property_exists($defaultRecord, $key) && $defaultRecord->$key != "")
                             $this->editCategories[$type][$key]["defaultValue"] = $defaultRecord->$key;
+                        if(property_exists($defaultCompanyRecord, $key) && $defaultCompanyRecord->$key != "")
+                            $this->editCategories[$type][$key]["defaultValue"] = $defaultCompanyRecord->$key;
                     }
                     if(!key_exists("required", $this->editCategories[$type][$key])){
                         switch ($struct->Null) {
