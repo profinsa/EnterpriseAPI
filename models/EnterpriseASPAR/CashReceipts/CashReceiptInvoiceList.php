@@ -177,6 +177,7 @@ EOF;
         // `application/json`
         $data = json_decode($postData, true);
         $success = true;
+        //        print_r($data);
         foreach($data as $row){
             DB::statement("CALL Receipt_Cash(?, ?, ?, ?, ?, 'Invoice', ?, FALSE, @Result, @SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["InvoiceNumber"], $row["InvoiceNumber"], $row["AmountToApply"]));
         
@@ -187,11 +188,6 @@ EOF;
             }
         }
         
-        /*        if(!$success) {
-            http_response_code(400);
-            echo "failed";
-            } else {*/
-            echo "ok";
-            //}
+        echo "ok";
     }
 }
