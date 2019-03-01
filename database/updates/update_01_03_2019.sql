@@ -684,7 +684,7 @@ Revision History:
    IF v_ForceReceiptClosing = 1 then
 
       SET @SWV_Error = 0;
-      SET v_ReturnStatus = CustomerFinancials_ReCalc2(v_CompanyID,v_DivisionID,v_DepartmentID,v_CustomerID);
+      CALL CustomerFinancials_ReCalc(v_CompanyID,v_DivisionID,v_DepartmentID,v_CustomerID, v_ReturnStatus);
       IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 	-- An error occured, go to the error handler
 	
