@@ -180,7 +180,7 @@ EOF;
         //        print_r($data);
         foreach($data as $row){
             //           print_r($row);
-            DB::statement("CALL Receipt_Cash(?, ?, ?, ?, ?, 'Invoice', ?, FALSE, @Result, @SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["InvoiceNumber"], $row["InvoiceNumber"], $row["AmountToApply"]));
+            DB::statement("CALL Receipt_Cash(?, ?, ?, ?, ?, 'Invoice', ?, FALSE, @Result, @SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["InvoiceNumber"], $row["ReceiptID"], $row["AmountToApply"]));
         
             $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE');
             if($result[0]->SWP_RET_VALUE == 0){
