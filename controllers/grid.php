@@ -56,7 +56,7 @@ class controller{
         "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderHoldList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
 
-        "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+        "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
 
         "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderHoldList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
         "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderClosedList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
