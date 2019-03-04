@@ -1,32 +1,32 @@
 <?php
 /*
-Name of Page: LedgerTransactions model
+  Name of Page: LedgerTransactions model
 
-Method: Model for gridView. It provides data from database and default values, column names and categories
+  Method: Model for gridView. It provides data from database and default values, column names and categories
 
-Date created: Nikita Zaharov, 13.02.2016
+  Date created: Nikita Zaharov, 13.02.2017
 
-Use: this model used by gridView for:
-- as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
-- for loading data from tables, updating, inserting and deleting
+  Use: this model used by gridView for:
+  - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
+  - for loading data from tables, updating, inserting and deleting
 
-Input parameters:
-$db: database instance
-methods has own parameters
+  Input parameters:
+  $db: database instance
+  methods has own parameters
 
-Output parameters:
-- dictionaries as public properties
-- methods has own output
+  Output parameters:
+  - dictionaries as public properties
+  - methods has own output
 
-Called from:
-created and used for ajax requests by Grid controller
-used as model by gridView
+  Called from:
+  created and used for ajax requests by Grid controller
+  used as model by gridView
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 08.30.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 04.01.2019
+  Last Modified by: Nikita Zaharov
 */
 
 require __DIR__ . "/../../../models/gridDataSource.php";

@@ -21,7 +21,7 @@
      grid model
      app as model
 
-     Last Modified: 01.29.2019
+     Last Modified: 03.04.2019
      Last Modified by: Nikita Zaharov
 -->
 
@@ -40,12 +40,12 @@
 		return date("m/d/y", strtotime($value));
 		break;
 	    case "text":
-//		if(key_exists("formatFunction", $data->gridFields[$key])){
-//		    $formatFunction = $data->gridFields[$key]["formatFunction"];
-//		    echo $data->$formatFunction($item, "gridFields", $key, $value, false);
-//		}
-//		else
-		return  formatField($data->gridFields[$key], $value);
+		if(key_exists("formatFunction", $data->gridFields[$key])){
+		    $formatFunction = $data->gridFields[$key]["formatFunction"];
+		    echo $data->$formatFunction($row, "gridFields", $key, $value, false);
+		}
+		else
+		    return  formatField($data->gridFields[$key], $value);
 		break;
 	    case "dateTimeFull" :
 		return $value;
