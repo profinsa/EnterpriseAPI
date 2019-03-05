@@ -8,11 +8,12 @@
   Output parameters:
   Called from:
   Calls:
-  Last Modified: 01/23/2019
+  Last Modified: 05/02/2019
   Last Modified by:  Nikita Zaharov
 */
 
 require __DIR__ . "/reportTypes.php";
+//require __DIR__ . "/../../translation.php";
 require __DIR__ . "/../../reports/autoreports.php";
 
 /*function numberToStr($strin){
@@ -40,10 +41,50 @@ class gridData extends autoreportsData{
 
     public function getReportTypes(){
         $user = Session::get("user");
+        //        $translation = new translation($this->user["language"]);
         $translation = new translation($user["language"]);
+        $keyString = '';
+        require __DIR__ . "/../../menuCategoriesGenerated.php";
         
+        //        print_r($leftMenu["Main"]["data"][7]["data"]);
+        $reportTypes = [];
+        foreach($leftMenu["Main"]["data"][7]["data"] as $item)
+            if($item["id"] != "Reports/GenericReport" && $item["id"] != "Reports/SavedReports"){
+                if(key_exists("type", $item) && $item["type"] == "submenu"){
+                    foreach($item["data"] as $subitem)
+                        if(key_exists("type", $subitem) && $subitem["type"] == "submenu")
+                            foreach($subitem["data"] as $ssubitem)
+                                if(key_exists("type", $ssubitem) && $ssubitem["type"] == "submenu")
+                                    foreach($ssubitem["data"] as $ssubitem);
+                                else{
+                                    $matches;
+                                    preg_match('/source\=(\w*)&/', $ssubitem["href"], $matches);
+                                    $reportTypes[$ssubitem["full"]] = [
+                                        "label" => $ssubitem["full"],
+                                        "reportName" => $matches[1]
+                                    ];
+                                }
+                        else{
+                            $matches;
+                            preg_match('/source\=(\w*)&/', $subitem["href"], $matches);
+                            $reportTypes[$subitem["full"]] = [
+                                "label" => $subitem["full"],
+                                "reportName" => $matches[1]
+                            ];
+                        }
+                }else{
+                    $matches;
+                    preg_match('/source\=(\w*)&/', $item["href"], $matches);
+                    $reportTypes[$item["full"]] = [
+                        "label" => $item["full"],
+                        "reportName" => $matches[1]
+                    ];
+                }
+            }
+
         header('Content-Type: application/json');
-        echo json_encode(getStandardReportTypes($translation), JSON_PRETTY_PRINT);
+        echo json_encode($reportTypes, JSON_PRETTY_PRINT);
+        //echo json_encode(getStandardReportTypes($translation), JSON_PRETTY_PRINT);
     }
 
     public function getParametersForEnter(){
