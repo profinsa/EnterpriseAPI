@@ -1103,9 +1103,9 @@ Revision History:
    AND TaxGroups.TaxGroupID = v_TaxGroupID;
    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
    BEGIN
-      GET DIAGNOSTICS CONDITION 1
-      @p3 = RETURNED_SQLSTATE, @p4 = MESSAGE_TEXT;
-      select @p3, @p4;
+--      GET DIAGNOSTICS CONDITION 1
+--      @p3 = RETURNED_SQLSTATE, @p4 = MESSAGE_TEXT;
+--      select @p3, @p4;
       SET @SWV_Error = 1;
       SET NO_DATA = -2;
    END;
