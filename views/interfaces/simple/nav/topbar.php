@@ -66,9 +66,9 @@
 	     </a>
 	     
 	     <ul class="dropdown-menu pull-right" style="width: 300px">
-	     <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBackPayroll/EmployeeSetup/ViewTaskList\", \"$public_prefix/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Task</a></li>
-	     <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(CRMHelpDesk/CRM/ViewLeads\", \"$public_prefix/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Follow-up</a></li>
-	     <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(AccountsReceivable/Customers/ViewCustomers, $public_prefix/index#/dashboard, new, )" ?>" class="nav-link">Add Customer Contact</a></li>
+	     <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBackPayroll/EmployeeSetup/ViewTaskList\", \"/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Task</a></li>
+	     <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(CRMHelpDesk/CRM/ViewLeads\", \"/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Follow-up</a></li>
+	     <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(AccountsReceivable/Customers/ViewCustomers, /index#/dashboard, new, )" ?>" class="nav-link">Add Customer Contact</a></li>
 	     </ul>
 	     </li>
 	     <li class="top-bar-link2 float-right">
