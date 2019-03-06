@@ -1103,6 +1103,9 @@ Revision History:
    AND TaxGroups.TaxGroupID = v_TaxGroupID;
    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
    BEGIN
+      GET DIAGNOSTICS CONDITION 1
+      @p3 = RETURNED_SQLSTATE, @p4 = MESSAGE_TEXT;
+      select @p3, @p4;
       SET @SWV_Error = 1;
       SET NO_DATA = -2;
    END;
@@ -1236,7 +1239,7 @@ at the end, the record from this table will be grouped by the GLTransactionAccou
 -- An error occured, go to the error handler
 -- and drop the temporary table
 
-      SET v_ErrorMessage = 'Insert into LedgerTransactions failed2';
+      SET v_ErrorMessage = 'Insert into LedgerTransactions failed';
       ROLLBACK;
       DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
       IF v_ErrorMessage <> '' then
@@ -1407,12 +1410,13 @@ at the end, the record from this table will be grouped by the GLTransactionAccou
 -- insert the record for @TaxAmount
 -- we will redistribute @TaxAmount between different GLTaxAccounts included to Invoice tax group
    IF SWV_CurNum = 0 THEN
-      OPEN cInvoiceDetail;
+-- it was cInvoiceDetail, but used as cInvoiceDetail2, WTF?
+      OPEN cInvoiceDetail2;
    ELSE
       OPEN cInvoiceDetail2;
    END IF;
    SET NO_DATA = 0;
-   FETCH cInvoiceDetail INTO v_TaxAmount,v_TaxGroupID,v_TotalTaxPercent,v_ItemProjectID;
+   FETCH cInvoiceDetail2 INTO v_TaxAmount,v_TaxGroupID,v_TotalTaxPercent,v_ItemProjectID;
    WHILE NO_DATA = 0 DO
       IF v_TaxAmount > 0 then
 
@@ -1485,10 +1489,10 @@ at the end, the record from this table will be grouped by the GLTransactionAccou
          CLOSE cTax;
       end if;
       SET NO_DATA = 0;
-      FETCH cInvoiceDetail INTO v_TaxAmount,v_TaxGroupID,v_TotalTaxPercent,v_ItemProjectID;
+      FETCH cInvoiceDetail2 INTO v_TaxAmount,v_TaxGroupID,v_TotalTaxPercent,v_ItemProjectID;
    END WHILE;
    IF SWV_CurNum = 0 THEN
-      CLOSE cInvoiceDetail;
+      CLOSE cInvoiceDetail2;
    ELSE
       CLOSE cInvoiceDetail2;
    END IF;
