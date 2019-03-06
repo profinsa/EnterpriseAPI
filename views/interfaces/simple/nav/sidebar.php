@@ -1,191 +1,192 @@
-<div class="bs-glyphicons">
-    <ul class="bs-glyphicons-list" style="margin-top: 9px">
-        <?php
-            $public_prefix = '';
-            $iconbarCategories = [
-                "Customer" => [
-                    "full" => $translation->translateLabel('CUSTOMER'),
-                    "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
-                    "iconclass" => "user",
-                    "data" => [
-                        [
-			    "type" => "absoluteLink",
-			    "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/Customers/ViewCustomers"),
-			    "full" => $translation->translateLabel('New Customer')
-			],
-                        [
-			    "id" => "AccountsReceivable/Customers/ViewCustomers",
-			    "full" => $translation->translateLabel('View Customers')
-			],
-                        [
-			    "id" => "AccountsReceivable/Customers/ViewCustomerFinancials",
-			    "full" => $translation->translateLabel('View Customer Balances')
-			],
-		    ],
-		    "topbar" => $leftMenu["Main"]["data"][2]["data"][0]["data"]
+<?php
+    $iconbarCategories = [
+        "Customer" => [
+            "full" => $translation->translateLabel('CUSTOMER'),
+            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "user",
+            "data" => [
+                [
+		    "type" => "absoluteLink",
+		    "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/Customers/ViewCustomers"),
+		    "full" => $translation->translateLabel('New Customer')
 		],
-		"Vendor" => [
-		    "full" => $translation->translateLabel('VENDOR'),
-		    "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
-		    "iconclass" => "user",
-		    "data" => [
-                        [
-			    "type" => "absoluteLink",
-			    "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/Vendors/ViewVendors"),
-			    "full" => $translation->translateLabel('New Vendor')
-			],
-                        [
-			    "id" => "AccountsPayable/Vendors/ViewVendors",
-			    "full" => $translation->translateLabel('View Vendors')
-			],
-                        [
-			    "id" => "AccountsPayable/Vendors/ViewVendorFinancials",
-			    "full" => $translation->translateLabel('View Vendor Balances')
-			],
-		    ],
-		    "topbar" => $leftMenu["Main"]["data"][3]["data"][0]["data"]
+                [
+		    "id" => "AccountsReceivable/Customers/ViewCustomers",
+		    "full" => $translation->translateLabel('View Customers')
 		],
-		"Items" => [
-		    "full" => $translation->translateLabel('ITEM'),
-		    "link" => "index.php#/?page=dashboard",
-		    "iconclass" => "list",
-		    "data" => [
-                        [
-			    "id" => "Inventory/ItemsStock/ViewInventoryOnHand",
-			    "full" => $translation->translateLabel('List Invetory') //FIXME
-			],
-                        [
-			    "id" => "Inventory/ItemsStock/ViewInventoryItems",
-			    "full" => $translation->translateLabel('View Items')
-			],
-                        [
-			    "type" => "absoluteLink",
-			    "href" => $linksMaker->makeGridItemNewPartial("Inventory/ItemsStock/ViewInventoryItems"),
-			    "full" => $translation->translateLabel('New Item')
-			],
-		    ],
-		    "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
+                [
+		    "id" => "AccountsReceivable/Customers/ViewCustomerFinancials",
+		    "full" => $translation->translateLabel('View Customer Balances')
 		],
-		"Sales" => [
-		    "full" => $translation->translateLabel('SALES'),
-		    "iconclass" => "list-alt",
-		    "data" => [
-                        [
-			    "type" => "absoluteLink",
-			    "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/OrderProcessing/ViewInvoices"),
-			    "full" => $translation->translateLabel('New Invoice')
-			],
-			[
-			    "id" => "AccountsReceivable/OrderProcessing/ViewInvoices",
-			    "full" => $translation->translateLabel('View Invoices')
-			]
-		    ],
-		    "topbar" => $leftMenu["Main"]["data"][2]["data"]
+	    ],
+	    "topbar" => $leftMenu["Main"]["data"][2]["data"][0]["data"]
+	],
+	"Vendor" => [
+	    "full" => $translation->translateLabel('VENDOR'),
+	    "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
+	    "iconclass" => "user",
+	    "data" => [
+                [
+		    "type" => "absoluteLink",
+		    "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/Vendors/ViewVendors"),
+		    "full" => $translation->translateLabel('New Vendor')
 		],
-		"Purchase" => [
-		    "full" => $translation->translateLabel('PURCHASE'),
-		    "link" => "index.php#/?page=dashboard",
-		    "iconclass" => "calendar",
-		    "data" => [
-                        [
-			    "type" => "absoluteLink",
-			    "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/PurchaseProcessing/ViewPurchases"),
-			    "full" => $translation->translateLabel('New Purchase')
-			],
-			[
-			    "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
-			    "full" => $translation->translateLabel('View Purchases')
-			],
-			[
-			    "id" => "AccountsPayable/PurchaseProcessing/ReceivePurchases",
-			    "full" => $translation->translateLabel('Receive Purchase')
-			]
-		    ],
-		    "topbar" => $leftMenu["Main"]["data"][3]["data"]
+                [
+		    "id" => "AccountsPayable/Vendors/ViewVendors",
+		    "full" => $translation->translateLabel('View Vendors')
 		],
-		"Accounting" => [
-		    "full" => $translation->translateLabel('ACCOUNTING'),
-		    "link" => "index.php#/?page=dashboard",
-		    "iconclass" => "calendar",
-		    "data" => [
-                        [
-			    "type" => "absoluteLink",
-			    "href" => $linksMaker->makeGridItemNewPartial("GeneralLedger/Ledger/ViewGLTransactions"),
-			    "full" => $translation->translateLabel('New GL Transaction')
-			],
-                        [
-			    "type" => "absoluteLink",
-			    "href" => $linksMaker->makeGridItemNewPartial("Payroll/EmployeeManagement/ViewEmployees"),
-			    "full" => $translation->translateLabel('New Employee')
-			],
-                        /*			[
-			    "id" => "ccountsPayable/Checks/QuickCheck",
-			    "full" => $translation->translateLabel('Quick Check')
-                ],*/
-			[
-			    "id" => "AccountsReceivable/CashReceiptsProcessing/ViewCashReceipts",
-			    "full" => $translation->translateLabel('Receive Payment') //FIXME
-			],
-			[
-			    "id" => "AccountsPayable/VoucherScreens/ViewVouchers",
-			    "full" => $translation->translateLabel('Make Payment') //FIXME
-			],
-		    ],
-		    "topbar" => $leftMenu["Main"]["data"]
+                [
+		    "id" => "AccountsPayable/Vendors/ViewVendorFinancials",
+		    "full" => $translation->translateLabel('View Vendor Balances')
 		],
-		"Reports" => [
-		    "full" => $translation->translateLabel('REPORTS'),
-		    "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
-		    "iconclass" => "stats",
-		    "data" => [
-			[
-			    "type" => "absoluteLink",
-			    "href" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
-			    "full" => $translation->translateLabel('Reports Engine')
-			],
-			[
-			    "type" => "relativeLink",
-			    "href" => "page=financials&type=gaap&module=main",
-			    "full" => $translation->translateLabel('Financial Statements GAAP')
-			],
-			[
-			    "type" => "relativeLink",
-			    "href" => "page=financials&type=ifrs&module=main",
-			    "full" => $translation->translateLabel('Financial Statements IFRS')
-			],
-		    ],
-		    "topbar" => $leftMenu["Main"]["data"][7]["data"]
+	    ],
+	    "topbar" => $leftMenu["Main"]["data"][3]["data"][0]["data"]
+	],
+	"Items" => [
+	    "full" => $translation->translateLabel('ITEM'),
+	    "link" => "index.php#/?page=dashboard",
+	    "iconclass" => "list",
+	    "data" => [
+                [
+		    "id" => "Inventory/ItemsStock/ViewInventoryOnHand",
+		    "full" => $translation->translateLabel('List Invetory') //FIXME
 		],
-		"Favorits" => [
-		    "full" => $translation->translateLabel('FAVORITES'),
-		    "favorits" => true,
-		    "iconclass" => "heart"
+                [
+		    "id" => "Inventory/ItemsStock/ViewInventoryItems",
+		    "full" => $translation->translateLabel('View Items')
 		],
-		"Help" => [
-		    "full" => $translation->translateLabel('HELP'),
-		    "link" => "https://stfbinc.helpdocs.com",
-		    "target" => "_blank",
-		    "iconclass" => "question-sign",
-                    "data" => [
-			[
-			    "type" => "absoluteLink",
-			    "target" => "_blank",
-			    "href" => "https://stfbinc.teamwork.com/support/",
-			    "full" => $translation->translateLabel('New Ticket')
-			],
-			[
-			    "type" => "absoluteLink",
-			    "target" => "_blank",
-			    "href" => "https://stfbinc.helpdocs.com",
-			    "full" => $translation->translateLabel('Help System')
-			],
-		    ]
+                [
+		    "type" => "absoluteLink",
+		    "href" => $linksMaker->makeGridItemNewPartial("Inventory/ItemsStock/ViewInventoryItems"),
+		    "full" => $translation->translateLabel('New Item')
+		],
+	    ],
+	    "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
+	],
+	"Sales" => [
+	    "full" => $translation->translateLabel('SALES'),
+	    "iconclass" => "list-alt",
+	    "data" => [
+                [
+		    "type" => "absoluteLink",
+		    "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/OrderProcessing/ViewInvoices"),
+		    "full" => $translation->translateLabel('New Invoice')
+		],
+		[
+		    "id" => "AccountsReceivable/OrderProcessing/ViewInvoices",
+		    "full" => $translation->translateLabel('View Invoices')
 		]
-	    ];
+	    ],
+	    "topbar" => $leftMenu["Main"]["data"][2]["data"]
+	],
+	"Purchase" => [
+	    "full" => $translation->translateLabel('PURCHASE'),
+	    "link" => "index.php#/?page=dashboard",
+	    "iconclass" => "calendar",
+	    "data" => [
+                [
+		    "type" => "absoluteLink",
+		    "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/PurchaseProcessing/ViewPurchases"),
+		    "full" => $translation->translateLabel('New Purchase')
+		],
+		[
+		    "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
+		    "full" => $translation->translateLabel('View Purchases')
+		],
+		[
+		    "id" => "AccountsPayable/PurchaseProcessing/ReceivePurchases",
+		    "full" => $translation->translateLabel('Receive Purchase')
+		]
+	    ],
+	    "topbar" => $leftMenu["Main"]["data"][3]["data"]
+	],
+	"Accounting" => [
+	    "full" => $translation->translateLabel('ACCOUNTING'),
+	    "link" => "index.php#/?page=dashboard",
+	    "iconclass" => "calendar",
+	    "data" => [
+                [
+		    "type" => "absoluteLink",
+		    "href" => $linksMaker->makeGridItemNewPartial("GeneralLedger/Ledger/ViewGLTransactions"),
+		    "full" => $translation->translateLabel('New GL Transaction')
+		],
+                [
+		    "type" => "absoluteLink",
+		    "href" => $linksMaker->makeGridItemNewPartial("Payroll/EmployeeManagement/ViewEmployees"),
+		    "full" => $translation->translateLabel('New Employee')
+		],
+                /*			[
+		   "id" => "ccountsPayable/Checks/QuickCheck",
+		   "full" => $translation->translateLabel('Quick Check')
+                   ],*/
+		[
+		    "id" => "AccountsReceivable/CashReceiptsProcessing/ViewCashReceipts",
+		    "full" => $translation->translateLabel('Receive Payment') //FIXME
+		],
+		[
+		    "id" => "AccountsPayable/VoucherScreens/ViewVouchers",
+		    "full" => $translation->translateLabel('Make Payment') //FIXME
+		],
+	    ],
+	    "topbar" => $leftMenu["Main"]["data"]
+	],
+	"Reports" => [
+	    "full" => $translation->translateLabel('REPORTS'),
+	    "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
+	    "iconclass" => "stats",
+	    "data" => [
+		[
+		    "type" => "absoluteLink",
+		    "href" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
+		    "full" => $translation->translateLabel('Reports Engine')
+		],
+		[
+		    "type" => "relativeLink",
+		    "href" => "page=financials&type=gaap&module=main",
+		    "full" => $translation->translateLabel('Financial Statements GAAP')
+		],
+		[
+		    "type" => "relativeLink",
+		    "href" => "page=financials&type=ifrs&module=main",
+		    "full" => $translation->translateLabel('Financial Statements IFRS')
+		],
+	    ],
+	    "topbar" => $leftMenu["Main"]["data"][7]["data"]
+	],
+	"Favorits" => [
+	    "full" => $translation->translateLabel('FAVORITES'),
+	    "favorits" => true,
+	    "iconclass" => "heart"
+	],
+	"Help" => [
+	    "full" => $translation->translateLabel('HELP'),
+	    "link" => "https://stfbinc.helpdocs.com",
+	    "target" => "_blank",
+	    "iconclass" => "question-sign",
+            "data" => [
+		[
+		    "type" => "absoluteLink",
+		    "target" => "_blank",
+		    "href" => "https://stfbinc.teamwork.com/support/",
+		    "full" => $translation->translateLabel('New Ticket')
+		],
+		[
+		    "type" => "absoluteLink",
+		    "target" => "_blank",
+		    "href" => "https://stfbinc.helpdocs.com",
+		    "full" => $translation->translateLabel('Help System')
+		],
+	    ]
+	]
+    ];
+?>
 
+<div class="bs-glyphicons">
+    <ul class="bs-glyphicons-list" style="margin-top:44px">
+        <?php
 	    foreach ($iconbarCategories as $key=>$item){
 		if (!key_exists("favorits", $item)) {
-		    echo '<li onmouseenter="onShowSubMenu(event, ' . "'$key'" . ');" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'topbarMenuRender(\''. $key . '\');'  : 'topbarMenuRender();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
+		    echo '<li onmouseenter="onShowSubMenu(event, ' . "'$key'" . ');" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'topbarMenuRender(\''. $key . '\'); onTopbarUpdate();'  : 'topbarMenuRender(); onTopbarUpdate();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
 		    if (key_exists("data", $item)) {
 			echo "<ul onmouseenter=\"onShowSubMenu(event, " . "'$key'" . ");\" onmouseleave=\"onHideSubMenu(event);\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
 			foreach($item["data"] as $subitem) {
@@ -220,114 +221,28 @@
     </ul>
 </div>
 <script>
-
  function onShowSubMenu(e, name) {
-     var menu = $(e.target).find('ul');
+     var menu = $(e.target).find('ul'),
+	 topbarHeight = parseInt($('#topbarMenu').css("height"));
+     
      $(menu[0]).css({display: 'block'});
      if(name == "Customer")
-	 $(menu[0]).css({top: (parseInt($('#topbarMenu').css("height")) + 50) + 'px'});
-     else if(parseInt($('#topbarMenu').css("height")) > 100 && name == "Vendor")
-	 $(menu[0]).css({top: (parseInt($('#topbarMenu').css("height")) + 50) + 'px'});
+	 $(menu[0]).css({top: (topbarHeight + 50) + 'px'});
+     else if(topbarHeight > 100 && name == "Vendor")
+	 $(menu[0]).css({top: (topbarHeight + 50) + 'px'});
      else
 	 $(menu[0]).css({top: 'auto'});
+ }
 
+ function onTopbarUpdate(){
+     var topbarHeight = parseInt($('#topbarMenu').css("height"));
+     $('.bs-glyphicons-list').css('margin-top', topbarHeight + 'px');
  }
 
  function onHideSubMenu(e) {
      $('.iconbarsubmenu').css("display", "none");
      submenuToggled = false;
  }
-
- $(document).click(function(e){
-     $('.iconbarsubmenu').css("display", "none");
-     submenuToggled = false;
- });
-
- var submenuToggled;
- $('.dropdown-submenu a.mysubmenu').on("mouseover", function(e){
-     if (submenuToggled) {
-	 $(submenuToggled).next('ul').toggle();
-     }
-     submenuToggled = this;
-     $(this).next('ul').toggle();
-     e.stopPropagation();
-     e.preventDefault();
- });
- $('.dropdown-submenu a.mysubmenu').on("mouseout", function(e){
-     if (submenuToggled) {
-	 $(submenuToggled).next('ul').toggle();
-     }
-     submenuToggled = this;
-     $(this).next('ul').toggle();
-     e.stopPropagation();
-     e.preventDefault();
- });
-
- var sidebarItems = $(".collapse-sidebar-item");
- var twoLevelItems = $(".collapse-sidebar-two-level-item");
- var threeLevelItems = $(".collapse-sidebar-three-level-item");
- function onhidden(e) {
-     $(e.currentTarget).css('display', 'none');
-     var $sidebar   = $("#sidebar"),
-	 $content = $("#content");
-     $content.height('100%');
-     if($sidebar.height() > $content.height())
-	 $content.height($sidebar.height());
-     e.stopPropagation();
- }
- sidebarItems.on('hidden.bs.collapse', onhidden);
- twoLevelItems.on('hidden.bs.collapse', onhidden);
- threeLevelItems.on('hidden.bs.collapse', onhidden);
- sidebarItems.on('show.bs.collapse', function(e){
-     sideBarCloseAll();
-     $(e.currentTarget).css('display', 'block');
-     var $sidebar   = $("#sidebar"),
-	 $content = $("#content");
-     if($sidebar.height() > $content.height())
-	 $content.css("height", $sidebar.height() + "px");
-     e.stopPropagation();
- });
- sidebarItems.on("shown.bs.collapse", function(e){
-     var $sidebar   = $("#sidebar"),
-	 $content = $("#content");
-     if($sidebar.height() > $content.height())
-	 $content.css("height", ($sidebar.height() + 20) + "px");
- });
-
- twoLevelItems.on('show.bs.collapse', function(e){
-     var parent = $(e.currentTarget).parent().parent().parent().parent();
-     //     console.log(parent, parent.is('.in, .collapse'));
-     //     if(!parent.is('.in, .collapse'))
-     sideBarCloseTwoLevelAll();
-     $(e.currentTarget).css('display', 'block');
-     var $sidebar   = $("#sidebar"),
-	 $content = $("#content");
-     if($sidebar.height() > $content.height())
-	 $content.css("height", $sidebar.height() + "px");
-     e.stopPropagation();
- });
- twoLevelItems.on("shown.bs.collapse", function(e){
-     var $sidebar   = $("#sidebar"),
-	 $content = $("#content");
-     if($sidebar.height() > $content.height())
-	 $content.css("height", ($sidebar.height() + 20) + "px");
- });
-
- threeLevelItems.on('show.bs.collapse', function(e){
-     sideBarCloseThreeLevelAll();
-     $(e.currentTarget).css('display', 'block');
-     var $sidebar   = $("#sidebar"),
-	 $content = $("#content");
-     if($sidebar.height() > $content.height())
-	 $content.css("height", $sidebar.height() + "px");
-     e.stopPropagation();
- });
- threeLevelItems.on("shown.bs.collapse", function(e){
-     var $sidebar   = $("#sidebar"),
-	 $content = $("#content");
-     if($sidebar.height() > $content.height())
-	 $content.css("height", ($sidebar.height() + 20) + "px");
- });
 
  function sideBarCloseAll(){
      sidebarItems.css('display', 'none');
@@ -429,6 +344,21 @@
      $(object.parentNode).addClass("left-iconbar-active");
  }
 
+ function fillByFavorits() {
+     // clearCustomToolbar();
+     // var shortcutsRaw = localStorage.getItem('shortcuts');
+     // var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
+     // var keys = Object.keys(shortcuts).map(function (key) {
+     //     return shortcuts[key];
+     // }).sort(compare);
+     // // var keys = Object.keys(shortcuts);
+     // var parent = document.getElementById('custom-toolbar');
+
+     // for (var i = 0; i < keys.length; i++) {
+     //     createFavItem(keys[i].id);
+     // }
+ }
+
  var sidebarToggled = true;
  function toggleSideBar(){
      if(sidebarToggled){
@@ -470,44 +400,97 @@
      });
  })();
 
- // function createFavItem(id) {
- //     var shortcutsRaw = localStorage.getItem('shortcuts');
- //     var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
+ $(document).click(function(e){
+     $('.iconbarsubmenu').css("display", "none");
+     submenuToggled = false;
+ });
 
- //     var hh = "" + "/index#/grid/" + id + "/grid/Main/all";
+ //old side menu like in default interface implementation
+ var submenuToggled;
+ $('.dropdown-submenu a.mysubmenu').on("mouseover", function(e){
+     if (submenuToggled) {
+	 $(submenuToggled).next('ul').toggle();
+     }
+     submenuToggled = this;
+     $(this).next('ul').toggle();
+     e.stopPropagation();
+     e.preventDefault();
+ });
+ $('.dropdown-submenu a.mysubmenu').on("mouseout", function(e){
+     if (submenuToggled) {
+	 $(submenuToggled).next('ul').toggle();
+     }
+     submenuToggled = this;
+     $(this).next('ul').toggle();
+     e.stopPropagation();
+     e.preventDefault();
+ });
 
- //     $('#custom-toolbar').append(
- //         '<li style="float: left" id="' + id + '"class="top-bar-link"><a href="' + hh+ '" style="padding: 5px 7px !important">' + shortcuts[id].label + '</a></li>'
- //     );
- // }
-
- // function clearCustomToolbar() {
- //     // var parent = document.getElementById('custom-toolbar');
- //     // while (parent.firstChild) {
- //     //     parent.removeChild(parent.firstChild);
- //     // }
- // }
- // function compare(a,b) {
- //     if (a.order < b.order)
- //         return -1;
- //     if (a.order > b.order)
- //         return 1;
- //     return 0;
- // }
-
- function fillByFavorits() {
-     // clearCustomToolbar();
-     // var shortcutsRaw = localStorage.getItem('shortcuts');
-     // var shortcuts = shortcutsRaw ? JSON.parse(shortcutsRaw) : {};
-     // var keys = Object.keys(shortcuts).map(function (key) {
-     //     return shortcuts[key];
-     // }).sort(compare);
-     // // var keys = Object.keys(shortcuts);
-     // var parent = document.getElementById('custom-toolbar');
-
-     // for (var i = 0; i < keys.length; i++) {
-     //     createFavItem(keys[i].id);
-     // }
+ var sidebarItems = $(".collapse-sidebar-item");
+ var twoLevelItems = $(".collapse-sidebar-two-level-item");
+ var threeLevelItems = $(".collapse-sidebar-three-level-item");
+ function onhidden(e) {
+     $(e.currentTarget).css('display', 'none');
+     var $sidebar   = $("#sidebar"),
+	 $content = $("#content");
+     $content.height('100%');
+     if($sidebar.height() > $content.height())
+	 $content.height($sidebar.height());
+     e.stopPropagation();
  }
+ sidebarItems.on('hidden.bs.collapse', onhidden);
+ twoLevelItems.on('hidden.bs.collapse', onhidden);
+ threeLevelItems.on('hidden.bs.collapse', onhidden);
+ sidebarItems.on('show.bs.collapse', function(e){
+     sideBarCloseAll();
+     $(e.currentTarget).css('display', 'block');
+     var $sidebar   = $("#sidebar"),
+	 $content = $("#content");
+     if($sidebar.height() > $content.height())
+	 $content.css("height", $sidebar.height() + "px");
+     e.stopPropagation();
+ });
+ sidebarItems.on("shown.bs.collapse", function(e){
+     var $sidebar   = $("#sidebar"),
+	 $content = $("#content");
+     if($sidebar.height() > $content.height())
+	 $content.css("height", ($sidebar.height() + 20) + "px");
+ });
+
+ twoLevelItems.on('show.bs.collapse', function(e){
+     var parent = $(e.currentTarget).parent().parent().parent().parent();
+     //     console.log(parent, parent.is('.in, .collapse'));
+     //     if(!parent.is('.in, .collapse'))
+     sideBarCloseTwoLevelAll();
+     $(e.currentTarget).css('display', 'block');
+     var $sidebar   = $("#sidebar"),
+	 $content = $("#content");
+     if($sidebar.height() > $content.height())
+	 $content.css("height", $sidebar.height() + "px");
+     e.stopPropagation();
+ });
+ twoLevelItems.on("shown.bs.collapse", function(e){
+     var $sidebar   = $("#sidebar"),
+	 $content = $("#content");
+     if($sidebar.height() > $content.height())
+	 $content.css("height", ($sidebar.height() + 20) + "px");
+ });
+
+ threeLevelItems.on('show.bs.collapse', function(e){
+     sideBarCloseThreeLevelAll();
+     $(e.currentTarget).css('display', 'block');
+     var $sidebar   = $("#sidebar"),
+	 $content = $("#content");
+     if($sidebar.height() > $content.height())
+	 $content.css("height", $sidebar.height() + "px");
+     e.stopPropagation();
+ });
+ threeLevelItems.on("shown.bs.collapse", function(e){
+     var $sidebar   = $("#sidebar"),
+	 $content = $("#content");
+     if($sidebar.height() > $content.height())
+	 $content.css("height", ($sidebar.height() + 20) + "px");
+ });
+
 
 </script>
