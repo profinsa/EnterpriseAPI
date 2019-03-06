@@ -3,15 +3,15 @@
 <div class="custom-menu-bar">
     <ul id="custom-toolbar" class="nav">
 	<li class="top-bar-link2 float-right">
-            <a class="mysubmenu" href="javascript:toggleStyleBar()" title="<?php echo $translation->translateLabel('Profile'); ?>">
+	    <a class="mysubmenu" href="javascript:toggleStyleBar()" title="<?php echo $translation->translateLabel('Profile'); ?>">
 		<span style="font-size: 30px" class="favorits glyphicon glyphicon-user" aria-hidden="true"></span>
-            </a>
+	    </a>
 	</li>
 	<!-- <li class="top-bar-link2 float-right dropdown-submenu bs-glyphicons2" style="background-color: unset;">
-             <a class="mysubmenu" title="<?php echo $translation->translateLabel('Favorits'); ?>">
-             <span style="font-size: 30px;" class="favorits glyphicon glyphicon-heart" aria-hidden="true"></span>
-             </a>
-             <?php
+	     <a class="mysubmenu" title="<?php echo $translation->translateLabel('Favorits'); ?>">
+	     <span style="font-size: 30px;" class="favorits glyphicon glyphicon-heart" aria-hidden="true"></span>
+	     </a>
+	     <?php
 		 foreach ($menuCategories as $key=>$item){
                  if ($item["type"] == "custom") {
                  echo "<ul id=\"" . $item["id"] . "2\" class=\"iconbarsubmenu dropdown-menu\" style=\"z-index: 9999; top: auto !important; left: auto !important; right: 0 !important\">";
@@ -24,55 +24,87 @@
 		 ?>
 	     </li> -->
 	<li class="top-bar-link2 float-right">
-            <a  class="mysubmenu" href="https://stfbinc.teamwork.com/support" target="_blank" title="<?php echo $translation->translateLabel('Help'); ?>">
+	    <a  class="mysubmenu" href="https://stfbinc.teamwork.com/support" target="_blank" title="<?php echo $translation->translateLabel('Help'); ?>">
 		<span style="font-size: 30px" class="favorits glyphicon glyphicon-question-sign" aria-hidden="true"></span>
-            </a>
+	    </a>
+	</li>
+	<li class="top-bar-link2 float-right">
+	    <div class="dropdown" style="margin-top:10px; margin-right:0px;">
+		<button class="btn btn-default dropdown-toggle" type="button" id="interfaceChooserDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px; color:#555555; border:0px; background-color:inherit;">
+		    <?php echo $scope->user["interface"]; ?>
+		    <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu interface-chooser-popup" aria-labelledby="interfaceChooserDropdown" aria-expanded="false">
+		    <li><a href="javascript:;" data-value="<?php echo $scope->user["interface"]; ?>" class="lang-item"><?php echo $scope->user["interface"]; ?></a></li>
+		    <?php
+			foreach(["simple", "default"] as $value)
+			if($value != $scope->user["interface"])
+			    echo "<li><a href=\"javascript:;\" data-value=\"$value\" class=\"lang-item\">" . $value . "</a></li>";
+		    ?>
+		</ul>
+	    </div>
+	</li>
+	<li class="top-bar-link2 float-right">
+	    <div class="dropdown" style="margin-top:10px; margin-right:0px;">
+		<button class="btn btn-default dropdown-toggle" type="button" id="langChooserDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px; color:#555555; border:0px; background-color:inherit;">
+		    <?php echo $scope->user["language"]; ?>
+		    <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu lang-chooser-popup" aria-labelledby="langChooserDropdown" aria-expanded="false">
+		    <li><a href="javascript:;" data-value="<?php echo $scope->user["language"]; ?>" class="lang-item"><img src="assets/images/langs/<?php echo $scope->user["language"]; ?>.png">  <?php echo $scope->user["language"]; ?></a></li>
+		    <?php
+			foreach($translation->languages as $value)
+			if($value != $scope->user["language"])
+			    echo "<li><a href=\"javascript:;\" data-value=\"$value\" class=\"lang-item\"><img src=\"assets/images/langs/{$value}.png\">  " . $value . "</a></li>";
+		    ?>
+		</ul>
+	    </div>
 	</li>
 	<!--<li class="top-bar-link2 float-right">
-             <a class="mysubmenu dropdown-toggle" data-toggle="dropdown">
-             <span style="font-size: 30px" class="favorits glyphicon glyphicon-modal-window"></span>
-             </a>
-             
-             <ul class="dropdown-menu pull-right" style="width: 300px">
-             <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBackPayroll/EmployeeSetup/ViewTaskList\", \"$public_prefix/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Task</a></li>
-             <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(CRMHelpDesk/CRM/ViewLeads\", \"$public_prefix/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Follow-up</a></li>
-             <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(AccountsReceivable/Customers/ViewCustomers, $public_prefix/index#/dashboard, new, )" ?>" class="nav-link">Add Customer Contact</a></li>
-             </ul>
-	     </li>
-             <li class="top-bar-link2 float-right">
-             <a  class="mysubmenu" href="#" target="_blank" title="<?php echo $translation->translateLabel('Email'); ?>">
-             <span style="font-size: 30px" class="favorits glyphicon glyphicon-envelope" aria-hidden="true"></span>
-             </a>
+	     <a class="mysubmenu dropdown-toggle" data-toggle="dropdown">
+	     <span style="font-size: 30px" class="favorits glyphicon glyphicon-modal-window"></span>
+	     </a>
+	     
+	     <ul class="dropdown-menu pull-right" style="width: 300px">
+	     <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBackPayroll/EmployeeSetup/ViewTaskList\", \"$public_prefix/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Task</a></li>
+	     <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(CRMHelpDesk/CRM/ViewLeads\", \"$public_prefix/index#/dashboard\", \"new\", \"\")" ?>" class="nav-link">Add Follow-up</a></li>
+	     <li><a href="<?php echo "makeEmbeddedgridItemNewLinkWithDirectBack(AccountsReceivable/Customers/ViewCustomers, $public_prefix/index#/dashboard, new, )" ?>" class="nav-link">Add Customer Contact</a></li>
+	     </ul>
 	     </li>
 	     <li class="top-bar-link2 float-right">
-             <div class="search-wrapper-id inner-addon right-addon">
-             <span onclick="startSearch();" id="search-submit-id" class="glyphicon glyphicon-search"></span>
-             <input id="search-input-id" style="margin: 11px 0px" type="search" class="form-control input-sm" placeholder="Enter your search" />
-             </div>
-             <div id="search-table-wrapper-id" style="display: none; min-width: 400px; padding: 15px; position: absolute; right: 0; background-color: white; border: 3px solid #d3d3d3;">
-             <table id="search-table" class="table table-striped table-bordered">
-             <thead>
-             <tr>
-             <th>
-             <?php echo $translation->translateLabel("Customer ID")?>
-             </th>
-             <th>
-             <?php echo $translation->translateLabel("Customer First Name")?>
-             </th>
-             <th>
-             <?php echo $translation->translateLabel("Customer Last Name")?>
-             </th>
-             </tr>
-             </thead>
-             <tbody>
-             </tbody>
-             </table>
-             </div>
+	     <a  class="mysubmenu" href="#" target="_blank" title="<?php echo $translation->translateLabel('Email'); ?>">
+	     <span style="font-size: 30px" class="favorits glyphicon glyphicon-envelope" aria-hidden="true"></span>
+	     </a>
+	     </li>
+	     <li class="top-bar-link2 float-right">
+	     <div class="search-wrapper-id inner-addon right-addon">
+	     <span onclick="startSearch();" id="search-submit-id" class="glyphicon glyphicon-search"></span>
+	     <input id="search-input-id" style="margin: 11px 0px" type="search" class="form-control input-sm" placeholder="Enter your search" />
+	     </div>
+	     <div id="search-table-wrapper-id" style="display: none; min-width: 400px; padding: 15px; position: absolute; right: 0; background-color: white; border: 3px solid #d3d3d3;">
+	     <table id="search-table" class="table table-striped table-bordered">
+	     <thead>
+	     <tr>
+	     <th>
+	     <?php echo $translation->translateLabel("Customer ID")?>
+	     </th>
+	     <th>
+	     <?php echo $translation->translateLabel("Customer First Name")?>
+	     </th>
+	     <th>
+	     <?php echo $translation->translateLabel("Customer Last Name")?>
+	     </th>
+	     </tr>
+	     </thead>
+	     <tbody>
+	     </tbody>
+	     </table>
+	     </div>
 	     </li>    
 	     <li class="top-bar-link2 float-right">
-             <a class="mysearch">
-             <span style="font-size: 30px" class="glyphicon glyphicon-search" aria-hidden="true"></span>
-             </a>
+	     <a class="mysearch">
+	     <span style="font-size: 30px" class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	     </a>
 	     </li> -->
     </ul>
 </div>
@@ -281,7 +313,7 @@
 
  //for API compatibility with default interface
  function leftMenuUpdateSavedReports(){
-   topbarUpdateSavedReports();
+     topbarUpdateSavedReports();
  }
  
  function changeLanguage(event){
@@ -423,4 +455,33 @@
  }
  initSearch();
 
+ $(".lang-chooser-popup li a").click(function(){
+     var item = $(this), lang = item.data('value');
+     item.parents(".dropdown").find('.btn').html(item.text() + ' <span class="caret"></span>');
+     item.parents(".dropdown").find('.btn').val(lang);
+     var current = "<?php echo $scope->user["language"]; ?>";
+     if(lang != current)
+	 $.getJSON("index.php?page=language&setLanguage=" + lang)
+	  .success(function(data) {
+	      location.reload();
+	  })
+	  .error(function(err){
+	      console.log('something going wrong');
+	  });
+ });
+
+ $(".interface-chooser-popup li a").click(function(){
+     var item = $(this), name = item.data('value');
+     item.parents(".dropdown").find('.btn').html(item.text() + ' <span class="caret"></span>');
+     item.parents(".dropdown").find('.btn').val(name);
+     var current = "<?php echo $scope->user["interface"]; ?>";
+     if(name != current)
+	 $.post("<?php echo $linksMaker->makeProcedureLink("Payroll/EmployeeManagement/ViewEmployees", "changeInterface"); ?>&interface=" + name, null, null, 'json').success(function(data){
+	     location.reload();
+	 })
+	  .error(function(data){
+	      console.log(data);
+	  });
+ });
+ 
 </script>

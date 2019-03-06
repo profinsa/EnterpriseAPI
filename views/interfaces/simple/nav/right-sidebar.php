@@ -25,28 +25,29 @@
                     </div>
 		</div>
             </li>
-            <li>
-                <label><?php echo $translation->translateLabel('Language'); ?></label>
-		<select class="form-control" onchange="changeLanguage(event);">
-                    <option><?php echo $user["language"]; ?></option>
-                    <?php
-			foreach($translation->languages as $value)
-			if($value != $user["language"])
-			    echo "<option>" . $value . "</option>";
-                    ?>
-		</select>
-            </li>
-            <li>
-                <label><?php echo $translation->translateLabel('Interface'); ?></label>
-		<select class="form-control" onchange="changeInterface(event.target.value);">
-                    <option><?php echo $user["interface"]; ?></option>
-                    <?php
-			foreach(["simple","default"] as $value)
-			if($value != $user["interface"])
-			    echo "<option>" . $value . "</option>";
-                    ?>
-		</select>
-            </li>
+	    <!-- 
+		 <li>
+                 <label><?php echo $translation->translateLabel('Language'); ?></label>
+		 <select class="form-control" onchange="changeLanguage(event);">
+                 <option><?php echo $user["language"]; ?></option>
+                 <?php
+		     foreach($translation->languages as $value)
+		     if($value != $user["language"])
+		     echo "<option>" . $value . "</option>";
+                     ?>
+		 </select>
+		 </li>
+		 <li>
+                 <label><?php echo $translation->translateLabel('Interface'); ?></label>
+		 <select class="form-control" onchange="changeInterface(event.target.value);">
+                 <option><?php echo $user["interface"]; ?></option>
+                 <?php
+		     foreach(["simple","default"] as $value)
+		     if($value != $user["interface"])
+		     echo "<option>" . $value . "</option>";
+                     ?>
+		 </select>
+		 </li> -->
             <li>
                 <a href="javascript:unlockMyRecords();" class="nav-link">
                     <?php echo $translation->translateLabel('Release Record Locks'); ?>
