@@ -60,7 +60,7 @@ class controller{
 
             $_SESSION["user"] = $user;
             $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
-            $_SESSION["user"]["interfaceType"] = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : "rtl");
+            $_SESSION["user"]["interfaceType"] = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : "ltr");
 
             header("Location: index.php#/?page=dashboard");
             exit;
