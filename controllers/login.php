@@ -117,8 +117,8 @@ class controller{
                 $_SESSION["user"] = ["language" => "English"];
 
             $this->user = $_SESSION["user"];
-            $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
-            $_SESSION["user"]["interfaceType"] = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : "ltr");
+            $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : "default";
+            $_SESSION["user"]["interfaceType"] = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] :  "ltr";
             
             $translation = new translation( $_SESSION["user"]["language"]);
             $companies = new companies();
