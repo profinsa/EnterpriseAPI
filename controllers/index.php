@@ -26,7 +26,7 @@
   models/translation.php
   app from index.php
 
-  Last Modified: 06.02.2019
+  Last Modified: 07.03.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -39,6 +39,7 @@ require 'models/linksMaker.php';
 class controller{
     public $user = false;
     public $interface = "default";
+    public $interfaceType = "ltr";
     public $dashboardTitle = "Accounting Dashboard";
     public $breadCrumbTitle = "Accounting Dashboard";
     
@@ -54,6 +55,8 @@ class controller{
             }
             
             $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
+            
+            $this->interfaceType = $_SESSION["user"]["interfaceType"] = $interfaceType = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : $this->interfaceType);
             $drill = new drillDowner();
             $linksMaker = new linksMaker();
             $this->user = $user = $_SESSION["user"];
@@ -63,6 +66,7 @@ class controller{
             $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
             $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
             $scope = $this;
+            $ascope = json_decode(json_encode($scope), true);
             $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
             require 'models/menuCategoriesGenerated.php';
             require 'views/interfaces/' . $interface . '/index.php';

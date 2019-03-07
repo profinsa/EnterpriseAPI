@@ -76,7 +76,7 @@
  }
  //calling procedure from server
 
- <?php if(isset($ascope)): ?>
+ <?php if(isset($ascope) && key_exists("mode", $ascope)): ?>
  function serverProcedureCall(methodName, props, reloadPage, jsonRequest, successAlert){
      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, jsonRequest ? JSON.stringify(props) : props, 'text')
       .success(function(data) {
@@ -106,7 +106,7 @@
  function getCurrentPageValues(){
      var values = {};
      <?php
-	 if(isset($ascope)){
+	 if(isset($ascope) && key_exists("mode", $ascope)){
 	     if($ascope["mode"] == "view" || $ascope["mode"] == "edit"){
 		 if(property_exists($data, "editCategories")){
 		     $values = [];

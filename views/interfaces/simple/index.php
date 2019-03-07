@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html dir="<?php echo $ascope["interfaceType"]; ?>">
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title><?php echo $app->title; ?></title>
@@ -23,6 +23,25 @@
 		 height : auto !important;
 	     }
 	 }
+	 /*
+	    FIXME hardcode for RTL Support, we need support styles separed in the future for RTL and LTR interface types
+	  */
+	 <?php if($ascope["interfaceType"] == "rtl"): ?>
+	 body  > .content {
+	     margin-left : 0px !important;
+	     margin-right : 100px !important;
+	 }
+	 @media screen and (min-width: 768px){
+	     #header .navbar-right {
+		 margin-left: 0px !important;
+		 margin-right: 100px !important;
+	     }
+	 }
+
+	 .bs-glyphicons-list {
+	     padding-right:0px !important;
+	 }
+	 <?php endif; ?>
 	</style>
     </head>
     <?php

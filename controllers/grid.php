@@ -39,6 +39,7 @@ require 'models/linksMaker.php';
 class controller{
     public $user = false;
     public $interface = "default";
+    public $interfaceType = "ltr";
     public $action = "";
     public $mode = "grid";
     public $category = "Main";
@@ -111,6 +112,8 @@ class controller{
         }
 
         $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
+        $this->interfaceType = $_SESSION["user"]["interfaceType"] = $interfaceType = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : $this->interfaceType);
+            
         require 'models/menuIdToHref.php';
         $drill = new drillDowner();
         $linksMaker = new linksMaker();
