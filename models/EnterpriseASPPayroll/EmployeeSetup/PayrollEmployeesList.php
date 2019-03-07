@@ -705,7 +705,16 @@ class gridData extends gridDataSource{
 
     public function changeInterface(){
         $user = Session::get("user");
-        $user["interface"] = $_GET["interface"];
+        $user["interfaceName"] = $_GET["interface"];
+        if(strtolower($_GET["interface"]) == "default rtl"){
+            $user["interfaceType"] = "rtl";
+            $_GET["interface"] = "Default";
+        }else if(strtolower($_GET["interface"]) == "simple rtl"){
+            $user["interfaceType"] = "rtl";
+            $_GET["interface"] = "Simple";
+        }else
+            $user["interfaceType"] = "ltr";
+        $user["interface"] = strtolower($_GET["interface"]);
         Session::set("user", $user);
         echo '{ "message" : "ok"}';
     }

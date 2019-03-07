@@ -11,9 +11,9 @@
 		    <img src="<?php echo  $user["company"]["MediumLogo"];?>" style="width:60px; height:60px"  alt="home" class="light-logo" />
 		</b>
 		<!--  		<span class="hidden-xs">
-		<img src="<?php echo  $user["company"]["MediumLogo"];?>" alt="home" class="dark-logo" />
-		<img src="<?php echo  $user["company"]["MediumLogo"];?>" alt="home" class="light-logo" />
-		</span> -->
+		     <img src="<?php echo  $user["company"]["MediumLogo"];?>" alt="home" class="dark-logo" />
+		     <img src="<?php echo  $user["company"]["MediumLogo"];?>" alt="home" class="light-logo" />
+		     </span> -->
 	    </a>
 	</div>
 	<ul class="nav navbar-top-links navbar-left hidden-xs">
@@ -45,14 +45,14 @@
 	    <li style="position:relative; right:-3px;">
 		<div class="dropdown" style="margin-top:13px; margin-right:0px;">
 		    <button class="btn btn-default dropdown-toggle" type="button" id="interfaceChooserDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white; border:0px; background-color:inherit;">
-			<?php echo $scope->user["interface"]; ?>
+			<?php echo $scope->user["interfaceName"]; ?>
 			<span class="caret"></span>
 		    </button>
 		    <ul class="dropdown-menu interface-chooser-popup" aria-labelledby="interfaceChooserDropdown" aria-expanded="false">
-			<li><a href="javascript:;" data-value="<?php echo $scope->user["interface"]; ?>" class="lang-item"><?php echo $scope->user["interface"]; ?></a></li>
+			<li><a href="javascript:;" data-value="<?php echo $scope->user["interfaceName"]; ?>" class="lang-item"><?php echo $scope->user["interfaceName"]; ?></a></li>
 			<?php
-			    foreach(["simple", "default"] as $value)
-			    if($value != $scope->user["interface"])
+			    foreach(["Default", "Default RTL", "Simple", "Simple RTL"] as $value)
+			    if($value != $scope->user["interfaceName"])
 				echo "<li><a href=\"javascript:;\" data-value=\"$value\" class=\"lang-item\">" . $value . "</a></li>";
 			?>
 		    </ul>

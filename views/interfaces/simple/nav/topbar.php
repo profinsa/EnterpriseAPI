@@ -31,14 +31,14 @@
 	<li class="top-bar-link2 float-right">
 	    <div class="dropdown" style="margin-top:10px; margin-right:0px;">
 		<button class="btn btn-default dropdown-toggle" type="button" id="interfaceChooserDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px; color:#555555; border:0px; background-color:inherit;">
-		    <?php echo $scope->user["interface"]; ?>
+		    <?php echo $scope->user["interfaceName"]; ?>
 		    <span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu interface-chooser-popup" aria-labelledby="interfaceChooserDropdown" aria-expanded="false">
-		    <li><a href="javascript:;" data-value="<?php echo $scope->user["interface"]; ?>" class="lang-item"><?php echo $scope->user["interface"]; ?></a></li>
+		    <li><a href="javascript:;" data-value="<?php echo $scope->user["interfaceName"]; ?>" class="lang-item"><?php echo $scope->user["interfaceName"]; ?></a></li>
 		    <?php
-			foreach(["simple", "default"] as $value)
-			if($value != $scope->user["interface"])
+			foreach(["Default", "Default RTL", "Simple", "Simple RTL"] as $value)
+			if($value != $scope->user["interfaceName"])
 			    echo "<li><a href=\"javascript:;\" data-value=\"$value\" class=\"lang-item\">" . $value . "</a></li>";
 		    ?>
 		</ul>
