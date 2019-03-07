@@ -27,7 +27,7 @@
   models/translation.php
   app from index.php
 
-  Last Modified: 07.02.2019
+  Last Modified: 07.03.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -60,6 +60,7 @@ class controller{
 
             $_SESSION["user"] = $user;
             $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
+            $_SESSION["user"]["interfaceType"] = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : "rtl");
 
             header("Location: index.php#/?page=dashboard");
             exit;

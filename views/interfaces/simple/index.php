@@ -36,10 +36,21 @@
 		 margin-left: 0px !important;
 		 margin-right: 100px !important;
 	     }
+	     
+	     .navbar-nav>li{
+		 float:right;
+	     }
 	 }
 
 	 .bs-glyphicons-list {
 	     padding-right:0px !important;
+	 }
+
+	 .logo-container {
+	     right : 100px !important;
+	 }
+	 .float-right {
+	     float: left !important;
 	 }
 	 <?php endif; ?>
 	</style>

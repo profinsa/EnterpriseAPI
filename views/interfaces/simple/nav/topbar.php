@@ -138,6 +138,19 @@
  });
 
  function toggleStyleBar() {
+     <?php if($ascope["interfaceType"] == "rtl"): ?>
+     if(stylebarToggled) {
+         stylebarToggled = false;
+         $('.right-sidebar')[0].style.display = 'none';
+         $('.right-sidebar')[0].style.right = 'auto';
+         $('.right-sidebar')[0].style.left = '-240px';
+     } else {
+         $('.right-sidebar')[0].style.display = 'block';
+         $('.right-sidebar')[0].style.right = 'auto';
+         $('.right-sidebar')[0].style.left = '0px';
+         stylebarToggled = true;
+     }
+     <?php else: ?>
      if(stylebarToggled) {
          stylebarToggled = false;
          $('.right-sidebar')[0].style.display = 'none';
@@ -147,6 +160,7 @@
          $('.right-sidebar')[0].style.right = '0px';
          stylebarToggled = true;
      }
+     <?php endif; ?>
  }
 
  // var favbarToggled = false;
