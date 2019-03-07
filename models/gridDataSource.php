@@ -1457,6 +1457,7 @@ EOF;
     }
 
     public function dirtyAutoincrementColumn($tableName, $columnName){
+        $user = Session::get("user");
         $forDirtyAutoincrement = [
             "orderheader" => [
                 //"columns" => "OrderNumber",
@@ -1513,22 +1514,49 @@ EOF;
                 //"columns" => "InvoiceNumber",
                 "tables" => ["edireceiptsheader"]
             ],
-            "edipaymentheader" => [
+            "edipaymentsheader" => [
                 //"columns" => "InvoiceNumber",
-                "tables" => ["edipayementheader"]
+                "tables" => ["edipaymentsheader"]
             ],
         ];
+
+        $tablesForGetNextEntity = [
+            "orderheader" => "NextOrderNumber",
+            "workorderheader" => "NextWorkOrderNumber",
+            "orderheaderhistory" => "NextOrderNumber",
+            "invoiceheader" => "NextInvoiceNumber",
+            "invoiceheaderhistory" => "NextInvoiceNumber",
+            "receiptsheader" => "NextReceiptNumber",
+            "purchaseheader" => "NextPurchaseOrderNumber",
+            //    "purchasecontractheader" => [ FIXME for now i don't know where take values for commented tables, will using dirtyautoincrement for them
+            "paymentsheader" => "NextVoucherNumber",
+            "ledgertransactions" => "NextGLTransNumber",
+            "banktransactions" => "NextBankTransactionNumber",
+            //    "ediinvoiceheader" => [
+            //"ediorderheader" => [
+            //"edipurchaseheader" => [
+            //"edireceiptsheader" => [
+            //      "edipaymentsheader" => [
+        ];
+
         $columnMax = 0;
-        if(key_exists($this->tableName, $forDirtyAutoincrement)){
-            foreach($forDirtyAutoincrement[$this->tableName]["tables"] as $tableName){
-                //$columnName = $forDirtyAutoincrement[$this->tableName]["column"];
-                $res = DB::select("select $columnName from $tableName");
-                foreach($res as $row)
-                    if(is_numeric($row->$columnName) && $row->$columnName > $columnMax)
-                        $columnMax = $row->$columnName;
+        if(key_exists($this->tableName, $tablesForGetNextEntity)){
+            DB::statement("CALL GetNextEntityID2(?, ?, ?, ?, @nextNumber, @ret)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $tablesForGetNextEntity[$this->tableName]]);
+            $columnMax = DB::select("select @nextNumber as nextNumber, @ret")[0]->nextNumber;
+        }else{
+            if(key_exists($this->tableName, $forDirtyAutoincrement)){
+                foreach($forDirtyAutoincrement[$this->tableName]["tables"] as $tableName){
+                    //$columnName = $forDirtyAutoincrement[$this->tableName]["column"];
+                    $res = DB::select("select $columnName from $tableName");
+                    foreach($res as $row)
+                        if(is_numeric($row->$columnName) && $row->$columnName > $columnMax)
+                            $columnMax = $row->$columnName;
+                }
             }
+            ++$columnMax;
         }
-        return ++$columnMax;
+
+        return $columnMax;
     }
    
     //getting data for new record
