@@ -405,6 +405,51 @@ $leftMenu = [
 				"href"=> "EnterpriseASPAR/Customers/CustomerFinancialsList",
 				"short" => "Vi"
 			    ],
+	    [
+		"type" => "submenu",
+		"id" => "CRMHelpDesk",
+		"full" => $translation->translateLabel('CRM'),
+		"short" => "CR",
+		"data" => [
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeads",
+			"full" => $translation->translateLabel('View Leads'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadInformationList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "AccountsReceivable/OrderScreens/ViewQuotes",
+			"full" => $translation->translateLabel('View Quotes'),
+			"href"=> "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeadContacts",
+			"full" => $translation->translateLabel('View Lead Contacts'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadContactsList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeadComments",
+			"full" => $translation->translateLabel('View Lead Comments'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadCommentsList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeadSatisfactions",
+			"full" => $translation->translateLabel('View Lead Satisfactions'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadSatisfactionList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeadTypes",
+			"full" => $translation->translateLabel('View Lead Types'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadTypeList",
+			"short" => "Vi"
+		    ]
+		]
+	    ],
+
 			    [
 				"id" => "AccountsReceivable/Customers/ViewCustomers",
 				"full" => $translation->translateLabel('View Customers'),
@@ -1560,146 +1605,6 @@ $leftMenu = [
 		    ]
 		]
 	    ],
-	    [
-		"type" => "submenu",
-		"id" => "CRMHelpDesk",
-		"full" => $translation->translateLabel('CRM'),
-		"short" => "CR",
-		"data" => [
-		    [
-			"id" => "CRMHelpDesk/CRM/ViewLeads",
-			"full" => $translation->translateLabel('View Leads'),
-			"href"=> "EnterpriseASPHelpDesk/CRM/LeadInformationList",
-			"short" => "Vi"
-		    ],
-		    [
-			"id" => "AccountsReceivable/OrderScreens/ViewQuotes",
-			"full" => $translation->translateLabel('View Quotes'),
-			"href"=> "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
-			"short" => "Vi"
-		    ],
-		    [
-			"id" => "CRMHelpDesk/CRM/ViewLeadContacts",
-			"full" => $translation->translateLabel('View Lead Contacts'),
-			"href"=> "EnterpriseASPHelpDesk/CRM/LeadContactsList",
-			"short" => "Vi"
-		    ],
-		    [
-			"id" => "CRMHelpDesk/CRM/ViewLeadComments",
-			"full" => $translation->translateLabel('View Lead Comments'),
-			"href"=> "EnterpriseASPHelpDesk/CRM/LeadCommentsList",
-			"short" => "Vi"
-		    ],
-		    [
-			"id" => "CRMHelpDesk/CRM/ViewLeadSatisfactions",
-			"full" => $translation->translateLabel('View Lead Satisfactions'),
-			"href"=> "EnterpriseASPHelpDesk/CRM/LeadSatisfactionList",
-			"short" => "Vi"
-		    ],
-		    [
-			"id" => "CRMHelpDesk/CRM/ViewLeadTypes",
-			"full" => $translation->translateLabel('View Lead Types'),
-			"href"=> "EnterpriseASPHelpDesk/CRM/LeadTypeList",
-			"short" => "Vi"
-		    ]
-		]
-	    ],
-        /*	    [
-		"type" => "submenu",
-		"id" => "MRP",
-		"full" => $translation->translateLabel('MRP'),
-		"short" => "MR",
-		"data" => [
-
-		    [
-			"type" => "submenu",
-			"id" => "MRP/BillofMaterials",
-			"full" => $translation->translateLabel('Bill of Materials'),
-			"short" => "Bi",
-			"data" => [
-
-			    [
-				"id" => "MRP/BillofMaterials/ViewBillOfMaterials",
-				"full" => $translation->translateLabel('View Bill Of Materials'),
-				"href"=> "EnterpriseASPInv/BillOfMaterials/InventoryAssembliesList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "MRP/BillofMaterials/ViewBuildInstructions",
-				"full" => $translation->translateLabel('View Build Instructions'),
-				"href"=> "EnterpriseASPInv/BillOfMaterials/InventoryAssembliesInstructionsList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "MRP/BillofMaterials/CreateInventory",
-				"full" => $translation->translateLabel('Create Inventory'),
-				"href"=> "EnterpriseASPInv/BillOfMaterials/InventoryCreateAssembly",
-				"short" => "Cr"
-			    ]
-			]
-		    ],
-		    [
-			"type" => "submenu",
-			"id" => "MRP/WorkOrders",
-			"full" => $translation->translateLabel('Work Orders'),
-			"short" => "Wo",
-			"data" => [
-
-			    [
-				"id" => "MRP/WorkOrders/ViewWorkOrders",
-				"full" => $translation->translateLabel('View Work Orders'),
-				"href"=> "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "MRP/WorkOrders/ViewClosedWorkOrders",
-				"full" => $translation->translateLabel('View Closed Work Orders'),
-				"href"=> "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderClosedList",
-				"short" => "Vi"
-			    ],
-			    [
-				"id" => "MRP/WorkOrders/ViewWorkOrdersHistory",
-				"full" => $translation->translateLabel('View Work Orders History'),
-				"href"=> "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderHistoryList",
-				"short" => "Vi"
-			    ]
-			]
-		    ],
-		    [
-			"type" => "submenu",
-			"id" => "MRP/MRPSetup",
-			"full" => $translation->translateLabel('MRP Setup'),
-			"short" => "MR",
-			"data" => [
-
-			    [
-				"id" => "MRP/MRPSetup/InProgressTypes",
-				"full" => $translation->translateLabel('In Progress Types'),
-				"href"=> "EnterpriseASPInv/MRPSetup/WorkOrderInProgressList",
-				"short" => "In"
-			    ],
-			    [
-				"id" => "MRP/MRPSetup/PriorityTypes",
-				"full" => $translation->translateLabel('Priority Types'),
-				"href"=> "EnterpriseASPInv/MRPSetup/WorkOrderPriorityList",
-				"short" => "Pr"
-			    ],
-			    [
-				"id" => "MRP/MRPSetup/WorkOrderStatuses",
-				"full" => $translation->translateLabel('Work Order Statuses'),
-				"href"=> "EnterpriseASPInv/MRPSetup/WorkOrderStatusList",
-				"short" => "Wo"
-			    ],
-			    [
-				"id" => "MRP/MRPSetup/WorkOrderTypes",
-				"full" => $translation->translateLabel('Work Order Types'),
-				"href"=> "EnterpriseASPInv/MRPSetup/WorkOrderTypesList",
-				"short" => "Wo"
-			    ]
-			]
-		    ]
-		]
-	    ],*/
 	    /*
 	       [
 	       "type" => "submenu",
@@ -3925,6 +3830,50 @@ $leftMenu = [
 		"short" => "Sy",
         "icon" => "wrench",
 		"data" => [
+	    [
+		"type" => "submenu",
+		"id" => "CRMHelpDesk",
+		"full" => $translation->translateLabel('CRM'),
+		"short" => "CR",
+		"data" => [
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeads",
+			"full" => $translation->translateLabel('View Leads'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadInformationList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "AccountsReceivable/OrderScreens/ViewQuotes",
+			"full" => $translation->translateLabel('View Quotes'),
+			"href"=> "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeadContacts",
+			"full" => $translation->translateLabel('View Lead Contacts'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadContactsList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeadComments",
+			"full" => $translation->translateLabel('View Lead Comments'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadCommentsList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeadSatisfactions",
+			"full" => $translation->translateLabel('View Lead Satisfactions'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadSatisfactionList",
+			"short" => "Vi"
+		    ],
+		    [
+			"id" => "CRMHelpDesk/CRM/ViewLeadTypes",
+			"full" => $translation->translateLabel('View Lead Types'),
+			"href"=> "EnterpriseASPHelpDesk/CRM/LeadTypeList",
+			"short" => "Vi"
+		    ]
+		]
+	    ],
 
 		    [
 			"type" => "submenu",
@@ -4017,9 +3966,105 @@ $leftMenu = [
 		       "short" => "ED"
 		       ]
             ]
-        ]
+        ],
+           [
+		"type" => "submenu",
+		"id" => "MRP",
+		"full" => $translation->translateLabel('MRP'),
+		"short" => "MR",
+		"data" => [
+
+		    [
+			"type" => "submenu",
+			"id" => "MRP/BillofMaterials",
+			"full" => $translation->translateLabel('Bill of Materials'),
+			"short" => "Bi",
+			"data" => [
+
+			    [
+				"id" => "MRP/BillofMaterials/ViewBillOfMaterials",
+				"full" => $translation->translateLabel('View Bill Of Materials'),
+				"href"=> "EnterpriseASPInv/BillOfMaterials/InventoryAssembliesList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "MRP/BillofMaterials/ViewBuildInstructions",
+				"full" => $translation->translateLabel('View Build Instructions'),
+				"href"=> "EnterpriseASPInv/BillOfMaterials/InventoryAssembliesInstructionsList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "MRP/BillofMaterials/CreateInventory",
+				"full" => $translation->translateLabel('Create Inventory'),
+				"href"=> "EnterpriseASPInv/BillOfMaterials/InventoryCreateAssembly",
+				"short" => "Cr"
+			    ]
+			]
+		    ],
+		    [
+			"type" => "submenu",
+			"id" => "MRP/WorkOrders",
+			"full" => $translation->translateLabel('Work Orders'),
+			"short" => "Wo",
+			"data" => [
+
+			    [
+				"id" => "MRP/WorkOrders/ViewWorkOrders",
+				"full" => $translation->translateLabel('View Work Orders'),
+				"href"=> "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "MRP/WorkOrders/ViewClosedWorkOrders",
+				"full" => $translation->translateLabel('View Closed Work Orders'),
+				"href"=> "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderClosedList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "MRP/WorkOrders/ViewWorkOrdersHistory",
+				"full" => $translation->translateLabel('View Work Orders History'),
+				"href"=> "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderHistoryList",
+				"short" => "Vi"
+			    ]
+			]
+		    ],
+		    [
+			"type" => "submenu",
+			"id" => "MRP/MRPSetup",
+			"full" => $translation->translateLabel('MRP Setup'),
+			"short" => "MR",
+			"data" => [
+
+			    [
+				"id" => "MRP/MRPSetup/InProgressTypes",
+				"full" => $translation->translateLabel('In Progress Types'),
+				"href"=> "EnterpriseASPInv/MRPSetup/WorkOrderInProgressList",
+				"short" => "In"
+			    ],
+			    [
+				"id" => "MRP/MRPSetup/PriorityTypes",
+				"full" => $translation->translateLabel('Priority Types'),
+				"href"=> "EnterpriseASPInv/MRPSetup/WorkOrderPriorityList",
+				"short" => "Pr"
+			    ],
+			    [
+				"id" => "MRP/MRPSetup/WorkOrderStatuses",
+				"full" => $translation->translateLabel('Work Order Statuses'),
+				"href"=> "EnterpriseASPInv/MRPSetup/WorkOrderStatusList",
+				"short" => "Wo"
+			    ],
+			    [
+				"id" => "MRP/MRPSetup/WorkOrderTypes",
+				"full" => $translation->translateLabel('Work Order Types'),
+				"href"=> "EnterpriseASPInv/MRPSetup/WorkOrderTypesList",
+				"short" => "Wo"
+			    ]
+			]
+		    ]
+		]
+	    ]
       ]
-]
+],
 	]
     ],
     "Support" => [

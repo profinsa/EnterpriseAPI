@@ -267,7 +267,7 @@
 				     if(sssubitem.hasOwnProperty("type") && sssubitem["type"] == "relativeLink")
 					 href = (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + sssubitem["href"];
 				     else
-					 href = sssubitem["href"].search(/^http/) != -1 ? sssubitem["href"] : "index.php#/?page=grid&action=" + $sssubitem["id"];
+					 href = sssubitem["href"].search(/^http/) != -1 ? sssubitem["href"] : "index.php#/?page=grid&action=" + sssubitem["id"];
 				     _html += "<li><a href=\"" + href + "\" class=\"nav-link menu-nav-link\"" + (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + sssubitem["full"] +"</a></li>";
 				 }
 			     }
