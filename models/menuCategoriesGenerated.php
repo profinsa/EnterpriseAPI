@@ -3874,7 +3874,21 @@ $leftMenu = [
 		    ]
 		]
 	    ],
-
+        [
+             "type" => "submenu",
+             "id" => "Tools/ECommerce",
+             "full" => $translation->translateLabel('ECommerce'),
+	         "short" => "EC",
+             "data" => [
+                 [
+                     "type" => "absoluteLink",
+	                 "target" => "_blank",
+                     "id" => "Tools/ECommerce/ShoppingCart",
+                     "full" => $translation->translateLabel('Shopping  Cart'),
+                     "href" => "https://www.stfb.net/EnterpriseXCart/default.php?loadusername=dland&loadpassword=dland"
+                 ]
+             ]             
+        ],
 		    [
 			"type" => "submenu",
 			"id" => "SystemSetup/CompanySetup",

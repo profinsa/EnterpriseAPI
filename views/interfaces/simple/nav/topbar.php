@@ -264,15 +264,21 @@
 				 sssubitem = ssubitem["data"][iiiind];
 				 if(sssubitem.hasOwnProperty("type") && sssubitem["type"] == "submenu"){
 				 }else{
-				     if(sssubitem.hasOwnProperty("type") && sssubitem["type"] == "relativeLink")
-					 href = (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + sssubitem["href"];
-				     else
-					 href = sssubitem["href"].search(/^http/) != -1 ? sssubitem["href"] : "index.php#/?page=grid&action=" + sssubitem["id"];
+				     if(sssubitem.hasOwnProperty("type")){
+					 if(sssubitem["type"] == "absoluteLink")
+					     href = ssubitem["href"];                    
+					 else if(sssubitem["type"] == "relativeLink")
+					     href = (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + sssubitem["href"];
+				     }else
+				     href = sssubitem["href"].search(/^http/) != -1 ? sssubitem["href"] : "index.php#/?page=grid&action=" + sssubitem["id"];
 				     _html += "<li><a href=\"" + href + "\" class=\"nav-link menu-nav-link\"" + (sssubitem.hasOwnProperty("target") && sssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + sssubitem["full"] +"</a></li>";
 				 }
 			     }
 			 }else if(ssubitem["type"] == "relativeLink"){
 			     href = (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "index.php?" : "index.php#/?") + ssubitem["href"];
+			     _html += "<li><a href=\"" + href + "\" class=\"nav-link menu-nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>";
+			 }else if(ssubitem["type"] == "absoluteLink"){
+			     href = ssubitem["href"];
 			     _html += "<li><a href=\"" + href + "\" class=\"nav-link menu-nav-link\"" + (ssubitem.hasOwnProperty("target") && ssubitem["target"] == "_blank" ? "target=\"_blank\"" : "") + ">" + ssubitem["full"] +"</a></li>";
 			 }
 		     }
