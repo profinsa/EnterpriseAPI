@@ -1543,8 +1543,9 @@ $leftMenu = [
 
 			    [
 				"id" => "Inventory/ShoppingCartSetup/CartItemsSetup",
-				"full" => $translation->translateLabel('Cart Items Setup'),
-				"href"=> "EnterpriseASPInv/ShoppingCartSetup/InventoryCartDetail",
+				"full" => $translation->translateLabel('Cart Setup'),
+	             "type" => "relativeLink",
+				"href"=> "page=grid&action=Inventory/ShoppingCartSetup/CartItemsSetup&mode=view&category=Main&item=" . $keyString,
 				"short" => "Ca"
 			    ],
 			    [
@@ -3896,8 +3897,9 @@ $leftMenu = [
 
 			    [
 				"id" => "Tools/ECommerce/ShoppingCartSetup/CartItemsSetup",
-				"full" => $translation->translateLabel('Cart Items Setup'),
-				"href"=> "EnterpriseASPInv/ShoppingCartSetup/InventoryCartDetail",
+				"full" => $translation->translateLabel('Cart Setup'),
+	             "type" => "relativeLink",
+				"href"=> "page=grid&action=Tools/ECommerce/ShoppingCartSetup/CartItemsSetup&mode=view&category=Main&item=" . $keyString,
 				"short" => "Ca"
 			    ],
 			    [
