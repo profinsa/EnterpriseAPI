@@ -16,8 +16,9 @@
 		     </span> -->
 	    </a>
 	</div>
-	<ul class="nav navbar-top-links navbar-left hidden-xs">
-	    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
+	<ul class="nav navbar-top-links <?php echo ($ascope["interfaceType"] == "rtl" ? "navbar-right pull-right" : "navbar-left pull-left") ; ?> hidden-xs" dir="<?php echo $ascope["interfaceType"] ?>">
+	    <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a>
+	    </li>
 	    <li>
 		<form role="search" class="app-search hidden-xs">
 		    <input type="text" placeholder="Search..." class="form-control">
@@ -25,7 +26,7 @@
 		</form>
 	    </li>
 	</ul>
-	<ul class="nav navbar-top-links navbar-right pull-right">
+	<ul class="nav navbar-top-links <?php echo ($ascope["interfaceType"] == "ltr" ? "navbar-right pull-right" : "navbar-left pull-left") ; ?>">
 	    <li style="position:relative; right:3px;">
 		<div class="dropdown" style="margin-top:13px; margin-right:0px;">
 		    <button class="btn btn-default dropdown-toggle" type="button" id="langChooserDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white; border:0px; background-color:inherit;">

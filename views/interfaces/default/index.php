@@ -1,29 +1,58 @@
 <!DOCTYPE html>  
-<html lang="en">
+<html dir="<?php echo $ascope["interfaceType"]; ?>">
     <?php
-    require 'header.php';
+	require 'header.php';
     ?>
     <body onload="main();">
+	<style>
+	 /*
+	    FIXME hardcode for RTL Support, we need support styles separed in the future for RTL and LTR interface types
+	  */
+	 <?php if($ascope["interfaceType"] == "rtl"): ?>
+	 @media (min-width: 768px){
+	     #page-wrapper{
+		 margin-right : 220px;
+		 margin-left : 0px;
+	     }
+	     .top-left-part{
+		 display : none !important;
+	     }
+
+	     .navbar-header{
+		 padding-right : 220px;
+	     }
+
+	     .shw-rside {
+		 left : 0px !important;
+		 right : auto !important;
+	     }
+	     
+	     .right-sidebar {
+		 left: -240px;
+		 right : auto;
+	     }
+	 <?php endif; ?>
+	</style>
+	
 	<script src="dependencies/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
-	<!-- Preloader
-	     <div class="preloader">
-	     <div class="cssload-speeding-wheel"></div>
-	     </div>-->
+	<div class="preloader">
+	    <div class="cssload-speeding-wheel"></div>
+	</div>
 	<div id="wrapper">
 	    <?php
-	    require 'nav/top.php';
+		require 'nav/top.php';
 	    ?>
 	    <?php
-	    require 'nav/left.php';
+		require 'nav/left.php';
 	    ?>
 	    <!-- /#wrapper -->
 	    <?php
-	    require 'footer.php';
+		require 'footer.php';
 	    ?>
 	    <div id="page-wrapper">
 		<?php
-		if(key_exists("page", $_GET) && $_GET["page"] == "index")
-		    require 'dashboards/GeneralLedger.php';
+		    if(key_exists("page", $_GET) && $_GET["page"] == "index")
+			require 'dashboards/GeneralLedger.php';
 		?>
 	    </div>
 	    <!-- .right-sidebar -->
@@ -84,7 +113,7 @@
 	    <!-- /.right-sidebar -->
 	</div>
 	<?php 
-	require 'uiItems/footer.php';
+	    require 'uiItems/footer.php';
 	?>
 	<script>
 	 var gridViewDefaultRowsInGrid = localStorage.getItem('gridViewDefaultRowsInGrid');
@@ -141,7 +170,7 @@
 		 path = path.replace(/index\.php.*\#\//, "index\.php");
 		 match = path.match(/grid\/(\w+)\/\w+\/(\w+)\//);
 		 //		 if(match)
-		     //		     sideBarSelectItem(findMenuItem(path));//match[1], match[2]);
+		 //		     sideBarSelectItem(findMenuItem(path));//match[1], match[2]);
 		 //		 else{
 		 //		     sideBarCloseAll();
 		 //		     sideBarDeselectAll();
