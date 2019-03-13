@@ -109,20 +109,29 @@
 
 <script language="javascript" type="text/javascript">
  <?php if($ascope["interface"] == "default"): ?>
- if(!$.fn.DataTable.isDataTable("#example23")){
-     $('#example23').DataTable( {
-	 pageLength : gridViewDefaultRowsInGrid,
-	 dom : "Bfrt<\"grid-footer row col-md-12\"<\"col-md-3 grid-length\"l><\"col-md-3\"i><\"col-md-6\"p>>",
-	 buttons: [
-	     'copy', 'csv', 'excel', 'pdf', 'print'
-	 ]
-     });
+ if(!datatableInitialized){
+     datatableInitialized = true;
+     try{
+	 if(!$.fn.DataTable.isDataTable("#example23")){
+	     $('#example23').DataTable( {
+		 <?php  echo (!property_exists($data, "features") || !in_array("disabledGridPageUI", $data->features) ? "" : "dom : \"tip\","); ?>
+		 pageLength : gridViewDefaultRowsInGrid,
+		 dom : "Bfrt<\"grid-footer row col-md-12\"<\"col-md-3 grid-length\"l><\"col-md-3\"i><\"col-md-6\"p>>",
+		 buttons: [
+		     'copy', 'csv', 'excel', 'pdf', 'print'
+		 ]
+	     });
+	 }
+	 /* if(!$.fn.DataTable.isDataTable(".datatable")){
+	    $('.datatable').DataTable( {
+	    dom : "frtlip",
+	    });
+	    }*/
+     }catch(e){
+	 //just a stub
+     }
  }
- if(!$.fn.DataTable.isDataTable(".datatable")){
-     $('.datatable').DataTable( {
-	 dom : "frtlip",
-     });
- }
+
  <?php elseif($ascope["interface"] == "simple"): ?>
  //"https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"
  //inlined for fast
