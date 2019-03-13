@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 28/02/2019
+  Last Modified: 13/03/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -1858,6 +1858,43 @@ EOF;
             }
         }
         return $value;
+    }
+
+    function prepareForTabRequest($tabName, $keyName, $id){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages[$tabName]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages[$tabName]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND $keyName='" . $id . "'";
+
+        return [
+            "fields" => $fields,
+            "keyFields" => $keyFields
+        ];
     }
 }
 ?>

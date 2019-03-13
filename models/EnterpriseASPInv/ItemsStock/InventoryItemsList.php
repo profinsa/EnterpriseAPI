@@ -506,7 +506,13 @@ class gridData extends gridDataSource{
 				"defaultValue" => ""
 			]
 		],
-        "Pricing Code" => [
+        "Pricing Codes" => [
+            "ItemID" =>  [
+                "dbType" => "varchar(50)",
+                "inputType" => "text"
+            ]
+        ],
+        /*       "Pricing Code" => [
             "loadFrom" => [
                 "method" => "getPricingCode",
                 "key" => "ItemID"
@@ -545,7 +551,7 @@ class gridData extends gridDataSource{
 				"inputType" => "datetime",
 				"defaultValue" => ""
 			],
-        ],
+            ],*/
         "VAT Maintenance" => [
 			"VATItem" => [
 				"dbType" => "tinyint(1)",
@@ -701,7 +707,10 @@ class gridData extends gridDataSource{
         "VATInvestibleItem" => "VAT Investible Item",
         "VATCreditingRight" => "VAT Crediting Right",
         "VATSupply" => "VAT Supply",
-        "CartItem" => "Cart Item"
+        "CartItem" => "Cart Item",
+        "SalesPrice" => "Sales Price",
+        "SaleStartDate" => "Sale Start Date",
+        "SaleEndDate" => "Sale End Date"
 	];
 
     public function getPricingCode($id){
@@ -726,6 +735,46 @@ class gridData extends gridDataSource{
     }
     
     public $detailPages = [
+        "Pricing Codes" => [
+            "hideFields" => "true",
+            // "disableNew" => "true",
+            "deleteDisabled" => "true",
+            //"editDisabled" => "true",
+            "viewPath" => "Inventory/ItemsStock/ViewPricingCodes",
+            "newKeyField" => "ItemID",
+            "keyFields" => ["ItemID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","ItemID", "ItemPricingCode"],
+            "gridFields" => [
+                "ItemID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "ItemPricingCode" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "Price" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "SalesPrice" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text"
+                ],
+                "SaleStartDate" => [
+                    "dbType" => "datetime",
+                    "format" => "{0:d}",
+                    "inputType" => "datetime"
+                ],
+                "SaleEndDate" => [
+                    "dbType" => "datetime",
+                    "format" => "{0:d}",
+                    "inputType" => "datetime"
+                ]
+            ]
+        ],
         "Item Transactions" => [
             "hideFields" => "true",
             "disableNew" => "true",
@@ -822,46 +871,21 @@ class gridData extends gridDataSource{
         ]
     ];
 
+    public function getPricingCodes($ID){
+        $fields = $this->prepareForTabRequest("Pricing Codes", "ItemID", $ID);
+        $result = DB::select("SELECT " . implode(",", $fields["fields"]) . " from inventorypricingcode" .  ( $fields["keyFields"] != "" ? " WHERE ". $fields["keyFields"] : ""), array());
+
+
+        return json_decode(json_encode($result), true);
+    }
+    
     //getting rows for grid
     public function getTransactionsWithType($ItemID, $type){
-        $user = Session::get("user");
-        $keyFields = "";
-        $fields = [];
-        foreach($this->detailPages["Item Transactions"]["gridFields"] as $key=>$value){
-            $fields[] = $key;
-            if(key_exists("addFields", $value)){
-                $_fields = explode(",", $value["addFields"]);
-                foreach($_fields as $addfield)
-                    $fields[] = $addfield;
-            }
-        }
-        foreach($this->detailPages["Item Transactions"]["detailIdFields"] as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-            if(!in_array($key, $fields))
-                $fields[] = $key;                
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $keyFields .= " AND ItemID='" . $ItemID . "'";
+        $fields = $this->prepareForTabRequest("Item Transactions", "ItemID", $ItemID);
+        $result = DB::select("SELECT " . implode(",", $fields["fields"]) . " from " . ($type == "history" ? "itemhistorytransactions " : "itemtransactions " ) .  ( $fields["keyFields"] != "" ? " WHERE ". $fields["keyFields"] : ""), array());
 
         
-        $result = $GLOBALS["capsule"]::select("SELECT " . implode(",", $fields) . " from " . ($type == "history" ? "itemhistorytransactions " : "itemtransactions " ) .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-
-        $result = json_decode(json_encode($result), true);
-        
-        return $result;
+        return json_decode(json_encode($result), true);
     }
     
     public function getItemTransactions($ID){
