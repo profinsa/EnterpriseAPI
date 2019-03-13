@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 09/01/2019
+  Last Modified: 13/03/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -84,6 +84,12 @@ class gridData extends gridDataSource{
 				"dbType" => "varchar(36)",
 				"inputType" => "text",
 				"defaultValue" => ""
+			],
+			"CartItem" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+                "defaultOverride" => true,
+				"defaultValue" => "1"
 			],
 			"ItemName" => [
 				"dbType" => "varchar(50)",
@@ -263,7 +269,7 @@ class gridData extends gridDataSource{
 				"defaultValue" => ""
 			]
 		],
-		"Price & Cost" => [
+		"Cost" => [
 			"GLItemSalesAccount" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "text",
@@ -694,7 +700,8 @@ class gridData extends gridDataSource{
         "VATExcluded" => "VAT Excluded",
         "VATInvestibleItem" => "VAT Investible Item",
         "VATCreditingRight" => "VAT Crediting Right",
-        "VATSupply" => "VAT Supply" 
+        "VATSupply" => "VAT Supply",
+        "CartItem" => "Cart Item"
 	];
 
     public function getPricingCode($id){
