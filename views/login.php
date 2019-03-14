@@ -118,6 +118,10 @@
 	    </div>
 	</section>
 	<script>
+	 $(function () {
+	     $(".preloader").fadeOut();
+	     $('#side-menu').metisMenu();
+	 });
 	 var loginform = $('#loginform');
 	 loginform.submit(function(e){
 	     var req = $.post("index.php?page=login<?php echo key_exists("config", $_GET) ? "&config={$_GET["config"]}" : ""; ?>", loginform.serialize(), null, 'json')

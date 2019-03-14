@@ -125,6 +125,10 @@
 	    </div>
 	</section>
 	<script>
+	 $(function () {
+	     $(".preloader").fadeOut();
+	     $('#side-menu').metisMenu();
+	 });
 	 var loginform = $('#loginform');
 	 var companies, company, division;
 	 loginform.submit(function(e){
