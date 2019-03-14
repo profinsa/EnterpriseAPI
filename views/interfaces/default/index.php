@@ -22,6 +22,10 @@
 		 padding-right : 220px;
 	     }
 
+	     .navbar-header-collapsed{
+		 padding-right : 60px;
+	     }
+	     
 	     .shw-rside {
 		 left : 0px !important;
 		 right : auto !important;
@@ -30,10 +34,6 @@
 	     .right-sidebar {
 		 left: -240px;
 		 right : auto;
-	     }
-
-	     .navbar-top-links > li {
-		 float: right;
 	     }
 
 	     .navbar-search {
@@ -45,23 +45,42 @@
 		 margin-right : 60px;
 	     }
 
-	     #side-menu {
-		 padding-right : 0px !important;
-	     }
-
 	     .content-wrapper .sidebar .nav-second-level {
 		 left : 0px !important;
 		 right : 60px !important;
 	     }
 	 }
+	 .navbar-top-links > li {
+	     float: right;
+	 }
+
+	 #side-menu {
+	     padding-right : 0px !important;
+	 }
+
+	 #side-menu > li > a {
+	     padding: 5px 15px 5px 15px;
+	 }
+
+	 .sidebar .arrow {
+	     position: absolute;
+	     left: 15px;
+	     right : auto;
+	 }
+	 
 	 .arrow {
 	     float : left !important;
 	 }
+	 
 	 .sidebar .nav-second-level .arrow {
 	     left: 15px !important;
 	     right : auto !important;
 	     top: 8px;
 	 }
+	 .nav-second-level {
+	     padding-right : 0px !important;
+	 }
+	 
 	 .nav-third-level {
 	     padding-right : 8px !important;
 	 }
@@ -281,8 +300,10 @@
 	     // This is for click on open close button
 	     // Sidebar open close
 	     $(".open-close").on('click', function () {
+		 console.log("collapsing");
 		 if ($("body").hasClass("content-wrapper")) {
 		     $("body").trigger("resize");
+		     $('.navbar-header').removeClass('navbar-header-collapsed');
 		     $(".sidebar-nav, .slimScrollDiv").css("overflow", "hidden").parent().css("overflow", "visible");
 		     $("body").removeClass("content-wrapper");
 		     $(".open-close i").addClass("icon-arrow-<?php  echo ($ascope["interfaceType"] == "rtl" ? "right" : "left"); ?>-circle");
@@ -290,6 +311,7 @@
 		 }
 		 else {
 		     $("body").trigger("resize");
+		     $('.navbar-header').addClass('navbar-header-collapsed');
 		     $(".sidebar-nav, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible");
 		     $("body").addClass("content-wrapper");
 		     $(".open-close i").removeClass("icon-arrow-<?php  echo ($ascope["interfaceType"] == "rtl" ? "right" : "left"); ?>-circle");
