@@ -12,9 +12,6 @@
 <script src="dependencies/plugins/bower_components/peity/jquery.peity.init.js"></script>
 <!--Wave Effects -->
 <script src="dependencies/assets/js/waves.js"></script>
-<!-- Custom Theme JavaScript -->
-<script src="dependencies/assets/js/custom.js"></script>
-<script src="dependencies/assets/js/dashboard1.js"></script>
 <!--Style Switcher -->
 <script src="dependencies/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 
