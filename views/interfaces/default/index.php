@@ -53,6 +53,22 @@
 		 left : 0px !important;
 		 right : 60px !important;
 	     }
+	 }
+	 .arrow {
+	     float : left !important;
+	 }
+	 .sidebar .nav-second-level .arrow {
+	     left: 15px !important;
+	     right : auto !important;
+	     top: 8px;
+	 }
+	 .nav-third-level {
+	     padding-right : 8px !important;
+	 }
+
+	 .nav-fourth-level {
+	     padding-right : 0px !important;
+	 }
 	 <?php endif; ?>
 	</style>
 	
