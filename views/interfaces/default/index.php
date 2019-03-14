@@ -31,6 +31,14 @@
 		 left: -240px;
 		 right : auto;
 	     }
+
+	     .navbar-top-links > li {
+		 float: right;
+	     }
+
+	     .navbar-search {
+		 padding-right : 0px;
+	     }
 	 <?php endif; ?>
 	</style>
 	
