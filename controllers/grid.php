@@ -22,7 +22,7 @@
 
   Calls:
   models/translation.php
-  models/gridDataSource derevatives -- models who inherits from gridDataSource
+  models/gridDataSource derivatives -- models who inherits from gridDataSource
   app from index.php
 
   Last Modified: 19.02.2019

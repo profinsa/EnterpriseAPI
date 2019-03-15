@@ -1,4 +1,5 @@
 <?php
+session_name("EnterpriseX");
 session_start();
 
 if((key_exists("config", $_GET) && ($configName = $_GET["config"]) != 'default') ||

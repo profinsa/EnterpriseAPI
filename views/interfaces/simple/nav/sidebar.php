@@ -188,7 +188,7 @@
 		if (!key_exists("favorits", $item)) {
 		    echo '<li onmouseenter="onShowSubMenu(event, ' . "'$key'" . ');" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'topbarMenuRender(\''. $key . '\'); onTopbarUpdate();'  : 'topbarMenuRender(); onTopbarUpdate();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
 		    if (key_exists("data", $item)) {
-			echo "<ul onmouseenter=\"onShowSubMenu(event, " . "'$key'" . ");\" onmouseleave=\"onHideSubMenu(event);\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
+			echo "<ul onmouseenter=\"onShowSubMenu(event, " . "'$key'" . ");\" onmouseleave=\"onHideSubMenu(event);\" class=\"iconbarsubmenu dropdown-menu\" style=\" " . ($ascope["interfaceType"] == "rtl" ? "right: " : "left: ") . "99px !important; margin-top: -50px !important; z-index: 9999; width:fit-content\">";
 			foreach($item["data"] as $subitem) {
 			    $href = "";
 			    if(!key_exists("type", $subitem))
@@ -198,7 +198,7 @@
 			    else if($subitem["type"] == 'absoluteLink')
 				$href = $subitem["href"];
 			    
-			    echo '<li style="height:60px; width:auto; text-align:left;"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 10px; padding-left: 10px;" ' . (key_exists("target", $subitem) ? 'target="' . $subitem["target"] . '"' : '') . ' href="' . $href . '" class="nav-link">' . $subitem["full"] .'</a></li>';
+			    echo '<li style="height:60px; width:auto; text-align:' . ($ascope["interfaceType"] == "rtl" ? "right" : "left") . ';"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 10px; padding-left: 10px;" ' . (key_exists("target", $subitem) ? 'target="' . $subitem["target"] . '"' : '') . ' href="' . $href . '" class="nav-link">' . $subitem["full"] .'</a></li>';
 			}
 			echo '</ul>';
 		    }
@@ -207,7 +207,7 @@
 		    echo '<li  onmouseenter="onShowSubMenu(event, ' . "'$key'" . ');" onmouseleave="onHideSubMenu(event);" ><a onclick="fillByFavorits();" style="cursor: pointer" class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
 		    foreach ($menuCategories as $key=>$item){
 			if ($item["type"] == "custom") {
-			    echo "<ul onmouseenter=\"onShowSubMenu(event, " . "'$key'" . ");\" onmouseleave=\"onHideSubMenu(event);\" id=\"" . $item["id"] . "\" class=\"iconbarsubmenu dropdown-menu\" style=\" left: 99px !important; margin-top: -50px !important; z-index: 9999\">";
+			    echo "<ul onmouseenter=\"onShowSubMenu(event, " . "'$key'" . ");\" onmouseleave=\"onHideSubMenu(event);\" id=\"" . $item["id"] . "\" class=\"iconbarsubmenu dropdown-menu\" style=\" " . ($ascope["interfaceType"] == "rtl" ? "right: " : "left: ") . "99px; !important; margin-top: -50px !important; z-index: 9999; width:fit-content\">";
 			    foreach($item["actions"] as $key=>$subitem) {
 				echo '<li id="' . $subitem["id"] . '"onclick="' . $subitem["action"] . '"  style="height:60px; width: 100%"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" href="javascript:;" class="nav-link">' . $subitem["full"] .'</a></li>';
 			    }
