@@ -3963,7 +3963,7 @@ $leftMenu = [
 		    [
 			"type" => "submenu",
 			"id" => "SystemSetup/CompanySetup",
-			"full" => $translation->translateLabel('File Import'),
+			"full" => $translation->translateLabel('EDI / File Import'),
 			"short" => "Co",
 			"data" => [
 		       [
