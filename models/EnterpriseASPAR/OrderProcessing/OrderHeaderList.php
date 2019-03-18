@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 12/06/2018
+  Last Modified: 18/03/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -1509,6 +1509,54 @@ class OrderHeaderPickList extends OrderHeaderList{
     }
 }
 
+class OrderHeaderShipList extends OrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 1) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
+	public $dashboardTitle ="Ship Orders";
+	public $breadCrumbTitle ="Ship Orders";
+	public $modes = ["grid", "view"];
+	public $features = ["selecting"];
+
+    public function Shipped(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        $rets = '';
+        foreach($numbers as $number){
+            DB::statement("set @ret = Order_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
+
+            $result = DB::select('select @ret as ret', array());
+
+            if ($result[0]->ret == true) {
+                $success = false;
+            } else
+                $rets .= ' ' . $result[0]->ret;
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo $rets;
+        }
+    }
+    
+    public function ShipAll(){
+        $user = Session::get("user");
+
+        DB::statement("set @ret = Order_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
+
+        $result = DB::select('select @ret as ret', array());
+        
+        if ($result[0]->ret == 0)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo $result[0]->ret;
+        }
+    }
+}
+
 class OrderHeaderInvoiceList extends OrderHeaderList{
 	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold' AND (OrderHeader.Shipped = 1) AND (IFNULL(OrderHeader.Invoiced,0) = 0)";
 	public $modes = ["grid", "view"];
@@ -1583,54 +1631,6 @@ class OrderHeaderHoldList extends OrderHeaderList{
         } else {
                 http_response_code(400);
                 echo "Procedure not found";
-        }
-    }
-}
-
-class OrderHeaderShipList extends OrderHeaderList{
-	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 1) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
-	public $dashboardTitle ="Ship Orders";
-	public $breadCrumbTitle ="Ship Orders";
-	public $modes = ["grid", "view"];
-	public $features = ["selecting"];
-
-    public function Shipped(){
-        $user = Session::get("user");
-
-        $numbers = explode(",", $_POST["OrderNumbers"]);
-        $success = true;
-        $rets = '';
-        foreach($numbers as $number){
-            DB::statement("set @ret = Order_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
-
-            $result = DB::select('select @ret as ret', array());
-
-            if ($result[0]->ret == true) {
-                $success = false;
-            } else
-                $rets .= ' ' . $result[0]->ret;
-        }
-
-        if($success)
-            echo "ok";
-        else {
-            http_response_code(400);
-            echo $rets;
-        }
-    }
-    
-    public function ShipAll(){
-        $user = Session::get("user");
-
-        DB::statement("set @ret = Order_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
-
-        $result = DB::select('select @ret as ret', array());
-        
-        if ($result[0]->ret == 0)
-            echo "ok";
-        else {
-            http_response_code(400);
-            echo $result[0]->ret;
         }
     }
 }
