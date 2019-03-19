@@ -144,3 +144,8 @@ adoptation for screen sizes
 .label {
     margin-top: 5px;
 }
+
+.container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+}
