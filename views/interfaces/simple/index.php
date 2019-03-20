@@ -63,16 +63,16 @@
 
 	//	require "menuActions.php";
 
-/*	$menuCategories["Dashboard"] = [
-	    "type" => "blank",
-	    "data" => [
-		"id" => "Dashboard",
-		"full" => $translation->translateLabel('Dashboard'),
-		"short" => "Da",
-		"href" => "dashboard",
-	    ]
-	];
-*/
+	/*	$menuCategories["Dashboard"] = [
+	   "type" => "blank",
+	   "data" => [
+	   "id" => "Dashboard",
+	   "full" => $translation->translateLabel('Dashboard'),
+	   "short" => "Da",
+	   "href" => "dashboard",
+	   ]
+	   ];
+	 */
 	$menuCategories["MyShortcuts"] = [
             "type" => "custom",
             "id" => "MyShortcuts",
@@ -88,16 +88,16 @@
             ]
 	];
 
-/*	$menuCategories["Documentation"] = [
-	    "type" => "item",
-	    "data" => [
-		"id" => "Documentation",
-		"full" => $translation->translateLabel('Help Documentation'),
-		"short" => "HD",
-		"href" => "http://dms.newtechautomotiveservices.com:8084/EnterpriseHelp/usermanual/index.php",
-		"Target" => "_Blank"
-	    ]
-	    ];*/
+	/*	$menuCategories["Documentation"] = [
+	   "type" => "item",
+	   "data" => [
+	   "id" => "Documentation",
+	   "full" => $translation->translateLabel('Help Documentation'),
+	   "short" => "HD",
+	   "href" => "http://dms.newtechautomotiveservices.com:8084/EnterpriseHelp/usermanual/index.php",
+	   "Target" => "_Blank"
+	   ]
+	   ];*/
 
     ?>
     <body onload="main();" style="min-height: 800px;" class="">
@@ -197,6 +197,10 @@
 	 var onlocationSkipUrls = {};
 	 function onlocation(location){
              var path = location.toString();
+	     if(path.search(/index\.php.*\#/) == -1){
+		 window.location = linksMaker.makeDashboardLink();
+		 return;
+	     }
 	     if(onlocationSkipUrls.hasOwnProperty(location)){
 		 delete onlocationSkipUrls[location];
 		 return;

@@ -475,7 +475,6 @@
 	     if(path.search(/index\.php.*\#/) == -1){
 		 window.location = linksMaker.makeDashboardLink();
 		 return;
-		 console.log(path);
 	     }
 	     if(onlocationSkipUrls.hasOwnProperty(path)){
 		 delete onlocationSkipUrls[path];
