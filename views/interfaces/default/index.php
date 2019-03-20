@@ -2,6 +2,7 @@
 <html dir="<?php echo $ascope["interfaceType"]; ?>">
     <?php
 	require 'header.php';
+	require './views/components/commonJavascript.php';
     ?>
     <body onload="main();">
 	<style>
@@ -471,6 +472,11 @@
 	 var onlocationSkipUrls = {};
 	 function onlocation(location){
 	     var path = location.toString();
+	     if(path.search(/index\.php.*\#/) == -1){
+		 window.location = linksMaker.makeDashboardLink();
+		 return;
+		 console.log(path);
+	     }
 	     if(onlocationSkipUrls.hasOwnProperty(path)){
 		 delete onlocationSkipUrls[path];
 		 return;

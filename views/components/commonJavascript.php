@@ -34,7 +34,10 @@
 
  //global object used for creatink links to any part of application
  var linksMaker = {
-     makeGridLink : function makeGridLink(path){
+     makeDashboardLink : function(type){
+         return "index.php#/?page=dashboard" + (type ? "&screen=" + type : "");
+     },
+     makeGridLink : function (path){
          return "index.php#/?page=grid&action=" + path + "&mode=grid&category=Main&item=all";
      },
      makeGridItemView : function(path, item, category){
