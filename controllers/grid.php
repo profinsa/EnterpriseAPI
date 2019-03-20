@@ -228,6 +228,18 @@ class controller{
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
+                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderShipList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderPickList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderInvoiceList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
                     "EnterpriseASPAR/OrderProcessing/InvoiceHeaderHistoryList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
