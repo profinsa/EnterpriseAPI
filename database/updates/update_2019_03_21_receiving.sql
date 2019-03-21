@@ -47,9 +47,6 @@ Revision History:
    DECLARE v_ErrorID INT;
    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
    BEGIN
-GET DIAGNOSTICS CONDITION 1
-         @p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
- SELECT @p1, @p2;
       SET @SWV_Error = 1;
    END;
 -- initialize the success flag of this procedure to 1 (which signifies succes)
@@ -3439,9 +3436,6 @@ Revision History:
    TransDate DESC;
    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
    BEGIN
-GET DIAGNOSTICS CONDITION 1
-         @p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
- SELECT @p1, @p2;
       SET @SWV_Error = 1;
       SET NO_DATA = -2;
    END;
