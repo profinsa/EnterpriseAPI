@@ -947,7 +947,11 @@ class PurchaseHeaderList extends gridDataSource{
         "VendorFax" => "Fax",
         "VendorEmail" => "Email",
         "VendorWebPage" => "Web",
-        "Attention" => "Attention"
+        "Attention" => "Attention",
+        "ItemUnitPrice" => "Price",
+        "ReceivingNumber" => "Receiving #",
+        "TrackingNumber" => "Tracking #",
+        "Received" => "Received"
 	];
 
     public $vendorFields = [
@@ -1417,8 +1421,49 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
 	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (PurchaseHeader.Posted = 1 AND Approved = 1 AND IFNULL(Received,0) = 0 AND PurchaseNumber <> 'DEFAULT')";
 	public $dashboardTitle ="Receive Purchases";
 	public $breadCrumbTitle ="Receive Purchases";
-    public $modes = ["grid"]; // list of enabled modes
+    public $modes = ["grid", "edit", "edit"]; // list of enabled modes
 
+	public $editCategories = [
+		"Main" => [
+            "PurchaseNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text"
+            ],
+            "Received" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox"
+            ],
+            "ReceivedDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime"
+            ],
+            "TrackingNumber" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "RecivingNumber" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]
+        ]
+    ];
+    
+    public $detailPagesAsSubgrid = true;
+    public $detailPages = [
+        "Main" => [
+            //            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            //"editDisabled" => "true",
+            "viewPath" => "AccountsPayable/PurchaseProcessing/ViewPurchasesDetail",
+            "newKeyField" => "PurchaseNumber",
+            "keyFields" => ["PurchaseNumber", "PurchaseLineNumber"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"]
+        ]
+    ];
+    
     public function Purchase_Split() {
         $user = Session::get("user");
 

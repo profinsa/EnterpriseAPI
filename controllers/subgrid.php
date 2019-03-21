@@ -68,9 +68,12 @@ class controller{
         require 'models/' . $model_path . '.php';
         if(key_exists($filename[1], $_perm->permissions))
             $security = new Security($_SESSION["user"]["accesspermissions"], $_perm->permissions[$filename[1]]);
-        else
-            return response('permissions not found', 500)->header('Content-Type', 'text/plain');
-
+        else{
+            http_response_code('500');
+            echo 'permissions not found';
+            return;
+        }
+        
         $this->user = $_SESSION["user"];
                
         $data = new gridData();

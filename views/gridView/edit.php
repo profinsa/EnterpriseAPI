@@ -194,6 +194,7 @@
 				 var detailRewrite = {
 				     "ViewGLTransactions" : "LedgerTransactionsDetail",
 				     "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
+                     "ReceivePurchases" : "ReceivePurchasesDetail",
 				     "BankDeposits" : "LedgerTransactionsDetail"
 				 }, ind;
 				 var path = new String(window.location);

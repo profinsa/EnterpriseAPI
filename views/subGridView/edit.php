@@ -93,7 +93,7 @@ $GLOBALS["dialogChooserInputs"] = [];
 				case "datetime" :
 				    //renders text input with label
 				    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime subgrid-input\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-					 ( (key_exists("disabledEdit", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->editCategories[$scope["category"]][$key]) && $scope["mode"] == "new") ? "readonly" : "")
+                                                     ( (key_exists("disabledEdit", $data->gridFields[$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->gridFields[$key]) && $scope["mode"] == "new") ? "readonly" : "")
 					.">";
 				    break;
 
@@ -106,7 +106,7 @@ $GLOBALS["dialogChooserInputs"] = [];
 				    break;
 				    
 				case "dialogChooser":
-				    $dataProvider = $data->editCategories["Main"][$key]["dataProvider"];
+				    $dataProvider = $data->gridFields[$key]["dataProvider"];
 				    if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"]))
 					$GLOBALS["dialogChooserTypes"][$dataProvider] = "hophop";
 				    $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;

@@ -1687,6 +1687,12 @@ public $permissions = [
         "insert" => "POAdd|ADSetup",
         "delete" => "PODelete|ADSetup",
     ],
+    "PurchaseReceive" => [
+        "select" => "APView|GLView|POView|ADView|ADSetup",
+        "update" => "POEdit|ADSetup",
+        "insert" => "POAdd|ADSetup",
+        "delete" => "PODelete|ADSetup",
+    ],
     "PurchaseHeaderApprove" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "APEdit|ADSetup",

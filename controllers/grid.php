@@ -301,10 +301,10 @@ class controller{
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
-                    "EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList/" => [
+                    /*"EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
+                        ],*/
                     "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
