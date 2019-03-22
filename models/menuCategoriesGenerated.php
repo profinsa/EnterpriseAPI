@@ -3886,7 +3886,7 @@ $leftMenu = [
 	                 "target" => "_blank",
                      "id" => "Tools/ECommerce/ShoppingCart",
                      "full" => $translation->translateLabel('Open Cart'),
-                     "href" => "https://www.stfb.net/EnterpriseXCart/default.php?loadusername=dland&loadpassword=dland"
+                     "href" => "https://www.stfb.net/EnterpriseXCart/default.php?loadusername=dland&loadpassword=dland&CompanyID={$user["CompanyID"]}&DivisionID={$user["DivisionID"]}&DepartmentID={$user["DepartmentID"]}"
                  ],
 		    [
 			"type" => "submenu",
