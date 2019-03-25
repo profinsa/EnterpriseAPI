@@ -36,7 +36,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle ="Inventory Assemblies";
     public $breadCrumbTitle ="Inventory Assemblies";
     public $idField ="AssemblyID";
-    public $modes = ["grid", "view", "edit"];
+    public $modes = ["grid", "edit"];
     public $idFields = ["CompanyID","DivisionID","DepartmentID","AssemblyID"]; // "ItemID"
     public $gridFields = [
         "AssemblyID" => [
@@ -107,7 +107,8 @@ EOF;
     public function CreateAssembly(){
         $user = Session::get("user");
 
-        DB::statement("CALL Invoice_CreateAssembly('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ItemID"]. "','" . $_POST["WarehouseID"] . "','" . $_POST["QtyRequired"] . "',@Result,@SWP_RET_VALUE)");
+        DB::statement("set @qty =" . $_POST["QtyRequired"]);
+        DB::statement("CALL Inventory_Assemblies('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ItemID"]. "','" . $_POST["WarehouseID"] . "', @qty, @Result,@SWP_RET_VALUE)");
 
         $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE');
 

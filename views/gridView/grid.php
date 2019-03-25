@@ -42,7 +42,7 @@
 	    case "text":
 		if(key_exists("formatFunction", $data->gridFields[$key])){
 		    $formatFunction = $data->gridFields[$key]["formatFunction"];
-		    echo $data->$formatFunction($row, "gridFields", $key, $value, false);
+		    return $data->$formatFunction($row, "gridFields", $key, $value, false);
 		}
 		else
 		    return  formatField($data->gridFields[$key], $value);
