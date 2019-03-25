@@ -254,7 +254,7 @@
     "Tools/ECommerce/ShoppingCartSetup/ItemsWishList" => "EnterpriseASPInv/ShoppingCartSetup/InventoryWishListList",
     "MRP/BillofMaterials/ViewBillOfMaterials" => "EnterpriseASPInv/BillOfMaterials/InventoryAssembliesList",
     "MRP/BillofMaterials/ViewBuildInstructions" => "EnterpriseASPInv/BillOfMaterials/InventoryAssembliesInstructionsList",
-    "MRP/BillofMaterials/CreateInventory" => "EnterpriseASPInv/BillOfMaterials/InventoryCreateAssembly",
+    "MRP/BillofMaterials/CreateInventory" => "EnterpriseASPInv/BillOfMaterials/InventoryCreateAssemblyList",
     "MRP/WorkOrders/ViewWorkOrders" => "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderList",
     "MRP/WorkOrders/ViewClosedWorkOrders" => "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderClosedList",
     "MRP/WorkOrders/ViewWorkOrdersHistory" => "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderHistoryList",

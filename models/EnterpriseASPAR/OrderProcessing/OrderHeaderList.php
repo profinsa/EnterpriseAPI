@@ -4,7 +4,7 @@
    
   Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\OrderProcessing\OrderHearderList.php It provides data from database and default values, column names and categories
    
-  Date created: 02/16/2017  Kenna Fetterman
+  Date created: 02/16/2017 Zaharov Nikita
    
   Use: this model used by views/OrderHearderList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
