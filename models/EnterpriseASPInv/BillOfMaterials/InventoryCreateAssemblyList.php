@@ -37,7 +37,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Inventory Assemblies";
     public $idField ="AssemblyID";
     public $modes = ["grid", "view", "edit"];
-    public $idFields = ["CompanyID","DivisionID","DepartmentID","AssemblyID","ItemID"];
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","AssemblyID"]; // "ItemID"
     public $gridFields = [
         "AssemblyID" => [
             "dbType" => "varchar(36)",
@@ -90,6 +90,19 @@ class gridData extends gridDataSource{
         "ApprovedDate" => "Approved Date",
         "EnteredBy" => "Entered By"
     ];
+
+    
+    public function getPage($customer){
+        $user = Session::get("user");
+        $query = <<<EOF
+       SELECT DISTINCT CompanyID, DivisionID, DepartmentID, AssemblyID, '' AS WarehouseID, '' AS WarehouseBinID, 0 AS QtyRequired FROM InventoryAssemblies InventoryCreateAssembly WHERE CompanyID=? AND DivisionID = ? AND DepartmentID = ?
+EOF;
+        
+        $result = DB::select($query, array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
 
     public function CreateAssembly(){
         $user = Session::get("user");
