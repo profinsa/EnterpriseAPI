@@ -48,6 +48,11 @@
 	 .invoice-table-summary .summ {
 	     text-align : right;
 	 }
+	 @media print {
+	     a[href]:after {
+		 content: none !important;
+	     }
+	 }
 	</style>
     </head>
     <body style="padding:10px; font-family: Arial;">
