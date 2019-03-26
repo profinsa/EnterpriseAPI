@@ -2,7 +2,7 @@
 /*
   Name of Page: PaymentsHeaderList model
    
-  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Payments\PaymentsHeaderList.php It provides data from database and default values, column names and categories
+  Method: Model for gridView. It provides data from database and default values, column names and categories
    
   Date created: 02/16/2017 Zaharov Nikita
    
@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 12/13/2018
+  Last Modified: 26/03/2019
   Last Modified by: Nikita Zaharov
 */
 
