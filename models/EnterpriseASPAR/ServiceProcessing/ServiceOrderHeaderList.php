@@ -1324,6 +1324,7 @@ class ServiceOrderHeaderClosedList extends ServiceOrderHeaderList{
 	public $dashboardTitle ="Closed Service Orders";
 	public $breadCrumbTitle ="Closed Service Orders";
     public $modes = ["grid", "view", "edit"];
+    public $features = ["selecting"];
 
     public function CopyToHistory(){
         $user = Session::get("user");

@@ -22,31 +22,23 @@
   Calls:
   sql
 
-  Last Modified: 28.02.2019
+  Last Modified: 26.04.2019
   Last Modified by: Nikita Zaharov
 */
+
+require "docreportsbase.php";
 
 function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
 }
 
-class docReportsData{
+class docReportsData extends docReportsBase{
     protected $id = ""; //customer id
+    public $tableName = "customerinformation";
+    public $keyField = "CustomerID";
 
     public function __construct($id){
         $this->id = $id;
-    }
-
-    public function getCurrencySymbol(){
-        $user = $_SESSION["user"];
-
-        //        $result =  $GLOBALS["capsule"]::select("select I.CurrencyID, C.CurrencySymbol from CustomerInformation I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.CustomerID='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
-        $result = [];
-        
-        return [
-            "id" => count($result) ? $result[0]->CurrencyID : "USD",
-            "symbol" => count($result) ? $result[0]->CurrencySymbol : "$"
-        ];
     }
 
     public function getUser(){
