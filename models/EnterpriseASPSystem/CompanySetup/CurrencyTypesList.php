@@ -46,7 +46,7 @@ class gridData extends gridDataSource{
             "inputType" => "text"
         ],
         "CurrenycySymbol" => [
-            "dbType" => "varchar(1)",
+            "dbType" => "varchar(3)",
             "inputType" => "text"
         ],
         "CurrencyExchangeRate" => [
@@ -74,7 +74,7 @@ class gridData extends gridDataSource{
                 "defaultValue" => ""
             ],
             "CurrenycySymbol" => [
-                "dbType" => "varchar(1)",
+                "dbType" => "varchar(3)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
