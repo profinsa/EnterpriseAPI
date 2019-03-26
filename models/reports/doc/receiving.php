@@ -26,28 +26,19 @@
   Last Modified by: Nikita Zaharov
 */
 
+require "docreportsbase.php";
+
 function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
 }
 
-require __DIR__ . "/docreportsbase.php";
-
 class docReportsData extends docReportsBase{
     protected $id = ""; //invoice number
+    public $tableName = "invoiceheader";
+    public $keyField = "InvoiceNumber";
 
     public function __construct($id){
         $this->id = $id;
-    }
-
-    public function getCurrencySymbol(){
-        $user = Session::get("user");
-
-        $result =  DB::select("select I.CurrencyID, C.CurrenycySymbol from InvoiceHeader I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.InvoiceNumber='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
-
-        return [
-            "id" => count($result) ? $result[0]->CurrencyID : "USD",
-            "symbol" => count($result) ? $result[0]->CurrenycySymbol : "$"
-        ];
     }
 
     public function getHeaderData(){
