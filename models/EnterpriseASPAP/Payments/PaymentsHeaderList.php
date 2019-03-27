@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 26/03/2019
+  Last Modified: 27/03/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -963,7 +963,7 @@ class PaymentsHeaderIssueCreditMemoList extends PaymentsHeaderList{
             echo "ok";
         else{
             http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
+            echo "Credit Memo creating failed";
         }
     }
     
