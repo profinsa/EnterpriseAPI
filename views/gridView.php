@@ -188,13 +188,14 @@
      toggleActive : false,
      format: {
 	 toDisplay: function (date, format, language) {
-	     //console.log(date,' eee');
+//	     console.log(date,' eee');
 	     var d = new Date(date);
 	     return (d.getMonth() + 1) + 
 		    "/" +  d.getDate() +
 		    "/" +  d.getFullYear();
 	 },
 	 toValue: function (date, format, language) {
+//	     console.log(date);
 	     var d = new Date(date);
 	     return (d.getMonth() + 1) + 
 		    "/" +  d.getDate() +

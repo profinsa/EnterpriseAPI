@@ -100,14 +100,14 @@
 					    
 					case "datetime" :
 					    //renders text input with label
-					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" $disabledEdit></div></div>";
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP" || !$value ? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" $disabledEdit></div></div>";
 					    break;
 
 					case "imageFile" :
-						echo "<input class=\"file_attachment\" type=\"hidden\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"\" />";
-						echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key . "_attachment" ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"file\" id=\"" . $key . "_attachment" ."\" name=\"" . $key . "_attachment" . "\" class=\"form-control\" value=\"";
-						echo"\" $disabledEdit></div></div>";
-						break;
+					    echo "<input class=\"file_attachment\" type=\"hidden\" name=\"" . $key . "\" id=\"" . $key . "\" value=\"\" />";
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key . "_attachment" ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"file\" id=\"" . $key . "_attachment" ."\" name=\"" . $key . "_attachment" . "\" class=\"form-control\" value=\"";
+					    echo"\" $disabledEdit></div></div>";
+					    break;
 
 					case "checkbox" :
 					    if($disabledEdit != "")
@@ -194,7 +194,7 @@
 				 var detailRewrite = {
 				     "ViewGLTransactions" : "LedgerTransactionsDetail",
 				     "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
-                     "ReceivePurchases" : "ReceivePurchasesDetail",
+				     "ReceivePurchases" : "ReceivePurchasesDetail",
 				     "BankDeposits" : "LedgerTransactionsDetail"
 				 }, ind;
 				 var path = new String(window.location);
