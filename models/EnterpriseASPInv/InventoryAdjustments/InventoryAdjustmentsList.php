@@ -186,7 +186,21 @@ class gridData extends gridDataSource{
     ];
 
     public function Recalc() {}
-    
+
+    public function Post(){
+        $user = Session::get("user");
+
+        DB::statement("CALL InventoryAdjustments_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AdjustmentID"] . "', @success, @PostingResult,@SWP_RET_VALUE)");
+
+        $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE == -1) {
+            http_response_code(400);
+            echo $result[0]->PostingResult;
+        } else {
+            echo "ok";
+        }
+    }
+
     public $columnNames = [
         "AdjustmentID" => "Adjustment ID",
         "AdjustmentTypeID" => "Adjustment Type ID",
