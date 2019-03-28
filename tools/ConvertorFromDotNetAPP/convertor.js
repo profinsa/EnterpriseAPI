@@ -609,6 +609,6 @@ var EDITables = [
     'edistatements',
     'edistatementshistory',
 ];
-var ind;
-for(ind in EDITables)
-    generate_model_by_table(EDITables[ind]);
+//var ind;
+//for(ind in EDITables)
+  //  generate_model_by_table(EDITables[ind]);

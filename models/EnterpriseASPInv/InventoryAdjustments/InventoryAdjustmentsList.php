@@ -79,13 +79,13 @@ class gridData extends gridDataSource{
                 "inputType" => "datetime",
                 "defaultValue" => "now"
             ],
-            "SystemDate" => [
-                "dbType" => "timestamp",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
             "AdjustmentReason" => [
                 "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "AdjustmentNotes" => [
+                "dbType" => "varchar(255)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
@@ -94,17 +94,12 @@ class gridData extends gridDataSource{
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
-            "AdjustmentNotes" => [
-                "dbType" => "varchar(255)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
             "AdjustmentPostToGL" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
-            "BatchControlNumber" => [
+            /*            "BatchControlNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => ""
@@ -168,7 +163,7 @@ class gridData extends gridDataSource{
                 "dbType" => "decimal(19,4)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ]
+                ]*/
         ]
     ];
     

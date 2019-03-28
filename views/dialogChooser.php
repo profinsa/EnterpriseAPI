@@ -115,6 +115,8 @@ function writeValue($data, $desc, $value){
 		 break;
 	     case "purchasedetail" :
 		 TransactionNumber = $('.PurchaseNumber').val();
+	     case "inventoryadjustmentsdetail":
+		 TransactionNumber = $('.AdjustmentID').val();
 		 break;		 
 	 }
 	 //console.log(TransactionNumber, "<?php echo $data->tableName; ?>");
