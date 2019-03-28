@@ -28,12 +28,13 @@
      grid model
      app as model
 
-     Last Modified: 09.18.2017
+     Last Modified: 28.03.2019
      Last Modified by: Nikita Zaharov
 */
 $GLOBALS["dialogChooserTypes"] = [];
 $GLOBALS["dialogChooserInputs"] = [];
 ?>
+
 <div id="grid_content" class="row">
     <form id="subgridData">
 	<?php
@@ -42,7 +43,7 @@ $GLOBALS["dialogChooserInputs"] = [];
         foreach($data->idFields as $key){
 	    $keyValue = array_shift($keyValues);
 	    if($keyValue && $key != "CompanyID" && $key != "DivisionID" && $key != "DepartmentID")
-		echo "<input type=\"hidden\" name=\"$key\" value=\"$keyValue\"/>";
+		echo "<input type=\"hidden\" name=\"$key\" value=\"$keyValue\" class=\"$key\"/>";
         }
 	?>
 	<table id="example23" class="table table-striped table-bordered">
@@ -78,7 +79,7 @@ $GLOBALS["dialogChooserInputs"] = [];
 			    switch($data->gridFields[$key]["inputType"]){
 				case "text" :
 				    //renders text input with label
-				    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control subgrid-input\" value=\"";
+				    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control subgrid-input $key\" value=\"";
 				    if(key_exists("formatFunction", $data->gridFields[$key])){
 					$formatFunction = $data->gridFields[$key]["formatFunction"];
 					echo $data->$formatFunction($row, "gridFields", $key, $value, false);
@@ -92,7 +93,7 @@ $GLOBALS["dialogChooserInputs"] = [];
 				    
 				case "datetime" :
 				    //renders text input with label
-				    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime subgrid-input\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+				    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime subgrid-input $key\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
                                                      ( (key_exists("disabledEdit", $data->gridFields[$key]) && $scope["mode"] == "edit")  || (key_exists("disabledNew", $data->gridFields[$key]) && $scope["mode"] == "new") ? "readonly" : "")
 					.">";
 				    break;
@@ -100,22 +101,24 @@ $GLOBALS["dialogChooserInputs"] = [];
 				case "checkbox" :
 				    //renders checkbox input with label
 				    echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-				    echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control subgrid-input\" value=\"1\" " . ($value ? "checked" : "") ." " .
+				    echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control subgrid-input $key\" value=\"1\" " . ($value ? "checked" : "") ." " .
 					 ( (key_exists("disabledEdit", $data->gridFields[$key]) && $scope["mode"] == "edit") || (key_exists("disabledNew", $data->gridFields[$key]) && $scope["mode"] == "new") ? "disabled" : "")
 					.">";
 				    break;
 				    
 				case "dialogChooser":
-				    $dataProvider = $data->gridFields[$key]["dataProvider"];
-				    if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"]))
-					$GLOBALS["dialogChooserTypes"][$dataProvider] = "hophop";
-				    $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-				    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control subgrid-input\" value=\"$value\">";
+                    $dataProvider = $data->gridFields[$key]["dataProvider"];
+                    if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
+						$GLOBALS["dialogChooserTypes"][$dataProvider] = $data->gridFields[$key];
+						$GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
+                    }
+                    $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
+				    echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control subgrid-input $key\" value=\"$value\">";
 				    break;
 				    
 				case "dropdown" :
 				    //renders select with available values as dropdowns with label
-				    echo "<select class=\"form-control subgrid-input\" name=\"" . $key . "\" id=\"" . $key . "\">";
+				    echo "<select class=\"form-control subgrid-input $key\"name=\"" . $key . "\" id=\"" . $key . "\">";
 				    $method = $data->gridFields[$key]["dataProvider"];
 				    $types = $data->$method();
 				    if($value)

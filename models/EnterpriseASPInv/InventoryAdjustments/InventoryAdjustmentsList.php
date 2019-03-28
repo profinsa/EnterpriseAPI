@@ -66,7 +66,9 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "disabledEdit" => true,
-                "defaultValue" => ""
+                "disabledNew" => true,
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
             ],
             "AdjustmentTypeID" => [
                 "dbType" => "varchar(36)",
@@ -167,6 +169,24 @@ class gridData extends gridDataSource{
         ]
     ];
     
+    public $detailPagesAsSubgrid = true;
+    public $detailPages = [
+        "Main" => [
+            //            "hideFields" => "true",
+            //"disableNew" => "true",
+            //"deleteDisabled" => "true",
+            //"editDisabled" => "true",
+            "viewPath" => "Inventory/InventoryAdjustments/InventoryAdjustmentsDetail",
+            "newKeyField" => "AdjustmentID",
+            "keyFields" => ["AdjustmentID", "AdjustmentLineID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","AdjustmentID"],
+            "gridFields" => [
+            ]
+        ]
+    ];
+
+    public function Recalc() {}
+    
     public $columnNames = [
         "AdjustmentID" => "Adjustment ID",
         "AdjustmentTypeID" => "Adjustment Type ID",
@@ -188,7 +208,20 @@ class gridData extends gridDataSource{
         "SupervisorPassword" => "Supervisor Password",
         "ManagerSignature" => "Manager Signature",
         "ManagerPassword" => "Manager Password",
-        "Total" => "Total"
+        "Total" => "Total",
+        "AdjustmentLineID" => "Adjustment Line ID",
+        "ItemID" => "Item ID",
+        "WarehouseID" => "Warehouse ID",
+        "WarehouseBinID" => "Bin ID",
+        "AdjustmentDescription" => "Adjustment Description",
+        "OriginalQuantity" => "Original Qty",
+        "AdjustedQuantity" => "Adjusted Qty",
+        "CurrencyID" => "Currency ID",
+        "CurrencyExchangeRate" => "Currency Exchange Rate",
+        "Cost" => "Cost",
+        "GLAdjustmentPostingAccount" => "GL Adjustment Posting Account",
+        "ProjectID" => "Project ID",
+        "GLControlNumber" => "GL Control Number"
     ];
 }
 ?>

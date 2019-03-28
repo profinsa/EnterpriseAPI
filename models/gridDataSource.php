@@ -1552,6 +1552,7 @@ EOF;
             "paymentsheader" => "NextVoucherNumber",
             "ledgertransactions" => "NextGLTransNumber",
             "banktransactions" => "NextBankTransactionNumber",
+            "inventoryadjustments" => "NextAdjustmentNumber",
             //    "ediinvoiceheader" => [
             //"ediorderheader" => [
             //"edipurchaseheader" => [

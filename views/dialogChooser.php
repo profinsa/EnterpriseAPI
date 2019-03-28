@@ -91,6 +91,7 @@ function writeValue($data, $desc, $value){
  }
  //handler of customer choose button
  function dialogChooserChoose(dialog, value){
+     console.log(JSON.stringify(dialogChooserCurrentField, null , 3));
      var values = window['dataDialogChooser' + dialogChooserCurrentField].data.allValues,
 	 fields = window['dataDialogChooser' + dialogChooserCurrentField].desc.fieldsToFill,
 	 ind;
@@ -116,6 +117,7 @@ function writeValue($data, $desc, $value){
 	     case "purchasedetail" :
 		 TransactionNumber = $('.PurchaseNumber').val();
 	     case "inventoryadjustmentsdetail":
+		 console.log("eeee" + $('.AdjustmentID').val());
 		 TransactionNumber = $('.AdjustmentID').val();
 		 break;		 
 	 }
