@@ -1261,7 +1261,27 @@ EOF;
         
         return $res;
     }
+
+    //helper function for all new dropdown sources
+    public function helperForDropdownToGet($tableName, $titleField, $valueField){
+        $user = Session::get("user");
+        $res = [];
+        $result = DB::select("SELECT * from $tableName WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
+
+        foreach($result as $key=>$value)
+            $res[$value->$valueField] = [
+                "title" => $value->$titleField,
+                "value" => $value->$valueField
+            ];
+        
+        return $res;
+    }
     
+    //getting list of available inventory adjustment types
+    public function getInventoryAdjustmentTypes(){
+        return $this->helperForDropdownToGet("inventoryadjustmenttypes", "AdjustmentTypeID", "AdjustmentTypeID");
+    }
+
     public function Inventory_PopulateItemInfo(){
         $user = Session::get("user");
 
