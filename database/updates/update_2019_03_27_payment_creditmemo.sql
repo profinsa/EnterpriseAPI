@@ -58,9 +58,6 @@ Revision History:
    DECLARE v_ErrorID INT;
    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
    BEGIN
-GET DIAGNOSTICS CONDITION 1
-         @p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
-	  SELECT @p1, @p2;
        SET @SWV_Error = 1;
    END;
    WriteError:
