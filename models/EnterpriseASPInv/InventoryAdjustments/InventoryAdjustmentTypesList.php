@@ -1,5 +1,4 @@
 <?php
-
 /*
   Name of Page: InventoryAdjustmentTypesList model
    
