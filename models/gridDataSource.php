@@ -1579,6 +1579,10 @@ EOF;
 
         return $columnMax;
     }
+
+    public function getNewItemRemote(){
+        echo json_encode($this->getNewItem($_POST["id"], $_POST["type"]), JSON_PRETTY_PRINT);
+    }
    
     //getting data for new record
     public function getNewItem($id, $type){            
@@ -1732,6 +1736,10 @@ EOF;
         DB::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 
+    /*    public function getNewItemRemote(){
+        echo json_encode($this->getNewItem($_POST["id"], $_POST["type"]), JSON_PRETTY_PRINT);
+        }*/
+   
     //add row to table
     public function insertItem($values){
         $user = Session::get("user");
