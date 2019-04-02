@@ -1580,6 +1580,13 @@ EOF;
         return $columnMax;
     }
 
+    public function getNewItemAllRemote(){
+        $result = [];
+        foreach($this->editCategories as $key=>$value)
+            $result = array_merge($result, $this->getNewItem($_POST["id"], $key));
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+    
     public function getNewItemRemote(){
         echo json_encode($this->getNewItem($_POST["id"], $_POST["type"]), JSON_PRETTY_PRINT);
     }
@@ -1619,6 +1626,11 @@ EOF;
                             $this->editCategories[$type][$key]["defaultValue"] = $defaultRecord->$key;
                         if(property_exists($defaultCompanyRecord, $key) && $defaultCompanyRecord->$key != "")
                             $this->editCategories[$type][$key]["defaultValue"] = $defaultCompanyRecord->$key;
+                        if($this->editCategories[$type][$key]["inputType"] == "datetime" &&
+                           ($this->editCategories[$type][$key]["defaultValue"] == "0000-00-00 00:00:00" ||
+                            $this->editCategories[$type][$key]["defaultValue"] == "CURRENT_TIMESTAMP"||
+                            !$this->editCategories[$type][$key]["defaultValue"]))
+                            $this->editCategories[$type][$key]["defaultValue"] = date("m/d/y");
                     }
                     if(!key_exists("required", $this->editCategories[$type][$key])){
                         switch ($struct->Null) {
@@ -1735,10 +1747,10 @@ EOF;
 
         DB::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
-
-    /*    public function getNewItemRemote(){
-        echo json_encode($this->getNewItem($_POST["id"], $_POST["type"]), JSON_PRETTY_PRINT);
-        }*/
+    
+    public function insertItemRemote(){
+        $this->insertItem($_POST);
+    }
    
     //add row to table
     public function insertItem($values){
