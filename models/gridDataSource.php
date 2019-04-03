@@ -1747,13 +1747,27 @@ EOF;
 
         DB::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
+
+    public function insertItemsRemote(){
+        $postData = file_get_contents("php://input");
+        
+        // `application/x-www-form-urlencoded`  `multipart/form-data`
+        $data = parse_str($postData);
+        // or
+        // `application/json`
+        $data = json_decode($postData, true);
+        foreach($data as $item)
+            $this->insertItem($item, true);
+        echo "ok";
+        //echo json_encode($data, JSON_PRETTY_PRINT);
+    }
     
     public function insertItemRemote(){
         $this->insertItem($_POST);
     }
    
     //add row to table
-    public function insertItem($values){
+    public function insertItem($values, $remoteCall = false){
         $user = Session::get("user");
         if($this->checkTableSharing($this->tableName)){
             $user["DivisionID"] = "DEFAULT";
@@ -1811,7 +1825,8 @@ EOF;
         $result = DB::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")");
 
         echo json_encode($ret);
-        exit;
+        if(!$remoteCall)
+            exit;
     }
 
     //delete row from table
