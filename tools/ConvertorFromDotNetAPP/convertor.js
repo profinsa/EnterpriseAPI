@@ -612,3 +612,5 @@ var EDITables = [
 //var ind;
 //for(ind in EDITables)
   //  generate_model_by_table(EDITables[ind]);
+
+generate_model_by_table("inventorycart");

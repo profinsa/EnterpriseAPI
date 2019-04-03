@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 13/03/2019
+  Last Modified: 03/04/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -209,32 +209,217 @@ class gridData extends gridDataSource{
             ]
         ],
         "Website" => [
-            "UsePricingCodes" => [
+            "AboutUsPage" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
+            "AboutUsPageContent" => [
+                "dbType" => "mediumtext",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "CustomerService" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "CustomerServiceContent" => [
+                "dbType" => "mediumtext",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "PrivacyPolicy" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "PrivacyPolicyContent" => [
+                "dbType" => "mediumtext",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "SiteMap" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "SiteMapContent" => [
+                "dbType" => "mediumtext",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Contact" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ContactContent" => [
+                "dbType" => "mediumtext",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ShippingReturns" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ShippingReturnsContent" => [
+                "dbType" => "mediumtext",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "SecureShopping" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "SecureShoppingContent" => [
+                "dbType" => "mediumtext",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "InternationalShipping" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "InternationalShippingContent" => [
+                "dbType" => "mediumtext",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Affiliates" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "AffiliatesContent" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Help" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "HelpContent" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Support" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "SupportContent" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ]
         ],
-        "NewsLetterSignup" => [
-            "UsePricingCodes" => [
+        "News Letter Signup" => [
+            "ShowNewsletter" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
-            ],
+            ]
         ],
         "Socials" => [
-            "UsePricingCodes" => [
+            "Facebook" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
+            "FacebookUrl" => [
+                "dbType" => "varchar(128)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Twitter" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "TwitterUrl" => [
+                "dbType" => "varchar(128)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "LinkedIn" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "LinkedInUrl" => [
+                "dbType" => "varchar(128)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "GooglePlus" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "GooglePlusUrl" => [
+                "dbType" => "varchar(128)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Instagram" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "InstagramUrl" => [
+                "dbType" => "varchar(128)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "YouTube" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "YouTubeUrl" => [
+                "dbType" => "varchar(128)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]
         ],
         "Payment Methods" => [
-            "UsePricingCodes" => [
+            "Visa" => [
                 "dbType" => "tinyint(1)",
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
+            "Master" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Discover" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Amex" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "PayPal" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Square" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ]
         ]
     ];
     
@@ -265,6 +450,47 @@ class gridData extends gridDataSource{
         "MultiCurrency" => "Multi Currency",
         "MultiLanguage" => "Multi Language",
         "GiftsOrCoupons" => "Gifts Or Coupons",
+        "AboutUsPage" => "AboutUs Page",
+        "AboutUsPageContent" => "AboutUs Page Content",
+        "CustomerService" => "Customer Service",
+        "CustomerServiceContent" => "Customer Service Content",
+        "PrivacyPolicy" => "Privacy Policy",
+        "PrivacyPolicyContent" => "Privacy Policy Content",
+        "SiteMap" => "SiteMap",
+        "SiteMapContent" => "Site Map Content",
+        "Contact" => "Contact",
+        "ContactContent" => "Contact Content",
+        "ShippingReturns" => "Shipping Returns",
+        "ShippingReturnsContent" => "Shipping Returns Content",
+        "SecureShopping" => "Secure Shopping",
+        "SecureShoppingContent" => "Secure Shopping Content",
+        "InternationalShipping" => "International Shipping",
+        "InternationalShippingContent" => "International Shipping Content",
+        "Affiliates" => "Affiliates",
+        "AffiliatesContent" => "Affiliates Content",
+        "Help" => "Help",
+        "HelpContent" => "Help Content",
+        "Support" => "Support",
+        "SupportContent" => "Support Content",
+        "ShowNewsletter" => "Show News letter",
+        "Facebook" => "Facebook",
+        "FacebookUrl" => "Facebook Url",
+        "Twitter" => "Twitter",
+        "TwitterUrl" => "Twitter Url",
+        "LinkedIn" => "LinkedIn",
+        "LinkedInUrl" => "LinkedIn Url",
+        "GooglePlus" => "Google Plus",
+        "GooglePlusUrl" => "Google Plus Url",
+        "Instagram" => "Instagram",
+        "InstagramUrl" => "Instagram Url",
+        "YouTube" => "YouTube",
+        "YouTubeUrl" => "YouTube Url",
+        "Visa" => "Visa",
+        "Master" => "Master",
+        "Discover" => "Discover",
+        "Amex" => "Amex",
+        "PayPal" => "PayPal",
+        "Square" => "Square",
         "Approved" => "Approved",
         "ApprovedBy" => "Approved By"
     ];
