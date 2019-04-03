@@ -46,3 +46,6 @@ alter table inventorycart ADD COLUMN Discover tinyint(1) after Master;
 alter table inventorycart ADD COLUMN Amex tinyint(1) after Discover;
 alter table inventorycart ADD COLUMN PayPal tinyint(1) after Amex;
 alter table inventorycart ADD COLUMN Square tinyint(1) after PayPal;
+
+update inventorycart set AboutUsPage=1, AboutUsPageContent='<b>Test</b>', CustomerService=1, CustomerServiceContent='<b>Test</b>', PrivacyPolicy=1, PrivacyPolicyContent='<b>Test</b>', SiteMap=1, SiteMapContent='<b>Test</b>', Contact=1, ContactContent='<b>Test</b>', ShippingReturns=1, ShippingReturnsContent='<b>Test</b>', SecureShopping=1, SecureShoppingContent='<b>Test</b>', InternationalShipping=1, InternationalShippingContent='<b>Test</b>', Affiliates=1, AffiliatesContent='<b>Test</b>', Help=1, HelpContent='<b>Test</b>', Support=1, SupportContent='<b>Test</b>', ShowNewsletter=1, Facebook=1, FacebookUrl='#facebook', Twitter=1, TwitterUrl='#twitter', LinkedIn=1, LinkedInUrl='#linkedin', GooglePlus=1, GooglePlusUrl='#google', Instagram=1, InstagramUrl='#instagram', YouTube=1, YouTubeUrl='#youtube', Visa=1, Master=1, Discover=1, Amex=1, PayPal=1, Square=1;
+
