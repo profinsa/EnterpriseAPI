@@ -147,8 +147,9 @@
 						    break;
 						case "dateTimeFull" :
 						    echo $value;
-//						    echo date("Y-m-d H:i:s", strtotime($value));
+						    //						    echo date("Y-m-d H:i:s", strtotime($value));
 						    break;
+						case "textarea" :
 						case "text":
 						case "dialogChooser":
 						case "dropdown":
@@ -157,11 +158,12 @@
 							echo $data->$formatFunction($item, "editCategories", $key, $value, false);
 						    }
 						    else
-							echo formatField($data->editCategories[$category][$key], $value);						    break;
+							echo htmlentities(formatField($data->editCategories[$category][$key], $value));
+						    break;
 					    }
 					    echo "</td></tr>";
-						    }
-						    }
+					}
+				    }
 				?>
 			    </tbody>
 			</table>

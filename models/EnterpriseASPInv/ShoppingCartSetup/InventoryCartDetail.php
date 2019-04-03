@@ -216,7 +216,7 @@ class gridData extends gridDataSource{
             ],
             "AboutUsPageContent" => [
                 "dbType" => "mediumtext",
-                "inputType" => "text",
+                "inputType" => "textarea",
                 "defaultValue" => ""
             ],
             "CustomerService" => [
@@ -226,7 +226,7 @@ class gridData extends gridDataSource{
             ],
             "CustomerServiceContent" => [
                 "dbType" => "mediumtext",
-                "inputType" => "text",
+                "inputType" => "textarea",
                 "defaultValue" => ""
             ],
             "PrivacyPolicy" => [
@@ -236,7 +236,7 @@ class gridData extends gridDataSource{
             ],
             "PrivacyPolicyContent" => [
                 "dbType" => "mediumtext",
-                "inputType" => "text",
+                "inputType" => "textarea",
                 "defaultValue" => ""
             ],
             "SiteMap" => [
@@ -246,7 +246,7 @@ class gridData extends gridDataSource{
             ],
             "SiteMapContent" => [
                 "dbType" => "mediumtext",
-                "inputType" => "text",
+                "inputType" => "textarea",
                 "defaultValue" => ""
             ],
             "Contact" => [
@@ -256,7 +256,7 @@ class gridData extends gridDataSource{
             ],
             "ContactContent" => [
                 "dbType" => "mediumtext",
-                "inputType" => "text",
+                "inputType" => "textarea",
                 "defaultValue" => ""
             ],
             "ShippingReturns" => [
@@ -266,7 +266,7 @@ class gridData extends gridDataSource{
             ],
             "ShippingReturnsContent" => [
                 "dbType" => "mediumtext",
-                "inputType" => "text",
+                "inputType" => "textarea",
                 "defaultValue" => ""
             ],
             "SecureShopping" => [
@@ -276,7 +276,7 @@ class gridData extends gridDataSource{
             ],
             "SecureShoppingContent" => [
                 "dbType" => "mediumtext",
-                "inputType" => "text",
+                "inputType" => "textarea",
                 "defaultValue" => ""
             ],
             "InternationalShipping" => [
@@ -286,7 +286,7 @@ class gridData extends gridDataSource{
             ],
             "InternationalShippingContent" => [
                 "dbType" => "mediumtext",
-                "inputType" => "text",
+                "inputType" => "textarea",
                 "defaultValue" => ""
             ],
             "Affiliates" => [
@@ -295,8 +295,8 @@ class gridData extends gridDataSource{
                 "defaultValue" => "0"
             ],
             "AffiliatesContent" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
+                "dbType" => "mediumtext",
+                "inputType" => "textarea",
                 "defaultValue" => "0"
             ],
             "Help" => [
@@ -305,8 +305,8 @@ class gridData extends gridDataSource{
                 "defaultValue" => "0"
             ],
             "HelpContent" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
+                "dbType" => "mediumtext",
+                "inputType" => "textarea",
                 "defaultValue" => "0"
             ],
             "Support" => [
@@ -315,8 +315,8 @@ class gridData extends gridDataSource{
                 "defaultValue" => "0"
             ],
             "SupportContent" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
+                "dbType" => "mediumtext",
+                "inputType" => "textarea",
                 "defaultValue" => "0"
             ]
         ],

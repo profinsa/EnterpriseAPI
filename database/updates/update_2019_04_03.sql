@@ -17,11 +17,11 @@ alter table inventorycart ADD COLUMN SecureShoppingContent MEDIUMTEXT after Secu
 alter table inventorycart ADD COLUMN InternationalShipping tinyint(1) after SecureShoppingContent;
 alter table inventorycart ADD COLUMN InternationalShippingContent MEDIUMTEXT after InternationalShipping;
 alter table inventorycart ADD COLUMN Affiliates tinyint(1) after InternationalShippingContent;
-alter table inventorycart ADD COLUMN AffiliatesContent tinyint(1) after Affiliates;
+alter table inventorycart ADD COLUMN AffiliatesContent MEDIUMTEXT after Affiliates;
 alter table inventorycart ADD COLUMN Help tinyint(1) after AffiliatesContent;
-alter table inventorycart ADD COLUMN HelpContent tinyint(1) after Help;
+alter table inventorycart ADD COLUMN HelpContent MEDIUMTEXT after Help;
 alter table inventorycart ADD COLUMN Support tinyint(1) after HelpContent;
-alter table inventorycart ADD COLUMN SupportContent tinyint(1) after Support;
+alter table inventorycart ADD COLUMN SupportContent MEDIUMTEXT after Support;
 
 -- NEWSLETTERSIGNUP
 alter table inventorycart ADD COLUMN ShowNewsletter tinyint(1) after SupportContent;

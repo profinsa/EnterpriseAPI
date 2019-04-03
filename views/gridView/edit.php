@@ -98,6 +98,19 @@
 					    echo"\" $disabledEdit></div></div>";
 					    break;
 					    
+					case "textarea" :
+					    //renders text input with label
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><textarea id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" $disabledEdit>";
+					    if(key_exists("formatFunction", $data->editCategories[$category][$key])){
+						$formatFunction = $data->editCategories[$category][$key]["formatFunction"];
+						echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+					    }
+					    else
+						echo formatField($data->editCategories[$category][$key], $value);
+
+					    echo"</textarea></div></div>";
+					    break;
+					    
 					case "datetime" :
 					    //renders text input with label
 					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP" || !$value ? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" $disabledEdit></div></div>";
@@ -483,19 +496,19 @@
 		 processData: false,  // tell jQuery not to process the data
 		 contentType: false,  // tell jQuery not to set contentType
 		 error: function(e) {
-			var errors = JSON.parse(e.responseText);
-					alert(errors.message);
+		     var errors = JSON.parse(e.responseText);
+		     alert(errors.message);
 		 },
 		 success : function(e) {
-            try{
+		     try{
 			 var res = JSON.parse(e).data;
 			 var file_attachments = $(".file_attachment");
 
 			 for (var i = 0; i < res.length; i++) {
 			     file_attachments.val(res[i]);
 			 }
-             }catch(e){}
-				     var insertRequest = $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+		     }catch(e){}
+		     var insertRequest = $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 					  .success(function(rdata) {
 					      if(localStorage.getItem("autorecalcLink")){
 						  $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
@@ -529,10 +542,10 @@
      //handler of save button if we in edit mode. Just doing XHR request to save data
      function saveItem(){
 	 var itemData = $("#itemData");
-	
+	 
 	 if (validateForm(itemData)) {
-		 var attachments = $("input[type=file]");
-		 var formData = new FormData();
+	     var attachments = $("input[type=file]");
+	     var formData = new FormData();
 
 	     for (var i = 0; i < attachments.length; i++) {
 		 formData.append('imageFile[]', attachments[i].files[0]);
@@ -545,21 +558,21 @@
 		 processData: false,  // tell jQuery not to process the data
 		 contentType: false,  // tell jQuery not to set contentType
 		 error: function(e) {
-			var errors = JSON.parse(e.responseText);
-					alert(errors.message);
+		     var errors = JSON.parse(e.responseText);
+		     alert(errors.message);
 		 },
 		 success : function(e) {
-			 		try {
-					var res = JSON.parse(e).data;
-				var file_attachments = $(".file_attachment");
-				for (var i = 0; i < res.length; i++) {
-					file_attachments.val(res[i]);
-				}
-					}
-					catch (e){}
+		     try {
+			 var res = JSON.parse(e).data;
+			 var file_attachments = $(".file_attachment");
+			 for (var i = 0; i < res.length; i++) {
+			     file_attachments.val(res[i]);
+			 }
+		     }
+		     catch (e){}
                      $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 		      .success(function(data) {
-			//console.log(localStorage.getItem("autorecalcLink"));
+			  //console.log(localStorage.getItem("autorecalcLink"));
 			  if(localStorage.getItem("autorecalcLink")){
 			      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
 			       .success(function(data) {
@@ -579,7 +592,7 @@
 			  console.log('wrong');
 		      });
 		 }
-		 });
+	     });
 	 }
      }
     </script>
