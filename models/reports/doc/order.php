@@ -35,7 +35,7 @@ function numberToStr($strin){
 class docReportsData extends docReportsBase{
     protected $id = ""; //order number
     public $tableName = "orderheader";
-    public $keyFields = "OrderNumber";
+    public $keyField = "OrderNumber";
 
     public function __construct($id){
         $this->id = $id;

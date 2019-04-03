@@ -207,6 +207,34 @@ class gridData extends gridDataSource{
                 "inputType" => "datetime",
                 "defaultValue" => "now"
             ]
+        ],
+        "Website" => [
+            "UsePricingCodes" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+        ],
+        "NewsLetterSignup" => [
+            "UsePricingCodes" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+        ],
+        "Socials" => [
+            "UsePricingCodes" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+        ],
+        "Payment Methods" => [
+            "UsePricingCodes" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
         ]
     ];
     

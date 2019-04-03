@@ -1756,9 +1756,12 @@ EOF;
         // or
         // `application/json`
         $data = json_decode($postData, true);
-        foreach($data as $item)
+        echo "[";
+        foreach($data as $item){
             $this->insertItem($item, true);
-        echo "ok";
+            echo ",";
+        }
+        echo "]";
         //echo json_encode($data, JSON_PRETTY_PRINT);
     }
     
