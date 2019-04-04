@@ -583,12 +583,12 @@ class gridData extends gridDataSource{
 				"defaultValue" => "0"
 			]
         ],
-        "Inventory Assemblies" => [
+        /*        "Inventory Assemblies" => [
             "ItemID" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text"
             ]
-        ],
+            ],*/
         "Item Transactions" => [
             "ItemID" => [
                 "dbType" => "varchar(50)",

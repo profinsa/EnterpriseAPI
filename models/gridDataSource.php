@@ -1681,6 +1681,7 @@ EOF;
     //updating data of grid item
     public function updateItem($id, $category, $values){
         $this->unlock($id);
+        $pdo = DB::connection()->getPdo();
         
         $user = Session::get("user");
         if($this->checkTableSharing($this->tableName)){
@@ -1718,9 +1719,9 @@ EOF;
                                 $values[$name] = str_replace(",", "", $values[$name]);
 
                             if($update_fields == "")
-                                $update_fields = $name . "='" . $values[$name] . "'";
+                                $update_fields = $name . "=" . $pdo->quote($values[$name]);
                             else
-                                $update_fields .= "," . $name . "='" . $values[$name] . "'";
+                                $update_fields .= "," . $name . "=" . $pdo->quote($values[$name]);
                         }
                     }
                 }
@@ -1738,12 +1739,13 @@ EOF;
                         $values[$name] = str_replace(",", "", $values[$name]);
 
                     if($update_fields == "")
-                        $update_fields = $name . "='" . $values[$name] . "'";
+                        $update_fields = $name . "=" . $pdo->quote($values[$name]);
                     else
-                        $update_fields .= "," . $name . "='" . $values[$name] . "'";
+                        $update_fields .= "," . $name . "=" . $pdo->quote($values[$name]);
                 }
             }
         }
+        //        echo "UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : "");
 
         DB::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
@@ -1772,6 +1774,8 @@ EOF;
     //add row to table
     public function insertItem($values, $remoteCall = false){
         $user = Session::get("user");
+        $pdo = DB::connection()->getPdo();
+        
         if($this->checkTableSharing($this->tableName)){
             $user["DivisionID"] = "DEFAULT";
             $user["DepartmentID"] = "DEFAULT";
@@ -1799,10 +1803,10 @@ EOF;
 
                         if($insert_fields == ""){
                             $insert_fields = $name;
-                            $insert_values = "'" . $values[$name] . "'";
+                            $insert_values = "" . $pdo->quote($values[$name]);
                         }else{
                             $insert_fields .= "," . $name;
-                            $insert_values .= ",'" . $values[$name] . "'";
+                            $insert_values .= "," . $pdo->quote($values[$name]);
                         }
                         $ret[$name] = $values[$name];
                     }
