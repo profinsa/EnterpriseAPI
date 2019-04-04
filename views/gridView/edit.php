@@ -486,7 +486,7 @@
 	     var formData = new FormData();
 
 	     for (var i = 0; i < attachments.length; i++) {
-		 formData.append('imageFile[]', attachments[i].files[0]);
+		 formData.append('imageFile[' + attachments[i].id.match(/(.*)_attachment/)[1] + ']', attachments[i].files[0]);
 	     }
 
 	     $.ajax({
@@ -502,10 +502,9 @@
 		 success : function(e) {
 		     try{
 			 var res = JSON.parse(e).data;
-			 var file_attachments = $(".file_attachment");
-
-			 for (var i = 0; i < res.length; i++) {
-			     file_attachments.val(res[i]);
+			 var ind;
+			 for(ind in res) {
+			     $("#" + ind).val(res[ind]);
 			 }
 		     }catch(e){}
 		     var insertRequest = $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
@@ -548,7 +547,7 @@
 	     var formData = new FormData();
 
 	     for (var i = 0; i < attachments.length; i++) {
-		 formData.append('imageFile[]', attachments[i].files[0]);
+		 formData.append('imageFile[' + attachments[i].id.match(/(.*)_attachment/)[1] + ']', attachments[i].files[0]);
 	     }
 
 	     $.ajax({
@@ -564,13 +563,13 @@
 		 success : function(e) {
 		     try {
 			 var res = JSON.parse(e).data;
-			 var file_attachments = $(".file_attachment");
-			 for (var i = 0; i < res.length; i++) {
-			     file_attachments.val(res[i]);
+			 var ind;
+			 for(ind in res) {
+			     $("#" + ind).val(res[ind]);
 			 }
 		     }
 		     catch (e){}
-                     $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+		     $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
 		      .success(function(data) {
 			  //console.log(localStorage.getItem("autorecalcLink"));
 			  if(localStorage.getItem("autorecalcLink")){
