@@ -76,7 +76,7 @@
 				    //renders table, contains record data using getEditItem from model
 				    $category = $key;
 				    foreach($item as $key =>$value){
-					$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
+					$translatedFieldName = $translation->translateLabel(key_exists("label", $data->editCategories[$category][$key]) ? $data->editCategories[$category][$key]["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
 					if(key_exists($key, $data->editCategories[$category]) && key_exists("alwaysEdit", $data->editCategories[$category][$key])){
 					    switch($data->editCategories[$category][$key]["inputType"]){
 						case "text" :
@@ -133,7 +133,7 @@
 						    break;
 					    }
 					}else if(key_exists($key, $data->editCategories[$category])){
-					    echo "<tr><td>" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . "</td><td>";
+					    echo "<tr><td>" . $translation->translateLabel(key_exists("label", $data->editCategories[$category][$key]) ? $data->editCategories[$category][$key]["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key)) . "</td><td>";
 					    switch($data->editCategories[$category][$key]["inputType"]){
 						case "imageFile" :
 						    echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"uploads/" . $value . "\">";
@@ -188,7 +188,7 @@
 				 var detailRewrite = {
 				     "ViewGLTransactions" : "LedgerTransactionsDetail",
 				     "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
-                     "ReceivePurchases" : "ReceivePurchasesDetail",
+				     "ReceivePurchases" : "ReceivePurchasesDetail",
 				     "BankDeposits" : "LedgerTransactionsDetail"
 				 }, ind;
 				 var path = new String(window.location);

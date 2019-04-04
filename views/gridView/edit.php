@@ -76,7 +76,7 @@
 			     !key_exists("hideFields", $data->detailPages[$curCategory])):?>
 			<?php 
 			    foreach($item as $key =>$value){
-				$translatedFieldName = $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key);
+				$translatedFieldName = $translation->translateLabel(key_exists("label", $data->editCategories[$category][$key]) ? $data->editCategories[$category][$key]["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
 				if(key_exists($key, $data->editCategories[$category])){
 				    $disabledEdit =  (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  ||
 						     (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ||

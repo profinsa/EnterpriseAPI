@@ -153,6 +153,12 @@ class gridData extends gridDataSource{
 			]
 		],
 		"Item Details" => [
+            "Price" => [ //Item Default Price
+                "label" => "Item Default Price",
+                "dbType" => "decimal(19,4)",
+                "format" => "{0:n}",
+                "inputType" => "text"
+            ],
 			"ItemWeight" => [
 				"dbType" => "float",
 				"inputType" => "text",
