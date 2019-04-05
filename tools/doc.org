@@ -1,10 +1,13 @@
 * common
 all tools is commandline, because of their execution time. How long tool works depends of how many data
 in database. Commanline can work as long as it need.
+
 To call any tool you need open cmd.exe, change directory to Enterprise\tools like that:
 cd C:\\Cloud\Dropbox\live\wwwroot\EnterpriseX\tools
 and execute tools like that:
+
 php AuditLoginPurge.php
+
 * AuditLoginPurge.php
   Clean auditlogin table from records of certain company, division and department or from all except DINOS,
   DEFAULT, DEMO
