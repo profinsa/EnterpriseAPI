@@ -316,13 +316,14 @@
 		<!--
 		     renders buttons translated Save and Cancel using translation model
 		-->
-		<?php if($security->can("update") &&
-			 (property_exists($data, "modes") &&
-			  in_array("edit", $data->modes) ||
-			  !property_exists($data, "modes"))): ?>
-		    <a class="btn btn-info" id="saveButton" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
-			<?php echo $translation->translateLabel("Save"); ?>
-		    </a>
+		<?php if($security->can("update")): ?>
+		    <?php if(property_exists($data, "modes") &&
+			     in_array("edit", $data->modes) ||
+			     !property_exists($data, "modes")): ?>
+			<a class="btn btn-info" id="saveButton" onclick="<?php echo ($ascope["mode"] == "edit" ? "saveItem()" : "createItem()"); ?>">
+			    <?php echo $translation->translateLabel("Save"); ?>
+			</a>
+		    <?php endif; ?>
 		    <?php 
 			if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
 			    require __DIR__ . "/../" . $PartsPath . "editActions.php";

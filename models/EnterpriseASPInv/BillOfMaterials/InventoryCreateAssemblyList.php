@@ -36,7 +36,7 @@ class gridData extends gridDataSource{
     public $dashboardTitle ="Inventory Assemblies";
     public $breadCrumbTitle ="Inventory Assemblies";
     public $idField ="AssemblyID";
-    public $modes = ["grid", "edit"];
+    public $modes = ["grid"];
     public $idFields = ["CompanyID","DivisionID","DepartmentID","AssemblyID"]; // "ItemID"
     public $gridFields = [
         "AssemblyID" => [
@@ -126,6 +126,8 @@ EOF;
                 $error = "Assembly was not created: Error during assembly creatin occured";
         }
 
+        echo json_encode(DB::select("select @qty")[0]);
+        
         http_response_code(400);
         echo $error;
     }
