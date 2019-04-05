@@ -211,8 +211,8 @@ Revision History:
 
             WHILE NO_DATA = 0 DO
                SET @SWV_Error = 0;
-               SET v_ReturnStatus = WarehouseBinShipGoods(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID_bin,v_WarehouseBinID_bin,
-               v_ItemID,v_AvlblQty_bin,v_BackQty_bin,3);
+	       CALL WarehouseBinShipGoods2(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID_bin,v_WarehouseBinID_bin,
+               v_ItemID,v_AvlblQty_bin,v_BackQty_bin,3, v_ReturnStatus);
                IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 			
                 --  CLOSE cOD;
