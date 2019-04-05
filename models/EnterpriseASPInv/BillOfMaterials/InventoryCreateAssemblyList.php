@@ -118,16 +118,15 @@ EOF;
                 break;
             case 1:
                 echo "ok";
-                break;
+                return;
             case 2:
                 $error = "Assembly was not created: Assembly Quantity should be more then 0.";
                 break;
             default:
                 $error = "Assembly was not created: Error during assembly creatin occured";
+                break;
         }
 
-        echo json_encode(DB::select("select @qty")[0]);
-        
         http_response_code(400);
         echo $error;
     }
