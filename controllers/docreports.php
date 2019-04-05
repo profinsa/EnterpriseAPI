@@ -31,6 +31,7 @@
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
+require 'models/users.php';
 
 class controller{
     public $user = false;
@@ -39,6 +40,8 @@ class controller{
     public $path;
 
     public function process($app){
+        $users = new users();
+        $users->checkLoginInUrl();
         if(!key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
             $_SESSION["user"] = false;
             http_response_code(401);
