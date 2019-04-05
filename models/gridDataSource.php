@@ -905,12 +905,11 @@ EOF;
         $result = DB::select("SELECT WarehouseID,WarehouseBinID from warehousebins WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         foreach($result as $key=>$value)
-            $res[$value->WarehouseBinID] = [
+            $res[] = [
                 "WarehouseID" => $value->WarehouseID,
                 "title" => $value->WarehouseBinID,
                 "value" => $value->WarehouseBinID
             ];
-        
         return $res;
     }
 

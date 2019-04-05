@@ -560,7 +560,8 @@
 		     spinner.stop();
 		 else
 		     setTimeout(function(){
-			 spinner.stop();
+			 if(spinner)
+			     spinner.stop();
 		     }, 0);
              });
 	 }
