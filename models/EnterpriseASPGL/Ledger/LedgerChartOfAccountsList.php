@@ -4,7 +4,7 @@
 
   Method: Model for GeneralLedger/chartOfAccounts. It provides data from database and default values, column names and categories
 
-  Date created: Nikita Zaharov, 13.02.2016
+  Date created: Nikita Zaharov, 13.02.2017
 
   Use: this model used by gridView for:
   - as dictionary for view during building interface(tabs and them names, fields and them names etc, column name and translationid corresponding)
@@ -25,7 +25,7 @@
   Calls:
   sql
 
-  Last Modified: 07.25.2016
+  Last Modified: 08.04.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -691,7 +691,7 @@ class gridData extends gridDataSource{
     }
 
     //add row to table
-    public function insertItem($values){
+    public function insertItem($values, $remoteCall = false){
         $user = Session::get("user");
         
         $insert_fields = "";

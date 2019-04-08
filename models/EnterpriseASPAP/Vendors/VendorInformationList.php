@@ -4,7 +4,7 @@
    
   Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\Vendors\VendorInformationList.php It provides data from database and default values, column names and categories
    
-  Date created: 02/16/2017  Kenna Fetterman
+  Date created: 02/16/2017 Nikita Zaharov
    
   Use: this model used by views/VendorInformationList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 09/10/2017
+  Last Modified: 08/04/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -808,7 +808,7 @@ class gridData extends gridDataSource{
         }
     }
 
-    public function insertItem($values){
+    public function insertItem($values, $remoteCall = false){
         $user = Session::get("user");
         
         $result = DB::insert("INSERT INTO vendorfinancials (CompanyID, DivisionID, DepartmentID, VendorID) values(?, ?, ?, ?)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $values["VendorID"]));

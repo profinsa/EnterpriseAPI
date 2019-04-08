@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 18/02/2019
+  Last Modified: 08/04/2019
   Last Modified by: Nikita Zaharov
 */
 require "./models/gridDataSource.php";
@@ -205,7 +205,7 @@ class gridData extends gridDataSource{
     }
 
     //add row to table
-    public function insertItem($values){
+    public function insertItem($values, $remoteCall = false){
         $user = Session::get("user");
         
         $insert_fields = "";
