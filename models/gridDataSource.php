@@ -1398,6 +1398,10 @@ EOF;
         return false;
     }
 
+    public function getEditItemRemote(){
+        echo json_encode($this->getEditItem($_POST["id"], $_POST["type"]), JSON_PRETTY_PRINT);
+    }
+    
     //getting data for grid edit form 
     public function getEditItem($id, $type){
         if(!$this->lockedBy($id))
@@ -1677,6 +1681,10 @@ EOF;
         return json_decode(json_encode($result), true)[0];
     }
 
+    public function updateItemRemote(){
+        echo json_encode($this->updateItem($_POST["id"], $_POST["type"], $_POST), JSON_PRETTY_PRINT);
+    }
+    
     //updating data of grid item
     public function updateItem($id, $category, $values){
         $this->unlock($id);
@@ -1744,7 +1752,7 @@ EOF;
                 }
             }
         }
-        //        echo "UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : "");
+        echo "UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : "");
 
         DB::update("UPDATE " . $this->tableName . " set " . $update_fields .  ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
