@@ -8,7 +8,7 @@
   Output parameters:
   Called from:
   Calls:
-  Last Modified: 05/02/2019
+  Last Modified: 11/04/2019
   Last Modified by:  Nikita Zaharov
 */
 
@@ -41,14 +41,15 @@ class gridData extends autoreportsData{
 
     public function getReportTypes(){
         $user = Session::get("user");
+        $ascope = [ "user" => $user ];
         //        $translation = new translation($this->user["language"]);
         $translation = new translation($user["language"]);
         $keyString = '';
         require __DIR__ . "/../../menuCategoriesGenerated.php";
         
-        //        print_r($leftMenu["Main"]["data"][7]["data"]);
+        //        print_r($leftMenu["Main"]["data"][6]["data"]);
         $reportTypes = [];
-        foreach($leftMenu["Main"]["data"][7]["data"] as $item)
+        foreach($leftMenu["Main"]["data"][6]["data"] as $item)
             if($item["id"] != "Reports/GenericReport" && $item["id"] != "Reports/SavedReports"){
                 if(key_exists("type", $item) && $item["type"] == "submenu"){
                     foreach($item["data"] as $subitem)
