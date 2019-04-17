@@ -916,7 +916,7 @@ class ReturnHeaderList extends gridDataSource{
 		"CreditCardBillToZip" => "Credit Card Bill To Zip",
 		"CreditCardValidationCode" => "Credit Card Validation Code",
 		"CreditCardApprovalNumber" => "Credit Card Approval Number",
-		"Backordered" => "Backordered",
+		"Backordered" => "Back Ordered",
 		"Picked" => "Picked",
 		"PickedDate" => "Picked Date",
 		"Printed" => "Printed",
