@@ -51,7 +51,7 @@
 	    <?php require __DIR__ . '/interfaces/' . $ascope["interface"] . '/breadcrumbs.php'; ?>
 	</div>
     <?php endif; ?>
-    <div class="col-sm-12">
+    <div class="col-sm-12" style="<?php  echo $ascope["interface"] == "simple" ? "margin-top:10px;" : ""; ?>">
 	<div class="white-box">
 	    <!--
 		 This is conditional page generation.
@@ -188,14 +188,14 @@
      toggleActive : false,
      format: {
 	 toDisplay: function (date, format, language) {
-//	     console.log(date,' eee');
+	     //	     console.log(date,' eee');
 	     var d = new Date(date);
 	     return (d.getMonth() + 1) + 
 		    "/" +  d.getDate() +
 		    "/" +  d.getFullYear();
 	 },
 	 toValue: function (date, format, language) {
-//	     console.log(date);
+	     //	     console.log(date);
 	     var d = new Date(date);
 	     return (d.getMonth() + 1) + 
 		    "/" +  d.getDate() +
