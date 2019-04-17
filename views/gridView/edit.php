@@ -83,7 +83,9 @@
 						     (key_exists("editPermissions", $data->editCategories[$category][$key]) &&
 						      $data->editCategories[$category][$key]["editPermissions"] == "admin" &&
 						      !$security->isAdmin())
-						   ? "readonly" : "";
+						   ? "disabled" : "";
+				    if($disabledEdit == "disabled")
+					echo "<input type=\"hidden\" name=\"$key\" value=\"$value\" />";
 				    switch($data->editCategories[$category][$key]["inputType"]){
 					case "text" :
 					    //renders text input with label
