@@ -116,12 +116,13 @@ function writeValue($data, $desc, $value){
 		 break;
 	     case "purchasedetail" :
 		 TransactionNumber = $('.PurchaseNumber').val();
+		 break;
 	     case "inventoryadjustmentsdetail":
 		 console.log("eeee" + $('.AdjustmentID').val());
 		 TransactionNumber = $('.AdjustmentID').val();
 		 break;		 
 	 }
-	 //console.log(TransactionNumber, "<?php echo $data->tableName; ?>");
+//	 console.log(TransactionNumber, "<?php echo $data->tableName; ?>");
 	 $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "Inventory_PopulateItemInfo"); ?>", {
 	     "ItemID" : value,
 	     "TransactionNumber" : TransactionNumber,
