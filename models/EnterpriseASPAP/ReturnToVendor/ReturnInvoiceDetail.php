@@ -271,7 +271,7 @@ class gridData extends gridDataSource{
         "WarehouseBinID" => "Bin",
         "OrderQty" => "Order Qty",
         "Backordered" => "Back Ordered",
-        "BackorderQyyty" => "Back Ordered Qty",
+        "BackorderQty" => "Back Ordered Qty",
         "ItemUOM" => "UOM",
         "ItemWeight" => "Weight",
         "TotalWeight" => "Total Weight",
