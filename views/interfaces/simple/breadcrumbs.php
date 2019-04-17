@@ -1,21 +1,22 @@
 <div class="row bg-title" style="margin-bottom: 15px; margin-top:20px;">
     <div class="col-md-8">
-	<h4 class="page-title" style="display: inline-block; float: left"><?php echo $scope->dashboardTitle . '  -  ' . $user["EmployeeUserName"] . ' '. $user["EmployeeName"]; ?></h4>
-    <div id="MyFavorit" style="margin-top: 7px">
-    </div>
+	<div class="col-md-6 page-title" style="display: inline-block; float: left; font-size:23pt; font-weight:500;"><?php echo $scope->dashboardTitle . '  -  ' . $user["EmployeeUserName"] . ' '. $user["EmployeeName"]; ?>
+	    <span id="MyFavorit" style="margin-top: 7px">
+	    </span>
+	</div>
 	<?php if(isset($ascope) && key_exists("mode", $ascope) && isset($data) && method_exists($data, "lockedBy") &&  $ascope["mode"] == "view"): ?>
 	    <?php
 		$lockedBy = $data->lockedBy($ascope["item"]);
 	    ?>
 	    <?php if($lockedBy): ?>
-		<h5 class="page-title" style="display: inline-block; float: right; color: red; margin-top:25px">
+		<div class="col-md-6page-title" style="display: inline-block; float: right; color: red; font-size:12pt; font-weigth:400; margin-top:10px">
 		    Locked By <?php echo $lockedBy->LockedBy; ?> at <?php echo $lockedBy->LockTS; ?>
-		</h5>
+		</div>
 	    <?php endif; ?>
 	<?php endif; ?>
     </div>
-    <div class="col-mm-4 pull-right" style="text-align: right">
-	<ol class="breadcrumb">
+    <div class="col-md-4 pull-right" style="text-align: right">
+	<ol class="breadcrumb" style="margin-top:10px; padding-top:0px; padding-bottom:0px;">
 	    <li><a href="index.php#/?page=dashboard">Dashboard</a></li>
 	    <li class="active"><?php echo $scope->breadCrumbTitle ?></li>
 	</ol>
