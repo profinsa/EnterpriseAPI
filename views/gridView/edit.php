@@ -44,6 +44,12 @@
     $dropdownDepends = [];
 ?>
 <div id="row_editor" class="row">
+    <?php
+	if(file_exists(__DIR__ . "/../" . $PartsPath . "editHeader.php"))
+	    require __DIR__ . "/../" . $PartsPath . "editHeader.php";
+	if(file_exists(__DIR__ . "/../" . $PartsPath . "vieweditHeader.php"))
+	    require __DIR__ . "/../" . $PartsPath . "vieweditHeader.php";
+    ?>
     <ul class="nav nav-tabs" role="tablist">
 	<?php
 	    //render tabs like Main, Current etc

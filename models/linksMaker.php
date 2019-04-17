@@ -24,7 +24,7 @@
   Calls:
   sql
 
-  Last Modified: 12.11.2018
+  Last Modified: 17.04.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -101,5 +101,9 @@ class linksMaker{
 
     function makeAutoreportsViewLink($type, $name, $id, $title, $options){
         return "index.php?page=autoreports&getreport=$name&type=$type&title=$title&$options";
+    }
+
+    function makeImageLink($name){
+        return ($name && file_exists("./uploads/$name") ? "uploads/$name" : "assets/images/notfound.png");
     }
 }
