@@ -145,6 +145,18 @@
 	    ?>
 	</span>
 	<script>
+	 var startSessionTime = (new Date()).getTime();
+	 var sessionTimer = setInterval(function(){
+	     var timeoutSeconds = <?php echo intval($GLOBALS["config"]["timeoutMinutes"] * 60); ?>,
+		 message = "<?php echo $translation->translateLabel($GLOBALS["config"]["timeoutWarning"]); ?>";
+
+	     if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000){
+		 clearInterval(sessionTimer);
+		 alert(message);
+		 window.location = "index.php?page=login";
+	     }
+	 },1000);
+	 
 	 function escapeRegExp(str) {
              return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 	 }
@@ -221,6 +233,7 @@
 		 }
 		 $.get(path.match(/\?/) ? path : path + "?partial=true")
 		  .done(function(data){
+ 		      startSessionTime = (new Date()).getTime();
 		      setTimeout(function(){
 			  $("#content").html(data);
 			  window.scrollTo(0,0);
