@@ -1,6 +1,8 @@
 <?php
 session_name("EnterpriseX");
-session_start();
+session_start([
+    "cookie_lifetime" => 30
+]);
 
 if((key_exists("config", $_GET) && ($configName = $_GET["config"]) != 'default') ||
    (key_exists("configName", $_SESSION) && ($configName = $_SESSION["configName"]) != 'default') && (!key_exists("page", $_GET) || ($_GET["page"] != 'ByPassLogin' && $_GET["page"] != 'login'))){
@@ -9,7 +11,15 @@ if((key_exists("config", $_GET) && ($configName = $_GET["config"]) != 'default')
 }else{
     $_SESSION["configName"] = 'default';
     require 'common.php';
-}                                                                                                                            require 'vendor/autoload.php';
+}
+
+session_write_close();
+session_name("EnterpriseX");
+session_start([
+    "cookie_lifetime" => intval(config()["timeoutMinutes"] * 60)
+]);
+
+require 'vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 

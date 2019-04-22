@@ -174,6 +174,11 @@
 	    require 'uiItems/footer.php';
 	?>
 	<script>
+	 setInterval(function(){
+	     var timeoutSeconds = <?php echo intval($GLOBALS["config"]["timeoutMinutes"] * 60); ?>;
+	     var message = "<?php echo $GLOBALS["config"]["timeoutWarnings"]; ?>";
+	     console.log(timeoutSeconds);
+	 },1000);
 	 //ui handlers initialization like a open|close and hide|show handlers
 	 function initUIHandlers(){
 	     $(function () {
