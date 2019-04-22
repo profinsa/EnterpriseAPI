@@ -174,10 +174,16 @@
 	    require 'uiItems/footer.php';
 	?>
 	<script>
-	 setInterval(function(){
-	     var timeoutSeconds = <?php echo intval($GLOBALS["config"]["timeoutMinutes"] * 60); ?>;
-	     var message = "<?php echo $GLOBALS["config"]["timeoutWarnings"]; ?>";
-	     console.log(timeoutSeconds);
+	 var startSessionTime = (new Date()).getTime();
+	 var sessionTimer = setInterval(function(){
+	     var timeoutSeconds = <?php echo intval($GLOBALS["config"]["timeoutMinutes"] * 60); ?>,
+		 message = "<?php echo $translation->translateLabel($GLOBALS["config"]["timeoutWarning"]); ?>";
+
+	     if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000){
+		 clearInterval(sessionTimer);
+		 alert(message);
+		 window.location = "index.php?page=login";
+	     }
 	 },1000);
 	 //ui handlers initialization like a open|close and hide|show handlers
 	 function initUIHandlers(){
@@ -498,16 +504,17 @@
 		 //console.log(path);
 		 $.get(path)
 		  .done(function(data){
+ 		      startSessionTime = (new Date()).getTime();
 		      setTimeout(function(){
 			  $("#page-wrapper").html(data);
 			  window.scrollTo(0,0);
 		      },0);
 		  })
 		  .error(function(xhr){
-		      if(xhr.status == 401)
+		      if(xhr.status == 401){
 			  //			  console.log(xhr.responseText);
-		      window.location = "index.php?page=login";
-		      else{
+			  window.location = "index.php?page=login";
+		      }else{
 			  $("#page-wrapper").html(xhr.responseText);
 			  window.scrollTo(0,0);
 			  //			  alert("Unable to load page");
