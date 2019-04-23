@@ -252,8 +252,14 @@
 	 }
 
 	 onlocation(window.location);
-	 $(window).on('hashchange', function() {
-             onlocation(window.location);
+	 $(window).on('hashchange', function(e) {
+	     var match = e.originalEvent.oldURL.match(/page\=grid\&action\=([\w\W]+)\&mode\=(view|edit)\&category\=Main\&item\=([\w\W]+)/);
+	     if(match)
+		 serverProcedureAnyCall(match[1], "unlockRemote", { id : match[3] }, function(){
+		     onlocation(window.location);
+		 });
+	     else
+		 onlocation(window.location);
 	 });
 
 	 function main(){

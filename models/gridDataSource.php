@@ -1361,6 +1361,10 @@ EOF;
         $result = DB::update("update {$this->tableName} set LockedBy='{$user["EmployeeID"]}', LockTS='$ts' WHERE $keyFields", array());
     }
 
+    public function unlockRemote(){
+        $this->unlock($_POST["id"]);
+    }
+
     public function unlock($id){
         if($this->tableName == "lock")
             return false;
