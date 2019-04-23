@@ -28,33 +28,44 @@ $GLOBALS["capsule"] = $GLOBALS["DB"] = new Capsule;
 //class for emulating global DB class from laravel
 class DB{    
     public static function statement($query, $args = false){
-        if(key_exists("user", $_SESSION))
+        if(key_exists("user", $_SESSION)){
             $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
+            $GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=now() WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
+        }
         return $GLOBALS["DB"]::statement($query, $args ? $args : array());
     }
     public static function select($query, $args = false){
-        if(key_exists("user", $_SESSION))
+        if(key_exists("user", $_SESSION)){
             $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
+            $GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=now() WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
+        }
         return $GLOBALS["DB"]::select($query, $args ? $args : array());
     }
     public static function update($query, $args = false){
-        if(key_exists("user", $_SESSION))
+        if(key_exists("user", $_SESSION)){
             $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
+            //$GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=now() WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
+        }
         return $GLOBALS["DB"]::update($query, $args ? $args : array());
     }
     public static function insert($query, $args = false){
-        if(key_exists("user", $_SESSION))
+        if(key_exists("user", $_SESSION)){
             $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
+            //            $GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=now() WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
+        }
         return $GLOBALS["DB"]::insert($query, $args ? $args : array());
     }
     public static function delete($query, $args = false){
-        if(key_exists("user", $_SESSION))
+        if(key_exists("user", $_SESSION)){
             $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
+            // $GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=now() WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
+        }
         return $GLOBALS["DB"]::delete($query, $args ? $args : array());
     }
     public static function connection($query = false, $args = false){
-        if(key_exists("user", $_SESSION))
+        if(key_exists("user", $_SESSION)){
             $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
+        }
         return $GLOBALS["DB"]::connection();
     }
     public static function getDatabaseName(){

@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 27/03/2019
+  Last Modified: 23/04/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -1385,6 +1385,7 @@ EOF;
     }
 
     public function lockedBy($id){
+        $user = Session::get("user");
         if($this->tableName == "lock")
             return false;
         
@@ -1396,8 +1397,15 @@ EOF;
             $keyFields = substr($keyFields, 0, -5);
 
         $result = DB::select("SELECT LockedBy, LockTS from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-        if($result[0]->LockedBy != "")
-            return $result[0];
+    
+        if($result[0]->LockedBy != ""){
+            $lastSessionUpdateTime = strtotime(DB::select("select LastSessionUpdateTime from payrollemployees WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $result[0]->LockedBy])[0]->LastSessionUpdateTime);
+            $lastSessionUpdateTime += intval(config()["timeoutMinutes"] * 60);
+            if($lastSessionUpdateTime < time())
+                return false;
+            else
+                return $result[0];
+        }
         
         return false;
     }

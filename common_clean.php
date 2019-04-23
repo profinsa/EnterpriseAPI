@@ -11,7 +11,9 @@ function config(){
         "db_base" => "cleanenterprise",
         "loginLogo" => "assets/images/stfb-logo.gif",
         "mediumLogo" => "assets/images/stfb-logo.gif",
-        "smallLogo" => "assets/images/stfblogosm.jpg"
+        "smallLogo" => "assets/images/stfblogosm.jpg",
+        "timeoutWarning" => "Your session is expired!",
+        "timeoutMinutes" => 10
     );
 }
 
