@@ -91,7 +91,7 @@ function writeValue($data, $desc, $value){
  }
  //handler of customer choose button
  function dialogChooserChoose(dialog, value){
-     console.log(JSON.stringify(dialogChooserCurrentField, null , 3));
+     //     console.log(JSON.stringify(dialogChooserCurrentField, null , 3));
      var values = window['dataDialogChooser' + dialogChooserCurrentField].data.allValues,
 	 fields = window['dataDialogChooser' + dialogChooserCurrentField].desc.fieldsToFill,
 	 ind;
@@ -122,7 +122,7 @@ function writeValue($data, $desc, $value){
 		 TransactionNumber = $('.AdjustmentID').val();
 		 break;		 
 	 }
-//	 console.log(TransactionNumber, "<?php echo $data->tableName; ?>");
+	 //	 console.log(TransactionNumber, "<?php echo $data->tableName; ?>");
 	 $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], "Inventory_PopulateItemInfo"); ?>", {
 	     "ItemID" : value,
 	     "TransactionNumber" : TransactionNumber,
@@ -132,9 +132,9 @@ function writeValue($data, $desc, $value){
 	  .success(function(data){
 	      values = data;
 	      $('#' + dialog).modal('hide');
-	      $('#' + dialogChooserCurrentField).val(value);
+	      $('#' + dialogChooserCurrentField).val(value).trigger("change");
 	      for(ind in values){ //foreach fields for working with fiels transformation array
-		  $('.' + ind).val(values[ind]);
+		  $('.' + ind).val(values[ind]).trigger("change");
 		  //	 console.log($('#' + ind));
 	      }
 	  })
@@ -145,9 +145,9 @@ function writeValue($data, $desc, $value){
 	 //     console.log(values);
 	 //     console.log(JSON.stringify(window['dataDialogChooser' + dialogChooserCurrentField], null, 3));
 	 $('#' + dialog).modal('hide');
-	 $('#' + dialogChooserCurrentField).val(value);
+	 $('#' + dialogChooserCurrentField).val(value).trigger("change");
 	 for(ind in values){ //foreach fields for working with fiels transformation array
-	     $('.' + ind).val(values[ind]);
+	     $('.' + ind).val(values[ind]).trigger("change");
 	     //	 console.log($('#' + ind));
 	 }
      }

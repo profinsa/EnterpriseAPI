@@ -133,4 +133,9 @@
      return values;
      //     return ["ee", "ddd"];
  }
+
+ function recalcDetailClient(){
+     console.log(getCurrentPageValues());
+ }
+
 </script>

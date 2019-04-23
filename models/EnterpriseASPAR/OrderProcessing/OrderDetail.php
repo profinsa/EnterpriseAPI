@@ -110,6 +110,7 @@ class gridData extends subgridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "dialogChooser",
                 "dataProvider" => "getItems",
+                "onchange" => "recalcDetailClient",
                 "defaultValue" => ""
             ],
             "Description" => [

@@ -145,7 +145,10 @@
 						$GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
 					    }
 					    $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\"></div></div>";
+					    $onchange = "";
+					    if(key_exists("onchange", $data->editCategories[$category][$key]))
+						$onchange = "onchange=\"{$data->editCategories[$category][$key]["onchange"]}()\"";
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\" $onchange></div></div>";
 					    break;
 					case "dropdown" :
 					    if($disabledEdit != ""){
