@@ -315,6 +315,9 @@ class gridData extends subgridDataSource{
         $orderHeader = DB::select("select * from orderheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND OrderNumber", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["OrderNumber"]])[0];
         $Precision = $recalc->getPrecision($orderHeader->CurrencyID);
 
+        foreach($_POST as &$field)
+            $field = str_replace(",", "", $field);
+        
         $detailResult = $recalc->recalcOrderDetail($Precision, $orderHeader->AllowanceDiscountPerc, (object)$_POST);
 
         echo json_encode($detailResult, JSON_PRETTY_PRINT);

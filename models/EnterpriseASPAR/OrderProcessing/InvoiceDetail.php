@@ -315,6 +315,9 @@ class gridData extends subgridDataSource{
         $header = DB::select("select * from invoiceheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND InvoiceNumber", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["InvoiceNumber"]])[0];
         $Precision = $recalc->getPrecision($header->CurrencyID);
 
+        foreach($_POST as &$field)
+            $field = str_replace(",", "", $field);
+        
         $detailResult = $recalc->invoiceDetailRecalc($header, $Precision, (object)$_POST, 0, 0, $header->AllowanceDiscountPerc);
 
         $detailResult["TaxAmount"] = $detailResult["ItemTaxAmount"];
