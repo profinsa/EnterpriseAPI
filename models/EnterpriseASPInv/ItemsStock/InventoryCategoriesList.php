@@ -60,11 +60,13 @@ class gridData extends gridDataSource{
             "ItemCategoryID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultValue" => "",
+                "disabledEdit" => true
             ],
             "ItemFamilyID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getInventoryFamilies",
                 "defaultValue" => ""
             ],
             "CategoryName" => [
