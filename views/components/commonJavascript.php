@@ -140,7 +140,7 @@
 	 var item = JSON.parse(res), ind;
 	 for(ind in item)
 	     $("input[name=" + ind + "]").val(item[ind]);
-	 console.log(res);
+//	 console.log(res);
      });
      <?php endif; ?>
  }
