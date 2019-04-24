@@ -95,7 +95,10 @@
 				    switch($data->editCategories[$category][$key]["inputType"]){
 					case "text" :
 					    //renders text input with label
-					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"";
+					    $onchange = "";
+					    if(key_exists("onchange", $data->editCategories[$category][$key]))
+						$onchange = "onchange=\"{$data->editCategories[$category][$key]["onchange"]}()\"";
+					    echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" $onchange class=\"form-control $key\" value=\"";
 					    if(key_exists("formatFunction", $data->editCategories[$category][$key])){
 						$formatFunction = $data->editCategories[$category][$key]["formatFunction"];
 						echo $data->$formatFunction($item, "editCategories", $key, $value, false);

@@ -25,10 +25,11 @@
   Calls:
   MySql Database
 
-  Last Modified: 17/04/2019
+  Last Modified: 24/04/2019
   Last Modified by: Zaharov Nikita
 */
 
+require "./models/helpers/recalc.php";
 require "./models/subgridDataSource.php";
 
 class gridData extends subgridDataSource{
@@ -110,7 +111,6 @@ class gridData extends subgridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "dialogChooser",
                 "dataProvider" => "getItems",
-                "onchange" => "recalcDetailClient",
                 "defaultValue" => ""
             ],
             "Description" => [
@@ -141,6 +141,7 @@ class gridData extends subgridDataSource{
             "OrderQty" => [
                 "dbType" => "float",
                 "inputType" => "text",
+                "onchange" => "recalcDetailClient",
                 "defaultValue" => ""
             ],
             "Backordered" => [
@@ -305,5 +306,18 @@ class gridData extends subgridDataSource{
         "DetailMemo4" => "Memo 4",
         "DetailMemo5" => "Memo 5"
     ];
+
+    public function recalcForClient(){
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+        
+        $orderHeader = DB::select("select * from orderheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND OrderNumber", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["OrderNumber"]])[0];
+        $Precision = $recalc->getPrecision($orderHeader->CurrencyID);
+
+        $detailResult = $recalc->recalcOrderDetail($Precision, $orderHeader->AllowanceDiscountPerc, (object)$_POST);
+
+        echo json_encode($detailResult, JSON_PRETTY_PRINT);
+    }
 }
 ?>

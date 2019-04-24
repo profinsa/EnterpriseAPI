@@ -135,7 +135,14 @@
  }
 
  function recalcDetailClient(){
-     console.log(getCurrentPageValues());
+     <?php if(isset($ascope) && key_exists("path", $ascope)): ?>
+     serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", "recalcForClient", getFormData($("#itemData")), function(res){
+	 var item = JSON.parse(res), ind;
+	 for(ind in item)
+	     $("input[name=" + ind + "]").val(item[ind]);
+	 console.log(res);
+     });
+     <?php endif; ?>
  }
 
 </script>
