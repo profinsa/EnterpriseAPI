@@ -1,11 +1,11 @@
 <script>
  function shipSelectedOrders(){
-     var OrderNumbers = [], ind;
-
+     var rows = [], ind;
      for(ind in gridItemsSelected)
-         OrderNumbers.push(gridItemsSelected[ind].OrderNumber);
+         rows.push(gridItemsSelected[ind]);
 
-     serverProcedureCall('Shipped', { OrderNumbers :OrderNumbers.join(',') }, true);
+     console.log(rows);
+     serverProcedureCall('Shipped', rows, true, true);
  }
 
 </script>

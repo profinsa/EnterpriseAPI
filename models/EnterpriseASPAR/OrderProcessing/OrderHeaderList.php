@@ -1599,6 +1599,33 @@ class OrderHeaderShipStep2List extends OrderHeaderShipList{
             "editable" => true
         ]
 	];
+
+    public function Shipped(){
+        $user = Session::get("user");
+        $postData = file_get_contents("php://input");
+
+        $data = json_decode($postData, true);
+        $success = true;
+        $rets = "";
+        foreach($data as $row){
+            DB::update("update orderheader set ShipDate=?, TrackingNumber=? WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND OrderNumber=?", [date("Y-m-d H:i:s", strtotime($row["ShipDate"])), $row["TrackingNumber"], $user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["OrderNumber"]]);
+            DB::statement("set @ret = Order_Shipped(?, ?, ?, ?)",[ $user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["OrderNumber"]]);
+
+            $result = DB::select('select @ret as ret', array());
+
+            if ($result[0]->ret == true) {
+                $success = false;
+            } else
+                $rets .= ' ' . $result[0]->ret;
+        }
+
+        if($success)
+            echo "ok";
+        else {
+            http_response_code(400);
+            echo $rets;
+        }
+    }
 }
 
 class OrderHeaderInvoiceList extends OrderHeaderList{
