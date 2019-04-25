@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/04/2019
+  Last Modified: 25/04/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -70,7 +70,8 @@ class gridData extends gridDataSource{
 			],
 			"AccountStatus" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getCustomerAccountStatuses",
 				"defaultValue" => ""
 			],
 			"CustomerName" => [
@@ -227,32 +228,38 @@ class gridData extends gridDataSource{
 		"Info" => [
 			"CurrencyID" => [
 				"dbType" => "varchar(3)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
 				"defaultValue" => ""
 			],
 			"GLSalesAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"TermsID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getTerms",
 				"defaultValue" => ""
 			],
 			"TermsStart" => [
 				"dbType" => "varchar(10)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getTerms",
 				"defaultValue" => ""
 			],
 			"EmployeeID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getEmployees",
 				"defaultValue" => ""
 			],
 			"TaxGroupID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getTaxGroups",
 				"defaultValue" => ""
 			],
 			"PriceMatrix" => [
@@ -334,12 +341,14 @@ class gridData extends gridDataSource{
 			],
 			"ShipMethodID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipMethods",
 				"defaultValue" => ""
 			],
 			"WarehouseID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getWarehouses",
 				"defaultValue" => ""
 			],
 			"RoutingInfo1" => [

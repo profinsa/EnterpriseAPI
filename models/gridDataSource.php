@@ -1278,6 +1278,14 @@ EOF;
         return $this->helperForDropdownToGet("inventorypricingmethods", "PricingMethodID", "PricingMethodID");
     }
 
+    public function getCustomerAccountStatuses(){
+        return $this->helperForDropdownToGet("customeraccountstatuses", "AccountStatus", "AccountStatus");
+    }
+
+    public function getEmployees(){
+        return $this->helperForDropdownToGet("payrollemployees", "EmployeeID", "EmployeeID");
+    }
+
     public function Inventory_PopulateItemInfo(){
         $user = Session::get("user");
 
