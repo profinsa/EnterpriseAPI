@@ -206,7 +206,8 @@ class gridData extends gridDataSource{
 			],
 			"CustomerTypeID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getCustomerTypes",
 				"defaultValue" => ""
 			],
 			"TaxIDNo" => [

@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/04/2019
+  Last Modified: 25/04/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -73,7 +73,8 @@ class gridData extends gridDataSource{
 			],
 			"AccountStatus" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getVendorAccountStatuses",
                 "defaultValue" => ""
 			],
 			"VendorName" => [
@@ -257,12 +258,14 @@ class gridData extends gridDataSource{
 		"Defaults" => [
 			"ShipMethodID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipMethods",
                 "defaultValue" => ""
 			],
 			"WarehouseID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getWarehouses",
                 "defaultValue" => ""
 			],
 			"PriceMatrix" => [
@@ -277,22 +280,26 @@ class gridData extends gridDataSource{
 			],
 			"CurrencyID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
 			],
 			"TermsID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getTerms",
                 "defaultValue" => ""
 			],
 			"TermsStart" => [
                 "dbType" => "varchar(10)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getTerms",
                 "defaultValue" => ""
 			],
 			"GLPurchaseAccount" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
                 "defaultValue" => ""
 			],
 			"TaxIDNo" => [
@@ -312,7 +319,8 @@ class gridData extends gridDataSource{
 			],
 			"TaxGroupID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getTaxGroups",
                 "defaultValue" => ""
 			],
 			"CreditLimit" => [

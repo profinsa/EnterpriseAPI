@@ -1286,6 +1286,18 @@ EOF;
         return $this->helperForDropdownToGet("payrollemployees", "EmployeeID", "EmployeeID");
     }
 
+    public function getVendorAccountStatuses(){
+        return $this->helperForDropdownToGet("vendoraccountstatuses", "AccountStatus", "AccountStatus");
+    }
+
+    public function getCustomerTypes(){
+        return $this->helperForDropdownToGet("customertypes", "CustomerTypeID", "CustomerTypeID");
+    }
+    
+    public function getVendorTypes(){
+        return $this->helperForDropdownToGet("vendortypes", "VendorTypeID", "VendorTypeID");
+    }
+    
     public function Inventory_PopulateItemInfo(){
         $user = Session::get("user");
 
