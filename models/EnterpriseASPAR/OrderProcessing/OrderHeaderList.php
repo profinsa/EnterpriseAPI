@@ -1513,7 +1513,7 @@ class OrderHeaderShipList extends OrderHeaderList{
 	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Posted, 0) = 1) AND (IFNULL(Picked, 0) = 1) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
 	public $dashboardTitle ="Ship Orders";
 	public $breadCrumbTitle ="Ship Orders";
-	public $modes = ["grid", "view"];
+	public $modes = ["grid"];
 	public $features = ["selecting"];
 
     public function Shipped(){
@@ -1555,6 +1555,50 @@ class OrderHeaderShipList extends OrderHeaderList{
             echo $result[0]->ret;
         }
     }
+}
+
+class OrderHeaderShipStep2List extends OrderHeaderShipList{
+	public $gridFields = [
+		"OrderNumber" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text",
+            "disabledEdit" => "true"
+		],
+		"OrderTypeID" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		],
+		"OrderDate" => [
+			"dbType" => "timestamp",
+			"format" => "{0:d}",
+			"inputType" => "datetime"
+		],
+		"CustomerID" => [
+			"dbType" => "varchar(50)",
+			"inputType" => "text"
+		],
+		"CurrencyID" => [
+			"dbType" => "varchar(3)",
+			"inputType" => "text"
+		],
+		"Total" => [
+			"dbType" => "decimal(19,4)",
+			"format" => "{0:n}",
+			"inputType" => "text"
+		],
+		"ShipDate" => [
+			"dbType" => "datetime",
+			"format" => "{0:d}",
+			"inputType" => "datetime",
+            "editable" => true
+		],
+        "TrackingNumber" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => "",
+            "editable" => true
+        ]
+	];
 }
 
 class OrderHeaderInvoiceList extends OrderHeaderList{

@@ -1225,6 +1225,12 @@ public $permissions = [
         "insert" => "OEAdd|ADSetup",
         "delete" => "OEDelete|ADSetup",
     ],
+    "OrderHeaderShipStep2" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "OEEdit|ADSetup",
+        "insert" => "OEAdd|ADSetup",
+        "delete" => "OEDelete|ADSetup",
+    ],
     "OrderTrackingHeader" => [
         "select" => "any",
         "update" => "any",

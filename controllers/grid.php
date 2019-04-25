@@ -54,6 +54,7 @@ class controller{
         "EnterpriseASPAR/OrderProcessing/OrderHeaderBackList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderPickList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderShipList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+        "EnterpriseASPAR/OrderProcessing/OrderHeaderShipStep2List" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderHoldList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
 

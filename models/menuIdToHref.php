@@ -52,6 +52,7 @@
     "AccountsReceivable/OrderProcessing/ViewOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
     "AccountsReceivable/OrderProcessing/PickPackOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderPickList",
     "AccountsReceivable/OrderProcessing/ShipOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderShipList",
+    "AccountsReceivable/OrderProcessing/ShipStep2Orders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderShipStep2List",
     "AccountsReceivable/OrderProcessing/InvoiceShippedOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList",
     "AccountsReceivable/OrderProcessing/ViewInvoices" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
     "AccountsPayable/Checks/PositivePayDetail" => "EnterpriseASPAP/Checks/PositivePayDetail",
