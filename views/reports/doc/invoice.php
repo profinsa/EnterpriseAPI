@@ -14,6 +14,7 @@
 	"invoice" => "Invoice",
 	"invoicehistory" => "Invoice",
 	"order" => "Order",
+	"orderpick" => "Order",
 	"orderhistory" => "Order",
 	"quote" => "Quote",
 	"serviceorder" => "Service Order",
@@ -278,12 +279,14 @@
 		    <th style="width:80px">
 			Quantity
 		    </th>
-		    <th style="width:100px">
-			Unit Price
-		    </th>
-		    <th style="width:100px">
-			Amount
-		    </th>
+		    <?php if($type != "orderpick"): ?>
+			<th style="width:100px">
+			    Unit Price
+			</th>
+			<th style="width:100px">
+			    Amount
+			</th>
+		    <?php endif; ?>
 		</tr>
 	    </thead>
 	    <tbody>
@@ -298,8 +301,10 @@
 			    }
 			    echo "<td>" . $row["Description"] . "</td>";
 			    echo "<td>" . $row["OrderQty"] . "</td>";
-			    echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["ItemUnitPrice"] . "</td>";
-			    echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["Total"] . "</td>";
+			    if($type != "orderpick"){
+				echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["ItemUnitPrice"] . "</td>";
+				echo "<td>" . $data->getCurrencySymbol()["symbol"] . $row["Total"] . "</td>";
+			    }
 			    echo "</tr>";
 			}
 		    ?>
@@ -313,83 +318,85 @@
 	    </tbody>
 	</table>
     </div>
-    <div class="col-md-12 col-xs-12" style="border:1px solid black; padding:0px">
-	<div class="col-md-8 col-xs-8" style="padding:10px;">
-	    <?php echo $headerData["HeaderMemo1"];?><br/>
-	    <?php echo $headerData["HeaderMemo2"];?><br/>
-	    <?php echo $headerData["HeaderMemo3"];?><br/>
-	    <?php echo $headerData["HeaderMemo4"];?><br/>
-	    <?php echo $headerData["HeaderMemo5"];?><br/>
+    <?php if($type != "orderpick"): ?>
+	<div class="col-md-12 col-xs-12" style="border:1px solid black; padding:0px">
+	    <div class="col-md-8 col-xs-8" style="padding:10px;">
+		<?php echo $headerData["HeaderMemo1"];?><br/>
+		<?php echo $headerData["HeaderMemo2"];?><br/>
+		<?php echo $headerData["HeaderMemo3"];?><br/>
+		<?php echo $headerData["HeaderMemo4"];?><br/>
+		<?php echo $headerData["HeaderMemo5"];?><br/>
+	    </div>
+	    <div class="pull-right" style="padding:5px">
+		<table class="invoice-table-summary">
+		    <tbody>
+			<?php 
+			    if(!key_exists("SubTotal", $headerData) && !key_exists("Subtotal", $headerData))
+				$headerData["SubTotal"] = "0.00";
+			    else if(key_exists("Subtotal", $headerData))
+				$headerData["SubTotal"] = $headerData["Subtotal"];			
+			?>
+			<tr>
+			    <td>
+				<b>SubTotal: </b>
+			    </td>
+			    <td class="summ">
+				<?php echo $data->getCurrencySymbol()["symbol"] . $headerData["SubTotal"];  ?>
+			    </td>
+			</tr>
+			<tr>
+			    <td>
+				<b>Shipping: </b>
+			    </td>
+			    <td class="summ">
+				<?php echo $data->getCurrencySymbol()["symbol"] . $headerData["Freight"];  ?>
+			    </td>
+			</tr>
+			<tr>
+			    <td>
+				<b>Handling: </b>
+			    </td>
+			    <td class="summ">
+				<?php echo $data->getCurrencySymbol()["symbol"] . $headerData["Handling"];  ?>
+			    </td>
+			</tr>
+			<tr>
+			    <td>
+				<b>Tax: </b>
+			    </td>
+			    <td class="summ">
+				<?php echo $data->getCurrencySymbol()["symbol"] . $headerData["TaxAmount"];  ?>
+			    </td>
+			</tr>
+			<tr>
+			    <td>
+				<b>Total: </b>
+			    </td>
+			    <td class="summ">
+				<?php echo $data->getCurrencySymbol()["symbol"] . $headerData["Total"];  ?>
+			    </td>
+			</tr>
+			<tr>
+			    <td>
+				<b>Payments: </b>
+			    </td>
+			    <td class="summ">
+				<?php echo $data->getCurrencySymbol()["symbol"] . $headerData["AmountPaid"];  ?>
+			    </td>
+			</tr>
+			<tr style="color:black;">
+			    <td>
+				<b>Balance Due:</b>
+			    </td>
+			    <td class="summ">
+				<?php echo $data->getCurrencySymbol()["symbol"] . $headerData["BalanceDue"];  ?>
+			    </td>
+			</tr>
+		    </tbody>
+		</table>
+	    </div>
 	</div>
-	<div class="pull-right" style="padding:5px">
-	    <table class="invoice-table-summary">
-		<tbody>
-		    <?php 
-			if(!key_exists("SubTotal", $headerData) && !key_exists("Subtotal", $headerData))
-			    $headerData["SubTotal"] = "0.00";
-			else if(key_exists("Subtotal", $headerData))
-			    $headerData["SubTotal"] = $headerData["Subtotal"];			
-		    ?>
-		    <tr>
-			<td>
-			    <b>SubTotal: </b>
-			</td>
-			<td class="summ">
-			    <?php echo $data->getCurrencySymbol()["symbol"] . $headerData["SubTotal"];  ?>
-			</td>
-		    </tr>
-		    <tr>
-			<td>
-			    <b>Shipping: </b>
-			</td>
-			<td class="summ">
-			    <?php echo $data->getCurrencySymbol()["symbol"] . $headerData["Freight"];  ?>
-			</td>
-		    </tr>
-		    <tr>
-			<td>
-			    <b>Handling: </b>
-			</td>
-			<td class="summ">
-			    <?php echo $data->getCurrencySymbol()["symbol"] . $headerData["Handling"];  ?>
-			</td>
-		    </tr>
-		    <tr>
-			<td>
-			    <b>Tax: </b>
-			</td>
-			<td class="summ">
-			    <?php echo $data->getCurrencySymbol()["symbol"] . $headerData["TaxAmount"];  ?>
-			</td>
-		    </tr>
-		    <tr>
-			<td>
-			    <b>Total: </b>
-			</td>
-			<td class="summ">
-			    <?php echo $data->getCurrencySymbol()["symbol"] . $headerData["Total"];  ?>
-			</td>
-		    </tr>
-		    <tr>
-			<td>
-			    <b>Payments: </b>
-			</td>
-			<td class="summ">
-			    <?php echo $data->getCurrencySymbol()["symbol"] . $headerData["AmountPaid"];  ?>
-			</td>
-		    </tr>
-		    <tr style="color:black;">
-			<td>
-			    <b>Balance Due:</b>
-			</td>
-			<td class="summ">
-			    <?php echo $data->getCurrencySymbol()["symbol"] . $headerData["BalanceDue"];  ?>
-			</td>
-		    </tr>
-		</tbody>
-	    </table>
-	</div>
-    </div>
+    <?php endif; ?>
 </div>
 <!-- <script>
      function printPDF(){

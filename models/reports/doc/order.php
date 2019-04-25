@@ -4,7 +4,7 @@
 
    Method: It provides data from database for docreports pages
 
-   Date created: Nikita Zaharov, 19.04.2016
+   Date created: Nikita Zaharov, 19.04.2017
 
    Use: this model used for 
    - for loading data using stored procedures
@@ -22,7 +22,7 @@
    Calls:
    sql
 
-   Last Modified: 26.03.2019
+   Last Modified: 24.04.2019
    Last Modified by: Nikita Zaharov
  */
 

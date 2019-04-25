@@ -24,7 +24,7 @@
   models/reports/doc/*
   app from index.php
 
-  Last Modified: 01.09.2019
+  Last Modified: 24.04.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -68,6 +68,7 @@ class controller{
             "invoicehistory" => "invoice",
             "quote" => "invoice",
             "order" => "invoice",
+            "orderpick" => "invoice",
             "orderhistory" => "invoice",
             "serviceorder" => "invoice",
             "serviceorderhistory" => "invoice",
