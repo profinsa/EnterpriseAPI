@@ -4,7 +4,6 @@
      for(ind in gridItemsSelected)
          rows.push(gridItemsSelected[ind]);
 
-     console.log(rows);
      serverProcedureCall('Shipped', rows, true, true);
  }
 

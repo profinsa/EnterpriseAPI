@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 13/03/2019
+  Last Modified: 25/04/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -82,7 +82,8 @@ class gridData extends gridDataSource{
 			],
 			"ItemTypeID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getInventoryItemTypes",
 				"defaultValue" => ""
 			],
 			"CartItem" => [
@@ -108,12 +109,14 @@ class gridData extends gridDataSource{
 			],
 			"ItemCategoryID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getInventoryCategories",
 				"defaultValue" => ""
 			],
 			"ItemFamilyID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getInventoryFamilies",
 				"defaultValue" => ""
 			],
 			"SalesDescription" => [
@@ -236,12 +239,17 @@ class gridData extends gridDataSource{
 			],
 			"ItemDefaultWarehouse" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getWarehouses",
 				"defaultValue" => ""
 			],
 			"ItemDefaultWarehouseBin" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+                "inputType" => "dropdown",
+                "depends" => [
+                    "WarehouseID" => "ItemDefaultWarehouse"
+                ],
+                "dataProvider" => "getWarehouseBins",
 				"defaultValue" => ""
 			],
 			"ItemLocationX" => [
@@ -278,22 +286,26 @@ class gridData extends gridDataSource{
 		"Cost" => [
 			"GLItemSalesAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLItemCOGSAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"GLItemInventoryAccount" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getAccounts",
 				"defaultValue" => ""
 			],
 			"CurrencyID" => [
 				"dbType" => "varchar(3)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
 				"defaultValue" => ""
 			],
 			"CurrencyExchangeRate" => [
@@ -303,7 +315,8 @@ class gridData extends gridDataSource{
 			],
 			"PricingMethods" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getInventoryPricingMethods",
 				"defaultValue" => ""
 			],
 			"Taxable" => [
@@ -313,7 +326,8 @@ class gridData extends gridDataSource{
 			],
 			"VendorID" => [
 				"dbType" => "varchar(50)",
-				"inputType" => "text",
+				"inputType" => "dialogChooser",
+                "dataProvider" => "getVendors",
 				"defaultValue" => ""
 			],
 			"ReOrderLevel" => [

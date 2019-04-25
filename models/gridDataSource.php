@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 23/04/2019
+  Last Modified: 25/04/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -480,21 +480,6 @@ EOF;
             $res[$value->WorkFlowTypeID] = [
                 "title" => $value->WorkFlowTypeID,
                 "value" => $value->WorkFlowTypeID
-            ];
-        
-        return $res;
-    }
-    
-    //getting list of inventory categories
-    public function getInventoryCategories(){
-        $user = Session::get("user");
-        $res = [];
-        $result = DB::select("SELECT ItemCategoryID from InventoryCategories WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
-
-        foreach($result as $key=>$value)
-            $res[$value->ItemCategoryID] = [
-                "title" => $value->ItemCategoryID,
-                "value" => $value->ItemCategoryID
             ];
         
         return $res;
@@ -1279,6 +1264,18 @@ EOF;
     //getting list of available inventory adjustment types
     public function getInventoryAdjustmentTypes(){
         return $this->helperForDropdownToGet("inventoryadjustmenttypes", "AdjustmentTypeID", "AdjustmentTypeID");
+    }
+
+    public function getInventoryItemTypes(){
+        return $this->helperForDropdownToGet("inventoryitemtypes", "ItemTypeID", "ItemTypeID");
+    }
+
+    public function getInventoryCategories(){
+        return $this->helperForDropdownToGet("inventorycategories", "ItemCategoryID", "ItemCategoryID");
+    }
+
+    public function getInventoryPricingMethods(){
+        return $this->helperForDropdownToGet("inventorypricingmethods", "PricingMethodID", "PricingMethodID");
     }
 
     public function Inventory_PopulateItemInfo(){
