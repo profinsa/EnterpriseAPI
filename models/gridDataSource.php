@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 25/04/2019
+  Last Modified: 26/04/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -1247,10 +1247,10 @@ EOF;
     }
 
     //helper function for all new dropdown sources
-    public function helperForDropdownToGet($tableName, $titleField, $valueField){
+    public function helperForDropdownToGet($tableName, $titleField, $valueField, $options = []){
         $user = Session::get("user");
         $res = [];
-        $result = DB::select("SELECT * from $tableName WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
+        $result = DB::select("SELECT " . (key_exists("selectExpr", $options) ? $options["selectExpr"] : "$titleField, $valueField") . " from $tableName WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
 
         foreach($result as $key=>$value)
             $res[$value->$valueField] = [
@@ -1296,6 +1296,14 @@ EOF;
     
     public function getVendorTypes(){
         return $this->helperForDropdownToGet("vendortypes", "VendorTypeID", "VendorTypeID");
+    }
+
+    public function getInventoryAssemblies(){
+        return $this->helperForDropdownToGet("inventoryassemblies", "AssemblyID", "AssemblyID", ["selectExpr" => "DISTINCT AssemblyID"]);
+    }
+    
+    public function getInventoryPricingCodes(){
+        return $this->helperForDropdownToGet("inventorypricingcode", "ItemPricingCode", "ItemPricingCode");
     }
     
     public function Inventory_PopulateItemInfo(){

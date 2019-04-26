@@ -73,6 +73,7 @@ class gridData extends gridDataSource{
 			"ItemID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "text",
+                "disabledEdit" => true,
 				"defaultValue" => ""
 			],
 			"IsActive" => [
@@ -252,6 +253,17 @@ class gridData extends gridDataSource{
                 "dataProvider" => "getWarehouseBins",
 				"defaultValue" => ""
 			],
+			"IsAssembly" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"ItemAssembly" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getInventoryAssemblies",
+				"defaultValue" => ""
+			],
 			"ItemLocationX" => [
 				"dbType" => "varchar(10)",
 				"inputType" => "text",
@@ -311,6 +323,12 @@ class gridData extends gridDataSource{
 			"CurrencyExchangeRate" => [
 				"dbType" => "float",
 				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ItemPricingCode" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getInventoryPricingCodes",
 				"defaultValue" => ""
 			],
 			"PricingMethods" => [
@@ -380,84 +398,88 @@ class gridData extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
-			"IsAssembly" => [
-				"dbType" => "tinyint(1)",
-				"inputType" => "checkbox",
-				"defaultValue" => "0"
-			],
-			"ItemAssembly" => [
-				"dbType" => "varchar(36)",
-				"inputType" => "text",
-				"defaultValue" => ""
-			],
 			"LIFO" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"LIFOValue" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"LIFOCost" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"Average" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"AverageValue" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"AverageCost" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"FIFO" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"FIFOValue" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"FIFOCost" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"Expected" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"ExpectedValue" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"ExpectedCost" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"Landed" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"LandedValue" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"LandedCost" => [
@@ -468,16 +490,19 @@ class gridData extends gridDataSource{
 			"Other" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"OtherValue" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
-				"defaultValue" => ""
+                "format" => "{0:n}",
+                "defaultValue" => ""
 			],
 			"OtherCost" => [
 				"dbType" => "decimal(19,4)",
 				"inputType" => "text",
+                "format" => "{0:n}",
 				"defaultValue" => ""
 			],
 			"Commissionable" => [
