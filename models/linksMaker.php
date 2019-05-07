@@ -103,7 +103,18 @@ class linksMaker{
         return "index.php?page=autoreports&getreport=$name&type=$type&title=$title&$options";
     }
 
-    function makeImageLink($name){
-        return ($name && file_exists("./uploads/$name") ? "uploads/$name" : "assets/images/notfound.png");
+    function makeImageLink($name, $item, $itemDesc){
+        $imageLink = "";
+        
+        if($name && file_exists("./uploads/$name"))
+           $imageLink = "uploads/$name";
+        else if(key_exists("urlField", $itemDesc) &&
+                $item[$itemDesc["urlField"]] &&
+                file_exists("./assets/images/" . $item[$itemDesc["urlField"]]))
+            $imageLink = "assets/images/" . $item[$itemDesc["urlField"]];
+        else
+           $imageLink = "assets/images/notfound.png";
+        
+        return $imageLink;
     }
 }

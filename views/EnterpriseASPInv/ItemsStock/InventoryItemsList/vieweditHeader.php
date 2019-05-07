@@ -16,7 +16,7 @@
 	 }
 	</style>
 	<div class="col-md-2 col-lg-2">
-	    <img src="<?php  echo $linksMaker->makeImageLink($header["Picture"]);?>" class="item-header-image" />
+	    <img src="<?php  echo $linksMaker->makeImageLink($header["Picture"], $header, $data->editCategories["Main"]["Picture"]);?>" class="item-header-image" />
 	</div>
 	<div class="col-md-6 col-lg-6" style="padding:10px;">
 	    <div class="item-header-label">
