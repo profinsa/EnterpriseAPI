@@ -4,7 +4,7 @@
     ?>
 </a>
 <?php if(!$headerItem["Posted"]): ?>
-    <a class="btn btn-info" href="javascript:;" onclick="serverProcedureCall('Post', { OrderNumber : '<?php echo $headerItem["OrderNumber"]; ?>'}, true);">
+    <a class="btn btn-info" href="javascript:;" onclick="serverProcedureAnyCall('<?php echo $ascope["path"]; ?>', 'Post', { OrderNumber : '<?php echo $headerItem["OrderNumber"]; ?>'}, function(){callRecalc('<?php echo $headerItem["OrderNumber"]; ?>');});">
 	<?php
 	    echo $translation->translateLabel("Book Order");
 	?>
