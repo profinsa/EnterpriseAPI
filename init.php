@@ -36,13 +36,13 @@ class DB{
     }
     public static function select($query, $args = false){
         if(key_exists("user", $_SESSION)){
+            $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
 			if(!key_exists("lastDBAccess", $_SESSION))
                 $_SESSION["lastDBAccess"] = time();
             if(($_SESSION["lastDBAccess"] + 5) < time()){
                 $_SESSION["lastDBAccess"] = time();
                 $GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=now() WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
             }                
-            //$GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
         }
         return $GLOBALS["DB"]::select($query, $args ? $args : array());
     }
