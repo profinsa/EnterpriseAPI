@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 09/01/2019
+  Last Modified: 07/05/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -80,6 +80,7 @@ class gridData extends gridDataSource{
             ],
             "FamilyPicture" => [
                 "dbType" => "varchar(80)",
+                "urlField" => "FamilyPictureURL",
                 "inputType" => "imageFile",
                 "defaultValue" => ""
             ]
