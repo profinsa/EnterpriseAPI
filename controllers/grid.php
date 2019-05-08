@@ -25,7 +25,7 @@
   models/gridDataSource derivatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 18.03.2019
+  Last Modified: 07.05.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -258,6 +258,10 @@ class controller{
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
                     "EnterpriseASPAR/CreditMemos/CreditMemoHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/CreditMemos/CreditMemoHeaderClosedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],

@@ -1,9 +1,9 @@
-<a class="btn btn-info" href="javascript:;" onclick="callRecalc('<?php echo $headerItem["InvoiceNumber"]; ?>')">
+<a class="btn btn-info" href="javascript:;" onclick="callRecalc('<?php echo $headerItem["InvoiceNumber"]; ?>')" disabled>
     <?php
 	echo $translation->translateLabel("Recalc");
     ?>
 </a>
-<a class="btn btn-info" href="javascript:;" onclick="serverProcedureCall('Post', { InvoiceNumber : '<?php echo $headerItem["InvoiceNumber"]; ?>'}, true);">
+<a class="btn btn-info" href="javascript:;" onclick="serverProcedureCall('Post', { InvoiceNumber : '<?php echo $headerItem["InvoiceNumber"]; ?>'}, true);" disabled>
     <?php
 	echo $translation->translateLabel("Post");
     ?>
