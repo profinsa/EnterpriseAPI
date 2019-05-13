@@ -156,10 +156,18 @@
 						    echo $value;
 						    //						    echo date("Y-m-d H:i:s", strtotime($value));
 						    break;
+						    
+						case "dropdown":
+						    //preparing value for displaying
+						    $method = $data->editCategories[$category][$key]["dataProvider"];
+						    $types = $data->$method();
+
+						    if($value && key_exists($value, $types))
+							$value = $types[$value]["title"];
+
 						case "textarea" :
 						case "text":
 						case "dialogChooser":
-						case "dropdown":
 						    if(key_exists("formatFunction", $fieldDesc)){
 							$formatFunction = $fieldDesc["formatFunction"];
 							echo $data->$formatFunction($item, "editCategories", $key, $value, false);
