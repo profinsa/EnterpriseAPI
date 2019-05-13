@@ -130,6 +130,32 @@ EOF;
         
         return $result;
     }
+
+    public function ApplyToPayment(){
+        $user = Session::get("user");
+        $postData = file_get_contents("php://input");
+        
+        // `application/x-www-form-urlencoded`  `multipart/form-data`
+        $data = parse_str($postData);
+        // or
+        // `application/json`
+        $data = json_decode($postData, true);
+        $success = true;
+        print_r($data);
+        return;
+        foreach($data as $row){
+            //           print_r($row);
+            DB::statement("CALL Receipt_Cash(?, ?, ?, ?, ?, 'Invoice', ?, FALSE, @Result, @SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["InvoiceNumber"], $row["ReceiptID"], $row["AmountToApply"]));
+        
+            $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == 0){
+                $success = false;
+                echo $result[0]->SWP_RET_VALUE;
+            }
+        }
+        
+        echo "ok";        
+    }
 }
 
 class gridData extends DebitMemoHeaderApplyToPaymentsList {}
