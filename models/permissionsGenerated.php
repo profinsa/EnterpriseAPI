@@ -367,6 +367,12 @@ public $permissions = [
         "insert" => "Always",
         "delete" => "Always",
     ],
+    "DebitMemoHeaderApplyToPayments" => [
+        "select" => "APView|GLView|POView|ADView|ADSetup",
+        "update" => "Always",
+        "insert" => "Always",
+        "delete" => "Always",
+    ],
     "DebitMemoHeaderClosed" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "any",

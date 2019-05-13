@@ -164,6 +164,7 @@
     "AccountsPayable/DebitMemos/ViewStoreDebitMemo" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderStoreList",
     "AccountsPayable/DebitMemos/ViewDebitMemoHistory" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderHistoryList",
     "AccountsPayable/DebitMemos/ApplyDebitMemostoPayments" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderPaymentsList",
+    "AccountsPayable/DebitMemos/DebitMemoApplyToPayments" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderApplyToPaymentsList",
     "AccountsPayable/ReturntoVendorProcessing/ViewReturns" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
     "AccountsPayable/ReturntoVendorProcessing/PickPackReturns" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList",
     "AccountsPayable/ReturntoVendorProcessing/ShipReturns" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList",
