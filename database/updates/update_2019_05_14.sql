@@ -2257,6 +2257,4 @@ END;
 
 DELIMITER ;
 
-alter table purchaseheaderhistory ADD COLUMN InvoiceNumber varchar(36) after IncomeTaxRate;
-
 update databaseinfo set value='2019_05_14',lastupdate=now() WHERE id='Version';
