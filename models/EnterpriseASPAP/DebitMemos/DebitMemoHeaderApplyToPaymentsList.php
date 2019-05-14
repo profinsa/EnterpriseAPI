@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 13/05/2019
+  Last Modified: 14/05/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -69,6 +69,11 @@ class DebitMemoHeaderApplyToPaymentsList extends gridDataSource{
             "dbType" => "varchar(3)",
             "inputType" => "text"
         ],
+        "AvailableAmount" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text",
+        ],
         "AmountToApply" => [
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
@@ -83,6 +88,7 @@ class DebitMemoHeaderApplyToPaymentsList extends gridDataSource{
         "PaymentDate" => "Payment Date",
         "VendorID" => "Vendor ID",
         "CurrencyID" => "Currency ID",
+        "AvailableAmount" => "Available Amount",
         "AmountToApply" => "Amount To Apply",
         "CheckNumber" => "Check Number",
         "CheckDate" => "Check Date",
@@ -141,11 +147,11 @@ EOF;
         // `application/json`
         $data = json_decode($postData, true);
         $success = true;
-        print_r($data);
-        return;
+        //        print_r($data);
+        // return;
         foreach($data as $row){
             //           print_r($row);
-            DB::statement("CALL Receipt_Cash(?, ?, ?, ?, ?, 'Invoice', ?, FALSE, @Result, @SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["InvoiceNumber"], $row["ReceiptID"], $row["AmountToApply"]));
+            DB::statement("CALL DebitMemo_ApplyToPayment(?, ?, ?, ?, ?, ?,  @Result, @SWP_RET_VALUE)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["PurchaseNumber"], $row["PaymentID"], $row["AmountToApply"]));
         
             $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE');
             if($result[0]->SWP_RET_VALUE == 0){
