@@ -1873,3 +1873,604 @@ END;
 //
 
 DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS FixedAsset_Post;
+//
+CREATE                  PROCEDURE FixedAsset_Post(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_AssetID NATIONAL VARCHAR(36),
+	INOUT v_PostAsset INT ,INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Name of stored procedure: FixedAsset_Post
+Method: 
+	This store procedure posts new fixed asset into general ledger
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@AssetID NVARCHAR(36)		 - the ID of fixed asset
+
+Output Parameters:
+
+	@PostAsset INT 
+
+Called From:
+
+	FixedAsset_Post.vb
+
+Calls:
+
+	LedgerMain_CurrentPeriod, LedgerMain_VerifyPeriod, FixedAssetDepreciation_CreateGLTransaction, Error_InsertError
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+
+   DECLARE v_AssetOriginalCost DECIMAL(19,4);
+   DECLARE v_AssetSalvageValue DECIMAL(19,4);
+   DECLARE v_Posted BOOLEAN;
+   DECLARE v_TransDate DATETIME;
+   DECLARE v_PeriodClosed INT;
+   DECLARE v_PeriodToPost INT;
+   DECLARE v_AssetStatusID NATIONAL VARCHAR(36);
+   DECLARE v_AssetAcutalDisposalDate DATETIME;
+
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+   WriteError:
+   BEGIN
+      SET @SWV_Error = 0;
+      SET v_PostAsset = 1;
+      select   IFNULL(Posted,0), IFNULL(AssetOriginalCost,0) INTO v_Posted,v_AssetOriginalCost FROM FixedAssets WHERE
+      CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID
+      AND DepartmentID = v_DepartmentID
+      AND AssetID = v_AssetID;
+
+-- We will use current date without time part as default transaction date
+      SET v_TransDate = STR_TO_DATE(DATE_FORMAT(CURRENT_TIMESTAMP,'%Y-%m-%d'),'%Y-%m-%d'); 
+
+
+-- check if asset is not already disposed and needed fields are populated
+
+      IF	v_Posted = 1 then
+
+         SET SWP_Ret_Value = 0;
+         LEAVE SWL_return;
+      end if;
+      START TRANSACTION; -- transaction
+
+      IF	IFNULL(v_AssetOriginalCost,0) <= 0 then
+
+         SET v_ErrorMessage = 'Asset Original Cost must be > 0';
+         LEAVE WriteError;
+      end if;	
+
+		
+
+-- Verify the time Period (make a call to the enterprise.LedgerMain_VerifyPeriod stored procedure)
+      CALL LedgerMain_VerifyPeriod2(v_CompanyID,v_DivisionID,v_DepartmentID,v_TransDate,v_PeriodToPost,v_PeriodClosed, v_ReturnStatus);
+      IF v_PeriodClosed <> 0 then
+
+         SET v_ErrorMessage = 'Period for asset posting closed ';
+         LEAVE WriteError;
+      end if;	
+
+-- In case of an error we go to the error handling routine
+      IF v_ReturnStatus = -1 then
+
+         SET v_ErrorMessage = 'Procedure call LedgerMain_VerifyPeriod failed';
+         LEAVE WriteError;
+      end if;
+
+-- Post depreciation to general ledger
+      SET @SWV_Error = 0;
+      CALL FixedAsset_CreateGLTransaction(v_CompanyID,v_DivisionID,v_DepartmentID,v_AssetID,v_TransDate, v_ReturnStatus);
+      IF v_ReturnStatus <> 0 OR @SWV_Error <> 0 then
+	
+         SET v_ErrorMessage = 'Call FixedAsset_CreateGLTransaction failed';
+         LEAVE WriteError;
+      end if;
+
+
+-- we update Fixed Assets table with data just calculated
+      SET @SWV_Error = 0;
+      UPDATE FixedAssets
+      SET
+      Posted = 1
+      WHERE
+      CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID
+      AND DepartmentID = v_DepartmentID
+      AND AssetID = v_AssetID;
+      IF @SWV_Error <> 0 then
+
+         SET v_ErrorMessage = 'UPDATE FixedAssets failed';
+         LEAVE WriteError;
+      end if;
+      COMMIT;
+      SET SWP_Ret_Value = 0;
+      LEAVE SWL_return;
+   END;
+   SET v_PostAsset = 0;
+   ROLLBACK;
+
+-- the error handler
+   CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'FixedAsset_Post',v_ErrorMessage,
+   v_ErrorID);
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS FixedAsset_CreateGLTransaction;
+//
+CREATE                   PROCEDURE FixedAsset_CreateGLTransaction(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_AssetID NATIONAL VARCHAR(36),
+	v_TransDate DATETIME,INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Name of stored procedure: FixedAsset_CreateGLTransaction
+Method: 
+	Posts Depreciation Amount into General Ledger
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@AssetID NVARCHAR(36)		 - the ID of the fixed asset
+	@DepreciationAmount Money	 - amoutn to be post
+	@TransDate DATETIME		 - date of the depreciation
+
+Output Parameters:
+
+	NONE
+
+Called From:
+
+	FixedAssetDepreciation_Post
+
+Calls:
+
+	VerifyCurrency, GetNextEntityID, LedgerTransactions_PostCOA_AllRecords, Error_InsertError
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+
+   DECLARE v_CurrencyID NATIONAL VARCHAR(36);
+   DECLARE v_CompanyCurrencyID NATIONAL VARCHAR(36);
+   DECLARE v_CurrencyExchangeRate FLOAT;
+   DECLARE v_GLTransactionNumber NATIONAL VARCHAR(36);
+   DECLARE v_GLFixedAssetAccount NATIONAL VARCHAR(36);
+   DECLARE v_GLARAccount NATIONAL VARCHAR(36);
+   DECLARE v_AssetOriginalCost DECIMAL(19,4);
+   DECLARE v_VendorID NATIONAL VARCHAR(50);
+
+   DECLARE v_PostDate NATIONAL VARCHAR(1);
+   DECLARE v_ConvertedAssetOriginalCost DECIMAL(19,4);
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+   select   IFNULL(AssetOriginalCost,0), GLFixedAssetAccount, CurrencyID, CurrencyExchangeRate, VendorID INTO v_AssetOriginalCost,v_GLFixedAssetAccount,v_CurrencyID,v_CurrencyExchangeRate,
+   v_VendorID FROM FixedAssets WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND AssetID = v_AssetID;
+
+   IF IFNULL(v_AssetOriginalCost,0) = 0 then
+      SET SWP_Ret_Value = -1;
+      LEAVE SWL_return;
+   end if;
+
+   START TRANSACTION; -- transaction
+
+   IF v_GLFixedAssetAccount IS NULL then
+
+	-- the procedure will return an error code
+      SET v_ErrorMessage = 'GLFixedAssetAccount is not defined';
+      ROLLBACK;
+
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'FixedAsset_CreateGLTransaction',
+      v_ErrorMessage,v_ErrorID);
+      SET SWP_Ret_Value = 1;
+   end if;
+
+   SET @SWV_Error = 0;
+   CALL VerifyCurrency2(v_CompanyID,v_DivisionID,v_DepartmentID,v_TransDate,0,v_CompanyCurrencyID,
+   v_CurrencyID,v_CurrencyExchangeRate);
+   IF @SWV_Error <> 0 then
+
+	-- the procedure will return an error code
+      SET v_ErrorMessage = 'Currency retrieving failed';
+      ROLLBACK;
+
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'FixedAsset_CreateGLTransaction',
+      v_ErrorMessage,v_ErrorID);
+      SET SWP_Ret_Value = 1;
+   end if;
+
+   select   IFNULL(DefaultGLPostingDate,'1'), GLARAccount INTO v_PostDate,v_GLARAccount FROM
+   Companies WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID;
+
+
+   SET @SWV_Error = 0;
+   CALL GetNextEntityID2(v_CompanyID,v_DivisionID,v_DepartmentID,'NextGLTransNumber',v_GLTransactionNumber, v_ReturnStatus);
+   IF v_ReturnStatus <> 0 OR @SWV_Error <> 0 then
+	
+      SET v_ErrorMessage = 'Call enterprise.GetNextEntityID failed';
+      ROLLBACK;
+
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'FixedAsset_CreateGLTransaction',
+      v_ErrorMessage,v_ErrorID);
+      SET SWP_Ret_Value = 1;
+   end if;
+
+   SET v_ConvertedAssetOriginalCost = fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_AssetOriginalCost*v_CurrencyExchangeRate, 
+   v_CompanyCurrencyID);
+-- we insert a new transaction into LedgerTransactions table
+
+   SET @SWV_Error = 0;
+   INSERT INTO LedgerTransactions(CompanyID,
+	DivisionID,
+	DepartmentID,
+	GLTransactionNumber,
+	GLTransactionTypeID,
+	GLTransactionDate,
+	GLTransactionDescription,
+	GLTransactionReference,
+	GLTransactionSource,
+	GLTransactionAmount,
+	GLTransactionPostedYN,
+	GLTransactionBalance,
+	GLTransactionSystemGenerated,
+	CurrencyID,
+	CurrencyExchangeRate)
+VALUES(v_CompanyID,
+	v_DivisionID,
+	v_DepartmentID,
+	v_GLTransactionNumber,
+	'Asset',
+	CASE v_PostDate WHEN '1' THEN CURRENT_TIMESTAMP ELSE v_TransDate END,
+	v_VendorID,
+	v_AssetID,
+	CONCAT('ASSET ', cast(v_AssetID as char(10))),
+	v_ConvertedAssetOriginalCost,
+	1,
+	0,
+	1,
+	v_CurrencyID,
+	v_CurrencyExchangeRate);
+
+
+
+
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'INSERT INTO LedgerTransactions failed';
+      ROLLBACK;
+
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'FixedAsset_CreateGLTransaction',
+      v_ErrorMessage,v_ErrorID);
+      SET SWP_Ret_Value = 1;
+   end if;
+
+-- we debit GLFixedAssetAccount
+   SET @SWV_Error = 0;
+   INSERT INTO LedgerTransactionsDetail(CompanyID,
+	DivisionID,
+	DepartmentID,
+	GLTransactionNumber,
+	GLTransactionAccount,
+	GLDebitAmount,
+	GLCreditAmount)
+VALUES(v_CompanyID,
+	v_DivisionID,
+	v_DepartmentID,
+	v_GLTransactionNumber,
+	v_GLFixedAssetAccount,
+	v_ConvertedAssetOriginalCost,
+	0);
+
+
+
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'INSERT INTO LedgerTransactionsDetail failed';
+      ROLLBACK;
+
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'FixedAsset_CreateGLTransaction',
+      v_ErrorMessage,v_ErrorID);
+      SET SWP_Ret_Value = 1;
+   end if;
+
+-- we credit GLFixedAccumDepreciationAccount
+   SET @SWV_Error = 0;
+   INSERT INTO LedgerTransactionsDetail(CompanyID,
+	DivisionID,
+	DepartmentID,
+	GLTransactionNumber,
+	GLTransactionAccount,
+	GLDebitAmount,
+	GLCreditAmount)
+VALUES(v_CompanyID,
+	v_DivisionID,
+	v_DepartmentID,
+	v_GLTransactionNumber,
+	v_GLARAccount,
+	0,
+	v_ConvertedAssetOriginalCost);
+
+
+
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'INSERT INTO LedgerTransactionsDetail failed';
+      ROLLBACK;
+
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'FixedAsset_CreateGLTransaction',
+      v_ErrorMessage,v_ErrorID);
+      SET SWP_Ret_Value = 1;
+   end if;
+
+
+/*
+update the information in the Ledger Chart of Accounts for the accounts of the newly inserted transaction
+
+parameters	@CompanyID NVARCHAR(36),
+		@DivisionID NVARCHAR(36),
+		@DepartmentID NVARCHAR(36),
+		@GLTransNumber NVARCHAR (36)
+		used to identify the TRANSACTION
+		@PostCOA BIT - used in the process of creation of the transaction
+*/
+   SET @SWV_Error = 0;
+   CALL LedgerTransactions_PostCOA_AllRecords2(v_CompanyID,v_DivisionID,v_DepartmentID,v_GLTransactionNumber, v_ReturnStatus);
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+
+      SET v_ErrorMessage = 'LedgerTransactions_PostCOA_AllRecords call failed';
+      ROLLBACK;
+
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'FixedAsset_CreateGLTransaction',
+      v_ErrorMessage,v_ErrorID);
+      SET SWP_Ret_Value = 1;
+   end if;
+
+
+   COMMIT;
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+
+
+
+   ROLLBACK;
+
+-- the error handler
+   CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'FixedAsset_CreateGLTransaction',
+   v_ErrorMessage,v_ErrorID);
+
+
+   SET SWP_Ret_Value = 1;
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS FixedAssetDepreciation_PostAll;
+//
+CREATE     PROCEDURE FixedAssetDepreciation_PostAll(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	INOUT v_Result INT ,INOUT SWP_Ret_Value INT)
+BEGIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Name of stored procedure: FixedAssetDepreciation_PostAll
+Method: 
+	Depreciates and posts all assets in the company, that require depreciation
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+
+Output Parameters:
+
+	@Result int 
+
+Called From:
+
+	FixedAssetDepriciation_PostAll.vb
+
+Calls:
+
+	FixedAssetDepreciation_Post
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_Res INT;
+   DECLARE v_Return INT;
+   DECLARE v_AssetID NATIONAL VARCHAR(36);
+   DECLARE v_PostAsset INT;
+
+   DECLARE NO_DATA INT DEFAULT 0;
+   DECLARE cAssets CURSOR  FOR
+   SELECT	AssetID
+   FROM	FixedAssets
+   WHERE	CompanyID = v_CompanyID AND DivisionID = v_DivisionID AND DepartmentID = v_DepartmentID;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET NO_DATA = -2;
+   END;
+   DECLARE CONTINUE HANDLER FOR NOT FOUND SET NO_DATA = -1;
+   SET v_Return = 1;
+
+
+
+
+-- Get assets from FixedAssets table
+   SELECT	AssetID
+   FROM	FixedAssets
+   WHERE	CompanyID = v_CompanyID AND DivisionID = v_DivisionID AND DepartmentID = v_DepartmentID;
+   SET NO_DATA = 0;
+   FETCH cAssets INTO v_AssetID;
+   WHILE NO_DATA = 0 DO
+      CALL FixedAssetDepreciation_Post(v_CompanyID,v_DivisionID,v_DepartmentID,v_AssetID,v_PostAsset, v_Res);
+      IF v_Res <> 1 then -- Calculation fail
+         SET v_Return = 0;
+      end if;
+      SET NO_DATA = 0;
+      FETCH cAssets INTO v_AssetID;
+   END WHILE;
+
+   SET SWP_Ret_Value = v_Return;
+END;
+
+
+
+//
+
+DELIMITER ;
