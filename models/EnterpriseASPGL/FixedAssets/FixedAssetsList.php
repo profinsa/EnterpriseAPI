@@ -289,7 +289,7 @@ class gridData extends gridDataSource{
 
         $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
 
-        if($result[0]->SWP_RET_VALUE > -1)
+        if($result[0]->SWP_RET_VALUE > -1 && $result[0]->SWP_RET_VALUE != null)
             echo "ok";
         else {
             http_response_code(400);
