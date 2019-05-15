@@ -199,6 +199,16 @@ class gridData extends gridDataSource{
                 "inputType" => "dropdown",
                 "dataProvider" => "getAccounts",
                 "defaultValue" => ""
+            ],
+            "Approved" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "disabledEdit" => true
+            ],
+            "Posted" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "disabledEdit" => true
             ]
         ]
     ];
@@ -242,7 +252,7 @@ class gridData extends gridDataSource{
     public function getFixedAssetTypes(){
         $user = $_SESSION["user"];
         $res = [];
-        $result = $GLOBALS["capsule"]::select("SELECT AssetTypeID,AssetTypeDescription from fixedassettype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = DB::select("SELECT AssetTypeID,AssetTypeDescription from fixedassettype WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         foreach($result as $key=>$value)
             $res[$value->AssetTypeID] = [
@@ -256,7 +266,7 @@ class gridData extends gridDataSource{
     public function getFixedAssetDepreciationMethods(){
         $user = $_SESSION["user"];
         $res = [];
-        $result = $GLOBALS["capsule"]::select("SELECT AssetDepreciationMethodID,DepreciationMethodDescription from fixedassetdepreciationmethods WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = DB::select("SELECT AssetDepreciationMethodID,DepreciationMethodDescription from fixedassetdepreciationmethods WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         foreach($result as $key=>$value)
             $res[$value->AssetDepreciationMethodID] = [
@@ -270,9 +280,9 @@ class gridData extends gridDataSource{
     public function DisposalPost(){
         $user = $_SESSION["user"];
 
-        $GLOBALS["capsule"]::statement("CALL FixedAssetDisposal_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
+        DB::statement("CALL FixedAssetDisposal_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
 
-        $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
+        $result = DB::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
 
         if($result[0]->SWP_RET_VALUE > -1)
             echo "ok";
@@ -285,9 +295,9 @@ class gridData extends gridDataSource{
     public function DepreciationPost(){
         $user = $_SESSION["user"];
 
-        $GLOBALS["capsule"]::statement("CALL FixedAssetDepreciation_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
+        DB::statement("CALL FixedAssetDepreciation_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
 
-        $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
+        $result = DB::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
 
         if($result[0]->SWP_RET_VALUE > -1 && $result[0]->SWP_RET_VALUE != null)
             echo "ok";
@@ -300,9 +310,9 @@ class gridData extends gridDataSource{
     public function Depreciation_PostAll(){
         $user = $_SESSION["user"];
 
-        $GLOBALS["capsule"]::statement("CALL FixedAssetDepreciation_PostAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@v_Result, @SWP_RET_VALUE)");
+        DB::statement("CALL FixedAssetDepreciation_PostAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@v_Result, @SWP_RET_VALUE)");
 
-        $result = $GLOBALS["capsule"]::select('select @v_Result as v_Result ,@SWP_RET_VALUE as SWP_RET_VALUE');
+        $result = DB::select('select @v_Result as v_Result ,@SWP_RET_VALUE as SWP_RET_VALUE');
         
         if($result[0]->SWP_RET_VALUE > -1)
             echo "ok";
@@ -315,9 +325,9 @@ class gridData extends gridDataSource{
     public function FixedAsset_Post(){
         $user = $_SESSION["user"];
 
-        $GLOBALS["capsule"]::statement("CALL FixedAsset_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
+        DB::statement("CALL FixedAsset_Post('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["AssetID"] . "', @v_PostAsset, @SWP_RET_VALUE)");
 
-        $result = $GLOBALS["capsule"]::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
+        $result = DB::select('select @v_PostAsset as v_PostAsset ,@SWP_RET_VALUE as SWP_RET_VALUE');
         if($result[0]->SWP_RET_VALUE > -1)
             echo "ok";
         else {
