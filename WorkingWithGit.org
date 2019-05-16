@@ -1,0 +1,29 @@
+* fresh installation
+  First you need clone repository to which you have access(For example: EnterpriseX or Axiom or something else).
+  Command from command line from git bash(just click right button of mice in EnterpriseX folder):
+  git clone https://github.com/stfbinc/EnterpriseX
+  or you can use UI git tools
+  Then you need:
+  - create database with name "myenterprise" in mysql
+  - create user with name enterprise and password enterprise
+  - grant all privileges to myenterprise database to enterprise user
+  - upload Enterprise/database/database.sql into "myenterprise" database
+  OR you can change database credentials in EnterpriseX/common.php and use any database name, username and password would you
+  like.
+
+* updating installation
+  Before updating installation you need to know repository to which you have acces(For example: Axiom)
+  - to update installation you need execute following command line command from git bash(just click right button of mice in EnterpriseX folder):
+    git pull https://github.com/stfbinc/Axiom
+    or from UI git tools
+    All available changes is pulled.
+    But sql updates you need to load by hands.
+    All updates are stored in EnterpriseX/database/updates in files in following format:
+    update_[year]_[month]_[day].sql
+  - to update database you need open mysql command line client from Windows start menu
+    execute: select * from databaseinfo
+    then load files into database with dates more than Version from databaseinfo
+    For example: 
+    If Version is 2019_05_14 you need execute
+    source c:\Cloud\Dropbox\live\wwwroot\EnterpriseX\database\updates\update_2019_05_15.sql
+    and any later files
