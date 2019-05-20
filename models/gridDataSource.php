@@ -1662,13 +1662,19 @@ EOF;
                           -default value from company record
                          */
                         $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
-                        if($defaultRecord && property_exists($defaultRecord, $key) && $defaultRecord->$key != "")
+                        if($defaultRecord &&
+                           property_exists($defaultRecord, $key) &&
+                           $defaultRecord->$key != "" &&
+                           $this->editCategories[$type][$key]["inputType"] != "datetime")
                             $this->editCategories[$type][$key]["defaultValue"] = $defaultRecord->$key;
                         if(property_exists($defaultCompanyRecord, $key) && $defaultCompanyRecord->$key != "")
                             $this->editCategories[$type][$key]["defaultValue"] = $defaultCompanyRecord->$key;
                         if($this->editCategories[$type][$key]["inputType"] == "datetime" &&
                            ($this->editCategories[$type][$key]["defaultValue"] == "0000-00-00 00:00:00" ||
+                            //                            $this->editCategories[$type][$key]["defaultValue"] == "1983-01-01 13:00:00" ||
                             $this->editCategories[$type][$key]["defaultValue"] == "CURRENT_TIMESTAMP"||
+                            $this->editCategories[$type][$key]["defaultValue"] == "now"||
+                            $this->editCategories[$type][$key]["defaultValue"] == "NOW"||
                             !$this->editCategories[$type][$key]["defaultValue"]))
                             $this->editCategories[$type][$key]["defaultValue"] = date("m/d/y");
                     }
@@ -1691,7 +1697,7 @@ EOF;
 
         foreach($this->editCategories[$type] as $key=>$value)
             if($key != "loadFrom"){
-                $values[$key] = key_exists($key, $_GET) ? $_GET[$key] : (key_exists("defaultValue", $value) ? $value["defaultValue"] : "");
+                $values[$key] = key_exists($key, $_GET) ? $_GET[$key] : (key_exists("defaultValue", $value) ? $value["defaultValue"]  : "");
             }
         
         return $values;
