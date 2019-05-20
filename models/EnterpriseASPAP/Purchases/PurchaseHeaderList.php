@@ -133,6 +133,11 @@ class PurchaseHeaderList extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
+            "ShipDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
             /*			"CustomerDropShipment" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",

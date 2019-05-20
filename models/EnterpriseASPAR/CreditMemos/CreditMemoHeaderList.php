@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/05/2019
+  Last Modified: 21/05/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -125,6 +125,11 @@ class CreditMemoHeaderList extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			],
+            "ShipDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+				"defaultValue" => "now"
+            ],
 			"CustomerDropShipment" => [
 				"dbType" => "tinyint(1)",
 				"inputType" => "checkbox",
