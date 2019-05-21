@@ -95,7 +95,9 @@ class gridData extends gridDataSource{
             "TransitID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "defaultOverride" => true,
+                "defaultValue" => "",
+                "required" => true
             ],
             "TransitEnteredDate" => [
                 "dbType" => "datetime",
@@ -109,7 +111,8 @@ class gridData extends gridDataSource{
             ],
             "TransitShipVia" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipMethods",
                 "defaultValue" => ""
             ],
             "TransitShipped" => [
@@ -316,7 +319,90 @@ class gridData extends gridDataSource{
         "TransitTralierNumber" => "Trailier #",
         "TransitReceived" => "Transit Received",
         "Memorized" => "Memorized",
-        "Approved" => "Approved"
+        "Approved" => "Approved",
+        "TransitDetailLineID" => "Detail Line ID",
+        "TransitItemID" => "Item ID",
+        "TransitItemQuantity" => "Item Quantity",
+        "TransitSourceWarehouse" => "Source Warehouse",
+        "TransitSourceWarehouseBin" => "Source Warehouse Bin",
+        "TransitDestinationWarehouse" => "Destination Warehouse",
+        "TransitDestinationWarehouseBin" => "Destination Warehouse Bin",
+        "TransitInstructions" => "Instructions",
+        "TransitReceived" => "Received",
+        "TransitReceivedDate" => "Received Date",
+        "TransitRequestedBy" => "Requested By",
+        "TransitTrackingNumber" => "Tracking #",
     ];
+
+    public $detailPages = [
+        "Transit Detail" => [
+            "hideFields" => "true",
+            //"disableNew" => "true",
+            //"deleteDisabled" => "true",
+            //"editDisabled" => "true",
+            "viewPath" => "Inventory/WarehouseTransits/WarehouseTransitDetail",
+            "newKeyField" => "TransitID",
+            "keyFields" => ["TransitID", "TransitDetailLineID"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","TransitID"],
+            "gridFields" => [
+                "TransitDetailLineID" => [
+                    "dbType" => "int(11)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "TransitItemID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "TransitItemQuantity" => [
+                    "dbType" => "float",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "TransitSourceWarehouse" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "TransitSourceWarehouseBin" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "TransitDestinationWarehouse" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "TransitDestinationWarehouseBin" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "TransitReceived" => [
+                    "dbType" => "tinyint(1)",
+                    "inputType" => "checkbox",
+                    "defaultValue" => "0"
+                ],
+                "TransitTrackingNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ]
+            ]
+        ]
+    ];
+
+    public function getTransitDetail($id){
+        $user = Session::get("user");
+        
+        $result = DB::select("SELECT * from warehousetransitdetail WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND TransitID=?", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $id));
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;  
+    }
+
 }
 ?>
