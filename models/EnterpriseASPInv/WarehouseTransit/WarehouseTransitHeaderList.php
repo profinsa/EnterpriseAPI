@@ -162,6 +162,33 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
+            "Memorized" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "Approved" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ApprovedBy" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ApprovedDate" => [
+                "dbType" => "datetime",
+                "inputType" => "datetime",
+                "defaultValue" => "now"
+            ],
+            "EnteredBy" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+        ],
+        "Memos" => [
             "TransitHeaderMemo1" => [
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
@@ -211,32 +238,9 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(50)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
-            "Memorized" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "Approved" => [
-                "dbType" => "tinyint(1)",
-                "inputType" => "checkbox",
-                "defaultValue" => "0"
-            ],
-            "ApprovedBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
-            "ApprovedDate" => [
-                "dbType" => "datetime",
-                "inputType" => "datetime",
-                "defaultValue" => "now"
-            ],
-            "EnteredBy" => [
-                "dbType" => "varchar(36)",
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],
+            ]
+        ],
+        "Signature" => [
             "Signature" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
@@ -263,6 +267,13 @@ class gridData extends gridDataSource{
                 "defaultValue" => ""
             ],
             "ManagerSignaturePassword" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]
+        ],
+        "Transit Detail" => [
+            "TransitID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => ""

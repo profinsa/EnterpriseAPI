@@ -2197,6 +2197,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "WarehouseTransit" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "WarehouseTransitHeader" => [
         "select" => "any",
         "update" => "any",
