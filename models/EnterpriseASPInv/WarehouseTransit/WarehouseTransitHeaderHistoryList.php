@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 21/05/2019
+  Last Modified: 22/05/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -37,6 +37,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Warehouse Transit History";
     public $idField ="TransitID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","TransitID"];
+    public $modes = ["grid", "view"];
     public $gridFields = [
         "TransitID" => [
             "dbType" => "varchar(36)",
@@ -340,8 +341,8 @@ class gridData extends gridDataSource{
             "hideFields" => "true",
             "disableNew" => "true",
             "deleteDisabled" => "true",
-            "editDisabled" => "true",
-            "viewPath" => "Inventory/WarehouseTransits/WarehouseTransitDetailHistory",
+            //"editDisabled" => "true",
+            "viewPath" => "Inventory/WarehouseTransits/WarehouseTransitHistoryDetail",
             "newKeyField" => "TransitID",
             "keyFields" => ["TransitID", "TransitDetailLineID"],
             "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","TransitID"],

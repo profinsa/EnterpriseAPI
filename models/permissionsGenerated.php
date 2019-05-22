@@ -2203,6 +2203,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "WarehouseTransitHistory" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "WarehouseTransitHeader" => [
         "select" => "any",
         "update" => "any",
