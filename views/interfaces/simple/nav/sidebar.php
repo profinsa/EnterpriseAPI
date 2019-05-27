@@ -2,7 +2,8 @@
     $iconbarCategories = [
         "Customer" => [
             "full" => $translation->translateLabel('CUSTOMER'),
-            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+	    "link" => "index.php#/?page=dashboard&screen=Customer",
+	    //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
             "iconclass" => "user",
             "data" => [
                 [
@@ -17,13 +18,14 @@
                 [
 		    "id" => "AccountsReceivable/Customers/ViewCustomerFinancials",
 		    "full" => $translation->translateLabel('View Customer Balances')
-		],
+                ],
 	    ],
 	    "topbar" => $leftMenu["Main"]["data"][2]["data"][0]["data"]
 	],
 	"Vendor" => [
 	    "full" => $translation->translateLabel('VENDOR'),
-	    "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
+	    "link" => "index.php#/?page=dashboard&screen=Vendor",
+	    //	    "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
 	    "iconclass" => "user",
 	    "data" => [
                 [
@@ -44,7 +46,7 @@
 	],
 	"Items" => [
 	    "full" => $translation->translateLabel('ITEM'),
-	    "link" => "index.php#/?page=dashboard",
+	    "link" => "index.php#/?page=dashboard&screen=Item",
 	    "iconclass" => "list",
 	    "data" => [
                 [
@@ -65,6 +67,7 @@
 	],
 	"Sales" => [
 	    "full" => $translation->translateLabel('SALES'),
+	    "link" => "index.php#/?page=dashboard&screen=SalesAndShipping",
 	    "iconclass" => "list-alt",
 	    "data" => [
                 [
@@ -81,7 +84,7 @@
 	],
 	"Purchase" => [
 	    "full" => $translation->translateLabel('PURCHASE'),
-	    "link" => "index.php#/?page=dashboard",
+	    "link" => "index.php#/?page=dashboard&screen=PurchaseAndReceiving",
 	    "iconclass" => "calendar",
 	    "data" => [
                 [
