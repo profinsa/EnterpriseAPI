@@ -37,29 +37,6 @@
 	    <div class="col-md-8">
 		<div>
 		    <div class="white-box">
-			<h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Company Status"); ?></h3>
-			<!-- 		    <p class="text-muted">this is the sample data</p> --> 
-			<div class="table-responsive">
-			    <table class="table">
-				<thead>
-				    <tr>
-					<th><?php echo $translation->translateLabel("Account Type"); ?></th>
-					<th><?php echo $translation->translateLabel("Account Name"); ?></th>
-					<th><?php echo $translation->translateLabel("Account Totals"); ?></th>
-				    </tr>
-				</thead>
-				<tbody>
-				    <?php
-					foreach($companyStatus as $row)
-					echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType)  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";
-				    ?>
-				</tbody>
-			    </table>
-			</div>
-		    </div>
-		</div>
-		<div>
-		    <div class="white-box">
 			<h3 class="box-title"><?php echo $translation->translateLabel("Company Status"); ?></h3>
 			<div id="morris-donut-chart" class="ecomm-donute" style="height: 317px;"></div>
 			<ul class="list-inline m-t-30 text-center">
@@ -78,6 +55,29 @@
 			    ?>
 			</ul>
 		    </div>
+		    <div>
+			<div class="white-box">
+			    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Company Status"); ?></h3>
+			    <!-- 		    <p class="text-muted">this is the sample data</p> --> 
+			    <div class="table-responsive">
+				<table class="table">
+				    <thead>
+					<tr>
+					    <th><?php echo $translation->translateLabel("Account Type"); ?></th>
+					    <th><?php echo $translation->translateLabel("Account Name"); ?></th>
+					    <th><?php echo $translation->translateLabel("Account Totals"); ?></th>
+					</tr>
+				    </thead>
+				    <tbody>
+					<?php
+					    foreach($companyStatus as $row)
+					    echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType)  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";
+					?>
+				    </tbody>
+				</table>
+			    </div>
+			</div>
+		    </div>
 		</div>
 		<script> 
 		 Morris.Donut({
@@ -93,6 +93,54 @@
 		 });
 		</script>
 		
+		<?php
+		    $topOrdersReceipts = $data->TopOrdersReceipts();
+		?>
+		<div>
+		    <div class="white-box">
+			<h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Top 5 Open Orders & Receivings"); ?></h3>
+			<!--  <p class="text-muted">this is the sample data</p> -->
+			<div class="table-responsive">
+			    <table class="table">
+				<thead>
+				    <tr>
+					<th><?php echo $translation->translateLabel("Order Number"); ?></th>
+					<th><?php echo $translation->translateLabel("Customer"); ?></th>
+					<th><?php echo $translation->translateLabel("Ship Date"); ?></th>
+					<th><?php echo $translation->translateLabel("Amount"); ?></th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <?php
+					foreach($topOrdersReceipts["orders"] as $row)
+					echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsReceivable/OrderScreens/ViewOrders", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->OrderNumber}") . "\">{$row->OrderNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
+				    ?>
+				</tbody>
+			    </table>
+			</div>
+			<div class="table-responsive">
+			    <table class="table">
+				<thead>
+				    <tr>
+					<th><?php echo $translation->translateLabel("Receiving"); ?></th>
+					<th><?php echo $translation->translateLabel("Vendor"); ?></th>
+					<th><?php echo $translation->translateLabel("Arrival Date"); ?></th>
+					<th><?php echo $translation->translateLabel("Amount"); ?></th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <?php
+					foreach($topOrdersReceipts["purchases"] as $row)
+					echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsPayable/PurchaseProcessing/ViewPurchases", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->PurchaseNumber}") . "\">{$row->PurchaseNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("VendorID", $row->VendorID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->PurchaseDueDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotal) . "</td></tr>";
+				    ?>
+				</tbody>
+			    </table>
+			</div>
+		    </div>
+		</div>
+		
+	    </div>
+	    <div class="col-md-4">
 		<div>
 		    <?php
 			$companyDailyActivity = $data->CompanyDailyActivity();
@@ -186,79 +234,6 @@
 		</div>
 
 		<?php
-		    $topOrdersReceipts = $data->TopOrdersReceipts();
-		?>
-		<div>
-		    <div class="white-box">
-			<h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Top 5 Open Orders & Receivings"); ?></h3>
-			<!--  <p class="text-muted">this is the sample data</p> -->
-			<div class="table-responsive">
-			    <table class="table">
-				<thead>
-				    <tr>
-					<th><?php echo $translation->translateLabel("Order Number"); ?></th>
-					<th><?php echo $translation->translateLabel("Customer"); ?></th>
-					<th><?php echo $translation->translateLabel("Ship Date"); ?></th>
-					<th><?php echo $translation->translateLabel("Amount"); ?></th>
-				    </tr>
-				</thead>
-				<tbody>
-				    <?php
-					foreach($topOrdersReceipts["orders"] as $row)
-					echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsReceivable/OrderScreens/ViewOrders", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->OrderNumber}") . "\">{$row->OrderNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
-				    ?>
-				</tbody>
-			    </table>
-			</div>
-			<div class="table-responsive">
-			    <table class="table">
-				<thead>
-				    <tr>
-					<th><?php echo $translation->translateLabel("Receiving"); ?></th>
-					<th><?php echo $translation->translateLabel("Vendor"); ?></th>
-					<th><?php echo $translation->translateLabel("Arrival Date"); ?></th>
-					<th><?php echo $translation->translateLabel("Amount"); ?></th>
-				    </tr>
-				</thead>
-				<tbody>
-				    <?php
-					foreach($topOrdersReceipts["purchases"] as $row)
-					echo "<tr><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsPayable/PurchaseProcessing/ViewPurchases", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->PurchaseNumber}") . "\">{$row->PurchaseNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("VendorID", $row->VendorID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->PurchaseDueDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotal) . "</td></tr>";
-				    ?>
-				</tbody>
-			    </table>
-			</div>
-		    </div>
-		</div>
-		
-	    </div>
-	    <div class="col-md-4">
-		<?php
-		    $collectionAlerts = $data->CollectionAlerts();
-		?>
-		<div>
-		    <div class="white-box">
-			<h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Collections Alerts"); ?></h3>
-			<!-- <p class="text-muted">this is the sample data</p> -->
-			<div class="table-responsive">
-			    <table class="table table-hover">
-				<thead>
-				    <tr>
-					<th><?php echo $translation->translateLabel("Customer ID"); ?></th>
-					<th><?php echo $translation->translateLabel("Overdue"); ?></th>
-				    </tr>
-				</thead>
-				<tbody>
-				    <?php
-					foreach($collectionAlerts as $row)
-					echo "<tr><td>" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Overdue) . "</td></tr>";
-				    ?>
-				</tbody>
-			    </table>
-			</div>
-		    </div>
-		</div>
-		<?php
 		    $todaysTasks = $data->TodaysTasks();
 		?>
 		<div>
@@ -304,6 +279,31 @@
 					    $keyString = "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->LeadID}";
 					    echo "<tr><td><a href=\"". $linksMaker->makeGridItemView("CRMHelpDesk/CRM/ViewLeads", $keyString)  . "\">" . $row->LeadID . "</a></td><td>" . $row->LeadEmail . "</td></tr>";
 					}
+				    ?>
+				</tbody>
+			    </table>
+			</div>
+		    </div>
+		</div>
+		<?php
+		    $collectionAlerts = $data->CollectionAlerts();
+		?>
+		<div>
+		    <div class="white-box">
+			<h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Collections Alerts"); ?></h3>
+			<!-- <p class="text-muted">this is the sample data</p> -->
+			<div class="table-responsive">
+			    <table class="table table-hover">
+				<thead>
+				    <tr>
+					<th><?php echo $translation->translateLabel("Customer ID"); ?></th>
+					<th><?php echo $translation->translateLabel("Overdue"); ?></th>
+				    </tr>
+				</thead>
+				<tbody>
+				    <?php
+					foreach($collectionAlerts as $row)
+					echo "<tr><td>" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Overdue) . "</td></tr>";
 				    ?>
 				</tbody>
 			    </table>
