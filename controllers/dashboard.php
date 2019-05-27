@@ -38,7 +38,7 @@ require 'models/linksMaker.php';
 class controller{
     public $user = false;
     public $interface = "default";
-    public $category = "GeneralLedger";
+    public $category = "Accounting";
     public $path;
     public $mode = "dashboard";
 
@@ -50,10 +50,23 @@ class controller{
             exit;
         }
 
-        $this->screen =  key_exists("screen", $_GET) ? $_GET["screen"] : "GeneralLedger";
+        $this->screen =  key_exists("screen", $_GET) ? $_GET["screen"] : "Accounting";
         $modelsRewrite = [
-            "GeneralLedger" => "GeneralLedger",
+            "Accounting" => "Accounting",
+            "Customer" => "Accounting",
+            "Vendor" => "Accounting",
+            "Item" => "Accounting",
+            "PurchaseAndReceiving" => "Accounting",
+            "SalesAndShipping" => "Accounting",
             "Tasks" => "Tasks"
+        ];
+
+        $titlesRewrite = [
+            "Customer" => "Customer",
+            "Vendor" => "Vendor",
+            "Item" => "Item",
+            "PurchaseAndReceiving" => "Purchase & Receiving",
+            "SalesAndShipping" => "Sales & Shipping"
         ];
         
         $modelName = $modelsRewrite[$this->screen];
@@ -92,7 +105,7 @@ class controller{
             $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
             
             if(key_exists("screen",$_GET)){
-                $data->breadCrumbTitle = $data->dashboardTitle = $_GET["screen"];
+                $this->breadCrumbTitle = $this->dashboardTitle = $titlesRewrite[$_GET["screen"]];
                 $dashboardFile = $_GET["screen"];
             }else{
                 $dashboardFile = "Accounting";
