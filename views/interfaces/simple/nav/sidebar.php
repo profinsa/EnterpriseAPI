@@ -189,7 +189,13 @@
         <?php
 	    foreach ($iconbarCategories as $key=>$item){
 		if (!key_exists("favorits", $item)) {
-		    echo '<li onmouseenter="onShowSubMenu(event, ' . "'$key'" . ');" onmouseleave="onHideSubMenu(event);" ><a onclick="'. (key_exists("link", $item) ? 'location.href=\'' . $item["link"].'\';' :' ') .     (key_exists("topbar", $item) ? 'topbarMenuRender(\''. $key . '\'); onTopbarUpdate();'  : 'topbarMenuRender(); onTopbarUpdate();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
+            $link = "";
+            if(key_exists("link", $item))
+                if(key_exists("target", $item) && $item["target"] == "_blank")
+                    $link = "redirectBlank('{$item["link"]}');";
+                else
+                    $link = "location.href = '{$item["link"]}';";
+		    echo '<li onmouseenter="onShowSubMenu(event, ' . "'$key'" . ');" onmouseleave="onHideSubMenu(event);" ><a onclick="'. $link . (key_exists("topbar", $item) ? 'topbarMenuRender(\''. $key . '\'); onTopbarUpdate();'  : 'topbarMenuRender(); onTopbarUpdate();')  .'" style="cursor: pointer"  class="mysubmenu"><span aria-hidden="true" class="glyphicon glyphicon-' . $item["iconclass"] . '"></span><span class="glyphicon-class">' . $item["full"] . '</span></a>';
 		    if (key_exists("data", $item)) {
 			echo "<ul onmouseenter=\"onShowSubMenu(event, " . "'$key'" . ");\" onmouseleave=\"onHideSubMenu(event);\" class=\"iconbarsubmenu dropdown-menu\" style=\" " . ($ascope["interfaceType"] == "rtl" ? "right: " : "left: ") . "99px !important; margin-top: -50px !important; z-index: 9999; width:fit-content\">";
 			foreach($item["data"] as $subitem) {

@@ -1,4 +1,11 @@
 <script> 
+ function redirectBlank(url) {
+     var a = document.createElement('a');
+     a.target="_blank";
+     a.href=url;
+     a.click();
+     
+ }
  function downloadFile(filename, text) {
      var element = document.createElement('a');
      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
