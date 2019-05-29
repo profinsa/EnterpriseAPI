@@ -56,7 +56,7 @@
 	    <div class="col-md-6">
 		<div>
 		    <div>
-			<?php require "blocks/topOrders.php"; ?>
+			<?php require "blocks/topReceivings.php"; ?>
  			<?php require "blocks/todayTasks.php"; ?>
  			<?php require "blocks/leadFollowUp.php"; ?>
 		    </div>
