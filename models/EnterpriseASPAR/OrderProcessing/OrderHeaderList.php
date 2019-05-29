@@ -1369,7 +1369,7 @@ class OrderHeaderList extends gridDataSource{
         }else if(key_exists("ShipDate", $_GET)){
             $ShipDate = $_GET["ShipDate"];
             //            $ShipDate = date("Y-m-d H:i:s", strtotime($_GET["ShipDate"]));
-            $this->gridConditions .= "AND date(ShipDate)='$ShipDate'";
+            $this->gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND date(ShipDate)='$ShipDate'";
             $result = parent::getPage($id);
             return $result;
         }else{
