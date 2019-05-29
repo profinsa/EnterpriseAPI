@@ -1,38 +1,39 @@
 <?php
 /*
-Name of Page: dashboard data sourcee
+  Name of Page: dashboard data sourcee
 
-Method: It provides data from database for GeneralLedger dashboard
+  Method: It provides data from database for dashboards
 
-Date created: Nikita Zaharov, 05.04.2017
+  Date created: Nikita Zaharov, 05.04.2017
 
-Use: this model used for 
-- for loading data using stored procedures
+  Use: this model used for 
+  - for loading data using stored procedures
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-controllers/dashboard
+  Called from:
+  controllers/dashboard
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 08.11.2017
-Last Modified by: Nikita Zaharov
+  Last Modified: 29.05.2019
+  Last Modified by: Nikita Zaharov
 */
 
 class dashboardData{
     public $breadCrumbTitle = "General Ledger";
     public $dashboardTitle = "General Ledger";
+    
     public function CompanyAccountsStatus(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results = DB::select("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
         return $results;
     }
@@ -40,7 +41,7 @@ class dashboardData{
     public function CollectionAlerts(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spCollectionAlerts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
+        $results = DB::select("CALL spCollectionAlerts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
 
         return $results;
     }
@@ -63,7 +64,7 @@ class dashboardData{
     public function CompanyIncomeStatement(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spCompanyIncomeStatement('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results = DB::select("CALL spCompanyIncomeStatement('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
         return $results;
     }
@@ -71,7 +72,7 @@ class dashboardData{
     public function CompanySystemWideMessage(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spCompanySystemWideMessage('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results = DB::select("CALL spCompanySystemWideMessage('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
         return $results;
     }
@@ -79,7 +80,7 @@ class dashboardData{
     public function InventoryLowStockAlert(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spInventoryLowStockAlert('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results = DB::select("CALL spInventoryLowStockAlert('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
         return $results;
     }
@@ -87,7 +88,7 @@ class dashboardData{
     public function LeadFollowUp(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spLeadFollowUp('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
+        $results = DB::select("CALL spLeadFollowUp('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
 
         return $results; //employee
     }
@@ -95,7 +96,7 @@ class dashboardData{
     public function TodaysTasks(){
         $user = $_SESSION["user"];
 
-        $results = $GLOBALS["capsule"]::select("CALL spTodaysTasks('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
+        $results = DB::select("CALL spTodaysTasks('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
 
         return $results; // employee
     }
@@ -104,10 +105,14 @@ class dashboardData{
         $user = $_SESSION["user"];
 
         $results = [];
-        $results["orders"] = $GLOBALS["capsule"]::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
-        $results["purchases"] = $GLOBALS["capsule"]::select("CALL spTopOrdersReceiptsPurchases('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results["orders"] = DB::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results["purchases"] = DB::select("CALL spTopOrdersReceiptsPurchases('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
         return $results;
+    }
+
+    public function getOrdersForShippments(){
+        
     }
 }
 ?>

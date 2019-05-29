@@ -25,7 +25,7 @@
   models/dashboard/*
   app from index.php
 
-  Last Modified: 07.02.2019
+  Last Modified: 05.29.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -62,6 +62,7 @@ class controller{
         ];
 
         $titlesRewrite = [
+            "Tasks" => "Tasks",
             "Customer" => "Customer",
             "Vendor" => "Vendor",
             "Item" => "Item",
