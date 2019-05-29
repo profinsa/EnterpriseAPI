@@ -11,24 +11,55 @@
 	<div class="row">
 	    <?php require "blocks/systemWideMessage.php"; ?>
 	</div>
-	<!--row -->
 	<div class="row">
-	    <div class="col-md-8">
+	    <div class="col-md-6">
 		<div>
 		    <div>
-			<?php require "blocks/companyStatusTable.php"; ?>
-			<?php require "blocks/companyStatusChart.php"; ?>
-			<?php require "blocks/topOrdersReceipts.php"; ?>
+			<script>
+			 function calendarOnSelect(start, end){
+			     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + datetimeToISO(start._d);
+			     //     console.log(start._d,end);
+			 }			
+			 function calendarOnClick(calEvent, jsEvent, view){
+			     //console.log(calEvent.start._i);
+			     //console.log("<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrdersByShipDate"); ?>" + "&ShipDate=" + calEvent.start._i);
+			     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + calEvent.start._i;
+			 }
+			 function calendarDataSource(){
+			     var orders = <?php echo json_encode($data->getOrdersForShipments(), JSON_PRETTY_PRINT); ?>,
+				 ind, ordersCounters = {}, shipDate;
+			     for(ind in orders){
+				 shipDate = datetimeToISO(orders[ind].ShipDate);
+				 if(ordersCounters.hasOwnProperty(shipDate))
+				     ordersCounters[shipDate]++;
+				 else
+				     ordersCounters[shipDate] = 1;
+			     }
+
+			     orders = [];
+			     for(ind in ordersCounters)
+				 orders.push({
+				     title : ordersCounters[ind],
+				     start : ind,
+				     end : ind
+				 });
+			     return orders;
+			 }
+			</script>
+ 			<?php
+			    $calendarTitle = "Receiving Calendar";
+			    
+			    require "blocks/calendar.php";
+			?>
 		    </div>
 		</div>
 	    </div>
-	    <div class="col-md-4">
+	    <div class="col-md-6">
 		<div>
 		    <div>
-			<?php require "blocks/companyDailyActivity.php"; ?>
+			<?php require "blocks/topOrders.php"; ?>
  			<?php require "blocks/todayTasks.php"; ?>
  			<?php require "blocks/leadFollowUp.php"; ?>
- 			<?php require "blocks/collectionsAllerts.php"; ?>
 		    </div>
 		</div>
 	    </div>

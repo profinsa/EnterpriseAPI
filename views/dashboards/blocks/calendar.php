@@ -87,108 +87,11 @@
 	</div>
     </div>
     <div id="calendar-wrapper-id">
-	<h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Shipments Calendar"); ?></h3>
+	<h3 class="box-title m-b-0"><?php echo $translation->translateLabel($calendarTitle); ?></h3>
 	<div id='records-calendar-id' style="margin-top: 15px"></div>
     </div>
 </div>
 <script>
- function onAllDay() {
-     if ($("#event-all-day-days-id").prop("checked")) {
-	 $("#time-wrapper-id").hide();
-     } else {
-	 $("#time-wrapper-id").show();
-     }
- }
- function onFewDays(e) {
-     if ($("#event-a-few-days-id").prop("checked")) {
-	 $("#few-days-wrapper-id").show();
-	 $("#one-day-wrapper-id").hide();
-     } else {
-	 $("#few-days-wrapper-id").hide();
-	 $("#one-day-wrapper-id").show();
-     }
- }
-
- function addEvent() {
-     $("#calendar-wrapper-id").hide();
-     $("#event-all-day-days-id").prop("checked", true);
-     $("#event-a-few-days-id").prop("checked", false);
-     onFewDays();
-     onAllDay();
-     $("#add-event-wrapper-id").width('100%');
-     $("#add-event-wrapper-id").show();
-     
-     $('#datetimepicker2').data("DateTimePicker").date(new Date());
-
-     $('#datetimepicker3').data("DateTimePicker").date(new Date());
-     $('#datetimepicker4').data("DateTimePicker").date(new Date());
-
-     $('#datetimepicker1').data("DateTimePicker").date(new Date());
-     $('#datetimepicker5').data("DateTimePicker").date(new Date());
- }
-
- function cancelEvent() {
-     $("#add-event-wrapper-id").hide();
-     // $("#calendar-wrapper-id").height($("#add-event-wrapper-id").height());
-     // $("#calendar-wrapper-id").width($("#add-event-wrapper-id").width());
-     $("#calendar-wrapper-id").show();
- }
-
- function saveEvent() {
-     if (!$("#event-title-id").val()) {
-	 alert('Please enter event title.');
-	 return;
-     }
-     $("#add-event-wrapper-id").hide();
-     // $("#calendar-wrapper-id").height($("#add-event-wrapper-id").height());
-     // $("#calendar-wrapper-id").width($("#add-event-wrapper-id").width());
-     $("#calendar-wrapper-id").show();
-
-     var eventData;
-
-     if ($("#event-a-few-days-id").prop("checked")) {
-	 eventData = {
-	     title: $("#event-title-id").val(),
-	     start: $('#datetimepicker1').data("DateTimePicker").date().startOf('day').format('YYYY-MM-DD'),
-	     end: $('#datetimepicker5').data("DateTimePicker").date().add(1, "days").format('YYYY-MM-DD')
-	 };
-     } else {
-	 if ($("#event-all-day-days-id").prop("checked")) {
-	     // eventData = {
-	     // 	title: $("#event-title-id").val(),
-	     // 	start: $('#datetimepicker2').data("DateTimePicker").date().startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-	     // 	end: $('#datetimepicker2').data("DateTimePicker").date().add(1, 'days').format('YYYY-MM-DD HH:mm:ss')
-	     // };
-	     eventData = {
-		 title: $("#event-title-id").val(),
-		 start: $('#datetimepicker3').data("DateTimePicker").date().format('YYYY-MM-DD'),
-		 end: $('#datetimepicker4').data("DateTimePicker").date().format('YYYY-MM-DD')
-	     };
-	 } else {
-	     eventData = {
-		 title: $("#event-title-id").val(),
-		 start: $('#datetimepicker3').data("DateTimePicker").date().set({
-		     'year': $('#datetimepicker2').data("DateTimePicker").date().get('year'),
-		     'month': $('#datetimepicker2').data("DateTimePicker").date().get('month'),
-		     'date': $('#datetimepicker2').data("DateTimePicker").date().get('date')
-		 }).format('YYYY-MM-DD HH:mm:ss'),
-		 end: $('#datetimepicker4').data("DateTimePicker").date().set({
-		     'year': $('#datetimepicker2').data("DateTimePicker").date().get('year'),
-		     'month': $('#datetimepicker2').data("DateTimePicker").date().get('month'),
-		     'date': $('#datetimepicker2').data("DateTimePicker").date().get('date')
-		 }).format('YYYY-MM-DD HH:mm:ss')
-	     };
-	 }
-     }
-
-     $('#records-calendar-id').fullCalendar('renderEvent', eventData, true);
-     $("#event-title-id").val('');
-     var eventsJson = localStorage.getItem("calendarevents");
-     var buf = eventsJson ? JSON.parse(eventsJson) : [];
-     buf.push(eventData);
-     localStorage.setItem("calendarevents", JSON.stringify(buf));
- }
-
  $(document).ready(function() {
      $('#datetimepicker1').datetimepicker({
 	 format: 'DD/MM/YYYY'
@@ -206,24 +109,7 @@
      $('#datetimepicker4').datetimepicker({
 	 format: 'LT'
      });
-     var eventsJson = localStorage.getItem("calendarevents");
-     var orders = <?php echo json_encode($data->getOrdersForShipments(), JSON_PRETTY_PRINT); ?>,
-	 ind, ordersCounters = {}, shipDate;
-     for(ind in orders){
-	 shipDate = datetimeToISO(orders[ind].ShipDate);
-	 if(ordersCounters.hasOwnProperty(shipDate))
-	     ordersCounters[shipDate]++;
-	 else
-	     ordersCounters[shipDate] = 1;
-     }
-
-     orders = [];
-     for(ind in ordersCounters)
-	 orders.push({
-	     title : ordersCounters[ind],
-	     start : ind,
-	     end : ind
-	 });
+     
      //     console.log(orders);
      //     console.log(orders);
      //   console.log(eventsJson);
@@ -239,20 +125,10 @@
 	 selectable: true,
 	 aspectRatio: 0.9,
 	 selectHelper: true,
-	 select: function(start, end){
-	     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + datetimeToISO(start._d);
-	     //     console.log(start._d,end);
-	 },
-	 dateClick : function(info){
-	     //	     console.log(info._d._d);
-	 },
-	 eventClick : function(calEvent, jsEvent, view){
-	     //console.log(calEvent.start._i);
-	     //console.log("<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrdersByShipDate"); ?>" + "&ShipDate=" + calEvent.start._i);
-	     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + calEvent.start._i;
-	 },
+	 select: calendarOnSelect,
+	 eventClick : calendarOnClick,
 	 editable: true,
-	 events: orders
+	 events: calendarDataSource()
      });
      
  });
