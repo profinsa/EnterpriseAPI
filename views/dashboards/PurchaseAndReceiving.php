@@ -17,16 +17,15 @@
 		    <div>
 			<script>
 			 function calendarOnSelect(start, end){
-			     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + datetimeToISO(start._d);
+			     location.href = "<?php echo $linksMaker->makeGridLink("AccountsPayable/PurchaseScreens/ViewPurchases"); ?>" + "&ShipDate=" + datetimeToISO(start._d);
 			     //     console.log(start._d,end);
 			 }			
 			 function calendarOnClick(calEvent, jsEvent, view){
 			     //console.log(calEvent.start._i);
-			     //console.log("<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrdersByShipDate"); ?>" + "&ShipDate=" + calEvent.start._i);
-			     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + calEvent.start._i;
+			     location.href = "<?php echo $linksMaker->makeGridLink("AccountsPayable/PurchaseScreens/ViewPurchases"); ?>" + "&ShipDate=" + calEvent.start._i;
 			 }
 			 function calendarDataSource(){
-			     var orders = <?php echo json_encode($data->getOrdersForShipments(), JSON_PRETTY_PRINT); ?>,
+			     var orders = <?php echo json_encode($data->getReceivingsForCalendar(), JSON_PRETTY_PRINT); ?>,
 				 ind, ordersCounters = {}, shipDate;
 			     for(ind in orders){
 				 shipDate = datetimeToISO(orders[ind].ShipDate);

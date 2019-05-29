@@ -1325,6 +1325,12 @@ class PurchaseHeaderList extends gridDataSource{
             $this->gridConditions .= "and Received=0 and PurchaseDate >= now() - INTERVAL 1 DAY";
             $result = parent::getPage($id);
             return $result;
+        }else if(key_exists("ShipDate", $_GET)){
+            $ShipDate = $_GET["ShipDate"];
+            //            $ShipDate = date("Y-m-d H:i:s", strtotime($_GET["ShipDate"]));
+            $this->gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND date(ShipDate)='$ShipDate'";
+            $result = parent::getPage($id);
+            return $result;
         }else{
             $result = parent::getPage($id);
             return $result;

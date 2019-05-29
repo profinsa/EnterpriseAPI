@@ -111,10 +111,19 @@ class dashboardData{
         return $results;
     }
 
-    public function getOrdersForShipments(){
+    public function getShipmentsForCalendar(){
         $user = Session::get("user");
 
         $result = DB::select("select OrderNumber, CustomerID, ShipDate, OrderDate from orderheader WHERE (LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
+
+    public function getReceivingsForCalendar(){
+        $user = Session::get("user");
+
+        $result = DB::select("select PurchaseNumber, VendorID, ShipDate, PurchaseDate from purchaseheader WHERE (NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
         $result = json_decode(json_encode($result), true);
         
         return $result;

@@ -27,7 +27,7 @@
 			     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + calEvent.start._i;
 			 }
 			 function calendarDataSource(){
-			     var orders = <?php echo json_encode($data->getOrdersForShipments(), JSON_PRETTY_PRINT); ?>,
+			     var orders = <?php echo json_encode($data->getShipmentsForCalendar(), JSON_PRETTY_PRINT); ?>,
 				 ind, ordersCounters = {}, shipDate;
 			     for(ind in orders){
 				 shipDate = datetimeToISO(orders[ind].ShipDate);
