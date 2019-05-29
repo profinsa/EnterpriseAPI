@@ -210,9 +210,7 @@
      var orders = <?php echo json_encode($data->getOrdersForShipments(), JSON_PRETTY_PRINT); ?>,
 	 ind, ordersCounters = {}, shipDate;
      for(ind in orders){
-	 shipDate = new Date(orders[ind].ShipDate);
-	 shipDate = shipDate.getFullYear() + '-' + (shipDate.getMonth()+1) + '-' + shipDate.getDate();
-	 shipDate = shipDate.replace(/(^|\D)(\d)(?!\d)/g, '$10$2');
+	 shipDate = datetimeToISO(orders[ind].ShipDate);
 	 if(ordersCounters.hasOwnProperty(shipDate))
 	     ordersCounters[shipDate]++;
 	 else
@@ -226,9 +224,9 @@
 	     start : ind,
 	     end : ind
 	 });
-//     console.log(orders);
      //     console.log(orders);
-  //   console.log(eventsJson);
+     //     console.log(orders);
+     //   console.log(eventsJson);
 
      $('#records-calendar-id').fullCalendar({
 	 themeSystem: 'bootstrap3',
@@ -242,13 +240,16 @@
 	 aspectRatio: 0.9,
 	 selectHelper: true,
 	 select: function(start, end){
-	     console.log(start,end);
+	     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + datetimeToISO(start._d);
+	     //     console.log(start._d,end);
 	 },
 	 dateClick : function(info){
-	     console.log(info);
+	     //	     console.log(info._d._d);
 	 },
 	 eventClick : function(calEvent, jsEvent, view){
-	     console.log(calEvent.start._i);
+	     //console.log(calEvent.start._i);
+	     //console.log("<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrdersByShipDate"); ?>" + "&ShipDate=" + calEvent.start._i);
+	     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + calEvent.start._i;
 	 },
 	 editable: true,
 	 events: orders

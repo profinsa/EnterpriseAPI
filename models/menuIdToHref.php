@@ -50,6 +50,7 @@
     "AccountsReceivable/OrderProcessing/ViewQuotes" => "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
     "AccountsReceivable/OrderProcessing/ViewQuotesTracking" => "EnterpriseASPAR/OrderProcessing/QuoteTrackingHeaderList",   
     "AccountsReceivable/OrderProcessing/ViewOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+    "AccountsReceivable/OrderProcessing/ViewOrdersByShipDate" => "EnterpriseASPAR/OrderProcessing/OrderHeaderShipDateList",
     "AccountsReceivable/OrderProcessing/PickPackOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderPickList",
     "AccountsReceivable/OrderProcessing/ShipOrders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderShipList",
     "AccountsReceivable/OrderProcessing/ShipStep2Orders" => "EnterpriseASPAR/OrderProcessing/OrderHeaderShipStep2List",

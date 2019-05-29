@@ -57,6 +57,7 @@ class controller{
         "EnterpriseASPAR/OrderProcessing/OrderHeaderShipStep2List" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderHoldList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+        "EnterpriseASPAR/OrderProcessing/OrderHeaderShipDateList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
 
         "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
 
@@ -198,6 +199,10 @@ class controller{
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
                     "EnterpriseASPAR/OrderProcessing/OrderHeaderHoldList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/OrderProcessing/OrderHeaderShipDateList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],

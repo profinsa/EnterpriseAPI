@@ -147,9 +147,15 @@
 	 var item = JSON.parse(res), ind;
 	 for(ind in item)
 	     $("input[name=" + ind + "]").val(item[ind]);
-//	 console.log(res);
+	 //	 console.log(res);
      });
      <?php endif; ?>
  }
 
+ function datetimeToISO(datetime){
+     var date = new Date(datetime),
+	 iso = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+     iso = iso.replace(/(^|\D)(\d)(?!\d)/g, '$10$2');
+     return iso;
+ }
 </script>

@@ -1366,6 +1366,12 @@ class OrderHeaderList extends gridDataSource{
             $this->gridConditions .= "and OrderShipDate >= now() - INTERVAL 1 DAY";
             $result = parent::getPage($id);
             return $result;
+        }else if(key_exists("ShipDate", $_GET)){
+            $ShipDate = $_GET["ShipDate"];
+            //            $ShipDate = date("Y-m-d H:i:s", strtotime($_GET["ShipDate"]));
+            $this->gridConditions .= "AND date(ShipDate)='$ShipDate'";
+            $result = parent::getPage($id);
+            return $result;
         }else{
             $result = parent::getPage($id);
             return $result;
@@ -1709,5 +1715,9 @@ class OrderHeaderHoldList extends OrderHeaderList{
                 echo "Procedure not found";
         }
     }
+}
+
+class OrderHeaderShipDateList extends OrderHeaderList{
+    public $gridConditions = "";    
 }
 ?>
