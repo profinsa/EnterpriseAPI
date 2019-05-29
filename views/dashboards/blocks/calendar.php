@@ -88,7 +88,7 @@
     </div>
     <div id="calendar-wrapper-id">
 	<h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Shipments Calendar"); ?></h3>
-	<div id='events-calendar-id' style="margin-top: 15px"></div>
+	<div id='records-calendar-id' style="margin-top: 15px"></div>
     </div>
 </div>
 <script>
@@ -181,7 +181,7 @@
 	 }
      }
 
-     $('#events-calendar-id').fullCalendar('renderEvent', eventData, true);
+     $('#records-calendar-id').fullCalendar('renderEvent', eventData, true);
      $("#event-title-id").val('');
      var eventsJson = localStorage.getItem("calendarevents");
      var buf = eventsJson ? JSON.parse(eventsJson) : [];
@@ -207,8 +207,30 @@
 	 format: 'LT'
      });
      var eventsJson = localStorage.getItem("calendarevents");
-     console.log(eventsJson);
-     $('#events-calendar-id').fullCalendar({
+     var orders = <?php echo json_encode($data->getOrdersForShipments(), JSON_PRETTY_PRINT); ?>,
+	 ind, ordersCounters = {}, shipDate;
+     for(ind in orders){
+	 shipDate = new Date(orders[ind].ShipDate);
+	 shipDate = shipDate.getFullYear() + '-' + (shipDate.getMonth()+1) + '-' + shipDate.getDate();
+	 shipDate = shipDate.replace(/(^|\D)(\d)(?!\d)/g, '$10$2');
+	 if(ordersCounters.hasOwnProperty(shipDate))
+	     ordersCounters[shipDate]++;
+	 else
+	     ordersCounters[shipDate] = 1;
+     }
+
+     orders = [];
+     for(ind in ordersCounters)
+	 orders.push({
+	     title : ordersCounters[ind],
+	     start : ind,
+	     end : ind
+	 });
+//     console.log(orders);
+     //     console.log(orders);
+  //   console.log(eventsJson);
+
+     $('#records-calendar-id').fullCalendar({
 	 themeSystem: 'bootstrap3',
 	 header: {
 	     left: 'prev,next today',
@@ -219,57 +241,17 @@
 	 selectable: true,
 	 aspectRatio: 0.9,
 	 selectHelper: true,
-	 select: function(start, end) {
-	     // console.log(start, end);
-	     localStorage.setItem("start", start.format('YYYY-MM-DD HH:mm:ss'));
-	     localStorage.setItem("end", end.format('YYYY-MM-DDTHH:mm:ss'));
-	     $("#calendar-wrapper-id").hide();
-	     $("#add-event-wrapper-id").width('100%');
-	     $("#add-event-wrapper-id").show();
-
-	     if (end.diff(start) > 86400000) {
-		 $("#event-a-few-days-id").prop("checked", true);
-		 onFewDays();
-	     } else if (end.diff(start) < 86400000) {
-		 $("#event-all-day-days-id").prop("checked", false);
-		 $("#event-a-few-days-id").prop("checked", false);
-		 onFewDays();
-		 onAllDay();
-	     } else if (end.diff(start) == 86400000) {
-		 $("#event-all-day-days-id").prop("checked", true);
-		 $("#event-a-few-days-id").prop("checked", false);
-		 onFewDays();
-		 onAllDay();
-	     }
-
-	     
-	     $('#datetimepicker2').data("DateTimePicker").date(start);
-
-	     $('#datetimepicker3').data("DateTimePicker").date(start);
-	     $('#datetimepicker4').data("DateTimePicker").date(end);
-
-	     $('#datetimepicker1').data("DateTimePicker").date(start);
-	     $('#datetimepicker5').data("DateTimePicker").date(end.subtract(1, "days"));
-
-	     // var title = prompt('Please enter event title:');
-	     // var eventData;
-	     // if (title) {
-	     // 	eventData = {
-	     // 		title: title,
-	     // 		start: start,
-	     // 		end: end
-	     // 	};
-	     // 	$('#events-calendar-id').fullCalendar('renderEvent', eventData, true);
-
-	     // 	var eventsJson = localStorage.getItem("calendarevents");
-	     // 	var buf = eventsJson ? JSON.parse(eventsJson) : [];
-	     // 	buf.push(eventData);
-	     // 	localStorage.setItem("calendarevents", JSON.stringify(buf));
-	     // }
-	     // $('#events-calendar-id').fullCalendar('unselect');
+	 select: function(start, end){
+	     console.log(start,end);
+	 },
+	 dateClick : function(info){
+	     console.log(info);
+	 },
+	 eventClick : function(calEvent, jsEvent, view){
+	     console.log(calEvent.start._i);
 	 },
 	 editable: true,
-	 events: eventsJson ? JSON.parse(eventsJson) : []
+	 events: orders
      });
      
  });

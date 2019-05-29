@@ -111,8 +111,13 @@ class dashboardData{
         return $results;
     }
 
-    public function getOrdersForShippments(){
+    public function getOrdersForShipments(){
+        $user = Session::get("user");
+
+        $result = DB::select("select OrderNumber, CustomerID, ShipDate, OrderDate from orderheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $result = json_decode(json_encode($result), true);
         
+        return $result;
     }
 }
 ?>
