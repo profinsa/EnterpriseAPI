@@ -25,11 +25,7 @@
 		    <form id="loginform" class="form-horizontal form-material" method="POST">
 			<input type="hidden" name="page" value="login">
 			<div class="row" style="padding-bottom:20px">
-			    <div class="col-md-4"></div>
-			    <div class="col-md-4">
-				<img src="assets/images/stfb-logo.gif" alt="Logo">			
-			    </div>
-			    <div class="col-md-4"></div>
+			    <img src="assets/images/stfb-logo.gif" alt="Logo" class="center-block">			
 			</div>
 			<!-- 			    <h3 class="box-title m-b-20"><?php echo $translation->translateLabel("Sign In"); ?></h3> -->
 			<div class="form-group">
