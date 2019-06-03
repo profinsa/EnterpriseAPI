@@ -151,11 +151,16 @@
 		 message = "<?php echo $translation->translateLabel($GLOBALS["config"]["timeoutWarning"]); ?>";
 
 	     if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000){
-		 clearInterval(sessionTimer);
-		 alert(message);
 		 window.location = "index.php?page=login";
+	     }else if((new Date()).getTime() > startSessionTime + (timeoutSeconds - 120)*1000){
+		 //clearInterval(sessionTimer);
+		 alert(message);
+		 if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000)
+		     window.location = "index.php?page=login";
+		 else
+		     onlocation(window.location);
 	     }
-	 },1000);
+	 },1000*120);
 	 
 	 function escapeRegExp(str) {
              return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");

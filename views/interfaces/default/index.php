@@ -180,11 +180,16 @@
 		 message = "<?php echo $translation->translateLabel($GLOBALS["config"]["timeoutWarning"]); ?>";
 
 	     if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000){
-		 clearInterval(sessionTimer);
-		 alert(message);
 		 window.location = "index.php?page=login";
+	     }else if((new Date()).getTime() > startSessionTime + (timeoutSeconds - 120)*1000){
+		 //clearInterval(sessionTimer);
+		 alert(message);
+		 if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000)
+		     window.location = "index.php?page=login";
+		 else
+		     onlocation(window.location);
 	     }
-	 },1000);
+	 },1000*120);
 	 //ui handlers initialization like a open|close and hide|show handlers
 	 function initUIHandlers(){
 	     $(function () {
@@ -544,9 +549,9 @@
 	     <?php if(isset($scope)): ?>
 	     //sideBarSelectItem("<?php /*echo  $scope["pathFolder"] . "\",\"" . $scope["pathPage"];*/?>");
 	     <?php endif; ?>
-             var spinnerTarget = document.getElementById('page-wrapper');
-             var spinner;
-             $(document).ajaxStart(function(){
+	     var spinnerTarget = document.getElementById('page-wrapper');
+	     var spinner;
+	     $(document).ajaxStart(function(){
 		 setTimeout(function(){
 		     spinner = new Spinner({
 			 lines: 13 // The number of lines to draw
@@ -571,8 +576,8 @@
 			 , position: 'absolute' // Element positioning
 		     }).spin(spinnerTarget);
 		 },0);
-             });
-             $(document).ajaxStop(function(){
+	     });
+	     $(document).ajaxStop(function(){
 		 console.log('end');
 		 if(spinner)
 		     spinner.stop();
@@ -581,7 +586,7 @@
 			 if(spinner)
 			     spinner.stop();
 		     }, 0);
-             });
+	     });
 	 }
 	</script>
     </body>
