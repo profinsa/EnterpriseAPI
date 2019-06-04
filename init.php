@@ -19,6 +19,8 @@ session_start([
     "cookie_lifetime" => intval(config()["timeoutMinutes"] * 60)
 ]);
 
+$_SESSION["DBQueries"] = [];
+$_SESSION["cachedQueries"] = [];
 require 'vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -44,7 +46,25 @@ class DB{
                 $GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=now() WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
             }                
         }
-        return $GLOBALS["DB"]::select($query, $args ? $args : array());
+        $args = $args ? $args : array();
+        $queryKey = $query . implode("!", $args);
+        $result = [];
+
+        if(key_exists($queryKey, $_SESSION["DBQueries"]) &&
+           $_SESSION["DBQueries"][$queryKey]["timestamp"] < time() + 3){
+            $result = $_SESSION["DBQueries"][$queryKey]["result"];
+            $_SESSION["cachedQueries"][$queryKey] = "from cache";
+        } else {
+            $_SESSION["DBQueries"][$queryKey] = [
+                "timestamp" => time(),
+                "args" => $args,
+                "result" => $result = $GLOBALS["DB"]::select($query, $args) 
+            ];
+            $_SESSION["cachedQueries"][$queryKey] = "from db";
+        }
+        file_put_contents("sqllog", json_encode($_SESSION["cachedQueries"], JSON_PRETTY_PRINT));
+        //        file_put_contents("sqllog", $query . "\n", FILE_APPEND);
+        return $result;
     }
     public static function update($query, $args = false){
         if(key_exists("user", $_SESSION)){
