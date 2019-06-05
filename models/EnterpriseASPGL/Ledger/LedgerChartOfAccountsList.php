@@ -568,8 +568,76 @@ class gridData extends gridDataSource{
                 "currencyField" => "CurrencyID",
                 "formatFunction" => "currencyFormat"
             ]
+        ],
+        "Transactions" => [
+            "GLAccountNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text"
+            ],
         ]
     ];
+
+    public $detailPages = [
+        "Transactions" => [
+            "hideFields" => "true",
+            "disableNew" => "true",
+            "deleteDisabled" => "true",
+            //"editDisabled" => "true",
+            "viewPath" => "GeneralLedger/Ledger/ViewGLTransactions",
+            "newKeyField" => "GLAccountNumber",
+            "keyFields" => ["GLAccountNumber"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","GLTransactionNumber"],
+            "gridFields" => [
+                "GLTransactionNumber" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "GLTransactionTypeID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text"
+                ],
+                "GLTransactionDate" => [
+                    "dbType" => "timestamp",
+                    "format" => "{0:d}",
+                    "inputType" => "datetime"
+                ],
+                "GLTransactionDescription" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text"
+                ],
+                "CurrencyID" => [
+                    "dbType" => "varchar(3)",
+                    "inputType" => "text"
+                ],
+                "GLTransactionAmount" => [
+                    "dbType" => "decimal(19,4)",
+                    "inputType" => "text",
+                    "currencyField" => "CurrencyID",
+                    "formatFunction" => "currencyFormat"
+                ],
+                "GLTransactionBalance" => [
+                    "dbType" => "decimal(19,4)",
+                    "currencyField" => "CurrencyID",
+                    "formatFunction" => "currencyFormat",
+                    "inputType" => "text"
+                ],
+                "GLTransactionPostedYN" => [
+                    "dbType" => "tinyint(1)",
+                    "inputType" => "checkbox"
+                ]
+            ]
+        ]
+    ];
+        
+    public function getTransactions($ID){
+        $user = Session::get("user");
+        $result = DB::select("SELECT * from ledgertransactions LEFT JOIN ledgertransactionsdetail ON ledgertransactions.GLTransactionNumber=ledgertransactionsdetail.GLTransactionNumber AND ledgertransactions.CompanyID=ledgertransactionsdetail.CompanyID  AND ledgertransactions.DivisionID=ledgertransactionsdetail.DivisionID  AND ledgertransactions.DepartmentID=ledgertransactionsdetail.DepartmentID WHERE ledgertransactionsdetail.CompanyID=? AND ledgertransactionsdetail.DivisionID=? AND ledgertransactionsdetail.DepartmentID=? AND ledgertransactionsdetail.GLTransactionAccount=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $ID]);
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
 
     /* table column to translation/ObjID
        many columns not translated by them names. For that column must be converted to displayed title. This is table contains column names and their displaed titles.
@@ -628,7 +696,26 @@ class gridData extends gridDataSource{
         "GLPriorYearPeriod11" => "GL Prior Year Period 11",
         "GLPriorYearPeriod12" => "GL Prior Year Period 12",
         "GLPriorYearPeriod13" => "GL Prior Year Period 13",
-        "GLPriorYearPeriod14" => "GL Prior Year Period 14"
+        "GLPriorYearPeriod14" => "GL Prior Year Period 14",
+        "GLTransactionNumber" => "Transaction Number",
+        "GLTransactionTypeID" => "Type",
+        "GLTransactionDate" => "Date",
+        "GLTransactionDescription" => "GL Transaction Description",
+        "CurrencyID" => "Currency",
+        "GLTransactionAmount" => "Amount",
+        "GLTransactionBalance" => "Balance",
+        "GLTransactionPostedYN" => "Posted YN",
+        "SystemDate" => "System Date",
+        "GLTransactionReference" => "GL Transaction Reference",
+        "CurrencyExchangeRate" => "Currency Exchange Rate",
+        "GLTransactionAmountUndistributed" => "GL Transaction Amount Undistributed",
+        "GLTransactionSource" => "GL Transaction Source",
+        "GLTransactionSystemGenerated" => "GL Transaction System Generated",
+        "GLTransactionRecurringYN" => "GL Transaction Recurring YN",
+        "Reversal" => "Reversal",
+        "Approved" => "Approved",
+        "ApprovedBy" => "Approved By",
+        "ApprovedDate" => "Approved Date",
     ];
 
     //getting list of available GLAccount Groups
