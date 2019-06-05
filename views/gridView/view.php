@@ -82,101 +82,103 @@
 				    //renders table, contains record data using getEditItem from model
 				    $category = $key;
 				    foreach($item as $key =>$value){
-					$fieldDesc = $data->editCategories[$category][$key];
-					$translatedFieldName = $translation->translateLabel(key_exists($key, $data->editCategories[$category]) && key_exists("label", $fieldDesc) ? $fieldDesc["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
-					if(key_exists($key, $data->editCategories[$category]) && key_exists("alwaysEdit", $fieldDesc)){
-					    switch($fieldDesc["inputType"]){
-						case "text" :
-						    //renders text input with label
-						    echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
-						    if(key_exists("formatFunction", $fieldDesc)){
-							$formatFunction = $fieldDesc["formatFunction"];
-							echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-						    }
-						    else
-							echo formatField($fieldDesc, $value);
+					if(key_exists($key, $data->editCategories[$category])){
+					    $fieldDesc = $data->editCategories[$category][$key];
+					    $translatedFieldName = $translation->translateLabel(key_exists($key, $data->editCategories[$category]) && key_exists("label", $fieldDesc) ? $fieldDesc["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
+					    if(key_exists($key, $data->editCategories[$category]) && key_exists("alwaysEdit", $fieldDesc)){
+						switch($fieldDesc["inputType"]){
+						    case "text" :
+							//renders text input with label
+							echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
+							if(key_exists("formatFunction", $fieldDesc)){
+							    $formatFunction = $fieldDesc["formatFunction"];
+							    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+							}
+							else
+							    echo formatField($fieldDesc, $value);
 
-						    echo"\" " . ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "readonly" : "")
-						   ."></td></tr>";
-						    break;
-						    
-						case "datetime" :
-						    //renders text input with label
-						    echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-							 ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "readonly" : "")
-							."></td></tr>";
-						    break;
+							echo"\" " . ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "readonly" : "")
+						       ."></td></tr>";
+							break;
+							
+						    case "datetime" :
+							//renders text input with label
+							echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+							     ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "readonly" : "")
+							    ."></td></tr>";
+							break;
 
-						case "checkbox" :
-						    //renders checkbox input with label
-						    echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-						    echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
-							 ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit") || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "disabled" : "")
-							."></div></div>";
-						    break;
-						    
-						case "dropdown" :
-						    //renders select with available values as dropdowns with label
-						    echo "<tr><td>$translatedFieldName</td><td><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\">";
-						    $method = $fieldDesc["dataProvider"];
-						    if(key_exists("depends", $fieldDesc)){
-							$dropdownDepends[$key] = [
-							    "depends" =>$fieldDesc["depends"],
-							    "data" => $data->$method()
-							];
-							$types = [];
-						    }else
-						    $types = $data->$method();
-						    
-						    if($value)
-							echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
-						    else
-							echo "<option></option>";
+						    case "checkbox" :
+							//renders checkbox input with label
+							echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+							echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+							     ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit") || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "disabled" : "")
+							    ."></div></div>";
+							break;
+							
+						    case "dropdown" :
+							//renders select with available values as dropdowns with label
+							echo "<tr><td>$translatedFieldName</td><td><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\">";
+							$method = $fieldDesc["dataProvider"];
+							if(key_exists("depends", $fieldDesc)){
+							    $dropdownDepends[$key] = [
+								"depends" =>$fieldDesc["depends"],
+								"data" => $data->$method()
+							    ];
+							    $types = [];
+							}else
+							$types = $data->$method();
+							
+							if($value)
+							    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
+							else
+							    echo "<option></option>";
 
-						    foreach($types as $type)
-						    if(!$value || $type["value"] != $value)
-							echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
-						    echo"</select></td></tr>";
-						    break;
+							foreach($types as $type)
+							if(!$value || $type["value"] != $value)
+							    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+							echo"</select></td></tr>";
+							break;
+						}
+					    }else if(key_exists($key, $data->editCategories[$category])){
+						echo "<tr><td>" . $translation->translateLabel(key_exists("label", $fieldDesc) ? $fieldDesc["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key)) . "</td><td>";
+						switch($fieldDesc["inputType"]){
+						    case "imageFile" :
+							echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"" . $linksMaker->makeImageLink($value, $item, $fieldDesc) . "\">";
+							break;
+						    case "checkbox" :
+							echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
+							break;
+						    case "timestamp" :
+						    case "datetime" :
+							echo date("m/d/y", strtotime($value));
+							break;
+						    case "dateTimeFull" :
+							echo $value;
+							//						    echo date("Y-m-d H:i:s", strtotime($value));
+							break;
+							
+						    case "dropdown":
+							//preparing value for displaying
+							$method = $data->editCategories[$category][$key]["dataProvider"];
+							$types = $data->$method();
+
+							if($value && key_exists($value, $types))
+							    $value = $types[$value]["title"];
+
+						    case "textarea" :
+						    case "text":
+						    case "dialogChooser":
+							if(key_exists("formatFunction", $fieldDesc)){
+							    $formatFunction = $fieldDesc["formatFunction"];
+							    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+							}
+							else
+							    echo htmlentities(formatField($fieldDesc, $value));
+							break;
+						}
+						echo "</td></tr>";
 					    }
-					}else if(key_exists($key, $data->editCategories[$category])){
-					    echo "<tr><td>" . $translation->translateLabel(key_exists("label", $fieldDesc) ? $fieldDesc["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key)) . "</td><td>";
-					    switch($fieldDesc["inputType"]){
-						case "imageFile" :
-						    echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"" . $linksMaker->makeImageLink($value, $item, $fieldDesc) . "\">";
-						    break;
-						case "checkbox" :
-						    echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
-						    break;
-						case "timestamp" :
-						case "datetime" :
-						    echo date("m/d/y", strtotime($value));
-						    break;
-						case "dateTimeFull" :
-						    echo $value;
-						    //						    echo date("Y-m-d H:i:s", strtotime($value));
-						    break;
-						    
-						case "dropdown":
-						    //preparing value for displaying
-						    $method = $data->editCategories[$category][$key]["dataProvider"];
-						    $types = $data->$method();
-
-						    if($value && key_exists($value, $types))
-							$value = $types[$value]["title"];
-
-						case "textarea" :
-						case "text":
-						case "dialogChooser":
-						    if(key_exists("formatFunction", $fieldDesc)){
-							$formatFunction = $fieldDesc["formatFunction"];
-							echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-						    }
-						    else
-							echo htmlentities(formatField($fieldDesc, $value));
-						    break;
-					    }
-					    echo "</td></tr>";
 					}
 				    }
 				?>

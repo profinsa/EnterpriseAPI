@@ -25,7 +25,7 @@
   Calls:
   sql
 
-  Last Modified: 08.04.2019
+  Last Modified: 05.06.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -619,12 +619,12 @@ class gridData extends gridDataSource{
         "GLPriorYearPeriod2" => "GL Prior Year Period 2",
         "GLPriorYearPeriod3" => "GL Prior Year Period 3",
         "GLPriorYearPeriod4" => "GL Prior Year Period 4",	 
-        "GLPriortYearPeriod5" => "GL Prior Year Period 5", //ERROR in sql, musql be Prior	 
+        "GLPriortYearPeriod5" => "GL Prior Year Period 5", //ERROR in sql, must be Prior	 
         "GLPriorYearPeriod6" => "GL Prior Year Period 6",	 
         "GLPriorYearPeriod7" => "GL Prior Year Period 7",	 
         "GLPriorYearPeriod8" => "GL Prior Year Period 8",	 
         "GLPriorYearPeriod9" => "GL Prior Year Period 9",	 
-        "GLPriortYearPeriod10" => "GL Prior Year Period 10",//ERROR in sql, musql be Prior	 
+        "GLPriortYearPeriod10" => "GL Prior Year Period 10",//ERROR in sql, must be Prior	 
         "GLPriorYearPeriod11" => "GL Prior Year Period 11",
         "GLPriorYearPeriod12" => "GL Prior Year Period 12",
         "GLPriorYearPeriod13" => "GL Prior Year Period 13",

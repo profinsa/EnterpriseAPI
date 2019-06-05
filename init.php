@@ -62,7 +62,7 @@ class DB{
             ];
             $_SESSION["cachedQueries"][$queryKey] = "from db";
         }
-        file_put_contents("sqllog", json_encode($_SESSION["cachedQueries"], JSON_PRETTY_PRINT));
+        //file_put_contents("sqllog", json_encode($_SESSION["cachedQueries"], JSON_PRETTY_PRINT));
         //        file_put_contents("sqllog", $query . "\n", FILE_APPEND);
         return $result;
     }
