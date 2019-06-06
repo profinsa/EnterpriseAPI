@@ -60,6 +60,12 @@ $leftMenu = [
 				"short" => "Vi"
 			    ],
 			    [
+				"id" => "GeneralLedger/Ledger/MemorizedGLTransactions",
+				"full" => $translation->translateLabel('Memorized GL Transactions'),
+				"href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsMemorizedList",
+				"short" => "Vi"
+			    ],
+			    [
 				"id" => "GeneralLedger/Ledger/ViewClosedGLTransactions",
 				"full" => $translation->translateLabel('View Closed GL Transactions'),
 				"href"=> "EnterpriseASPGL/Ledger/LedgerTransactionsClosedList",

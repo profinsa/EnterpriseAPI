@@ -104,6 +104,7 @@ class controller{
         "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderShippedList" => "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList",
         
         "EnterpriseASPGL/Ledger/LedgerTransactionsClosedList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList",
+        "EnterpriseASPGL/Ledger/LedgerTransactionsMemorizedList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList",
         "EnterpriseASPGL/Ledger/LedgerTransactionsHistoryList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList"
     ];
 

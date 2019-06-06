@@ -25,13 +25,13 @@
   Calls:
   sql
 
-  Last Modified: 04.01.2019
+  Last Modified: 07.06.2019
   Last Modified by: Nikita Zaharov
 */
 
 require __DIR__ . "/../../../models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class LedgerTransactionsList extends gridDataSource{
     public $tableName = "ledgertransactions";
     public $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 0 AND UPPER(GLTransactionNumber) != 'DEFAULT'";
     public $dashboardTitle ="Ledger Transactions";
@@ -308,7 +308,9 @@ class gridData extends gridDataSource{
     }
 }
 
-class LedgerTransactionsClosedList extends gridData{
+class gridData extends LedgerTransactionsList {}
+
+class LedgerTransactionsClosedList extends LedgerTransactionsList{
     public $tableName = "ledgertransactions";
     public $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 1 AND UPPER(GLTransactionNumber) <> 'DEFAULT'";
     public $dashboardTitle ="Closed Ledger Transactions";
@@ -367,7 +369,7 @@ class LedgerTransactionsClosedList extends gridData{
     }
 }
 
-class LedgerTransactionsHistoryList extends gridData{
+class LedgerTransactionsHistoryList extends LedgerTransactionsList{
     public $tableName = "ledgertransactionshistory";
     public $dashboardTitle ="Ledger Transactions History";
     public $breadCrumbTitle ="Ledger Transactions History";
@@ -414,5 +416,34 @@ class LedgerTransactionsHistoryList extends gridData{
             ]
         ]
     ];
+}
+
+class LedgerTransactionsMemorizedList extends LedgerTransactionsList{
+	public $gridConditions = "UPPER(GLTransactionNumber) <> 'DEFAULT' AND Memorize=1";
+	public $dashboardTitle ="Memorized Ledger Transactions";
+	public $breadCrumbTitle ="Memorized Ledger Transactions";
+    public $modes = ["grid", "view"];
+    public $features = ["selecting"];
+
+    public function LedgerTransactions_CreateFromMemorized(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["GLTransactionNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL LedgerTransactions_CreateFromMemorized('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @message, @SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @message as message', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo $result[0]->message;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
 }
 ?>

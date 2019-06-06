@@ -200,6 +200,7 @@
     "GeneralLedger/Ledger/ViewChartofAccounts" => "EnterpriseASPGL/Ledger/LedgerChartOfAccountsList",
     "GeneralLedger/Ledger/ViewLedgerAccountGroup" => "EnterpriseASPGL/Ledger/LedgerAccountGroupList",
     "GeneralLedger/Ledger/ViewGLTransactions" => "EnterpriseASPGL/Ledger/LedgerTransactionsList",
+    "GeneralLedger/Ledger/MemorizedGLTransactions" => "EnterpriseASPGL/Ledger/LedgerTransactionsMemorizedList",
     "GeneralLedger/Ledger/ViewGLAccountTransactions" => "EnterpriseASPGL/Ledger/LedgerAccountTransactionsList",
     "GeneralLedger/Ledger/ViewGLAccountsTransactions" => "EnterpriseASPGL/Ledger/LedgerAccountsTransactionsList",
     "GeneralLedger/Ledger/ViewClosedGLTransactions" => "EnterpriseASPGL/Ledger/LedgerTransactionsClosedList",

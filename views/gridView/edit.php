@@ -219,6 +219,7 @@
 			     <?php endif; ?>
 			     function subgridView(subgridmode, keyString){
 				 var detailRewrite = {
+				     "MemorizedGLTransactions" : "LedgerTransactionsDetail",
 				     "ViewGLTransactions" : "LedgerTransactionsDetail",
 				     "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
 				     "ReceivePurchases" : "ReceivePurchasesDetail",
