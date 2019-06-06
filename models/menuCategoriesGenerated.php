@@ -643,6 +643,12 @@ $leftMenu = [
 				"short" => "Vi"
 			    ],
 			    [
+				"id" => "AccountsReceivable/OrderScreens/ViewMemorizedInvoices",
+				"full" => $translation->translateLabel('Memorized Invoices'),
+				"href"=> "EnterpriseASPAR/OrderProcessing/InvoiceHeaderMemorizedList",
+				"short" => "Vi"
+			    ],
+			    [
 				"id" => "AccountsReceivable/OrderScreens/ViewClosedInvoices",
 				"full" => $translation->translateLabel('View Closed Invoices'),
 				"href"=> "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList",

@@ -13,7 +13,7 @@ function config(){
         "mediumLogo" => "assets/images/stfb-logo.gif",
         "smallLogo" => "assets/images/stfblogosm.jpg",
         "timeoutWarning" => "Your session will end in 2 minutes!",
-        "timeoutMinutes" => 15
+        "timeoutMinutes" => 10
     );
 }
 

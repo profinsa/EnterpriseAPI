@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 21/05/2019
+  Last Modified: 06/06/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -1396,5 +1396,13 @@ class InvoiceHeaderClosedList extends InvoiceHeaderList{
             echo $result[0]->SWP_RET_VALUE;
         }
     }
+}
+
+class InvoiceHeaderMemorizedList extends InvoiceHeaderList {
+	public $gridConditions = "(LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) NOT IN ('return', 'service invoice', 'credit memo')) AND (InvoiceHeader.Memorize = 1)";
+    public $modes = ["grid", "view"];
+    public $features = ["selecting"]; //list enabled features
+	public $dashboardTitle ="Memorized Invoices";
+	public $breadCrumbTitle ="Memorized Invoices";
 }
 ?>
