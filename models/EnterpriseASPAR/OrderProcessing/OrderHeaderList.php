@@ -1717,6 +1717,35 @@ class OrderHeaderHoldList extends OrderHeaderList{
     }
 }
 
+class OrderHeaderMemorizedList extends OrderHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N'')) NOT IN ('return', 'service order', 'quote')) AND Memorize=1";
+	public $dashboardTitle ="Memorized Orders";
+	public $breadCrumbTitle ="Memorized Orders";
+    public $modes = ["grid", "view"];
+    public $features = ["selecting"];
+
+    public function Order_CreateFromMemorized(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Order_CreateFromMemorized('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @message, @SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @message as message', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo $result[0]->message;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
+}
+
 class OrderHeaderShipDateList extends OrderHeaderList{
     public $gridConditions = "";    
 }

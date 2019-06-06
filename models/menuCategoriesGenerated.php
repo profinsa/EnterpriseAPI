@@ -581,11 +581,16 @@ $leftMenu = [
 			"full" => $translation->translateLabel('Order Screens'),
 			"short" => "Or",
 			"data" => [
-
 			    [
 				"id" => "AccountsReceivable/OrderScreens/ViewOrders",
 				"full" => $translation->translateLabel('View Orders'),
 				"href"=> "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "AccountsReceivable/OrderScreens/ViewMemorizedOrders",
+				"full" => $translation->translateLabel('Memorized Orders'),
+				"href"=> "EnterpriseASPAR/OrderProcessing/OrderHeaderMemorizedList",
 				"short" => "Vi"
 			    ],
 			    [
@@ -670,6 +675,12 @@ $leftMenu = [
 				"id" => "AccountsReceivable/OrderScreens/ViewQuotes",
 				"full" => $translation->translateLabel('View Quotes'),
 				"href"=> "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "AccountsReceivable/OrderScreens/ViewMemorizedQuotes",
+				"full" => $translation->translateLabel('Memorized Quotes'),
+				"href"=> "EnterpriseASPAR/OrderProcessing/QuoteHeaderMemorizedList",
 				"short" => "Vi"
 			    ],
 			    [

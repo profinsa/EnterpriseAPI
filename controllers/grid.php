@@ -50,6 +50,7 @@ class controller{
     public $pathPage;
     
     protected  $redirectModel = [
+        "EnterpriseASPAR/OrderProcessing/OrderHeaderMemorizedList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderBackList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderPickList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
@@ -58,6 +59,7 @@ class controller{
         "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderHoldList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderShipDateList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
+        "EnterpriseASPAR/OrderProcessing/QuoteHeaderMemorizedList" => "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
 
         "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
         "EnterpriseASPAR/OrderProcessing/InvoiceHeaderMemorizedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
@@ -180,6 +182,10 @@ class controller{
                 $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
             
                 $redirectView = [
+                    "EnterpriseASPAR/OrderProcessing/OrderHeaderMemorizedList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
                     "EnterpriseASPAR/OrderProcessing/OrderHeaderClosedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
@@ -213,6 +219,10 @@ class controller{
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
                     "EnterpriseASPAR/OrderProcessing/QuoteHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAR/OrderProcessing/QuoteHeaderMemorizedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
