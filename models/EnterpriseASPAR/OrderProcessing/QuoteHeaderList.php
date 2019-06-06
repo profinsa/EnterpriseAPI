@@ -25,14 +25,14 @@
   Calls:
   MySql Database
 
-  Last Modified: 21/05/2019
+  Last Modified: 07/06/2019
   Last Modified by: Zaharov Nikita
 */
 
 require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
-class gridData extends gridDataSource{
+class QuoteHeaderList extends gridDataSource{
 	public $tableName = "orderheader";
 	public $gridConditions = "LOWER(OrderTypeID) = LOWER('Quote')";
 	public $dashboardTitle ="Quotes";
@@ -1385,5 +1385,51 @@ class gridData extends gridDataSource{
             echo "ok";
         }
     }        
+
+    public function Memorize(){
+        $user = Session::get("user");
+        $keyValues = explode("__", $_POST["id"]);
+        $keyFields = "";
+        $fcount = 0;
+        foreach($this->idFields as $key)
+            $keyFields .= $key . "='" . array_shift($keyValues) . "' AND ";
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+        DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
+        echo "ok";
+    }
 }
+
+class gridData extends QuoteHeaderList{
+}
+
+class QuoteHeaderMemorizedList extends QuoteHeaderList{
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N'')) NOT IN ('return', 'service order', 'order')) AND Memorize=1";
+	public $dashboardTitle ="Memorized Quotes";
+	public $breadCrumbTitle ="Memorized Quotes";
+    public $modes = ["grid", "view"];
+    public $features = ["selecting"];
+
+    public function Order_CreateFromMemorized(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["OrderNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Order_CreateFromMemorized('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @message, @SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @message as message', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo $result[0]->message;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
+}
+
 ?>
