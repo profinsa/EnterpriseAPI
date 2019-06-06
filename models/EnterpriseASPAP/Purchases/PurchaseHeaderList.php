@@ -1517,6 +1517,27 @@ class PurchaseHeaderMemorizedList extends PurchaseHeaderList{
 	public $breadCrumbTitle ="Memorized Purchases";
     public $modes = ["grid", "view"]; // list of enabled modes
     public $features = ["selecting"];
+
+    public function Purchase_CreateFromMemorized(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["PurchaseNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Purchase_CreateFromMemorized('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @message, @SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @message as message', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo $result[0]->message;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
 }
 ?>
 
