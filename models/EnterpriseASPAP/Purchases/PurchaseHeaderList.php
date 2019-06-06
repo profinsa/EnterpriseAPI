@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 12/11/2018
+  Last Modified: 06/06/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -1509,6 +1509,14 @@ class PurchaseHeaderReceivedList extends PurchaseHeaderList{
 	public $dashboardTitle ="Received Purchases";
 	public $breadCrumbTitle ="Received Purchases";
     public $modes = ["grid", "view"]; // list of enabled modes
+}
+
+class PurchaseHeaderMemorizedList extends PurchaseHeaderList{
+	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (IFNULL(PurchaseHeader.Memorize,0) = 1)";
+	public $dashboardTitle ="Memorized Purchases";
+	public $breadCrumbTitle ="Memorized Purchases";
+    public $modes = ["grid", "view"]; // list of enabled modes
+    public $features = ["selecting"];
 }
 ?>
 

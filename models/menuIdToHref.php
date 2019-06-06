@@ -136,6 +136,7 @@
     "AccountsPayable/PurchaseProcessing/ReceivePurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList",
     "AccountsPayable/PurchaseProcessing/ViewReceivedPurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList",
     "AccountsPayable/PurchaseScreens/ViewPurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
+    "AccountsPayable/PurchaseScreens/ViewMemorizedPurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList",
     "AccountsPayable/PurchaseScreens/ViewClosedPurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderClosedList",
     "AccountsPayable/PurchaseScreens/ViewPurchasesHistory" => "EnterpriseASPAP/Purchases/PurchaseHeaderHistoryList",
     "AccountsPayable/PurchaseScreens/StorePurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderStoreList",

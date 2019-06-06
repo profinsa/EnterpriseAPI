@@ -1077,11 +1077,16 @@ $leftMenu = [
 			"full" => $translation->translateLabel('Purchase Screens'),
 			"short" => "Pu",
 			"data" => [
-
 			    [
 				"id" => "AccountsPayable/PurchaseScreens/ViewPurchases",
 				"full" => $translation->translateLabel('View Purchases'),
 				"href"=> "EnterpriseASPAP/Purchases/PurchaseHeaderList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "AccountsPayable/PurchaseScreens/ViewMemorizedPurchases",
+				"full" => $translation->translateLabel('Memorized Purchases'),
+				"href"=> "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList",
 				"short" => "Vi"
 			    ],
 			    [
