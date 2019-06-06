@@ -1404,5 +1404,26 @@ class InvoiceHeaderMemorizedList extends InvoiceHeaderList {
     public $features = ["selecting"]; //list enabled features
 	public $dashboardTitle ="Memorized Invoices";
 	public $breadCrumbTitle ="Memorized Invoices";
+
+    public function Invoice_CreateFromMemorized(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["InvoiceNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Invoice_CreateFromMemorized('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @message, @SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @message as message', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo $result[0]->message;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
 }
 ?>
