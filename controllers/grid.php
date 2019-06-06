@@ -25,7 +25,7 @@
   models/gridDataSource derivatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 07.05.2019
+  Last Modified: 06.06.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -60,6 +60,7 @@ class controller{
         "EnterpriseASPAR/OrderProcessing/OrderHeaderShipDateList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
 
         "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
+        "EnterpriseASPAR/OrderProcessing/InvoiceHeaderMemorizedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
 
         "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderHoldList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
         "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderClosedList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
@@ -79,6 +80,7 @@ class controller{
         "EnterpriseASPAR/RMA/RMAHeaderReceiveList" => "EnterpriseASPAR/RMA/RMAHeaderList",
         "EnterpriseASPAR/RMA/RMAHeaderReceivedList" => "EnterpriseASPAR/RMA/RMAHeaderList",
 
+        "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderClosedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderApproveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
@@ -218,6 +220,10 @@ class controller{
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
+                    "EnterpriseASPAR/OrderProcessing/InvoiceHeaderMemorizedList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
                     "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
@@ -304,6 +310,10 @@ class controller{
                     ],
             
                     "EnterpriseASPAP/Purchases/PurchaseHeaderList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],

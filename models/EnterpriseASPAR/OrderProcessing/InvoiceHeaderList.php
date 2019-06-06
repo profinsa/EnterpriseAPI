@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 21/05/2019
+  Last Modified: 06/06/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -1391,6 +1391,35 @@ class InvoiceHeaderClosedList extends InvoiceHeaderList{
         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
         if($result[0]->SWP_RET_VALUE > -1)
             echo $result[0]->SWP_RET_VALUE;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
+}
+
+class InvoiceHeaderMemorizedList extends InvoiceHeaderList {
+	public $gridConditions = "(LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) NOT IN ('return', 'service invoice', 'credit memo')) AND (InvoiceHeader.Memorize = 1)";
+    public $modes = ["grid", "view"];
+    public $features = ["selecting"]; //list enabled features
+	public $dashboardTitle ="Memorized Invoices";
+	public $breadCrumbTitle ="Memorized Invoices";
+
+    public function Invoice_CreateFromMemorized(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["InvoiceNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Invoice_CreateFromMemorized('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @message, @SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @message as message', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo $result[0]->message;
         else {
             http_response_code(400);
             echo $result[0]->SWP_RET_VALUE;

@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 12/11/2018
+  Last Modified: 06/06/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -1509,6 +1509,35 @@ class PurchaseHeaderReceivedList extends PurchaseHeaderList{
 	public $dashboardTitle ="Received Purchases";
 	public $breadCrumbTitle ="Received Purchases";
     public $modes = ["grid", "view"]; // list of enabled modes
+}
+
+class PurchaseHeaderMemorizedList extends PurchaseHeaderList{
+	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND (IFNULL(PurchaseHeader.Memorize,0) = 1)";
+	public $dashboardTitle ="Memorized Purchases";
+	public $breadCrumbTitle ="Memorized Purchases";
+    public $modes = ["grid", "view"]; // list of enabled modes
+    public $features = ["selecting"];
+
+    public function Purchase_CreateFromMemorized(){
+        $user = Session::get("user");
+
+        $numbers = explode(",", $_POST["PurchaseNumbers"]);
+        $success = true;
+        foreach($numbers as $number){
+            DB::statement("CALL Purchase_CreateFromMemorized('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @message, @SWP_RET_VALUE)", array());
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @message as message', array());
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success)
+            echo $result[0]->message;
+        else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
 }
 ?>
 

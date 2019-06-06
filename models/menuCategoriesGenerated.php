@@ -643,6 +643,12 @@ $leftMenu = [
 				"short" => "Vi"
 			    ],
 			    [
+				"id" => "AccountsReceivable/OrderScreens/ViewMemorizedInvoices",
+				"full" => $translation->translateLabel('Memorized Invoices'),
+				"href"=> "EnterpriseASPAR/OrderProcessing/InvoiceHeaderMemorizedList",
+				"short" => "Vi"
+			    ],
+			    [
 				"id" => "AccountsReceivable/OrderScreens/ViewClosedInvoices",
 				"full" => $translation->translateLabel('View Closed Invoices'),
 				"href"=> "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList",
@@ -1071,11 +1077,16 @@ $leftMenu = [
 			"full" => $translation->translateLabel('Purchase Screens'),
 			"short" => "Pu",
 			"data" => [
-
 			    [
 				"id" => "AccountsPayable/PurchaseScreens/ViewPurchases",
 				"full" => $translation->translateLabel('View Purchases'),
 				"href"=> "EnterpriseASPAP/Purchases/PurchaseHeaderList",
+				"short" => "Vi"
+			    ],
+			    [
+				"id" => "AccountsPayable/PurchaseScreens/ViewMemorizedPurchases",
+				"full" => $translation->translateLabel('Memorized Purchases'),
+				"href"=> "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList",
 				"short" => "Vi"
 			    ],
 			    [
