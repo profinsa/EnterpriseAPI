@@ -477,12 +477,12 @@ class RMAHeaderList extends gridDataSource{
             "VendorInvoiceNumber" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
-                "disabledEdit" => "true"
+                //"disabledEdit" => "true"
             ],
             "OrderedBy" => [
                 "dbType" => "varchar(15)",
                 "inputType" => "text",
-                "disabledEdit" => "true"
+                //"disabledEdit" => "true"
             ],
             "PurchaseNumber" => [
                 "dbType" => "varchar(36)",
