@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 09/10/2017
+  Last Modified: 06/07/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -37,7 +37,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Customer Financials";
     public $idField ="CustomerID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
-    public $modes = ["grid", "view", "edit"];
+    public $modes = ["grid", "view"];
     public $gridFields = [
         "CustomerID" => [
             "dbType" => "varchar(50)",
@@ -571,6 +571,15 @@ class gridData extends gridDataSource{
         $result = json_decode(json_encode($result), true)[0];
         
         return $result;        
+    }
+
+    public function getEditItem($id, $type){
+        $user = Session::get("user");
+        
+        $keyValues = explode("__", $id);
+        $result = DB::statement("CALL CustomerFinancials_ReCalc('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $keyValues[3] . "', @ret)");
+
+        return parent::getEditItem($id, $type);
     }
 }
 ?>

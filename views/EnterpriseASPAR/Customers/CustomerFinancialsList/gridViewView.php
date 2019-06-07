@@ -21,7 +21,7 @@
      grid model
      app as model
 
-     Last Modified: 11.05.2016
+     Last Modified: 06.08.2019
      Last Modified by: Nikita Zaharov
    -->
 <!-- view -->
@@ -210,9 +210,9 @@
 		 for category(which tab is activated) uses $scope of controller
 	       -->
 	    <?php if($security->can("update")): ?>
-		<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page .  "&action=" . $scope->action;  ?>&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
+<!--		<a class="btn btn-info waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page .  "&action=" . $scope->action;  ?>&mode=edit&category=<?php  echo $scope->category . "&item=" . $scope->item ; ?>">
 		    <?php echo $translation->translateLabel("Edit"); ?>
-		</a>
+		</a> -->
  		<?php 
 		if(file_exists(__DIR__ . "/../" . $PartsPath . "editActions.php"))
 		    require __DIR__ . "/../" . $PartsPath . "editActions.php";
@@ -221,7 +221,7 @@
 		?>
 	    <?php endif; ?>
 	    <a class="btn btn-inverse waves-effect waves-light" href="index.php#/?page=<?php echo $app->page . "&action=" . $scope->action; ?>&mode=grid">
-		<?php echo $translation->translateLabel("Cancel"); ?>
+		<?php echo $translation->translateLabel("Exit"); ?>
 	    </a>
 	</div>
     </div>

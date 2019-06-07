@@ -320,7 +320,7 @@
 		    require __DIR__ . "/../" . $PartsPath . "vieweditActions.php";
 	    ?>
 	    <a class="btn btn-info" href="<?php echo $backhref; ?>">
-		<?php echo $translation->translateLabel("Cancel"); ?>
+		<?php echo $translation->translateLabel("Exit"); ?>
 	    </a>
 	</div>
     </div>
