@@ -356,7 +356,7 @@ Revision History:
 
    SET @SWV_Error = 0;
    CALL Vendor_CreateFromCustomer2(v_CompanyID,v_DivisionID,v_DepartmentID,v_CustomerID, v_ReturnStatus);
-   IF @SWV_Error <> 0 then
+   IF v_ReturnStatus = -1 then
 
       SET v_ErrorMessage = 'Vendor_CreateFromCustomer call failed';
       ROLLBACK;
@@ -1014,6 +1014,1906 @@ END;
 
 
 
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS RMAReceiving_Post;
+//
+CREATE PROCEDURE RMAReceiving_Post(v_CompanyID NATIONAL VARCHAR(36)
+	,v_DivisionID NATIONAL VARCHAR(36)
+	,v_DepartmentID NATIONAL VARCHAR(36)
+	,v_PurchaseNumber NATIONAL VARCHAR(36)
+	,INOUT v_Success INT ,INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+/*
+Name of stored procedure: RMAReceiving_Post
+Method:
+	Posts a receiving into the system
+	Stored procedure used to post a receive
+Date Created: EDE - 07/28/2015
+Input Parameters:
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@PurchaseNumber NVARCHAR(36)	 - the RMA number
+Output Parameters:
+	@Success INT  			 - RETURN VALUES for the @Success output parameter:
+							   1 succes
+							   0 error while processin data
+							   2 error on geting time Period
+Called From:
+	RMAReceiving_Post.vb
+Calls:
+	RMA_Recalc, Receiving_UpdateInventoryCosting, Error_InsertError, RMAReceiving_AdjustCustomerFinancials, LedgerMain_VerifyPeriod, Error_InsertErrorDetail, Receiving_AdjustInventory, Payment_CreateFromRMA, RMAReceiving_CreateGLTransaction
+Last Modified:
+Last Modified By:
+Revision History:
+*/
+
+-- variables declarations
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+   DECLARE v_TranDate DATETIME;
+   DECLARE v_PostDate NATIONAL VARCHAR(1);
+   DECLARE v_PeriodToPost INT;
+   DECLARE v_PeriodClosed INT;
+   DECLARE v_CustomerID NATIONAL VARCHAR(50);
+   DECLARE v_PaymentID NATIONAL VARCHAR(36);
+   DECLARE v_NewPaymentID NATIONAL VARCHAR(36);
+   DECLARE v_AmountPaid DECIMAL(19,4);
+   DECLARE v_Total DECIMAL(19,4);
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+
+-- initialize the success flag of this procedure to 1 (which signifies succes)
+-- If an error will occurre in the procedure this flag will be set to 0 or 2 (which signifies an error)
+   SET @SWV_Error = 0;
+   SET v_Success = 1;
+   SET v_ErrorMessage = '';
+
+-- get the current rule for post date for the company from the companies table
+   select   IFNULL(DefaultGLPostingDate,'1') INTO v_PostDate FROM Companies WHERE CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID;
+
+-- begin the posting process
+   IF v_PostDate = '1' then
+	-- if the post Period is set to true
+	-- the transaction date is the current date
+      SET v_TranDate = CURRENT_TIMESTAMP;
+   ELSE
+	-- if the post Period is set to false
+	-- the transaction date is the purchase date
+      select   PurchaseDate INTO v_TranDate FROM PurchaseHeader WHERE CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID
+      AND DepartmentID = v_DepartmentID
+      AND PurchaseNumber = v_PurchaseNumber;
+   end if;
+
+-- verify the Period of time the posting will take place
+-- call a procedure (LedgerMain_VerifyPeriod) which will verify if the Period to post is closed or not
+   CALL LedgerMain_VerifyPeriod2(v_CompanyID,v_DivisionID,v_DepartmentID,v_TranDate,v_PeriodToPost,v_PeriodClosed, v_ReturnStatus);
+
+-- if the Period to post is closed the posted cannot be done and the procedure will return an error
+   IF v_PeriodClosed <> 0
+   OR v_ReturnStatus = -1 then
+	
+
+-- We can come to this point only if the Period to post is closed the posted cannot be done
+-- the goto operator is placed before BEGIN TRAN so we should not commit or rollback transaction here
+      SET v_Success = 2;
+      SET SWP_Ret_Value = 0;
+      LEAVE SWL_return;
+
+-- if an error occured in the procedure this code will be executed
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   end if;
+
+   START TRANSACTION;
+
+-- recalc the purchase order
+   CALL RMA_Recalc(v_CompanyID,v_DivisionID,v_DepartmentID,v_PurchaseNumber, v_ReturnStatus);
+
+   IF v_ReturnStatus = -1 then
+
+      SET v_ErrorMessage = 'RMA_Recalc call failed';
+      ROLLBACK;
+
+-- Change return status if it was not changed iside error checking procedure
+      IF v_Success = 1 then
+
+         SET v_Success = 0;
+      end if;
+
+-- Process error only if @ErrorMessage was set during error checking
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_Post',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseOrderNumber',
+         v_PurchaseNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- get the information about the Vendor, Currency and the ammount of money from the purchase order
+   select   IFNULL(AmountPaid,0), IFNULL(Total,0), VendorID INTO v_AmountPaid,v_Total,v_CustomerID FROM PurchaseHeader WHERE CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND PurchaseNumber = v_PurchaseNumber;
+
+   UPDATE PurchaseDetail
+   SET ReceivedQty = IFNULL(OrderQty,0),ReceivedDate = IFNULL(ReceivedDate,CURRENT_TIMESTAMP)
+   WHERE CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND PurchaseNumber = v_PurchaseNumber;
+
+-- debit the inventory from the OnOrder field, and credit OnHand field
+   SET @SWV_Error = 0;
+   CALL Receiving_AdjustInventory(v_CompanyID,v_DivisionID,v_DepartmentID,v_PurchaseNumber, v_ReturnStatus);
+
+   IF @SWV_Error <> 0
+   OR v_ReturnStatus = -1 then
+	-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'Receiving_AdjustInventory call failed';
+      ROLLBACK;
+
+-- Change return status if it was not changed iside error checking procedure
+      IF v_Success = 1 then
+
+         SET v_Success = 0;
+      end if;
+
+-- Process error only if @ErrorMessage was set during error checking
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_Post',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseOrderNumber',
+         v_PurchaseNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- update inventory costing
+   SET @SWV_Error = 0;
+   CALL Receiving_UpdateInventoryCosting2(v_CompanyID,v_DivisionID,v_DepartmentID,v_PurchaseNumber, v_ReturnStatus);
+
+   IF @SWV_Error <> 0
+   OR v_ReturnStatus = -1 then
+	-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'Receiving_UpdateInventoryCosting call failed';
+      ROLLBACK;
+
+-- Change return status if it was not changed iside error checking procedure
+      IF v_Success = 1 then
+
+         SET v_Success = 0;
+      end if;
+
+-- Process error only if @ErrorMessage was set during error checking
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_Post',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseOrderNumber',
+         v_PurchaseNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- Adjust Vendor Finacials information
+   SET @SWV_Error = 0;
+   CALL RMAReceiving_AdjustCustomerFinancials(v_CompanyID,v_DivisionID,v_DepartmentID,v_PurchaseNumber, v_ReturnStatus);
+
+   IF @SWV_Error <> 0
+   OR v_ReturnStatus = -1 then
+	-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'Receiving_AdjustVendorFinancials call failed';
+      ROLLBACK;
+
+-- Change return status if it was not changed iside error checking procedure
+      IF v_Success = 1 then
+
+         SET v_Success = 0;
+      end if;
+
+-- Process error only if @ErrorMessage was set during error checking
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_Post',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseOrderNumber',
+         v_PurchaseNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- if a payment was made for the order that is received this payment must be returned
+-- and the vendor financials must be updated
+   SET @SWV_Error = 0;
+   CALL Payment_CreateFromRMA(v_CompanyID,v_DivisionID,v_DepartmentID,v_PurchaseNumber,v_NewPaymentID, v_ReturnStatus);
+
+   IF v_ReturnStatus = -1 then
+
+	-- the procedure will return an error code
+      SET v_ErrorMessage = 'Payment_CreateFromRMA call failed';
+      ROLLBACK;
+
+-- Change return status if it was not changed iside error checking procedure
+      IF v_Success = 1 then
+
+         SET v_Success = 0;
+      end if;
+
+-- Process error only if @ErrorMessage was set during error checking
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_Post',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseOrderNumber',
+         v_PurchaseNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   SET v_PaymentID = v_NewPaymentID;
+
+   SET @SWV_Error = 0;
+   CALL Payment_CreateCreditMemo(v_CompanyID,v_DivisionID,v_DepartmentID,v_PaymentID, v_ReturnStatus);
+
+   IF v_ReturnStatus = -1 then
+
+	-- the procedure will return an error code
+      SET v_ErrorMessage = 'Payment_CreateCreditMemo call failed';
+      ROLLBACK;
+
+-- Change return status if it was not changed iside error checking procedure
+      IF v_Success = 1 then
+
+         SET v_Success = 0;
+      end if;
+
+-- Process error only if @ErrorMessage was set during error checking
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_Post',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseOrderNumber',
+         v_PurchaseNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   UPDATE PurchaseHeader
+   SET Received = 1,ReceivedDate = CURRENT_TIMESTAMP
+   WHERE CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND PurchaseNumber = v_PurchaseNumber;
+
+   UPDATE PurchaseDetail
+   SET Received = 1
+   WHERE CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND PurchaseNumber = v_PurchaseNumber;
+
+-- get the transaction number
+   SET @SWV_Error = 0;
+   CALL RMAReceiving_CreateGLTransaction(v_CompanyID,v_DivisionID,v_DepartmentID,v_PurchaseNumber,v_PostDate, v_ReturnStatus);
+
+   IF @SWV_Error <> 0
+   OR v_ReturnStatus = -1 then
+
+      SET v_ErrorMessage = 'RMAReceiving_CreateGLTransaction call failed';
+      ROLLBACK;
+
+-- Change return status if it was not changed iside error checking procedure
+      IF v_Success = 1 then
+
+         SET v_Success = 0;
+      end if;
+
+-- Process error only if @ErrorMessage was set during error checking
+      IF v_ErrorMessage <> '' then
+
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_Post',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseOrderNumber',
+         v_PurchaseNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   COMMIT;
+
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+
+
+
+-- We can come to this point only if the Period to post is closed the posted cannot be done
+-- the goto operator is placed before BEGIN TRAN so we should not commit or rollback transaction here
+   SET v_Success = 2;
+
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+
+-- if an error occured in the procedure this code will be executed
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   ROLLBACK;
+
+-- Change return status if it was not changed iside error checking procedure
+   IF v_Success = 1 then
+
+      SET v_Success = 0;
+   end if;
+
+-- Process error only if @ErrorMessage was set during error checking
+   IF v_ErrorMessage <> '' then
+
+	
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_Post',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseOrderNumber',
+      v_PurchaseNumber);
+   end if;
+
+   SET SWP_Ret_Value = -1;
+END;
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS RMAReceiving_AdjustCustomerFinancials;
+//
+CREATE          PROCEDURE RMAReceiving_AdjustCustomerFinancials(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_PurchaseNumber  NATIONAL VARCHAR(36),INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Name of stored procedure: RMAReceiving_AdjustCustomerFinancials
+Method: 
+	We need to un-do the order postings, 
+	First, minus the order total from the booked orders, and add the amount back onto the available credit.
+	Also, check, if available credit > credit limit set in Customer Information table, then available credit = credit limit.
+	Update the Invoices YTD Field, set InvoicesYTD = InvoicesYTD + This Invoice.
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@PurchaseNumber NVARCHAR (36)	 - the RMA number
+
+Output Parameters:
+
+	NONE
+
+Called From:
+
+	RMAReceiving_Post
+
+Calls:
+
+	VerifyCurrency, Error_InsertError, Error_InsertErrorDetail
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+
+   DECLARE v_CustomerID NATIONAL VARCHAR(50);
+   DECLARE v_CurrencyID NATIONAL VARCHAR(3);
+   DECLARE v_CompanyCurrencyID NATIONAL VARCHAR(3);
+   DECLARE v_InvoiceDate DATETIME;
+   DECLARE v_CurrencyExchangeRate FLOAT;
+   DECLARE v_Total DECIMAL(19,4);
+   DECLARE v_ConvertedTotal DECIMAL(19,4);
+
+-- select informations about the customer,
+-- the total value of the order
+-- the currency of the order and the exchange rate
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+   select   VendorID, IFNULL(Total,0), CurrencyID, CurrencyExchangeRate, PurchaseDate INTO v_CustomerID,v_Total,v_CurrencyID,v_CurrencyExchangeRate,v_InvoiceDate FROM
+   PurchaseHeader WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND PurchaseNumber = v_PurchaseNumber;
+
+   START TRANSACTION;
+
+-- adjust the system to for the multicurrency 
+   SET @SWV_Error = 0;
+   CALL VerifyCurrency2(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceDate,1,v_CompanyCurrencyID,
+   v_CurrencyID,v_CurrencyExchangeRate);
+   IF @SWV_Error <> 0 then
+
+	-- the procedure will return an error code
+      SET v_ErrorMessage = 'Currency retrieving failed';
+      ROLLBACK;
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_AdjustCustomerFinancials',
+      v_ErrorMessage,v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'Number',v_PurchaseNumber);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   SET v_ConvertedTotal = fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_Total*v_CurrencyExchangeRate, 
+   v_CompanyCurrencyID);
+
+
+
+   SET @SWV_Error = 0;
+   UPDATE
+   CustomerFinancials
+   SET
+   RMAs = IFNULL(RMAs,0) -v_ConvertedTotal,RMAsYTD = IFNULL(RMAsYTD,0)+v_ConvertedTotal,
+   RMAsLifetime = IFNULL(RMAsLifetime,0)+v_ConvertedTotal
+   WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND CustomerID = v_CustomerID;
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'customer financials updating failed';
+      ROLLBACK;
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_AdjustCustomerFinancials',
+      v_ErrorMessage,v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'Number',v_PurchaseNumber);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+
+   COMMIT;
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return; 
+-- if an error occured in the procedure this code will be executed
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   ROLLBACK;
+
+   CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_AdjustCustomerFinancials',
+   v_ErrorMessage,v_ErrorID);
+
+   CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'Number',v_PurchaseNumber);
+
+   SET SWP_Ret_Value = -1;
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS RMAReceiving_CreateGLTransaction;
+//
+CREATE                     PROCEDURE RMAReceiving_CreateGLTransaction(v_CompanyID NATIONAL VARCHAR(36), 
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_PurchaseOrderNumber NATIONAL VARCHAR(36),
+	v_PostDate  NATIONAL VARCHAR(1),INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Name of stored procedure: RMAReceiving_CreateGLTransaction
+Method: 
+	Creates a new GL transaction from an RMA receiving
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@PurchaseOrderNumber NVARCHAR(36) - the RMA number
+	@PostDate NVARCHAR(1)			 - defines the date of GL transaction
+
+							   1 - the current date
+
+							   0 - the RMA date
+
+Output Parameters:
+
+	NONE
+
+Called From:
+
+	RMAReceiving_Post
+
+Calls:
+
+	VerifyCurrency, GetNextEntityID, TaxGroup_GetTotalPercent, LedgerTransactions_PostCOA_AllRecords, Error_InsertError, Error_InsertErrorDetail
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+
+   DECLARE v_GLTransNumber NATIONAL VARCHAR(36);
+   DECLARE v_GLAPAccount NATIONAL VARCHAR(36);
+   DECLARE v_InventoryAccount NATIONAL VARCHAR(36);
+   DECLARE v_ProjectID NATIONAL VARCHAR(36);
+   DECLARE v_AmountPaid DECIMAL(19,4);
+   DECLARE v_Total DECIMAL(19,4);
+   DECLARE v_Freight DECIMAL(19,4);
+   DECLARE v_Handling DECIMAL(19,4);
+   DECLARE v_DiscountAmount DECIMAL(19,4);
+   DECLARE v_ConvertedTotal DECIMAL(19,4);
+   DECLARE v_CurrencyID NATIONAL VARCHAR(3); 
+   DECLARE v_CompanyCurrencyID NATIONAL VARCHAR(3); 
+   DECLARE v_CurrencyExchangeRate FLOAT;
+   DECLARE v_PurchaseDate DATETIME;
+
+   DECLARE v_TranDate DATETIME;
+   DECLARE v_HeaderTaxGroupID NATIONAL VARCHAR(36);
+   DECLARE v_HeaderTaxAmount DECIMAL(19,4);
+   DECLARE v_HeaderTaxPercent FLOAT;
+   DECLARE v_GLAPCOGSAccount NATIONAL VARCHAR(36);
+   DECLARE v_GLAPInventoryAccount NATIONAL VARCHAR(36);
+   DECLARE v_ItemTaxAmount DECIMAL(19,4);
+-- get the information about the Vendor, Currency and the ammount of money from the purchase order
+
+   DECLARE v_TaxAccount NATIONAL VARCHAR(36);
+   DECLARE v_TaxAmount DECIMAL(19,4);
+   DECLARE v_TaxGroupID NATIONAL VARCHAR(36);
+   DECLARE v_TotalTaxPercent FLOAT;
+   DECLARE v_ItemProjectID NATIONAL VARCHAR(36);
+   DECLARE v_GLTaxAccount NATIONAL VARCHAR(36);
+   DECLARE NO_DATA INT DEFAULT 0;
+   DECLARE v_ErrorID INT;
+   DECLARE v_TaxPercent FLOAT;
+   DECLARE cPurchaseDetail CURSOR FOR
+   SELECT
+   SUM(IFNULL(TaxAmount,0)),
+		TaxGroupID,
+		TaxPercent,
+		ProjectID
+		
+   FROM
+   PurchaseDetail
+   WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   PurchaseNumber = v_PurchaseOrderNumber AND 
+   IFNULL(Total,0) > 0
+   GROUP BY
+   TaxGroupID,TaxPercent,ProjectID;
+
+   DECLARE cTax CURSOR FOR
+   SELECT 
+   IFNULL(Taxes.TaxPercent,0), 
+		IFNULL(Taxes.GLTaxAccount,(SELECT GLARMiscAccount
+      FROM Companies
+      WHERE CompanyID = v_CompanyID AND DivisionID  = v_DivisionID AND  DepartmentID = v_DepartmentID))
+   FROM 
+   TaxGroups
+
+   INNER JOIN  TaxGroupDetail ON
+   TaxGroupDetail.CompanyID = TaxGroups.CompanyID
+   AND TaxGroupDetail.DivisionID = TaxGroups.DivisionID
+   AND TaxGroupDetail.DepartmentID = TaxGroups.DepartmentID
+   AND TaxGroupDetail.TaxGroupDetailID = TaxGroups.TaxGroupDetailID
+   INNER JOIN  Taxes ON
+   TaxGroupDetail.CompanyID = Taxes.CompanyID
+   AND TaxGroupDetail.DivisionID = Taxes.DivisionID
+   AND TaxGroupDetail.DepartmentID = Taxes.DepartmentID
+   AND TaxGroupDetail.TaxID = Taxes.TaxID
+
+   WHERE 
+   TaxGroups.CompanyID = v_CompanyID
+   AND TaxGroups.DivisionID = v_DivisionID
+   AND TaxGroups.DepartmentID = v_DepartmentID
+   AND TaxGroups.TaxGroupID = v_TaxGroupID;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+      SET NO_DATA = -2;
+   END;
+   DECLARE CONTINUE HANDLER FOR NOT FOUND SET NO_DATA = -1;
+   select   CurrencyID, CurrencyExchangeRate, PurchaseDate, IFNULL(AmountPaid,0), IFNULL(Total,0), IFNULL(Freight,0), IFNULL(Handling,0), IFNULL(DiscountAmount,0), GLPurchaseAccount, TaxGroupID, IFNULL(TaxAmount,0), IFNULL(TaxPercent,0), CASE v_PostDate WHEN '1' THEN CURRENT_TIMESTAMP ELSE PurchaseDate END INTO v_CurrencyID,v_CurrencyExchangeRate,v_PurchaseDate,v_AmountPaid,v_Total,
+   v_Freight,v_Handling,v_DiscountAmount,v_InventoryAccount,v_HeaderTaxGroupID,
+   v_HeaderTaxAmount,v_HeaderTaxPercent,v_TranDate FROM
+   PurchaseHeader WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   PurchaseNumber = v_PurchaseOrderNumber;
+
+   START TRANSACTION;
+
+   SET @SWV_Error = 0;
+   CALL VerifyCurrency2(v_CompanyID,v_DivisionID,v_DepartmentID,v_PurchaseDate,2,v_CompanyCurrencyID,
+   v_CurrencyID,v_CurrencyExchangeRate);
+   IF @SWV_Error <> 0 then
+
+	-- the procedure will return an error code
+      SET v_ErrorMessage = 'Currency retrieving failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   select   ProjectID INTO v_ProjectID FROM  PurchaseDetail WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND PurchaseNumber = v_PurchaseOrderNumber
+   AND NOT ProjectID IS NULL   LIMIT 1;
+
+
+
+-- get the transaction number
+   SET @SWV_Error = 0;
+   CALL GetNextEntityID2(v_CompanyID,v_DivisionID,v_DepartmentID,'NextGLTransNumber',v_GLTransNumber, v_ReturnStatus);
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+
+      SET v_ErrorMessage = 'GetNextEntityID call failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   SET v_ConvertedTotal = fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_Total*v_CurrencyExchangeRate, 
+   v_CompanyCurrencyID);
+
+-- insert the necessary entries into LedgerTransactions table
+-- set the transaction type to Receiving and the date to the current
+-- date or to purchase date depending on the value of @PostDate
+   SET @SWV_Error = 0;
+   INSERT INTO LedgerTransactions(CompanyID,
+	DivisionID,
+	DepartmentID,
+	GLTransactionNumber,
+	GLTransactionTypeID,
+	GLTransactionDate,
+	GLTransactionDescription,
+	GLTransactionReference,
+	CurrencyID,
+	CurrencyExchangeRate,
+	GLTransactionAmount,
+	GLTransactionAmountUndistributed,
+	GLTransactionBalance,
+	GLTransactionPostedYN,
+	GLTransactionSource,
+	GLTransactionSystemGenerated)
+   SELECT
+   v_CompanyID,
+		v_DivisionID,
+		v_DepartmentID,
+		v_GLTransNumber,
+		'RMA Receiving',
+		CASE v_PostDate WHEN '1' THEN CURRENT_TIMESTAMP ELSE PurchaseDate END ,
+		VendorID,
+		PurchaseNumber,
+		v_CompanyCurrencyID,
+		1,
+		v_ConvertedTotal,
+		0,
+		0,
+		1,
+		CONCAT('RMAREC ',cast(PurchaseNumber as char(10))),
+		1
+   FROM
+   PurchaseHeader
+   WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   PurchaseNumber = v_PurchaseOrderNumber;
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'Insert Header into LedgerTransactions failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+	
+-- create temporary table to retain information about transaction details
+-- This informations will be written into the LedgerTransactionDetail after some processing.
+-- The temporary table definition contains the column's definitions and the informations
+-- about primary key of the temporary table.
+   CREATE TEMPORARY TABLE tt_LedgerDetailTmp  
+   (
+      GLTransactionNumberDetail BIGINT NOT NULL  PRIMARY KEY  AUTO_INCREMENT,
+      GLTransactionAccount NATIONAL VARCHAR(36),
+      GLDebitAmount DECIMAL(19,4),
+      GLCreditAmount DECIMAL(19,4),
+      ProjectID NATIONAL VARCHAR(36)
+   )  AUTO_INCREMENT = 1;
+
+-- Get default company Accounts
+   select   GLAPAccount, GLAPInventoryAccount, GLARCOGSAccount INTO v_GLAPAccount,v_GLAPInventoryAccount,v_GLAPCOGSAccount FROM
+   Companies WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID;
+	
+   SET v_InventoryAccount = IFNULL(v_InventoryAccount,v_GLAPInventoryAccount);
+
+-- Debit Freight to GLAPFreightAccount
+   SET @SWV_Error = 0;
+   IF v_Freight > 0 then
+
+      INSERT INTO tt_LedgerDetailTmp(GLTransactionAccount,
+	GLDebitAmount,
+	GLCreditAmount,
+	ProjectID)
+      SELECT
+      Companies.GLAPFreightAccount,
+	fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_Freight*v_CurrencyExchangeRate, 
+      v_CompanyCurrencyID),
+	0,
+	v_ProjectID
+      FROM
+      Companies
+      WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID;
+   end if;
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'Error Processing Freight Data';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- Debit Handling to GLAPHandlingAccount
+   IF v_Handling > 0 then
+
+      SET @SWV_Error = 0;
+      INSERT INTO tt_LedgerDetailTmp(GLTransactionAccount,
+		GLDebitAmount,
+		GLCreditAmount,
+		ProjectID)
+      SELECT
+      GLAPHandlingAccount,
+		fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_Handling*v_CurrencyExchangeRate, 
+      v_CompanyCurrencyID),
+		0,
+		v_ProjectID
+      FROM
+      Companies
+      WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID;
+      IF @SWV_Error <> 0 then
+	
+         SET v_ErrorMessage = 'Error Processing Handling Data';
+         ROLLBACK;
+         DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+         IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+            CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+            v_ErrorMessage,v_ErrorID);
+            CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+         end if;
+         SET SWP_Ret_Value = -1;
+      end if;
+   end if;
+
+-- insert the record for @TaxAmount
+-- we will redistribute @TaxAmount between different GLTaxAccounts included to Invoice tax group
+   OPEN cPurchaseDetail;
+   SET NO_DATA = 0;
+   FETCH cPurchaseDetail INTO v_TaxAmount,v_TaxGroupID,v_TotalTaxPercent,v_ItemProjectID;
+   WHILE NO_DATA = 0 DO
+      IF v_TaxAmount > 0 then
+
+         IF v_TaxGroupID = N'' then
+            SET @SWV_Null_Var = 0;
+         end if;
+         SET @SWV_Error = 0;
+         CALL TaxGroup_GetTotalPercent(v_CompanyID,v_DivisionID,v_DepartmentID,v_TaxGroupID,v_TotalTaxPercent);
+         IF @SWV_Error <> 0 then
+	
+            SET v_ErrorMessage = 'Procedure call TaxGroup_GetTotalPercent failed';
+            ROLLBACK;
+            DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+            IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+               CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+               v_ErrorMessage,v_ErrorID);
+               CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+            end if;
+            SET SWP_Ret_Value = -1;
+         end if;
+         OPEN cTax;
+         SET NO_DATA = 0;
+         FETCH cTax INTO v_TaxPercent,v_GLTaxAccount;
+         WHILE NO_DATA = 0 DO
+            IF v_TotalTaxPercent <> 0 then
+               SET v_ItemTaxAmount = fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_TaxAmount*v_CurrencyExchangeRate*v_TaxPercent/v_TotalTaxPercent, 
+               v_CompanyCurrencyID);
+            ELSE
+               SET v_ItemTaxAmount = 0;
+            end if;
+
+
+	-- Debit Tax to Tax Account
+            SET @SWV_Error = 0;
+            INSERT INTO tt_LedgerDetailTmp(GLTransactionAccount,
+		GLDebitAmount,
+		GLCreditAmount,
+		ProjectID)
+	VALUES(v_GLTaxAccount,
+		v_ItemTaxAmount,
+		0,
+		v_ProjectID);
+	
+            IF @SWV_Error <> 0 then
+	-- An error occured, go to the error handler
+	-- and drop the temporary table
+	
+               SET v_ErrorMessage = 'Error Processing Tax Data';
+               CLOSE cTax;
+		
+               ROLLBACK;
+               DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+               IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+                  CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+                  v_ErrorMessage,v_ErrorID);
+                  CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+               end if;
+               SET SWP_Ret_Value = -1;
+            end if;
+            SET NO_DATA = 0;
+            FETCH cTax INTO v_TaxPercent,v_GLTaxAccount;
+         END WHILE;
+         CLOSE cTax;
+      end if;
+      SET NO_DATA = 0;
+      FETCH cPurchaseDetail INTO v_TaxAmount,v_TaxGroupID,v_TotalTaxPercent,v_ItemProjectID;
+   END WHILE;
+   CLOSE cPurchaseDetail;
+   SET @SWV_Error = 0;
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'Error Processing Tax Update';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- Credit DiscountAmount to GLAPDiscountAccount
+   IF v_DiscountAmount > 0 then
+
+      SET @SWV_Error = 0;
+      INSERT INTO tt_LedgerDetailTmp(GLTransactionAccount,
+		GLDebitAmount,
+		GLCreditAmount,
+		ProjectID)
+      SELECT
+      GLAPDiscountAccount,
+		0,
+		fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_DiscountAmount*v_CurrencyExchangeRate, 
+      v_CompanyCurrencyID),
+		v_ProjectID
+      FROM
+      Companies
+      WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID;
+      IF @SWV_Error <> 0 then
+	
+         SET v_ErrorMessage = 'Error Processing GL Discount Data';
+         ROLLBACK;
+         DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+         IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+            CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+            v_ErrorMessage,v_ErrorID);
+            CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+         end if;
+         SET SWP_Ret_Value = -1;
+      end if;
+   end if;
+
+-- Credit Total to Account Payable
+   IF v_Total > 0 then
+
+      SET @SWV_Error = 0;
+      INSERT INTO tt_LedgerDetailTmp(GLTransactionAccount,
+		GLDebitAmount,
+		GLCreditAmount,
+		ProjectID)
+	VALUES(v_GLAPAccount,
+		0,
+		v_ConvertedTotal,
+		v_ProjectID);
+	
+      IF @SWV_Error <> 0 then
+	
+         SET v_ErrorMessage = 'Error Processing AP Data';
+         ROLLBACK;
+         DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+         IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+            CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+            v_ErrorMessage,v_ErrorID);
+            CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+         end if;
+         SET SWP_Ret_Value = -1;
+      end if;
+   end if;
+
+
+-- Debit SubTotal To Inventory Account
+-- Detail item can have different Inventroy Accounts,
+-- so we post it as sum of detail Totals grouped by Account and ProjectID
+   SET @SWV_Error = 0;
+   INSERT INTO tt_LedgerDetailTmp(GLTransactionAccount,
+	GLDebitAmount,
+	GLCreditAmount,
+	ProjectID)
+   SELECT
+   IFNULL(GLPurchaseAccount,v_InventoryAccount),
+	SUM(fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,SubTotal*v_CurrencyExchangeRate, 
+   v_CompanyCurrencyID)),
+	0,
+	ProjectID
+   FROM
+   PurchaseDetail
+   WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   PurchaseNumber = v_PurchaseOrderNumber AND
+   IFNULL(SubTotal,0) > 0
+   GROUP BY
+   IFNULL(GLPurchaseAccount,v_InventoryAccount),ProjectID;
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'Error Processing Inventory Data';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+
+-- insert the data into the LedgerTransactionsDetail table; 
+-- the records are grouped by GLTransactionAccount and ProjectID
+   SET @SWV_Error = 0;
+   INSERT INTO LedgerTransactionsDetail(CompanyID,
+	DivisionID,
+	DepartmentID,
+	GLTransactionNumber,
+	GLTransactionAccount,
+	GLDebitAmount,
+	GLCreditAmount,
+	ProjectID)
+   SELECT
+   v_CompanyID,
+		v_DivisionID,
+		v_DepartmentID,
+		v_GLTransNumber,
+		GLTransactionAccount,
+		SUM(GLDebitAmount),
+		SUM(GLCreditAmount),
+		ProjectID
+   FROM
+   tt_LedgerDetailTmp
+   GROUP BY
+   GLTransactionAccount,ProjectID;
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'Insert into LedgerTransactionsDetail failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+
+/*
+update the information in the Ledger Chart of Accounts fro the accounts of the newly inserted transaction
+
+parameters	@CompanyID NVARCHAR(36),
+		@DivisionID NVARCHAR(36),
+		@DepartmentID NVARCHAR(36),
+		@GLTransNumber NVARCHAR (36)
+		used to identify the TRANSACTION
+		@PostCOA BIT - used in the process of creation of the transaction
+*/
+   SET @SWV_Error = 0;
+   CALL LedgerTransactions_PostCOA_AllRecords2(v_CompanyID,v_DivisionID,v_DepartmentID,v_GLTransNumber, v_ReturnStatus);
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+-- Everything is  OK
+   COMMIT;
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+-- if an error occured in the procedure this code will be executed
+
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   ROLLBACK;
+
+   DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+
+   IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'RMAReceiving_CreateGLTransaction',
+      v_ErrorMessage,v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseOrderNumber);
+   end if;
+   SET SWP_Ret_Value = -1;
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS Payment_CreateCreditMemo;
+//
+CREATE       PROCEDURE Payment_CreateCreditMemo(v_CompanyID 		NATIONAL VARCHAR(36),
+	v_DivisionID 		NATIONAL VARCHAR(36),
+	v_DepartmentID 		NATIONAL VARCHAR(36),
+	v_PaymentID NATIONAL VARCHAR(36),INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+/*
+Name of stored procedure: Payment_CreateCreditMemo
+Method: 
+	Creates a Credit memo from a Payment
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@PaymentID NVARCHAR(36)		 - ID of the payment
+
+Output Parameters:
+
+	NONE
+
+Called From:
+
+	Payment_CreateCreditMemo.vb
+
+Calls:
+
+	GetNextEntityID, Customer_CreateFromVendor, Error_InsertError, Error_InsertErrorDetail
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+   DECLARE v_CreditMemoNumber NATIONAL VARCHAR(36);
+   DECLARE v_VendorID NATIONAL VARCHAR(36);
+   DECLARE v_ProjectID NATIONAL VARCHAR(36);
+   DECLARE v_CreditAmount DECIMAL(19,4);
+   DECLARE v_Posted BOOLEAN;
+   DECLARE v_Void BOOLEAN;
+   DECLARE v_GLDefaultSalesAccount NATIONAL VARCHAR(36);
+   DECLARE v_GLAPAccount NATIONAL VARCHAR(36);
+
+-- get vendor id
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+   WriteError:
+   BEGIN
+      select   VendorID, IFNULL(CreditAmount,0), IFNULL(Posted,0), IFNULL(Void,0) INTO v_VendorID,v_CreditAmount,v_Posted,v_Void FROM
+      PaymentsHeader WHERE
+      CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID
+      AND DepartmentID = v_DepartmentID
+      AND PaymentID = v_PaymentID;
+
+-- IF @Void = 1 OR @Posted = 0 OR @CreditAmount<=0
+-- 	Return 0
+
+      If v_Void = 1 then
+
+         SET v_ReturnStatus = -4;
+         SET v_ErrorMessage = CONCAT('The payment is void for PaymentID:',v_PaymentID);
+         LEAVE WriteError;
+      end if;
+      If v_CreditAmount <= 0 then
+
+         SET v_ReturnStatus = -5;
+         SET v_ErrorMessage = CONCAT('The credit amount is 0 or less than 0 for PaymentID:',v_PaymentID);
+         LEAVE WriteError;
+      end if;
+      if v_Posted = 0 then
+
+         SET v_ReturnStatus = -6;
+         SET v_ErrorMessage = CONCAT('The payment is not yet posted for PaymentID:',v_PaymentID);
+         LEAVE WriteError;
+      end if;
+      START TRANSACTION;
+      select   ProjectID INTO v_ProjectID FROM
+      PaymentsDetail WHERE
+      CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID
+      AND DepartmentID = v_DepartmentID
+      AND PaymentID = v_PaymentID
+      AND NOT ProjectID IS NULL   LIMIT 1;
+
+-- Get default values from Companies table for
+-- Sales Account, Account Payable and PeriodPosting flag
+      select   GLARSalesAccount, GLAPAccount INTO v_GLDefaultSalesAccount,v_GLAPAccount FROM
+      Companies WHERE
+      CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID
+      AND DepartmentID = v_DepartmentID;
+
+-- get the credit memo number
+      SET @SWV_Error = 0;
+      CALL GetNextEntityID2(v_CompanyID,v_DivisionID,v_DepartmentID,'NextInvoiceNumber',v_CreditMemoNumber, v_ReturnStatus);
+-- An error occured, go to the error handler
+      IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+
+         SET v_ErrorMessage = 'GetNextEntityID call failed';
+         LEAVE WriteError;
+      end if;
+
+
+-- convert vendor to customer
+      SET @SWV_Error = 0;
+      CALL Customer_CreateFromVendor(v_CompanyID,v_DivisionID,v_DepartmentID,v_VendorID, v_ReturnStatus);
+-- An error occured, go to the error handler
+      IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+
+         SET v_ErrorMessage = 'Customer_CreateFromVendor call failed';
+         LEAVE WriteError;
+      end if;
+
+
+-- create the Credit memo header getting all the data from the payment
+      SET @SWV_Error = 0;
+      INSERT INTO InvoiceHeader(CompanyID,
+	DivisionID,
+	DepartmentID,
+	InvoiceNumber,
+	OrderNumber ,
+	TransactionTypeID,
+	InvoiceDate,
+	InvoiceDueDate,
+	InvoiceShipDate,
+	InvoiceCancelDate,
+	SystemDate,
+	PurchaseOrderNumber,
+	TaxExemptID,
+	TaxGroupID,
+	CustomerID,
+	TermsID,
+	CurrencyID,
+	CurrencyExchangeRate,
+	Subtotal,
+	DiscountPers,
+	DiscountAmount,
+	TaxPercent,
+	TaxAmount,
+	TaxableSubTotal,
+	Freight,
+	TaxFreight,
+	Handling,
+	Advertising,
+	Total,
+	EmployeeID,
+	Commission,
+	CommissionableSales,
+	ComissionalbleCost,
+	CustomerDropShipment,
+	ShipMethodID,
+	WarehouseID,
+	ShipToID,
+	ShipForID,
+	ShippingName,
+	ShippingAddress1,
+	ShippingAddress2,
+	ShippingAddress3,
+	ShippingCity,
+	ShippingState,
+	ShippingZip,
+	ShippingCountry,
+	GLSalesAccount,
+	PaymentMethodID,
+	AmountPaid,
+	BalanceDue,
+	UndistributedAmount,
+	CheckNumber,
+	CheckDate,
+	CreditCardTypeID,
+	CreditCardName,
+	CreditCardNumber,
+	CreditCardExpDate,
+	CreditCardCSVNumber,
+	CreditCardBillToZip,
+	CreditCardValidationCode,
+	CreditCardApprovalNumber,
+	Picked,
+	PickedDate,
+	Printed,
+	PrintedDate,
+	Shipped,
+	ShipDate,
+	TrackingNumber,
+	BilledDate,
+	Billed,
+	Backordered,
+	Posted,
+	PostedDate,
+	HeaderMemo1,
+	HeaderMemo2,
+	HeaderMemo3,
+	HeaderMemo4,
+	HeaderMemo5,
+	HeaderMemo6,
+	HeaderMemo7,
+	HeaderMemo8,
+	HeaderMemo9)
+      SELECT
+      v_CompanyID,
+	v_DivisionID,
+	v_DepartmentID,
+	v_CreditMemoNumber,
+	NULL,
+	'Credit Memo',
+	PaymentDate, -- InvoiceDate,
+	DueToDate, -- InvoiceDueDate,
+	now(), -- InvoiceShipDate,
+	now(), -- InvoiceCancelDate,
+	now(), -- SystemDate,
+	NULL, -- PurchaseOrderNumber,
+	NULL, -- TaxExemptID,
+	NULL, -- TaxGroupID,
+	VendorID, -- CustomerID,
+	NULL, -- TermsID,
+	CurrencyID, -- CurrencyID,
+	CurrencyExchangeRate, -- CurrencyExchangeRate,
+	v_CreditAmount, -- Subtotal,
+	0, -- DiscountPers,
+	0, -- DiscountAmount,
+	0, -- TaxPercent,
+	0, -- TaxAmount,
+	0, -- TaxableSubTotal,
+	0, -- Freight,
+	0, -- TaxFreight,
+	0, -- Handling,
+	0, -- Advertising,
+	v_CreditAmount, -- Total,
+	NULL, -- EmployeeID,
+	NULL, -- Commission,
+
+	NULL, -- CommissionableSales,
+	NULL, -- ComissionalbleCost,
+	NULL, -- CustomerDropShipment,
+	NULL, -- ShipMethodID,
+	NULL, -- WarehouseID,
+	NULL, -- ShipToID,
+	NULL, -- ShipForID,
+	NULL, -- ShippingName,
+	NULL, -- ShippingAddress1,
+	NULL, -- ShippingAddress2,
+
+	NULL, -- ShippingAddress3,
+	NULL, -- ShippingCity,
+	NULL, -- ShippingState,
+	NULL, -- ShippingZip,
+	NULL, -- ShippingCountry,
+	NULL, -- GLSalesAccount,
+	NULL, -- PaymentMethodID,
+	0, -- AmountPaid,
+	v_CreditAmount, -- BalanceDue,
+	0, -- UndistributedAmount,
+	NULL, -- CheckNumber,
+	NULL, -- CheckDate,
+	NULL, -- CreditCardTypeID,
+	NULL, -- CreditCardName,
+	NULL, -- CreditCardNumber,
+	NULL, -- CreditCardExpDate,
+	NULL, -- CreditCardCSVNumber,
+	NULL, -- CreditCardBillToZip,
+	NULL, -- CreditCardValidationCode,
+	NULL, -- CreditCardApprovalNumber,
+	0, -- Picked,
+	now(), -- PickedDate,
+	0, -- Printed,
+	now(), -- PrintedDate,
+	0, -- Shipped,
+	now(), -- ShipDate,
+	NULL, -- TrackingNumber,
+	now(), -- BilledDate,
+	0, -- Billed,
+	0, -- Backordered,
+	0, -- Posted,
+	now(), -- PostedDate,
+	NULL, -- HeaderMemo1,
+	NULL, -- HeaderMemo2,
+	NULL, -- HeaderMemo3,
+	NULL, -- HeaderMemo4,
+	NULL, -- HeaderMemo5,
+	NULL, -- HeaderMemo6,
+	NULL, -- HeaderMemo7,
+	NULL, -- HeaderMemo8,
+	NULL -- HeaderMemo9
+      FROM
+      PaymentsHeader
+      WHERE
+      CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID
+      AND DepartmentID = v_DepartmentID
+      AND PaymentID = v_PaymentID;
+
+
+-- An error occured, go to the error handler
+      IF @SWV_Error <> 0 then
+
+         SET v_ErrorMessage = 'Cannot create the credit memo header';
+         LEAVE WriteError;
+      end if;
+
+
+
+-- create the credit memo details getting all the data from the payment
+      SET @SWV_Error = 0;
+      INSERT INTO InvoiceDetail(CompanyID,
+	DivisionID,
+	DepartmentID,
+	InvoiceNumber,
+	ItemID,
+	WarehouseID,
+	SerialNumber,
+	OrderQty,
+	BackOrdered,
+	BackOrderQty,
+	ItemUOM,
+	ItemWeight,
+	Description,
+	DiscountPerc,
+	Taxable,
+	ItemCost,
+	ItemUnitPrice,
+	Total,
+	TotalWeight,
+	GLSalesAccount,
+	ProjectID,
+	TrackingNumber,
+	DetailMemo1,
+	DetailMemo2,
+	DetailMemo3,
+	DetailMemo4,
+	DetailMemo5)
+VALUES(v_CompanyID,
+	v_DivisionID,
+	v_DepartmentID,
+	v_CreditMemoNumber,
+	'Credit Memo', -- ItemID,
+	NULL, -- WarehouseID,
+	NULL, -- SerialNumber,
+	1, -- OrderQty,
+	NULL, -- BackOrdered,
+	NULL, -- BackOrderQty,
+	NULL, -- ItemUOM,
+	NULL, -- ItemWeight,
+	NULL, -- Description,
+	NULL, -- DiscountPerc,
+	NULL, -- Taxable,
+	NULL, -- ItemCost,
+	NULL, -- ItemUnitPrice,
+	v_CreditAmount, -- Total,
+	NULL, -- TotalWeight,
+	v_GLAPAccount, -- GLSalesAccount,
+	v_ProjectID, -- ProjectID,
+	NULL, -- TrackingNumber,
+	NULL, -- DetailMemo1,
+	NULL, -- DetailMemo2,
+	NULL, -- DetailMemo3,
+	NULL, -- DetailMemo4,
+	NULL -- DetailMemo5
+);
+
+-- An error occured, go to the error handler
+
+      IF @SWV_Error <> 0 then
+
+         SET v_CreditMemoNumber = N'';
+         SET v_ErrorMessage = 'Cannot create Credit Memo Details';
+         LEAVE WriteError;
+      end if;
+      SET @SWV_Error = 0;
+      CALL CreditMemo_Post(v_CompanyID,v_DivisionID,v_DepartmentID,v_CreditMemoNumber, @postingResult v_ReturnStatus);
+      IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+
+         SET v_ErrorMessage = 'CreditMemo_Post call failed';
+         LEAVE WriteError;
+      end if;
+
+
+-- void the payment
+      UPDATE
+      PaymentsHeader
+      SET
+      Paid = 1
+      WHERE
+      CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID
+      AND DepartmentID = v_DepartmentID
+      AND PaymentID = v_PaymentID;
+
+
+-- Everything is OK
+      COMMIT;
+      SET SWP_Ret_Value = 0;
+      LEAVE SWL_return;
+
+-- if an error occured in the procedure this code will be executed
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   END;
+   IF (NOT (v_Void = 1 OR v_Posted = 0 OR v_CreditAmount <= 0)) AND 1  /*NOT SUPPORTED @@TRANCOUNT*/< 2 then
+      ROLLBACK;
+   ELSE
+      COMMIT;
+   end if;
+-- the error handler
+   CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Payment_CreateCreditMemo',v_ErrorMessage,
+   v_ErrorID);
+   CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PaymentID',v_PaymentID);
+
+   IF (NOT (v_Void = 1 OR v_Posted = 0 OR v_CreditAmount <= 0)) then
+      SET SWP_Ret_Value = -1;
+      LEAVE SWL_return;
+   ELSE
+      SET SWP_Ret_Value = v_ReturnStatus;
+      LEAVE SWL_return;
+   end if;
+END;
+
+
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS Payment_CreateFromRMA;
+//
+CREATE PROCEDURE Payment_CreateFromRMA(v_CompanyID NATIONAL VARCHAR(36)
+	,v_DivisionID NATIONAL VARCHAR(36)
+	,v_DepartmentID NATIONAL VARCHAR(36)
+	,v_PurchaseNumber NATIONAL VARCHAR(36)
+	,INOUT v_NewPaymentID NATIONAL VARCHAR(36) ,INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+/*  
+Name of stored procedure: Payment_CreateFromRMA  
+Method:   
+ Creates payment from RMA  
+  
+Date Created: EDE - 07/28/2015  
+  
+Input Parameters:  
+  
+ @CompanyID NVARCHAR(36)   - the ID of the company  
+ @DivisionID NVARCHAR(36)  - the ID of the division  
+ @DepartmentID NVARCHAR(36)  - the ID of the department  
+ @PurchaseNumber NVARCHAR(36)  - the number of RMA  
+  
+Output Parameters:  
+  
+ NONE  
+  
+Called From:  
+  
+ RMAReceiving_Post  
+  
+Calls:  
+  
+ GetNextEntityID, Error_InsertError, Error_InsertErrorDetail  
+  
+Last Modified:   
+  
+Last Modified By:   
+  
+Revision History:   
+  
+*/
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+   DECLARE v_PaymentID NATIONAL VARCHAR(36);
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_PaymentTotal DECIMAL(19,4);
+   DECLARE v_CustomerID NATIONAL VARCHAR(36);
+   DECLARE v_PaymentDate DATETIME;
+   DECLARE v_DocumentDate DATETIME;
+   DECLARE v_GLBankAccount NATIONAL VARCHAR(36);
+
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+   select   IFNULL(Total,0) -IFNULL(AmountPaid,0), VendorID, IFNULL(PaymentDate,CURRENT_TIMESTAMP), IFNULL(PaymentDate,CURRENT_TIMESTAMP) INTO v_PaymentTotal,v_CustomerID,v_PaymentDate,v_DocumentDate FROM PurchaseHeader WHERE CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND PurchaseNumber = v_PurchaseNumber;
+
+   START TRANSACTION;
+
+-- get the payment number  
+   SET @SWV_Error = 0;
+   CALL GetNextEntityID2(v_CompanyID,v_DivisionID,v_DepartmentID,'NextVoucherNumber',v_PaymentID, v_ReturnStatus);
+
+   IF @SWV_Error <> 0
+   OR v_ReturnStatus = -1 then
+
+      SET v_ErrorMessage = 'GetNextEntityID call failed';
+      ROLLBACK;
+
+-- the error handler  
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Payment_CreateFromRMA',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseNumber);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   select   BankAccounts.GLBankAccount INTO v_GLBankAccount FROM Companies
+   INNER JOIN BankAccounts ON Companies.CompanyID = BankAccounts.CompanyID
+   AND Companies.DivisionID = BankAccounts.DivisionID
+   AND Companies.DepartmentID = BankAccounts.DepartmentID WHERE Companies.CompanyID = v_CompanyID
+   AND Companies.DivisionID = v_DivisionID
+   AND Companies.DepartmentID = v_DepartmentID;
+
+-- Insert into Payment Header getting the information from the purchase order  
+   SET @SWV_Error = 0;
+   INSERT INTO PaymentsHeader(CompanyID
+	,DivisionID
+	,DepartmentID
+	,PaymentID
+	,PaymentTypeID
+	,CheckNumber
+	,VendorID
+	,PaymentDate
+	,Amount
+	,UnAppliedAmount
+	,PaymentStatus
+	,CurrencyID
+	,CurrencyExchangeRate
+	,CreditAmount
+	,Posted
+	,Cleared
+	,GLBankAccount
+	,InvoiceNumber
+	,DueToDate
+	,PurchaseDate)
+   SELECT v_CompanyID
+	,v_DivisionID
+	,v_DepartmentID
+	,v_PaymentID
+	,'Check'
+	,CheckNumber
+	,VendorID
+	,now()
+	,v_PaymentTotal
+	,0
+	,'Posted'
+	,CurrencyID
+	,CurrencyExchangeRate
+	,v_PaymentTotal
+	,1
+	,0
+	,v_GLBankAccount
+	,v_PurchaseNumber
+	,PurchaseDueDate
+	,PurchaseDate
+   FROM PurchaseHeader
+   WHERE CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND PurchaseNumber = v_PurchaseNumber;
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'Insert into PaymentsHeader failed';
+      ROLLBACK;
+
+-- the error handler  
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Payment_CreateFromPurchase',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseNumber);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- insert into receipts detail getting data from the orer details  
+   SET @SWV_Error = 0;
+   INSERT INTO PaymentsDetail(CompanyID
+	,DivisionID
+	,DepartmentID
+	,PaymentID
+	,PayedID
+	,DocumentNumber
+	,DocumentDate
+	,DiscountTaken
+	,WriteOffAmount
+	,AppliedAmount
+	,Cleared
+	,GLExpenseAccount)
+   SELECT CompanyID
+	,DivisionID
+	,DepartmentID
+	,v_PaymentID
+	,v_CustomerID
+	,v_PurchaseNumber
+	,v_PaymentDate
+	,DiscountPerc
+	,0
+	,Total
+	,NULL
+	,GLPurchaseAccount
+   FROM PurchaseDetail
+   WHERE CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND PurchaseNumber = v_PurchaseNumber;
+
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'Insert into PaymentsDetail failed';
+      ROLLBACK;
+
+-- the error handler  
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Payment_CreateFromPurchase',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseNumber);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   SET v_NewPaymentID = v_PaymentID;
+
+-- Everything is OK  
+   COMMIT;
+
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+
+-- if an error occured in the procedure this code will be executed  
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.  
+-- The company, division, department informations are inserted in the ErrorLog table  
+-- along with information about the name of the procedure and the error message and an errorID is obtained.  
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table  
+-- (about the other parameters the name and the value are inserted).  
+   ROLLBACK;
+
+-- the error handler  
+   CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Payment_CreateFromPurchase',v_ErrorMessage,
+   v_ErrorID);
+
+   CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'PurchaseNumber',v_PurchaseNumber);
+
+   SET SWP_Ret_Value = -1;
+END;
 
 //
 
