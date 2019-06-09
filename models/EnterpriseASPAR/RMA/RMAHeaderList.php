@@ -1371,7 +1371,7 @@ class RMAHeaderApproveList extends RMAHeaderList{
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND (IFNULL(PurchaseHeader.Approved, 0) = 0) AND (PurchaseHeader.PurchaseNumber <> 'DEFAULT') AND (IFNULL(PurchaseHeader.Posted, 0) = 1)";
     public $dashboardTitle ="Approve RMA's";
     public $breadCrumbTitle ="Approve RMA's";
-    public $modes = ["grid", "print"]; // list of enabled modes
+    public $modes = ["grid", "print", "view"]; // list of enabled modes
     public $features = ["selecting"]; //list enabled features
 
     public function Approve(){
@@ -1414,27 +1414,53 @@ class RMAHeaderReceiveList extends RMAHeaderList{
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND (Posted = 1 AND Approved = 1 AND IFNULL(Received,0) = 0 AND PurchaseNumber <> 'DEFAULT')";
     public $dashboardTitle ="Receive RMA's";
     public $breadCrumbTitle ="Receive RMA's";
-    public $modes = ["grid", "view"];
+    public $modes = ["grid"];
+
+    public $editCategories = [
+		"Main" => [
+            "PurchaseNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "disabledEdit" => "true",
+                "disabledNew" => "true",
+                "defaultValue" => "(new)",
+                "dirtyAutoincrement" => "true"
+            ],
+            "Received" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"ReceivedDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+                ],
+			"TrackingNumber" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"RecivingNumber" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			]
+        ]
+    ];
 
     public function RMA_Split() {
         $user = Session::get("user");
 
-        $recalc = new recalcHelper;
+        DB::statement("CALL RMA_Split('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
 
-        if ($recalc->lookForProcedure("RMA_Split")) {
-            DB::statement("CALL RMA_Split('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
+        $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');
 
-            $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');
-
-            if($result[0]->SWP_RET_VALUE == -1) {
-                http_response_code(400);
-                echo $result[0]->Success;
-            } else
-                echo "ok";
-        } else {
-            http_response_code(500);
-            echo "Procedure not found";
-        }
+        if($result[0]->SWP_RET_VALUE == -1) {
+            http_response_code(400);
+            echo $result[0]->Success;
+        } else
+            echo "ok";
     }
 
     public function RMAReceiving_Post() {

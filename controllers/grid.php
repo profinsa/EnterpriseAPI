@@ -299,10 +299,10 @@ class controller{
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
-                    "EnterpriseASPAR/RMA/RMAHeaderReceiveList/" => [
+                    /*                    "EnterpriseASPAR/RMA/RMAHeaderReceiveList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
+                        ],*/
                     "EnterpriseASPAR/RMA/RMAHeaderReceivedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
