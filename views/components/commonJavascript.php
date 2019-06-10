@@ -62,6 +62,9 @@
      makeAutoreportsViewLink : function(type, name, id, title, options){
          return "index.php?page=autoreports&getreport=" + name + "&type=" + type + "&title=" + title + "&" + options;
      },
+     makeDocreportsLink : function(type, id){
+        return "index.php?page=docreports&type=" + type + "&id=" + id; 
+     },
      makeReportsEngineLink : function(report){
          return  "index.php#/?page=grid&action=Reports/Autoreport/GenericReportDetail&mode=new&category=Main&item=" + generateKeyString() + "&report=" + report;
      }

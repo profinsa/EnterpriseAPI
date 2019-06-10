@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 27/03/2019
+  Last Modified: 10/06/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -130,7 +130,8 @@ class PaymentsHeaderList extends gridDataSource{
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
-                "inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getCurrencyTypes",
                 "defaultValue" => ""
             ],
             "CurrencyExchangeRate" => [
@@ -985,10 +986,45 @@ class PaymentsHeaderIssueCreditMemoList extends PaymentsHeaderList{
 class PaymentsHeaderIssueList extends PaymentsHeaderList{
     public $tableName = "paymentsheader";
     public $gridConditions = "(IFNULL(ApprovedForPayment,0) = 1 AND IFNULL(CheckPrinted,0) = 0 AND IFNULL(Posted,0) = 1 AND IFNULL(Paid,0) = 0)";
-    public $dashboardTitle ="Issue Vouchers";
-    public $breadCrumbTitle ="Issue Vouchers";
+    public $dashboardTitle ="Issue Payments for Vouchers";
+    public $breadCrumbTitle ="Issue Payments for Vouchers";
     public $modes = ["grid"];
     public $features = ["selecting"];
+
+    public function Process(){
+        $user = Session::get("user");
+
+        //PaymentCheck_CheckRun
+        $PaymentIds = explode(",", $_POST["PaymentIDs"]);
+        $success = true;
+        foreach($PaymentIds as $PaymentId){
+            DB::statement("CALL PaymentCheck_PrintInsert(?, ?, ?, ?, ?,@SWP_RET_VALUE)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $user["EmployeeID"], $PaymentId]);
+
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
+        }
+
+        if($success){
+            foreach($PaymentIds as $PaymentId){
+                DB::statement("CALL PaymentCheck_Run(?, ?, ?, ?,@SWP_RET_VALUE)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $user["EmployeeID"]]);
+
+                $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+                if($result[0]->SWP_RET_VALUE == -1)
+                    $success = false;
+            }
+
+            if($success)
+                echo "ok";
+            else{
+                http_response_code(400);
+                echo "Processing Check failed";
+            }
+        }else{
+            http_response_code(400);
+            echo "Processing Check failed";
+        }
+    }
 }
 ?>
 
