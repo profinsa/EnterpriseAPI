@@ -45,24 +45,48 @@ class docReportsData extends docReportsBase{
         "Zip" => "VendorZip",
         "Country" => "VendorCountry"
     ];
+
     public function __construct($id){
         $this->id = $id;
-    }
-
-    public function getCurrencySymbol(){
-        $user = Session::get("user");
-
-        $result =  DB::select("select I.CurrencyID, C.CurrenycySymbol from InvoiceHeader I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.InvoiceNumber='" . $this->id . "' and I.CompanyID='" . $user["CompanyID"] . "' and I.DivisionID='" . $user["DivisionID"] . "' and I.DepartmentID='" . $user["DepartmentID"] . "'", array());
-
-        return [
-            "id" => count($result) ? $result[0]->CurrencyID : "USD",
-            "symbol" => count($result) ? $result[0]->CurrenycySymbol : "$"
-        ];
     }
 
     public function getHeaderData(){
         $user = Session::get("user");
 
+        
+        $payment = DB::select("SELECT * from paymentsheader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PaymentID='" . $this->id . "'", array())[0];
+
+        $conn =  DB::connection()->getPdo();
+        $stmt = $conn->prepare("CALL RPTCheck('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}',  '{$user["EmployeeID"]}', @ret)");
+        $rs = $stmt->execute();
+        $result = $stmt->fetchAll($conn::FETCH_ASSOC);
+
+        if(!count($result))
+            return false;
+        
+        $meta = [];
+        $mcounter = 0;
+        foreach($result[0] as $key=>$value){
+            $meta[$key] = $stmt->getColumnMeta($mcounter++);
+        }
+        
+        //formatting data
+        foreach($result as $rkey=>$row){
+            foreach($row as $key=>$value){
+                if($meta[$key]["native_type"] == "NEWDECIMAL" || $meta[$key]["native_type"] == "DECIMAL"){
+                    $afterdot = 2;
+                    if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts))
+                        $result[$rkey][$key] = numberToStr($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
+                }
+                if($meta[$key]["native_type"] == "TIMESTAMP" || $meta[$key]["native_type"] == "DATETIME")
+                    if($value != "")
+                        $result[$rkey][$key] = date("m/d/y", strtotime($value));
+            }
+        }
+
+        echo json_encode($result);
+        
+        //        return $result;
         $result = DB::select("SELECT * from paymentsheader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PaymentID='" . $this->id . "'", array());
 
         $result = $result[0];
