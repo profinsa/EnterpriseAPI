@@ -1285,7 +1285,7 @@ class PurchaseHeaderList extends gridDataSource{
          $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
              http_response_code(400);
-             $result[0]->PostingResult;
+             echo $result[0]->PostingResult;
          } else 
             echo "ok";
     }
