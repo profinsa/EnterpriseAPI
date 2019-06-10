@@ -84,7 +84,8 @@ class controller{
             "receiving" => "invoice",
             "customertransactions" => "customertransactions",
             "customerstatements" => "customerstatements",
-            "payment" => "payment"
+            "payment" => "payment",
+            "apcheck" => "apcheck"
             
         ];
 

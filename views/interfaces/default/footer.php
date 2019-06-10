@@ -1,3 +1,4 @@
+<script src="assets/js/number2words.js"></script>
 <!-- Menu Plugin JavaScript -->
 <script src="dependencies/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
 <!--slimscroll JavaScript -->
