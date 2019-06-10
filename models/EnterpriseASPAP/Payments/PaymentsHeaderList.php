@@ -1025,6 +1025,20 @@ class PaymentsHeaderIssueList extends PaymentsHeaderList{
             echo "Processing Check failed";
         }
     }
+
+    public function PaymentCheck_PostAllChecks(){
+        $user = Session::get("user");
+
+        DB::statement("CALL PaymentCheck_PostAllChecks(?, ?, ?, ?, @SWP_RET_VALUE)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $user["EmployeeID"]]);
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE > -1)
+            echo $result[0]->SWP_RET_VALUE;
+        else{
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+        }
+    }
 }
 ?>
 
