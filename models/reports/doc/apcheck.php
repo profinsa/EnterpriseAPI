@@ -30,11 +30,13 @@ function formatDatetime($date){
 
 require __DIR__ . "/docreportsbase.php";
 class docReportsData extends docReportsBase{
+    public $tableName = "paymentsheader";
+    public $keyField = "PaymentID";
     protected $id = ""; //invoice number
     public $headTableOne = [
         "NO." => "CheckNumber",
-        "Date" => "DueToDate",
-        "$" => "Amount"
+        "Date" => "CheckDate",
+        "$" => "CheckAmount"
     ];
     public $vendorAddress = [
         "Address 1" => "VendorAddress1",
@@ -84,7 +86,7 @@ class docReportsData extends docReportsBase{
             }
         }
 
-        echo json_encode($result);
+        /*        //echo json_encode($result);
         
         //        return $result;
         $result = DB::select("SELECT * from paymentsheader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PaymentID='" . $this->id . "'", array());
@@ -94,11 +96,11 @@ class docReportsData extends docReportsBase{
         $result->PaymentDate = formatDatetime($result->PaymentDate);
         $result->DueToDate = formatDatetime($result->DueToDate);
         $result->Amount =  formatCurrency($result->Amount);
-
-        return $result;
+        */
+        return $result[0];
     }
 
-    public function getDetailData($vendorID){
+    public function getDetailData(){
         $user = Session::get("user");
         
         $payment = DB::select("SELECT * from paymentsheader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PaymentID='" . $this->id . "'", array())[0];
@@ -130,24 +132,24 @@ class docReportsData extends docReportsBase{
                         $result[$rkey][$key] = date("m/d/y", strtotime($value));
             }
         }
-        
+
         return $result;
     }
 
-    public function getBankAccount($GLBankAccount) {
+    public function getBankAccount($BankAccountNumber) {
         $user = Session::get("user");
 
-        $result = DB::select("SELECT * from bankaccounts WHERE GLBankAccount='" . $GLBankAccount . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = DB::select("SELECT * from bankaccounts WHERE BankAccountNumber='" . $BankAccountNumber . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
-        // echo json_encode($result), $GLBankAccount;
+        // echo json_encode($result), $BankAccountNumber;
 
         return $result[0];
     }
 
-    public function getBankBalance($GLBankAccount) {
+    public function getBankBalance($BankAccountNumber) {
         $user = Session::get("user");
 
-        $result = DB::select("SELECT * from bankreconciliationsummary WHERE GLBankAccount='" . $GLBankAccount . "' AND CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = DB::select("SELECT * from bankreconciliationsummary WHERE BankAccountNumber='" . $BankAccountNumber . "' AND CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         return formatCurrency($result[0]->BankRecEndingBalance);
     }
@@ -155,7 +157,7 @@ class docReportsData extends docReportsBase{
     public function getVendorAddress($vendorID){
         $user = Session::get("user");
  
-        $result = DB::select("SELECT VendorID,VendorAddress1,VendorAddress2 ,VendorAddress3 ,VendorCity ,VendorState ,VendorZip ,VendorCountry from vendorinformation WHERE VendorID='" . $vendorID . "' AND CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
+        $result = DB::select("SELECT VendorID,VendorAddress1,VendorAddress2 ,VendorAddress3 ,VendorCity ,VendorState ,VendorZip ,VendorCountry from vendorinformation WHERE VendorName='" . $vendorID . "' AND CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
 
         return $result[0];
     }

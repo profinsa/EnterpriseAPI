@@ -4,44 +4,46 @@
 <?php if($headerData == false):?>
     <b>There is no valid checks to print. Only payments having check numbers and valid bank accounts can be printed.</b><?php else: ?>
     <?php
-	$detailData = $data->getDetailData($headerData->VendorID);
+	$detailData = $data->getDetailData();
 	$user = $data->getUser();
-	if($headerData->GLBankAccount != '110000'){
-	    $bank = $data->getBankAccount($headerData->GLBankAccount);
-	    $balance = $data->getBankBalance($headerData->GLBankAccount);
+	if($headerData["BankAccountNumber"] != '110000'){
+	    $bank = $data->getBankAccount($headerData["BankAccountNumber"]);
+	    //	    $balance = $data->getBankBalance($headerData["BankAccountNumber"]);
+	    $balance = '0.00';
 	}else{
 	    $bank = '110000';
 	    $balance = '0.00';
 	}
-	$vendor = $data->getVendorAddress($headerData->VendorID);	
+//	echo json_encode($headerData);
+	$vendor = $data->getVendorAddress($headerData["VendorName"]);	
     ?>
     <div id="report" class="row">
 	<div class="col-md-12" style="padding:0px">
-	    <div class="row">
-		<div class="col-md-9 col-xs-9">
-		    <table class="col-md-12 col-xs-12">
-			<tr>
-			    <td rowspan="3" style="width:10%">
-				<img src="<?php echo  $user["company"]["CompanyLogoUrl"];?>">
-			    </td>
-			    <td style="width:90%; font-size:16pt; font-weight:bold;">
-				<?php echo  $user["company"]["CompanyName"];?>
-			    </td>
-			</tr>
-			<tr>
-			    <td style="width:90%">
-				<?php echo  $user["company"]["CompanyAddress1"] . ", " . $user["company"]["CompanyCity"] . ", " . $user["company"]["CompanyState"] . ", " . $user["company"]["CompanyZip"];?>
-			    </td>
-			</tr>
-			<tr>
-			    <td style="width:90%">
-				<?php echo  $user["company"]["CompanyPhone"] . ", " . $user["company"]["CompanyEmail"] . ", <span>" . $user["company"]["CompanyWebAddress"];?></span>
-			    </td>
-			</tr>
-		    </table>
-		</div>
+	    <!-- <div class="row">
+		 <div class="col-md-9 col-xs-9">
+		 <table class="col-md-12 col-xs-12">
+		 <tr>
+		 <td rowspan="3" style="width:10%">
+		 <img src="<?php echo  $user["company"]["CompanyLogoUrl"];?>">
+		 </td>
+		 <td style="width:90%; font-size:16pt; font-weight:bold;">
+		 <?php echo  $user["company"]["CompanyName"];?>
+		 </td>
+		 </tr>
+		 <tr>
+		 <td style="width:90%">
+		 <?php echo  $user["company"]["CompanyAddress1"] . ", " . $user["company"]["CompanyCity"] . ", " . $user["company"]["CompanyState"] . ", " . $user["company"]["CompanyZip"];?>
+		 </td>
+		 </tr>
+		 <tr>
+		 <td style="width:90%">
+		 <?php echo  $user["company"]["CompanyPhone"] . ", " . $user["company"]["CompanyEmail"] . ", <span>" . $user["company"]["CompanyWebAddress"];?></span>
+		 </td>
+		 </tr>
+		 </table>
+		 </div>
 
-	    </div>
+		 </div> -->
 	    <div class="row">
 		<div class="col-md-8">
 		    <div class="col-md-6 form-inline">
@@ -79,7 +81,7 @@
 					Pay to the Order of
 				    </label>
 				    <?php
-					echo $headerData->VendorID;
+					echo $headerData["VendorName"];
 				    ?>
 				</div>
 			    </div>
@@ -92,7 +94,7 @@
 					    </label>
 					</div>
 					<div class="col-md-2 style-5">
-					    <?php echo $headerData->$value; ?>
+					    <?php echo $headerData[$value]; ?>
 					</div>
 				    </div>
 				<?php endforeach; ?>
@@ -106,7 +108,7 @@
 			<div class="col-md-9" style="margin-left: 15px; height: 15px; border-bottom: solid black;">
 			</div>
 			<div class="col-md-2">
-			    <b>DOLLARS</b>
+			    <b><?php echo strtoupper($headerData["MajorUnits"]); ?></b>
 			</div>
 		    </div>
 		    <div class="row" style="margin-top: 20px">
@@ -330,7 +332,7 @@
 	</div>
     </div>
     <script>
-     var amount = "<?php echo $headerData->Amount; ?>";
+     var amount = "<?php echo $headerData["CheckAmount"]; ?>";
      var am = amount.replace(/\,/g,'').split('.');
      $('#towords').text(numberToWords.toWords(am[0]) + " and " + (am[1] ? am[1] + "/100" : "00/100"));
      $('.towords').text(numberToWords.toWords(am[0]) + " and " + (am[1] ? am[1] + "/100" : "00/100"));
