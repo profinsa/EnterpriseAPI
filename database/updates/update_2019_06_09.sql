@@ -2640,7 +2640,7 @@ VALUES(v_CompanyID,
          LEAVE WriteError;
       end if;
       SET @SWV_Error = 0;
-      CALL CreditMemo_Post(v_CompanyID,v_DivisionID,v_DepartmentID,v_CreditMemoNumber, @postingResult v_ReturnStatus);
+      CALL CreditMemo_Post(v_CompanyID,v_DivisionID,v_DepartmentID,v_CreditMemoNumber, @postingResult, v_ReturnStatus);
       IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 
          SET v_ErrorMessage = 'CreditMemo_Post call failed';
