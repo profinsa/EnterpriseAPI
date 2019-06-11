@@ -1438,10 +1438,12 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
 		"Main" => [
             "PurchaseNumber" => [
                 "dbType" => "varchar(36)",
+                "disabledEdit" => true,
                 "inputType" => "text"
             ],
             "Received" => [
                 "dbType" => "tinyint(1)",
+                "disabledEdit" => true,
                 "inputType" => "checkbox"
             ],
             "ReceivedDate" => [

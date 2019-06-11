@@ -991,6 +991,53 @@ class PaymentsHeaderIssueList extends PaymentsHeaderList{
     public $modes = ["grid"];
     public $features = ["selecting"];
 
+    public $editCategories = [
+        "Main" => [
+            "PaymentID" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "disabledEdit" => true,
+            ],
+            "InvoiceNumber" => [
+                "dbType" => "varchar(36)",
+                "disabledEdit" => true,
+                "inputType" => "text"
+            ],
+            "PaymentTypeID" => [
+                "dbType" => "varchar(36)",
+                "disabledEdit" => true,
+                "inputType" => "text"
+            ],
+            "CheckNumber" => [
+                "dbType" => "varchar(20)",
+                "disabledEdit" => true,
+                "inputType" => "text"
+            ],
+            "VendorID" => [
+                "dbType" => "varchar(50)",
+                "disabledEdit" => true,
+                "inputType" => "text"
+            ],
+            "PaymentDate" => [
+                "dbType" => "datetime",
+                "format" => "{0:d}",
+                "disabledEdit" => true,
+                "inputType" => "datetime"
+            ],
+            "CurrencyID" => [
+                "dbType" => "varchar(3)",
+                "disabledEdit" => true,
+                "inputType" => "text"
+            ],
+            "Amount" => [
+                "dbType" => "decimal(19,4)",
+                "formatFunction" => "currencyFormat",
+                "inputType" => "text"
+            ]
+        ]
+    ];
+
+    
     public function Process(){
         $user = Session::get("user");
 
@@ -1038,6 +1085,19 @@ class PaymentsHeaderIssueList extends PaymentsHeaderList{
             http_response_code(400);
             echo $result[0]->SWP_RET_VALUE;
         }
+    }
+
+    public function Payment_Split(){
+        $user = Session::get("user");
+
+        DB::statement("CALL Payment_Split(?, ?, ?, ?, ?,@SWP_RET_VALUE)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["PaymentID"], $_POST["Amount"]]);
+
+        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+        if($result[0]->SWP_RET_VALUE == -1){
+            http_response_code(400);
+            echo "Payment spliting failed";
+        }else
+             echo "ok";
     }
 }
 ?>
