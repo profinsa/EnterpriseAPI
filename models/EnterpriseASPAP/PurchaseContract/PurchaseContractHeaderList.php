@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 12/11/2018
+  Last Modified: 12/06/2019
   Last Modified by Nikita Zaharov
 */
 
@@ -901,7 +901,8 @@ class gridData extends gridDataSource{
 			],
 			"EnteredBy" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
 				"defaultValue" => ""
 			],
 			"Signature" => [
@@ -977,15 +978,17 @@ class gridData extends gridDataSource{
             ],
             "OrderedBy" => [
                 "dbType" => "varchar(15)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getPayrollEmployees",
                 "disabledEdit" => "true"
             ],
             "VendorID" => [
                 "dbType" => "varchar(50)",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getVendors",
                 "required" => "true",
                 "defaultOverride" => true,
-                "defaultValue" => "DEFAULT",
-                "inputType" => "text"
+                "defaultValue" => "DEFAULT"
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",
@@ -1228,7 +1231,7 @@ class gridData extends gridDataSource{
     public $customerField = "VendorID";
     
     public $detailTable = [
-        "viewPath" => "AccountsPayable/DebitMemos/ViewDebitMemoDetail",
+        "viewPath" => "AccountsPayable/PurchaseContracts/PurchaseContractsDetail",
         "newKeyField" => "PurchaseContractNumber",
         "keyFields" => ["PurchaseContractNumber", "ItemID"],
     ];
@@ -1489,34 +1492,6 @@ class gridData extends gridDataSource{
         $result = $GLOBALS["DB"]::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
-        
-        return $result;
-    }
-
-    public function getVendors(){
-        $user = $_SESSION["user"];
-        $keyFields = "";
-        $fields = [];
-
-        foreach($this->vendorIdFields as $key){
-            switch($key){
-            case "CompanyID" :
-                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
-                break;
-            case "DivisionID" :
-                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
-                break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
-            }
-        }
-        if($keyFields != "")
-            $keyFields = substr($keyFields, 0, -5);
-
-        $result = $GLOBALS["DB"]::select("SELECT * from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
-        $result = json_decode(json_encode($result), true);
         
         return $result;
     }
