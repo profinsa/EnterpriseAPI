@@ -283,7 +283,7 @@ class recalcHelper{
         DB::update("UPDATE OrderHeader set SubTotal='" . $SubTotal . "', DiscountAmount='" . $DiscountAmount . "', TaxableSubTotal='" . $TotalTaxable . "', BalanceDue='" . round($Total - $orderHeader->AmountPaid, $Precision) ."', TaxAmount='" .($TaxAmount + $HeaderTaxAmount) . "', Total='" . $Total . "' WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND OrderNumber='" . $orderNumber ."'");
     }
 
-    public function recalcPurcahseDetail($currencyPrecision, $purchaseDetail) {
+    public function recalcPurchaseDetail($currencyPrecision, $purchaseDetail) {
         $DiscountPerc = $purchaseDetail->DiscountPerc;
         $Qty = $purchaseDetail->OrderQty;
         $Taxable = $purchaseDetail->Taxable;
@@ -315,7 +315,7 @@ class recalcHelper{
         ];
     }
 
-    public function purchaseRecal(){
+    public function purchaseRecalc(){
         $user = Session::get("user");
 
         $purchaseNumber = $_POST["PurchaseNumber"];
@@ -338,7 +338,7 @@ class recalcHelper{
         $purchaseDetails = DB::select("SELECT * from PurchaseDetail WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PurchaseNumber='" . $purchaseNumber . "'", array());
 
         foreach($purchaseDetails as $purchaseDetail) {
-            $detailResult = $this->recalcPurcahseDetail($Precision, $purchaseDetail);
+            $detailResult = $this->recalcPurchaseDetail($Precision, $purchaseDetail);
             $SubTotal += $detailResult["SubTotal"];
             $Total += $detailResult["Total"];
             $TotalTaxable += $detailResult["ItemTotalTaxable"];

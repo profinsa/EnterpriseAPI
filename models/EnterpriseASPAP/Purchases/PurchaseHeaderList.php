@@ -1189,7 +1189,7 @@ class PurchaseHeaderList extends gridDataSource{
         }
     }
 
-    public function recalcPurcahseDetail($currencyPrecision, $purchaseDetail) {
+    public function recalcPurchaseDetail($currencyPrecision, $purchaseDetail) {
         $DiscountPerc = $purchaseDetail->DiscountPerc;
         $Qty = $purchaseDetail->OrderQty;
         $Taxable = $purchaseDetail->Taxable;
@@ -1244,7 +1244,7 @@ class PurchaseHeaderList extends gridDataSource{
         $purchaseDetails = DB::select("SELECT * from PurchaseDetail WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PurchaseNumber='" . $purchaseNumber . "'", array());
 
         foreach($purchaseDetails as $purchaseDetail) {
-            $detailResult = $this->recalcPurcahseDetail($Precision, $purchaseDetail);
+            $detailResult = $this->recalcPurchaseDetail($Precision, $purchaseDetail);
             $SubTotal += $detailResult["SubTotal"];
             $Total += $detailResult["Total"];
             $TotalTaxable += $detailResult["ItemTotalTaxable"];

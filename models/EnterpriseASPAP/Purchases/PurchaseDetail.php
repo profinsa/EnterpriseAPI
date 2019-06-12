@@ -25,10 +25,11 @@
   Calls:
   MySql Database
 
-  Last Modified: 17/04/2019
+  Last Modified: 12/06/2019
   Last Modified by: Zaharov Nikita
 */
 
+require "./models/helpers/recalc.php";
 require "./models/gridDataSource.php";
 
 class gridData extends gridDataSource{
@@ -134,6 +135,7 @@ class gridData extends gridDataSource{
             "OrderQty" => [
                 "dbType" => "float",
                 "inputType" => "text",
+                "onchange" => "recalcDetailClient",
                 "defaultValue" => ""
             ],
             "ItemUOM" => [
@@ -289,5 +291,21 @@ class gridData extends gridDataSource{
         "DetailMemo4" => "Memo 4",
         "DetailMemo5" => "Memo 5"
     ];
+
+    public function recalcForClient(){
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+        
+        $header = DB::select("select * from purchaseheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND PurchaseNumber", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["PurchaseNumber"]])[0];
+        $Precision = $recalc->getPrecision($header->CurrencyID);
+
+        foreach($_POST as &$field)
+            $field = str_replace(",", "", $field);
+        
+        $detailResult = $recalc->recalcPurchaseDetail($Precision, (object)$_POST);
+
+        echo json_encode($detailResult, JSON_PRETTY_PRINT);
+    }
 }
 ?>
