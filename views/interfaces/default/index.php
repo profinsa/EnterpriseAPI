@@ -176,12 +176,13 @@
 	<script>
 	 var startSessionTime = (new Date()).getTime();
 	 var sessionTimer = setInterval(function(){
-	     var timeoutSeconds = <?php echo intval($GLOBALS["config"]["timeoutMinutes"] * 60); ?>,
+	     var timeoutSeconds = <?php echo intval(($GLOBALS["config"]["timeoutMinutes"] + $GLOBALS["config"]["warningMinutes"]) * 60); ?>,
+		 warningSeconds = <?php echo intval($GLOBALS["config"]["warningMinutes"] * 60); ?>,
 		 message = "<?php echo $translation->translateLabel($GLOBALS["config"]["timeoutWarning"]); ?>";
 
 	     if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000){
 		 window.location = "index.php?page=login";
-	     }else if((new Date()).getTime() > startSessionTime + (timeoutSeconds - 120)*1000){
+	     }else if((new Date()).getTime() > startSessionTime + (timeoutSeconds - warningSeconds)*1000){
 		 //clearInterval(sessionTimer);
 		 alert(message);
 		 if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000)
