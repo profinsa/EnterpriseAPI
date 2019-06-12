@@ -1306,6 +1306,10 @@ EOF;
         return $this->helperForDropdownToGet("inventorypricingcode", "ItemPricingCode", "ItemPricingCode");
     }
     
+    public function getPayrollEmployeesTaskTypes(){
+        return $this->helperForDropdownToGet("payrollemployeestasktype", "TaskTypeID", "TaskTypeID");
+    }
+    
     public function Inventory_PopulateItemInfo(){
         $user = Session::get("user");
 
