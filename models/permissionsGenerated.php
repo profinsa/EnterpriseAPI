@@ -1509,8 +1509,10 @@ public $permissions = [
     ],
     "PayrollEmployeesTaskHeader" => [
         "select" => "PRView|EMView|ADView|ADSetup",
-        "update" => "EMEdit|ADSetup",
-        "insert" => "EMAdd|ADSetup",
+        "update" => "any",
+        "insert" => "any",
+        //"update" => "EMEdit|ADSetup",
+        //"insert" => "EMAdd|ADSetup",
         "delete" => "EMDelete|ADSetup",
     ],
     "PayrollEmployeesTaskPriority" => [
