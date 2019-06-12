@@ -17,8 +17,12 @@
 		<div>
 		    <div>
 			<script>
+			 var ordersByDate = {};
 			 function calendarOnSelect(start, end){
-			     location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + datetimeToISO(start._d);
+			     if(ordersByDate.hasOwnProperty(datetimeToISO(start._d)))
+				 location.href = "<?php echo $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders"); ?>" + "&ShipDate=" + datetimeToISO(start._d);
+			     else
+				 location.href = "<?php echo $linksMaker->makeGridLink("Payroll/EmployeeSetup/ViewTaskList"); ?>" + "&from=" + datetimeToISO(start._d);
 			     //     console.log(start._d,end);
 			 }			
 			 function calendarOnClick(calEvent, jsEvent, view){
@@ -44,6 +48,7 @@
 				     start : ind,
 				     end : ind
 				 });
+			     ordersByDate = ordersCounters;
 			     return orders;
 			 }
 			</script>
