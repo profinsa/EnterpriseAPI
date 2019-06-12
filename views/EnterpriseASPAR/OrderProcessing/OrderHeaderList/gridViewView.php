@@ -292,7 +292,7 @@
 		?>
 	    <?php endif; ?>
 	    <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>">
-		<?php echo $translation->translateLabel("Cancel"); ?>
+		<?php echo $translation->translateLabel("Exit"); ?>
 	    </a>
 	</div>
     </div>

@@ -1,19 +1,19 @@
 <div class="row bg-title" style="margin-bottom: 15px; margin-top:20px;">
     <div class="col-md-8">
-	<div class="col-md-6 page-title" style="display: inline-block; float: left; font-size:23pt; font-weight:500;"><?php echo $scope->dashboardTitle . '  -  ' . $user["EmployeeUserName"] . ' '. $user["EmployeeName"]; ?>
+	<div class="col-md-12 page-title" style="display: inline-block; float: left; font-size:23pt; font-weight:500;"><?php echo $scope->dashboardTitle . '  -  ' . $user["EmployeeUserName"] . ' '. $user["EmployeeName"]; ?>
 	    <span id="MyFavorit" style="margin-top: 7px">
 	    </span>
-	</div>
 	<?php if(isset($ascope) && key_exists("mode", $ascope) && isset($data) && method_exists($data, "lockedBy") &&  $ascope["mode"] == "view"): ?>
 	    <?php
 		$lockedBy = $data->lockedBy($ascope["item"]);
 	    ?>
 	    <?php if($lockedBy): ?>
-		<div class="col-md-6page-title" style="display: inline-block; float: right; color: red; font-size:12pt; font-weigth:400; margin-top:10px">
+		<span class="page-title" style="display: inline-block; float: right; color: red; font-size:12pt; font-weigth:400; margin-top:10px">
 		    Locked By <?php echo $lockedBy->LockedBy; ?> at <?php echo $lockedBy->LockTS; ?>
-		</div>
+		</span>
 	    <?php endif; ?>
 	<?php endif; ?>
+	</div>
     </div>
     <div class="col-md-4 pull-right" style="text-align: right">
 	<ol class="breadcrumb" style="margin-top:10px; padding-top:0px; padding-bottom:0px;">
