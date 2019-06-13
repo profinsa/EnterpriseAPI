@@ -61,9 +61,9 @@
 	    </li>
 	    <li class="right-side-toggsle">
 		<a class="waves-effect waves-light" href="javascript:void(0)">
-		    <i class="ti-plus" onclick="zoomin();"></i>
-		    <cpan id="zoomvalue">100%</cpan>
 		    <i class="ti-minus" onclick="zoomout();"></i>
+		    <cpan id="zoomvalue">100%</cpan>
+		    <i class="ti-plus" onclick="zoomin();"></i>
 		</a>
 	    </li>
 	    <li class="right-side-toggle">
@@ -105,15 +105,23 @@
 	  });
  });
 
- var zoomvalue = 100;
+ var zoomvalue = localStorage.getItem("currentZoom");
+ if(zoomvalue){
+     $('#zoomvalue').html(zoomvalue +'%');
+     $('body').css('zoom', zoomvalue + '%');
+ }else
+ zoomvalue = 100;
+
  function zoomin(){
      zoomvalue += 10;
+     localStorage.setItem("currentZoom", zoomvalue);
      $('#zoomvalue').html(zoomvalue +'%');
      $('body').css('zoom', zoomvalue + '%');
  }
 
  function zoomout(){
      zoomvalue -= 10;
+     localStorage.setItem("currentZoom", zoomvalue);
      $('#zoomvalue').html(zoomvalue +'%');
      $('body').css('zoom', zoomvalue + '%');
  }
