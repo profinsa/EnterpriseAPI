@@ -30,6 +30,8 @@
 */
 
 require "./models/gridDataSource.php";
+require "./models/helpers/recalc.php";
+
 class gridData extends gridDataSource{
 	public $tableName = "purchasecontractheader";
 	public $dashboardTitle ="View Purchase Contracts";
@@ -1602,6 +1604,16 @@ class gridData extends gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
         
         $GLOBALS["DB"]::delete("DELETE from purchasecontractdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
+    }
+
+        public function Recalc() {
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+
+        $recalc->recalcPurchaseContract(Session::get("user"), $_POST["PurchaseNumber"]);
+
+        echo "ok";
     }
 }
 ?>

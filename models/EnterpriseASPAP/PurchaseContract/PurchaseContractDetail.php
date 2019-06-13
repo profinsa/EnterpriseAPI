@@ -148,6 +148,7 @@ class gridData extends gridDataSource{
             "OrderQty" => [
                 "dbType" => "float",
                 "inputType" => "text",
+                "onchange" => "recalcDetailClient",
                 "defaultValue" => ""
             ],
             "ItemUOM" => [

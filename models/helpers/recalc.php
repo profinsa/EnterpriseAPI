@@ -369,6 +369,92 @@ class recalcHelper{
         DB::update("UPDATE PurchaseHeader set SubTotal='" . $SubTotal . "', DiscountAmount='" . $DiscountAmount . "', TaxableSubTotal='" . $TotalTaxable . "', BalanceDue='" . round($Total - $purchaseHeader->AmountPaid, $Precision) ."', TaxAmount='" .($TaxAmount + $HeaderTaxAmount) . "', Total='" . $Total . "' WHERE PurchaseNumber='" . $purchaseNumber ."'");
     }
 
+    public function recalcPurchaseContractDetail($currencyPrecision, $purchaseContractDetail) {
+        $DiscountPerc = $purchaseContractDetail->DiscountPerc;
+        $Qty = $purchaseContractDetail->OrderQty;
+        $Taxable = $purchaseContractDetail->Taxable;
+        $TaxPercent = $purchaseContractDetail->TaxPercent;
+        $ItemUnitPrice = $purchaseContractDetail->ItemUnitPrice;
+        $SubTotal = round($Qty * $ItemUnitPrice, $currencyPrecision);
+
+        $ItemDiscountAmount = round($Qty * $ItemUnitPrice * $DiscountPerc / 100, $currencyPrecision);
+        $ItemTotal = round($Qty * $ItemUnitPrice * (100 - $DiscountPerc) / 100, $currencyPrecision);
+
+        if ($Taxable == "1") {
+            $ItemTaxAmount = round(($ItemTotal * $TaxPercent) / 100, $currencyPrecision);
+            $TaxAmount = $ItemTaxAmount;
+            $ItemTotalTaxable = $ItemTotal;
+            $ItemTotal += $ItemTaxAmount;
+        } else {
+            $TaxAmount = 0;
+            $ItemTotalTaxable = 0;
+        }
+
+        return [
+            "ItemTotalTaxable" => $ItemTotalTaxable,
+            "ItemDiscountAmount" => $ItemDiscountAmount,
+
+            // for row updating PurchaseContractDetail
+            "TaxAmount" => $TaxAmount,
+            "Total" => $ItemTotal,
+            "SubTotal" => $SubTotal
+        ];
+    }
+
+    public function recalcPurchaseContract(){
+        $user = Session::get("user");
+
+        $purchaseContractNumber = $_POST["PurchaseContractNumber"];
+
+        $result = DB::select("SELECT * from PurchaseContractHeader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PurchaseContractNumber='" . $purchaseContractNumber . "'", array());
+
+        $purchaseContractHeader = $result[0];
+
+        $SubTotal = 0;
+        $Total = 0;
+        $TotalTaxable = 0;
+        $TaxAmount = 0;
+        $HeaderTaxAmount = 0;
+        $ItemTotalTaxable = 0;
+        $ItemDiscountAmount = 0;
+        $DiscountAmount = 0;
+
+        $Precision = $this->getPrecision($purchaseContractHeader->CurrencyID);
+
+        $purchaseContractDetails = DB::select("SELECT * from PurchaseContractDetail WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PurchaseContractNumber='" . $purchaseContractNumber . "'", array());
+
+        foreach($purchaseContractDetails as $purchaseContractDetail) {
+            $detailResult = $this->recalcPurchaseContractDetail($Precision, $purchaseContractDetail);
+            $SubTotal += $detailResult["SubTotal"];
+            $Total += $detailResult["Total"];
+            $TotalTaxable += $detailResult["ItemTotalTaxable"];
+            $DiscountAmount += $detailResult["ItemDiscountAmount"];
+            $TaxAmount += $detailResult["TaxAmount"];
+
+            DB::update("UPDATE PurchaseContractDetail set TaxAmount='" . $detailResult["TaxAmount"] . "', Total='" . $detailResult["Total"] . "', SubTotal='" . $detailResult["SubTotal"] . "' WHERE PurchaseContractLineNumber='" . $purchaseContractDetail->PurchaseContractLineNumber ."'");
+        }
+
+
+        $Handling = $purchaseContractHeader->Handling;
+        $HeaderTaxPercent = $purchaseContractHeader->TaxPercent;
+
+
+        if($Handling > 0) {
+            $HeaderTaxAmount = round($Handling * $HeaderTaxPercent / 100, $Precision);
+        }
+
+        $Freight = $purchaseContractHeader->Freight;
+        $TaxFreight = $purchaseContractHeader->TaxFreight;
+
+        if (($Freight > 0) && ($TaxFreight == "1")) {
+            $HeaderTaxAmount = round($HeaderTaxAmount + $Freight * $HeaderTaxPercent / 100, $Precision);
+        }
+
+        $Total += ($Handling + $Freight + $HeaderTaxAmount);
+
+        DB::update("UPDATE PurchaseContractHeader set SubTotal='" . $SubTotal . "', DiscountAmount='" . $DiscountAmount . "', TaxableSubTotal='" . $TotalTaxable . "', BalanceDue='" . round($Total - $purchaseContractHeader->AmountPaid, $Precision) ."', TaxAmount='" .($TaxAmount + $HeaderTaxAmount) . "', Total='" . $Total . "' WHERE PurchaseContractNumber='" . $purchaseContractNumber ."'");
+    }
+
     public function invoiceDetailRecalc($header, $Precision, $detail, $HItemTotalTaxable, $HItemDicountAmount, $HAllowanceDiscountPercent){
         if($HAllowanceDiscountPercent < 0)
             $AllowanceDiscountPercent = $header->AllowanceDiscountPercent;

@@ -1,8 +1,6 @@
 update databaseinfo set value='2019_06_13',lastupdate=now() WHERE id='Version';
 
 DROP TABLE IF EXISTS `purchasecontractdetail`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `purchasecontractdetail` (
   `CompanyID` varchar(36) NOT NULL,
   `DivisionID` varchar(36) NOT NULL,
