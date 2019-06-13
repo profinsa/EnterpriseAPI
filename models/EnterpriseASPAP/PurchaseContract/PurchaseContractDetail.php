@@ -29,7 +29,9 @@
   Last Modified by Nikita Zaharov
 */
 
+require "./models/helpers/recalc.php";
 require "./models/gridDataSource.php";
+
 class gridData extends gridDataSource{
     public $tableName = "purchasecontractdetail";
     public $parentTableName = "purchasecontractheader";
@@ -333,5 +335,21 @@ class gridData extends gridDataSource{
         "GLControlNumber" => "GL Control Number",
         "PurchaseContractLineNumber" => "Purchase Contract Line Number"
     ];
+
+    public function recalcForClient(){
+        $user = Session::get("user");
+
+        $recalc = new recalcHelper;
+        
+        $header = DB::select("select * from purchasecontractheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND PurchaseContractNumber", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["PurchaseContractNumber"]])[0];
+        $Precision = $recalc->getPrecision($header->CurrencyID);
+
+        foreach($_POST as &$field)
+            $field = str_replace(",", "", $field);
+        
+        $detailResult = $recalc->recalcPurchaseContractDetail($Precision, (object)$_POST);
+
+        echo json_encode($detailResult, JSON_PRETTY_PRINT);
+    }
 }
 ?>
