@@ -60,7 +60,7 @@
 		</div>
 	    </li>
 	    <li class="right-side-toggsle">
-		<a class="waves-effect waves-light" href="javascript:void(0)">
+		<a class="waves-effect waves-light" href="javascript:void(0)" style="margin-top:-1px">
 		    <i class="ti-minus" onclick="zoomout();"></i>
 		    <cpan id="zoomvalue">100%</cpan>
 		    <i class="ti-plus" onclick="zoomin();"></i>
@@ -106,11 +106,12 @@
  });
 
  var zoomvalue = localStorage.getItem("currentZoom");
- if(zoomvalue){
-     $('#zoomvalue').html(zoomvalue +'%');
-     $('body').css('zoom', zoomvalue + '%');
- }else
- zoomvalue = 100;
+ if(zoomvalue == null)
+     zoomvalue = 90;
+ else
+     zoomvalue = parseInt(zoomvalue.toString());
+ $('#zoomvalue').html(zoomvalue +'%');
+ $('body').css('zoom', zoomvalue + '%');
 
  function zoomin(){
      zoomvalue += 10;

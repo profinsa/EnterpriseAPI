@@ -29,6 +29,13 @@
 	    </a>
 	</li>
 	<li class="top-bar-link2 float-right">
+	    <a href="javascript:void(0)" style="margin-top:8px; color:#555555;">
+		<cpan class="glyphicon glyphicon-minus" onclick="zoomout();"></cpan>
+		<cpan id="zoomvalue">100%</cpan>
+		<cpan class="glyphicon glyphicon-plus" onclick="zoomin();"></cpan>
+	    </a>
+	</li>
+	<li class="top-bar-link2 float-right">
 	    <div class="dropdown" style="margin-top:10px; margin-right:0px;">
 		<button class="btn btn-default dropdown-toggle" type="button" id="interfaceChooserDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px; color:#555555; border:0px; background-color:inherit;">
 		    <?php echo $scope->user["interfaceName"]; ?>
@@ -504,4 +511,25 @@
 	  });
  });
  
+ var zoomvalue = localStorage.getItem("currentZoom");
+ if(zoomvalue == null)
+     zoomvalue = 90;
+ else
+     zoomvalue = parseInt(zoomvalue.toString());
+ $('#zoomvalue').html(zoomvalue +'%');
+ $('body').css('zoom', zoomvalue + '%');
+
+ function zoomin(){
+     zoomvalue += 10;
+     localStorage.setItem("currentZoom", zoomvalue);
+     $('#zoomvalue').html(zoomvalue +'%');
+     $('body').css('zoom', zoomvalue + '%');
+ }
+
+ function zoomout(){
+     zoomvalue -= 10;
+     localStorage.setItem("currentZoom", zoomvalue);
+     $('#zoomvalue').html(zoomvalue +'%');
+     $('body').css('zoom', zoomvalue + '%');
+ }
 </script>
