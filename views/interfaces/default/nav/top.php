@@ -59,6 +59,13 @@
 		    </ul>
 		</div>
 	    </li>
+	    <li class="right-side-toggsle">
+		<a class="waves-effect waves-light" href="javascript:void(0)">
+		    <i class="ti-plus" onclick="zoomin();"></i>
+		    <cpan id="zoomvalue">100%</cpan>
+		    <i class="ti-minus" onclick="zoomout();"></i>
+		</a>
+	    </li>
 	    <li class="right-side-toggle">
 		<a class="waves-effect waves-light" href="javascript:void(0)">
 		    <i class="ti-settings"></i>
@@ -97,4 +104,17 @@
 	      console.log(data);
 	  });
  });
+
+ var zoomvalue = 100;
+ function zoomin(){
+     zoomvalue += 10;
+     $('#zoomvalue').html(zoomvalue +'%');
+     $('body').css('zoom', zoomvalue + '%');
+ }
+
+ function zoomout(){
+     zoomvalue -= 10;
+     $('#zoomvalue').html(zoomvalue +'%');
+     $('body').css('zoom', zoomvalue + '%');
+ }
 </script>
