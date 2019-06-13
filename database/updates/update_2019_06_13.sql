@@ -31,7 +31,7 @@ CREATE TABLE `purchasecontractdetail` (
   `GLPurchaseAccount` varchar(36) DEFAULT '131000',
   `ProjectID` varchar(36) DEFAULT 'DEFAULT',
   `Received` tinyint(1) DEFAULT '0',
-  `ReceivedDate` datetime DEFAULT now(),
+  `ReceivedDate` datetime DEFAULT '1000-01-01',
   `ReceivedQty` float DEFAULT '0',
   `RecivingNumber` varchar(36) DEFAULT NULL,
   `TrackingNumber` varchar(50) DEFAULT NULL,
