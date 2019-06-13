@@ -28,7 +28,7 @@
 		<span style="font-size: 30px" class="favorits glyphicon glyphicon-question-sign" aria-hidden="true"></span>
 	    </a>
 	</li>
-	<li class="top-bar-link2 float-right">
+	<li class="top-bar-link2 float-right" id="zoomcontainer" style="display:none">
 	    <a href="javascript:void(0)" style="margin-top:8px; color:#555555;">
 		<cpan class="glyphicon glyphicon-minus" onclick="zoomout();"></cpan>
 		<cpan id="zoomvalue">100%</cpan>
@@ -511,6 +511,9 @@
 	  });
  });
  
+ if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){ //firefox
+ }else
+ $("#zoomcontainer").css("display", "block");
  var zoomvalue = localStorage.getItem("currentZoom");
  if(zoomvalue == null)
      zoomvalue = 90;

@@ -59,7 +59,7 @@
 		    </ul>
 		</div>
 	    </li>
-	    <li class="right-side-toggsle">
+	    <li class="right-side-toggsle" id="zoomcontainer" style="display:none">
 		<a class="waves-effect waves-light" href="javascript:void(0)" style="margin-top:-1px">
 		    <i class="ti-minus" onclick="zoomout();"></i>
 		    <cpan id="zoomvalue">100%</cpan>
@@ -105,6 +105,9 @@
 	  });
  });
 
+ if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){ //firefox
+ }else
+ $("#zoomcontainer").css("display", "block");
  var zoomvalue = localStorage.getItem("currentZoom");
  if(zoomvalue == null)
      zoomvalue = 90;
