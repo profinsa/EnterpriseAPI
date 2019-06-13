@@ -143,9 +143,11 @@
 
 					case "dialogChooser":
 					    $dataProvider = $data->editCategories[$category][$key]["dataProvider"];
+					    //$GLOBALS["dialogChooserTypes"][$key] = $data->editCategories[$category][$key];
+					    //$GLOBALS["dialogChooserTypes"][$key]["fieldName"] = $key;
 					    if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
 						$GLOBALS["dialogChooserTypes"][$dataProvider] = $data->editCategories[$category][$key];
-						$GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
+					    	$GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
 					    }
 					    $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
 					    $onchange = "";

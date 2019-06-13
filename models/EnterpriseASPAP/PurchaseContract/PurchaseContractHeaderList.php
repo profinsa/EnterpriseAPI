@@ -1611,7 +1611,7 @@ class gridData extends gridDataSource{
 
         $recalc = new recalcHelper;
 
-        $recalc->recalcPurchaseContract(Session::get("user"), $_POST["PurchaseNumber"]);
+        $recalc->recalcPurchaseContract(Session::get("user"), $_POST["PurchaseContractNumber"]);
 
         echo "ok";
     }

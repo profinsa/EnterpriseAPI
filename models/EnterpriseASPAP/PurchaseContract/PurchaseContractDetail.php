@@ -118,8 +118,9 @@ class gridData extends gridDataSource{
             ],
             "VendorItemID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "dialogChooser",
-                "dataProvider" => "getItems",
+                "inputType" => "text",
+                //"inputType" => "dialogChooser",
+                //"dataProvider" => "getItems",
                 "defaultValue" => ""
             ],
             "Description" => [
