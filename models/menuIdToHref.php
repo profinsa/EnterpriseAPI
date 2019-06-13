@@ -147,6 +147,7 @@
     "AccountsPayable/PurchaseScreens/ViewReceivedPurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList",
     "AccountsPayable/PurchaseContracts/ViewPurchasesTracking" => "EnterpriseASPAP/Purchases/PurchaseTrackingHeaderList",
     "AccountsPayable/PurchaseContracts/ViewPurchaseContracts" => "EnterpriseASPAP/PurchaseContract/PurchaseContractHeaderList",
+    "AccountsPayable/PurchaseContracts/PurchaseContractDetail" => "EnterpriseASPAP/PurchaseContract/PurchaseContractDetail",
     "AccountsPayable/PurchaseContracts/ViewPurchaseContractsHistory" => "EnterpriseASPAP/PurchaseContract/PurchaseContractHeaderHistoryList",
     "AccountsPayable/PurchaseContracts/ViewPurchaseContractLedger" => "EnterpriseASPAP/PurchaseContract/PurchaseContractLedgerList",
     "AccountsPayable/PurchaseContracts/ViewPurchaseContractLedgerHistory" => "EnterpriseASPAP/PurchaseContract/PurchaseContractLedgerHistoryList",

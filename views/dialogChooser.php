@@ -2,31 +2,31 @@
      ui logic for building dialog for choosing items using data models
 -->
 <?php
-function writeValue($data, $desc, $value){
-    switch($desc["inputType"]){
-	case "checkbox" :
-	    return "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
-	    break;
-	case "timestamp" :
-	case "datetime" :
-	    return date("m/d/y", strtotime($value));
-	    break;
-	case "text":
-	case "dialogChooser":
-	case "dropdown":
-	    if(key_exists("formatFunction", $desc)){
-		$formatFunction = $desc["formatFunction"];
-		return $data->$formatFunction($item, "editCategories", $key, $value, false);
-	    }
-	    else
-		return formatField($desc, $value);
-	    break;
+    function writeValue($data, $desc, $value){
+	switch($desc["inputType"]){
+	    case "checkbox" :
+		return "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
+		break;
+	    case "timestamp" :
+	    case "datetime" :
+		return date("m/d/y", strtotime($value));
+		break;
+	    case "text":
+	    case "dialogChooser":
+	    case "dropdown":
+		if(key_exists("formatFunction", $desc)){
+		    $formatFunction = $desc["formatFunction"];
+		    return $data->$formatFunction($item, "editCategories", $key, $value, false);
+		}
+		else
+		    return formatField($desc, $value);
+		break;
+	}
     }
-}
 ?>
 <?php foreach($GLOBALS["dialogChooserTypes"] as $key=>$value): ?>
     <?php
-    $dialogData = $data->$key();
+	$dialogData = $data->$key();
     ?>
     <script>
      window["dataDialogChooser<?php echo $value["fieldName"]; ?>"] = {
@@ -116,6 +116,9 @@ function writeValue($data, $desc, $value){
 		 break;
 	     case "purchasedetail" :
 		 TransactionNumber = $('.PurchaseNumber').val();
+		 break;
+	     case "purchasecontractdetail" :
+		 TransactionNumber = $('.PurchaseContractNumber').val();
 		 break;
 	     case "inventoryadjustmentsdetail":
 		 console.log("eeee" + $('.AdjustmentID').val());

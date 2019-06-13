@@ -4,7 +4,7 @@
    
   Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPAP\PurchaseContract\PurchaseContractHeaderList.php It provides data from database and default values, column names and categories
    
-  Date created: 02/16/2017  Kenna Fetterman
+  Date created: 02/16/2017 Nikita Zaharov
    
   Use: this model used by views/PurchaseContractHeaderList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -37,6 +37,16 @@ class gridData extends gridDataSource{
 	public $idField ="PurchaseContractNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseContractNumber"];
 	public $gridFields = [
+        "PurchaseContractNumber" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "TransactionTypeID" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
 		"PurchaseContractDate" => [
 			"dbType" => "timestamp",
 			"format" => "{0:d}",
@@ -1231,9 +1241,9 @@ class gridData extends gridDataSource{
     public $customerField = "VendorID";
     
     public $detailTable = [
-        "viewPath" => "AccountsPayable/PurchaseContracts/PurchaseContractsDetail",
+        "viewPath" => "AccountsPayable/PurchaseContracts/PurchaseContractDetail",
         "newKeyField" => "PurchaseContractNumber",
-        "keyFields" => ["PurchaseContractNumber", "ItemID"],
+        "keyFields" => ["PurchaseContractNumber", "PurchaseContractLineNumber"],
     ];
 
     public $footerTable = [
@@ -1496,7 +1506,7 @@ class gridData extends gridDataSource{
         return $result;
     }
 
-    public $detailIdFields = ["CompanyID","DivisionID","DepartmentID","PurchaseContractNumber", "ItemID"];
+    public $detailIdFields = ["CompanyID","DivisionID","DepartmentID","PurchaseContractNumber", "PurchaseContractLineNumber"];
 	public $embeddedgridFields = [
 		"ItemID" => [
 			"dbType" => "varchar(36)",
@@ -1582,7 +1592,7 @@ class gridData extends gridDataSource{
 
     public function detailDelete(){
         $user = $_SESSION["user"];
-        $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseContractNumber", "ItemID"];
+        $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseContractNumber", "PurchaseContractLineNumber"];
         $keyValues = explode("__", $_GET["item"]);
         $keyFields = "";
         $fcount = 0;

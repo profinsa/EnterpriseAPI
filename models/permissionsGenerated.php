@@ -1677,6 +1677,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "PurchaseContract" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "PurchaseContractHeaderHistory" => [
         "select" => "any",
         "update" => "any",
