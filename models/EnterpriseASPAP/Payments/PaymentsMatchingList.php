@@ -40,11 +40,11 @@ class gridData extends gridDataSource{
     public $modes = ["grid"];
     public $fageGridColumns = true;
     public $gridFields = [
+        "a1" =>[
+        ],
         "PurchaseNumber" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
-        ],
-        "a1" =>[
         ],
         "VendorID" => [
             "dbType" => "varchar(36)",
@@ -60,11 +60,11 @@ class gridData extends gridDataSource{
             "currencyField" => "CurrencyID",
             "formatFunction" => "currencyFormat"
         ],
+        "a2" =>[
+        ],
         "RecivingNumber" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
-        ],
-        "a2" =>[
         ],
         "CurrencyID1" => [
             "dbType" => "varchar(3)",
@@ -76,16 +76,16 @@ class gridData extends gridDataSource{
             "currencyField" => "CurrencyID",
             "formatFunction" => "currencyFormat"
         ],
+        "a3" =>[
+        ],
         "PaymentID" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
         ],
-        "a3" =>[
-        ],
-        "InvoiceNumber" => [
+        /*        "InvoiceNumber" => [
             "dbType" => "varchar(36)",
             "inputType" => "text"
-        ],
+            ],*/
         "CurrencyID2" => [
             "dbType" => "varchar(3)",
             "inputType" => "text"
