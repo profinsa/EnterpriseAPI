@@ -25,7 +25,7 @@
   Calls:
   sql
 
-  Last Modified: 07.06.2019
+  Last Modified: 17.06.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -33,7 +33,7 @@ require __DIR__ . "/../../../models/gridDataSource.php";
 
 class LedgerTransactionsList extends gridDataSource{
     public $tableName = "ledgertransactions";
-    public $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 0 AND UPPER(GLTransactionNumber) != 'DEFAULT'";
+    public $gridConditions = "(IFNULL(GLTransactionPostedYN, 0) = 0 OR GLTransactionSystemGenerated=1) AND UPPER(GLTransactionNumber) != 'DEFAULT'";
     public $dashboardTitle ="Ledger Transactions";
     public $breadCrumbTitle ="Ledger Transactions";
     public $idField ="GLTransactionNumber";
