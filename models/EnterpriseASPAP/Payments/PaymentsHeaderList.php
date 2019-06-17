@@ -1053,14 +1053,11 @@ class PaymentsHeaderIssueList extends PaymentsHeaderList{
         }
 
         if($success){
-            foreach($PaymentIds as $PaymentId){
-                DB::statement("CALL PaymentCheck_Run(?, ?, ?, ?,@SWP_RET_VALUE)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $user["EmployeeID"]]);
+            DB::statement("CALL PaymentCheck_Run(?, ?, ?, ?,@SWP_RET_VALUE)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $user["EmployeeID"]]);
 
-                $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-                if($result[0]->SWP_RET_VALUE == -1)
-                    $success = false;
-            }
-
+            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
+            if($result[0]->SWP_RET_VALUE == -1)
+                $success = false;
             if($success)
                 echo "ok";
             else{

@@ -5,7 +5,7 @@
     $hreceivingNumber = renderGridValue($ascope, $data, $drill, $row, "RecivingNumber", $row["RecivingNumber"]);
     $hamountPaid = renderGridValue($ascope, $data, $drill, $row, "AmountPaid", $row["AmountPaid"]);
     $hpaymentID = renderGridValue($ascope, $data, $drill, $row, "PaymentID", $row["PaymentID"]);
-    $hinvoiceNumber = renderGridValue($ascope, $data, $drill, $row, "InvoiceNumber", $row["InvoiceNumber"]);
+//    $hinvoiceNumber = renderGridValue($ascope, $data, $drill, $row, "InvoiceNumber", $row["InvoiceNumber"]);
     $hamount = renderGridValue($ascope, $data, $drill, $row, "Amount", $row["Amount"]);
     if($row["RecivingNumber"]){
 	$docreportsReceiving = <<<EOF

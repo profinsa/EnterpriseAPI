@@ -16,7 +16,7 @@ if((key_exists("config", $_GET) && ($configName = $_GET["config"]) != 'default')
 session_write_close();
 session_name("EnterpriseX");
 session_start([
-    "cookie_lifetime" => intval((config()["timeoutMinutes"] + config()["warningMinutes"])* 60)
+    "cookie_lifetime" => (intval((config()["timeoutMinutes"])) + intval(config()["warningMinutes"]))* 60
 ]);
 
 $_SESSION["DBQueries"] = [];
