@@ -55,11 +55,8 @@ class docReportsData extends docReportsBase{
     public function getHeaderData(){
         $user = Session::get("user");
 
-        
-        $payment = DB::select("SELECT * from paymentsheader WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "' AND PaymentID='" . $this->id . "'", array())[0];
-
         $conn =  DB::connection()->getPdo();
-        $stmt = $conn->prepare("CALL RPTCheck('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}',  '{$user["EmployeeID"]}', @ret)");
+        $stmt = $conn->prepare("CALL RPTCheckByPayment('{$user["CompanyID"]}', '{$user["DivisionID"]}', '{$user["DepartmentID"]}',  '{$user["EmployeeID"]}', '{$this->id}', @ret)");
         $rs = $stmt->execute();
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);
 
@@ -97,6 +94,7 @@ class docReportsData extends docReportsBase{
         $result->DueToDate = formatDatetime($result->DueToDate);
         $result->Amount =  formatCurrency($result->Amount);
         */
+        //        echo json_encode($result);
         return $result[0];
     }
 
