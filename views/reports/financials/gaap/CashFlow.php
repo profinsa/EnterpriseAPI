@@ -52,9 +52,9 @@
     <div class="col-md-12 col-xs-12">
 	<?php
 	function negativeStyle($value){
-	    if($value < 0)
-		return "color:red";
-	    else
+//	    if($value < 0)
+//		return "color:red";
+//	    else
 		return "";
 	}
 	?>
