@@ -33,7 +33,7 @@ function numberToStr($strin){
 function formatCurrency($value){
     $afterdot = 2;
     if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts))
-        return numberToStr($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
+        return numberToStr($numberParts[1]) . '.' . (strlen(substr($numberParts[2], 0, $afterdot)) == 1 ? substr($numberParts[2], 0, $afterdot) . '0' : substr($numberParts[2], 0, $afterdot));
     else
         return numberToStr($value) . ".00";
 
