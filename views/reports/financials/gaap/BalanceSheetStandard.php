@@ -20,14 +20,14 @@
      Calls:
      datasource
 
-     Last Modified: 2.05.2017
+     Last Modified: 18.08.2019
      Last Modified by: Nikita Zaharov
    -->
 <div id="report" class="row">
     <?php
-    $user = $data->getUser();
-    $currencySymbol = $data->getCurrencySymbol()["symbol"];
-    $tdata = $data->getData();
+	$user = $data->getUser();
+	$currencySymbol = $data->getCurrencySymbol()["symbol"];
+	$tdata = $data->getData();
 	//echo json_encode($tdata);
 	$typesToProc = [
 		"Standard" => "",
@@ -138,14 +138,14 @@
 		    <td colspan="6"  style="padding-top:20px;">EQUITY</td>
 		</tr>
 		<?php
-		foreach($tdata["Equity"] as $row){
-		    echo "<tr><td style=\"width:100px\"></td><td>" . ($data->type == "Company" && key_exists("DivisionID", $row) ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . (($data->type == "Division" || $data->type == "Company")  && key_exists("DepartmentID", $row) ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . (key_exists("GLAccountBalanceOriginal", $row) ? $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) : "") . "</td>";
-		    if($_GET["itype"] == "Comparative")
-			echo "<td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td><td>" .  $row["GLAccountBalanceComparative"] ."</td>";
-		    else
-			echo "<td></td><td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td>";
-		    echo "<td></td></tr>";
-		}
+		    foreach($tdata["Equity"] as $row){
+			echo "<tr><td style=\"width:100px\"></td><td>" . ($data->type == "Company" && key_exists("DivisionID", $row) ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . (($data->type == "Division" || $data->type == "Company")  && key_exists("DepartmentID", $row) ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . (key_exists("GLAccountBalanceOriginal", $row) ? $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) : "") . "</td>";
+			if($_GET["itype"] == "Comparative")
+			    echo "<td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td><td>" .  $row["GLAccountBalanceComparative"] ."</td>";
+			else
+			    echo "<td></td><td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td>";
+			echo "<td></td></tr>";
+		    }
 		?>
 		<tr>
 		    <td></td>
@@ -170,7 +170,7 @@
 			<td style="border-bottom:3px double black; <?php echo negativeStyle($tdata["LiabilityEquityTotalComparative"]); ?>"><?php echo $currencySymbol . $tdata["EquityTotalComparative"]; ?></td>
 		    <?php else: ?>
 			<td colspan="5"  style="padding-top:20px;">TOTAL LIABILITIES & EQUITY</td>
-			<td style="border-bottom:3px double black; <?php echo negativeStyle($tdata["LiabilityEquityTotal"]); ?>"><?php echo $tdata["LiabilityEquityTotal"]; ?>
+			<td style="border-bottom:3px double black; <?php echo negativeStyle($tdata["LiabilityEquityTotal"]); ?>"><?php echo $currencySymbol . $tdata["LiabilityEquityTotal"]; ?>
 		    <?php endif ?>
 		</tr>
 	    </tbody>

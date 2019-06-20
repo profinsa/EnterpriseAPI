@@ -4,7 +4,7 @@ Name of Page: GAAP Direct Cash Flow page data source
 
 Method: It provides data from database for Direct Cash Flow page
 
-Date created: Nikita Zaharov, 02.05.2016
+Date created: Nikita Zaharov, 02.05.2017
 
 Use: this model used for 
 - for loading data using stored procedures
@@ -22,7 +22,7 @@ controllers/financials
 Calls:
 sql
 
-Last Modified: 11.05.2016
+Last Modified: 11.05.2017
 Last Modified by: Nikita Zaharov
 */
 
