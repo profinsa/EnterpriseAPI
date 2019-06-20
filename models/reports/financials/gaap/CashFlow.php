@@ -52,14 +52,13 @@ function gridFormatFields($stmt, $result){
         foreach($result as $rkey=>$row){
             foreach($row as $key=>$value){
                 $result[$rkey][$key . "Original"] = $value;
-                if($meta[$key]["native_type"] == "NEWDECIMAL" || $meta[$key]["native_type"] == "DECIMAL" || $meta[$key]["native_type"] == "LONGLONG"){
+                if($meta[$key]["native_type"] == "NEWDECIMAL" || $meta[$key]["native_type"] == "DECIMAL" || $meta[$key]["native_type"] == "LONGLONG" || preg_match('/^\d+\.\d+/', $value)){
                     $afterdot = 2;
                     if($meta[$key]["native_type"] == "LONGLONG")
                         $result[$rkey][$key] = numberToStr($value) . ".00";
                     else if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts))
                         $result[$rkey][$key] = numberToStr($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
-                }
-                if($meta[$key]["native_type"] == "TIMESTAMP" || $meta[$key]["native_type"] == "DATETIME")
+                }else if($meta[$key]["native_type"] == "TIMESTAMP" || $meta[$key]["native_type"] == "DATETIME")
                     if($value != "")
                         $result[$rkey][$key] = date("m/d/y", strtotime($value));
             }
@@ -133,6 +132,7 @@ class financialsReportData{
 
         $data = [];
 
+        //        echo json_encode($result);
         $itype = $_GET["itype"];
         
         $data["OperatingDebitsTotal"] = 0;
