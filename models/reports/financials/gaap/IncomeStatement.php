@@ -1,29 +1,29 @@
 <?php
 /*
-Name of Page: GAAP Income Statement page data source
+  Name of Page: GAAP Income Statement page data source
 
-Method: It provides data from database for Income Statement page
+  Method: It provides data from database for Income Statement page
 
-Date created: Nikita Zaharov, 27.04.2016
+  Date created: Nikita Zaharov, 27.04.2016
 
-Use: this model used for 
-- for loading data using stored procedures
+  Use: this model used for 
+  - for loading data using stored procedures
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-controllers/financials
+  Called from:
+  controllers/financials
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 11.05.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 20.06.2019
+  Last Modified by: Nikita Zaharov
 */
 
 function numberToStr($strin){
@@ -163,7 +163,7 @@ class financialsReportData{
         $st = $conn->prepare("select @PeriodEndDate, @IncomeTotal, @CogsTotal, @ExpenseTotal" . ($_GET["itype"] == "Comparative" || $_GET["itype"] == "YTD" ? ", @IncomeTotalComparative, @CogsTotalComparative, @ExpenseTotalComparative" : ""));
         $st->execute();
         $result = $st->fetchAll($conn::FETCH_ASSOC)[0];
-        $data["PeriodEndDate"] = date_create($result["@PeriodEndDate"])->format("F d, y");
+        $data["PeriodEndDate"] = date_create($result["@PeriodEndDate"])->format("F d, Y");
         $data["IncomeTotal"] = formatCurrency($result["@IncomeTotal"]);
         $data["CogsTotal"] = formatCurrency($result["@CogsTotal"]);
         $data["ExpenseTotal"] = formatCurrency($result["@ExpenseTotal"]);

@@ -1,29 +1,29 @@
 <?php
 /*
-Name of Page: GAAP Balance Sheet pages data source
+  Name of Page: GAAP Balance Sheet pages data source
 
-Method: It provides data from database for BalanceSheet pages
+  Method: It provides data from database for BalanceSheet pages
 
-Date created: Nikita Zaharov, 27.04.2016
+  Date created: Nikita Zaharov, 27.04.2017
 
-Use: this model used for 
-- for loading data using stored procedures
+  Use: this model used for 
+  - for loading data using stored procedures
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-controllers/financials
+  Called from:
+  controllers/financials
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 11.05.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 20.06.2019
+  Last Modified by: Nikita Zaharov
 */
 
 function numberToStr($strin){
@@ -194,7 +194,7 @@ class financialsReportData{
 
         $st = $conn->prepare("select @PeriodEndDate");
         $st->execute();
-        $data["PeriodEndDate"] = date_create($st->fetchAll($conn::FETCH_ASSOC)[0]["@PeriodEndDate"])->format("F d, y");
+        $data["PeriodEndDate"] = date_create($st->fetchAll($conn::FETCH_ASSOC)[0]["@PeriodEndDate"])->format("F d, Y");
         $st = null;
         return $data;
     }

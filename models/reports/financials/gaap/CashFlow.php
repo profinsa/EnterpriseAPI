@@ -1,29 +1,29 @@
 <?php
 /*
-Name of Page: GAAP Direct Cash Flow page data source
+  Name of Page: GAAP Direct Cash Flow page data source
 
-Method: It provides data from database for Direct Cash Flow page
+  Method: It provides data from database for Direct Cash Flow page
 
-Date created: Nikita Zaharov, 02.05.2017
+  Date created: Nikita Zaharov, 02.05.2017
 
-Use: this model used for 
-- for loading data using stored procedures
+  Use: this model used for 
+  - for loading data using stored procedures
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-controllers/financials
+  Called from:
+  controllers/financials
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 11.05.2017
-Last Modified by: Nikita Zaharov
+  Last Modified: 20.06.2019
+  Last Modified by: Nikita Zaharov
 */
 
 function numberToStr($strin){
@@ -128,11 +128,14 @@ class financialsReportData{
         }else
             $result = [];
 
+        
+
         $stmt = null;
 
         $data = [];
 
-        //        echo json_encode($result);
+        //       echo "RptGLCashFlow" . $typesToProc[$this->type] . ( $_GET["itype"] == "Standard" ? "" : $_GET["itype"]) . "Drills(";
+        echo json_encode($result[0]);
         $itype = $_GET["itype"];
         
         $data["OperatingDebitsTotal"] = 0;
@@ -259,7 +262,7 @@ class financialsReportData{
         $st = $conn->prepare("select @PeriodEndDate");
         $st->execute();
         $result = $st->fetchAll($conn::FETCH_ASSOC)[0];
-        $data["PeriodEndDate"] = date_create($result["@PeriodEndDate"])->format("F d, y");
+        $data["PeriodEndDate"] = date_create($result["@PeriodEndDate"])->format("F d, Y");
         
         $st = null;
         return $data;
