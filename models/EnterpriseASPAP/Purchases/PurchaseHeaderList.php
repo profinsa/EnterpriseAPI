@@ -524,6 +524,11 @@ class PurchaseHeaderList extends gridDataSource{
                 "defaultValue" => "(new)",
                 "dirtyAutoincrement" => "true"
             ],
+            "RecivingNumber" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "cloneFrom" => "PurchaseNumber"
+            ],
             "PurchaseDate" => [
                 "dbType" => "timestamp",
                 "format" => "{0:d}",

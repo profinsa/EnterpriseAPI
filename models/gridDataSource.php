@@ -1863,6 +1863,15 @@ EOF;
                             $insert_values .= "," . $pdo->quote($values[$name]);
                         }
                         $ret[$name] = $values[$name];
+                    }else if(key_exists("cloneFrom", $value)){
+                        if($insert_fields == ""){
+                            $insert_fields = $name;
+                            $insert_values = "" . $pdo->quote($values[$value["cloneFrom"]]);
+                        }else{
+                            $insert_fields .= "," . $name;
+                            $insert_values .= "," . $pdo->quote($values[$value["cloneFrom"]]);
+                        }
+                        $ret[$name] = $values[$value["cloneFrom"]];
                     }
                 }
             }
@@ -1882,7 +1891,7 @@ EOF;
             $insert_fields .= ',' . implode(',', $keyFields);
             $insert_values .= ',' . implode(',', $keyValues);
         }
-        
+
         $result = DB::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")");
 
         echo json_encode($ret);
