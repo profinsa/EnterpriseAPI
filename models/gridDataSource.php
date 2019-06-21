@@ -1309,7 +1309,14 @@ EOF;
     public function getPayrollEmployeesTaskTypes(){
         return $this->helperForDropdownToGet("payrollemployeestasktype", "TaskTypeID", "TaskTypeID");
     }
-    
+
+    public function getHelpDocumentTopics(){
+        return $this->helperForDropdownToGet("helpdocumenttopic", "DocumentTopicID", "DocumentTopicID");
+    }
+    public function getHelpDocumentModules(){
+        return $this->helperForDropdownToGet("helpdocumentmodule", "DocumentModuleID", "DocumentModuleID");
+    }
+
     public function Inventory_PopulateItemInfo(){
         $user = Session::get("user");
 

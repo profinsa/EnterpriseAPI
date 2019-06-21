@@ -61,11 +61,6 @@ class gridData extends gridDataSource{
             "dbType" => "text",
             "inputType" => "text",
             "defaultValue" => ""
-        ],
-        "DocumentContents" => [
-            "dbType" => "longtext",
-            "inputType" => "text",
-            "defaultValue" => ""
         ]
     ];
 
@@ -84,12 +79,14 @@ class gridData extends gridDataSource{
             ],
             "DocumentTopic" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getHelpDocumentTopics",
                 "defaultValue" => ""
             ],
             "DocumentModule" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getHelpDocumentModules",
                 "defaultValue" => ""
             ],
             "DocumentURL" => [
@@ -99,7 +96,7 @@ class gridData extends gridDataSource{
             ],
             "DocumentContents" => [
                 "dbType" => "longtext",
-                "inputType" => "text",
+                "inputType" => "textarea",
                 "defaultValue" => ""
             ]
         ]
