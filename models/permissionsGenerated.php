@@ -115,6 +115,24 @@ public $permissions = [
         "insert" => "Always",
         "delete" => "Always",
     ],
+    "HelpDocument" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "HelpDocumentTopic" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
+    "HelpDocumentModule" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "Companies" => [
         "select" => "ARView|APView|GLView|OEView|ADView|ADSetup",
         "update" => "ARView|ADSetup",

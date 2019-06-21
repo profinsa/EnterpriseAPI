@@ -613,4 +613,6 @@ var EDITables = [
 //for(ind in EDITables)
   //  generate_model_by_table(EDITables[ind]);
 
-generate_model_by_table("purchasecontractdetail");
+generate_model_by_table("helpdocumentmodule");
+generate_model_by_table("helpdocumenttopic");
+generate_model_by_table("helpdocument");
