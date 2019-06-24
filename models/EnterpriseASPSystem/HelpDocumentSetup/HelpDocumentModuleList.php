@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 20/06/2019
+  Last Modified: 24/06/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -35,14 +35,19 @@ class gridData extends gridDataSource{
     public $dashboardTitle ="Help Document Module";
     public $breadCrumbTitle ="Help Document Module";
     public $idField ="DocumentModuleID";
-    public $idFields = ["CompanyID","DivisionID","DepartmentID","DocumentModuleID"];
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","ModuleID"];
     public $gridFields = [
-        "DocumentModuleID" => [
+        "ModuleID" => [
             "dbType" => "varchar(36)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "DocumentModuleDescription" => [
+        "ModuleName" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "ModuleDescription" => [
             "dbType" => "varchar(60)",
             "inputType" => "text",
             "defaultValue" => ""
@@ -51,22 +56,46 @@ class gridData extends gridDataSource{
 
     public $editCategories = [
         "Main" => [
-            "DocumentModuleID" => [
+            "ModuleID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "disabledEdit" => true,
                 "defaultValue" => ""
             ],
-            "DocumentModuleDescription" => [
+            "ModuleName" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ModuleDescription" => [
                 "dbType" => "varchar(60)",
                 "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ModuleLongDescription" => [
+                "dbType" => "varchar(80)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ModulePictureURL" => [
+                "dbType" => "varchar(80)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ModulePicture" => [
+                "dbType" => "varchar(80)",
+                "inputType" => "imageFile",
                 "defaultValue" => ""
             ]
         ]
     ];
     public $columnNames = [
-        "DocumentModuleID" => "Document Module ID",
-        "DocumentModuleDescription" => "Document Module Description"
+        "ModuleID" => "Module ID",
+        "ModuleName" => "Module Name",
+        "ModuleDescription" => "Module Description",
+        "ModuleLongDescription" => "Module Long Description",
+        "ModulePictureURL" => "Module Picture URL",
+        "ModulePicture" => "Module Picture"
     ];
 }
 ?>

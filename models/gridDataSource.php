@@ -1311,10 +1311,10 @@ EOF;
     }
 
     public function getHelpDocumentTopics(){
-        return $this->helperForDropdownToGet("helpdocumenttopic", "DocumentTopicID", "DocumentTopicID");
+        return $this->helperForDropdownToGet("helpdocumenttopic", "TopicID", "TopicID");
     }
     public function getHelpDocumentModules(){
-        return $this->helperForDropdownToGet("helpdocumentmodule", "DocumentModuleID", "DocumentModuleID");
+        return $this->helperForDropdownToGet("helpdocumentmodule", "ModuleID", "ModuleID");
     }
 
     public function Inventory_PopulateItemInfo(){

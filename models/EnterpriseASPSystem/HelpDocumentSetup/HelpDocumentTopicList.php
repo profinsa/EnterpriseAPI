@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 20/06/2019
+  Last Modified: 24/06/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -34,15 +34,20 @@ class gridData extends gridDataSource{
     public $tableName = "helpdocumenttopic";
     public $dashboardTitle ="Help Document Topic";
     public $breadCrumbTitle ="Help Document Topic";
-    public $idField ="DocumentTopicID";
-    public $idFields = ["CompanyID","DivisionID","DepartmentID","DocumentTopicID"];
+    public $idField ="TopicID";
+    public $idFields = ["CompanyID","DivisionID","DepartmentID","TopicID"];
     public $gridFields = [
-        "DocumentTopicID" => [
+        "TopicID" => [
             "dbType" => "varchar(36)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "DocumentTopicDescription" => [
+        "TopicName" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "TopicDescription" => [
             "dbType" => "varchar(60)",
             "inputType" => "text",
             "defaultValue" => ""
@@ -51,22 +56,46 @@ class gridData extends gridDataSource{
 
     public $editCategories = [
         "Main" => [
-            "DocumentTopicID" => [
+            "TopicID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "disabledEdit" => true,
                 "defaultValue" => ""
             ],
-            "DocumentTopicDescription" => [
+            "TopicName" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TopicDescription" => [
                 "dbType" => "varchar(60)",
                 "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TopicLongDescription" => [
+                "dbType" => "varchar(80)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TopicPictureURL" => [
+                "dbType" => "varchar(80)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TopicPicture" => [
+                "dbType" => "varchar(80)",
+                "inputType" => "imageFile",
                 "defaultValue" => ""
             ]
         ]
     ];
     public $columnNames = [
-        "DocumentTopicID" => "DocumentTopicID",
-        "DocumentTopicDescription" => "DocumentTopicDescription"
+        "TopicID" => "Topic ID",
+        "TopicName" => "Topic Name",
+        "TopicDescription" => "Topic Description",
+        "TopicLongDescription" => "Topic Long Description",
+        "TopicPictureURL" => "Topic Picture URL",
+        "TopicPicture" => "Topic Picture"
     ];
 }
 ?>

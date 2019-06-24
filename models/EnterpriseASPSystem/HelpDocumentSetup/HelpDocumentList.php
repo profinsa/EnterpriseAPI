@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 21/06/2019
+  Last Modified: 24/06/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -42,8 +42,8 @@ class gridData extends gridDataSource{
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "DocumentTitleTitle" => [
-            "dbType" => "varchar(60)",
+        "DocumentTitle" => [
+            "dbType" => "varchar(128)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
@@ -72,8 +72,8 @@ class gridData extends gridDataSource{
                 "disabledEdit" => true,
                 "defaultValue" => ""
             ],
-            "DocumentTitleTitle" => [
-                "dbType" => "varchar(60)",
+            "DocumentTitle" => [
+                "dbType" => "varchar(128)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
@@ -90,12 +90,12 @@ class gridData extends gridDataSource{
                 "defaultValue" => ""
             ],
             "DocumentURL" => [
-                "dbType" => "text",
+                "dbType" => "varchar(128)",
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
             "DocumentContents" => [
-                "dbType" => "longtext",
+                "dbType" => "text",
                 "inputType" => "textarea",
                 "defaultValue" => ""
             ]
@@ -103,7 +103,7 @@ class gridData extends gridDataSource{
     ];
     public $columnNames = [
         "DocumentTitleID" => "Document ID",
-        "DocumentTitleTitle" => "Document Title",
+        "DocumentTitle" => "Document Title",
         "DocumentTopic" => "Document Topic",
         "DocumentModule" => "Document Module",
         "DocumentURL" => "Document URL",
