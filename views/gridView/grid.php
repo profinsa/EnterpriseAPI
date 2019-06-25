@@ -50,7 +50,8 @@
 		switch($key){
 		    case "QtyOnOrder" :
 			return $drill->getLinkWarehouseForPurchases($linksMaker, $row["ItemID"], $outValue);
-			break;
+		    case "QtyCommitted" :
+			return $drill->getLinkWarehouseForOrders($linksMaker, $row["ItemID"], $outValue);
 		    default :
 			return $outValue;
 		}
@@ -154,9 +155,9 @@
 <?php if(!property_exists($data, "features") || !in_array("disabledGridPageUI", $data->features)): ?>
     <div id="grid_content" class="row">
 	<?php
-                                //disabled duplicate header, i don't know for what it is
-                                //	    if($ascope["interface"] == "default")
-                                //require __DIR__ . '/../interfaces/' . $ascope["interface"] . '/breadcrumbs.php';
+            //disabled duplicate header, i don't know for what it is
+            //	    if($ascope["interface"] == "default")
+            //require __DIR__ . '/../interfaces/' . $ascope["interface"] . '/breadcrumbs.php';
 	?>
 	<div class="table-responsive">
 <?php endif; ?>

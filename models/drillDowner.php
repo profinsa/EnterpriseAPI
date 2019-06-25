@@ -306,5 +306,9 @@ class drillDowner{
     public function getLinkWarehouseForPurchases($linksMaker, $ItemID, $value){
         return "<a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseScreens/ViewPurchases") . "&ItemID=$ItemID" . "\">$value</a>";
     }
+
+    public function getLinkWarehouseForOrders($linksMaker, $ItemID, $value){
+        return "<a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&ItemID=$ItemID" . "\">$value</a>";
+    }
 }
 ?>

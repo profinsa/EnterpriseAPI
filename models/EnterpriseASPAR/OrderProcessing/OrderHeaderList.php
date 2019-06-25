@@ -1358,6 +1358,7 @@ class OrderHeaderList extends gridDataSource{
     }
     
     public function getPage($id){
+        $user = Session::get("user");
         if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
             $this->gridConditions .= "and OrderDate >= now() - INTERVAL 1 DAY";
             $result = parent::getPage($id);
@@ -1371,6 +1372,13 @@ class OrderHeaderList extends gridDataSource{
             //            $ShipDate = date("Y-m-d H:i:s", strtotime($_GET["ShipDate"]));
             $this->gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND date(ShipDate)='$ShipDate'";
             $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("ItemID", $_GET)){
+            $ItemID = $_GET["ItemID"];
+            $result = DB::select("select orderheader.CompanyID, orderheader.DivisionID, orderheader.DepartmentID, orderheader.OrderNumber, orderheader.OrderTypeID, orderheader.OrderDate, orderheader.CustomerID, orderheader.CurrencyID, orderheader.Total, orderheader.ShipDate, orderheader.TrackingNumber, orderheader.Invoiced, orderheader.InvoiceNumber from orderdetail inner join orderheader on orderdetail.OrderNumber=orderheader.OrderNumber AND orderdetail.CompanyID=orderheader.CompanyID AND orderdetail.DivisionID=orderheader.DivisionID AND orderdetail.DepartmentID=orderheader.DepartmentID where orderheader.CompanyID=? AND orderheader.DivisionID=? AND orderheader.DepartmentID=? AND orderdetail.ItemID=? AND orderheader.Shipped=0 AND orderheader.TransactionTypeID='Order'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $ItemID]);
+
+            $result = json_decode(json_encode($result), true);
+        //            $result = parent::getPage($id);
             return $result;
         }else{
             $result = parent::getPage($id);
