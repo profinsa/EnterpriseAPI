@@ -4,7 +4,7 @@
 
   Method: It makes links to any page of project by properties
 
-  Date created: Nikita Zaharov, 05.24.2016
+  Date created: Nikita Zaharov, 05.24.2017
 
   Use: this model used for 
   For creating links to pages of projects using properties as source. 

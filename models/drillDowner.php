@@ -1,32 +1,32 @@
 <?php
 /*
-Name of Page: drillDowner model
+  Name of Page: drillDowner model
 
-Method: It makes links to reports, grids and any page by passed Property name, Property value and other data
+  Method: It makes links to reports, grids and any page by passed Property name, Property value and other data
 
-Date created: Nikita Zaharov, 05.05.2016
+  Date created: Nikita Zaharov, 05.05.2017
 
-Use: this model used for 
-For creating links(drill-down) to some resource by name of resource or other resource properties
-For Example:
-creating link to Account by account number
-creating link to transaction by transaction number
+  Use: this model used for 
+  For creating links(drill-down) to some resource by name of resource or other resource properties
+  For Example:
+  creating link to Account by account number
+  creating link to transaction by transaction number
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-controllers/financials
+  Called from:
+  controllers/financials
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 09.10.2017
-Last Modified by: Nikita Zaharov
+  Last Modified: 25.06.2019
+  Last Modified by: Nikita Zaharov
 */
 
 class drillDowner{
@@ -301,6 +301,10 @@ class drillDowner{
             default:
                 return $value;
         }
+    }
+
+    public function getLinkWarehouseForPurchases($linksMaker, $ItemID, $value){
+        return "<a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseScreens/ViewPurchases") . "&ItemID=$ItemID" . "\">$value</a>";
     }
 }
 ?>

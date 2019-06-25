@@ -21,7 +21,7 @@
      grid model
      app as model
 
-     Last Modified: 03.04.2019
+     Last Modified: 26.06.2019
      Last Modified by: Nikita Zaharov
 -->
 
@@ -30,7 +30,7 @@
 	return str_replace("%2F", "+++", urlencode($keystring));
     }
 
-    function renderGridValue($ascope, $data, $drill, $row, $key, $value){
+    function renderGridValue($linksMaker, $ascope, $data, $drill, $row, $key, $value){
 	switch($data->gridFields[$key]["inputType"]){
 	    case "checkbox" :
 		return $value ? "True" : "False";
@@ -40,12 +40,20 @@
 		return date("m/d/y", strtotime($value));
 		break;
 	    case "text":
+		$outValue = "";
 		if(key_exists("formatFunction", $data->gridFields[$key])){
 		    $formatFunction = $data->gridFields[$key]["formatFunction"];
-		    return $data->$formatFunction($row, "gridFields", $key, $value, false);
+		    $outValue = $data->$formatFunction($row, "gridFields", $key, $value, false);
 		}
 		else
-		    return  formatField($data->gridFields[$key], $value);
+		    $outValue = formatField($data->gridFields[$key], $value);
+		switch($key){
+		    case "QtyOnOrder" :
+			return $drill->getLinkWarehouseForPurchases($linksMaker, $row["ItemID"], $outValue);
+			break;
+		    default :
+			return $outValue;
+		}
 		break;
 	    case "dateTimeFull" :
 		return $value;
@@ -244,7 +252,7 @@
 			    if(key_exists("editable", $columnDef) && $columnDef["editable"])
 				echo renderInput($ascope, $data, $columnDef, $column, $row[$column], $keyString, $current_row);
 			    else
-				echo renderGridValue($ascope, $data, $drill, $row, $column, $row[$column]);
+				echo renderGridValue($linksMaker, $ascope, $data, $drill, $row, $column, $row[$column]);
 			    echo "</td>\n";
 			}
 			echo "</tr>";

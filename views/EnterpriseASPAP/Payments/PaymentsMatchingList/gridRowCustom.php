@@ -1,12 +1,12 @@
 <?php
-    $hpurchaseNumber = renderGridValue($ascope, $data, $drill, $row, "PurchaseNumber", $row["PurchaseNumber"]);
-    $hvendorID = renderGridValue($ascope, $data, $drill, $row, "VendorID", $row["VendorID"]);
-    $htotal = renderGridValue($ascope, $data, $drill, $row, "Total", $row["Total"]);
-    $hreceivingNumber = renderGridValue($ascope, $data, $drill, $row, "RecivingNumber", $row["RecivingNumber"]);
-    $hamountPaid = renderGridValue($ascope, $data, $drill, $row, "AmountPaid", $row["AmountPaid"]);
-    $hpaymentID = renderGridValue($ascope, $data, $drill, $row, "PaymentID", $row["PaymentID"]);
-//    $hinvoiceNumber = renderGridValue($ascope, $data, $drill, $row, "InvoiceNumber", $row["InvoiceNumber"]);
-    $hamount = renderGridValue($ascope, $data, $drill, $row, "Amount", $row["Amount"]);
+    $hpurchaseNumber = renderGridValue($linksMaker, $ascope, $data, $drill, $row, "PurchaseNumber", $row["PurchaseNumber"]);
+    $hvendorID = renderGridValue($linksMaker, $ascope, $data, $drill, $row, "VendorID", $row["VendorID"]);
+    $htotal = renderGridValue($linksMaker, $ascope, $data, $drill, $row, "Total", $row["Total"]);
+    $hreceivingNumber = renderGridValue($linksMaker, $ascope, $data, $drill, $row, "RecivingNumber", $row["RecivingNumber"]);
+    $hamountPaid = renderGridValue($linksMaker, $ascope, $data, $drill, $row, "AmountPaid", $row["AmountPaid"]);
+    $hpaymentID = renderGridValue($linksMaker, $ascope, $data, $drill, $row, "PaymentID", $row["PaymentID"]);
+    //    $hinvoiceNumber = renderGridValue($linksMaker, $ascope, $data, $drill, $row, "InvoiceNumber", $row["InvoiceNumber"]);
+    $hamount = renderGridValue($linksMaker, $ascope, $data, $drill, $row, "Amount", $row["Amount"]);
     if($row["RecivingNumber"]){
 	$docreportsReceiving = <<<EOF
     <a href="{$linksMaker->makeDocreportsLink("receiving", $row["RecivingNumber"])}" target="_blank">
@@ -44,7 +44,7 @@ EOF;
   <td>$hamount</td>
 </tr>
 EOF;
-//  <td>$hinvoiceNumber</td>
+    //  <td>$hinvoiceNumber</td>
 
-echo $_html;
+    echo $_html;
 ?>
