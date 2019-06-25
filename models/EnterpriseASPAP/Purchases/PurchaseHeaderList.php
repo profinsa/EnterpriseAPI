@@ -1322,6 +1322,7 @@ class PurchaseHeaderList extends gridDataSource{
     }
     
     public function getPage($id){
+        $user = Session::get("user");
         if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "last24"){
             $this->gridConditions .= "and PurchaseDate >= now() - INTERVAL 1 DAY";
             $result = parent::getPage($id);
@@ -1335,6 +1336,13 @@ class PurchaseHeaderList extends gridDataSource{
             //            $ShipDate = date("Y-m-d H:i:s", strtotime($_GET["ShipDate"]));
             $this->gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND date(ShipDate)='$ShipDate'";
             $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("ItemID", $_GET)){
+            $ItemID = $_GET["ItemID"];
+            $result = DB::select("select purchaseheader.CompanyID, purchaseheader.DivisionID, purchaseheader.DepartmentID, purchaseheader.PurchaseNumber, purchaseheader.TransactionTypeID, purchaseheader.PurchaseDate, purchaseheader.VendorID, purchaseheader.CurrencyID, purchaseheader.Total, purchaseheader.Shipped, purchaseheader.ShipDate, purchaseheader.TrackingNumber, purchaseheader.Received, purchaseheader.RecivingNumber from purchasedetail inner join purchaseheader on purchasedetail.PurchaseNumber=purchaseheader.PurchaseNumber AND purchasedetail.CompanyID=purchaseheader.CompanyID AND purchasedetail.DivisionID=purchaseheader.DivisionID AND purchasedetail.DepartmentID=purchaseheader.DepartmentID where purchaseheader.CompanyID=? AND purchaseheader.DivisionID=? AND purchaseheader.DepartmentID=? AND purchasedetail.ItemID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $ItemID]);
+
+            $result = json_decode(json_encode($result), true);
+        //            $result = parent::getPage($id);
             return $result;
         }else{
             $result = parent::getPage($id);
