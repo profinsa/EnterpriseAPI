@@ -129,11 +129,24 @@ class gridData extends gridDataSource{
         "LastCountDate" => "Last Count Date"
     ];
 
+    public function getEditItem($id, $type){
+        $user = Session::get("user");
+        $result = parent::getEditItem($id, $type);
+        
+        $details = DB::select("select orderheader.CompanyID, orderheader.DivisionID, orderheader.DepartmentID, orderheader.OrderNumber, orderheader.OrderTypeID, orderheader.OrderDate, orderheader.CustomerID, orderheader.CurrencyID, orderheader.Total, orderheader.ShipDate, orderheader.TrackingNumber, orderheader.Invoiced, orderheader.InvoiceNumber, orderdetail.OrderQty from orderdetail inner join orderheader on orderdetail.OrderNumber=orderheader.OrderNumber AND orderdetail.CompanyID=orderheader.CompanyID AND orderdetail.DivisionID=orderheader.DivisionID AND orderdetail.DepartmentID=orderheader.DepartmentID where orderheader.CompanyID=? AND orderheader.DivisionID=? AND orderheader.DepartmentID=? AND orderdetail.ItemID=? AND orderheader.Shipped=0 AND orderheader.TransactionTypeID='Order'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $result["ItemID"]]);
+        
+        $qtyCommitted = 0;
+        foreach($details as $drow)
+            $qtyCommitted += $drow->OrderQty;
+        //echo json_encode($details);
+        $result["QtyCommitted"] = $qtyCommitted;
+        return $result;
+    }
     public function getPage($id){
         $user = Session::get("user");
         $result = parent::getPage($id);
         foreach($result as &$row){
-            $details = DB::select("select orderheader.CompanyID, orderheader.DivisionID, orderheader.DepartmentID, orderheader.OrderNumber, orderheader.OrderTypeID, orderheader.OrderDate, orderheader.CustomerID, orderheader.CurrencyID, orderheader.Total, orderheader.ShipDate, orderheader.TrackingNumber, orderheader.Invoiced, orderheader.InvoiceNumber, orderdetail.OrderQty from orderdetail inner join orderheader on orderdetail.OrderNumber=orderheader.OrderNumber AND orderdetail.CompanyID=orderheader.CompanyID AND orderdetail.DivisionID=orderheader.DivisionID AND orderdetail.DepartmentID=orderheader.DepartmentID where orderheader.CompanyID=? AND orderheader.DivisionID=? AND orderheader.DepartmentID=? AND orderdetail.ItemID=? AND orderheader.Shipped=0 AND orderheader.TransactionTypeID='Order'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["ItemID"]]);
+            $details = DB::select("select orderheader.CompanyID, orderheader.DivisionID, orderheader.DepartmentID, orderheader.OrderNumber, orderdetail.OrderQty from orderdetail inner join orderheader on orderdetail.OrderNumber=orderheader.OrderNumber AND orderdetail.CompanyID=orderheader.CompanyID AND orderdetail.DivisionID=orderheader.DivisionID AND orderdetail.DepartmentID=orderheader.DepartmentID where orderheader.CompanyID=? AND orderheader.DivisionID=? AND orderheader.DepartmentID=? AND orderdetail.ItemID=? AND orderheader.Shipped=0 AND orderheader.TransactionTypeID='Order'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["ItemID"]]);
             $qtyCommitted = 0;
             foreach($details as $drow)
                 $qtyCommitted += $drow->OrderQty;
