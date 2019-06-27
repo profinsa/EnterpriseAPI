@@ -2,7 +2,7 @@
 /*
   Name of Page: PurchaseHeaderList model
    
-  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php It provides data from database and default values, column names and categories
+  Method: Model for gridView controller It provides data from database and default values, column names and categories
    
   Date created: 02/16/2017 Zaharov Nikita
    
@@ -19,8 +19,8 @@
   - methods have their own output
    
   Called from:
-  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php
-  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAP\Purchases\PurchaseHeaderList.php
+  created and used for ajax requests by grid controller
+  used as model by views/gridView.php
    
   Calls:
   MySql Database
