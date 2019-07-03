@@ -4,7 +4,7 @@
    
   Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\BillofMaterials\InventoryAssembliesList.php It provides data from database and default values, column names and categories
    
-  Date created: 02/16/2017  Kenna Fetterman
+  Date created: 02/16/2017 Nikita Zaharov
    
   Use: this model used by views/InventoryAssembliesList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -26,7 +26,7 @@
   MySql Database
    
   Last Modified: 05/30/2017
-  Last Modified by: Kenna Fetterman
+  Last Modified by: Nikita Zaharov
 */
 require "./models/gridDataSource.php";
 
