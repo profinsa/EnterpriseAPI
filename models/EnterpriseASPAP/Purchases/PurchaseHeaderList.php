@@ -1538,16 +1538,20 @@ class PurchaseHeaderMemorizedList extends PurchaseHeaderList{
 
         $numbers = explode(",", $_POST["PurchaseNumbers"]);
         $success = true;
+        $messages = [];
         foreach($numbers as $number){
             DB::statement("CALL Purchase_CreateFromMemorized('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @message, @SWP_RET_VALUE)", array());
 
             $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @message as message', array());
+            $messages[] = $result[0]->message;
+            ///echo $result[0]->message;
             if($result[0]->SWP_RET_VALUE == -1)
                 $success = false;
+            //usleep(300000);
         }
 
         if($success)
-            echo $result[0]->message;
+            echo implode("\n", $messages);
         else {
             http_response_code(400);
             echo $result[0]->SWP_RET_VALUE;
