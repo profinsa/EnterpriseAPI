@@ -49,7 +49,9 @@ class gridData extends gridDataSource{
         "Main" => [
             "AssemblyID" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getItems",
+                "disabledEdit" => true,
                 "defaultValue" => ""
             ]
         ],
@@ -66,11 +68,11 @@ class gridData extends gridDataSource{
             ]
         ],
         "...fields" => [
-            "AssemblyID" => [
+            /*            "AssemblyID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ],
+                ],*/
             "ItemID" => [
                 "dbType" => "varchar(36)",
                 "inputType" => "text",
@@ -276,6 +278,11 @@ class gridData extends gridDataSource{
         return $result;
     }
 
+    public function insertItem($values, $remoteCall = false){
+        $values["ItemID"] = $values["AssemblyID"];
+        parent::insertItem($values, $remoteCall);
+    }
+    
     public function deleteMain(){
         $user = Session::get("user");
         $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentsID", "AssemblyID", "ItemID"];
