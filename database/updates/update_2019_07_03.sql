@@ -638,9 +638,9 @@ Revision History:
    DECLARE v_ErrorID INT;
    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
    BEGIN
-       GET DIAGNOSTICS CONDITION 1
-       @p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
-       SELECT @p1, @p2;
+--       GET DIAGNOSTICS CONDITION 1
+--       @p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
+--       SELECT @p1, @p2;
        SET @SWV_Error = 1;
    END;
    SET @SWV_Error = 0;
@@ -858,9 +858,9 @@ Revision History:
 
    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
    BEGIN 
-       GET DIAGNOSTICS CONDITION 1
+/*       GET DIAGNOSTICS CONDITION 1
        @p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
-       SELECT @p1, @p2;
+       SELECT @p1, @p2;*/
      SET @SWV_Error = 1;
       SET NO_DATA = -2;
    END;
@@ -945,14 +945,14 @@ Revision History:
             SET NO_DATA = 0;
           --  FETCH cBins INTO v_WarehouseID_bin,v_WarehouseBinID_bin,v_Qty_bin,v_AvlblQty_bin,v_BackQty_bin;
       SET Counter = WarehouseBinsForSplitCount(v_CompanyID, v_DivisionID, v_DepartmentID, v_WarehouseID, '', v_ItemID, v_QtyItem);
-      select v_QtyItem;
       IF Counter > 0 then
       CALL WarehouseBinsForSplitGetRecord(v_CompanyID, v_DivisionID, v_DepartmentID, v_WarehouseID, '', v_ItemID, v_QtyItem, Records, @outIdent, v_WarehouseID_bin, v_WarehouseBinID_bin, v_Qty_bin, v_AvlblQty_bin, v_BackQty_bin );
             WHILE NO_DATA = 0 DO
                SET @SWV_Error = 0;
-	       select Counter, Records, v_Qty_bin, v_AvlblQty_bin, v_BackQty_bin;
-	       CALL WarehouseBinShipGoods2(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID_bin,v_WarehouseBinID_bin,
-               v_ItemID,v_AvlblQty_bin,v_BackQty_bin,3, v_ReturnStatus);
+	       CALL WarehouseBinLockGoods2(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID_bin,v_WarehouseBinID_bin,
+               v_ItemID,v_AvlblQty_bin,v_BackQty_bin,1, v_ReturnStatus);
+--	       CALL WarehouseBinShipGoods2(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID_bin,v_WarehouseBinID_bin,
+--               v_ItemID,v_AvlblQty_bin,v_BackQty_bin,3, v_ReturnStatus);
                IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
 			
                 --  CLOSE cOD;
@@ -1026,7 +1026,7 @@ Revision History:
          CLOSE cInventoryAssembli;
 
 
-
+/* something strange with using WarehouseBinPuth and WarehouseBinShip, it works not as planned for Order_Post
 -- put inventory
          SET @SWV_Error = 0;
          CALL WarehouseBinPutGoods2(v_CompanyID,v_DivisionID,v_DepartmentID,v_WarehouseID,'',v_AssemblyID,
@@ -1043,7 +1043,7 @@ Revision History:
             CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'QtyRequired',v_QtyRequired);
             SET SWP_Ret_Value = -1;
          end if;
-
+*/
 -- Post inventory changes to InventoryLedger table and recalc item cost
          SET @SWV_Error = 0;
          CALL Inventory_CreateILTransaction2(v_CompanyID,v_DivisionID,v_DepartmentID,v_TranDate,v_AssemblyID,'Assembly',
@@ -1146,9 +1146,9 @@ BEGIN
    tt_fnWarehouseBinsRet;
    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
    BEGIN
-       GET DIAGNOSTICS CONDITION 1
+/*       GET DIAGNOSTICS CONDITION 1
        @p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
-       SELECT @p1, @p2;
+       SELECT @p1, @p2;*/
       SET NO_DATA = -2;
    END;
    DECLARE CONTINUE HANDLER FOR NOT FOUND SET NO_DATA = -1;
@@ -1268,9 +1268,6 @@ BEGIN
 
    DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
    BEGIN
-       GET DIAGNOSTICS CONDITION 1
-       @p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
---       SELECT @p1, @p2;
       SET NO_DATA = -2;
    END;
    DECLARE CONTINUE HANDLER FOR NOT FOUND SET NO_DATA = -1;
@@ -1602,6 +1599,279 @@ BEGIN
    end if;
    LEAVE SWL_return;
 END;
+
+
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS WarehouseBinLockGoods2;
+//
+CREATE      PROCEDURE WarehouseBinLockGoods2(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_WarehouseID NATIONAL VARCHAR(36),
+	v_WarehouseBinID NATIONAL VARCHAR(36),
+	v_InventoryItemID NATIONAL VARCHAR(36),
+	v_Qty FLOAT,
+	v_BackQty FLOAT,
+	v_Action INT,INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+
+
+
+
+
+
+/*
+Name of stored procedure: WarehouseBinLockGoods
+Method: 
+	this procedure lock goods into warehouse bin
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@WarehouseID NVARCHAR(36)	 - the ID of warehouse
+	@WarehouseBinID NVARCHAR(36)	 - the ID of warehouse bin
+	@InventoryItemID NVARCHAR(36)	 - the ID of inventory item
+	@Qty FLOAT			 - the locked items count
+	@BackQty FLOAT			 - the count of backordered items
+	@Action INT			 - defines the operation that is performed with inventory items
+
+
+                                                           1 - increase InventoryByWarehouse.QtyCommitted in @Qty value 
+                                                               decrease InventoryByWarehouse.QtyOnHand in @Qty value 
+                                                               increase InventoryByWarehouse.QtyOnBackOrder in @BackQty value
+                                                               increase WarehouseBins.LockerStockQty in @Qty value
+                                                               used from InvoiceDetail_SplitToWarehouseBin,OrderDetail_SplitToWarehouseBin procedures
+
+                                                           2 - decrease InventoryByWarehouse.QtyCommitted in (@Qty - @BackQty) value 
+                                                               increase InventoryByWarehouse.QtyOnHand in (@Qty - @BackQty) value 
+                                                               decrease InventoryByWarehouse.QtyOnBackOrder in @BackQty value
+                                                               decrease WarehouseBins.LockerStockQty in (@Qty - @BackQty) value
+                                                               used from  procedures Order_Cancel,Return_Cancel procedures
+
+							   3 - reverse relative to 1 operation
+                                                               decrease InventoryByWarehouse.QtyCommitted in @Qty value
+                                                               increase InventoryByWarehouse.QtyOnHand in @Qty value
+                                                               decrease InventoryByWarehouse.QtyOnBackOrder in @BackQty value
+                                                               decrease WarehouseBins.LockerStockQty in @Qty value
+                                                               used from InvoiceDetail_SplitToWarehouseBin,OrderDetail_SplitToWarehouseBin procedures
+
+							   else - nothing
+
+Output Parameters:
+
+	NONE
+
+Called From:
+
+	OrderDetail_SplitToWarehouseBin, Return_Cancel, ReturnDetail_SplitToWarehouseBin, Order_Cancel
+
+Calls:
+
+	Error_InsertError, Error_InsertErrorDetail
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+/*       GET DIAGNOSTICS CONDITION 1
+       @p1 = RETURNED_SQLSTATE, @p2 = MESSAGE_TEXT;
+       SELECT @p1, @p2;*/
+      SET @SWV_Error = 1;
+   END;
+
+
+   SET @SWV_Error = 0;
+   START TRANSACTION;
+
+
+   IF(SELECT COUNT(*) FROM InventoryByWarehouse
+   WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   ItemID = v_InventoryItemID AND
+   WarehouseID = v_WarehouseID AND
+   WarehouseBinID = v_WarehouseBinID) = 0 then
+		
+      SET @SWV_Error = 0;
+      INSERT INTO InventoryByWarehouse(CompanyID,
+					DivisionID,
+					DepartmentID,
+					ItemID,
+					WarehouseID,
+					WarehouseBinID,
+					QtyOnHand,
+					QtyCommitted,
+					QtyOnOrder,
+					QtyOnBackorder)
+			VALUES(v_CompanyID,
+					v_DivisionID,
+					v_DepartmentID,
+					v_InventoryItemID,
+					v_WarehouseID,
+					v_WarehouseBinID,
+					0,
+					0,
+					0,
+					0);
+			
+      IF @SWV_Error <> 0 then
+			
+         SET v_ErrorMessage = 'Insert InventoryByWarehouse bin failed';
+         ROLLBACK;
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'WarehouseBinLockGoods',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'WarehouseID',v_WarehouseID);
+         SET SWP_Ret_Value = -1;
+      end if;
+   end if;
+
+   SET @SWV_Error = 0;
+   UPDATE WarehouseBins
+   SET
+   LockerStockQty =
+   CASE v_Action
+   WHEN 1 THEN IFNULL(LockerStockQty,0)+v_Qty
+   WHEN 2 THEN IFNULL(LockerStockQty,0) -(v_Qty -v_BackQty)
+   WHEN 3 THEN IFNULL(LockerStockQty,0) -v_Qty
+   ELSE IFNULL(LockerStockQty,0)
+   END
+   WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   WarehouseID = v_WarehouseID AND
+   WarehouseBinID = v_WarehouseBinID;
+   IF @SWV_Error <> 0 then
+	
+      SET v_ErrorMessage = 'Updating WarehouseBins failed';
+      ROLLBACK;
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'WarehouseBinLockGoods',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'WarehouseID',v_WarehouseID);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   SET @SWV_Error = 0;
+   UPDATE WarehouseBins
+   SET
+   LockerStock =
+   CASE
+   WHEN LockerStockQty > 0 THEN 1
+   ELSE 0
+   END
+   WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID AND
+   WarehouseID = v_WarehouseID AND
+   WarehouseBinID = v_WarehouseBinID;
+   IF @SWV_Error <> 0 then
+	
+      SET v_ErrorMessage = 'Updating WarehouseBins failed';
+      ROLLBACK;
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'WarehouseBinLockGoods',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'WarehouseID',v_WarehouseID);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   SET @SWV_Error = 0;
+   UPDATE
+   InventoryByWarehouse
+   SET
+   QtyOnHand =
+   CASE v_Action
+   WHEN 1 THEN IFNULL(QtyOnHand,0) - v_Qty
+   WHEN 2 THEN IFNULL(QtyOnHand,0) + (v_Qty -v_BackQty)
+   WHEN 3 THEN IFNULL(QtyOnHand,0) + v_Qty
+   ELSE IFNULL(QtyOnHand,0)
+   END,QtyCommitted =
+   CASE v_Action
+   WHEN 1 THEN IFNULL(QtyCommitted,0) + v_Qty
+   WHEN 2 THEN IFNULL(QtyCommitted,0) - (v_Qty -v_BackQty)
+   WHEN 3 THEN IFNULL(QtyCommitted,0) - v_Qty
+   ELSE IFNULL(QtyCommitted,0)
+   END,QtyOnBackorder =
+   CASE v_Action
+   WHEN 1 THEN IFNULL(QtyOnBackorder,0)+v_BackQty
+   WHEN 2 THEN
+      CASE
+      WHEN IFNULL(QtyOnBackorder,0) -v_BackQty >= 0
+      THEN IFNULL(QtyOnBackorder,0) -v_BackQty
+      ELSE 0
+      END
+   WHEN 3 THEN
+      CASE
+      WHEN IFNULL(QtyOnBackorder,0) -v_BackQty >= 0
+      THEN IFNULL(QtyOnBackorder,0) -v_BackQty
+      ELSE 0
+      END
+   ELSE IFNULL(QtyOnBackorder,0)
+   END
+   WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND WarehouseID = v_WarehouseID
+   AND WarehouseBinID = v_WarehouseBinID
+   AND ItemID = v_InventoryItemID;
+
+   IF @SWV_Error <> 0 then
+	
+      SET v_ErrorMessage = 'Updating inventory failed';
+      ROLLBACK;
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'WarehouseBinLockGoods',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'WarehouseID',v_WarehouseID);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+
+
+   COMMIT;
+
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+
+
+   ROLLBACK;
+
+   CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'WarehouseBinLockGoods',v_ErrorMessage,
+   v_ErrorID);
+   CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'WarehouseID',v_WarehouseID);
+	
+   SET SWP_Ret_Value = -1;
+
+END;
+
+
+
 
 
 
