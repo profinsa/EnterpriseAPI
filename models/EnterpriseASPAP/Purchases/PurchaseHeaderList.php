@@ -1476,7 +1476,12 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
         ]
     ];
     
-    public $detailPagesAsSubgrid = true;
+    //    public $detailPagesAsSubgrid = true;
+    /*public $detailTable = [
+        "viewPath" => "AccountsPayable/PurchaseProcessing/ViewPurchasesDetail",
+        "newKeyField" => "PurchaseNumber",
+        "keyFields" => ["PurchaseNumber", "PurchaseLineNumber"],
+        ];*/
     public $detailPages = [
         "Main" => [
             //            "hideFields" => "true",
@@ -1486,9 +1491,60 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
             "viewPath" => "AccountsPayable/PurchaseProcessing/ViewPurchasesDetail",
             "newKeyField" => "PurchaseNumber",
             "keyFields" => ["PurchaseNumber", "PurchaseLineNumber"],
-            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"]
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","PurchaseNumber", "PurchaseLineNumber"],
+            "gridFields" => [
+                "ItemID" => [
+                    "dbType" => "varchar(36)",
+                    "inputType" => "text",
+                    "disabledEdit" => true
+                ],
+                "Description" => [
+                    "dbType" => "varchar(80)",
+                    "inputType" => "text",
+                    "disabledEdit" => true
+                ],
+                "OrderQty" => [
+                    "dbType" => "float",
+                    "inputType" => "text",
+                    "disabledEdit" => true
+                ],
+                "ReceivedQty" => [
+                    "dbType" => "float",
+                    "inputType" => "text"
+                ],
+                "ReceivedDate" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime"
+                ],
+                "RecivingNumber" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "TrackingNumber" => [
+                    "dbType" => "varchar(50)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "ItemUnitPrice" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text",
+                    "disabledEdit" => true
+                ],
+                "Total" => [
+                    "dbType" => "decimal(19,4)",
+                    "format" => "{0:n}",
+                    "inputType" => "text",
+                    "disabledEdit" => true
+                ]
+            ]
         ]
     ];
+
+    public function getMain($ID){
+        return $this->getDetail($ID);
+    }
     
     public function Purchase_Split() {
         $user = Session::get("user");
