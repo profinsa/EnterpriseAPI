@@ -961,7 +961,9 @@ class PurchaseHeaderList extends gridDataSource{
         "ItemUnitPrice" => "Price",
         "ReceivingNumber" => "Receiving #",
         "TrackingNumber" => "Tracking #",
-        "Received" => "Received"
+        "Received" => "Received",
+        "ReceivedDate" => "Received Date",
+        "ReceivedQty" => "Received Qty"
 	];
 
     public $vendorFields = [
@@ -1510,19 +1512,23 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
                 ],
                 "ReceivedQty" => [
                     "dbType" => "float",
+                    "editable" => true,
                     "inputType" => "text"
                 ],
                 "ReceivedDate" => [
                     "dbType" => "datetime",
+                    "editable" => true,
                     "inputType" => "datetime"
                 ],
                 "RecivingNumber" => [
                     "dbType" => "varchar(50)",
+                    "editable" => true,
                     "inputType" => "text",
                     "defaultValue" => ""
                 ],
                 "TrackingNumber" => [
                     "dbType" => "varchar(50)",
+                    "editable" => true,
                     "inputType" => "text",
                     "defaultValue" => ""
                 ],
@@ -1542,8 +1548,45 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
         ]
     ];
 
-    public function getMain($ID){
-        return $this->getDetail($ID);
+    public function getMain($id){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages["Main"]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages["Main"]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND PurchaseNumber='" . $id . "'";
+
+        
+        $result = DB::select("SELECT " . implode(",", $fields) . " from purchasedetail " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
     }
     
     public function Purchase_Split() {

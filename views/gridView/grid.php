@@ -1,7 +1,7 @@
 <!--
      Name of Page: grid
 
-     Method: renders content of screen in grid mode. 
+     Method: renders content of screen in grid mode.
 
      Date created: Nikita Zaharov, 09.03.2017
 
@@ -30,126 +30,7 @@
 	return str_replace("%2F", "+++", urlencode($keystring));
     }
 
-    function renderGridValue($linksMaker, $ascope, $data, $drill, $row, $key, $value){
-	switch($data->gridFields[$key]["inputType"]){
-	    case "checkbox" :
-		return $value ? "True" : "False";
-		break;
-	    case "timestamp" :
-	    case "datetime" :
-		return date("m/d/y", strtotime($value));
-		break;
-	    case "text":
-		$outValue = "";
-		if(key_exists("formatFunction", $data->gridFields[$key])){
-		    $formatFunction = $data->gridFields[$key]["formatFunction"];
-		    $outValue = $data->$formatFunction($row, "gridFields", $key, $value, false);
-		}
-		else
-		    $outValue = formatField($data->gridFields[$key], $value);
-		switch($key){
-		    case "QtyOnOrder" :
-			return $drill->getLinkWarehouseForPurchases($linksMaker, $row["ItemID"], $outValue);
-		    case "QtyCommitted" :
-			return $drill->getLinkWarehouseForOrders($linksMaker, $row["ItemID"], $outValue);
-		    default :
-			return $outValue;
-		}
-		break;
-	    case "dateTimeFull" :
-		return $value;
-		break;
-	    case "dropdown":
-		switch($key){
-		    case "CustomerID" :
-			return $drill->getLinkByField($key,$value);
-			break;
-		    case "VendorID" :
-			return $drill->getLinkByField($key,$value);
-			break;
-		    case "OrderNumber" :
-			return $drill->getReportLinkByOrderNumber($value, $ascope["pathPage"]);
-			break;
-		    case "InvoiceNumber" :
-			return $drill->getReportLinkByInvoiceNumber($value, $ascope["pathPage"]);
-			break;
-		    default:
-			if(key_exists("formatFunction", $data->gridFields[$key])){
-			    $formatFunction = $data->gridFields[$key]["formatFunction"];
-			    return $data->$formatFunction($row, "gridFields", $key, $value, false);
-			}
-			else
-			    return formatField($data->gridFields[$key], $value);
-			break;
-		}
-	}
-    }
-
-    function renderInput($ascope, $data, $item, $key, $value, $keyString, $current_row){
-	$renderedString = "";
-	switch($data->gridFields[$key]["inputType"]){
-	    case "text" :
-		//renders text input with label
-		$renderedString = "<input style=\"display:inline\" type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this, '$key', '$current_row');\" class=\"form-control\" value=\"";
-		if(key_exists("formatFunction", $data->gridFields[$key])){
-		    $formatFunction = $data->gridFields[$key]["formatFunction"];
-		    $renderedString .=  $data->$formatFunction($item, "editCategories", $key, $value, false);
-		}
-		else
-		    $renderedString .=  formatField($data->gridFields[$key], $value);
-
-		$renderedString .=  "\" " . ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-				   .">";
-		break;
-
-	    case "datetime" :
-		//renders text input with label
-		$renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this, '$key', '$current_row');\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-				    ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-				   .">";
-		break;
-
-	    case "checkbox" :
-		//renders checkbox input with label
-		$renderedString .=   "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-		$renderedString .=   "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" onchange=\"gridChangeItem(this, '$key', '$current_row');\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
-				     ( (key_exists("disabledEdit", $data->gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view")) || (key_exists("disabledNew", $data->gridFields[$key]) && $ascope["mode"] == "new") ? "disabled" : "")
-				    .">";
-		break;
-
-	    case "dialogChooser":
-		$dataProvider = $data->gridFields[$key]["dataProvider"];
-		if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"]))
-		    $GLOBALS["dialogChooserTypes"][$dataProvider] = "hophop";
-		$GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-		$renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\" onchange=\"gridChangeItem(this, '$key', '$current_row');\">";
-		break;
-
-	    case "dropdown" :
-		//renders select with available values as dropdowns with label
-		$renderedString .=  "<select class=\"form-control subgrid-input\" name=\"" . $key . "\" id=\"{$keyString}___" . $key . "\" onchange=\"gridChangeItem(this, '$key', '$current_row');\">";
-		$method = $data->gridFields[$key]["dataProvider"];
-		if(key_exists("dataProviderArgs", $data->gridFields[$key])){
-		    $args = [];
-		    foreach($data->gridFields[$key]["dataProviderArgs"] as $argname)
-		    $args[$argname] = $item[$argname];
-		    $types = $data->$method($args);
-		}
-		else
-		    $types = $data->$method();
-		if($value)
-		    $renderedString .= "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
-		else
-		    $renderedString .= "<option></option>";
-
-		foreach($types as $type)
-		if(!$value || $type["value"] != $value)
-		    $renderedString .=  "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
-		echo"</select>";
-		break;
-	}
-	return $renderedString;
-    }
+    require  './views/gridView/blocks/common.php';
 ?>
 
 <?php if(!property_exists($data, "features") || !in_array("disabledGridPageUI", $data->features)): ?>
@@ -190,7 +71,7 @@
 	    if(count($rows)){
 		$current_row = 0;
 		foreach($rows as $row){
-		    //creating keyString - it is string, contains all keys of table. It used with combination with id of row 
+		    //creating keyString - it is string, contains all keys of table. It used with combination with id of row
 		    $keyString = '';
 		    foreach($data->idFields as $key){
 			$keyString .= $row[$key] . "__";
@@ -221,7 +102,7 @@
 			    //edit action, just link on edit page. Showed if user has select permission
 			    if($security->can("select") && (!property_exists($data, "modes") || in_array("view", $data->modes)))
 				echo "<a href=\"" . (property_exists($data, "onlyEdit") ? $linksMaker->makeGridItemEdit($ascope["path"], urlencode($keyString)) : $linksMaker->makeGridItemView($ascope["path"], urlencode($keyString))) ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
-			    /*delete action, call javascript function with keyString as parameter then function call XHR 
+			    /*delete action, call javascript function with keyString as parameter then function call XHR
 			       delete request on server
 			       It is showed only if not disabled by modes property of data model and user has delete permission
 			     */
@@ -251,9 +132,9 @@
 			foreach($data->gridFields as $column =>$columnDef){
 			    echo "<td>\n";
 			    if(key_exists("editable", $columnDef) && $columnDef["editable"])
-				echo renderInput($ascope, $data, $columnDef, $column, $row[$column], $keyString, $current_row);
+				echo renderInput($ascope, $data, $data->gridFields, $columnDef, $column, $row[$column], $keyString, $current_row);
 			    else
-				echo renderGridValue($linksMaker, $ascope, $data, $drill, $row, $column, $row[$column]);
+				echo renderGridValue($linksMaker, $ascope, $data, $data->gridFields, $drill, $row, $column, $row[$column]);
 			    echo "</td>\n";
 			}
 			echo "</tr>";
@@ -292,7 +173,7 @@
 	 delete gridItemsSelected[item];
      //console.log(JSON.stringify(gridItemsSelected));
  }
- 
+
  //hander delete button from rows. Just doing XHR request to delete item and redirect to grid if success
  function gridDeleteItem(keyString){
      if(confirm("Are you sure?")){
@@ -328,5 +209,3 @@
 	});*/
  }
 </script>
-</div>
-
