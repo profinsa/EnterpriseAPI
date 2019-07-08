@@ -29,7 +29,7 @@
     $GLOBALS["dialogChooserTypes"] = [];
     $GLOBALS["dialogChooserInputs"] = [];
 
-    function renderInput($ascope, $data, $category, $item, $key, $value){
+    function renderDetailInput($ascope, $data, $category, $item, $key, $value){
 	switch($data->editCategories[$category][$key]["inputType"]){
 	    case "text" :
 		//renders text input with label
@@ -106,7 +106,7 @@
 		 $data->columnNames[$key] :
 		 $key));
 	    echo "<div class=\"form-group col-md-12 col-xs-12\"><label class=\"col-md-6 col-xs-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6 col-xs-6\">";
-	    renderInput($ascope, $data, $category, $item, $key, $value);
+	    renderDetailInput($ascope, $data, $category, $item, $key, $value);
 	    echo "</div></div>";
 	}
     }
@@ -168,7 +168,7 @@
 		    <tr>
 			<?php foreach($data->headTableOne as $key=>$value): ?>
 			    <td>
-				<?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+				<?php renderDetailInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
 			    </td>
 			<?php endforeach; ?>
 		    </tr>
@@ -187,7 +187,7 @@
 			<tr>
 			    <?php foreach($data->headTableTwo as $key=>$value): ?>
 				<td>
-				    <?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+				    <?php renderDetailInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
 				</td>
 			    <?php endforeach; ?>
 			</tr>
@@ -260,7 +260,7 @@
 			<tr>
 			    <?php foreach($data->headTableThree as $key=>$value): ?>
 				<td>
-				    <?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+				    <?php renderDetailInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
 				</td>
 			    <?php endforeach; ?>
 			</tr>
@@ -303,7 +303,7 @@
 				</td>
 				<td>
 				    <?php if(count($row) > 2): ?>
-					<?php renderInput($ascope, $data, "...fields", $headerItem, $row[2], $headerItem[$row[2]]); ?>
+					<?php renderDetailInput($ascope, $data, "...fields", $headerItem, $row[2], $headerItem[$row[2]]); ?>
 				    <?php endif; ?>
 				</td>
 				<?php if($row[0] == "Shipped"): ?>
@@ -311,14 +311,14 @@
 					<div><b><?php echo $translation->translateLabel("Trk #"); ?> </b></div>
 				    </td>
 				    <td>
-					<?php renderInput($ascope, $data, "...fields", $headerItem, "TrackingNumber", $headerItem["TrackingNumber"]); ?>
+					<?php renderDetailInput($ascope, $data, "...fields", $headerItem, "TrackingNumber", $headerItem["TrackingNumber"]); ?>
 				    </td>
 				<?php elseif($row[0] == "Invoiced"): ?>
 				    <td>
 					<div><b><?php echo $translation->translateLabel("Inv #"); ?> </b></div>
 				    </td>
 				    <td>
-					<?php renderInput($ascope, $data, "...fields", $headerItem, "InvoiceNumber", $headerItem["InvoiceNumber"]); ?>
+					<?php renderDetailInput($ascope, $data, "...fields", $headerItem, "InvoiceNumber", $headerItem["InvoiceNumber"]); ?>
 				    </td>
 				<?php endif;  ?>
 			    </tr>
@@ -341,7 +341,7 @@
 				</td>
 				<td>
 				    <?php if($key != "Tax" && $key != "Total"): ?>
-					<?php renderInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+					<?php renderDetailInput($ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
 				    <?php else: ?>
 					<input type="hidden" name="<?php echo $key; ?>" value="<?php echo $headerItem[$value]; ?>">
 					<div class="pull-right"><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?></div>
