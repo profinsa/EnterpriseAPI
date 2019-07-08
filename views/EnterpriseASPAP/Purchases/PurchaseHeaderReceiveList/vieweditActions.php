@@ -4,6 +4,7 @@
          header : getCurrentPageValues(),
          detail : gridItems
      };
+     console.log(requestData);
      serverProcedureAnyCall("<?php echo $ascope["path"]; ?>", 'Purchase_Split', requestData, function(data){
 	 onlocation(location);
      }, true);

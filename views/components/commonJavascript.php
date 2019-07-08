@@ -137,8 +137,13 @@
      var ind, elem;
      for(ind in values){
          elem = $('#' + ind);
-         if(elem.length)
-             values[ind] = elem.val()
+         if(elem.length){
+             if(elem.attr("type") == "checkbox"){
+                 values[ind] = elem.attr("checked") == "checked" ? 1 : 0;
+             }
+             else
+                 values[ind] = elem.val();
+         }         
      }
      return values;
      //     return ["ee", "ddd"];

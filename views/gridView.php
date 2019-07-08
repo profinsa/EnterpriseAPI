@@ -182,7 +182,6 @@
  }
 
  <?php endif; ?>
-console.log('dfdfdfeeeeeeeeeee');
  $('.fdatetime').datepicker({
      autoclose : true,
      orientation : "bottom",
