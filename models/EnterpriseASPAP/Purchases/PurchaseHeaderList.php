@@ -1592,6 +1592,15 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
     public function Purchase_Split() {
         $user = Session::get("user");
 
+        $postData = file_get_contents("php://input");
+        
+        // `application/x-www-form-urlencoded`  `multipart/form-data`
+        $data = parse_str($postData);
+        // or
+        // `application/json`
+        $data = json_decode($postData, true);
+        echo json_encode($data, JSON_PRETTY_PRINT);
+        return;
         DB::statement("CALL Purchase_Split('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
 
         $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');

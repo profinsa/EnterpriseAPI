@@ -118,7 +118,7 @@
 	 "row" : row
      };
      obj[keyAndId[1]] = gridItems[row][columnName] = $(item).val();
-     console.log(JSON.stringify(gridItems[row], null, 3));
+     //console.log(JSON.stringify(gridItems[row], null, 3));
      /*	 $.post("", obj)
 	.success(function(data) {
 	onlocation(window.location);
