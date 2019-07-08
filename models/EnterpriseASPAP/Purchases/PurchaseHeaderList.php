@@ -1591,6 +1591,8 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
     
     public function Purchase_Split() {
         $user = Session::get("user");
+        require "./models/EnterpriseASPAP/Purchases/PurchaseDetail.php";
+        $purchaseDetail = new PurchaseDetail();
 
         $postData = file_get_contents("php://input");
         
@@ -1599,9 +1601,12 @@ class PurchaseHeaderReceiveList extends PurchaseHeaderList{
         // or
         // `application/json`
         $data = json_decode($postData, true);
-        echo json_encode($data, JSON_PRETTY_PRINT);
-        return;
-        DB::statement("CALL Purchase_Split('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
+        $this->updateItem("{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$data["header"]["PurchaseNumber"]}", "Main", $data["header"]);
+        foreach($data["detail"] as $detail){
+            $purchaseDetail->updateItem("{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$detail["PurchaseNumber"]}__{$detail["PurchaseLineNumber"]}", "Main", $detail);
+        }
+
+        DB::statement("CALL Purchase_Split('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $data["header"]["PurchaseNumber"] . "',@Success,@SWP_RET_VALUE)");
 
         $result = DB::select('select @Success as Success, @SWP_RET_VALUE as SWP_RET_VALUE');
 

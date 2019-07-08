@@ -29,10 +29,10 @@
   Last Modified by: Zaharov Nikita
 */
 
-require "./models/helpers/recalc.php";
-require "./models/gridDataSource.php";
+require_once "./models/helpers/recalc.php";
+require_once "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class PurchaseDetail extends gridDataSource{
 	public $tableName = "purchasedetail";
     public $parentTableName = "purchaseheader";
     //	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
@@ -254,6 +254,30 @@ class gridData extends gridDataSource{
 				"inputType" => "text",
 				"defaultValue" => ""
 			]
+        ],
+        "...fields" => [
+            "ReceivedQty" => [
+                "dbType" => "float",
+                "editable" => true,
+                "inputType" => "text"
+            ],
+            "ReceivedDate" => [
+                "dbType" => "datetime",
+                "editable" => true,
+                "inputType" => "datetime"
+            ],
+            "RecivingNumber" => [
+                "dbType" => "varchar(50)",
+                "editable" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "TrackingNumber" => [
+                "dbType" => "varchar(50)",
+                "editable" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]
         ]
     ];
 

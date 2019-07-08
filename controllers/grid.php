@@ -82,6 +82,7 @@ class controller{
         "EnterpriseASPAR/RMA/RMAHeaderReceiveList" => "EnterpriseASPAR/RMA/RMAHeaderList",
         "EnterpriseASPAR/RMA/RMAHeaderReceivedList" => "EnterpriseASPAR/RMA/RMAHeaderList",
 
+        "EnterpriseASPAP/Purchases/PurchaseDetail" => "EnterpriseASPAP/Purchases/PurchaseDetail",
         "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderClosedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderApproveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
@@ -133,9 +134,9 @@ class controller{
             throw new Exception("model " . 'models/' . $requireModelPath . '.php' . " is not found");
         require 'models/' . $requireModelPath. '.php';
         
-        if($requireModelPath != $model_path){
-            preg_match("/\/([^\/]+)$/", $model_path, $filename);
-            $newPath = $filename[1];
+        preg_match("/\/([^\/]+)$/", $model_path, $filename);
+        $newPath = $filename[1];
+        if($requireModelPath != $model_path || class_exists($newPath)){
             $data = new $newPath;
         }
         else
