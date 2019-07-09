@@ -25,7 +25,7 @@
   models/gridDataSource derivatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 06.06.2019
+  Last Modified: 09.06.2019
   Last Modified by: Nikita Zaharov
 */
 
