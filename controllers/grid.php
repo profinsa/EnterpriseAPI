@@ -363,6 +363,14 @@ class controller{
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
                     ],
+                    "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
                     "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
