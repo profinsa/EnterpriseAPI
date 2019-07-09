@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 12/14/2018
+  Last Modified: 09/07/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -204,13 +204,99 @@ class ReturnHeaderList extends gridDataSource{
 
 			]
 		],
-        "Customer" => [
-            "CustomerID" => [
+        "Vendor" => [
+            "loadFrom" => [
+                "method" => "getVendorInfo",
+                "key" => "CustomerID",
+            ],
+            "VendorID" => [
                 "dbType" => "varchar(50)",
-                "required" => "true",
-                "defaultOverride" => true,
                 "defaultValue" => "",
+                "defaultOverride" => "true",
+                "required" => "true",
                 "inputType" => "text"
+            ],
+            "AccountStatus" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorName" => [
+                "title" => "Name",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorAddress1" => [
+                "title" => "addr 1",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorAddress2" => [
+                "title" => "addr 2",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorAddress3" => [
+                "title" => "addr 3",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorCity" => [
+                "title" => "City",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorState" => [
+                "title" => "State",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorZip" => [
+                "title" => "Zip",
+                "dbType" => "varchar(10)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorCountry" => [
+                "title" => "Country",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorPhone" => [
+                "title" => "Phone",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorFax" => [
+                "title" => "Fax",
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorEmail" => [
+                "title" => "Email",
+                "dbType" => "varchar(60)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "VendorWebPage" => [
+                "title" => "Web",
+                "dbType" => "varchar(80)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "Attention" => [
+                "dbType" => "varchar(50)",
+                "inputType" => "text",
+                "defaultValue" => ""
             ]
         ],
 		"Payment" => [
@@ -527,7 +613,7 @@ class ReturnHeaderList extends gridDataSource{
                 "dataProvider" => "getOrderTypes",
                 "defaultOverride" => true,
 				"defaultValue" => "Return",
-                "inputType" => "text"
+                "inputType" => "dropdown"
             ],
             "OrderDate" => [
                 "dbType" => "timestamp",
@@ -634,7 +720,33 @@ class ReturnHeaderList extends gridDataSource{
                 "defaultValue" => "",
 				"inputType" => "dialogChooser",
                 "dataProvider" => "getVendors",
-				"defaultValue" => ""
+				"defaultValue" => "",
+                "fieldsToFill" => [
+                    "TermsID" => "TermID",
+                    "CustomerShipToID" => "ShipToID",
+                    "CustomerShipForID" => "ShipForID",
+                    "CurrencyID" => "CurrencyID",
+                    //                    CASE
+                    //WHEN IFNULL(CurrencyID,N'') = N'' THEN v_CompanyCurrencyID
+                    //ELSE CurrencyID
+                    //END 	AS CurrencyID,
+                    "TaxGroupID" => "TaxGroupID",
+                    "TaxIDNo" => "TaxIDNo",
+                    "WarehouseID" => "WarehouseID",
+                    "ShipMethodID" => "ShipMethodID",
+                    "EmployeeID" => "EmployeeID",
+                    "GLSalesAccount" => "GLSalesAccount",
+                    "VendorName" => "ShippingName",
+                    "VendorAddress1" => "ShippingAddress1",
+                    "VendorAddress2" => "ShippingAddress2",
+                    "VendorAddress3" => "ShippingAddress3",
+                    "VendorCity" => "ShippingCity",
+                    "VendorState" => "ShippingState",
+                    "VendorZip" => "ShippingZip",
+                    "VendorCountry" => "ShippingCountry",
+                    //IFNULL(Terms.NetDays,0) As NetDays,
+                    //v_AllowanceDiscountPercent AS AllowanceDiscountPerc
+                ]
 			],
 			"TermsID" => [
 				"dbType" => "varchar(36)",
@@ -824,6 +936,8 @@ class ReturnHeaderList extends gridDataSource{
         "Terms" => "TermsID"
     ];
 
+    public $vendorField = "CustomerID";
+    
     public $detailTable = [
         "viewPath" => "AccountsPayable/ReturnToVendor/ViewReturnsDetail",
         "newKeyField" => "OrderNumber",
@@ -858,7 +972,7 @@ class ReturnHeaderList extends gridDataSource{
 		"OrderNumber" => "Return Number",
 		"OrderTypeID" => "Type",
 		"OrderDate" => "Order Date",
-		"CustomerID" => "Vnedor ID",
+		"CustomerID" => "Vendor ID",
 		"CurrencyID" => "Currency ID",
 		"Total" => "Total",
 		"ShipDate" => "Ship Date",
@@ -969,8 +1083,8 @@ class ReturnHeaderList extends gridDataSource{
         "ProjectID" => "ProjectID"
 	];
 
-    public $customerFields = [
-        "CustomerID" => [
+    public $vendorFields = [
+        "VendorID" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
@@ -980,58 +1094,63 @@ class ReturnHeaderList extends gridDataSource{
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerName" => [
+        "VendorName" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerAddress1" => [
+        "VendorAddress1" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerAddress2" => [
+        "VendorAddress2" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerAddress3" => [
+        "VendorAddress3" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerCity" => [
+        "VendorCity" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerState" => [
+        "VendorState" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerZip" => [
+        "VendorZip" => [
             "dbType" => "varchar(10)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerCountry" => [
+        "VendorCountry" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerPhone" => [
+        "VendorPhone" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerFax" => [
+        "VendorFax" => [
             "dbType" => "varchar(50)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "CustomerEmail" => [
+        "VendorEmail" => [
             "dbType" => "varchar(60)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "VendorWebPage" => [
+            "dbType" => "varchar(80)",
             "inputType" => "text",
             "defaultValue" => ""
         ],
@@ -1042,13 +1161,13 @@ class ReturnHeaderList extends gridDataSource{
         ]
     ];
 
-    public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
-    //getting data for Customer Page
-    public function getCustomerInfo($id){
+    public $vendorIdFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
+    //getting data for Vendor Page
+    public function getVendorInfo($id){
         $user = Session::get("user");
         $keyFields = "";
         $fields = [];
-        foreach($this->customerFields as $key=>$value){
+        foreach($this->vendorFields as $key=>$value){
             $fields[] = $key;
             if(key_exists("addFields", $value)){
                 $_fields = explode(",", $value["addFields"]);
@@ -1056,7 +1175,7 @@ class ReturnHeaderList extends gridDataSource{
                     $fields[] = $addfield;
             }
         }
-        foreach($this->customerIdFields as $key){
+        foreach($this->vendorIdFields as $key){
             switch($key){
             case "CompanyID" :
                 $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
@@ -1075,9 +1194,9 @@ class ReturnHeaderList extends gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
 
         if($id)
-            $keyFields .= " AND CustomerID='" . $id . "'";
+            $keyFields .= " AND VendorID='" . $id . "'";
         
-        $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+        $result = DB::select("SELECT " . implode(",", $fields) . " from vendorinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
         
