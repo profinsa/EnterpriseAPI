@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 09/07/2019
+  Last Modified: 10/07/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -1245,7 +1245,7 @@ class ReturnInvoiceHeaderShippedList extends ReturnInvoiceHeaderList{
     public $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return')) AND (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) >= 0.005)";
     public $dashboardTitle ="Shipped Returns";
     public $breadCrumbTitle ="Shipped Returns";
-    public $modes = ["grid"];
+    public $modes = ["grid", "view"];
 }
 
 ?>
