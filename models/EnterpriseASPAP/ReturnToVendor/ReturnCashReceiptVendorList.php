@@ -603,7 +603,6 @@ class gridData extends gridDataSource{
         "Hot" => "Hot"
     ];
 
-    
     //getting rows for grid
     public function getPage($customer){
         $user = Session::get("user");
