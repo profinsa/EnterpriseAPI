@@ -190,6 +190,7 @@
     "AccountsPayable/ReturntoVendorScreens/ViewStoreReturnInvoices" => "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderStoreList",
     "AccountsPayable/ReturntoVendorScreens/ViewReturnCashReceipts" => "EnterpriseASPAP/ReturnToVendor/ReturnReceiptsHeaderList",
     "AccountsPayable/ReturntoVendorScreens/ProcessReturnsCashReceipt" => "EnterpriseASPAP/ReturnToVendor/ReturnCashReceiptVendorList",
+    "AccountsPayable/ReturntoVendorScreens/CashReceipts" => "EnterpriseASPAP/ReturnToVendor/ReturnCashReceiptsList",
     "AccountsPayable/Vendors/ViewVendors" => "EnterpriseASPAP/Vendors/VendorInformationList",
     "AccountsPayable/Vendors/ViewVendorFinancials" => "EnterpriseASPAP/Vendors/VendorFinancialsList",
     "AccountsPayable/Vendors/ViewContacts" => "EnterpriseASPAP/Vendors/VendorContactsList",

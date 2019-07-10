@@ -935,8 +935,6 @@ class ReturnHeaderList extends gridDataSource{
         "Terms" => "TermsID"
     ];
 
-    public $vendorField = "CustomerID";
-    
     public $detailTable = [
         "viewPath" => "AccountsPayable/ReturnToVendor/ViewReturnsDetail",
         "newKeyField" => "OrderNumber",
@@ -1082,6 +1080,8 @@ class ReturnHeaderList extends gridDataSource{
         "ProjectID" => "ProjectID"
 	];
 
+    public $vendorField = "CustomerID";
+    
     public $vendorFields = [
         "VendorID" => [
             "dbType" => "varchar(50)",

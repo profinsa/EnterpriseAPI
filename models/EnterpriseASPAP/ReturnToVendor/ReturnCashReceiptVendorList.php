@@ -603,32 +603,35 @@ class gridData extends gridDataSource{
         "Hot" => "Hot"
     ];
 
+    
     //getting rows for grid
     public function getPage($customer){
         $user = Session::get("user");
+        $CompanyID = "'{$user["CompanyID"]}'";
+        $DivisionID = "'{$user["DivisionID"]}'";
+        $DepartmentID = "'{$user["DepartmentID"]}'";
         $query = <<<EOF
 			SELECT     CompanyID AS CompanyID, DivisionID AS DivisionID, DepartmentID AS DepartmentID, VendorID AS VendorID, AccountStatus AS AccountStatus,
 			VendorName AS VendorName, VendorPhone AS VendorPhone, VendorLogin AS VendorLogin, VendorPassword AS VendorPassword,
 			VendorTypeID AS VendorTypeID
 			FROM         VendorInformation AS ReturnCashReceiptVendor
-			WHERE    ((CompanyID = @CompanyID) AND (DivisionID = @DivisionID) AND (DepartmentID = @DepartmentID) AND IFNULL(ConvertedFromCustomer, 0) = 0 AND
+			WHERE    ((CompanyID = $CompanyID) AND (DivisionID = $DivisionID) AND (DepartmentID = $DepartmentID) AND IFNULL(ConvertedFromCustomer, 0) = 0 AND
 			EXISTS
 			(SELECT     ReceiptID
 			FROM          ReceiptsHeader
-			WHERE      ReceiptsHeader.CompanyID = @CompanyID AND ReceiptsHeader.DivisionID = @DivisionID AND
-			ReceiptsHeader.DepartmentID = @DepartmentID AND ReturnCashReceiptVendor.VendorID = ReceiptsHeader.CustomerID AND
+			WHERE      ReceiptsHeader.CompanyID = $CompanyID AND ReceiptsHeader.DivisionID = $DivisionID AND
+			ReceiptsHeader.DepartmentID = $DepartmentID AND ReturnCashReceiptVendor.VendorID = ReceiptsHeader.CustomerID AND
 			ReceiptsHeader.Posted = 1 AND (ReceiptsHeader.CreditAmount IS NULL OR
 			ReceiptsHeader.CreditAmount <> 0) AND ReceiptsHeader.ReceiptClassID = 'Vendor') OR
-			(CompanyID = @CompanyID) AND (DivisionID = @DivisionID) AND (DepartmentID = @DepartmentID) AND IFNULL(ConvertedFromCustomer, 0) = 0 AND
+			(CompanyID = $CompanyID) AND (DivisionID = $DivisionID) AND (DepartmentID = $DepartmentID) AND IFNULL(ConvertedFromCustomer, 0) = 0 AND
 			EXISTS
 			(SELECT     InvoiceNumber
 			FROM          InvoiceHeader
-			WHERE      InvoiceHeader.CompanyID = '{$user["CompanyID"]}' AND InvoiceHeader.DivisionID = '{$user["DivisionID"]}' AND
-			InvoiceHeader.DepartmentID = '{$user["DepartmentID"]}' AND ReturnCashReceiptVendor.VendorID = InvoiceHeader.CustomerID AND
+			WHERE      InvoiceHeader.CompanyID = $CompanyID AND InvoiceHeader.DivisionID = $DivisionID AND
+			InvoiceHeader.DepartmentID = $DepartmentID AND ReturnCashReceiptVendor.VendorID = InvoiceHeader.CustomerID AND
 			InvoiceHeader.TransactionTypeID = 'Credit Memo' AND InvoiceHeader.Posted = 1 AND ABS(IFNULL(InvoiceHeader.Total, 0)
 			- IFNULL(InvoiceHeader.AmountPaid, 0)) > 0.005))
 EOF;
-        
         $result = DB::select($query, array());
         $result = json_decode(json_encode($result), true);
         

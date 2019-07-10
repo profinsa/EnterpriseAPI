@@ -25,14 +25,11 @@
   Calls:
   MySql Database
 
-  Last Modified: 08/15/2017
+  Last Modified: 10/7/2019
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
-
-use Illuminate\Support\Facades\DB;
-use Session;
 
 class gridData extends gridDataSource{
     public $tableName = "receiptsheader";
@@ -369,6 +366,9 @@ class gridData extends gridDataSource{
     //getting rows for grid
     public function getPage($VendorID){
         $user = Session::get("user");
+        $CompanyID = "'{$user["CompanyID"]}'";
+        $DivisionID = "'{$user["DivisionID"]}'";
+        $DepartmentID = "'{$user["DepartmentID"]}'";
         $query = <<<EOF
 			SELECT     ReturnCashReceiptsHeader.CompanyID AS CompanyID, ReturnCashReceiptsHeader.DivisionID AS DivisionID, ReturnCashReceiptsHeader.DepartmentID AS DepartmentID,
 			ReturnCashReceiptsHeader.ReceiptID AS ReceiptID, 0 AS CashType, ReturnCashReceiptsHeader.ReceiptTypeID AS ReceiptTypeID,
@@ -380,9 +380,9 @@ class gridData extends gridDataSource{
 			FROM         ReceiptsHeader AS ReturnCashReceiptsHeader LEFT JOIN
 			CurrencyTypes ON ReturnCashReceiptsHeader.CompanyID = CurrencyTypes.CompanyID AND ReturnCashReceiptsHeader.DivisionID = CurrencyTypes.DivisionID AND
 			ReturnCashReceiptsHeader.DepartmentID = CurrencyTypes.DepartmentID AND ReturnCashReceiptsHeader.CurrencyID = CurrencyTypes.CurrencyID
-			WHERE     ((ReturnCashReceiptsHeader.CompanyID = '{$user["CompanyID"]}') AND (ReturnCashReceiptsHeader.DivisionID = '{$user["DivisionID"]}') AND (ReturnCashReceiptsHeader.DepartmentID = '{$user["DepartmentID"]}')
+			WHERE     ((ReturnCashReceiptsHeader.CompanyID = $CompanyID) AND (ReturnCashReceiptsHeader.DivisionID = $DivisionID) AND (ReturnCashReceiptsHeader.DepartmentID = $DepartmentID)
 			AND (ReturnCashReceiptsHeader.CustomerID = '$VendorID') AND (ReturnCashReceiptsHeader.Posted = 1) AND (ReturnCashReceiptsHeader.CreditAmount IS NULL OR
-			ReturnCashReceiptsHeader.CreditAmount != 0) AND ReturnCashReceiptsHeader.ReceiptClassID = 'Vendor')
+			ReturnCashReceiptsHeader.CreditAmount <> 0) AND ReturnCashReceiptsHeader.ReceiptClassID = 'Vendor')
 			UNION
 			SELECT     ReturnCashReceiptsHeader.CompanyID AS CompanyID, ReturnCashReceiptsHeader.DivisionID AS DivisionID, ReturnCashReceiptsHeader.DepartmentID AS DepartmentID,
 			ReturnCashReceiptsHeader.InvoiceNumber AS ReceiptID, 1 AS CashType, 'Credit Memo' AS ReceiptTypeID, NULL AS ReceiptClassID,
@@ -395,7 +395,7 @@ class gridData extends gridDataSource{
 			ReturnCashReceiptsHeader.DepartmentID = CurrencyTypes.DepartmentID AND ReturnCashReceiptsHeader.CurrencyID = CurrencyTypes.CurrencyID INNER JOIN
 			VendorInformation ON ReturnCashReceiptsHeader.CompanyID = VendorInformation.CompanyID AND ReturnCashReceiptsHeader.DivisionID = VendorInformation.DivisionID AND
 			ReturnCashReceiptsHeader.DepartmentID = VendorInformation.DepartmentID AND ReturnCashReceiptsHeader.CustomerID = VendorInformation.VendorID
-			WHERE ((ReturnCashReceiptsHeader.CompanyID = '{$user["CompanyID"]}') AND (ReturnCashReceiptsHeader.DivisionID = '{$user["DivisionID"]}') AND (ReturnCashReceiptsHeader.DepartmentID = '{$user["DepartmentID"]}') AND
+			WHERE     ((ReturnCashReceiptsHeader.CompanyID = $CompanyID) AND (ReturnCashReceiptsHeader.DivisionID = $DivisionID) AND (ReturnCashReceiptsHeader.DepartmentID = $DepartmentID) AND
 			(ReturnCashReceiptsHeader.CustomerID = '$VendorID') AND ReturnCashReceiptsHeader.TransactionTypeID = 'Credit Memo' AND ABS(IFNULL(ReturnCashReceiptsHeader.Total, 0)
 			- IFNULL(ReturnCashReceiptsHeader.AmountPaid, 0)) > 0.005 AND ReturnCashReceiptsHeader.Posted = 1 AND IFNULL(VendorInformation.ConvertedFromCustomer, 0) = 0)
 EOF;

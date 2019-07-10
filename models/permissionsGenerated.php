@@ -1929,6 +1929,12 @@ public $permissions = [
         "insert" => "Always",
         "delete" => "Always",
     ],
+    "ReturnCashReceipts" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "Always",
+        "insert" => "Always",
+        "delete" => "Always",
+    ],
     "ReturnCashReceiptVendor" => [
         "select" => "APView|GLView|POView|ADView|ADSetup",
         "update" => "APEdit|ADSetup",
