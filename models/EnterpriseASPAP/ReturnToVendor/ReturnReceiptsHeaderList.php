@@ -224,7 +224,8 @@ class gridData extends gridDataSource{
                 "dbType" => "varchar(36)",
                 "inputType" => "dropdown",
                 "dataProvider" => "getReceiptClasses",
-                "defaultValue" => "",
+                "defaultValue" => "Vendor",
+                "defaultOverride" => true
             ],
             "CheckNumber" => [
                 "dbType" => "varchar(20)",
@@ -755,12 +756,10 @@ class gridData extends gridDataSource{
 
          $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
          if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
+            http_response_code(400);
+            echo $result[0]->SWP_RET_VALUE;
+         } else 
             echo "ok";
-            header('Content-Type: application/json');
-         }
     }
 
     public function Post(){
@@ -768,14 +767,12 @@ class gridData extends gridDataSource{
 
          DB::statement("CALL ReturnReceipt_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["ReceiptID"] . "',@Success,@PostingResult,@SWP_RET_VALUE)");
 
-         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
-            return response("failed", 400)->header('Content-Type', 'text/plain');
-         } else {
+         $result = DB::select('select @Success as Success, @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
+         if($result[0]->SWP_RET_VALUE == -1 || $result[0]->Success != 1) {
+            http_response_code(400);
+            echo $result[0]->PostingResult;
+         } else 
             echo "ok";
-            header('Content-Type: application/json');
-         }
     }
 
     public function Memorize(){
