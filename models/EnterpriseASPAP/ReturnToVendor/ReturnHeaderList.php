@@ -213,7 +213,6 @@ class ReturnHeaderList extends gridDataSource{
                 "dbType" => "varchar(50)",
                 "defaultValue" => "",
                 "defaultOverride" => "true",
-                "required" => "true",
                 "inputType" => "text"
             ],
             "AccountStatus" => [
