@@ -61,22 +61,24 @@
 	    require __DIR__ . "/" . "vieweditFooter.php";
 	?>
 
-    <div style="margin-top:10px" class="pull-right">
-	<!--
+</div>
+<div class="row">
+    <div class="pull-right">
+        <!--
 	     buttons Edit and Cancel
 	     for translation uses translation model
 	     for category(which tab is activated) uses $scope of controller
-	   -->
-	<?php if($security->can("update")): ?>
-		<?php 
-		if(file_exists(__DIR__ . "/" . "viewActions.php"))
+        -->
+        <?php if($security->can("update")): ?>
+	    <?php 
+	        if(file_exists(__DIR__ . "/" . "viewActions.php"))
 		    require __DIR__ . "/" . "viewActions.php";
-		if(file_exists(__DIR__ . "/" . "vieweditActions.php"))
+	        if(file_exists(__DIR__ . "/" . "vieweditActions.php"))
 		    require __DIR__ . "/" . "vieweditActions.php";
-		?>
-	<?php endif; ?>
-	<a class="btn btn-info" href="index.php#/?page=grid&action=<?php echo $scope->action . "&mode=grid"; ?>">
+	    ?>
+        <?php endif; ?>
+        <a class="btn btn-info" href="index.php#/?page=grid&action=<?php echo $scope->action . "&mode=grid"; ?>">
 	    <?php echo $translation->translateLabel("Cancel"); ?>
-	</a>
+        </a>
     </div>
 </div>
