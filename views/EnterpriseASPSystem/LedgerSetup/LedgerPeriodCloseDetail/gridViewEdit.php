@@ -83,21 +83,23 @@
 	    require __DIR__ . "/" . "vieweditFooter.php";
 	?>
 	
-	<div  style="margin-top:10px" class="pull-right">
-	    <!--
-		 renders buttons translated Save and Cancel using translation model
-	       -->
-	    <?php if($security->can("update")): ?>
-		<?php 
-		if(file_exists(__DIR__ . "/" . "editActions.php"))
-		    require __DIR__ . "/" . "editActions.php";
-		if(file_exists(__DIR__ . "/" . "vieweditActions.php"))
-		    require __DIR__ . "/" . "vieweditActions.php";
-		?>
-	    <?php endif; ?>
-	    <a class="btn btn-info" href="index.php#/?page=grid&action=<?php echo $scope->action . "&mode=" .  ( $scope->mode != "new" ? "view/" . $scope->category . "&item=" . $scope->item : "&grid" ) ; ?>">
-		<?php echo $translation->translateLabel("Cancel"); ?>
-	    </a>
-	</div>
     </form>
+</div>
+<div class="row">
+    <div class="pull-right">
+        <!--
+	     renders buttons translated Save and Cancel using translation model
+        -->
+        <?php if($security->can("update")): ?>
+	    <?php 
+	        if(file_exists(__DIR__ . "/" . "editActions.php"))
+		    require __DIR__ . "/" . "editActions.php";
+	        if(file_exists(__DIR__ . "/" . "vieweditActions.php"))
+		    require __DIR__ . "/" . "vieweditActions.php";
+	    ?>
+        <?php endif; ?>
+        <a class="btn btn-info" href="index.php#/?page=grid&action=<?php echo $scope->action . "&mode=" .  ( $scope->mode != "new" ? "view/" . $scope->category . "&item=" . $scope->item : "&grid" ) ; ?>">
+	    <?php echo $translation->translateLabel("Cancel"); ?>
+        </a>
+    </div>
 </div>
