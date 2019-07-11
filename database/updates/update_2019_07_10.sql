@@ -1969,7 +1969,7 @@ parameters	@CompanyID NVARCHAR(36),
    SET v_ReturnStatus = VendorFinancials_ReCalc2(v_CompanyID,v_DivisionID,v_DepartmentID,v_VendorID);
    IF @SWV_Error <> 0 OR v_ReturnStatus = -1 OR  v_Success = 0 then
 
-      SET v_ErrorMessage = 'Posting the receipt failed';
+      SET v_ErrorMessage = 'VendorFinancials_ReCalc2 call failed';
       ROLLBACK;
 -- the error handler
       CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Invoice_PostReturn',v_ErrorMessage,
@@ -4412,6 +4412,1673 @@ parameters	@CompanyID NVARCHAR(36),
 
    SET SWP_Ret_Value = -1;
 END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS ReturnReceipt_Cash;
+//
+CREATE      PROCEDURE ReturnReceipt_Cash(v_CompanyID NATIONAL VARCHAR(36), 
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_InvoiceNumber NATIONAL VARCHAR(36),
+	v_ReceiptID NATIONAL VARCHAR(36),
+	v_ReceiptType NATIONAL VARCHAR(36),
+	v_TransactionType NATIONAL VARCHAR(36),
+	v_Amount DECIMAL(19,4),
+	INOUT v_Result SMALLINT ,INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+
+
+
+
+
+/*
+Name of stored procedure: ReturnReceipt_Cash
+Method: 
+	takes all the necessary actions to cash a return receiped
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@InvoiceNumber NVARCHAR(36)	 - the the number of the cashed transaction
+	@ReceiptID NVARCHAR(36)		 - the ID of the cash
+	@ReceiptType NVARCHAR(36)	 - the cash type ('Receipt' or 'Credit Memo')
+	@TransactionType NVARCHAR(36)	 - the transacition type ("Debit memo" or "Return Invoice")
+	@Amount MONEY			 - the cash amount
+
+Output Parameters:
+
+	@Result SMALLINT 		 - return value
+
+						   1 - the cash is applied to the invoice
+
+						   0 - the cash was not applied to the invoice
+
+Called From:
+
+	ReturnReceipt_Cash.vb
+
+Calls:
+
+	GetNextEntityID, CreditMemo_Post, ReceiptCash_Return_CreateGLTransaction, VendorFinancials_Recalc, Error_InsertError, Error_InsertErrorDetail
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+
+   DECLARE v_InvoicePost BOOLEAN;
+   DECLARE v_InvoiceTotal DECIMAL(19,4);
+   DECLARE v_InvoiceAmountPaid DECIMAL(19,4);
+   DECLARE v_InvoiceBalance DECIMAL(19,4);
+   DECLARE v_InvoiceCurrencyID NATIONAL VARCHAR(3);
+
+   DECLARE v_ReceiptPost BOOLEAN;
+   DECLARE v_ReceiptCreditAmount DECIMAL(19,4);
+   DECLARE v_ReceiptAmount DECIMAL(19,4);
+   DECLARE v_ReceiptCurrencyID NATIONAL VARCHAR(3);
+   DECLARE v_ReceiptCheckNumber NATIONAL VARCHAR(20);
+   DECLARE v_ReceiptCheckDate DATETIME;
+   DECLARE v_BankTransNumber NATIONAL VARCHAR(36);
+   DECLARE v_CreditMemoNumber NATIONAL VARCHAR(36);
+   DECLARE v_CurrencyExchangeRate FLOAT;
+
+   DECLARE v_PayInvoice DECIMAL(19,4);
+   DECLARE v_Rest DECIMAL(19,4);
+
+-- customer info
+   DECLARE v_VendorID NATIONAL VARCHAR(50);
+   DECLARE v_TermsID NATIONAL VARCHAR(36);
+   DECLARE v_CustomerShipToID NATIONAL VARCHAR(36);
+   DECLARE v_CustomerShipForID NATIONAL VARCHAR(36);
+   DECLARE v_CurrencyID NATIONAL VARCHAR(3);
+   DECLARE v_TaxGroupID NATIONAL VARCHAR(36);
+   DECLARE v_WarehouseID NATIONAL VARCHAR(36);
+   DECLARE v_ShipMethodID NATIONAL VARCHAR(36);
+   DECLARE v_EmployeeID NATIONAL VARCHAR(36);
+   DECLARE v_ShippingName NATIONAL VARCHAR(50);
+   DECLARE v_ShippingAddress1 NATIONAL VARCHAR(50);
+   DECLARE v_ShippingAddress2 NATIONAL VARCHAR(50);
+   DECLARE v_ShippingAddress3 NATIONAL VARCHAR(50);
+   DECLARE v_ShippingCity NATIONAL VARCHAR(50);
+   DECLARE v_ShippingState NATIONAL VARCHAR(50);
+   DECLARE v_ShippingZip NATIONAL VARCHAR(50);
+   DECLARE v_ShippingCountry NATIONAL VARCHAR(50);
+   DECLARE v_GLSalesAccount NATIONAL VARCHAR(36);
+
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+   SET @SWV_Error = 0;
+   SET v_PayInvoice = 0;
+
+-- get information about the invoice
+   IF UPPER(v_TransactionType) = UPPER('Debit Memo') then
+
+      select   VendorID, Posted, IFNULL(Total,0), IFNULL(AmountPaid,0), IFNULL(BalanceDue,0), CurrencyID INTO v_VendorID,v_InvoicePost,v_InvoiceTotal,v_InvoiceAmountPaid,v_InvoiceBalance,
+      v_InvoiceCurrencyID FROM
+      PurchaseHeader WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      PurchaseNumber = v_InvoiceNumber;
+   ELSE
+      select   CustomerID, Posted, IFNULL(Total,0), IFNULL(AmountPaid,0), IFNULL(BalanceDue,0), CurrencyID INTO v_VendorID,v_InvoicePost,v_InvoiceTotal,v_InvoiceAmountPaid,v_InvoiceBalance,
+      v_InvoiceCurrencyID FROM
+      InvoiceHeader WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      InvoiceNumber = v_InvoiceNumber;
+   end if;
+-- verify if the invoice can be used
+   IF v_InvoicePost <> 1 OR v_InvoiceBalance = 0 OR v_InvoiceTotal = 0 then
+
+      SET SWP_Ret_Value = 0;
+      LEAVE SWL_return;
+   end if;
+
+   IF v_ReceiptType = 'Credit Memo' then
+	-- get the information about the credit memo
+      select   1, IFNULL(Total,0) -IFNULL(AmountPaid,0), IFNULL(Total,0) -IFNULL(AmountPaid,0), CurrencyID, CurrencyExchangeRate, CheckNumber, InvoiceDate INTO v_ReceiptPost,v_ReceiptCreditAmount,v_ReceiptAmount,v_ReceiptCurrencyID,
+      v_CurrencyExchangeRate,v_ReceiptCheckNumber,v_ReceiptCheckDate FROM
+      InvoiceHeader WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      InvoiceNumber = v_ReceiptID;
+   ELSE
+	-- get the information about the receipt
+      select   IFNULL(Posted,0), IFNULL(CreditAmount,IFNULL(Amount,0)), IFNULL(Amount,0), CurrencyID, CurrencyExchangeRate, CheckNumber, TransactionDate INTO v_ReceiptPost,v_ReceiptCreditAmount,v_ReceiptAmount,v_ReceiptCurrencyID,
+      v_CurrencyExchangeRate,v_ReceiptCheckNumber,v_ReceiptCheckDate FROM
+      ReceiptsHeader WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      ReceiptID = v_ReceiptID;
+   end if;
+
+-- verify if the receipt can be used
+   IF v_ReceiptPost <> 1 OR v_ReceiptCreditAmount = 0 OR v_ReceiptAmount = 0 then
+
+      SET SWP_Ret_Value = 0;
+      LEAVE SWL_return;
+   end if;
+
+-- verify if the invoice and the receipt are in the same currency
+   IF v_InvoiceCurrencyID <> v_ReceiptCurrencyID then
+
+      SET SWP_Ret_Value = 0;
+      LEAVE SWL_return;
+   end if;
+
+-- get the total amount of money the receipts has to transfer
+
+   SET v_PayInvoice = v_ReceiptCreditAmount;
+-- if the amount is greater that the invoice needs to be totally paid get only
+-- the amount needed to pay the invoice
+   IF v_PayInvoice > v_InvoiceTotal -v_InvoiceAmountPaid then
+
+      SET v_PayInvoice = v_InvoiceTotal -v_InvoiceAmountPaid;
+      SET v_Result = 1;
+   ELSE
+      SET v_Result = 0;
+   end if;
+
+-- reduce the amount if specified
+   IF v_Amount IS NOT NULL AND v_PayInvoice > v_Amount then
+
+      SET v_PayInvoice = v_Amount;
+   end if;
+
+   START TRANSACTION;
+
+-- cash the receipt
+   SET @SWV_Error = 0;
+   IF UPPER(v_TransactionType) = UPPER('Debit Memo') then
+
+      UPDATE
+      PurchaseHeader
+      SET
+      AmountPaid = v_InvoiceAmountPaid+v_PayInvoice,BalanceDue = v_InvoiceTotal -v_InvoiceAmountPaid -v_PayInvoice,
+      CheckNumber = v_ReceiptCheckNumber,
+      CheckDate = v_ReceiptCheckDate
+      WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      PurchaseNumber = v_InvoiceNumber;
+   ELSE
+      UPDATE
+      InvoiceHeader
+      SET
+      AmountPaid = v_InvoiceAmountPaid+v_PayInvoice,BalanceDue = v_InvoiceTotal -v_InvoiceAmountPaid -v_PayInvoice,
+      CheckNumber = v_ReceiptCheckNumber,
+      CheckDate = v_ReceiptCheckDate
+      WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      InvoiceNumber = v_InvoiceNumber;
+   end if;
+   IF @SWV_Error <> 0 then
+
+      SET v_ErrorMessage = 'Update InvoiceHeader failed';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+      SET SWP_Ret_Value = -1;
+   end if;	
+
+   SET v_Rest = v_ReceiptCreditAmount -v_PayInvoice;
+   IF v_ReceiptType = 'Credit Memo' then
+
+      SET @SWV_Error = 0;
+      UPDATE
+      InvoiceHeader
+      SET
+      AmountPaid = IFNULL(Total,0) -v_Rest,BalanceDue = v_Rest
+      WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      InvoiceNumber = v_ReceiptID;
+      IF @SWV_Error <> 0 then
+	
+         SET v_ErrorMessage = 'Update Credit Memo failed';
+         ROLLBACK;
+-- the error handler
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+         SET SWP_Ret_Value = -1;
+      end if;
+   ELSE
+	-- update the receipt header and substract from the credit amount the money used to pay the invoice
+      SET @SWV_Error = 0;
+      UPDATE
+      ReceiptsHeader
+      SET
+      CreditAmount = 0
+      WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID AND
+      ReceiptID = v_ReceiptID;
+      IF @SWV_Error <> 0 then
+	
+         SET v_ErrorMessage = 'Update ReceiptsHeader failed';
+         ROLLBACK;
+-- the error handler
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+         SET SWP_Ret_Value = -1;
+      end if;
+   end if;
+
+-- create a credit memo if we have some money left (if it's not already created)
+
+   IF (v_PayInvoice < v_ReceiptCreditAmount) AND (IFNULL(v_ReceiptType,'') <> 'Credit Memo') then
+
+      SET @SWV_Error = 0;
+      CALL GetNextEntityID2(v_CompanyID,v_DivisionID,v_DepartmentID,'NextInvoiceNumber',v_CreditMemoNumber, v_ReturnStatus);
+      IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+	
+         SET v_ErrorMessage = 'GetNextEntityID call failed';
+         ROLLBACK;
+-- the error handler
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+         SET SWP_Ret_Value = -1;
+      end if;
+      -- NOT SUPPORTED PRINT CONCAT('@CreditMemoNumber = ', @CreditMemoNumber)
+
+
+	-- obtain Vendor info	
+	select   TermsID, TaxGroupID, WarehouseID, ShipMethodID, VendorName, VendorAddress1, VendorAddress2, VendorAddress3, VendorCity, VendorState, VendorZip, VendorCountry, GLPurchaseAccount INTO v_TermsID,v_TaxGroupID,v_WarehouseID,v_ShipMethodID,v_ShippingName,v_ShippingAddress1,
+      v_ShippingAddress2,v_ShippingAddress3,v_ShippingCity,v_ShippingState,
+      v_ShippingZip,v_ShippingCountry,v_GLSalesAccount FROM VendorInformation WHERE CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID
+      AND DepartmentID = v_DepartmentID
+      AND VendorID = v_VendorID;
+      IF EXISTS(SELECT * FROM InvoiceHeader WHERE CompanyID = v_CompanyID
+      AND DivisionID = v_DivisionID AND DepartmentID = v_DepartmentID AND
+      InvoiceNumber = 'DEFAULT') then
+	
+         SET @SWV_Error = 0;
+         INSERT INTO InvoiceHeader(CompanyID,
+			DivisionID,
+			DepartmentID,
+			InvoiceNumber,
+			OrderNumber,
+			TransactionTypeID,
+			InvoiceDate,
+			InvoiceDueDate,
+			InvoiceShipDate,
+			InvoiceCancelDate,
+			SystemDate,
+			PurchaseOrderNumber,
+			TaxExemptID,
+			TaxGroupID,
+			CustomerID,
+			TermsID,
+			CurrencyID,
+			CurrencyExchangeRate,
+			Subtotal,
+			DiscountPers,
+			DiscountAmount,
+			TaxPercent,
+			TaxAmount,
+			TaxableSubTotal,
+			Freight,
+			TaxFreight,
+			Handling,
+			Advertising,
+			Total,
+			EmployeeID,
+			Commission,
+			CommissionableSales,
+			ComissionalbleCost,
+			CustomerDropShipment,
+			ShipMethodID,
+			WarehouseID,
+			ShipToID,
+			ShipForID,
+			ShippingName,
+			ShippingAddress1,
+			ShippingAddress2,
+			ShippingAddress3,
+			ShippingCity,
+			ShippingState,
+			ShippingZip,
+			ShippingCountry,
+			GLSalesAccount,
+			PaymentMethodID,
+			AmountPaid,
+			BalanceDue,
+			UndistributedAmount,
+			CheckNumber,
+			CheckDate,
+			CreditCardTypeID,
+			CreditCardName,
+			CreditCardNumber,
+			CreditCardExpDate,
+			CreditCardCSVNumber,
+			CreditCardBillToZip,
+			CreditCardValidationCode,
+			CreditCardApprovalNumber,
+			Picked,
+			PickedDate,
+			Printed,
+			PrintedDate,
+			Shipped,
+			ShipDate,
+			TrackingNumber,
+			BilledDate,
+			Billed,
+			Backordered,
+			Posted,
+			PostedDate,
+			HeaderMemo1,
+			HeaderMemo2,
+			HeaderMemo3,
+			HeaderMemo4,
+			HeaderMemo5,
+			HeaderMemo6,
+			HeaderMemo7,
+			HeaderMemo8,
+			HeaderMemo9)
+         SELECT
+         v_CompanyID,
+			v_DivisionID,
+			v_DepartmentID,
+			v_CreditMemoNumber,
+			NULL,
+			'Credit Memo',
+			CURRENT_TIMESTAMP,
+			CURRENT_TIMESTAMP,
+			CURRENT_TIMESTAMP,
+			NULL,
+			CURRENT_TIMESTAMP,
+			PurchaseOrderNumber,
+			TaxExemptID,
+			v_TaxGroupID,
+			v_VendorID,
+			v_TermsID,
+			v_ReceiptCurrencyID,
+			v_CurrencyExchangeRate,
+			v_Rest,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			v_Rest,
+			v_EmployeeID,
+			0,
+			0,
+			0,
+			CustomerDropShipment,
+			v_ShipMethodID,
+			v_WarehouseID,
+			v_CustomerShipToID,
+			v_CustomerShipForID,
+			v_ShippingName,
+			v_ShippingAddress1,
+			v_ShippingAddress2,
+			v_ShippingAddress3,
+			v_ShippingCity,
+			v_ShippingState,
+			v_ShippingZip,
+			v_ShippingCountry,
+			v_GLSalesAccount,
+			PaymentMethodID,
+			0,
+			0,
+			0,
+			v_ReceiptCheckNumber,
+			v_ReceiptCheckDate,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			NULL,
+			0,
+			NULL,
+			0,
+			NULL,
+			0,
+			NULL,
+			NULL,
+			NULL,
+			0,
+			0,
+			0,
+			NULL,
+			HeaderMemo1,
+			HeaderMemo2,
+			HeaderMemo3,
+			HeaderMemo4,
+			HeaderMemo5,
+			HeaderMemo6,
+			HeaderMemo7,
+			HeaderMemo8,
+			HeaderMemo9
+         FROM
+         InvoiceHeader
+         WHERE
+         CompanyID = v_CompanyID
+         AND DivisionID = v_DivisionID
+         AND DepartmentID = v_DepartmentID
+         AND InvoiceNumber = 'DEFAULT';
+         IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+		
+            SET v_ErrorMessage = 'Unable to create Credit Memo';
+            ROLLBACK;
+-- the error handler
+            CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+            v_ErrorID);
+            CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+            CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+            SET SWP_Ret_Value = -1;
+         end if;
+      ELSE
+         SET @SWV_Error = 0;
+         INSERT INTO InvoiceHeader(CompanyID,
+			DivisionID,
+			DepartmentID,
+			InvoiceNumber,
+			OrderNumber,
+			TransactionTypeID,
+			InvoiceDate,
+			InvoiceDueDate,
+			InvoiceShipDate,
+			InvoiceCancelDate,
+			SystemDate,
+			PurchaseOrderNumber,
+			TaxExemptID,
+			TaxGroupID,
+			CustomerID,
+			TermsID,
+			CurrencyID,
+			CurrencyExchangeRate,
+			Subtotal,
+			DiscountPers,
+			DiscountAmount,
+			TaxPercent,
+			TaxAmount,
+			TaxableSubTotal,
+			Freight,
+			TaxFreight,
+			Handling,
+			Advertising,
+			Total,
+			EmployeeID,
+			Commission,
+			CommissionableSales,
+			ComissionalbleCost,
+			CustomerDropShipment,
+			ShipMethodID,
+			WarehouseID,
+			ShipToID,
+			ShipForID,
+			ShippingName,
+			ShippingAddress1,
+			ShippingAddress2,
+			ShippingAddress3,
+			ShippingCity,
+			ShippingState,
+			ShippingZip,
+			ShippingCountry,
+			GLSalesAccount,
+			PaymentMethodID,
+			AmountPaid,
+			BalanceDue,
+			UndistributedAmount,
+			CheckNumber,
+			CheckDate)
+		VALUES(v_CompanyID,
+			v_DivisionID,
+			v_DepartmentID,
+			v_CreditMemoNumber,
+			NULL,
+			'Credit Memo',
+			CURRENT_TIMESTAMP,
+			CURRENT_TIMESTAMP,
+			CURRENT_TIMESTAMP,
+			NULL,
+			CURRENT_TIMESTAMP,
+			NULL,
+			NULL,
+			v_TaxGroupID,
+			v_VendorID,
+			v_TermsID,
+			v_ReceiptCurrencyID,
+			v_CurrencyExchangeRate,
+			v_Rest,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			0,
+			v_Rest,
+			v_EmployeeID,
+			0,
+			0,
+			0,
+			0,
+			v_ShipMethodID,
+			v_WarehouseID,
+			v_CustomerShipToID,
+			v_CustomerShipForID,
+			v_ShippingName,
+			v_ShippingAddress1,
+			v_ShippingAddress2,
+			v_ShippingAddress3,
+			v_ShippingCity,
+			v_ShippingState,
+			v_ShippingZip,
+			v_ShippingCountry,
+			v_GLSalesAccount,
+			NULL,
+			0,
+			0,
+			0,
+			v_ReceiptCheckNumber,
+			v_ReceiptCheckDate);
+		
+         IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+		
+            SET v_ErrorMessage = 'Unable to create Credit Memo';
+            ROLLBACK;
+-- the error handler
+            CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+            v_ErrorID);
+            CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+            CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+            SET SWP_Ret_Value = -1;
+         end if;
+      end if;
+      SET @SWV_Error = 0;
+      INSERT INTO InvoiceDetail(CompanyID,
+		DivisionID,
+		DepartmentID,
+		InvoiceNumber,
+		ItemID,
+		OrderQty,
+		ItemUnitPrice,
+		Total,
+		GLSalesAccount)
+	VALUES(v_CompanyID,
+		v_DivisionID,
+		v_DepartmentID,
+		v_CreditMemoNumber,
+		'CreditMemo',
+		1,
+		v_Rest,
+		v_Rest,
+		v_GLSalesAccount);
+	
+      IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+	
+         SET v_ErrorMessage = 'Unable to create Credit Memo Detail';
+         ROLLBACK;
+-- the error handler
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+         SET SWP_Ret_Value = -1;
+      end if;
+
+	-- Post created Credit Memo
+      SET @SWV_Error = 0;
+      CALL CreditMemo_Post(v_CompanyID,v_DivisionID,v_DepartmentID,v_CreditMemoNumber, v_PostingResult, v_ReturnStatus);
+      IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+	-- An error occured, go to the error handler
+	
+         SET v_ErrorMessage = 'CreditMemo_Post call failed';
+         ROLLBACK;
+-- the error handler
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+         v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+         SET SWP_Ret_Value = -1;
+      end if;
+   end if;
+
+
+   SET @SWV_Error = 0;
+   CALL ReceiptCash_Return_CreateGLTransaction(v_CompanyID,v_DivisionID,v_DepartmentID,v_InvoiceNumber,v_PayInvoice, v_ReturnStatus);
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'ReceiptCash_Return_CreateGLTransaction call failed';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   SET @SWV_Error = 0;
+   SET v_ReturnStatus = VendorFinancials_ReCalc2(v_CompanyID,v_DivisionID,v_DepartmentID,v_VendorID);
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'VendorFinancials_Recalc call failed';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+      v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- Everything is OK
+   COMMIT;
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+
+
+-- if an error occured in the procedure this code will be executed
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   ROLLBACK;
+-- the error handler
+   CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReturnReceipt_Cash',v_ErrorMessage,
+   v_ErrorID);
+
+   CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+   CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'ReceiptID',v_ReceiptID);
+
+   SET SWP_Ret_Value = -1;
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS Ledger_PeriodEndClose;
+//
+CREATE PROCEDURE Ledger_PeriodEndClose(v_CompanyID NATIONAL VARCHAR(36),
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+/*
+Name of stored procedure: Ledger_PeriodEndClose
+Method:
+	This procedure closes the current period and
+	copies the proper values in the right fields in
+	the Customer and the Chart of Accounts tables
+Date Created: EDE - 07/28/2015
+Input Parameters:
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+Output Parameters:
+	NONE
+Called From:
+	Ledger_PeriodEndClose.vb
+Calls:
+	LedgerMain_CurrentPeriod, FinancialsRecalc, Error_InsertError
+Last Modified: 3/4/2009
+Last Modified By:
+Revision History:
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+-- First, we find out the month and the year we need to close
+   DECLARE v_CurrentYear SMALLINT;
+   DECLARE v_CurrentPeriod INT;
+   DECLARE v_PeriodStartDate DATETIME;
+   DECLARE v_PeriodEndDate DATETIME;
+   DECLARE v_NextPeriodStartDate DATETIME;
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+   SET @SWV_Error = 0;
+   START TRANSACTION;
+   SET v_ReturnStatus = LedgerMain_CurrentPeriod(v_CompanyID,v_DivisionID,v_DepartmentID,v_CurrentPeriod,v_PeriodStartDate,
+   v_PeriodEndDate);
+
+   IF v_ReturnStatus <> 0 then   -- fail to receive current Period
+
+      SET v_ErrorMessage = 'Fail to get current Period';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+      v_ErrorID);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- to indicate all periods have been closed
+   IF v_PeriodEndDate IS NULL then
+
+      SET v_ErrorMessage = 'All Periods have been closed.';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+      v_ErrorID);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   IF v_PeriodEndDate >= CURRENT_TIMESTAMP then
+
+      SET v_ErrorMessage = 'Can''t close period. Current period is not finished yet.';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+      v_ErrorID);
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   select   CurrentFiscalYear INTO v_CurrentYear FROM
+   Companies WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID
+   AND CurrentFiscalYear = YEAR(CurrentPeriod);
+   SET v_NextPeriodStartDate = TIMESTAMPADD(day,1,v_PeriodEndDate);
+   SET v_NextPeriodStartDate = STR_TO_DATE(DATE_FORMAT(v_NextPeriodStartDate,'%Y-%m-%d'),'%Y%m%d');
+-- next we recalc the financials
+   SET @SWV_Error = 0;
+   CALL FinancialsRecalc(v_CompanyID,v_DivisionID,v_DepartmentID, v_ReturnStatus);
+   IF @SWV_Error <> 0 AND v_ReturnStatus = -1 then
+	-- An error occured, go to the error handler
+	
+      SET v_ErrorMessage = 'Financials recalc failed';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+      v_ErrorID);
+      SET SWP_Ret_Value = -1;
+   end if;	
+
+-- then we select the transactions of that period from
+-- ledger transactions detail and do the balance
+   CREATE TEMPORARY TABLE tt_Temp AS SELECT
+      CASE
+      WHEN SUM(IFNULL(GLCreditAmount,0) -IFNULL(GLDebitAmount,0)) < 0 THEN -SUM(IFNULL(GLCreditAmount,0) -IFNULL(GLDebitAmount,0))
+      ELSE SUM(IFNULL(GLCreditAmount,0) -IFNULL(GLDebitAmount,0))
+      END AS Balance,
+		GLTransactionAccount
+
+      FROM
+      LedgerTransactionsDetail
+      INNER JOIN LedgerChartOfAccounts ON
+      GLTransactionAccount = GLAccountNumber AND
+      LedgerTransactionsDetail.CompanyID = LedgerChartOfAccounts.CompanyID AND
+      LedgerTransactionsDetail.DivisionID = LedgerChartOfAccounts.DivisionID AND
+      LedgerTransactionsDetail.DepartmentID = LedgerChartOfAccounts.DepartmentID
+      INNER JOIN LedgerTransactions ON
+      LedgerTransactionsDetail.GLTransactionNumber = LedgerTransactions.GLTransactionNumber
+      WHERE
+      LedgerTransactionsDetail.CompanyID = v_CompanyID AND
+      LedgerTransactionsDetail.DivisionID = v_DivisionID AND
+      LedgerTransactionsDetail.DepartmentID = v_DepartmentID AND
+      LedgerTransactions.GLTransactionDate < v_NextPeriodStartDate AND
+      IFNULL(LedgerTransactions.GLTransactionPostedYN,0) = 1 AND
+      UPPER(LedgerTransactions.GLTransactionNumber) <> 'DEFAULT'
+      GROUP BY
+      GLTransactionAccount;
+   IF @SWV_Error <> 0 then
+-- An error occured, go to the error handler
+	
+      SET v_ErrorMessage = 'Selecting summaries from LedgerTransactionsDetail failed';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+      v_ErrorID);
+      SET SWP_Ret_Value = -1;
+   end if;
+-- Then we update the Chart Of Accounts for the proper period
+-- and we update the Companies table for the proper period
+-- 1 period is closing
+   SET @SWV_Error = 0;
+   IF v_CurrentPeriod = 0 then
+
+      UPDATE
+      LedgerChartOfAccounts
+      SET
+      GLCurrentYearPeriod1 =(SELECT
+      Balance
+      FROM
+      tt_Temp T
+      WHERE
+      T.GLTransactionAccount = GLAccountNumber)
+      WHERE
+      CompanyID = v_CompanyID AND
+      DivisionID = v_DivisionID AND
+      DepartmentID = v_DepartmentID;
+-- 2 period is closing
+   ELSE 
+      IF v_CurrentPeriod = 1 then
+
+         UPDATE
+         LedgerChartOfAccounts
+         SET
+         GLCurrentYearPeriod2 =(SELECT
+         Balance
+         FROM
+         tt_Temp T
+         WHERE
+         T.GLTransactionAccount = GLAccountNumber)
+         WHERE
+         CompanyID = v_CompanyID AND
+         DivisionID = v_DivisionID AND
+         DepartmentID = v_DepartmentID;
+-- 3 period is closing
+      ELSE 
+         IF v_CurrentPeriod = 2 then
+
+            UPDATE
+            LedgerChartOfAccounts
+            SET
+            GLCurrentYearPeriod3 =(SELECT
+            Balance
+            FROM
+            tt_Temp T
+            WHERE
+            T.GLTransactionAccount = GLAccountNumber)
+            WHERE
+            CompanyID = v_CompanyID AND
+            DivisionID = v_DivisionID AND
+            DepartmentID = v_DepartmentID;
+-- 4 period is closing
+         ELSE 
+            IF v_CurrentPeriod = 3 then
+
+               UPDATE
+               LedgerChartOfAccounts
+               SET
+               GLCurrentYearPeriod4 =(SELECT
+               Balance
+               FROM
+               tt_Temp T
+               WHERE
+               T.GLTransactionAccount = GLAccountNumber)
+               WHERE
+               CompanyID = v_CompanyID AND
+               DivisionID = v_DivisionID AND
+               DepartmentID = v_DepartmentID;
+-- 5 period is closing
+            ELSE 
+               IF v_CurrentPeriod = 4 then
+
+                  UPDATE
+                  LedgerChartOfAccounts
+                  SET
+                  GLCurrentYearPeriod5 =(SELECT
+                  Balance
+                  FROM
+                  tt_Temp T
+                  WHERE
+                  T.GLTransactionAccount = GLAccountNumber)
+                  WHERE
+                  CompanyID = v_CompanyID AND
+                  DivisionID = v_DivisionID AND
+                  DepartmentID = v_DepartmentID;
+-- 6 period is closing
+               ELSE 
+                  IF v_CurrentPeriod = 5 then
+
+                     UPDATE
+                     LedgerChartOfAccounts
+                     SET
+                     GLCurrentYearPeriod6 =(SELECT
+                     Balance
+                     FROM
+                     tt_Temp T
+                     WHERE
+                     T.GLTransactionAccount = GLAccountNumber)
+                     WHERE
+                     CompanyID = v_CompanyID AND
+                     DivisionID = v_DivisionID AND
+                     DepartmentID = v_DepartmentID;
+-- 7 period is closing
+                  ELSE 
+                     IF v_CurrentPeriod = 6 then
+
+                        UPDATE
+                        LedgerChartOfAccounts
+                        SET
+                        GLCurrentYearPeriod7 =(SELECT
+                        Balance
+                        FROM
+                        tt_Temp T
+                        WHERE
+                        T.GLTransactionAccount = GLAccountNumber)
+                        WHERE
+                        CompanyID = v_CompanyID AND
+                        DivisionID = v_DivisionID AND
+                        DepartmentID = v_DepartmentID;
+-- 8 period is closing
+                     ELSE 
+                        IF v_CurrentPeriod = 7 then
+
+                           UPDATE
+                           LedgerChartOfAccounts
+                           SET
+                           GLCurrentYearPeriod8 =(SELECT
+                           Balance
+                           FROM
+                           tt_Temp T
+                           WHERE
+                           T.GLTransactionAccount = GLAccountNumber)
+                           WHERE
+                           CompanyID = v_CompanyID AND
+                           DivisionID = v_DivisionID AND
+                           DepartmentID = v_DepartmentID;
+-- 9 period is closing
+                        ELSE 
+                           IF v_CurrentPeriod = 8 then
+
+                              UPDATE
+                              LedgerChartOfAccounts
+                              SET
+                              GLCurrentYearPeriod9 =(SELECT
+                              Balance
+                              FROM
+                              tt_Temp T
+                              WHERE
+                              T.GLTransactionAccount = GLAccountNumber)
+                              WHERE
+                              CompanyID = v_CompanyID AND
+                              DivisionID = v_DivisionID AND
+                              DepartmentID = v_DepartmentID;
+-- 10 period is closing
+                           ELSE 
+                              IF v_CurrentPeriod = 9 then
+
+                                 UPDATE
+                                 LedgerChartOfAccounts
+                                 SET
+                                 GLCurrentYearPeriod10 =(SELECT
+                                 Balance
+                                 FROM
+                                 tt_Temp T
+                                 WHERE
+                                 T.GLTransactionAccount = GLAccountNumber)
+                                 WHERE
+                                 CompanyID = v_CompanyID AND
+                                 DivisionID = v_DivisionID AND
+                                 DepartmentID = v_DepartmentID;
+                              ELSE 
+                                 IF v_CurrentPeriod = 10 then
+
+                                    UPDATE
+                                    LedgerChartOfAccounts
+                                    SET
+                                    GLCurrentYearPeriod11 =(SELECT
+                                    Balance
+                                    FROM
+                                    tt_Temp T
+                                    WHERE
+                                    T.GLTransactionAccount = GLAccountNumber)
+                                    WHERE
+                                    CompanyID = v_CompanyID AND
+                                    DivisionID = v_DivisionID AND
+                                    DepartmentID = v_DepartmentID;
+                                 ELSE 
+                                    IF v_CurrentPeriod = 11 then
+
+                                       UPDATE
+                                       LedgerChartOfAccounts
+                                       SET
+                                       GLCurrentYearPeriod12 =(SELECT
+                                       Balance
+                                       FROM
+                                       tt_Temp T
+                                       WHERE
+                                       T.GLTransactionAccount = GLAccountNumber)
+                                       WHERE
+                                       CompanyID = v_CompanyID AND
+                                       DivisionID = v_DivisionID AND
+                                       DepartmentID = v_DepartmentID;
+                                    ELSE 
+                                       IF v_CurrentPeriod = 12 then
+
+                                          UPDATE
+                                          LedgerChartOfAccounts
+                                          SET
+                                          GLCurrentYearPeriod13 =(SELECT
+                                          Balance
+                                          FROM
+                                          tt_Temp T
+                                          WHERE
+                                          T.GLTransactionAccount = GLAccountNumber)
+                                          WHERE
+                                          CompanyID = v_CompanyID AND
+                                          DivisionID = v_DivisionID AND
+                                          DepartmentID = v_DepartmentID;
+                                       ELSE 
+                                          IF v_CurrentPeriod = 13 then
+
+                                             UPDATE
+                                             LedgerChartOfAccounts
+                                             SET
+                                             GLCurrentYearPeriod14 =(SELECT
+                                             Balance
+                                             FROM
+                                             tt_Temp T
+                                             WHERE
+                                             T.GLTransactionAccount = GLAccountNumber)
+                                             WHERE
+                                             CompanyID = v_CompanyID AND
+                                             DivisionID = v_DivisionID AND
+                                             DepartmentID = v_DepartmentID;
+                                          end if;
+                                       end if;
+                                    end if;
+                                 end if;
+                              end if;
+                           end if;
+                        end if;
+                     end if;
+                  end if;
+               end if;
+            end if;
+         end if;
+      end if;
+   end if;
+   IF @SWV_Error <> 0 then
+-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'Updating LedgerChartOfAccounts failed';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+      v_ErrorID);
+      SET SWP_Ret_Value = -1;
+   end if;	
+   SET @SWV_Error = 0;
+   UPDATE
+   Companies
+   SET
+   Period1Closed = CASE v_CurrentPeriod WHEN 0 THEN 1 ELSE Period1Closed END,Period2Closed = CASE v_CurrentPeriod WHEN 1 THEN 1 ELSE Period2Closed END,Period3Closed = CASE v_CurrentPeriod WHEN 2 THEN 1 ELSE Period3Closed END,Period4Closed = CASE v_CurrentPeriod WHEN 3 THEN 1 ELSE Period4Closed END,Period5Closed = CASE v_CurrentPeriod WHEN 4 THEN 1 ELSE Period5Closed END,Period6Closed = CASE v_CurrentPeriod WHEN 5 THEN 1 ELSE Period6Closed END,Period7Closed = CASE v_CurrentPeriod WHEN 6 THEN 1 ELSE Period7Closed END,Period8Closed = CASE v_CurrentPeriod WHEN 7 THEN 1 ELSE Period8Closed END,Period9Closed = CASE v_CurrentPeriod WHEN 8 THEN 1 ELSE Period9Closed END,Period10Closed = CASE v_CurrentPeriod WHEN 9 THEN 1 ELSE Period10Closed END,Period11Closed = CASE v_CurrentPeriod WHEN 10 THEN 1 ELSE Period11Closed END,Period12Closed = CASE v_CurrentPeriod WHEN 11 THEN 1 ELSE Period12Closed END,Period13Closed = CASE v_CurrentPeriod WHEN 12 THEN 1 ELSE Period13Closed END,Period14Closed = CASE v_CurrentPeriod WHEN 13 THEN 1 ELSE Period14Closed END
+   WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID;
+   IF @SWV_Error <> 0 then
+-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'Updating Companies failed';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+      v_ErrorID);
+      SET SWP_Ret_Value = -1;
+   end if;	
+-- dropping the temporary table used
+   SET @SWV_Error = 0;
+   DROP TEMPORARY TABLE IF EXISTS tt_Temp;
+   IF @SWV_Error <> 0 then
+-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'Dropping temporary table failed';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+      v_ErrorID);
+      SET SWP_Ret_Value = -1;
+   end if;	
+
+-- Update the CurrentPeriod in companies table with PeriodEndDate
+   CALL LedgerMain_CurrentPeriod2(v_CompanyID,v_DivisionID,v_DepartmentID,v_CurrentPeriod,v_PeriodStartDate,
+   v_PeriodEndDate, v_ReturnStatus);
+   IF v_ReturnStatus <> 0 then -- fail to receive current Period
+
+      SET v_ErrorMessage = 'Fail to get current Period';
+      ROLLBACK;
+-- the error handler
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+      v_ErrorID);
+      SET SWP_Ret_Value = -1;
+   end if;
+   UPDATE
+   Companies
+   SET
+   CurrentPeriod = v_PeriodEndDate
+   WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID;
+-- Everyting is OK
+   COMMIT;
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+-- if an error occured in the procedure this code will be executed
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   ROLLBACK;
+-- the error handler
+   CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'Ledger_PeriodEndClose',v_ErrorMessage,
+   v_ErrorID);
+   SET SWP_Ret_Value = -1;
+END;
+
+
+
+
+
+
+
+//
+
+DELIMITER ;
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS ReceiptCash_Return_CreateGLTransaction;
+//
+CREATE       PROCEDURE ReceiptCash_Return_CreateGLTransaction(v_CompanyID NATIONAL VARCHAR(36), 
+	v_DivisionID NATIONAL VARCHAR(36),
+	v_DepartmentID NATIONAL VARCHAR(36),
+	v_InvoiceNumber NATIONAL VARCHAR(36),
+	v_PayInvoice DECIMAL(19,4),INOUT SWP_Ret_Value INT)
+   SWL_return:
+BEGIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+Name of stored procedure: ReceiptCash_Return_CreateGLTransaction
+Method: 
+	Creates a new GL transaction for the cashed return invoice
+
+Date Created: EDE - 07/28/2015
+
+Input Parameters:
+
+	@CompanyID NVARCHAR(36)		 - the ID of the company
+	@DivisionID NVARCHAR(36)	 - the ID of the division
+	@DepartmentID NVARCHAR(36)	 - the ID of the department
+	@InvoiceNumber NVARCHAR(36)	 - the return invoice number
+	@PayInvoice MONEY		 - the cash amount
+
+Output Parameters:
+
+	NONE
+
+Called From:
+
+	ReturnReceipt_Cash
+
+Calls:
+
+	VerifyCurrency, GetNextEntityID, LedgerTransactions_PostCOA_AllRecords, Error_InsertError, Error_InsertErrorDetail
+
+Last Modified: 
+
+Last Modified By: 
+
+Revision History: 
+
+*/
+
+   DECLARE v_ReturnStatus SMALLINT;
+   DECLARE v_ErrorMessage NATIONAL VARCHAR(200);
+
+   DECLARE v_GLTransNumber NATIONAL VARCHAR(36);
+   DECLARE v_ValueDate DATETIME;
+   DECLARE v_OldAmount DECIMAL(19,4);
+   DECLARE v_NewAmount DECIMAL(19,4);
+   DECLARE v_GainLossAmount DECIMAL(19,4);
+   DECLARE v_GLInvoiceSalesAccount NATIONAL VARCHAR(36);
+   DECLARE v_CurrencyID NATIONAL VARCHAR(3); 
+   DECLARE v_CompanyCurrencyID NATIONAL VARCHAR(3); 
+   DECLARE v_CurrencyExchangeRate FLOAT;
+   DECLARE v_CurrencyExchangeRateNew FLOAT;
+   DECLARE v_GLARAccount NATIONAL VARCHAR(36);
+   DECLARE v_GLARCashAccount NATIONAL VARCHAR(36);
+   DECLARE v_GLGainLossAccount NATIONAL VARCHAR(36);
+   DECLARE v_PostingResult NATIONAL VARCHAR(200);
+   DECLARE v_ProjectID NATIONAL VARCHAR(36);
+
+
+-- get the ammount of money from the Invoice
+   DECLARE v_PostDate NATIONAL VARCHAR(1);
+   DECLARE v_ErrorID INT;
+   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
+   BEGIN
+      SET @SWV_Error = 1;
+   END;
+   select   GLSalesAccount, CurrencyID, CurrencyExchangeRate INTO v_GLInvoiceSalesAccount,v_CurrencyID,v_CurrencyExchangeRate FROM
+   InvoiceHeader WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND InvoiceNumber = v_InvoiceNumber;
+
+
+   SET v_ValueDate = CURRENT_TIMESTAMP;
+   SET @SWV_Error = 0;
+   CALL VerifyCurrency2(v_CompanyID,v_DivisionID,v_DepartmentID,v_ValueDate,2,v_CompanyCurrencyID,
+   v_CurrencyID,v_CurrencyExchangeRateNew);
+   IF @SWV_Error <> 0 then
+
+	-- the procedure will return an error code
+      SET v_ErrorMessage = 'Currency retrieving failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReceiptCash_Return_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- calculate exchange gain/loss
+   SET v_OldAmount = fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_PayInvoice*v_CurrencyExchangeRate, 
+   v_CompanyCurrencyID);
+   SET v_NewAmount = fnRound(v_CompanyID,v_DivisionID,v_DepartmentID,v_PayInvoice*v_CurrencyExchangeRateNew, 
+   v_CompanyCurrencyID);
+   SET v_GainLossAmount = v_NewAmount -v_OldAmount;
+
+   IF ABS(v_GainLossAmount) < 0.005 then
+
+      SET SWP_Ret_Value = 0;
+      LEAVE SWL_return;
+   end if;
+
+
+   START TRANSACTION;
+
+
+/*
+a temporary table used to collect information about the details of the Transaction;
+at the end, the record from this table will be grouped by the GLTransactionAccount and inserted into the LedgerTransactionsDetail
+*/
+   CREATE TEMPORARY TABLE tt_LedgerDetailTmp  
+   (
+      GLTransactionNumberDetail BIGINT NOT NULL  PRIMARY KEY  AUTO_INCREMENT,
+      GLTransactionAccount NATIONAL VARCHAR(36),
+      GLDebitAmount DECIMAL(19,4),
+      GLCreditAmount DECIMAL(19,4),
+      ProjectID NATIONAL VARCHAR(36)
+   )  AUTO_INCREMENT = 1;
+
+   select   ProjectID INTO v_ProjectID FROM  InvoiceDetail WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND InvoiceNumber = v_InvoiceNumber
+   AND NOT ProjectID IS NULL   LIMIT 1;
+
+
+-- get the transaction number
+   SET @SWV_Error = 0;
+   CALL GetNextEntityID2(v_CompanyID,v_DivisionID,v_DepartmentID,'NextGLTransNumber',v_GLTransNumber, v_ReturnStatus);
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+-- An error occured, go to the error handler
+
+      SET v_ErrorMessage = 'GetNextEntityID call failed';	
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReceiptCash_Return_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+   select   IFNULL(DefaultGLPostingDate,'1') INTO v_PostDate FROM
+   Companies WHERE
+   CompanyID = v_CompanyID AND
+   DivisionID = v_DivisionID AND
+   DepartmentID = v_DepartmentID;
+
+
+   SET @SWV_Error = 0;
+   INSERT INTO LedgerTransactions(CompanyID,
+	DivisionID,
+	DepartmentID,
+	GLTransactionNumber,
+	GLTransactionTypeID,
+	GLTransactionDate,
+	GLTransactionDescription,
+	GLTransactionReference,
+	CurrencyID,
+	CurrencyExchangeRate,
+	GLTransactionAmount,
+	GLTransactionAmountUndistributed,
+	GLTransactionBalance,
+	GLTransactionPostedYN,
+	GLTransactionSource,
+	GLTransactionSystemGenerated)
+   SELECT
+   v_CompanyID,
+		v_DivisionID,
+		v_DepartmentID,
+		v_GLTransNumber,
+		'XRate Adj',
+		CASE v_PostDate WHEN '1' THEN CURRENT_TIMESTAMP ELSE InvoiceDate END ,
+		CustomerID,
+		InvoiceNumber,
+		v_CompanyCurrencyID,
+		1,
+		ABS(v_GainLossAmount),
+		0,
+		0,
+		1,
+		CONCAT('INV ',cast(v_InvoiceNumber as char(10))),
+		1
+   FROM
+   InvoiceHeader
+   WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID
+   AND InvoiceNumber = v_InvoiceNumber;
+   IF @SWV_Error <> 0 then
+-- An error occured, go to the error handler
+-- and drop the temporary table
+
+      SET v_ErrorMessage = 'Insert into LedgerTransactions failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReceiptCash_Return_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- Get Company Account Receivable
+   select   GLARAccount, GLARCashAccount, GLCurrencyGainLossAccount INTO v_GLARAccount,v_GLARCashAccount,v_GLGainLossAccount FROM
+   Companies WHERE
+   CompanyID = v_CompanyID
+   AND DivisionID = v_DivisionID
+   AND DepartmentID = v_DepartmentID;
+
+
+-- Debit/Credit @GainLossAmount to Account Receivable
+   SET @SWV_Error = 0;
+   INSERT INTO tt_LedgerDetailTmp(GLTransactionAccount,
+		GLDebitAmount,
+		GLCreditAmount,
+		ProjectID)
+		VALUES(CASE WHEN v_GainLossAmount > 0 THEN v_GLARCashAccount ELSE v_GLARAccount END,
+			CASE WHEN v_GainLossAmount > 0 THEN v_GainLossAmount ELSE 0 END,
+			CASE WHEN v_GainLossAmount < 0 THEN(-1)*v_GainLossAmount ELSE 0 END,
+			v_ProjectID);
+		
+	
+   IF @SWV_Error <> 0 then
+	
+      SET v_ErrorMessage = 'Insert AR into LedgerTransactionsDetail failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReceiptCash_Return_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+-- Debit/Credit @GainLossAmount to Gain/Loss Account
+   SET @SWV_Error = 0;
+   INSERT INTO tt_LedgerDetailTmp(GLTransactionAccount,
+		GLDebitAmount,
+		GLCreditAmount,
+		ProjectID)
+		VALUES(v_GLGainLossAccount,
+			CASE WHEN v_GainLossAmount < 0 THEN(-1)*v_GainLossAmount ELSE 0 END,
+			CASE WHEN v_GainLossAmount > 0 THEN v_GainLossAmount ELSE 0 END,
+			v_ProjectID);
+		
+	
+   IF @SWV_Error <> 0 then
+	
+      SET v_ErrorMessage = 'Insert Gain Loss into LedgerTransactionsDetail failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReceiptCash_Return_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+
+-- insert the data into the LedgerTransactionsDetail table; 
+-- the records are grouped by GLTransactionAccount and ProjectID 
+   SET @SWV_Error = 0;
+   INSERT INTO LedgerTransactionsDetail(CompanyID,
+	DivisionID,
+	DepartmentID,
+	GLTransactionNumber,
+	GLTransactionAccount,
+	GLDebitAmount,
+	GLCreditAmount,
+	ProjectID)
+   SELECT
+   v_CompanyID,
+	v_DivisionID,
+	v_DepartmentID,
+	v_GLTransNumber,
+	GLTransactionAccount,
+	SUM(IFNULL(GLDebitAmount,0)),
+	SUM(IFNULL(GLCreditAmount,0)) ,
+	ProjectID
+   FROM
+   tt_LedgerDetailTmp
+   GROUP BY
+   ProjectID,GLTransactionAccount;
+   IF @SWV_Error <> 0 then
+-- An error occured, go to the error handler
+-- and drop the temporary table
+
+      SET v_ErrorMessage = 'Insert into LedgerTransactionDetail failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReceiptCash_Return_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+
+   DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+
+
+/*
+update the information in the Ledger Chart of Accounts fro the accounts of the newly inserted transaction
+
+parameters	@CompanyID NVARCHAR(36),
+		@DivisionID NVARCHAR(36),
+		@DepartmentID NVARCHAR(36),
+		@GLTransNumber NVARCHAR (36)
+		used to identify the TRANSACTION
+		@PostCOA BIT - used in the process of creation of the transaction
+*/
+   SET @SWV_Error = 0;
+   CALL LedgerTransactions_PostCOA_AllRecords2(v_CompanyID,v_DivisionID,v_DepartmentID,v_GLTransNumber, v_ReturnStatus);
+   IF @SWV_Error <> 0 OR v_ReturnStatus = -1 then
+-- An error occured, go to the error handler
+-- and drop the temporary table
+
+      SET v_ErrorMessage = 'LedgerTransactions_PostCOA_AllRecords call failed';
+      ROLLBACK;
+      DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+      IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+         CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReceiptCash_Return_CreateGLTransaction',
+         v_ErrorMessage,v_ErrorID);
+         CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+      end if;
+      SET SWP_Ret_Value = -1;
+   end if;
+
+
+-- Everything is  OK
+   COMMIT;
+   SET SWP_Ret_Value = 0;
+   LEAVE SWL_return;
+-- if an error occured in the procedure this code will be executed
+
+-- The information about the error are entered in the ErrrorLog and ErrorLogDetail tables.
+-- The company, division, department informations are inserted in the ErrorLog table
+-- along with information about the name of the procedure and the error message and an errorID is obtained.
+-- The aditional information about other procedure parameters are inserted along with the errorID in the ErrorLogDetail table
+-- (about the other parameters the name and the value are inserted).
+   ROLLBACK;
+
+   DROP TEMPORARY TABLE IF EXISTS tt_LedgerDetailTmp;
+
+   IF v_ErrorMessage <> '' then
+
+	-- the error handler
+	
+      CALL Error_InsertError(v_CompanyID,v_DivisionID,v_DepartmentID,'ReceiptCash_Return_CreateGLTransaction',
+      v_ErrorMessage,v_ErrorID);
+      CALL Error_InsertErrorDetail(v_CompanyID,v_DivisionID,v_DepartmentID,v_ErrorID,'InvoiceNumber',v_InvoiceNumber);
+   end if;
+   SET SWP_Ret_Value = -1;
+END;
+
+
+
+
+
+
 
 
 
