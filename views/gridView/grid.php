@@ -26,10 +26,6 @@
 -->
 
 <?php
-    function myurlencode($keystring) {
-	return str_replace("%2F", "+++", urlencode($keystring));
-    }
-
     require  './views/gridView/blocks/common.php';
 ?>
 

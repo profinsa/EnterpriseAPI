@@ -1,9 +1,6 @@
 <?php
-    function myurlencode($keystring) {
-	return str_replace("%2F", "+++", urlencode($keystring));
-    }
 
-    require  './views/gridView/blocks/common.php';
+    require_once  './views/gridView/blocks/common.php';
 ?>
 
 <table id="example23" class="<?php echo isset($embeddedGridClasses) ? $embeddedGridClasses : ""; ?> datatable table table-striped table-bordered">
