@@ -12,9 +12,8 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<script src="dependencies/assets/js/spin.min.js"></script>
-	<script>
-	</script>
 	<?php
+	    require __DIR__ . '/../../components/context.php';
 	    require __DIR__ . '/../../components/commonJavascript.php';
 	?>
 	<style> <!-- FAST STYLE FIXES FIXMEEEE -->
@@ -145,6 +144,16 @@
 	    ?>
 	</span>
 	<script>
+         $("body").keydown(function(e){
+             //your keyCode contains the key code, F1 to F12 
+             //is among 112 and 123. Just it.
+             var keyCode = e.keyCode || e.which;
+             if(keyCode == 112){
+                 e.preventDefault();
+                 console.log(keyCode, linksMaker.makeHelpLinkById(context.screenId));
+             }
+         });
+         
 	 var startSessionTime = (new Date()).getTime();
 	 var sessionTimer = setInterval(function(){
 	     var timeoutSeconds = <?php echo intval(($GLOBALS["config"]["timeoutMinutes"] + $GLOBALS["config"]["warningMinutes"]) * 60); ?>,

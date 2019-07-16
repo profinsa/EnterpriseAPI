@@ -8,7 +8,7 @@
 
   Use: this model used for 
   For creating links to pages of projects using properties as source. 
-  Model expose identical api in both projects(NewTechPhp and Enterprise). Because of it, views uses same code to generate 
+  Model expose identical api in EnterpriseX. Because of it, views uses same code to generate 
   different links in interface. This increases the speed of porting features.
 
   Input parameters:

@@ -22,7 +22,7 @@
    + /controllers/*
 
 
-   Last Modified: 2-.11.2018
+   Last Modified: 16.07.2019
    Last Modified by: Nikita Zaharov
  */
 //require 'vendor/autoload.php';
@@ -69,7 +69,7 @@ class app{
         }else if($_SERVER['REQUEST_METHOD'] === 'GET'){
         }
         if(!file_exists('controllers/' . $this->page . '.php'))
-            throw new Exception("controller ". 'controllers/' . $this->page . '.php' . "is not found");
+            throw new Exception("controller ". 'controllers/' . $this->page . '.php' . " is not found");
         require 'controllers/' . $this->page . '.php';
         $this->controller = new controller();
     }

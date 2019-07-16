@@ -67,6 +67,9 @@
      },
      makeReportsEngineLink : function(report){
          return  "index.php#/?page=grid&action=Reports/Autoreport/GenericReportDetail&mode=new&category=Main&item=" + generateKeyString() + "&report=" + report;
+     },
+     makeHelpLinkById : function(id){
+         return "index.php?page=help&id=" + id;
      }
  };
 
@@ -166,4 +169,5 @@
      iso = iso.replace(/(^|\D)(\d)(?!\d)/g, '$10$2');
      return iso;
  }
+
 </script>

@@ -2,6 +2,7 @@
 <html dir="<?php echo $ascope["interfaceType"]; ?>">
     <?php
 	require 'header.php';
+        include './views/components/context.php';
 	require './views/components/commonJavascript.php';
     ?>
     <body onload="main();">
@@ -174,6 +175,16 @@
 	    require 'uiItems/footer.php';
 	?>
 	<script>
+         $("body").keydown(function(e){
+             //your keyCode contains the key code, F1 to F12 
+             //is among 112 and 123. Just it.
+             var keyCode = e.keyCode || e.which;
+             if(keyCode == 112){
+                 e.preventDefault();
+                 redirectBlank(linksMaker.makeHelpLinkById(context.screenId));
+             }
+         });
+
 	 var startSessionTime = (new Date()).getTime();
 	 var sessionTimer = setInterval(function(){
 	     var timeoutSeconds = <?php echo intval(($GLOBALS["config"]["timeoutMinutes"] + $GLOBALS["config"]["warningMinutes"]) * 60); ?>,
