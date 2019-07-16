@@ -669,7 +669,8 @@ class OrderHeaderList extends gridDataSource{
 			"OrderCancelDate" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
-				"defaultValue" => "now"
+				"defaultValue" => "now",
+                "defaultValueExpression" => "return date('m/d/y', strtotime('+1 year'));"
 			],
 			"ShipForID" => [
 				"dbType" => "varchar(36)",
@@ -725,7 +726,8 @@ class OrderHeaderList extends gridDataSource{
 			"OrderCancelDate" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
-				"defaultValue" => "now"
+				"defaultValue" => "now",
+                "defaultValueExpression" => "return date('m/d/y', strtotime('+1 year'));"
 			],
 			"SystemDate" => [
 				"dbType" => "timestamp",

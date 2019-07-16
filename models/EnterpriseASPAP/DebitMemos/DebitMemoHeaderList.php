@@ -525,11 +525,6 @@ class DebitMemoHeaderList extends gridDataSource{
                 "defaultOverride" => true,
 				"defaultValue" => "Debit Memo"
 			],
-			"PurchaseCancelDate" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-			],
 			"ShipMethodID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
@@ -575,7 +570,8 @@ class DebitMemoHeaderList extends gridDataSource{
 			"PurchaseCancelDate" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
-				"defaultValue" => "now"
+				"defaultValue" => "now",
+                "defaultValueExpression" => "return date('m/d/y', strtotime('+1 year'));"
 			],
 			"SystemDate" => [
 				"dbType" => "timestamp",

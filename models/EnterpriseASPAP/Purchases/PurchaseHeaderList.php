@@ -551,11 +551,6 @@ class PurchaseHeaderList extends gridDataSource{
 				"inputType" => "dropdown",
                 "dataProvider" => "getARTransactionTypes",
 			],
-			"PurchaseCancelDate" => [
-				"dbType" => "datetime",
-				"inputType" => "datetime",
-				"defaultValue" => "now"
-			],
 			"ShipMethodID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "dropdown",
@@ -601,7 +596,8 @@ class PurchaseHeaderList extends gridDataSource{
 			"PurchaseCancelDate" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
-				"defaultValue" => "now"
+				"defaultValue" => "now",
+                "defaultValueExpression" => "return date('m/d/y', strtotime('+1 year'));"
 			],
 			"SystemDate" => [
 				"dbType" => "timestamp",

@@ -1689,6 +1689,11 @@ EOF;
                             !$this->editCategories[$type][$key]["defaultValue"]))
                             $this->editCategories[$type][$key]["defaultValue"] = date("m/d/y");
                     }
+                    
+                    if(key_exists("defaultValueExpression", $this->editCategories[$type][$key])){
+                        $this->editCategories[$type][$key]["defaultValue"] = eval($this->editCategories[$type][$key]["defaultValueExpression"]);
+                    }
+                    
                     if(!key_exists("required", $this->editCategories[$type][$key])){
                         switch ($struct->Null) {
                         case "NO":

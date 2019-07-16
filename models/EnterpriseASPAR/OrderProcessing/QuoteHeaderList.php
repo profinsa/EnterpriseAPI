@@ -634,7 +634,8 @@ class QuoteHeaderList extends gridDataSource{
 			"OrderCancelDate" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
-				"defaultValue" => "now"
+				"defaultValue" => "now",
+                "defaultValueExpression" => "return date('m/d/y', strtotime('+1 year'));"
 			],
 			"ShipForID" => [
 				"dbType" => "varchar(36)",
@@ -697,7 +698,8 @@ class QuoteHeaderList extends gridDataSource{
 			"OrderCancelDate" => [
 				"dbType" => "datetime",
 				"inputType" => "datetime",
-				"defaultValue" => "now"
+				"defaultValue" => "now",
+                "defaultValueExpression" => "return date('m/d/y', strtotime('+1 year'));"
 			],
 			"SystemDate" => [
 				"dbType" => "timestamp",
@@ -890,7 +892,7 @@ class QuoteHeaderList extends gridDataSource{
         "Order Date" => "OrderDate",
         "Order Type" => "OrderTypeID",
         "Transaction Type" => "TransactionTypeID",
-        "Cancel Type" => "OrderCancelDate"
+        "Cancel Date" => "OrderCancelDate"
     ];
 
     public $headTableTwo = [
