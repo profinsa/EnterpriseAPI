@@ -1,7 +1,7 @@
 <?php
     $modules = $data->getModules();
 //    $topics = $data->getTopics();
-    $document = $data->getDocument();
+    $currentDocument = $data->getDocument();
 ?>
 <!DOCTYPE html>
 <html class="no-js">
@@ -75,18 +75,17 @@
                                 </li>
                                 <?php foreach($modules as $name=>$module): ?>
                                     <li>
-                                        <a data-toggle="collapse" data-target="#collapse-1315" class="have_drop collapsed"></a>
+                                        <a data-toggle="collapse" data-target="#collapse-<?php echo $module["ModuleID"]; ?>" class="have_drop collapsed"></a>
                                         <a class="cat-name" href="//stfbinc.helpdocs.com/installation"><?php echo $module["ModuleName"]; ?></a>
-                                        <ul class="collapse" id="collapse-1315">
+                                        <ul class="collapse" id="collapse-<?php echo $module["ModuleID"]; ?>">
                                             <?php foreach($module["topics"] as $topicId=>$topic): ?>
                                                 <li>
-                                                    <a data-toggle="collapse" data-target="#collapse-1350" class="have_drop collapsed"></a>
+                                                    <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"]; ?>" class="have_drop collapsed"></a>
                                                     <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-receivable"><?php echo $topic["TopicName"]; ?></a>
-                                                    <ul class="collapse" id="collapse-1350">
-                                                        <li><a href="//stfbinc.helpdocs.com/orders">Orders</a></li>
-                                                        <li><a href="//stfbinc.helpdocs.com/invoices">Invoices</a></li>
-                                                        <li><a href="//stfbinc.helpdocs.com/cash-receipts">Cash Receipts</a></li>
-                                                        <li><a href="//stfbinc.helpdocs.com/credit-memos">Credit Memos</a></li>
+                                                    <ul class="collapse" id="collapse-<?php echo $topic["TopicID"]; ?>">
+                                                        <?php foreach($topic["documents"] as $documentId=>$document): ?>
+                                                            <li><a href="<?php echo $linksMaker->makeHelpLinkById($document["DocumentTitleID"]); ?>"><?php echo $document["DocumentTitle"]; ?></a></li>
+                                                        <?php endforeach; ?>
                                                     </ul>
                                                     
                                                 </li>
@@ -134,7 +133,7 @@
                             </ul>
                         </aside>
                         <section class="right-content">
-                            <?php echo $document->DocumentContents; ?>
+                            <?php echo $currentDocument->DocumentContents; ?>
                             <!--                           <header>
                                  <form method="GET">
                                  <select tabindex="-1" style="margin-top: 8px;" class="form-control pull-right input-sort" name="order" onchange="this.form.submit();">

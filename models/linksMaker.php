@@ -24,7 +24,7 @@
   Calls:
   sql
 
-  Last Modified: 17.04.2019
+  Last Modified: 17.07.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -117,4 +117,12 @@ class linksMaker{
         
         return $imageLink;
     }
+
+    function makeHelpLinkByURL($url){
+         return "index.php?page=help&url=$url";
+    }
+
+    function makeHelpLinkById($id){
+         return "index.php?page=help&id=$id";
+     }
 }

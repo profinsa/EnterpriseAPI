@@ -32,6 +32,7 @@ require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
 require 'models/users.php';
+require 'models/linksMaker.php';
 
 class controller{
     public $user = false;
@@ -49,13 +50,14 @@ class controller{
             exit;
         }
 
-        $id = $_GET["id"];
+        $id = $_GET["url"];
         require "models/help/index.php";
         
         $this->user = $_SESSION["user"];
                
         $data = new helpData($id);
 
+        $linksMaker = new linksMaker();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
             $translation = new translation($this->user["language"]);

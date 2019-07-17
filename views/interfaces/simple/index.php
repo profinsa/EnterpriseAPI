@@ -150,7 +150,7 @@
              var keyCode = e.keyCode || e.which;
              if(keyCode == 112){
                  e.preventDefault();
-                 console.log(keyCode, linksMaker.makeHelpLinkById(context.screenId));
+                 redirectBlank(linksMaker.makeHelpLinkByURL(context.screenId));
              }
          });
          
