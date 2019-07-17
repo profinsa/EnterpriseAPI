@@ -10,19 +10,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Language" content="en">
         <meta name="description" content="Help documentation, installation instructions, technical reference guide and user manual for all Integral Accounting Enterprise Versions." />
-        <base href="//stfbinc.helpdocs.com/" />
-        <link rel="stylesheet" href="//stfbinc.helpdocs.com/public/css/plugins/photoswipe/photoswipe.css"> 
-        <link rel="stylesheet" href="//stfbinc.helpdocs.com/public/css/plugins/photoswipe/default-skin/default-skin.css"> 
-        <link rel="stylesheet" href="//stfbinc.helpdocs.com/public/css/styles.css" media="screen, handheld">
-        <link rel="stylesheet" href="//stfbinc.helpdocs.com/public/css/print.css" media="print">
-        <link rel="stylesheet" href="//stfbinc.helpdocs.com/css/appearance/1542823544.css" media="screen, handheld" />
-        <script src="//stfbinc.helpdocs.com/public/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        <script src="//stfbinc.helpdocs.com/public/js/plugins/photoswipe/photoswipe.js"></script> 
-        <script src="//stfbinc.helpdocs.com/public/js/plugins/photoswipe/photoswipe-ui-default.js"></script>
-        <script src="//stfbinc.helpdocs.com/public/js/vendor/jquery-1.11.1.min.js"></script>
-        <script src="//stfbinc.helpdocs.com/public/js/vendor/bootstrap.min.js"></script>
-        <script src="//stfbinc.helpdocs.com/public/js/plugins.js"></script>
-        <script src="//stfbinc.helpdocs.com/public/js/main.js"></script>
+        <!--        <base href="//stfbinc.helpdocs.com/" /> -->
+        <link rel="stylesheet" href="assets/css/help/photoswipe.css"> 
+        <link rel="stylesheet" href="assets/css/help/default-skin.css"> 
+        <link rel="stylesheet" href="assets/css/help/styles.css" media="screen, handheld">
+        <link rel="stylesheet" href="assets/css/help/print.css" media="print">
+        <link rel="stylesheet" href="assets/css/help/1542823544.css" media="screen, handheld" />
+        <script src="assets/js/help/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <script src="assets/js/help/photoswipe.js"></script> 
+        <script src="assets/js/help/photoswipe-ui-default.js"></script>
+        <script src="assets/js/help/jquery-1.11.1.min.js"></script>
+        <script src="assets/js/help/bootstrap.min.js"></script>
+        <script src="assets/js/help/plugins.js"></script>
+        <script src="assets/js/help/main.js"></script>
     </head>
     <body>
         <div class="site--wrap">
@@ -725,7 +725,6 @@
                                 
                             </ul>
                         </aside>
-
                         <section class="right-content">
                             <?php echo $document->DocumentContents; ?>
                             <!--                           <header>
@@ -840,18 +839,12 @@
                             <div class="pswp__item"></div>
                         </div>
                         <div class="pswp__ui pswp__ui--hidden">
-
                             <div class="pswp__top-bar">
                                 <div class="pswp__counter"></div>
-
                                 <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
                                 <button class="pswp__button pswp__button--share" title="Share"></button>
-
                                 <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
                                 <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
                                 
                                 
                                 <div class="pswp__preloader">
@@ -862,17 +855,13 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
                                 <div class="pswp__share-tooltip"></div> 
                             </div>
-
                             <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
                             </button>
-
                             <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
                             </button>
-
                             <div class="pswp__caption">
                                 <div class="pswp__caption__center"></div>
                             </div>
@@ -883,13 +872,12 @@
 	            <footer class="site--footer">
 	                <div class="container">
 		            <p class="copyrights">
-                                &copy; 2018 STFB Inc. Integral Accounting and the STFB Inc Logo are Trademarks of STFB Inc.</p>
+                                &copy; 2019 STFB Inc. Integral Accounting and the STFB Inc Logo are Trademarks of STFB Inc.</p>
 	                </div>
 	            </footer>
         </div>
         
         
-
         <div class="modal fade" id="contact-form" tabindex="-1" role="dialog" aria-labelledby="contact-form-header" aria-hidden="true">
             <div class="modal-dialog">
                 <form action="//stfbinc.helpdocs.com" method="POST" id="contactForm" enctype="multipart/form-data" onsubmit="checkValidUser();">
@@ -905,55 +893,46 @@
                                 <div class="col-labels">
                                     <span class="in_label">Your Name</span>
                                 </div>
-
                                 <div class="col-inputs">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="name" required="true" id="contact-form-name" />
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-labels">
                                     <span class="in_label">Email</span>
                                 </div>
-
                                 <div class="col-inputs">
                                     <div class="form-group">
                                         <input type="email" class="form-control" name="email" required="true" />
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-labels">
                                     <span class="in_label">Subject</span>
                                 </div>
-
                                 <div class="col-inputs">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="subject" required="true" />
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-labels">
                                     <span class="in_label">Message</span>
                                 </div>
-
                                 <div class="col-inputs">
                                     <div class="form-group">
                                         <textarea class="form-control" name="message" required="true" id="contact-message"></textarea>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-labels">
                                     <span class="in_label">Attachments</span>
                                 </div>
-
                                 <div class="col-inputs">
                                     <div class="form-group">
                                         <input type="file" class="form-control" name="attachment" />
@@ -967,7 +946,6 @@
                         </div>
                 </form>
                     </div>
-
 	            <script type="text/javascript">
 	             if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
 	                 window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
@@ -975,6 +953,5 @@
 	             window.baseURL = "//stfbinc.helpdocs.com";
 	             window.urlPrefix = "//stfbinc.helpdocs.com";
 	            </script>
-  </body>
+    </body>
 </html>
-
