@@ -1,4 +1,6 @@
 <?php
+    $modules = $data->getModules();
+//    $topics = $data->getTopics();
     $document = $data->getDocument();
 ?>
 <!DOCTYPE html>
@@ -68,659 +70,65 @@
                         <aside class="left-sidebar">
                             <ul class="list-links js_tinynav hidden-xs">
                                 <li><a href="//stfbinc.helpdocs.com/categories">All Articles</a></li>
-                                
-                                
-                                <li >
-                                    
+                                <li>
                                     <a href="//stfbinc.helpdocs.com/welcome">Welcome</a>
-                                    
                                 </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/getting-started">Getting Started</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a data-toggle="collapse" data-target="#collapse-1315" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/installation">Installation</a>
-                                    <ul class="collapse" id="collapse-1315">
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/integral-accounting-enterprise-x-specific-information">Integral Accounting Enterprise X Specific Information </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                    </ul>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/integral-accounting-enterprise-x-specific-information">Integral Accounting Enterprise X Specific Information</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a data-toggle="collapse" data-target="#collapse-1316" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/technical-reference">Technical Reference</a>
-                                    <ul class="collapse" id="collapse-1316">
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/integral-accounting-enterprise-x-specific-information2">Integral Accounting Enterprise X Specific Information </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                    </ul>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/integral-accounting-enterprise-x-specific-information2">Integral Accounting Enterprise X Specific Information</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a data-toggle="collapse" data-target="#collapse-1317" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/troubleshooting">Troubleshooting</a>
-                                    <ul class="collapse" id="collapse-1317">
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/integral-accounting-enterprise-x-specific-information3">Integral Accounting Enterprise X Specific Information </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                    </ul>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/integral-accounting-enterprise-x-specific-information3">Integral Accounting Enterprise X Specific Information</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a data-toggle="collapse" data-target="#collapse-1318" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/user-manual">User Manual</a>
-                                    <ul class="collapse" id="collapse-1318">
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a data-toggle="collapse" data-target="#collapse-1350" class="have_drop collapsed"></a>
-                                            <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-receivable">Accounts Receivable</a>
-                                            <ul class="collapse" id="collapse-1350">
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/orders">Orders</a></li>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/invoices">Invoices</a></li>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/cash-receipts">Cash Receipts</a></li>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/credit-memos">Credit Memos</a></li>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                            </ul>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a data-toggle="collapse" data-target="#collapse-1351" class="have_drop collapsed"></a>
-                                            <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-payable">Accounts Payable</a>
-                                            <ul class="collapse" id="collapse-1351">
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/vouchers-payments">Vouchers &amp; Payments</a></li>
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/purchase-orders">Purchase Orders</a></li>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                            </ul>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a data-toggle="collapse" data-target="#collapse-1352" class="have_drop collapsed"></a>
-                                            <a class="cat-name" href="//stfbinc.helpdocs.com/general-ledger">General Ledger</a>
-                                            <ul class="collapse" id="collapse-1352">
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/ledger-processing">Ledger Processing</a></li>
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/banking">Banking</a></li>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/currencies">Currencies</a></li>
-                                                
-                                                
-                                                
-                                                
-                                            </ul>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a data-toggle="collapse" data-target="#collapse-1353" class="have_drop collapsed"></a>
-                                            <a class="cat-name" href="//stfbinc.helpdocs.com/inventory">Inventory</a>
-                                            <ul class="collapse" id="collapse-1353">
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/cost-and-adjustments">Cost and Adjustments</a></li>
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/mrp2">MRP</a></li>
-                                                
-                                                
-                                            </ul>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a data-toggle="collapse" data-target="#collapse-1354" class="have_drop collapsed"></a>
-                                            <a class="cat-name" href="//stfbinc.helpdocs.com/system-setup">System Setup</a>
-                                            <ul class="collapse" id="collapse-1354">
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/company-division-department">Company, Division &amp; Department</a></li>
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/ledger-setup">Ledger Setup</a></li>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/accounts-payable2">Accounts Payable</a></li>
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/inventory2">Inventory</a></li>
-                                                
-                                                
-                                            </ul>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a data-toggle="collapse" data-target="#collapse-2046" class="have_drop collapsed"></a>
-                                            <a class="cat-name" href="//stfbinc.helpdocs.com/other">Other</a>
-                                            <ul class="collapse" id="collapse-2046">
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/mrp">MRP</a></li>
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/payroll">Payroll</a></li>
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/cart">Cart</a></li>
-                                                
-                                                
-                                            </ul>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a data-toggle="collapse" data-target="#collapse-2049" class="have_drop collapsed"></a>
-                                            <a class="cat-name" href="//stfbinc.helpdocs.com/reports2">Reports</a>
-                                            <ul class="collapse" id="collapse-2049">
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/financial-reports2">Financial Reports</a></li>
-                                                
-                                                
-                                                
-                                                <li><a href="//stfbinc.helpdocs.com/general-reports">General Reports</a></li>
-                                                
-                                                
-                                            </ul>
-                                            
-                                        </li>
-                                        
-                                        
-                                    </ul>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a data-toggle="collapse" data-target="#collapse-1350" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-receivable">Accounts Receivable</a>
-                                    <ul class="collapse" id="collapse-1350">
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/orders">Orders </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/invoices">Invoices </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/cash-receipts">Cash Receipts </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/credit-memos">Credit Memos </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                    </ul>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/orders">Orders</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/invoices">Invoices</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/cash-receipts">Cash Receipts</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/credit-memos">Credit Memos</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a data-toggle="collapse" data-target="#collapse-1351" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-payable">Accounts Payable</a>
-                                    <ul class="collapse" id="collapse-1351">
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/vouchers-payments">Vouchers &amp; Payments </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/purchase-orders">Purchase Orders </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                    </ul>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/vouchers-payments">Vouchers &amp; Payments</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/purchase-orders">Purchase Orders</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a data-toggle="collapse" data-target="#collapse-1352" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/general-ledger">General Ledger</a>
-                                    <ul class="collapse" id="collapse-1352">
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/ledger-processing">Ledger Processing </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/banking">Banking </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/currencies">Currencies </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        
-                                    </ul>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/ledger-processing">Ledger Processing</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/banking">Banking</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/currencies">Currencies</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a data-toggle="collapse" data-target="#collapse-1353" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/inventory">Inventory</a>
-                                    <ul class="collapse" id="collapse-1353">
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/cost-and-adjustments">Cost and Adjustments </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                        
-                                        <li>
-                                            
-                                            <a href="//stfbinc.helpdocs.com/mrp2">MRP </a>
-                                            
-                                        </li>
-                                        
-                                        
-                                    </ul>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/cost-and-adjustments">Cost and Adjustments</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/mrp2">MRP</a>
-                                    
-                                </li>
-                                
-                                
-                                
-                                <li >
-                                    
-                                    <a data-toggle="collapse" data-target="#collapse-1354" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/system-setup">System Setup</a>
-                                    <ul class="collapse" id="collapse-1354">
-                                        
-                                        
-                                        <li>
-                                            <a href="//stfbinc.helpdocs.com/company-division-department">Company, Division &amp; Department </a>
-                                        </li>
-                                        <li>
-                                            <a href="//stfbinc.helpdocs.com/ledger-setup">Ledger Setup </a>
-                                        </li>
-                                        <li>
-                                            <a href="//stfbinc.helpdocs.com/accounts-payable2">Accounts Payable </a>
-                                        </li>
-                                        <li>
-                                            <a href="//stfbinc.helpdocs.com/inventory2">Inventory </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li >
-                                    <a href="//stfbinc.helpdocs.com/company-division-department">Company, Division &amp; Department</a>
-                                </li>
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/ledger-setup">Ledger Setup</a>
-                                    
-                                </li>
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/accounts-payable2">Accounts Payable</a>
-                                </li>
-                                <li >
-                                    <a href="//stfbinc.helpdocs.com/inventory2">Inventory</a>
-                                </li>
-                                <li >
-                                    <a data-toggle="collapse" data-target="#collapse-2046" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/other">Other</a>
-                                    <ul class="collapse" id="collapse-2046">
-                                        <li>
-                                            <a href="//stfbinc.helpdocs.com/mrp">MRP </a>
-                                        </li>
-                                        <li>
-                                            <a href="//stfbinc.helpdocs.com/payroll">Payroll </a>
-                                        </li>
-                                        <li>
-                                            <a href="//stfbinc.helpdocs.com/cart">Cart </a>
-                                        </li>
-                                    </ul>
-                                    
-                                </li>
-                                <li >
-                                    <a href="//stfbinc.helpdocs.com/mrp">MRP</a>
-                                </li>
-                                <li >
-                                    <a href="//stfbinc.helpdocs.com/payroll">Payroll</a>
-                                </li>
-                                <li >
-                                    <a data-toggle="collapse" data-target="#collapse-2049" class="have_drop collapsed"></a>
-                                    <a class="cat-name" href="//stfbinc.helpdocs.com/reports2">Reports</a>
-                                    <ul class="collapse" id="collapse-2049">
-                                        <li>
-                                            <a href="//stfbinc.helpdocs.com/financial-reports2">Financial Reports </a>
-                                        </li>
-                                        <li>
-                                            <a href="//stfbinc.helpdocs.com/general-reports">General Reports </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/financial-reports2">Financial Reports</a>
-                                    
-                                </li>
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/general-reports">General Reports</a>
-                                    
-                                </li>
-                                <li >
-                                    
-                                    <a href="//stfbinc.helpdocs.com/cart">Cart</a>
-                                    
-                                </li>
+                                <?php foreach($modules as $name=>$module): ?>
+                                    <li>
+                                        <a data-toggle="collapse" data-target="#collapse-1315" class="have_drop collapsed"></a>
+                                        <a class="cat-name" href="//stfbinc.helpdocs.com/installation"><?php echo $module["ModuleName"]; ?></a>
+                                        <ul class="collapse" id="collapse-1315">
+                                            <?php foreach($module["topics"] as $topicId=>$topic): ?>
+                                                <li>
+                                                    <a data-toggle="collapse" data-target="#collapse-1350" class="have_drop collapsed"></a>
+                                                    <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-receivable"><?php echo $topic["TopicName"]; ?></a>
+                                                    <ul class="collapse" id="collapse-1350">
+                                                        <li><a href="//stfbinc.helpdocs.com/orders">Orders</a></li>
+                                                        <li><a href="//stfbinc.helpdocs.com/invoices">Invoices</a></li>
+                                                        <li><a href="//stfbinc.helpdocs.com/cash-receipts">Cash Receipts</a></li>
+                                                        <li><a href="//stfbinc.helpdocs.com/credit-memos">Credit Memos</a></li>
+                                                    </ul>
+                                                    
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </li>
+                                <?php endforeach; ?>
+                                <!--                                <li>
+                                     <a href="//stfbinc.helpdocs.com/getting-started">Getting Started</a>
+                                     
+                                     </li>
+                                     <li>
+                                     <a data-toggle="collapse" data-target="#collapse-1315" class="have_drop collapsed"></a>
+                                     <a class="cat-name" href="//stfbinc.helpdocs.com/installation">Installation</a>
+                                     <ul class="collapse" id="collapse-1315">
+                                     <li>
+                                     <a href="//stfbinc.helpdocs.com/integral-accounting-enterprise-x-specific-information">Integral Accounting Enterprise X Specific Information </a>
+                                     
+                                     </li>
+                                     </ul>
+                                     
+                                     </li> -->
+                                <!--                                 <li>
+                                     <a data-toggle="collapse" data-target="#collapse-1318" class="have_drop collapsed"></a>
+                                     <a class="cat-name" href="//stfbinc.helpdocs.com/user-manual">User Manual</a>
+                                     <ul class="collapse" id="collapse-1318">
+                                     <li>
+                                     <a data-toggle="collapse" data-target="#collapse-1350" class="have_drop collapsed"></a>
+                                     <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-receivable">Accounts Receivable</a>
+                                     <ul class="collapse" id="collapse-1350">
+                                     <li><a href="//stfbinc.helpdocs.com/orders">Orders</a></li>
+                                     <li><a href="//stfbinc.helpdocs.com/invoices">Invoices</a></li>
+                                     <li><a href="//stfbinc.helpdocs.com/cash-receipts">Cash Receipts</a></li>
+                                     <li><a href="//stfbinc.helpdocs.com/credit-memos">Credit Memos</a></li>
+                                     </ul>
+                                     </li>
+                                -->                                   
+                                
+                                <!--                                 <li>
+                                     <a href="//stfbinc.helpdocs.com/cart">Cart</a>
+                                     
+                                     </li> -->
                                 
                                 
                             </ul>
@@ -950,8 +358,8 @@
 	             if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
 	                 window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
 	             }
-	             window.baseURL = "//stfbinc.helpdocs.com";
-	             window.urlPrefix = "//stfbinc.helpdocs.com";
+	             //window.baseURL = "//stfbinc.helpdocs.com";
+	             //window.urlPrefix = "//stfbinc.helpdocs.com";
 	            </script>
     </body>
 </html>

@@ -37,5 +37,33 @@ class helpData{
         $user = Session::get("user");
         return DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentURL=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $this->id])[0];
     }
+
+    public function getModules(){
+        $user = Session::get("user");
+        $result = json_decode(json_encode(DB::Select("select * from helpdocumentmodule WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])), true);
+
+        $modules = [];
+        foreach($result as $row){
+            $modules[$row["ModuleID"]] = $row;
+            $modules[$row["ModuleID"]]["topics"] = [];
+        }
+        
+        $documents = json_decode(json_encode(DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])), true);
+        $topics = json_decode(json_encode(DB::Select("select * from helpdocumenttopic WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])), true);
+
+        foreach($documents as $document){
+            foreach($topics as $topic)
+                if($topic["TopicID"] == $document["DocumentTopic"])
+                    $modules[$document["DocumentModule"]]["topics"][$document["DocumentTopic"]] = $topic;
+        }
+            //if(
+        //        echo json_encode($modules);
+        return $modules;
+    }
+
+    public function getTopics(){
+        $user = Session::get("user");
+        //        return DB::Select("select * from helpdocumenttopic WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+    }
 }
 ?>
