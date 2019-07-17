@@ -35,11 +35,16 @@ class helpData{
 
     public function getDocument(){
         $user = Session::get("user");
-        echo $this->id;
+        $result = [];
         if($this->id)
-            return DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentURL=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $this->id])[0];
+            $result = DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentURL=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $this->id])[0];
         else
-            return DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentTitleID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_GET["id"]])[0];
+            $result = DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentTitleID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_GET["id"]])[0];
+
+        if(!count($result))
+            $result = DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentTitleID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], 'GettingStarted'])[0];
+
+        return $result;
     }
 
     public function getModules(){
