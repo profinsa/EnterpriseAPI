@@ -548,7 +548,12 @@ $leftMenu = [
 			"full" => $translation->translateLabel('Order Processing'),
 			"short" => "Or",
 			"data" => [
-
+			    [
+				"id" => "AccountsReceivable/OrderProcessing/ViewOrdersSimple",
+				"full" => $translation->translateLabel('View Orders Simple'),
+				"href"=> "EnterpriseASPAR/OrderProcessing/OrderHeaderSimpleList",
+				"short" => "Vi"
+			    ],
 			    [
 				"id" => "AccountsReceivable/OrderProcessing/ViewOrders",
 				"full" => $translation->translateLabel('View Orders'),
@@ -587,6 +592,12 @@ $leftMenu = [
 			"full" => $translation->translateLabel('Order Screens'),
 			"short" => "Or",
 			"data" => [
+			    [
+				"id" => "AccountsReceivable/OrderProcessing/ViewOrdersSimple",
+				"full" => $translation->translateLabel('View Orders Simple'),
+				"href"=> "EnterpriseASPAR/OrderProcessing/OrderHeaderSimpleList",
+				"short" => "Vi"
+			    ],
 			    [
 				"id" => "AccountsReceivable/OrderScreens/ViewOrders",
 				"full" => $translation->translateLabel('View Orders'),

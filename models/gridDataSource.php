@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 26/04/2019
+  Last Modified: 22/07/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -1330,6 +1330,12 @@ EOF;
     //      return response("failed", 400)->header('Content-Type', 'text/plain');
     }
 
+    public function getCurrentCompany(){
+        $user = Session::get("user");
+        $result = DB::select("SELECT * from companies WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'");
+
+        return $result;
+    }    
 
     //getting rows for grid
     public function getPage($number){

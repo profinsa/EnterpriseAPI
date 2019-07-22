@@ -1195,6 +1195,12 @@ public $permissions = [
         "insert" => "OEAdd|ADSetup",
         "delete" => "OEDelete|ADSetup",
     ],
+    "OrderHeaderSimple" => [
+        "select" => "ARView|GLView|OEView|ADView|ADSetup",
+        "update" => "OEEdit|ADSetup",
+        "insert" => "OEAdd|ADSetup",
+        "delete" => "OEDelete|ADSetup",
+    ],
     "OrderHeaderMemorized" => [
         "select" => "ARView|GLView|OEView|ADView|ADSetup",
         "update" => "OEEdit|ADSetup",

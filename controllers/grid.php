@@ -50,6 +50,7 @@ class controller{
     public $pathPage;
     
     protected  $redirectModel = [
+        "EnterpriseASPAR/OrderProcessing/OrderHeaderSimpleList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderMemorizedList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
         "EnterpriseASPAR/OrderProcessing/OrderHeaderBackList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
@@ -184,6 +185,10 @@ class controller{
                 $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
             
                 $redirectView = [
+                    "EnterpriseASPAR/OrderProcessing/OrderHeaderSimpleList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/"
+                    ],
                     "EnterpriseASPAR/OrderProcessing/OrderHeaderMemorizedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"

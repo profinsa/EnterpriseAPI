@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 07/06/2019
+  Last Modified: 22/07/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -1390,6 +1390,46 @@ class OrderHeaderList extends gridDataSource{
 }
 
 class gridData extends OrderHeaderList {};
+
+class OrderHeaderSimpleList extends OrderHeaderList {
+	public $reportType = "order";
+    // simple form section
+    public $simpleInterface = [
+        "showShipping" => true,
+        "customerTitle" => "Name / Address",
+        "customerFields" => [
+            "CustomerName" => "Name",
+            "CustomerAddress1" => "Address 1",
+            "CustomerAddress2" => "Address 2",
+            "CustomerAddress3" => "Address 3",
+            "CustomerCity" => "City",
+            "CustomerCountry" => "Country",
+            "CustomerState" => "State",
+            "CustomerZip" => "Zip"
+        ],
+        "shippingFields" => [
+            "CustomerName" => "ShippingName",
+            "CustomerAddress1" => "ShippingAddress1",
+            "CustomerAddress2" => "ShippingAddress2",
+            "CustomerAddress3" => "ShippingAddress3",
+            "CustomerCity" => "ShippingCity",
+            "CustomerCountry" => "ShippingCountry",
+            "CustomerState" => "ShippingState",
+            "CustomerZip" => "ShippingZip"
+        ],
+        "aboutOrder" => [
+            "Order Number" => "OrderNumber",
+            "Order Date" => "OrderDate"
+        ],
+        "totalFields" => [
+            "Total" => "Total"
+        ],
+        "aboutPurchase" => [
+            "Purchase Order" => "PurchaseOrderNumber",
+            "Salesman" => "EmployeeID"
+        ]
+    ];
+};
 
 class OrderHeaderClosedList extends OrderHeaderList {
 	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N'')) NOT IN ('return', 'service order', 'quote')) AND (OrderHeader.Invoiced = 1)";
