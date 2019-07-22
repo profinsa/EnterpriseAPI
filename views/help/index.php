@@ -69,29 +69,33 @@
                     <section class="category--structure">
                         <aside class="left-sidebar">
                             <ul class="list-links js_tinynav hidden-xs">
-                                <li><a href="//stfbinc.helpdocs.com/categories">All Articles</a></li>
+                                <!--                                 <li><a href="//stfbinc.helpdocs.com/categories">All Articles</a></li> -->
                                 <li>
-                                    <a href="//stfbinc.helpdocs.com/welcome">Welcome</a>
+                                    <a href="<?php echo $linksMaker->makeHelpLinkById("welcome"); ?>">Welcome</a>
                                 </li>
                                 <?php foreach($modules as $name=>$module): ?>
-                                    <li>
-                                        <a data-toggle="collapse" data-target="#collapse-<?php echo $module["ModuleID"]; ?>" class="have_drop collapsed"></a>
-                                        <a class="cat-name" href="//stfbinc.helpdocs.com/installation"><?php echo $module["ModuleName"]; ?></a>
-                                        <ul class="collapse" id="collapse-<?php echo $module["ModuleID"]; ?>">
-                                            <?php foreach($module["topics"] as $topicId=>$topic): ?>
-                                                <li>
-                                                    <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"]; ?>" class="have_drop collapsed"></a>
-                                                    <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-receivable"><?php echo $topic["TopicName"]; ?></a>
-                                                    <ul class="collapse" id="collapse-<?php echo $topic["TopicID"]; ?>">
-                                                        <?php foreach($topic["documents"] as $documentId=>$document): ?>
-                                                            <li><a href="<?php echo $linksMaker->makeHelpLinkById($document["DocumentTitleID"]); ?>"><?php echo $document["DocumentTitle"]; ?></a></li>
-                                                        <?php endforeach; ?>
-                                                    </ul>
-                                                    
-                                                </li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    </li>
+                                    <?php if(count($module["topics"])): ?>
+                                        <li>
+                                            <a data-toggle="collapse" data-target="#collapse-<?php echo $module["ModuleID"]; ?>" class="have_drop collapsed"></a>
+                                            <a class="cat-name" href="#"><?php echo $module["ModuleName"]; ?></a>
+                                            <ul class="collapse" id="collapse-<?php echo $module["ModuleID"]; ?>">
+                                                <?php foreach($module["topics"] as $topicId=>$topic): ?>
+                                                    <?php if(count($topic["documents"])): ?>
+                                                        <li>
+                                                            <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"]; ?>" class="have_drop collapsed"></a>
+                                                            <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-receivable"><?php echo $topic["TopicName"]; ?></a>
+                                                            <ul class="collapse" id="collapse-<?php echo $topic["TopicID"]; ?>">
+                                                                <?php foreach($topic["documents"] as $documentId=>$document): ?>
+                                                                    <li><a href="<?php echo $linksMaker->makeHelpLinkById($document["DocumentTitleID"]); ?>"><?php echo $document["DocumentTitle"]; ?></a></li>
+                                                                <?php endforeach; ?>
+                                                            </ul>
+                                                            
+                                                        </li>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </li>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                                 <!--                                <li>
                                      <a href="//stfbinc.helpdocs.com/getting-started">Getting Started</a>

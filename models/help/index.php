@@ -62,12 +62,13 @@ class helpData{
 
         foreach($documents as $document){
             foreach($topics as $topic){
-                if($topic["TopicID"] == $document["DocumentTopic"])
+                if($topic["TopicID"] == $document["DocumentTopic"]){
                     if(!key_exists($document["DocumentTopic"],$modules[$document["DocumentModule"]]["topics"])){
                         $modules[$document["DocumentModule"]]["topics"][$document["DocumentTopic"]] = $topic;
                         $modules[$document["DocumentModule"]]["topics"][$document["DocumentTopic"]]["documents"] = [];
                     }
-                $modules[$document["DocumentModule"]]["topics"][$document["DocumentTopic"]]["documents"][$document["DocumentTitleID"]] = $document;
+                    $modules[$document["DocumentModule"]]["topics"][$document["DocumentTopic"]]["documents"][$document["DocumentTitleID"]] = $document;
+                }
             }
         }
             //if(
