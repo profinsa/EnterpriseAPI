@@ -21,7 +21,7 @@
        Calls:
        model
 
-       Last Modified: 22/07/2019
+       Last Modified: 23/07/2019
        Last Modified by: Zaharov Nikita
      */
 
@@ -29,76 +29,76 @@
     $GLOBALS["dialogChooserInputs"] = [];
 
     function renderInput($translation, $ascope, $data, $category, $item, $key, $value){
-	$translatedFieldName = $translation->translateLabel(key_exists($key, $data->editCategories[$category]) && key_exists("label", $data->editCategories[$category][$key]) ? $data->editCategories[$category][$key]["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
-	$leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
-	$rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : 6;
+        $translatedFieldName = $translation->translateLabel(key_exists($key, $data->editCategories[$category]) && key_exists("label", $data->editCategories[$category][$key]) ? $data->editCategories[$category][$key]["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
+        $leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
+        $rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : 6;
         switch($data->editCategories[$category][$key]["inputType"]){
-	    case "text" :
-	        //renders text input with label
-	        echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control\" value=\"";
-	        if(key_exists("formatFunction", $data->editCategories[$category][$key])){
-		    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
-		    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-	        }
-	        else
-		    echo formatField($data->editCategories[$category][$key], $value);
+            case "text" :
+                //renders text input with label
+                echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control\" value=\"";
+                if(key_exists("formatFunction", $data->editCategories[$category][$key])){
+                    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
+                    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+                }
+                else
+                    echo formatField($data->editCategories[$category][$key], $value);
 
-	        echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-	       .">";
-	        break;
+                echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+               .">";
+                break;
 
-	    case "datetime" :
-	        //renders text input with label
-	        echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-		     ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
-		    .">";
-	        break;
+            case "datetime" :
+                //renders text input with label
+                echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+                     ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
+                    .">";
+                break;
 
-	    case "checkbox" :
-	        //renders checkbox input with label
-	        echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-	        echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
-		     ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view")) || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
-		    .">";
-	        break;
+            case "checkbox" :
+                //renders checkbox input with label
+                echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+                echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+                     ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view")) || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
+                    .">";
+                break;
 
-	    case "dialogChooser":
-		$dataProvider = $data->editCategories[$category][$key]["dataProvider"];
-		//$GLOBALS["dialogChooserTypes"][$key] = $data->editCategories[$category][$key];
-		//$GLOBALS["dialogChooserTypes"][$key]["fieldName"] = $key;
-		if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
-		    $GLOBALS["dialogChooserTypes"][$dataProvider] = $data->editCategories[$category][$key];
-		    $GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
-		}
-		$GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-		$onchange = "";
-		if(key_exists("onchange", $data->editCategories[$category][$key]))
-		    $onchange = "onchange=\"{$data->editCategories[$category][$key]["onchange"]}()\"";
-		echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\" $onchange></div></div>";
-		break;
+            case "dialogChooser":
+                $dataProvider = $data->editCategories[$category][$key]["dataProvider"];
+                //$GLOBALS["dialogChooserTypes"][$key] = $data->editCategories[$category][$key];
+                //$GLOBALS["dialogChooserTypes"][$key]["fieldName"] = $key;
+                if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"])){
+                    $GLOBALS["dialogChooserTypes"][$dataProvider] = $data->editCategories[$category][$key];
+                    $GLOBALS["dialogChooserTypes"][$dataProvider]["fieldName"] = $key;
+                }
+                $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
+                $onchange = "";
+                if(key_exists("onchange", $data->editCategories[$category][$key]))
+                    $onchange = "onchange=\"{$data->editCategories[$category][$key]["onchange"]}()\"";
+                echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\" $onchange></div></div>";
+                break;
 
-	    case "dropdown" :
-	        //renders select with available values as dropdowns with label
-	        echo "<select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
-	        $method = $data->editCategories[$category][$key]["dataProvider"];
-	        if(key_exists("dataProviderArgs", $data->editCategories[$category][$key])){
-		    $args = [];
-		    foreach($data->editCategories[$category][$key]["dataProviderArgs"] as $argname)
-		    $args[$argname] = $item[$argname];
-		    $types = $data->$method($args);
-	        }
-	        else
-		    $types = $data->$method();
-	        if($value)
-		    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
-	        else
-		    echo "<option></option>";
+            case "dropdown" :
+                //renders select with available values as dropdowns with label
+                echo "<select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
+                $method = $data->editCategories[$category][$key]["dataProvider"];
+                if(key_exists("dataProviderArgs", $data->editCategories[$category][$key])){
+                    $args = [];
+                    foreach($data->editCategories[$category][$key]["dataProviderArgs"] as $argname)
+                    $args[$argname] = $item[$argname];
+                    $types = $data->$method($args);
+                }
+                else
+                    $types = $data->$method();
+                if($value)
+                    echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
+                else
+                    echo "<option></option>";
 
-	        foreach($types as $type)
-		if(!$value || $type["value"] != $value)
-		    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
-	        echo"</select>";
-	        break;
+                foreach($types as $type)
+                if(!$value || $type["value"] != $value)
+                    echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+                echo"</select>";
+                break;
         }
     }
 
@@ -136,346 +136,398 @@
         $itemsHalf = 0;
         $itemsCount = 0;
         foreach($values as $key =>$value){
-	    if(key_exists($key, $fieldsDefinition))
+            if(key_exists($key, $fieldsDefinition))
                 $itemsCount++;
         }
         $itemsHalf = $itemsCount/2;
 
         $itemsCount = 0;
         foreach($values as $key =>$value){
-	    if(key_exists($key, $fieldsDefinition)){
+            if(key_exists($key, $fieldsDefinition)){
                 if($itemsCount < $itemsHalf)
-		    $leftItems[$key] = $value;
+                    $leftItems[$key] = $value;
                 else 
-		    $rightItems[$key] = $value;
+                    $rightItems[$key] = $value;
                 $itemsCount++;
-	    }
+            }
         }
         return [
-	    "leftItems" => $leftItems,
-	    "rightItems" => $rightItems
+            "leftItems" => $leftItems,
+            "rightItems" => $rightItems
         ];
     }
 ?>
 
 <div class="simple-form">
     <div id="row_viewer"  style="font-size: 11pt">
-	<form id="itemData" class="form-material form-horizontal m-t-30 col-md-12 col-xs-12">
-	    <input type="hidden" name="id" value="<?php echo $ascope["item"]; ?>" />
-	    <input type="hidden" name="category" value="<?php echo $ascope["category"]; ?>" />
+        <form id="itemData" class="form-material form-horizontal m-t-30 col-md-12 col-xs-12">
+            <input type="hidden" name="id" value="<?php echo $ascope["item"]; ?>" />
+            <input type="hidden" name="category" value="<?php echo $ascope["category"]; ?>" />
 
-	    <?php
-	        $headerItem = $ascope["mode"] == 'edit' || $ascope["mode"] == 'view'? $data->getEditItem($ascope["item"], "...fields") :
-			      $data->getNewItem($ascope["item"], "...fields" );
-	        $whom = key_exists("whom", $data->simpleInterface) ? $data->simpleInterface["whom"] : "Customer";
-	    ?>
-	    
-	    <!-- horizontal top blue line with 2 inputs -->
-	    <div class="row top_params">
-		<div class="col-md-6 col-xs-12">
-		    <div class="row">
-			<label class="pull-left" for="<?php echo $whom; ?>ID"><?php echo $whom; ?>:Job</label>
-			<!-- <span class="custom-select col-md-7"> -->
-			<span class="col-md-7">
-			    <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $whom . "ID", $headerItem[$whom . "ID"]); ?>
-			</span>
-		    </div>
-		</div>
-		<div class="col-md-6 col-xs-12">
-		    <div class="row">
-			<label class="pull-left" for="template">Template</label>
-			<span class="custom-select col-md-5">
-			    <input type="text" id="template" class="custom-select" value="" />
-			</span>
-		    </div>
-		</div>
-	    </div>
-	    
-	    <script>
-	     //catching CustomerID/VendorID changing
-	     var whomCatcher = $("#<?php echo $whom ?>ID").change(function(){
-		 var chooserData = dialogChooserData[dialogChooserInputs["<?php echo $whom; ?>ID"]].allValues, ind;
-		 for(ind in chooserData)
-		     if(chooserData[ind].<?php echo $whom ?>ID == whomCatcher.val()){
-	     		 chooserData = chooserData[ind];
-			 break;
-		     };
-		 
-		 var whomFields = ["Name","Address1", "Address2", "Address3", "City", "State", "Zip", "Country"], input;
-		 for(ind in whomFields){
-		     if((input = $("#Shipping" + whomFields[ind])).length)
-			 $(input).val(chooserData["<?php echo $whom?>" + whomFields[ind]]);
-		 }
-	     });
-	    </script>
-	    
-	    <div class="row">
-		<?php if(key_exists("showShipping", $data->simpleInterface) && $data->simpleInterface["showShipping"]): ?>
-		    <div class="col-md-3 pull-right">
-			<div class="row">
-			    <span style="margin-top: 0 !important;margin-bottom: 3px" class="header col-md-12 col-xs-12">Ship to</h3></span>
-			</div>
-			<div class="style-5" style="padding: 5px;">
-			    <div>
-				<table class="noinputborders">
-				    <tbody>
-					<?php
-					    $item = $ascope["mode"] == 'edit' || $ascope["mode"] == 'view'? $data->getEditItem($ascope["item"], "Shipping") : $data->getNewItem($ascope["item"], "Shipping" );
-					    $tableCategories = $data->editCategories["Shipping"];
-					    $tableItems = makeTableItems($item, $tableCategories);
-					    $items = $item;
-					?>
-					<?php 
-					    foreach($tableItems["leftItems"] as $key =>$value)
-					    renderEditRow($translation, $ascope, $data, "Shipping", $items, $key, $value);
-					    //				    renderRow($translation, $data, $tableCategories, $items, $key, $value);
-					?>
-					<?php 
-					    foreach($tableItems["rightItems"] as $key =>$value)
-					    renderEditRow($translation, $ascope, $data, "Shipping", $items, $key, $value);
-					?>
-				    </tbody>
-				</table>
-			    </div>
-			</div>
-		    </div>
-		<?php endif; ?>
-		<div class="col-md-4 pull-right">
-		    <div class="row">
-			<label class="header col-md-12 col-xs-12">
-			    <?php echo $data->simpleInterface["customerTitle"]; ?>
-			</label>
-		    </div>
-		    <div class="style-5">
-			<div>
-			    <table class="noinputborders">
-				<tbody>
-				    <?php
-				        $item = $data->getEditItem($ascope["item"], $whom);
-				        $customerInfo = $whom == "Customer" ?
-							$data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : $whom . "ID"]):
-							$data->getVendorInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : $whom . "ID"]);
-				        $tableItems = makeTableItems($customerInfo, $data->simpleInterface["customerFields"]);
-				        $tableCategories = $whom == "Customer" ? $data->customerFields : $data->vendorFields;
-				        $items = $customerInfo;
-				    ?>
-				    <?php
-				        if(key_exists("shippingFields", $data->simpleInterface))
-					    foreach($tableItems["leftItems"] as $key =>$value)
-					renderEditRow($translation, $ascope, $data, "Main", $items, $data->simpleInterface["shippingFields"][$key], $value);
-				        //				renderRow($translation, $data, $tableCategories, $items, $key, $value);
-				    ?>
-				    <?php 
-				        if(key_exists("shippingFields", $data->simpleInterface))
-					    foreach($tableItems["rightItems"] as $key =>$value)
-					renderEditRow($translation, $ascope, $data, "Main", $items, $data->simpleInterface["shippingFields"][$key], $value);
-				    ?>
-				</tbody>
-			    </table>
-			</div>
-		    </div>
-		</div>
-		<div class="style-5 col-md-2 pull-right about-order">
-		    <?php foreach($data->simpleInterface["aboutOrder"] as $key=>$value): ?>
-			<label for="<?php echo $translation->translateLabel($key); ?>">
-			    <?php echo $translation->translateLabel($key); ?>
-			</label>
-			<!-- 		<span readonly class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
-			     <span class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
-			     </span>
-			-->
-			<?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
-		    <?php endforeach; ?>
-		</div>
-	    </div>
-	    <div class="row" style="margin-top: 20px">
-		<?php foreach($data->simpleInterface["aboutPurchase"] as $key=>$value): ?>
-		    <div class="style-5 col-md-2 pull-right">
-			<label for="<?php echo $translation->translateLabel($key); ?>">
-			    <?php echo $translation->translateLabel($key); ?>
-			</label>
-			<?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
-			<!-- 		<span readonly class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
-			     <?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?>&nbsp
-			     </span> -->
-		    </div>
-		<?php endforeach; ?>
-	    </div>
-	    
-	    <!-- Detail table -->
-	    <?php if(property_exists($data, "detailTable")): ?>
-		<div class="row">
-		    <div id="subgrid" class="col-md-12 col-xs-12">
-		    </div>
+            <?php
+                $headerItem = $ascope["mode"] == 'edit' || $ascope["mode"] == 'view'? $data->getEditItem($ascope["item"], "...fields") :
+                              $data->getNewItem($ascope["item"], "...fields" );
+                $whom = key_exists("whom", $data->simpleInterface) ? $data->simpleInterface["whom"] : "Customer";
+            ?>
+            
+            <!-- horizontal top blue line with 2 inputs -->
+            <div class="row top_params">
+                <div class="col-md-6 col-xs-12">
+                    <div class="row">
+                        <label class="pull-left" for="<?php echo $whom; ?>ID"><?php echo $whom; ?>:Job</label>
+                        <!-- <span class="custom-select col-md-7"> -->
+                        <span class="col-md-7">
+                            <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $whom . "ID", $headerItem[$whom . "ID"]); ?>
+                        </span>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 col-xs-12">
+                     <div class="row">
+                     <label class="pull-left" for="template">Template</label>
+                     <span class="custom-select col-md-5">
+                     <input type="text" id="template" class="custom-select" value="" />
+                     </span>
+                     </div>
+                     </div> -->
+            </div>
+            
+            <script>
+             //catching CustomerID/VendorID changing
+             var whomCatcher = $("#<?php echo $whom ?>ID").change(function(){
+                 var chooserData = dialogChooserData[dialogChooserInputs["<?php echo $whom; ?>ID"]].allValues, ind;
+                 for(ind in chooserData)
+                     if(chooserData[ind].<?php echo $whom ?>ID == whomCatcher.val()){
+                         chooserData = chooserData[ind];
+                         break;
+                     };
+                 
+                 var whomFields = ["Name","Address1", "Address2", "Address3", "City", "State", "Zip", "Country"], input;
+                 for(ind in whomFields){
+                     if((input = $("#Shipping" + whomFields[ind])).length)
+                         $(input).val(chooserData["<?php echo $whom?>" + whomFields[ind]]);
+                 }
+             });
+            </script>
+            
+            <div class="row">
+                <?php if(key_exists("showShipping", $data->simpleInterface) && $data->simpleInterface["showShipping"]): ?>
+                    <div class="col-md-3 pull-right">
+                        <div class="row">
+                            <span style="margin-top: 0 !important;margin-bottom: 3px" class="header col-md-12 col-xs-12">Ship to</h3></span>
+                        </div>
+                        <div class="style-5" style="padding: 5px;">
+                            <div>
+                                <table class="noinputborders">
+                                    <tbody>
+                                        <?php
+                                            $item = $ascope["mode"] == 'edit' || $ascope["mode"] == 'view'? $data->getEditItem($ascope["item"], "Shipping") : $data->getNewItem($ascope["item"], "Shipping" );
+                                            $tableCategories = $data->editCategories["Shipping"];
+                                            $tableItems = makeTableItems($item, $tableCategories);
+                                            $items = $item;
+                                        ?>
+                                        <?php 
+                                            foreach($tableItems["leftItems"] as $key =>$value)
+                                            renderEditRow($translation, $ascope, $data, "Shipping", $items, $key, $value);
+                                            //        renderRow($translation, $data, $tableCategories, $items, $key, $value);
+                                        ?>
+                                        <?php 
+                                            foreach($tableItems["rightItems"] as $key =>$value)
+                                            renderEditRow($translation, $ascope, $data, "Shipping", $items, $key, $value);
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="col-md-4 pull-right">
+                    <div class="row">
+                        <label class="header col-md-12 col-xs-12">
+                            <?php echo $data->simpleInterface["customerTitle"]; ?>
+                        </label>
+                    </div>
+                    <div class="style-5">
+                        <div>
+                            <table class="noinputborders">
+                                <tbody>
+                                    <?php
+                                        $item = $data->getEditItem($ascope["item"], $whom);
+                                        $customerInfo = $whom == "Customer" ?
+                                                        $data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : $whom . "ID"]):
+                                                        $data->getVendorInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : $whom . "ID"]);
+                                        $tableItems = makeTableItems($customerInfo, $data->simpleInterface["customerFields"]);
+                                        $tableCategories = $whom == "Customer" ? $data->customerFields : $data->vendorFields;
+                                        $items = $customerInfo;
+                                    ?>
+                                    <?php
+                                        if(key_exists("shippingFields", $data->simpleInterface))
+                                            foreach($tableItems["leftItems"] as $key =>$value)
+                                        renderEditRow($translation, $ascope, $data, "Main", $items, $data->simpleInterface["shippingFields"][$key], $value);
+                                        //    renderRow($translation, $data, $tableCategories, $items, $key, $value);
+                                    ?>
+                                    <?php 
+                                        if(key_exists("shippingFields", $data->simpleInterface))
+                                            foreach($tableItems["rightItems"] as $key =>$value)
+                                        renderEditRow($translation, $ascope, $data, "Main", $items, $data->simpleInterface["shippingFields"][$key], $value);
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="style-5 col-md-2 pull-right about-order">
+                    <?php foreach($data->simpleInterface["aboutOrder"] as $key=>$value): ?>
+                        <label for="<?php echo $translation->translateLabel($key); ?>">
+                            <?php echo $translation->translateLabel($key); ?>
+                        </label>
+                        <!--   <span readonly class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
+                             <span class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
+                             </span>
+                        -->
+                        <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px">
+                <?php foreach($data->simpleInterface["aboutPurchase"] as $key=>$value): ?>
+                    <div class="style-5 col-md-2 pull-right">
+                        <label for="<?php echo $translation->translateLabel($key); ?>">
+                            <?php echo $translation->translateLabel($key); ?>
+                        </label>
+                        <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+                        <!--   <span readonly class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
+                             <?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?>&nbsp
+                             </span> -->
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <!-- Detail table -->
+            <?php if(property_exists($data, "detailTable")): ?>
+                <div class="row">
+                    <div id="subgrid" class="col-md-12 col-xs-12">
+                    </div>
 
-		    <script>
-		     function subgridView(cb){
-			 var detailRewrite = {
-			     "ViewQuotes$" : "ViewQuotesDetail",
-			     "ViewOrders$" : "ViewOrdersDetail",
-			     "ViewInvoices$" : "ViewInvoicesDetail",
-			     "ViewServiceQuotes$" : "ViewServiceQuotesDetail",
-			     "ViewServiceOrders$" : "ViewServiceOrdersDetail",
-			     "ViewServiceInvoices$" : "ViewServiceInvoicesDetail"
-			 }, ind;
-			 var path = new String(window.location);
-			 path = path.replace(/index\#\//, "");
-			 path = path.replace(/\/grid|\/view|\/edit|\/new/g, "\/subgrid");
-			 for(ind in detailRewrite)
-			     path = path.replace(new RegExp(ind), detailRewrite[ind]);
-			 $.get(path)
-			  .done(function(data){
-			      setTimeout(function(){
-				  $("#subgrid").html(data);
-				  datatableInitialized = true;
-                                  //				  var table = $('#example23').DataTable( {
-				  //			      dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
-                                  //				      dom : "<'subgrid-table-header row'><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i>>"
-                                  //				  });
-				  setTimeout(function(){
-				      var buttons = $('.subgrid-buttons');
-				      var tableFooter = $('.subgrid-table-footer');
-				      tableFooter.prepend(buttons);
-				  },300);
-				  //			  if(cb)
-				  //			      cb();
-			      },0);
-			  })
-			  .error(function(xhr){
-			      // if(xhr.status == 401)
-			      //	  window.location = "index.php?page=login";
-			      //    else
-			      //	  alert("Unable to load page");
-			  });
-		     }
-		     subgridView(function(){
-			 //window.scrollTo(0,0);
-		     });
-		    </script>
-		</div>
-	    <?php endif; ?>
+                    <script>
+                     function subgridView(subgridmode, keyString){
+                         var detailRewrite = {
+                             "ViewQuotes" : "ViewQuotesDetail",
+                             "ViewOrdersSimple" : "ViewOrdersDetail",
+                             "ViewOrders" : "ViewOrdersDetail",
+                             "ViewInvoices" : "ViewInvoicesDetail",
+                             "ViewServiceQuotes" : "ViewServiceQuotesDetail",
+                             "ViewServiceOrders" : "ViewServiceOrdersDetail",
+                             "ViewServiceInvoices" : "ViewServiceInvoicesDetail",
+                             "MemorizedGLTransactions" : "LedgerTransactionsDetail",
+                             "ViewGLTransactions" : "LedgerTransactionsDetail",
+                             "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
+                             "ReceivePurchases" : "ReceivePurchasesDetail",
+                             "BankDeposits" : "LedgerTransactionsDetail"
+                         }, ind;
+                         var path = new String(window.location);
+                         path = path.replace(/#\/\?/, "?");
+                         path = path.replace(/page\=grid/, "page=subgrid");
+                         path = path.replace(/mode\=view|mode\=edit|mode\=new/, "mode=subgrid");
+                         if(keyString){
+                             path = path.replace(/mode\=subgrid/, "mode=new");
+                             if(path.search(/item\=/) == -1)
+                                 path += "&item=" + keyString;
+                         }
 
-	    <!-- footer -->
-	    <div class="row" style="position: relative; margin-top: 40px">
-		<!-- get this test select block from Quickbook "Estimate" page -->
-		<div class="col-md-3 col-xs-12 pull-left to-bottom">
-		    <label for="customer_message">Customer message</label>
-		    <select id="customer_message" class="form-control">
-			<option value="1">All work is complete!</option>
-			<option value="2">It's been pleasure working with you!</option>
-			<option value="3">Please remit to above address.</option>
-			<option value="4">Thank you for your business.</option>
-			<option value="4">We appreciate your prompt payment</option>
-		    </select>
-		</div>
-		<!-- end -->
-		<div class="col-md-4 col-xs-12 col-md-offset-8 grid-items">
-		    <?php foreach($data->simpleInterface["totalFields"] as $key=>$value): ?>
-			<div class="row">
-			    <label class="col-md-4"><?php echo $translation->translateLabel($key); ?>:</label>
-			    <div class="col-md-8 text-right"><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?></div>
-			</div>
-		    <?php endforeach; ?>
-		</div>
-	    </div>
-	    <?php
-	        if(file_exists(__DIR__ . "/../../../../" . $PartsPath . "viewFooter.php"))
-		    require __DIR__ . "/../../../../" . $PartsPath . "viewFooter.php";
-	        if(file_exists(__DIR__ . "/../../../../" . $PartsPath . "vieweditFooter.php"))
-		    require __DIR__ . "/../../../../" . $PartsPath . "vieweditFooter.php";
-	    ?>
+                         var prevPath;
+                         for(ind in detailRewrite){
+                             prevPath = path;
+                             path = path.replace(new RegExp(ind), detailRewrite[ind]);
+                             if(path != prevPath)
+                                 break;
+                         }
+                         $.get(path + "<?php echo (property_exists($data, "detailSubgridModes") && key_exists("edit", $data->detailSubgridModes) ? "&modes=" . implode("__", $data->detailSubgridModes["edit"]) : ""); ?>")
+                          .done(function(data){
+                              setTimeout(function(){
+                                  $("#subgrid").html(data);
+                                  datatableInitialized = true;
+                                  setTimeout(function(){
+                                      var buttons = $('.subgrid-buttons');
+                                      var tableFooter = $('.subgrid-table-footer');
+                                      tableFooter.prepend(buttons);
+                                  },300);
+                              },0);
+                          })
+                          .error(function(xhr){
+                              // if(xhr.status == 401)
+                              //    else
+                              //   alert("Unable to load page");
+                          });
+                     }
+                     subgridView();
+                     /*function subgridView(cb){
+                        var detailRewrite = {
+                        "ViewQuotes$" : "ViewQuotesDetail",
+                        "ViewOrders$" : "ViewOrdersDetail",
+                        "ViewInvoices$" : "ViewInvoicesDetail",
+                        "ViewServiceQuotes$" : "ViewServiceQuotesDetail",
+                        "ViewServiceOrders$" : "ViewServiceOrdersDetail",
+                        "ViewServiceInvoices$" : "ViewServiceInvoicesDetail"
+                        }, ind;
+                        var path = new String(window.location);
+                        path = path.replace(/index\#\//, "");
+                        path = path.replace(/\/grid|\/view|\/edit|\/new/g, "\/subgrid");
+                        for(ind in detailRewrite)
+                        path = path.replace(new RegExp(ind), detailRewrite[ind]);
+                        console.log(path);
+                        $.get(path)
+                        .done(function(data){
+                        setTimeout(function(){
+                        $("#subgrid").html(data);
+                        datatableInitialized = true;
+                        //      var table = $('#example23').DataTable( {
+                        //         dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
+                        //          dom : "<'subgrid-table-header row'><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i>>"
+                        //      });
+                        setTimeout(function(){
+                        var buttons = $('.subgrid-buttons');
+                        var tableFooter = $('.subgrid-table-footer');
+                        tableFooter.prepend(buttons);
+                        },300);
+                        //     if(cb)
+                        //         cb();
+                        },0);
+                        })
+                        .error(function(xhr){
+                        // if(xhr.status == 401)
+                        //   window.location = "index.php?page=login";
+                        //    else
+                        //   alert("Unable to load page");
+                        });
+                        }
+                        subgridView(function(){
+                        //window.scrollTo(0,0);
+                        });*/
+                    </script>
+                </div>
+            <?php endif; ?>
 
-	    <div class="row" style="margin-top: 20px;">
-		<div class="col-md-3 col-xs-12 pull-left">
-		    <?php
-		        $item = $data->getEditItem($ascope["item"], "Memos");
-		        $tableCategories = $data->editCategories["Memos"];
-		        $tableItems = makeTableItems($item, $tableCategories);
-		        $items = $item;
-		    ?>
-		    <div class="form-inline" style="width: 100%">
-			<div class="form-group"  style="width: 100%">
-			    <label class="col-md-2 pull-left" for="memo">
-				<?php echo $translation->translateLabel("Memo"); ?>
-			    </label>
-			    <div class="col-md-10 style-5" style="padding-right: 0;">
-				<span readonly class="form-control" id="memo" style="width: 100%; white-space: nowrap; overflow: hidden;">
-				    <?php echo $tableItems["leftItems"]["HeaderMemo1"]; ?>
-				</span>
-			    </div>
-			</div>
-		    </div>
-		</div>
-		<div class="col-md-9 col-xs-12 text-right">
-		    <!--
-			 buttons Edit and Cancel
-			 for translation uses translation model
-			 for category(which tab is activated) uses $ascope of controller
-		    -->
-		    <?php if($security->can("update")): ?>
-			<?php if(key_exists("reportType", $data)): ?>
-			    <?php $currentCompany = $data->getCurrentCompany()[0]; ?>
-			    <a href="<?php echo "/docreports/" . $data->reportType . "/" . explode("__", $ascope["item"])[3] ?>" target="_blank" class="btn btn-info" onclick="<?php /*echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); echo $currentCompany->AccountingCopy == 1 ? ";window.open('" .  /*$public_prefix ."/docreports/" . $data->reportType . "accountingcopy/" . explode("__", $ascope["item"])[3] . "')" : "";*/  echo /*$currentCompany->FileCopy == 1 ? ";window.open('" . $public_prefix ."/docreports/" . $data->reportType . "filecopy/" . explode("__", $ascope["item"])[3] . "')" :*/ "";?>">
-			        <?php echo $translation->translateLabel("Save & Print"); ?>
-			    </a>
-			<?php endif; ?>
-			<a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); ?>">
-			    <?php echo $translation->translateLabel("Save"); ?>
-			</a>
-			<?php
-			    if(file_exists(__DIR__ . "/../../../../" . $PartsPath . "viewActions.php"))
-			        require __DIR__ . "/../../../../" . $PartsPath . "viewActions.php";
-			    if(file_exists(__DIR__ . "/../../../../" . $PartsPath . "vieweditActions.php"))
-			        require __DIR__ . "/../../../../" . $PartsPath . "vieweditActions.php";
-			?>
-		    <?php endif; ?>
-		    <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>">
-			<?php echo $translation->translateLabel("Cancel"); ?>
-		    </a>
-		</div>
-	    </div>
-	</form>
+            <!-- footer -->
+            <div class="row" style="position: relative; margin-top: 40px">
+                <!-- get this test select block from Quickbook "Estimate" page -->
+                <div class="col-md-3 col-xs-12 pull-left to-bottom">
+                    <label for="customer_message">Customer message</label>
+                    <select id="customer_message" class="form-control">
+                        <option value="1">All work is complete!</option>
+                        <option value="2">It's been pleasure working with you!</option>
+                        <option value="3">Please remit to above address.</option>
+                        <option value="4">Thank you for your business.</option>
+                        <option value="4">We appreciate your prompt payment</option>
+                    </select>
+                </div>
+                <!-- end -->
+                <div class="col-md-4 col-xs-12 col-md-offset-8 grid-items">
+                    <?php foreach($data->simpleInterface["totalFields"] as $key=>$value): ?>
+                        <div class="row">
+                            <label class="col-md-4"><?php echo $translation->translateLabel($key); ?>:</label>
+                            <div class="col-md-8 text-right"><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?></div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php
+                if(file_exists(__DIR__ . "/../../../../" . $PartsPath . "viewFooter.php"))
+                    require __DIR__ . "/../../../../" . $PartsPath . "viewFooter.php";
+                if(file_exists(__DIR__ . "/../../../../" . $PartsPath . "vieweditFooter.php"))
+                    require __DIR__ . "/../../../../" . $PartsPath . "vieweditFooter.php";
+            ?>
+
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-3 col-xs-12 pull-left">
+                    <?php
+                        $item = $data->getEditItem($ascope["item"], "Memos");
+                        $tableCategories = $data->editCategories["Memos"];
+                        $tableItems = makeTableItems($item, $tableCategories);
+                        $items = $item;
+                    ?>
+                    <div class="form-inline" style="width: 100%">
+                        <div class="form-group"  style="width: 100%">
+                            <label class="col-md-2 pull-left" for="memo">
+                                <?php echo $translation->translateLabel("Memo"); ?>
+                            </label>
+                            <div class="col-md-10 style-5" style="padding-right: 0;">
+                                <span readonly class="form-control" id="memo" style="width: 100%; white-space: nowrap; overflow: hidden;">
+                                    <?php echo $tableItems["leftItems"]["HeaderMemo1"]; ?>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 col-xs-12 text-right">
+                    <!--
+                         buttons Edit and Cancel
+                         for translation uses translation model
+                         for category(which tab is activated) uses $ascope of controller
+                    -->
+                    <?php if($security->can("update")): ?>
+                        <?php if(key_exists("reportType", $data)): ?>
+                            <?php $currentCompany = $data->getCurrentCompany()[0]; ?>
+                            <a href="<?php echo "/docreports/" . $data->reportType . "/" . explode("__", $ascope["item"])[3] ?>" target="_blank" class="btn btn-info" onclick="<?php /*echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); echo $currentCompany->AccountingCopy == 1 ? ";window.open('" .  /*$public_prefix ."/docreports/" . $data->reportType . "accountingcopy/" . explode("__", $ascope["item"])[3] . "')" : "";*/  echo /*$currentCompany->FileCopy == 1 ? ";window.open('" . $public_prefix ."/docreports/" . $data->reportType . "filecopy/" . explode("__", $ascope["item"])[3] . "')" :*/ "";?>">
+                                <?php echo $translation->translateLabel("Save & Print"); ?>
+                            </a>
+                        <?php endif; ?>
+                        <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); ?>">
+                            <?php echo $translation->translateLabel("Save"); ?>
+                        </a>
+                        <?php
+                            if(file_exists(__DIR__ . "/../../../../" . $PartsPath . "viewActions.php"))
+                                require __DIR__ . "/../../../../" . $PartsPath . "viewActions.php";
+                            if(file_exists(__DIR__ . "/../../../../" . $PartsPath . "vieweditActions.php"))
+                                require __DIR__ . "/../../../../" . $PartsPath . "vieweditActions.php";
+                        ?>
+                    <?php endif; ?>
+                    <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>">
+                        <?php echo $translation->translateLabel("Cancel"); ?>
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <div class="right_bar">
-	<div class="toggle" onclick="toggleRightBar();"></div>
-	<div class="right_bar_wrap">
-	    <ul class="nav nav-tabs">
-		<li class="active"><a href="#tab_name" data-toggle="tab">Name</a></li>
-		<li><a href="#tab_transactions" data-toggle="tab">Transactions</a></li>
-	    </ul>
-	    <div class="tab-content">
-		<div class="tab-pane fade in active" id="tab_name">
-		    <div class="tab-group">
-			<div class="tab-group-title">Summary</div>
-			<div class="tab-group-text"></div>
-		    </div>
-		    <div class="tab-group">
-			<div class="tab-group-title">Resent Transactions</div>
-			<div class="tab-group-text"></div>
-		    </div>
-		    <div class="tab-group">
-			<div class="tab-group-title">Notes</div>
-			<div class="tab-group-text"></div>
-		    </div>
-		</div>
-		<div class="tab-pane fade" id="tab_transactions">
-		    <div class="tab-group">
-			<div class="tab-group-title">Summary</div>
-			<div class="tab-group-text"></div>
-		    </div>
-		    <div class="tab-group">
-			<div class="tab-group-title">Related Transaction</div>
-			<div class="tab-group-text"></div>
-		    </div>
-		    <div class="tab-group">
-			<div class="tab-group-title">Notes</div>
-			<div class="tab-group-text"></div>
-		    </div>
-		</div>
-	    </div>
-	</div>
-    </div>
+    <!-- 
+         <div class="right_bar">
+         <div class="toggle" onclick="toggleRightBar();"></div>
+         <div class="right_bar_wrap">
+         <ul class="nav nav-tabs">
+         <li class="active"><a href="#tab_name" data-toggle="tab">Name</a></li>
+         <li><a href="#tab_transactions" data-toggle="tab">Transactions</a></li>
+         </ul>
+         <div class="tab-content">
+         <div class="tab-pane fade in active" id="tab_name">
+         <div class="tab-group">
+         <div class="tab-group-title">Summary</div>
+         <div class="tab-group-text"></div>
+         </div>
+         <div class="tab-group">
+         <div class="tab-group-title">Resent Transactions</div>
+         <div class="tab-group-text"></div>
+         </div>
+         <div class="tab-group">
+         <div class="tab-group-title">Notes</div>
+         <div class="tab-group-text"></div>
+         </div>
+         </div>
+         <div class="tab-pane fade" id="tab_transactions">
+         <div class="tab-group">
+         <div class="tab-group-title">Summary</div>
+         <div class="tab-group-text"></div>
+         </div>
+         <div class="tab-group">
+         <div class="tab-group-title">Related Transaction</div>
+         <div class="tab-group-text"></div>
+         </div>
+         <div class="tab-group">
+         <div class="tab-group-title">Notes</div>
+         <div class="tab-group-text"></div>
+         </div>
+         </div>
+         </div>
+         </div>
+         </div> -->
 </div>
 
 <script>
@@ -485,7 +537,7 @@
 
 
      for (var k = 0; k < elementsKeys.length; k++) {
-	 $(elements[elementsKeys[k]]).val(event.value);
+         $(elements[elementsKeys[k]]).val(event.value);
      }
  }
 
@@ -500,114 +552,114 @@
      var isAlert = false;
 
      function getDbObject(key) {
-	 for (var i = 0; i < categoriesKeys.length; i++) {
-	     if (categories[categoriesKeys[i]].hasOwnProperty(key)) {
-		 return categories[categoriesKeys[i]][key];
-	     }
-	 }
+         for (var i = 0; i < categoriesKeys.length; i++) {
+             if (categories[categoriesKeys[i]].hasOwnProperty(key)) {
+                 return categories[categoriesKeys[i]][key];
+             }
+         }
 
-	 return null;
+         return null;
      }
 
      function isNumeric(value) {
-	 var re = /^-{0,1}\d*\.{0,1}\d+$/;
-	 return (re.test(value));
+         var re = /^-{0,1}\d*\.{0,1}\d+$/;
+         return (re.test(value));
      }
 
      function isDecimal(value) {
-	 var re = /^-{0,1}\d*\.{0,1}\d+$/;
-	 return (re.test(value.replace(/,/g,'')));
+         var re = /^-{0,1}\d*\.{0,1}\d+$/;
+         return (re.test(value.replace(/,/g,'')));
      }
 
      for (var i = 0; i < itemDataArray.length; i++) {
-	 if ((itemDataArray[i].name !== 'category') && (itemDataArray[i].name !== 'id')) {
-	     var dataObject = getDbObject(itemDataArray[i].name);
+         if ((itemDataArray[i].name !== 'category') && (itemDataArray[i].name !== 'id')) {
+             var dataObject = getDbObject(itemDataArray[i].name);
 
-	     if (dataObject) {
-		 var dataType = dataObject.dbType.replace(/\(.*/,'');
-		 var dataLength;
-		 var re = /\((.*)\)/;
-		 
-		 if (dataType !== 'datatime' && dataType !== 'timestamp') {
-		     if (dataObject.required && !itemDataArray[i].value) {
-			 validationError = true;
-			 validationErrorMessage = 'cannot be empty.';
-			 $('#' + itemDataArray[i].name).css('border', '1px solid red');
-		     } else {
-			 $('#' + itemDataArray[i].name).css('border', 'none');
-			 switch (dataType) {
-			     case 'decimal':
-				 if (itemDataArray[i].value && !isDecimal(itemDataArray[i].value)) {
-				     var elements = $('input[name=' + itemDataArray[i].name + ']');
-				     var elementsKeys = Object.keys(elements);
-
-
-				     for (var k = 0; k < elementsKeys.length; k++) {
-					 $(elements[elementsKeys[k]]).css('border', '1px solid red');
-				     }
-				     validationError = true;
-				     validationErrorMessage = 'must contain a number.';
-				 }
-				 break;
-			     case 'smallint':
-			     case 'bigint':
-			     case 'int':
-			     case 'float':
-				 if (itemDataArray[i].value && !isNumeric(itemDataArray[i].value)) {
-				     var elements = $('input[name=' + itemDataArray[i].name + ']');
-				     var elementsKeys = Object.keys(elements);
+             if (dataObject) {
+                 var dataType = dataObject.dbType.replace(/\(.*/,'');
+                 var dataLength;
+                 var re = /\((.*)\)/;
+                 
+                 if (dataType !== 'datatime' && dataType !== 'timestamp') {
+                     if (dataObject.required && !itemDataArray[i].value) {
+                         validationError = true;
+                         validationErrorMessage = 'cannot be empty.';
+                         $('#' + itemDataArray[i].name).css('border', '1px solid red');
+                     } else {
+                         $('#' + itemDataArray[i].name).css('border', 'none');
+                         switch (dataType) {
+                             case 'decimal':
+                                 if (itemDataArray[i].value && !isDecimal(itemDataArray[i].value)) {
+                                     var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                     var elementsKeys = Object.keys(elements);
 
 
-				     for (var k = 0; k < elementsKeys.length; k++) {
-					 $(elements[elementsKeys[k]]).css('border', '1px solid red');
-				     }
-				     validationError = true;
-				     validationErrorMessage = 'must contain a number.';
-				 }
-				 break;
-			     case 'char':
-				 if (itemDataArray[i].value.length > 1) {
-				     var elements = $('input[name=' + itemDataArray[i].name + ']');
-				     var elementsKeys = Object.keys(elements);
+                                     for (var k = 0; k < elementsKeys.length; k++) {
+                                         $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                     }
+                                     validationError = true;
+                                     validationErrorMessage = 'must contain a number.';
+                                 }
+                                 break;
+                             case 'smallint':
+                             case 'bigint':
+                             case 'int':
+                             case 'float':
+                                 if (itemDataArray[i].value && !isNumeric(itemDataArray[i].value)) {
+                                     var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                     var elementsKeys = Object.keys(elements);
 
 
-				     for (var k = 0; k < elementsKeys.length; k++) {
-					 $(elements[elementsKeys[k]]).css('border', '1px solid red');
-				     }
-				     validationError = true;
-				     validationErrorMessage = 'cannot contain more than 1 character.';
-				 }
-				 break;
-			     case 'varchar':
-				 dataLength = dataObject.dbType.match(re)[1];
-
-				 if (itemDataArray[i].value.length > dataLength) {
-				     var elements = $('input[name=' + itemDataArray[i].name + ']');
-				     var elementsKeys = Object.keys(elements);
+                                     for (var k = 0; k < elementsKeys.length; k++) {
+                                         $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                     }
+                                     validationError = true;
+                                     validationErrorMessage = 'must contain a number.';
+                                 }
+                                 break;
+                             case 'char':
+                                 if (itemDataArray[i].value.length > 1) {
+                                     var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                     var elementsKeys = Object.keys(elements);
 
 
-				     for (var k = 0; k < elementsKeys.length; k++) {
-					 $(elements[elementsKeys[k]]).css('border', '1px solid red');
-				     }
-				     validationError = true;
-				     validationErrorMessage = 'cannot contain more than ' + dataLength + ' character(s).';
-				 }
-				 break;
-			     default:
-				 break;
-			 }
-		     }
-		 }
+                                     for (var k = 0; k < elementsKeys.length; k++) {
+                                         $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                     }
+                                     validationError = true;
+                                     validationErrorMessage = 'cannot contain more than 1 character.';
+                                 }
+                                 break;
+                             case 'varchar':
+                                 dataLength = dataObject.dbType.match(re)[1];
 
-		 if (validationError && !isAlert) {
-		     translatedFieldName = columnNames.hasOwnProperty(itemDataArray[i].name) ? columnNames[itemDataArray[i].name] : itemDataArray[i].name;
-		     isAlert = true;
-		     alert(translatedFieldName + ' field ' + validationErrorMessage);
-		 }
-	     } else {
-		 //todo error handling
-	     }
-	 }
+                                 if (itemDataArray[i].value.length > dataLength) {
+                                     var elements = $('input[name=' + itemDataArray[i].name + ']');
+                                     var elementsKeys = Object.keys(elements);
+
+
+                                     for (var k = 0; k < elementsKeys.length; k++) {
+                                         $(elements[elementsKeys[k]]).css('border', '1px solid red');
+                                     }
+                                     validationError = true;
+                                     validationErrorMessage = 'cannot contain more than ' + dataLength + ' character(s).';
+                                 }
+                                 break;
+                             default:
+                                 break;
+                         }
+                     }
+                 }
+
+                 if (validationError && !isAlert) {
+                     translatedFieldName = columnNames.hasOwnProperty(itemDataArray[i].name) ? columnNames[itemDataArray[i].name] : itemDataArray[i].name;
+                     isAlert = true;
+                     alert(translatedFieldName + ' field ' + validationErrorMessage);
+                 }
+             } else {
+                 //todo error handling
+             }
+         }
      }
 
      return !validationError;
@@ -618,54 +670,54 @@
      var itemData = $("#itemData");
 
      if (validateForm(itemData)) {
-	 $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-	  .success(function(data) {
-//	      console.log('ok');
-	      window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
-	  })
-	  .error(function(err){
-		if (err) {
-			if (err.status == 200) {
-				window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
-			};
-		}
+         $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+          .success(function(data) {
+              //       console.log('ok');
+              window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
+          })
+          .error(function(err){
+              if (err) {
+                  if (err.status == 200) {
+                      window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
+                  };
+              }
 
-	    //   console.log(err);
-	  });
+              //   console.log(err);
+          });
      }
  }
  //handler of save button if we in edit mode. Just doing XHR request to save data
  function saveItem(){
      var itemData = $("#itemData");
      if (validateForm(itemData)) {
-	 $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
-	  .success(function(data) {
-		//   console.log("<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>");
-	      window.location = "<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>";
+         $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
+          .success(function(data) {
+              //   console.log("<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>");
+              window.location = "<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>";
 
-	  })
-	  .error(function(err){
-	      console.log(err);
-	  });
+          })
+          .error(function(err){
+              console.log(err);
+          });
      }
  }
  
  //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
  function orderDetailDelete(item){
      if(confirm("Are you sure?")){
-	 $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "detailDelete", $ascope["item"]);?>" + item, {})
-	  .success(function(data) {
-	      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-	       .success(function(data) {
-		   onlocation(window.location);
-	       })
-	       .error(function(err){
-		   onlocation(window.location);
-	       });
-	  })
-	  .error(function(err){
-	      console.log('wrong');
-	  });
+         $.post("<?php echo $linksMaker->makeEmbeddedgridItemDeleteLink($ascope["path"], "detailDelete", $ascope["item"]);?>" + item, {})
+          .success(function(data) {
+              $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
+               .success(function(data) {
+                   onlocation(window.location);
+               })
+               .error(function(err){
+                   onlocation(window.location);
+               });
+          })
+          .error(function(err){
+              console.log('wrong');
+          });
      }
  }
  
