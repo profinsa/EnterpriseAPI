@@ -28,7 +28,7 @@
     $GLOBALS["dialogChooserTypes"] = [];
     $GLOBALS["dialogChooserInputs"] = [];
 
-    function renderInput($translation, $ascope, $data, $category, $item, $key, $value){
+    function renderInputSimple($translation, $ascope, $data, $category, $item, $key, $value){
         $translatedFieldName = $translation->translateLabel(key_exists($key, $data->editCategories[$category]) && key_exists("label", $data->editCategories[$category][$key]) ? $data->editCategories[$category][$key]["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
         $leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
         $rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : 6;
@@ -110,7 +110,7 @@
 
     function renderEditRow($translation, $ascope, $data, $category, $item, $key, $value){
         echo "<tr style=\"padding: 5px\"><td style=\"padding: 5px\">" . $translation->translateLabel(key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key) . ":</td><td style=\"word-wrap: break-word; padding: 5px\">";
-        renderInput($translation, $ascope, $data, $category, $item, $key, $value);
+        renderInputSimple($translation, $ascope, $data, $category, $item, $key, $value);
         echo "</td></tr>";
     }
 
@@ -177,7 +177,7 @@
 		        <label class="pull-left" for="<?php echo $whom; ?>ID"><?php echo $whom; ?></label>
                         <!-- <span class="custom-select col-md-7"> -->
                         <span class="col-md-7">
-                            <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $whom . "ID", $headerItem[$whom . "ID"]); ?>
+                            <?php renderInputSimple($translation, $ascope, $data, "...fields", $headerItem, $whom . "ID", $headerItem[$whom . "ID"]); ?>
                         </span>
                     </div>
                 </div>
@@ -209,7 +209,7 @@
                 });*/
             </script>
             
-            <div class="row">
+            <div class="row" style="margin-top:20px">
                 <div class="style-5 col-md-2 about-order">
                     <?php foreach($data->simpleInterface["aboutOrder"] as $key=>$value): ?>
                         <label for="<?php echo $translation->translateLabel($key); ?>">
@@ -219,7 +219,7 @@
                              <span class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
                              </span>
                         -->
-                        <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+                        <?php renderInputSimple($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
                     <?php endforeach; ?>
                 </div>
                 <div class="col-md-4">
@@ -295,7 +295,7 @@
                         <label for="<?php echo $translation->translateLabel($key); ?>">
                             <?php echo $translation->translateLabel($key); ?>
                         </label>
-                        <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+                        <?php renderInputSimple($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
                         <!--   <span readonly class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
                              <?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?>&nbsp
                              </span> -->
@@ -304,112 +304,120 @@
             </div>
             
             <!-- Detail table -->
-            <?php if(property_exists($data, "detailTable")): ?>
-                <div class="row">
-                    <div id="subgrid" class="col-md-12 col-xs-12">
-                    </div>
+            <div class="row">
+                <?php
+	            if(property_exists($data, "detailTable"))
+    	                require __DIR__ . "/../components/detailGrid.php";
+                ?>
+            </div>
+            <!-- Detail table
 
-                    <script>
-                     function subgridView(subgridmode, keyString){
-                         var detailRewrite = {
-                             "ViewQuotes" : "ViewQuotesDetail",
-                             "ViewOrdersSimple" : "ViewOrdersDetail",
-                             "ViewOrders" : "ViewOrdersDetail",
-                             "ViewInvoices" : "ViewInvoicesDetail",
-                             "ViewServiceQuotes" : "ViewServiceQuotesDetail",
-                             "ViewServiceOrders" : "ViewServiceOrdersDetail",
-                             "ViewServiceInvoices" : "ViewServiceInvoicesDetail",
-                             "MemorizedGLTransactions" : "LedgerTransactionsDetail",
-                             "ViewGLTransactions" : "LedgerTransactionsDetail",
-                             "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
-                             "ReceivePurchases" : "ReceivePurchasesDetail",
-                             "BankDeposits" : "LedgerTransactionsDetail"
-                         }, ind;
-                         var path = new String(window.location);
-                         path = path.replace(/#\/\?/, "?");
-                         path = path.replace(/page\=grid/, "page=subgrid");
-                         path = path.replace(/mode\=view|mode\=edit|mode\=new/, "mode=subgrid");
-                         if(keyString){
-                             path = path.replace(/mode\=subgrid/, "mode=new");
-                             if(path.search(/item\=/) == -1)
-                                 path += "&item=" + keyString;
-                         }
+                 <?php if(property_exists($data, "detailTable")): ?>
+                 <div class="row">
+                 <div id="subgrid" class="col-md-12 col-xs-12">
+                 </div>
 
-                         var prevPath;
-                         for(ind in detailRewrite){
-                             prevPath = path;
-                             path = path.replace(new RegExp(ind), detailRewrite[ind]);
-                             if(path != prevPath)
-                                 break;
-                         }
-                         $.get(path + "<?php echo (property_exists($data, "detailSubgridModes") && key_exists("edit", $data->detailSubgridModes) ? "&modes=" . implode("__", $data->detailSubgridModes["edit"]) : ""); ?>")
-                          .done(function(data){
-                              setTimeout(function(){
-                                  $("#subgrid").html(data);
-                                  datatableInitialized = true;
-                                  setTimeout(function(){
-                                      var buttons = $('.subgrid-buttons');
-                                      var tableFooter = $('.subgrid-table-footer');
-                                      tableFooter.prepend(buttons);
-                                  },300);
-                              },0);
-                          })
-                          .error(function(xhr){
-                              // if(xhr.status == 401)
-                              //    else
-                              //   alert("Unable to load page");
-                          });
-                     }
-                     subgridView();
-                     /*function subgridView(cb){
-                        var detailRewrite = {
-                        "ViewQuotes$" : "ViewQuotesDetail",
-                        "ViewOrders$" : "ViewOrdersDetail",
-                        "ViewInvoices$" : "ViewInvoicesDetail",
-                        "ViewServiceQuotes$" : "ViewServiceQuotesDetail",
-                        "ViewServiceOrders$" : "ViewServiceOrdersDetail",
-                        "ViewServiceInvoices$" : "ViewServiceInvoicesDetail"
-                        }, ind;
-                        var path = new String(window.location);
-                        path = path.replace(/index\#\//, "");
-                        path = path.replace(/\/grid|\/view|\/edit|\/new/g, "\/subgrid");
-                        for(ind in detailRewrite)
-                        path = path.replace(new RegExp(ind), detailRewrite[ind]);
-                        console.log(path);
-                        $.get(path)
-                        .done(function(data){
-                        setTimeout(function(){
-                        $("#subgrid").html(data);
-                        datatableInitialized = true;
-                        //      var table = $('#example23').DataTable( {
-                        //         dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
-                        //          dom : "<'subgrid-table-header row'><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i>>"
-                        //      });
-                        setTimeout(function(){
-                        var buttons = $('.subgrid-buttons');
-                        var tableFooter = $('.subgrid-table-footer');
-                        tableFooter.prepend(buttons);
-                        },300);
-                        //     if(cb)
-                        //         cb();
-                        },0);
-                        })
-                        .error(function(xhr){
-                        // if(xhr.status == 401)
-                        //   window.location = "index.php?page=login";
-                        //    else
-                        //   alert("Unable to load page");
-                        });
-                        }
-                        subgridView(function(){
-                        //window.scrollTo(0,0);
-                        });*/
-                    </script>
-                </div>
-            <?php endif; ?>
+                 <script>
+                 function subgridView(subgridmode, keyString){
+                 var detailRewrite = {
+                 "ViewQuotes" : "ViewQuotesDetail",
+                 "ViewOrdersSimple" : "ViewOrdersDetail",
+                 "ViewOrders" : "ViewOrdersDetail",
+                 "ViewInvoices" : "ViewInvoicesDetail",
+                 "ViewServiceQuotes" : "ViewServiceQuotesDetail",
+                 "ViewServiceOrders" : "ViewServiceOrdersDetail",
+                 "ViewServiceInvoices" : "ViewServiceInvoicesDetail",
+                 "MemorizedGLTransactions" : "LedgerTransactionsDetail",
+                 "ViewGLTransactions" : "LedgerTransactionsDetail",
+                 "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
+                 "ReceivePurchases" : "ReceivePurchasesDetail",
+                 "BankDeposits" : "LedgerTransactionsDetail"
+                 }, ind;
+                 var path = new String(window.location);
+                 path = path.replace(/#\/\?/, "?");
+                 path = path.replace(/page\=grid/, "page=subgrid");
+                 path = path.replace(/mode\=view|mode\=edit|mode\=new/, "mode=subgrid");
+                 if(keyString){
+                 path = path.replace(/mode\=subgrid/, "mode=new");
+                 if(path.search(/item\=/) == -1)
+                 path += "&item=" + keyString;
+                 }
 
+                 var prevPath;
+                 for(ind in detailRewrite){
+                 prevPath = path;
+                 path = path.replace(new RegExp(ind), detailRewrite[ind]);
+                 if(path != prevPath)
+                 break;
+                 }
+                 $.get(path + "<?php echo (property_exists($data, "detailSubgridModes") && key_exists("edit", $data->detailSubgridModes) ? "&modes=" . implode("__", $data->detailSubgridModes["edit"]) : ""); ?>")
+                 .done(function(data){
+                 setTimeout(function(){
+                 $("#subgrid").html(data);
+                 datatableInitialized = true;
+                 setTimeout(function(){
+                 var buttons = $('.subgrid-buttons');
+                 var tableFooter = $('.subgrid-table-footer');
+                 tableFooter.prepend(buttons);
+                 },300);
+                 },0);
+                 })
+                 .error(function(xhr){
+                 // if(xhr.status == 401)
+                 //    else
+                 //   alert("Unable to load page");
+                 });
+                 }
+                 subgridView();
+                 /*function subgridView(cb){
+                 var detailRewrite = {
+                 "ViewQuotes$" : "ViewQuotesDetail",
+                 "ViewOrders$" : "ViewOrdersDetail",
+                 "ViewInvoices$" : "ViewInvoicesDetail",
+                 "ViewServiceQuotes$" : "ViewServiceQuotesDetail",
+                 "ViewServiceOrders$" : "ViewServiceOrdersDetail",
+                 "ViewServiceInvoices$" : "ViewServiceInvoicesDetail"
+                 }, ind;
+                 var path = new String(window.location);
+                 path = path.replace(/index\#\//, "");
+                 path = path.replace(/\/grid|\/view|\/edit|\/new/g, "\/subgrid");
+                 for(ind in detailRewrite)
+                 path = path.replace(new RegExp(ind), detailRewrite[ind]);
+                 console.log(path);
+                 $.get(path)
+                 .done(function(data){
+                 setTimeout(function(){
+                 $("#subgrid").html(data);
+                 datatableInitialized = true;
+                 //      var table = $('#example23').DataTable( {
+                 //         dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
+                 //          dom : "<'subgrid-table-header row'><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i>>"
+                 //      });
+                 setTimeout(function(){
+                 var buttons = $('.subgrid-buttons');
+                 var tableFooter = $('.subgrid-table-footer');
+                 tableFooter.prepend(buttons);
+                 },300);
+                 //     if(cb)
+                 //         cb();
+                 },0);
+                 })
+                 .error(function(xhr){
+                 // if(xhr.status == 401)
+                 //   window.location = "index.php?page=login";
+                 //    else
+                 //   alert("Unable to load page");
+                 });
+                 }
+                 subgridView(function(){
+                 //window.scrollTo(0,0);
+                 });*/
+                 </script>
+                 </div>
+                 <?php endif; ?>
+            -->
             <!-- footer -->
-            <div class="row" style="position: relative; margin-top: 40px">
+            <div class="row" style="margin-top: 40px">
                 <!-- get this test select block from Quickbook "Estimate" page -->
                 <div class="col-md-3 col-xs-12 pull-left to-bottom">
                     <label for="customer_message">Customer message</label>
@@ -469,9 +477,9 @@
                     <?php if($security->can("update")): ?>
                         <?php if(key_exists("reportType", $data)): ?>
                             <?php $currentCompany = $data->getCurrentCompany()[0]; ?>
-                            <a href="<?php /*echo "/docreports/" . $data->reportType . "/" . explode("__", $ascope["item"])[3]*/ ?>" target="_blank" class="btn btn-info" onclick="<?php /*echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); echo $currentCompany->AccountingCopy == 1 ? ";window.open('" .  /*$public_prefix ."/docreports/" . $data->reportType . "accountingcopy/" . explode("__", $ascope["item"])[3] . "')" : "";*/  /*echo $currentCompany->FileCopy == 1 ? ";window.open('" . $public_prefix ."/docreports/" . $data->reportType . "filecopy/" . explode("__", $ascope["item"])[3] . "')" :*/ "";?>">
-                                <?php echo $translation->translateLabel("Save & Print"); ?>
-                            </a>
+                            <!-- <a href="<?php /*echo "/docreports/" . $data->reportType . "/" . explode("__", $ascope["item"])[3]*/ ?>" target="_blank" class="btn btn-info" onclick="<?php /*echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); echo $currentCompany->AccountingCopy == 1 ? ";window.open('" .  /*$public_prefix ."/docreports/" . $data->reportType . "accountingcopy/" . explode("__", $ascope["item"])[3] . "')" : "";*/  /*echo $currentCompany->FileCopy == 1 ? ";window.open('" . $public_prefix ."/docreports/" . $data->reportType . "filecopy/" . explode("__", $ascope["item"])[3] . "')" :*/ "";?>">
+                                 <?php echo $translation->translateLabel("Save & Print"); ?>
+                                 </a> -->
                         <?php endif; ?>
                         <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); ?>">
                             <?php echo $translation->translateLabel("Save"); ?>

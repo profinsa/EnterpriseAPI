@@ -510,7 +510,7 @@ class OrderHeaderList extends gridDataSource{
 		"Memos" => [
 			"HeaderMemo1" => [
 				"dbType" => "varchar(50)",
-				"inputType" => "text",
+				"inputType" => "textarea",
 				"defaultValue" => ""
 			],
 			"HeaderMemo2" => [
