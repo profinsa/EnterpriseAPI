@@ -74,7 +74,7 @@
                 $onchange = "";
                 if(key_exists("onchange", $data->editCategories[$category][$key]))
                     $onchange = "onchange=\"{$data->editCategories[$category][$key]["onchange"]}()\"";
-                echo "<div class=\"form-group\"><label class=\"col-md-$leftWidth\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-$rightWidth\"><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\" $onchange></div></div>";
+                echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"$value\" $onchange>";
                 break;
 
             case "dropdown" :
@@ -174,7 +174,6 @@
             <div class="row top_params">
                 <div class="col-md-6 col-xs-12">
                     <div class="row">
-                        <label class="pull-left" for="<?php echo $whom; ?>ID"><?php echo $whom; ?>:Job</label>
                         <!-- <span class="custom-select col-md-7"> -->
                         <span class="col-md-7">
                             <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $whom . "ID", $headerItem[$whom . "ID"]); ?>
@@ -193,7 +192,7 @@
             
             <script>
              //catching CustomerID/VendorID changing
-             var whomCatcher = $("#<?php echo $whom ?>ID").change(function(){
+             /*var whomCatcher = $("#<?php echo $whom ?>ID").change(function(){
                  var chooserData = dialogChooserData[dialogChooserInputs["<?php echo $whom; ?>ID"]].allValues, ind;
                  for(ind in chooserData)
                      if(chooserData[ind].<?php echo $whom ?>ID == whomCatcher.val()){
@@ -206,7 +205,7 @@
                      if((input = $("#Shipping" + whomFields[ind])).length)
                          $(input).val(chooserData["<?php echo $whom?>" + whomFields[ind]]);
                  }
-             });
+             });*/
             </script>
             
             <div class="row">
