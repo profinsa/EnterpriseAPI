@@ -136,7 +136,7 @@
                                 
                             </ul>
                         </aside>
-                        <section class="right-content">
+                        <section class="right-content" style="line-height: 1.5;">
                             <?php echo $currentDocument->DocumentContents; ?>
                             <!--                           <header>
                                  <form method="GET">
