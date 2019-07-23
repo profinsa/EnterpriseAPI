@@ -35,7 +35,7 @@
         switch($data->editCategories[$category][$key]["inputType"]){
             case "text" :
                 //renders text input with label
-                echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control\" value=\"";
+                echo "<input style=\"display:inline\" type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" onchange=\"fillSameInputs('" . $value . "', '" . $key . "', this);\" class=\"form-control $key\" value=\"";
                 if(key_exists("formatFunction", $data->editCategories[$category][$key])){
                     $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
                     echo $data->$formatFunction($item, "editCategories", $key, $value, false);
@@ -49,7 +49,7 @@
 
             case "datetime" :
                 //renders text input with label
-                echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+                echo "<input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime $key\" value=\"" . ($value == 'now' || $value == "0000-00-00 00:00:00" || $value == "CURRENT_TIMESTAMP"? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
                      ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
                     .">";
                 break;
@@ -57,7 +57,7 @@
             case "checkbox" :
                 //renders checkbox input with label
                 echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-                echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+                echo "<input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" value=\"1\" " . ($value ? "checked" : "") ." " .
                      ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view")) || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "disabled" : "")
                     .">";
                 break;
@@ -79,7 +79,7 @@
 
             case "dropdown" :
                 //renders select with available values as dropdowns with label
-                echo "<select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\">";
+                echo "<select class=\"form-control $key\" name=\"" . $key . "\" id=\"" . $key . "\">";
                 $method = $data->editCategories[$category][$key]["dataProvider"];
                 if(key_exists("dataProviderArgs", $data->editCategories[$category][$key])){
                     $args = [];
@@ -174,6 +174,7 @@
             <div class="row top_params">
                 <div class="col-md-6 col-xs-12">
                     <div class="row">
+		        <label class="pull-left" for="<?php echo $whom; ?>ID"><?php echo $whom; ?></label>
                         <!-- <span class="custom-select col-md-7"> -->
                         <span class="col-md-7">
                             <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $whom . "ID", $headerItem[$whom . "ID"]); ?>
@@ -193,24 +194,72 @@
             <script>
              //catching CustomerID/VendorID changing
              /*var whomCatcher = $("#<?php echo $whom ?>ID").change(function(){
-                 var chooserData = dialogChooserData[dialogChooserInputs["<?php echo $whom; ?>ID"]].allValues, ind;
-                 for(ind in chooserData)
-                     if(chooserData[ind].<?php echo $whom ?>ID == whomCatcher.val()){
-                         chooserData = chooserData[ind];
-                         break;
-                     };
-                 
-                 var whomFields = ["Name","Address1", "Address2", "Address3", "City", "State", "Zip", "Country"], input;
-                 for(ind in whomFields){
-                     if((input = $("#Shipping" + whomFields[ind])).length)
-                         $(input).val(chooserData["<?php echo $whom?>" + whomFields[ind]]);
-                 }
-             });*/
+                var chooserData = dialogChooserData[dialogChooserInputs["<?php echo $whom; ?>ID"]].allValues, ind;
+                for(ind in chooserData)
+                if(chooserData[ind].<?php echo $whom ?>ID == whomCatcher.val()){
+                chooserData = chooserData[ind];
+                break;
+                };
+                
+                var whomFields = ["Name","Address1", "Address2", "Address3", "City", "State", "Zip", "Country"], input;
+                for(ind in whomFields){
+                if((input = $("#Shipping" + whomFields[ind])).length)
+                $(input).val(chooserData["<?php echo $whom?>" + whomFields[ind]]);
+                }
+                });*/
             </script>
             
             <div class="row">
+                <div class="style-5 col-md-2 about-order">
+                    <?php foreach($data->simpleInterface["aboutOrder"] as $key=>$value): ?>
+                        <label for="<?php echo $translation->translateLabel($key); ?>">
+                            <?php echo $translation->translateLabel($key); ?>
+                        </label>
+                        <!--   <span readonly class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
+                             <span class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
+                             </span>
+                        -->
+                        <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
+                    <?php endforeach; ?>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <label class="header col-md-12 col-xs-12">
+                            <?php echo $data->simpleInterface["customerTitle"]; ?>
+                        </label>
+                    </div>
+                    <div class="style-5">
+                        <div>
+                            <table class="noinputborders">
+                                <tbody>
+                                    <?php
+                                        $item = $ascope["mode"] == 'edit' || $ascope["mode"] == 'view'? $data->getEditItem($ascope["item"], $whom) :
+                                                $data->getNewItem($ascope["item"], $whom );
+                                        $customerInfo = $whom == "Customer" ?
+                                                        $data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : $whom . "ID"]):
+                                                        $data->getVendorInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : $whom . "ID"]);
+                                        $tableItems = makeTableItems($customerInfo, $data->simpleInterface["customerFields"]);
+                                        $tableCategories = $whom == "Customer" ? $data->customerFields : $data->vendorFields;
+                                        $items = $customerInfo;
+                                    ?>
+                                    <?php
+                                        if(key_exists("shippingFields", $data->simpleInterface))
+                                            foreach($tableItems["leftItems"] as $key =>$value)
+                                        renderEditRow($translation, $ascope, $data, "Main", $items, $data->simpleInterface["shippingFields"][$key], $value);
+                                        //    renderRow($translation, $data, $tableCategories, $items, $key, $value);
+                                    ?>
+                                    <?php 
+                                        if(key_exists("shippingFields", $data->simpleInterface))
+                                            foreach($tableItems["rightItems"] as $key =>$value)
+                                        renderEditRow($translation, $ascope, $data, "Main", $items, $data->simpleInterface["shippingFields"][$key], $value);
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <?php if(key_exists("showShipping", $data->simpleInterface) && $data->simpleInterface["showShipping"]): ?>
-                    <div class="col-md-3 pull-right">
+                    <div class="col-md-3">
                         <div class="row">
                             <span style="margin-top: 0 !important;margin-bottom: 3px" class="header col-md-12 col-xs-12">Ship to</h3></span>
                         </div>
@@ -239,57 +288,10 @@
                         </div>
                     </div>
                 <?php endif; ?>
-                <div class="col-md-4 pull-right">
-                    <div class="row">
-                        <label class="header col-md-12 col-xs-12">
-                            <?php echo $data->simpleInterface["customerTitle"]; ?>
-                        </label>
-                    </div>
-                    <div class="style-5">
-                        <div>
-                            <table class="noinputborders">
-                                <tbody>
-                                    <?php
-                                        $item = $data->getEditItem($ascope["item"], $whom);
-                                        $customerInfo = $whom == "Customer" ?
-                                                        $data->getCustomerInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : $whom . "ID"]):
-                                                        $data->getVendorInfo($headerItem[property_exists($data, "customerField") ? $data->customerField : $whom . "ID"]);
-                                        $tableItems = makeTableItems($customerInfo, $data->simpleInterface["customerFields"]);
-                                        $tableCategories = $whom == "Customer" ? $data->customerFields : $data->vendorFields;
-                                        $items = $customerInfo;
-                                    ?>
-                                    <?php
-                                        if(key_exists("shippingFields", $data->simpleInterface))
-                                            foreach($tableItems["leftItems"] as $key =>$value)
-                                        renderEditRow($translation, $ascope, $data, "Main", $items, $data->simpleInterface["shippingFields"][$key], $value);
-                                        //    renderRow($translation, $data, $tableCategories, $items, $key, $value);
-                                    ?>
-                                    <?php 
-                                        if(key_exists("shippingFields", $data->simpleInterface))
-                                            foreach($tableItems["rightItems"] as $key =>$value)
-                                        renderEditRow($translation, $ascope, $data, "Main", $items, $data->simpleInterface["shippingFields"][$key], $value);
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="style-5 col-md-2 pull-right about-order">
-                    <?php foreach($data->simpleInterface["aboutOrder"] as $key=>$value): ?>
-                        <label for="<?php echo $translation->translateLabel($key); ?>">
-                            <?php echo $translation->translateLabel($key); ?>
-                        </label>
-                        <!--   <span readonly class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
-                             <span class="form-control" id="<?php echo $translation->translateLabel($key); ?>">
-                             </span>
-                        -->
-                        <?php renderInput($translation, $ascope, $data, "...fields", $headerItem, $value, $headerItem[$value]); ?>
-                    <?php endforeach; ?>
-                </div>
             </div>
-            <div class="row" style="margin-top: 20px">
+            <div class="row">
                 <?php foreach($data->simpleInterface["aboutPurchase"] as $key=>$value): ?>
-                    <div class="style-5 col-md-2 pull-right">
+                    <div class="style-5 col-md-2">
                         <label for="<?php echo $translation->translateLabel($key); ?>">
                             <?php echo $translation->translateLabel($key); ?>
                         </label>
@@ -439,7 +441,8 @@
             <div class="row" style="margin-top: 20px;">
                 <div class="col-md-3 col-xs-12 pull-left">
                     <?php
-                        $item = $data->getEditItem($ascope["item"], "Memos");
+                        $item = $ascope["mode"] == 'edit' || $ascope["mode"] == 'view'? $data->getEditItem($ascope["item"], "Memos") :
+                                $data->getNewItem($ascope["item"], "Memos");
                         $tableCategories = $data->editCategories["Memos"];
                         $tableItems = makeTableItems($item, $tableCategories);
                         $items = $item;
@@ -466,7 +469,7 @@
                     <?php if($security->can("update")): ?>
                         <?php if(key_exists("reportType", $data)): ?>
                             <?php $currentCompany = $data->getCurrentCompany()[0]; ?>
-                            <a href="<?php echo "/docreports/" . $data->reportType . "/" . explode("__", $ascope["item"])[3] ?>" target="_blank" class="btn btn-info" onclick="<?php /*echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); echo $currentCompany->AccountingCopy == 1 ? ";window.open('" .  /*$public_prefix ."/docreports/" . $data->reportType . "accountingcopy/" . explode("__", $ascope["item"])[3] . "')" : "";*/  echo /*$currentCompany->FileCopy == 1 ? ";window.open('" . $public_prefix ."/docreports/" . $data->reportType . "filecopy/" . explode("__", $ascope["item"])[3] . "')" :*/ "";?>">
+                            <a href="<?php /*echo "/docreports/" . $data->reportType . "/" . explode("__", $ascope["item"])[3]*/ ?>" target="_blank" class="btn btn-info" onclick="<?php /*echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); echo $currentCompany->AccountingCopy == 1 ? ";window.open('" .  /*$public_prefix ."/docreports/" . $data->reportType . "accountingcopy/" . explode("__", $ascope["item"])[3] . "')" : "";*/  /*echo $currentCompany->FileCopy == 1 ? ";window.open('" . $public_prefix ."/docreports/" . $data->reportType . "filecopy/" . explode("__", $ascope["item"])[3] . "')" :*/ "";?>">
                                 <?php echo $translation->translateLabel("Save & Print"); ?>
                             </a>
                         <?php endif; ?>
@@ -481,7 +484,7 @@
                         ?>
                     <?php endif; ?>
                     <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>">
-                        <?php echo $translation->translateLabel("Cancel"); ?>
+                        <?php echo $translation->translateLabel("Exit"); ?>
                     </a>
                 </div>
             </div>

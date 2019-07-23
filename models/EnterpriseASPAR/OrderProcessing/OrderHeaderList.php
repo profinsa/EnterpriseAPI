@@ -1158,6 +1158,8 @@ class OrderHeaderList extends gridDataSource{
     public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
     //getting data for Customer Page
     public function getCustomerInfo($id){
+        if(!$id)
+            $id = "DEFAULT";
         $user = Session::get("user");
         $keyFields = "";
         $fields = [];
