@@ -28,9 +28,10 @@
      grid model
      app as model
 
-     Last Modified: 28.03.2019
+     Last Modified: 24.07.2019
      Last Modified by: Nikita Zaharov
 */
+
 $GLOBALS["dialogChooserTypes"] = [];
 $GLOBALS["dialogChooserInputs"] = [];
 ?>

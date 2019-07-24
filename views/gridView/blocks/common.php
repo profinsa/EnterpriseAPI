@@ -12,6 +12,7 @@
             case "datetime" :
                 return date("m/d/y", strtotime($value));
                 break;
+            case "dialogChooser":
             case "text":
                 $outValue = "";
                 if(key_exists("formatFunction", $gridFields[$key])){

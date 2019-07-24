@@ -325,119 +325,119 @@
                 <?php endforeach; ?>
             </div>
             
-            <!-- Detail table -->
-            <div class="row">
-                <?php
-	            if(property_exists($data, "detailTable"))
-    	                require __DIR__ . "/../components/detailGrid.php";
-                ?>
-            </div>
-            <!-- Detail table
-
-                 <?php if(property_exists($data, "detailTable")): ?>
+            <!-- Detail table 
                  <div class="row">
-                 <div id="subgrid" class="col-md-12 col-xs-12">
-                 </div>
+                 <?php
+                     //	            if(property_exists($data, "detailTable"))
+                     //  	                require __DIR__ . "/../components/detailGrid.php";
+                     ?>
+                 </div>-->
+            <!-- Detail table -->
 
-                 <script>
-                 function subgridView(subgridmode, keyString){
-                 var detailRewrite = {
-                 "ViewQuotes" : "ViewQuotesDetail",
-                 "ViewOrdersSimple" : "ViewOrdersDetail",
-                 "ViewOrders" : "ViewOrdersDetail",
-                 "ViewInvoices" : "ViewInvoicesDetail",
-                 "ViewServiceQuotes" : "ViewServiceQuotesDetail",
-                 "ViewServiceOrders" : "ViewServiceOrdersDetail",
-                 "ViewServiceInvoices" : "ViewServiceInvoicesDetail",
-                 "MemorizedGLTransactions" : "LedgerTransactionsDetail",
-                 "ViewGLTransactions" : "LedgerTransactionsDetail",
-                 "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
-                 "ReceivePurchases" : "ReceivePurchasesDetail",
-                 "BankDeposits" : "LedgerTransactionsDetail"
-                 }, ind;
-                 var path = new String(window.location);
-                 path = path.replace(/#\/\?/, "?");
-                 path = path.replace(/page\=grid/, "page=subgrid");
-                 path = path.replace(/mode\=view|mode\=edit|mode\=new/, "mode=subgrid");
-                 if(keyString){
-                 path = path.replace(/mode\=subgrid/, "mode=new");
-                 if(path.search(/item\=/) == -1)
-                 path += "&item=" + keyString;
-                 }
+            <?php if(property_exists($data, "detailTable")): ?>
+                <div class="row">
+                    <div id="subgrid" class="col-md-12 col-xs-12">
+                    </div>
 
-                 var prevPath;
-                 for(ind in detailRewrite){
-                 prevPath = path;
-                 path = path.replace(new RegExp(ind), detailRewrite[ind]);
-                 if(path != prevPath)
-                 break;
-                 }
-                 $.get(path + "<?php echo (property_exists($data, "detailSubgridModes") && key_exists("edit", $data->detailSubgridModes) ? "&modes=" . implode("__", $data->detailSubgridModes["edit"]) : ""); ?>")
-                 .done(function(data){
-                 setTimeout(function(){
-                 $("#subgrid").html(data);
-                 datatableInitialized = true;
-                 setTimeout(function(){
-                 var buttons = $('.subgrid-buttons');
-                 var tableFooter = $('.subgrid-table-footer');
-                 tableFooter.prepend(buttons);
-                 },300);
-                 },0);
-                 })
-                 .error(function(xhr){
-                 // if(xhr.status == 401)
-                 //    else
-                 //   alert("Unable to load page");
-                 });
-                 }
-                 subgridView();
-                 /*function subgridView(cb){
-                 var detailRewrite = {
-                 "ViewQuotes$" : "ViewQuotesDetail",
-                 "ViewOrders$" : "ViewOrdersDetail",
-                 "ViewInvoices$" : "ViewInvoicesDetail",
-                 "ViewServiceQuotes$" : "ViewServiceQuotesDetail",
-                 "ViewServiceOrders$" : "ViewServiceOrdersDetail",
-                 "ViewServiceInvoices$" : "ViewServiceInvoicesDetail"
-                 }, ind;
-                 var path = new String(window.location);
-                 path = path.replace(/index\#\//, "");
-                 path = path.replace(/\/grid|\/view|\/edit|\/new/g, "\/subgrid");
-                 for(ind in detailRewrite)
-                 path = path.replace(new RegExp(ind), detailRewrite[ind]);
-                 console.log(path);
-                 $.get(path)
-                 .done(function(data){
-                 setTimeout(function(){
-                 $("#subgrid").html(data);
-                 datatableInitialized = true;
-                 //      var table = $('#example23').DataTable( {
-                 //         dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
-                 //          dom : "<'subgrid-table-header row'><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i>>"
-                 //      });
-                 setTimeout(function(){
-                 var buttons = $('.subgrid-buttons');
-                 var tableFooter = $('.subgrid-table-footer');
-                 tableFooter.prepend(buttons);
-                 },300);
-                 //     if(cb)
-                 //         cb();
-                 },0);
-                 })
-                 .error(function(xhr){
-                 // if(xhr.status == 401)
-                 //   window.location = "index.php?page=login";
-                 //    else
-                 //   alert("Unable to load page");
-                 });
-                 }
-                 subgridView(function(){
-                 //window.scrollTo(0,0);
-                 });*/
-                 </script>
-                 </div>
-                 <?php endif; ?>
-            -->
+                    <script>
+                     function subgridView(subgridmode, keyString){
+                         var detailRewrite = {
+                             "ViewQuotes" : "ViewQuotesDetail",
+                             "ViewOrdersSimple" : "ViewOrdersDetail",
+                             "ViewOrders" : "ViewOrdersDetail",
+                             "ViewInvoices" : "ViewInvoicesDetail",
+                             "ViewServiceQuotes" : "ViewServiceQuotesDetail",
+                             "ViewServiceOrders" : "ViewServiceOrdersDetail",
+                             "ViewServiceInvoices" : "ViewServiceInvoicesDetail",
+                             "MemorizedGLTransactions" : "LedgerTransactionsDetail",
+                             "ViewGLTransactions" : "LedgerTransactionsDetail",
+                             "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
+                             "ReceivePurchases" : "ReceivePurchasesDetail",
+                             "BankDeposits" : "LedgerTransactionsDetail"
+                         }, ind;
+                         var path = new String(window.location);
+                         path = path.replace(/#\/\?/, "?");
+                         path = path.replace(/page\=grid/, "page=subgrid");
+                         path = path.replace(/mode\=view|mode\=edit|mode\=new/, "mode=subgrid");
+                         if(keyString){
+                             path = path.replace(/mode\=subgrid/, "mode=new");
+                             if(path.search(/item\=/) == -1)
+                                 path += "&item=" + keyString;
+                         }
+
+                         var prevPath;
+                         for(ind in detailRewrite){
+                             prevPath = path;
+                             path = path.replace(new RegExp(ind), detailRewrite[ind]);
+                             if(path != prevPath)
+                                 break;
+                         }
+                         $.get(path + "<?php echo (property_exists($data, "detailSubgridModes") && key_exists("edit", $data->detailSubgridModes) ? "&modes=" . implode("__", $data->detailSubgridModes["edit"]) : ""); ?>")
+                          .done(function(data){
+                              setTimeout(function(){
+                                  $("#subgrid").html(data);
+                                  datatableInitialized = true;
+                                  setTimeout(function(){
+                                      var buttons = $('.subgrid-buttons');
+                                      var tableFooter = $('.subgrid-table-footer');
+                                      tableFooter.prepend(buttons);
+                                  },300);
+                              },0);
+                          })
+                          .error(function(xhr){
+                              // if(xhr.status == 401)
+                              //    else
+                              //   alert("Unable to load page");
+                          });
+                     }
+                     subgridView();
+                     /*function subgridView(cb){
+                        var detailRewrite = {
+                        "ViewQuotes$" : "ViewQuotesDetail",
+                        "ViewOrders$" : "ViewOrdersDetail",
+                        "ViewInvoices$" : "ViewInvoicesDetail",
+                        "ViewServiceQuotes$" : "ViewServiceQuotesDetail",
+                        "ViewServiceOrders$" : "ViewServiceOrdersDetail",
+                        "ViewServiceInvoices$" : "ViewServiceInvoicesDetail"
+                        }, ind;
+                        var path = new String(window.location);
+                        path = path.replace(/index\#\//, "");
+                        path = path.replace(/\/grid|\/view|\/edit|\/new/g, "\/subgrid");
+                        for(ind in detailRewrite)
+                        path = path.replace(new RegExp(ind), detailRewrite[ind]);
+                        console.log(path);
+                        $.get(path)
+                        .done(function(data){
+                        setTimeout(function(){
+                        $("#subgrid").html(data);
+                        datatableInitialized = true;
+                        //      var table = $('#example23').DataTable( {
+                        //         dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i><'col-sm-7'p>>"
+                        //          dom : "<'subgrid-table-header row'><'subgrid-table-content row't><'subgrid-table-footer row'<'col-sm-4'i>>"
+                        //      });
+                        setTimeout(function(){
+                        var buttons = $('.subgrid-buttons');
+                        var tableFooter = $('.subgrid-table-footer');
+                        tableFooter.prepend(buttons);
+                        },300);
+                        //     if(cb)
+                        //         cb();
+                        },0);
+                        })
+                        .error(function(xhr){
+                        // if(xhr.status == 401)
+                        //   window.location = "index.php?page=login";
+                        //    else
+                        //   alert("Unable to load page");
+                        });
+                        }
+                        subgridView(function(){
+                        //window.scrollTo(0,0);
+                        });*/
+                    </script>
+                </div>
+            <?php endif; ?>
+
             <!-- footer -->
             <div class="row" style="margin-top: 40px">
                 <!-- get this test select block from Quickbook "Estimate" page -->

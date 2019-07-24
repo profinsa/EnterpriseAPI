@@ -1,37 +1,38 @@
 <?php
 /*
-Name of Page: subgridController
+  Name of Page: subgridController
 
-Method: controller for pages with subgrid (like Ledger Transactions Detail etc), used for rendering page and interacting with it
+  Method: controller for pages with subgrid (like Ledger Transactions Detail etc), used for rendering page and interacting with it
 
-Date created: Nikita Zaharov, 04.03.2017
+  Date created: Nikita Zaharov, 04.03.2017
 
-Use: The controller is responsible for:
-- page rendering using view
-- handling XHR request(delete, update and new item in grid)
+  Use: The controller is responsible for:
+  - page rendering using view
+  - handling XHR request(delete, update and new item in grid)
 
-Input parameters:
-$app : application instance, object
+  Input parameters:
+  $app : application instance, object
 
-Output parameters:
-$scope: object, used by view, most like model
-$translation: model, it is responsible for translation in view
+  Output parameters:
+  $scope: object, used by view, most like model
+  $translation: model, it is responsible for translation in view
 
-Called from:
-+ index.php
+  Called from:
+  + index.php
 
-Calls:
-models/translation.php
-models/gridDataSource derevatives -- models who inherits from gridDataSource
-app from index.php
+  Calls:
+  models/translation.php
+  models/gridDataSource derevatives -- models who inherits from gridDataSource
+  app from index.php
 
-Last Modified: 12.04.2018
-Last Modified by: Nikita Zaharov
+  Last Modified: 24.07.2019
+  Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
+require 'models/drillDowner.php';
 require 'models/linksMaker.php';
 
 class controller{
@@ -53,6 +54,7 @@ class controller{
         }
 
         require 'models/menuIdToHref.php';
+        $drill = new drillDowner();
         $linksMaker = new linksMaker();
 
         $this->action = $this->path = $_GET["action"];

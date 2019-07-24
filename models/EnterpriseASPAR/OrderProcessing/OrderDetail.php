@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 24/04/2019
+  Last Modified: 24/07/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -39,53 +39,53 @@ class gridData extends subgridDataSource{
 	public $dashboardTitle ="Order Detail";
 	public $breadCrumbTitle ="Order Detail";
 	public $idField ="OrderNumber";
+    public $id = "";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber", "OrderLineNumber"];
 	public $gridFields = [
 		"ItemID" => [
 			"dbType" => "varchar(36)",
             "inputType" => "dialogChooser",
-            "dataProvider" => "getItems",
-            "defaultValue" => ""
+            "dataProvider" => "getItems"
 		],
 		"Description" => [
 			"dbType" => "varchar(80)",
 			"inputType" => "text"
 		],
-        "GLSalesAccount" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "dropdown",
-            "dataProvider" => "getAccounts",
-            "defaultValue" => ""
-        ],
-        "ProjectID" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "dropdown",
-            "dataProvider" => "getProjects",
-            "defaultValue" => ""
-        ],
 		"OrderQty" => [
 			"dbType" => "float",
 			"inputType" => "text"
 		],
-        /*		"ItemUOM" => [
+		"ItemUOM" => [
             "dbType" => "varchar(15)",
             "inputType" => "text"
-            ],*/
+		],
         "ItemUnitPrice" =>	[
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
+            "currencySymbol" => true,
             "inputType" => "text"
         ],
-        /*		"CurrencyID" => [
+		"CurrencyID" => [
 			"dbType" => "varchar(3)",
             "inputType" => "dropdown",
             "defaultValue" => "USD",
             "dataProvider" => "getCurrencyTypes"
-            ],*/
+		],
 		"Total" => [
             "dbType" => "decimal(19,4)",
             "format" => "{0:n}",
+            "currencySymbol" => true,
             "inputType" => "text"
+		],
+		"GLSalesAccount" => [
+			"dbType" => "varchar(36)",
+            "inputType" => "dropdown",
+            "dataProvider" => "getAccounts"
+		],
+		"ProjectID" => [
+			"dbType" => "varchar(36)",
+            "inputType" => "dropdown",
+            "dataProvider" => "getProjects"
 		]
 	];
 
