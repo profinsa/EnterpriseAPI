@@ -64,3 +64,11 @@ li.top-bar-link .dropdown-toggle:hover{
     text-decoration: none;
 }
 
+.top_params {
+    margin : 0px !important;
+    background: #00c292 !important;
+}
+
+.top_params label {
+    color : black !important;
+}

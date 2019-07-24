@@ -1337,6 +1337,17 @@ EOF;
         return $result;
     }    
 
+    public function getCurrencySymbol(){
+        $user = Session::get("user");
+
+        $result =  $GLOBALS["capsule"]::select("select I.CurrencyID, C.CurrenycySymbol from {$this->tableName} I, CurrencyTypes C WHERE I.CurrencyID=C.CurrencyID and I.{$this->idField}=? and I.CompanyID=? and C.CompanyID=? and I.DivisionID=? and C.DivisionID=? and C.DepartmentID=? and C.DepartmentID=?", array($this->id, $user["CompanyID"], $user["CompanyID"], $user["DivisionID"], $user["DivisionID"], $user["DepartmentID"], $user["DepartmentID"]));
+
+        return [
+            "id" => count($result) ? $result[0]->CurrencyID : "USD",
+            "symbol" => count($result) ? $result[0]->CurrenycySymbol : "$"
+        ];
+    }
+
     //getting rows for grid
     public function getPage($number){
         $user = Session::get("user");

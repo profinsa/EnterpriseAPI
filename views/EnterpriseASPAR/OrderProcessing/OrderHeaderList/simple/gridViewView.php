@@ -32,6 +32,13 @@
         $translatedFieldName = $translation->translateLabel(key_exists($key, $data->editCategories[$category]) && key_exists("label", $data->editCategories[$category][$key]) ? $data->editCategories[$category][$key]["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
         $leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
         $rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : 6;
+	$disabledEdit =  (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  ||
+			 (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ||
+			 (key_exists("editPermissions", $data->editCategories[$category][$key]) &&
+			  $data->editCategories[$category][$key]["editPermissions"] == "admin" &&
+			  !$security->isAdmin())
+		       ? "disabled" : "";
+        
         switch($data->editCategories[$category][$key]["inputType"]){
             case "text" :
                 //renders text input with label
@@ -46,6 +53,19 @@
                 echo"\" " . ( (key_exists("disabledEdit", $data->editCategories[$category][$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view"))  || (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ? "readonly" : "")
                .">";
                 break;
+
+            case "textarea" :
+		//renders text input with label
+		echo "<textarea id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" $disabledEdit>";
+		if(key_exists("formatFunction", $data->editCategories[$category][$key])){
+		    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
+		    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+		}
+		else
+		    echo formatField($data->editCategories[$category][$key], $value);
+
+		echo"</textarea>";
+		break;
 
             case "datetime" :
                 //renders text input with label
@@ -156,6 +176,8 @@
             "rightItems" => $rightItems
         ];
     }
+
+    $currencySymbol = $data->getCurrencySymbol();
 ?>
 
 <div class="simple-form">
@@ -434,7 +456,7 @@
                     <?php foreach($data->simpleInterface["totalFields"] as $key=>$value): ?>
                         <div class="row">
                             <label class="col-md-4"><?php echo $translation->translateLabel($key); ?>:</label>
-                            <div class="col-md-8 text-right"><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?></div>
+                            <div class="col-md-8 text-right"><?php echo $currencySymbol["symbol"]; ?><?php echo formatValue($data, $data->editCategories['...fields'], $headerItem, $value, $headerItem[$value]); ?></div>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -461,9 +483,10 @@
                                 <?php echo $translation->translateLabel("Memo"); ?>
                             </label>
                             <div class="col-md-10 style-5" style="padding-right: 0;">
-                                <span readonly class="form-control" id="memo" style="width: 100%; white-space: nowrap; overflow: hidden;">
-                                    <?php echo $tableItems["leftItems"]["HeaderMemo1"]; ?>
-                                </span>
+                                <?php renderInputSimple($translation, $ascope, $data, "...fields", $headerItem, "HeaderMemo1", $headerItem["HeaderMemo1"]); ?>
+                                <!--<span class="form-control" id="memo" style="width: 100%; white-space: nowrap; overflow: hidden;">
+                                     <?php echo $tableItems["leftItems"]["HeaderMemo1"]; ?>
+                                     </span> -->
                             </div>
                         </div>
                     </div>

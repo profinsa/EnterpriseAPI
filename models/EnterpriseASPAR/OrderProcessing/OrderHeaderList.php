@@ -39,6 +39,7 @@ class OrderHeaderList extends gridDataSource{
 	public $breadCrumbTitle ="Orders";
 	public $idField ="OrderNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber"];
+    public $id = "";
 	public $gridFields = [
 		"OrderNumber" => [
 			"dbType" => "varchar(36)",
@@ -911,6 +912,11 @@ class OrderHeaderList extends gridDataSource{
 				"defaultValue" => "",
                 "currencyField" => "CurrencyID",
                 "formatFunction" => "currencyFormat"
+			],
+			"HeaderMemo1" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "textarea",
+				"defaultValue" => ""
 			]
         ]
     ];
@@ -1233,7 +1239,8 @@ class OrderHeaderList extends gridDataSource{
 		],
 		"GLSalesAccount" => [
 			"dbType" => "varchar(36)",
-			"inputType" => "text"
+            "inputType" => "dropdown",
+            "dataProvider" => "getAccounts"
 		],
 		"ProjectID" => [
 			"dbType" => "varchar(36)",
@@ -1397,6 +1404,51 @@ class OrderHeaderSimpleList extends OrderHeaderList {
 	public $dashboardTitle ="Quick Order";
 	public $breadCrumbTitle ="Quick Order";
 	public $reportType = "order";
+
+    public $embeddedgridFields = [
+		"ItemID" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		],
+		"Description" => [
+			"dbType" => "varchar(80)",
+			"inputType" => "text"
+		],
+		"OrderQty" => [
+			"dbType" => "float",
+			"inputType" => "text"
+		],
+		"ItemUOM" => [
+            "dbType" => "varchar(15)",
+            "inputType" => "text"
+		],
+        "ItemUnitPrice" =>	[
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "currencySymbol" => true,
+            "inputType" => "text"
+        ],
+		"CurrencyID" => [
+			"dbType" => "varchar(3)",
+			"inputType" => "text"
+		],
+		"Total" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "currencySymbol" => true,
+            "inputType" => "text"
+		],
+		"GLSalesAccount" => [
+			"dbType" => "varchar(36)",
+            "inputType" => "dropdown",
+            "dataProvider" => "getAccounts"
+		],
+		"ProjectID" => [
+			"dbType" => "varchar(36)",
+			"inputType" => "text"
+		]
+	];
+    
     // simple form section
     public $simpleInterface = [
         "showShipping" => true,
@@ -1426,6 +1478,8 @@ class OrderHeaderSimpleList extends OrderHeaderList {
             "Order Date" => "OrderDate"
         ],
         "totalFields" => [
+            "Sub-Total" => "Subtotal",
+            "Tax" => "TaxAmount",
             "Total" => "Total"
         ],
         "aboutPurchase" => [

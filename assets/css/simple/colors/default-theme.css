@@ -88,3 +88,12 @@ li.top-bar-link .dropdown-toggle:hover{
     text-decoration: none;
 }
 
+.top_params {
+    margin : 0px !important;
+    background: #d3d3d3 !important;
+    color : black;
+}
+
+.top_params label {
+    color : #555555 !important;
+}
