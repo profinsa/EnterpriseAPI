@@ -1400,8 +1400,9 @@ class InvoiceHeaderSimpleList extends InvoiceHeaderList{
             "CustomerZip" => "ShippingZip"
         ],
         "totalFields" => [
-            "Total" => "Total",
-            "Balance Due" => "BalanceDue"
+            "Sub-Total" => "Subtotal",
+            "Tax" => "TaxAmount",
+            "Total" => "Total"
         ],
         "aboutPurchase" => [
             "Purchase Order" => "PurchaseOrderNumber",

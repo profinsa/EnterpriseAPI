@@ -1397,8 +1397,9 @@ class PurchaseHeaderSimpleList extends PurchaseHeaderList {
             "VendorZip" => "ShippingZip"
         ],
         "totalFields" => [
-            "Total" => "Total",
-            "Balance Due" => "BalanceDue"
+            "Sub-Total" => "Subtotal",
+            "Tax" => "TaxAmount",
+            "Total" => "Total"
         ],
         "aboutPurchase" => [
             "Vendor Invoice" => "VendorInvoiceNumber",

@@ -43,7 +43,8 @@ class PurchaseDetail extends subgridDataSource{
 	public $gridFields = [
 		"ItemID" => [
 			"dbType" => "varchar(36)",
-			"inputType" => "text"
+            "inputType" => "dialogChooser",
+            "dataProvider" => "getItems"
 		],
 		"Description" => [
 			"dbType" => "varchar(80)",
@@ -76,11 +77,13 @@ class PurchaseDetail extends subgridDataSource{
 		],
 		"GLPurchaseAccount" => [
 			"dbType" => "varchar(36)",
-			"inputType" => "text"
+            "inputType" => "dropdown",
+            "dataProvider" => "getAccounts"
 		],
 		"ProjectID" => [
 			"dbType" => "varchar(36)",
-			"inputType" => "text"
+            "inputType" => "dropdown",
+            "dataProvider" => "getProjects"
 		]
 	];
 
