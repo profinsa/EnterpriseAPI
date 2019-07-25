@@ -30,9 +30,9 @@
 */
 
 require_once "./models/helpers/recalc.php";
-require_once "./models/gridDataSource.php";
+require_once "./models/subgridDataSource.php";
 
-class PurchaseDetail extends gridDataSource{
+class PurchaseDetail extends subgridDataSource{
 	public $tableName = "purchasedetail";
     public $parentTableName = "purchaseheader";
     //	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
@@ -298,7 +298,7 @@ class PurchaseDetail extends gridDataSource{
         "TotalWeight" => "Total Weight",
         "ItemCost" =>  "Item Cost",
         "DiscountPerc" => "Discount",
-        "ItemUnitPrice" =>	"Item Unit Price",
+        "ItemUnitPrice" =>	"Price",
         "Taxable" => "Taxable",
         "TaxGroupID" => "Tax Group",
         "TaxPercent" => "Percent",
@@ -307,6 +307,7 @@ class PurchaseDetail extends gridDataSource{
         "SubTotal" => "Sub Total",
         "Total" => "Total",
         "GLSalesAccount" => "GL Sales Account",
+        "GLPurchaseAccount" => "GL Account",
         "ProjectID" => "Project ID",
         "TrackingNumber" => "Tracking Number",
         "DetailMemo1" => "Memo 1",

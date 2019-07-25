@@ -44,7 +44,10 @@ class controller{
     public $dashboardTitle = "";
     public $breadCrumbTitle = "";
     public $path = "";
-
+    public $redirectModel = [
+        "EnterpriseASPAP/Purchases/PurchaseDetail" => "EnterpriseASPAP/Purchases/PurchaseDetail"
+    ];
+    
     public function process($app){
         if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
             $_SESSION["user"] = false;
@@ -59,15 +62,30 @@ class controller{
 
         $this->action = $this->path = $_GET["action"];
         $model_path = $menuIdToPath[$_GET["action"]];
-        if(!file_exists('models/' . $model_path . '.php'))
-            throw new Exception("model " . 'models/' . $model_path . '.php' . " is not found");
+
+        if(key_exists($model_path, $this->redirectModel))
+            $requireModelPath = $this->redirectModel[$model_path];
+        else 
+            $requireModelPath = $model_path;
+        preg_match("/(.+)(List|Detail)$/", $requireModelPath, $path);
+        $requireModelPath = $path[1] . 'Detail';
+
+        if(!file_exists('models/' . $requireModelPath . '.php'))
+            throw new Exception("model " . 'models/' . $requireModelPath . '.php' . " is not found");
+        require 'models/' . $requireModelPath. '.php';
         
         $PartsPath = $model_path . "/";
         $_perm = new permissionsByFile();
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
-        preg_match("/(.+)(List|Detail)$/", $model_path, $path);
-        $model_path = $path[1] . 'Detail';
-        require 'models/' . $model_path . '.php';
+        
+        $newPath = $filename[1] . 'Detail';
+        echo $newPath;
+        if($requireModelPath != $model_path || class_exists($newPath)){
+            $data = new $newPath;
+        }
+        else
+            $data = new gridData();
+        
         if(key_exists($filename[1], $_perm->permissions))
             $security = new Security($_SESSION["user"]["accesspermissions"], $_perm->permissions[$filename[1]]);
         else{
@@ -77,8 +95,7 @@ class controller{
         }
         
         $this->user = $_SESSION["user"];
-               
-        $data = new gridData();
+        
         if(key_exists("modes", $_GET))
             $data->modes = explode("__", $_GET["modes"]);
         

@@ -136,6 +136,7 @@
     "AccountsReceivable/Customers/ViewCustomerSatisfactions" => "EnterpriseASPAR/Customers/CustomerSatisfactionList",
     "AccountsReceivable/Customers/ViewCustomerTypes" => "EnterpriseASPAR/Customers/CustomerTypesList",
     "AccountsPayable/PurchaseProcessing/ViewPurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
+    "AccountsPayable/PurchaseProcessing/ViewPurchasesSimple" => "EnterpriseASPAP/Purchases/PurchaseHeaderSimpleList",
     "AccountsPayable/PurchaseProcessing/ApprovePurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderApproveList",
     "AccountsPayable/PurchaseProcessing/ReceivePurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList",
     "AccountsPayable/PurchaseProcessing/ViewReceivedPurchases" => "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList",

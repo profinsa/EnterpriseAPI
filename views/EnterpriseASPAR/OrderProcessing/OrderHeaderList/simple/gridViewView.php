@@ -350,6 +350,7 @@
                              "ViewServiceQuotes" : "ViewServiceQuotesDetail",
                              "ViewServiceOrders" : "ViewServiceOrdersDetail",
                              "ViewServiceInvoices" : "ViewServiceInvoicesDetail",
+                             "ViewPurchasesSimple" : "ViewPurchasesDetail",
                              "MemorizedGLTransactions" : "LedgerTransactionsDetail",
                              "ViewGLTransactions" : "LedgerTransactionsDetail",
                              "ViewClosedGLTransactions" : "LedgerTransactionsDetail",

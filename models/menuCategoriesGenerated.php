@@ -1084,7 +1084,12 @@ $leftMenu = [
 			"full" => $translation->translateLabel('Purchase Processing'),
 			"short" => "Pu",
 			"data" => [
-
+			    [
+				"id" => "AccountsPayable/PurchaseProcessing/ViewPurchasesSimple",
+				"full" => $translation->translateLabel('View Purchases Simple'),
+				"href"=> "EnterpriseASPAP/Purchases/PurchaseHeaderSimpleList",
+				"short" => "Vi"
+			    ],
 			    [
 				"id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
 				"full" => $translation->translateLabel('View Purchases'),
@@ -1117,6 +1122,12 @@ $leftMenu = [
 			"full" => $translation->translateLabel('Purchase Screens'),
 			"short" => "Pu",
 			"data" => [
+			    [
+				"id" => "AccountsPayable/PurchaseProcessing/ViewPurchasesSimple",
+				"full" => $translation->translateLabel('View Purchases Simple'),
+				"href"=> "EnterpriseASPAP/Purchases/PurchaseHeaderSimpleList",
+				"short" => "Vi"
+			    ],
 			    [
 				"id" => "AccountsPayable/PurchaseScreens/ViewPurchases",
 				"full" => $translation->translateLabel('View Purchases'),

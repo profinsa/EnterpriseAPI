@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 25/06/2019
+  Last Modified: 25/07/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -39,6 +39,7 @@ class PurchaseHeaderList extends gridDataSource{
 	public $idField ="PurchaseNumber";
     //	public $modes = ["grid", "view", "edit];
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
+    public $id = "";
 	public $gridFields = [
 		"PurchaseNumber" => [
 			"dbType" => "varchar(36)",
@@ -781,6 +782,11 @@ class PurchaseHeaderList extends gridDataSource{
 				"defaultValue" => "",
                 "currencyField" => "CurrencyID",
                 "formatFunction" => "currencyFormat"
+			],
+			"HeaderMemo1" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "textarea",
+				"defaultValue" => ""
 			]
         ]
     ];
@@ -1043,6 +1049,8 @@ class PurchaseHeaderList extends gridDataSource{
     public $vendorIdFields = ["CompanyID","DivisionID","DepartmentID","VendorID"];
     //getting data for Vendor Page
     public function getVendorInfo($id){
+        if(!$id)
+            $id = "DEFAULT";
         $user = Session::get("user");
         $keyFields = "";
         $fields = [];
@@ -1350,6 +1358,56 @@ class PurchaseHeaderList extends gridDataSource{
 }
 
 class gridData extends PurchaseHeaderList {
+}
+
+class PurchaseHeaderSimpleList extends PurchaseHeaderList {
+	public $dashboardTitle ="Quick Purchase";
+	public $breadCrumbTitle ="Quick Purchase";
+	public $reportType = "purchaseorder";
+
+    // simple form section
+    public $simpleInterface = [
+        "showShipping" => false,
+        "whom" => "Vendor",
+        "customerTitle" => "Name / Address",
+        "aboutOrder" => [
+            "Purchase Number" => "PurchaseNumber",
+            "Purchase Date" => "PurchaseDate",
+            "Cancel Date" => "PurchaseCancelDate",
+            "Type" => "TransactionTypeID"
+        ],
+        "customerFields" => [
+            "VendorName" => "Name",
+            "VendorAddress1" => "Address 1",
+            "VendorAddress2" => "Address 2",
+            "VendorAddress3" => "Address 3",
+            "VendorCity" => "City",
+            "VendorCountry" => "Country",
+            "VendorState" => "State",
+            "VendorZip" => "Zip"
+        ],
+        "shippingFields" => [
+            "VendorName" => "ShippingName",
+            "VendorAddress1" => "ShippingAddress1",
+            "VendorAddress2" => "ShippingAddress2",
+            "VendorAddress3" => "ShippingAddress3",
+            "VendorCity" => "ShippingCity",
+            "VendorCountry" => "ShippingCountry",
+            "VendorState" => "ShippingState",
+            "VendorZip" => "ShippingZip"
+        ],
+        "totalFields" => [
+            "Total" => "Total",
+            "Balance Due" => "BalanceDue"
+        ],
+        "aboutPurchase" => [
+            "Vendor Invoice" => "VendorInvoiceNumber",
+            "OrderedBy" => "OrderedBy",
+            "Ship Date" => "ShipDate",
+            "Ship Via" => "ShipMethodID",
+            "Terms" => "TermsID"
+        ]
+    ];
 }
 
 class PurchaseHeaderClosedList extends PurchaseHeaderList{

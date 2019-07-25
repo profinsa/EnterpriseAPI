@@ -85,6 +85,7 @@ class controller{
         "EnterpriseASPAR/RMA/RMAHeaderReceivedList" => "EnterpriseASPAR/RMA/RMAHeaderList",
 
         "EnterpriseASPAP/Purchases/PurchaseDetail" => "EnterpriseASPAP/Purchases/PurchaseDetail",
+        "EnterpriseASPAP/Purchases/PurchaseHeaderSimpleList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderClosedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
         "EnterpriseASPAP/Purchases/PurchaseHeaderApproveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
@@ -334,6 +335,10 @@ class controller{
                     "EnterpriseASPAP/Purchases/PurchaseHeaderList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
                         "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
+                    ],
+                    "EnterpriseASPAP/Purchases/PurchaseHeaderSimpleList/" => [
+                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/",
+                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/"
                     ],
                     "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList/" => [
                         "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
