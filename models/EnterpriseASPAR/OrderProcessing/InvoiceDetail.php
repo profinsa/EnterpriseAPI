@@ -39,6 +39,7 @@ class gridData extends subgridDataSource{
 	public $breadCrumbTitle ="Invoice Detail";
 	public $idField ="InvoiceNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber", "InvoiceLineNumber"];
+    public $id = "";
 	public $gridFields = [
 		"ItemID" => [
 			"dbType" => "varchar(36)",
@@ -49,6 +50,32 @@ class gridData extends subgridDataSource{
 		"Description" => [
 			"dbType" => "varchar(80)",
 			"inputType" => "text"
+		],
+		"OrderQty" => [
+			"dbType" => "float",
+			"inputType" => "text"
+		],
+        "ItemUOM" => [
+            "dbType" => "varchar(15)",
+            "inputType" => "text"
+        ],
+        "ItemUnitPrice" =>	[
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "inputType" => "text",
+            "currencySymbol" => true
+        ],
+		"CurrencyID" => [
+			"dbType" => "varchar(3)",
+            "inputType" => "dropdown",
+            "defaultValue" => "USD",
+            "dataProvider" => "getCurrencyTypes"
+        ],
+		"Total" => [
+            "dbType" => "decimal(19,4)",
+            "format" => "{0:n}",
+            "currencySymbol" => true,
+            "inputType" => "text"
 		],
         "GLSalesAccount" => [
             "dbType" => "varchar(36)",
@@ -62,30 +89,6 @@ class gridData extends subgridDataSource{
             "dataProvider" => "getProjects",
             "defaultValue" => ""
         ],
-		"OrderQty" => [
-			"dbType" => "float",
-			"inputType" => "text"
-		],
-        /*		"ItemUOM" => [
-            "dbType" => "varchar(15)",
-            "inputType" => "text"
-            ],*/
-        "ItemUnitPrice" =>	[
-            "dbType" => "decimal(19,4)",
-            "format" => "{0:n}",
-            "inputType" => "text"
-        ],/*
-		"CurrencyID" => [
-			"dbType" => "varchar(3)",
-            "inputType" => "dropdown",
-            "defaultValue" => "USD",
-            "dataProvider" => "getCurrencyTypes"
-            ],*/
-		"Total" => [
-            "dbType" => "decimal(19,4)",
-            "format" => "{0:n}",
-            "inputType" => "text"
-		]
 	];
 
 	public $editCategories = [

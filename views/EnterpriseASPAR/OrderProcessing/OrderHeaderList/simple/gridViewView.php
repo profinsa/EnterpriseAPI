@@ -345,6 +345,7 @@
                              "ViewQuotes" : "ViewQuotesDetail",
                              "ViewOrdersSimple" : "ViewOrdersDetail",
                              "ViewOrders" : "ViewOrdersDetail",
+                             "ViewInvoicesSimple" : "ViewInvoicesDetail",
                              "ViewInvoices" : "ViewInvoicesDetail",
                              "ViewServiceQuotes" : "ViewServiceQuotesDetail",
                              "ViewServiceOrders" : "ViewServiceOrdersDetail",

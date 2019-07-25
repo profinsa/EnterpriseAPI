@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 06/06/2019
+  Last Modified: 25/07/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -41,6 +41,7 @@ class InvoiceHeaderList extends gridDataSource{
 	public $breadCrumbTitle ="Invoices";
 	public $idField ="InvoiceNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
+    public $id = "";
 	public $gridFields = [
 		"InvoiceNumber" => [
 			"dbType" => "varchar(36)",
@@ -903,6 +904,11 @@ class InvoiceHeaderList extends gridDataSource{
 				"defaultValue" => "",
                 "currencyField" => "CurrencyID",
                 "formatFunction" => "currencyFormat"
+			],
+			"HeaderMemo1" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "textarea",
+				"defaultValue" => ""
 			]
         ]
     ];
@@ -1151,6 +1157,8 @@ class InvoiceHeaderList extends gridDataSource{
     public $customerIdFields = ["CompanyID","DivisionID","DepartmentID","CustomerID"];
     //getting data for Customer Page
     public function getCustomerInfo($id){
+        if(!$id)
+            $id = "DEFAULT";
         $user = Session::get("user");
         $keyFields = "";
         $fields = [];
@@ -1355,7 +1363,55 @@ class InvoiceHeaderList extends gridDataSource{
     }
 }
 
-class gridData extends InvoiceHeaderList {} 
+class gridData extends InvoiceHeaderList {}
+
+class InvoiceHeaderSimpleList extends InvoiceHeaderList{
+	public $dashboardTitle ="Quick Invoice";
+	public $breadCrumbTitle ="Quick Invoice";
+    public $reportType = "invoice";
+
+    // simple form section
+    public $simpleInterface = [
+        "showShipping" => true,
+        "customerTitle" => "Name / Address",
+        "aboutOrder" => [
+            "Invoice Number" => "InvoiceNumber",
+            "Invoice Date" => "InvoiceDate",
+            "Type" => "TransactionTypeID"
+        ],
+        "customerFields" => [
+            "CustomerName" => "Name",
+            "CustomerAddress1" => "Address 1",
+            "CustomerAddress2" => "Address 2",
+            "CustomerAddress3" => "Address 3",
+            "CustomerCity" => "City",
+            "CustomerCountry" => "Country",
+            "CustomerState" => "State",
+            "CustomerZip" => "Zip"
+        ],
+        "shippingFields" => [
+            "CustomerName" => "ShippingName",
+            "CustomerAddress1" => "ShippingAddress1",
+            "CustomerAddress2" => "ShippingAddress2",
+            "CustomerAddress3" => "ShippingAddress3",
+            "CustomerCity" => "ShippingCity",
+            "CustomerCountry" => "ShippingCountry",
+            "CustomerState" => "ShippingState",
+            "CustomerZip" => "ShippingZip"
+        ],
+        "totalFields" => [
+            "Total" => "Total",
+            "Balance Due" => "BalanceDue"
+        ],
+        "aboutPurchase" => [
+            "Purchase Order" => "PurchaseOrderNumber",
+            "Salesman" => "EmployeeID",
+            "Ship Date" => "InvoiceShipDate",
+            "Ship Via" => "ShipMethodID",
+            "Terms" => "TermsID"
+        ]
+    ];
+}
 
 class InvoiceHeaderClosedList extends InvoiceHeaderList{
 	public $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (Posted=1) AND (ABS(InvoiceHeader.BalanceDue) < 0.005) AND (ABS(InvoiceHeader.Total) >= 0.005))";

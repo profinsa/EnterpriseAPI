@@ -583,6 +583,12 @@ $leftMenu = [
 				"full" => $translation->translateLabel('View Invoices'),
 				"href"=> "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
 				"short" => "Vi"
+			    ],
+			    [
+				"id" => "AccountsReceivable/OrderProcessing/ViewInvoicesSimple",
+				"full" => $translation->translateLabel('View Invoices Simple'),
+				"href"=> "EnterpriseASPAR/OrderProcessing/InvoiceHeaderSimpleList",
+				"short" => "Vi"
 			    ]
 			]
 		    ],
@@ -657,6 +663,12 @@ $leftMenu = [
 				"full" => $translation->translateLabel('Invoice Shipped Orders'),
 				"href"=> "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList",
 				"short" => "In"
+			    ],
+			    [
+				"id" => "AccountsReceivable/OrderProcessing/ViewInvoicesSimple",
+				"full" => $translation->translateLabel('View Invoices Simple'),
+				"href"=> "EnterpriseASPAR/OrderProcessing/InvoiceHeaderSimpleList",
+				"short" => "Vi"
 			    ],
 			    [
 				"id" => "AccountsReceivable/OrderScreens/ViewInvoices",
