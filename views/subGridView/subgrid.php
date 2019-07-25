@@ -27,7 +27,7 @@
      grid model
      app as model
 
-     Last Modified: 24.07.2019
+     Last Modified: 25.07.2019
      Last Modified by: Nikita Zaharov
 -->
 <!-- subgrid -->
@@ -172,20 +172,10 @@
              var itemData = $("#itemData");
              $.getJSON("index.php?page=subgrid&action=<?php  echo $scope->action ;  ?>&delete=true&id=" + item)
               .success(function(data) {
-                  if(localStorage.getItem("autorecalcLink")){
-                      $.post(localStorage.getItem("autorecalcLink"), JSON.parse(localStorage.getItem("autorecalcData")))
-                       .success(function(data) {
-                           localStorage.removeItem("autorecalcLink");
-                           localStorage.removeItem("autorecalcData");
-                           onlocation(window.location);
-                       })
-                       .error(function(err){
-                           localStorage.removeItem("autorecalcLink");
-                           localStorage.removeItem("autorecalcData");
-                           onlocation(window.location);
-                       });
-                  }else
-                  onlocation(window.location);
+                  callRecalc('<?php 
+$keyValues = explode("__", $ascope["items"]);
+echo $keyValues[count($keyValues) - 1]; 
+?>');
               })
               .error(function(err){
                   console.log('wrong');

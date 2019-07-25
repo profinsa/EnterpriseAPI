@@ -53,7 +53,7 @@
          context.path, "new",
          generateKeyString(props)
      ) + "&" + newKeyField + "=" + context.headerItems[newKeyField];
-     setRecalc(context.headerItems[newKeyField])
+     setRecalc(context.headerItems[newKeyField]);
      //     console.log(link);
      
      window.location = link;

@@ -51,6 +51,7 @@ class PurchaseDetail extends subgridDataSource{
 		],
 		"OrderQty" => [
 			"dbType" => "float",
+            "onchange" => "recalcDetailClient",
 			"inputType" => "text"
 		],
 		"ItemUOM" => [

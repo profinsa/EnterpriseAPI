@@ -79,7 +79,6 @@ class controller{
         preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
         
         $newPath = $filename[1] . 'Detail';
-        echo $newPath;
         if($requireModelPath != $model_path || class_exists($newPath)){
             $data = new $newPath;
         }
