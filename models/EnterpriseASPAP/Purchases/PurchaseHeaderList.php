@@ -541,7 +541,7 @@ class PurchaseHeaderList extends gridDataSource{
                 "dataProvider" => "getVendors",
                 "required" => "true",
                 "defaultOverride" => true,
-                "defaultValue" => "DEFAULT"
+                "defaultValue" => ""
             ],
             "CurrencyID" => [
                 "dbType" => "varchar(3)",

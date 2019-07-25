@@ -340,6 +340,31 @@
                     </div>
 
                     <script>
+		     <?php if($ascope["mode"] == "new"): ?>
+		     function newSubgridItemHook(){
+			 return createItem(function(data){
+			     var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
+			     for(ind in idFields){
+				 if(keyString == "")
+				     keyString = data[idFields[ind]];
+				 else
+				     keyString += "__" + data[idFields[ind]];
+			     }
+			     var hash = "#/?page=grid&action=<?php echo $ascope["action"]; ?>&mode=edit&category=Main&item=" + encodeURIComponent(keyString);
+
+			     var location = window.location.toString();
+			     location = location.match(/(.*index.php)/)[1];
+			     onlocationSkipUrls[location + hash] = true;
+			     window.location.hash = hash;
+
+			     setRecalc(data["<?php echo $data->idFields[3]; ?>"]);
+			     subgridView("new", keyString);
+			     newSubgridItemHook = false; 
+			 });
+		     }
+		     <?php else: ?>
+		     newSubgridItemHook = false;
+		     <?php endif; ?>
                      function subgridView(subgridmode, keyString){
                          var detailRewrite = {
                              "ViewQuotes" : "ViewQuotesDetail",
@@ -701,14 +726,17 @@
  }
  
  //handler of save button if we in new mode. Just doing XHR request to save data
- function createItem(){
+ function createItem(cb){
      var itemData = $("#itemData");
 
      if (validateForm(itemData)) {
          $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
           .success(function(data) {
               //       console.log('ok');
-              window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
+	      if(cb)
+		  cb(data);
+              else
+                  window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
           })
           .error(function(err){
               if (err) {
@@ -719,7 +747,9 @@
 
               //   console.log(err);
           });
+         return false;
      }
+     return true;
  }
  //handler of save button if we in edit mode. Just doing XHR request to save data
  function saveItem(){
