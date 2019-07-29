@@ -21,7 +21,7 @@
        Calls:
        model
 
-       Last Modified: 23/07/2019
+       Last Modified: 29/07/2019
        Last Modified by: Zaharov Nikita
      */
 
@@ -32,12 +32,12 @@
         $translatedFieldName = $translation->translateLabel(key_exists($key, $data->editCategories[$category]) && key_exists("label", $data->editCategories[$category][$key]) ? $data->editCategories[$category][$key]["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
         $leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
         $rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : 6;
-	$disabledEdit =  (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  ||
-			 (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ||
-			 (key_exists("editPermissions", $data->editCategories[$category][$key]) &&
-			  $data->editCategories[$category][$key]["editPermissions"] == "admin" &&
-			  !$security->isAdmin())
-		       ? "disabled" : "";
+        $disabledEdit =  (key_exists("disabledEdit", $data->editCategories[$category][$key]) && $ascope["mode"] == "edit")  ||
+                         (key_exists("disabledNew", $data->editCategories[$category][$key]) && $ascope["mode"] == "new") ||
+                         (key_exists("editPermissions", $data->editCategories[$category][$key]) &&
+                          $data->editCategories[$category][$key]["editPermissions"] == "admin" &&
+                          !$security->isAdmin())
+                       ? "disabled" : "";
         
         switch($data->editCategories[$category][$key]["inputType"]){
             case "text" :
@@ -55,17 +55,17 @@
                 break;
 
             case "textarea" :
-		//renders text input with label
-		echo "<textarea id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" $disabledEdit>";
-		if(key_exists("formatFunction", $data->editCategories[$category][$key])){
-		    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
-		    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-		}
-		else
-		    echo formatField($data->editCategories[$category][$key], $value);
+                //renders text input with label
+                echo "<textarea id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control $key\" $disabledEdit>";
+                if(key_exists("formatFunction", $data->editCategories[$category][$key])){
+                    $formatFunction = $data->editCategories[$category][$key]["formatFunction"];
+                    echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+                }
+                else
+                    echo formatField($data->editCategories[$category][$key], $value);
 
-		echo"</textarea>";
-		break;
+                echo"</textarea>";
+                break;
 
             case "datetime" :
                 //renders text input with label
@@ -180,7 +180,7 @@
     $currencySymbol = $data->getCurrencySymbol();
 ?>
 
-<div class="simple-form">
+<div class="simple-form row">
     <div id="row_viewer"  style="font-size: 11pt">
         <form id="itemData" class="form-material form-horizontal m-t-30 col-md-12 col-xs-12">
             <input type="hidden" name="id" value="<?php echo $ascope["item"]; ?>" />
@@ -196,7 +196,7 @@
             <div class="row top_params">
                 <div class="col-md-6 col-xs-12">
                     <div class="row">
-		        <label class="pull-left" for="<?php echo $whom; ?>ID"><?php echo $whom; ?></label>
+                        <label class="pull-left" for="<?php echo $whom; ?>ID"><?php echo $whom; ?></label>
                         <!-- <span class="custom-select col-md-7"> -->
                         <span class="col-md-7">
                             <?php renderInputSimple($translation, $ascope, $data, "...fields", $headerItem, $whom . "ID", $headerItem[$whom . "ID"]); ?>
@@ -328,8 +328,8 @@
             <!-- Detail table 
                  <div class="row">
                  <?php
-                     //	            if(property_exists($data, "detailTable"))
-                     //  	                require __DIR__ . "/../components/detailGrid.php";
+                     //             if(property_exists($data, "detailTable"))
+                     //                   require __DIR__ . "/../components/detailGrid.php";
                      ?>
                  </div>-->
             <!-- Detail table -->
@@ -340,31 +340,31 @@
                     </div>
 
                     <script>
-		     <?php if($ascope["mode"] == "new"): ?>
-		     function newSubgridItemHook(){
-			 return createItem(function(data){
-			     var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
-			     for(ind in idFields){
-				 if(keyString == "")
-				     keyString = data[idFields[ind]];
-				 else
-				     keyString += "__" + data[idFields[ind]];
-			     }
-			     var hash = "#/?page=grid&action=<?php echo $ascope["action"]; ?>&mode=edit&category=Main&item=" + encodeURIComponent(keyString);
+                     <?php if($ascope["mode"] == "new"): ?>
+                     function newSubgridItemHook(){
+                         return createItem(function(data){
+                             var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
+                             for(ind in idFields){
+                                 if(keyString == "")
+                                     keyString = data[idFields[ind]];
+                                 else
+                                     keyString += "__" + data[idFields[ind]];
+                             }
+                             var hash = "#/?page=grid&action=<?php echo $ascope["action"]; ?>&mode=edit&category=Main&item=" + encodeURIComponent(keyString);
 
-			     var location = window.location.toString();
-			     location = location.match(/(.*index.php)/)[1];
-			     onlocationSkipUrls[location + hash] = true;
-			     window.location.hash = hash;
+                             var location = window.location.toString();
+                             location = location.match(/(.*index.php)/)[1];
+                             onlocationSkipUrls[location + hash] = true;
+                             window.location.hash = hash;
 
-			     setRecalc(data["<?php echo $data->idFields[3]; ?>"]);
-			     subgridView("new", keyString);
-			     newSubgridItemHook = false; 
-			 });
-		     }
-		     <?php else: ?>
-		     newSubgridItemHook = false;
-		     <?php endif; ?>
+                             setRecalc(data["<?php echo $data->idFields[3]; ?>"]);
+                             subgridView("new", keyString);
+                             newSubgridItemHook = false; 
+                         });
+                     }
+                     <?php else: ?>
+                     newSubgridItemHook = false;
+                     <?php endif; ?>
                      function subgridView(subgridmode, keyString){
                          var detailRewrite = {
                              "ViewQuotes" : "ViewQuotesDetail",
@@ -733,8 +733,8 @@
          $.post("<?php echo $linksMaker->makeGridItemNew($ascope["path"]); ?>", itemData.serialize(), null, 'json')
           .success(function(data) {
               //       console.log('ok');
-	      if(cb)
-		  cb(data);
+              if(cb)
+                  cb(data);
               else
                   window.location = "<?php echo $linksMaker->makeGridItemViewCancel($ascope["path"]); ?>";
           })
