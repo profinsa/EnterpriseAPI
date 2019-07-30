@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 25/07/2019
+  Last Modified: 30/07/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -399,7 +399,8 @@ class InvoiceHeaderList extends gridDataSource{
 			],
 			"ShipMethodID" => [
 				"dbType" => "varchar(36)",
-				"inputType" => "text",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipMethods",
 				"defaultValue" => ""
 			],
 			"WarehouseID" => [

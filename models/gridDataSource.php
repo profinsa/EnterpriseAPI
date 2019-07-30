@@ -1670,8 +1670,16 @@ EOF;
 
         //loading default values from Company record
         $defaultRecord = DB::select("select * from {$this->tableName} WHERE " . implode(" AND ", $idDefaults), array());
+
         $defaultCompanyRecord = DB::select("select * from companies WHERE CompanyID=?", [$user["CompanyID"]])[0];
         $defaultCompanyRecord->CurrencyExchangeRate = DB::select("select CurrencyExchangeRate from currencytypes WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CurrencyID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $defaultCompanyRecord->CurrencyID])[0]->CurrencyExchangeRate;
+        $defaultCompanyRecord->TermsID = $defaultCompanyRecord->Terms;
+        $defaultCompanyRecord->ShipMethodID = $defaultCompanyRecord->ShippingMethod;
+        if($this->tableName == "purchasedetail" || $this->tableName == "paymentsdetail")
+            $defaultCompanyRecord->TaxGroupID = $defaultCompanyRecord->DefaultPurchaseTaxGroup;
+        if($this->tableName == "orderdetail" || $this->tableName == "invoicedetail")
+            $defaultCompanyRecord->TaxGroupID = $defaultCompanyRecord->DefaultSalesTaxGroup;
+            
         if(count($defaultRecord))
             $defaultRecord = $defaultRecord[0];
         else
@@ -1695,8 +1703,10 @@ EOF;
                            $defaultRecord->$key != "" &&
                            $this->editCategories[$type][$key]["inputType"] != "datetime")
                             $this->editCategories[$type][$key]["defaultValue"] = $defaultRecord->$key;
+                        
                         if(property_exists($defaultCompanyRecord, $key) && $defaultCompanyRecord->$key != "")
                             $this->editCategories[$type][$key]["defaultValue"] = $defaultCompanyRecord->$key;
+
                         if($this->editCategories[$type][$key]["inputType"] == "datetime" &&
                            ($this->editCategories[$type][$key]["defaultValue"] == "0000-00-00 00:00:00" ||
                             //                            $this->editCategories[$type][$key]["defaultValue"] == "1983-01-01 13:00:00" ||
