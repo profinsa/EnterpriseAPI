@@ -1371,6 +1371,37 @@ class InvoiceHeaderSimpleList extends InvoiceHeaderList{
 	public $breadCrumbTitle ="Quick Invoice";
     public $reportType = "invoice";
 
+    public function __construct(){
+		$this->editCategories["Shipping"] = [
+			"CustomerDropShipment" => [
+				"dbType" => "tinyint(1)",
+				"inputType" => "checkbox",
+				"defaultValue" => "0"
+			],
+			"ShipMethodID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getShipMethods",
+				"defaultValue" => ""
+			],
+			"WarehouseID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShipForID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"ShipToID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			]
+        ];
+    }
+    
     // simple form section
     public $simpleInterface = [
         "showShipping" => true,
