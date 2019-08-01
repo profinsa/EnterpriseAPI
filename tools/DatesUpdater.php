@@ -24,6 +24,8 @@ $tableIgnoreList = [
     "ledgerstoredchartofaccounts"
 ];
 
+$minimalDateForIncrease = "1 January 2015";
+
 $tablesColumns = [];
 foreach($tables as $tableName){
     $desc = DB::select("describe $tableName", array());
@@ -40,7 +42,7 @@ foreach($tables as $tableName){
 $fields = [];
 //echo json_encode($tablesColumns["orderheader"], JSON_PRETTY_PRINT);
 foreach($tablesColumns as $name=>$desc){
-    foreach($desc as $columnDesc)
+    foreach($desc as $columnDesc){
         if($columnDesc->Type == "datetime" || $columnDesc->Type == "timestamp"){
             $columnDesc->tableName = $name;
             if(!in_array($columnDesc->Field, $columnIgnoreList))
@@ -49,45 +51,44 @@ foreach($tablesColumns as $name=>$desc){
             //  echo "Ignoring column {$columnDesc->Field}\n";
             //$fields[] = $columnDesc;
         }
+    }
 }
+    
 file_put_contents("fields.json", json_encode($fields, JSON_PRETTY_PRINT));
-
 foreach($tablesColumns as $name=>$desc){
     $columns = [];
-    foreach($desc as $columnDesc)
+    $keys = [];
+    foreach($desc as $columnDesc){
         if(($columnDesc->Type == "datetime" || $columnDesc->Type == "timestamp") &&
            !in_array($columnDesc->Field, $columnIgnoreList))
             $columns[] = $columnDesc->Field;
+        if($columnDesc->Key)
+            $keys[$columnDesc->Field] = $columnDesc->Key;
+    }
     if(count($columns)){
-        $result = DB::select("select " . implode(",", $columns) . " from $name");
-        if(count($result))
+        $result = DB::select("select " . implode(",", array_merge($columns, array_keys($keys))) . " from $name");
+        //        echo "update $name set";
+        if(count($result)){
             echo "processing $name\n";
-        else
+            foreach($result as $row){
+                $whereString = [];
+                foreach($keys as $keyColumn=>$keyType)
+                    $whereString[] = "$keyColumn='{$row->$keyColumn}'";
+                $whereString = implode(" AND ", $whereString);
+
+                //foreach(
+                $values = [];
+                foreach($columns as $columnName)
+                    if($row->$columnName && strtotime($row->$columnName) > strtotime($minimalDateForIncrease))
+                        $values[] = "$columnName='{$row->$columnName}'";
+                if(count($values))
+                    echo "update $name set " . implode(",", $values) . " WHERE $whereString" . "\n";
+            }
+        }else
             echo "table $name is empty\n";
     }
 }
 //echo count($tablesColumns);
 //echo count($fields);
 //echo json_encode($fields, JSON_PRETTY_PRINT);
-/*
-$whereBlock = "";
-$whereParts = [];
-echo json_encode($companies);
-if(count($companies)){
-    foreach($companies as $company)
-        $whereParts[] = "CompanyID='$company'";
-}else{
-    $companiesDb = DB::select("select CompanyID from companies");
-    $companies = [];
-    foreach($companiesDb as $company)
-        if($company->CompanyID != 'DEFAULT' &&
-           $company->CompanyID != 'DEMO' &&
-           $company->CompanyID != 'DINOS' &&
-           in_array($company->CompanyID, $companies) != true)
-            $companies[] = $company->CompanyID;
-    foreach($companies as $company)
-        $whereParts[] = "CompanyID='$company'";
-}
-$whereBlock = implode(" OR ", $whereParts);
-*/
 ?>
