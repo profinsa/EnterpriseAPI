@@ -21,10 +21,39 @@ $tableIgnoreList = [
     "currencytypeshistory",
     "errorlog",
     "ledgerchartofaccountsprioryears",
-    "ledgerstoredchartofaccounts"
+    "ledgerstoredchartofaccounts",
+    "inventoryledger"
 ];
 
 $minimalDateForIncrease = "1 January 2015";
+
+function add_months($months, DateTime $dateObject) 
+{
+    $next = new DateTime($dateObject->format('Y-m-d'));
+    $next->modify('last day of +'.$months.' month');
+
+    if($dateObject->format('d') > $next->format('d')) {
+        return $dateObject->diff($next);
+    } else {
+        return new DateInterval('P'.$months.'M');
+    }
+}
+
+function endCycle($d1, $months)
+{
+    $date = new DateTime($d1);
+
+    // call second function to add the months
+    $newDate = $date->add(add_months($months, $date));
+
+    // goes back 1 day from date, remove if you want same day of month
+    $newDate->sub(new DateInterval('P1D')); 
+
+    //formats final date to Y-m-d form
+    $dateReturned = $newDate->format('Y-m-d h:m:s'); 
+
+    return $dateReturned;
+}
 
 $tablesColumns = [];
 foreach($tables as $tableName){
@@ -54,7 +83,8 @@ foreach($tablesColumns as $name=>$desc){
     }
 }
     
-file_put_contents("fields.json", json_encode($fields, JSON_PRETTY_PRINT));
+//file_put_contents("fields.json", json_encode($fields, JSON_PRETTY_PRINT));
+$queries = [];
 foreach($tablesColumns as $name=>$desc){
     $columns = [];
     $keys = [];
@@ -79,15 +109,24 @@ foreach($tablesColumns as $name=>$desc){
                 //foreach(
                 $values = [];
                 foreach($columns as $columnName)
-                    if($row->$columnName && strtotime($row->$columnName) > strtotime($minimalDateForIncrease))
+                    if($row->$columnName && strtotime($row->$columnName) > strtotime($minimalDateForIncrease)){
+                        $row->$columnName = endCycle($row->$columnName, 1);
                         $values[] = "$columnName='{$row->$columnName}'";
-                if(count($values))
-                    echo "update $name set " . implode(",", $values) . " WHERE $whereString" . "\n";
+                    }
+                if(count($values)){
+                    $query = "update $name set " . implode(",", $values) . " WHERE $whereString";
+                    echo ($queries[] = $query) . "\n";
+                    DB::update($query);
+                }
             }
         }else
             echo "table $name is empty\n";
     }
+
 }
+
+echo count($queries);
+file_put_contents("queries.sql", implode("\n", $queries));
 //echo count($tablesColumns);
 //echo count($fields);
 //echo json_encode($fields, JSON_PRETTY_PRINT);
