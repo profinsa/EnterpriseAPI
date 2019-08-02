@@ -25,7 +25,7 @@ $tableIgnoreList = [
     "inventoryledger"
 ];
 
-$minimalDateForIncrease = "1 January 2015";
+$minimalDateForIncrease = "1 January 1990";
 
 function add_months($months, DateTime $dateObject) 
 {
