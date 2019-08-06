@@ -33,7 +33,7 @@ var mysql_config = {
     host     : '192.168.56.107',
     user     : 'root',
     password : '32167',
-    database : 'myenterprise'
+    database : 'enterprise'
 };
 
 //var outputFormat = "newtech";
@@ -613,6 +613,6 @@ var EDITables = [
 //for(ind in EDITables)
   //  generate_model_by_table(EDITables[ind]);
 
-generate_model_by_table("helpdocumentmodule");
-generate_model_by_table("helpdocumenttopic");
-generate_model_by_table("helpdocument");
+generate_model_by_table("helpsupportrequest");
+generate_model_by_table("helpsupportrequestdetail");
+generate_model_by_table("helpsupportrequesttype");

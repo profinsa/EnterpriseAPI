@@ -1,13 +1,12 @@
 <?php
-
 /*
-Name of Page: HelpSupportRequestTypeList model
+Name of Page: HelpSupportRequestTypeList
  
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\HelpDesk\CRM\HelpSupportRequestTypeList.php It provides data from database and default values, column names and categories
+Method: Model for grid screen. It provides data from database and default values, column names and categories
  
-Date created: 02/16/2017  Kenna Fetterman
+Date created: 06/08/2019 Nikita Zaharov
  
-Use: this model used by views/HelpSupportRequestTypeList for:
+Use: this model used by views/gridView
 - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
 - for loading data from tables, updating, inserting and deleting
  
@@ -20,50 +19,54 @@ Output parameters:
 - methods have their own output
  
 Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\HelpDesk\CRM\HelpSupportRequestTypeList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\HelpDesk\CRM\HelpSupportRequestTypeList.php
+created and used for ajax requests by grid controller
+used as model by views/gridView
  
 Calls:
 MySql Database
  
-Last Modified: 04/12/2017
-Last Modified by: Kenna Fetterman
+Last Modified: 06/08/2019
+Last Modified by: Nikita Zaharov
 */
+
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
-public $tableName = "helpsupportrequesttype";
-public $dashboardTitle ="Support Request Types";
-public $breadCrumbTitle ="Support Request Types";
-public $idField ="SupportRequestType";
-public $idFields = ["CompanyID","DivisionID","DepartmentID","SupportRequestType"];
-public $gridFields = [
+    public $tableName = "helpsupportrequesttype";
+    public $dashboardTitle ="helpsupportrequesttype";
+    public $breadCrumbTitle ="helpsupportrequesttype";
+    public $idField ="SupportRequestType";
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "SupportRequestType"];
+    public $gridFields = [
+        "SupportRequestType" => [
+            "dbType" => "varchar(36)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
+        "SupportRequestTypeDescription" => [
+            "dbType" => "varchar(120)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ]
+    ];
 
-"SupportRequestType" => [
-    "dbType" => "varchar(36)",
-    "inputType" => "text"
-],
-"SupportRequestTypeDescription" => [
-    "dbType" => "varchar(120)",
-    "inputType" => "text"
-]
-];
-
-public $editCategories = [
-"Main" => [
-
-"SupportRequestType" => [
-"dbType" => "varchar(36)",
-"inputType" => "text",
-"defaultValue" => ""
-],
-"SupportRequestTypeDescription" => [
-"dbType" => "varchar(120)",
-"inputType" => "text",
-"defaultValue" => ""
-]
-]];
-public $columnNames = [
-
-"SupportRequestType" => "Support Request Type",
-"SupportRequestTypeDescription" => "Support Request Type Description"];
-}?>
+    public $editCategories = [
+        "Main" => [
+            "SupportRequestType" => [
+                "dbType" => "varchar(36)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "SupportRequestTypeDescription" => [
+                "dbType" => "varchar(120)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]
+        ]
+    ];
+    
+    public $columnNames = [
+        "SupportRequestType" => "SupportRequestType",
+        "SupportRequestTypeDescription" => "SupportRequestTypeDescription"
+    ];
+}
+?>
