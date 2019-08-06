@@ -32,8 +32,8 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     public $tableName = "helpsupportrequesttype";
-    public $dashboardTitle ="helpsupportrequesttype";
-    public $breadCrumbTitle ="helpsupportrequesttype";
+    public $dashboardTitle ="Help Support Types";
+    public $breadCrumbTitle ="Help Support Types";
     public $idField ="SupportRequestType";
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "SupportRequestType"];
     public $gridFields = [

@@ -26,6 +26,30 @@
                         return $drill->getLinkWarehouseForPurchases($linksMaker, $row["ItemID"], $outValue);
                     case "QtyCommitted" :
                         return $drill->getLinkWarehouseForOrders($linksMaker, $row["ItemID"], $outValue);
+		    case "CustomerID" :
+			echo $drill->getLinkByField($key,$value);
+			break;
+		    case "VendorID" :
+			echo $drill->getLinkByField($key,$value);
+			break;
+		    case "OrderNumber" :
+			echo $drill->getReportLinkByOrderNumber($value, $ascope["pathPage"]);
+			break;
+		    case "InvoiceNumber" :
+			echo $drill->getReportLinkByInvoiceNumber($value, $ascope["pathPage"]);
+			break;
+		    case "TransactionNumber" :
+			if(key_exists("TransactionType", $row))
+			    echo $drill->getViewLinkByTransactionNumberAndType($value, $row["TransactionType"]);
+			else
+			    echo $value;
+			break;
+		    case "CVID" :
+			if(key_exists("TransactionType", $row))
+			    echo $drill->getLinkByCVID($row["TransactionType"], $value);
+			else
+			    echo $value;
+			break;
                     default :
                         return (key_exists("currencySymbol", $gridFields[$key])) ? $data->getCurrencySymbol()["symbol"] . $outValue : $outValue;
                 }
@@ -41,19 +65,15 @@
                     case "VendorID" :
                         return $drill->getLinkByField($key,$value);
                         break;
-                    case "OrderNumber" :
-                        return $drill->getReportLinkByOrderNumber($value, $ascope["pathPage"]);
-                        break;
-                    case "InvoiceNumber" :
-                        return $drill->getReportLinkByInvoiceNumber($value, $ascope["pathPage"]);
-                        break;
                     default:
-			$method = $gridFields[$key]["dataProvider"];
-			$types = $data->$method();
+                        if(key_exists("dataProvider",$gridFields[$key])){ 
+                            $method = $gridFields[$key]["dataProvider"];
+                            $types = $data->$method();
 
-			if($value && key_exists($value, $types))
-			    return $types[$value]["title"];
-                        
+                            if($value && key_exists($value, $types))
+                                return $types[$value]["title"];
+                        }else
+                        return $value;
                         /*if(key_exists("formatFunction", $gridFields[$key])){
                            $formatFunction = $gridFields[$key]["formatFunction"];
                            return $data->$formatFunction($row, "gridFields", $key, $value, false);
