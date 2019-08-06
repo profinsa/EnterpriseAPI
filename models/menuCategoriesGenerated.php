@@ -3908,7 +3908,21 @@ $leftMenu = [
 				        "short" => "Co"
 			        ],
                  ]
-			],	
+			],
+            [
+			    "type" => "submenu",
+			    "id" => "SystemSetup/SupportSetup",
+			    "full" => $translation->translateLabel('Support Set-up'),
+			    "short" => "Co",
+			    "data" => [
+	                 [
+	                     "id" => "CRMHelpDesk/HelpDesk/ViewSupportTypes",
+	                     "full" => $translation->translateLabel('View Support Types'),
+	                     "href"=> "EnterpriseASPHelpDesk/HelpDesk/HelpSupportRequestTypeList",
+	                     "short" => "Vi"
+  	                 ]
+                 ]
+            ]	
 		]
 	    ],
 	    [
