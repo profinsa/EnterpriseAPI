@@ -531,7 +531,7 @@
                                  <?php echo $translation->translateLabel("Save & Print"); ?>
                                  </a> -->
                         <?php endif; ?>
-                        <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] == "view" ? "saveItem()" : "createItem()"); ?>">
+                        <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] != "new" ? "saveItem()" : "createItem()"); ?>">
                             <?php echo $translation->translateLabel("Save"); ?>
                         </a>
                         <?php
@@ -758,8 +758,12 @@
          $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
           .success(function(data) {
               //   console.log("<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>");
-              window.location = "<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>";
-
+              serverProcedureAnyCall('<?php echo $ascope["path"]; ?>', 'Post', {
+                  <?php echo $data->idField; ?> : '<?php echo $headerItem[$data->idField]; ?>'
+              }, function(){
+                  callRecalc('<?php echo $headerItem[$data->idField]; ?>');
+                  window.location = "<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>";
+              });
           })
           .error(function(err){
               console.log(err);
