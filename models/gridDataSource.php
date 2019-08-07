@@ -1878,6 +1878,22 @@ EOF;
         $insert_values = "";
         $alreadyUsed = [];
         $ret = [];
+
+        //loading default values for fields from ...fields category, it need for fields where many fields is missed on forms like Simple form
+        $keyString = [];
+        foreach($this->idFields as $key)
+            if(!key_exists($key, $values) && ($key == 'CompanyID' || $key == 'DivisionID' || $key == 'DepartmentID'))
+                $keyString[] = $user[$key];
+        $keyString = implode("__", $keyString);
+        
+        if(key_exists("...fields", $this->editCategories))
+            $defaultValues = $this->getNewItem($keyString, "...fields");
+        else
+            $defaultValues = [];
+        foreach($defaultValues as $key=>$value)
+            if(!key_exists($key, $values))
+                $values[$key] = $value;
+                
         foreach($this->editCategories as $category=>$arr){
             if(!key_exists("loadFrom", $this->editCategories[$category])){
                 foreach($this->editCategories[$category] as $name=>$value){
