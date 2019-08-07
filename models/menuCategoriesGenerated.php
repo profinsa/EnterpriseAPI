@@ -3920,6 +3920,12 @@ $leftMenu = [
 	                     "full" => $translation->translateLabel('View Support Types'),
 	                     "href"=> "EnterpriseASPHelpDesk/HelpDesk/HelpSupportRequestTypeList",
 	                     "short" => "Vi"
+  	                 ],
+	                 [
+	                     "id" => "CRMHelpDesk/HelpDesk/ViewSupportRequests",
+	                     "full" => $translation->translateLabel('View Support Requests'),
+	                     "href"=> "EnterpriseASPHelpDesk/HelpDesk/HelpSupportRequestsList",
+	                     "short" => "Vi"
   	                 ]
                  ]
             ]	

@@ -2077,5 +2077,46 @@ EOF;
             "keyFields" => $keyFields
         ];
     }
+
+    //Detail Grid methods
+        //getting rows DetailGrids
+    public function getDetailGridFields($id, $pageName){
+        $user = Session::get("user");
+        $keyFields = "";
+        $fields = [];
+        foreach($this->detailPages[$pageName]["gridFields"] as $key=>$value){
+            $fields[] = $key;
+            if(key_exists("addFields", $value)){
+                $_fields = explode(",", $value["addFields"]);
+                foreach($_fields as $addfield)
+                    $fields[] = $addfield;
+            }
+        }
+        foreach($this->detailPages[$pageName]["detailIdFields"] as $key){
+            switch($key){
+            case "CompanyID" :
+                $keyFields .= "CompanyID='" . $user["CompanyID"] . "' AND ";
+                break;
+            case "DivisionID" :
+                $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
+                break;
+            case "DepartmentID" :
+                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                break;
+            }
+            if(!in_array($key, $fields))
+                $fields[] = $key;                
+        }
+        if($keyFields != "")
+            $keyFields = substr($keyFields, 0, -5);
+
+        $keyFields .= " AND {$this->detailPages[$pageName]["newKeyField"]}='" . $id . "'";
+        $result = DB::select("SELECT " . implode(",", $fields) . " from {$this->detailPages[$pageName]["tableName"]}" . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
+    }
 }
 ?>

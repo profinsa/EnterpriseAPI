@@ -25,15 +25,15 @@
   Calls:
   MySql Database
    
-  Last Modified: 06/08/2019
+  Last Modified: 07/08/2019
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     public $tableName = "helpsupportrequest";
-    public $dashboardTitle ="helpsupportrequest";
-    public $breadCrumbTitle ="helpsupportrequest";
+    public $dashboardTitle ="Help Support Requests";
+    public $breadCrumbTitle ="Help Support Requests";
     public $idField ="CaseID";
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "CaseID"];
     public $gridFields = [
@@ -43,16 +43,6 @@ class gridData extends gridDataSource{
             "defaultValue" => ""
         ],
         "CustomerId" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "ContactId" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "ProductId" => [
             "dbType" => "varchar(36)",
             "inputType" => "text",
             "defaultValue" => ""
@@ -82,21 +72,6 @@ class gridData extends gridDataSource{
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "SupportPriority" => [
-            "dbType" => "tinyint(3) unsigned",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "SupportType" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "SupportVersion" => [
-            "dbType" => "varchar(36)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
         "SupportDate" => [
             "dbType" => "datetime",
             "inputType" => "datetime",
@@ -107,51 +82,6 @@ class gridData extends gridDataSource{
             "inputType" => "text",
             "defaultValue" => ""
         ],
-        "SupportKeywords" => [
-            "dbType" => "varchar(120)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "SupportDescription" => [
-            "dbType" => "varchar(999)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "SupportScreenShotURL" => [
-            "dbType" => "varchar(120)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "SupportResolution" => [
-            "dbType" => "varchar(999)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "SupportResolutionDate" => [
-            "dbType" => "datetime",
-            "inputType" => "datetime",
-            "defaultValue" => "now"
-        ],
-        "SupportTimeSpentFixing" => [
-            "dbType" => "float",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "SuportNotesPrivate" => [
-            "dbType" => "varchar(255)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ],
-        "SupportApproved" => [
-            "dbType" => "tinyint(1)",
-            "inputType" => "checkbox",
-            "defaultValue" => "0"
-        ],
-        "SupportApprovedBy" => [
-            "dbType" => "varchar(26)",
-            "inputType" => "text",
-            "defaultValue" => ""
-        ]
     ];
 
     public $editCategories = [
@@ -159,11 +89,15 @@ class gridData extends gridDataSource{
             "CaseId" => [
                 "dbType" => "int(11)",
                 "inputType" => "text",
-                "defaultValue" => ""
+                "disabledEdit" => true,
+                //                "disabledNew" => true,
+                "defaultValue" => "",
+                //"dirtyAutoincrement" => "true"
             ],
             "CustomerId" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getCustomers",
                 "defaultValue" => ""
             ],
             "ContactId" => [
@@ -178,7 +112,8 @@ class gridData extends gridDataSource{
             ],
             "SupportManager" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getEmployees",
                 "defaultValue" => ""
             ],
             "SupportAssigned" => [
@@ -188,7 +123,8 @@ class gridData extends gridDataSource{
             ],
             "SupportAssignedTo" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getEmployees",
                 "defaultValue" => ""
             ],
             "SupportRequestMethod" => [
@@ -268,36 +204,83 @@ class gridData extends gridDataSource{
             ],
             "SupportApprovedBy" => [
                 "dbType" => "varchar(26)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getEmployees",
                 "defaultValue" => ""
             ]
         ]
     ];
     
     public $columnNames = [
-        "CaseId" => "CaseId",
-        "CustomerId" => "CustomerId",
-        "ContactId" => "ContactId",
-        "ProductId" => "ProductId",
-        "SupportManager" => "SupportManager",
-        "SupportAssigned" => "SupportAssigned",
-        "SupportAssignedTo" => "SupportAssignedTo",
-        "SupportRequestMethod" => "SupportRequestMethod",
-        "SupportStatus" => "SupportStatus",
-        "SupportPriority" => "SupportPriority",
-        "SupportType" => "SupportType",
-        "SupportVersion" => "SupportVersion",
-        "SupportDate" => "SupportDate",
-        "SupportQuestion" => "SupportQuestion",
-        "SupportKeywords" => "SupportKeywords",
-        "SupportDescription" => "SupportDescription",
-        "SupportScreenShotURL" => "SupportScreenShotURL",
-        "SupportResolution" => "SupportResolution",
-        "SupportResolutionDate" => "SupportResolutionDate",
-        "SupportTimeSpentFixing" => "SupportTimeSpentFixing",
-        "SuportNotesPrivate" => "SuportNotesPrivate",
-        "SupportApproved" => "SupportApproved",
-        "SupportApprovedBy" => "SupportApprovedBy"
+        "CaseId" => "Case Id",
+        "CustomerId" => "Customer Id",
+        "ContactId" => "Contact Id",
+        "ProductId" => "Product Id",
+        "SupportManager" => "Support Manager",
+        "SupportAssigned" => "Support Assigned",
+        "SupportAssignedTo" => "Support Assigned To",
+        "SupportRequestMethod" => "Support Request Method",
+        "SupportStatus" => "Support Status",
+        "SupportPriority" => "Support Priority",
+        "SupportType" => "Support Type",
+        "SupportVersion" => "Support Version",
+        "SupportDate" => "Support Date",
+        "SupportQuestion" => "Support Question",
+        "SupportKeywords" => "Support Keywords",
+        "SupportDescription" => "Support Description",
+        "SupportScreenShotURL" => "Support ScreenShot URL",
+        "SupportResolution" => "Support Resolution",
+        "SupportResolutionDate" => "Support Resolution Date",
+        "SupportTimeSpentFixing" => "Support Time Spent Fixing",
+        "SuportNotesPrivate" => "Suport Notes Private",
+        "SupportApproved" => "Support Approved",
+        "SupportApprovedBy" => "Support Approved By",
+        "Subject" => "Subject",
+        "Created" => "Created",
+        "Message" => "Message",
+        "ScreenShotURL" => "ScreenShot URL",
+        "CaseIDDetail" => "Case ID Detail"
     ];
+
+    public $detailPages = [
+        "Main" => [
+            "tableName" => "helpsupportrequestdetail",
+            //"hideFields" => "true",
+            //"disableNew" => "true",
+            //"deleteDisabled" => "true",
+            //"editDisabled" => "true",
+            "viewPath" => "CRMHelpDesk/HelpDesk/SupportRequestDetail",
+            "newKeyField" => "CaseId",
+            "keyFields" => ["CaseId"],
+            "detailIdFields" => ["CompanyID","DivisionID","DepartmentID","CaseId"],
+            "gridFields" => [
+                "Subject" => [
+                    "dbType" => "varchar(80)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "Created" => [
+                    "dbType" => "datetime",
+                    "inputType" => "datetime",
+                    "defaultValue" => "now"
+                ],
+                "Message" => [
+                    "dbType" => "varchar(999)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ],
+                "ScreenShotURL" => [
+                    "dbType" => "varchar(120)",
+                    "inputType" => "text",
+                    "defaultValue" => ""
+                ]
+            ]
+        ]
+    ];
+
+    public function getMain($id){
+        return $this->getDetailGridFields($id, "Main");
+    }
+
 }
 ?>

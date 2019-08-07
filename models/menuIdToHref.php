@@ -288,6 +288,7 @@
     "CRMHelpDesk/HelpDesk/ViewTopics" => "EnterpriseASPHelpDesk/HelpDesk/HelpMessageTopicList",
     "CRMHelpDesk/HelpDesk/ViewProblemReports" => "EnterpriseASPHelpDesk/HelpDesk/HelpProblemReportList",
     "CRMHelpDesk/HelpDesk/ViewSupportRequests" => "EnterpriseASPHelpDesk/HelpDesk/HelpSupportRequestList",
+    "CRMHelpDesk/HelpDesk/SupportRequestDetail" => "EnterpriseASPHelpDesk/HelpDesk/HelpSupportRequestDetail",
     "CRMHelpDesk/HelpDesk/ViewResources" => "EnterpriseASPHelpDesk/HelpDesk/HelpResourcesList",
     "CRMHelpDesk/HelpDesk/ViewPriorities" => "EnterpriseASPHelpDesk/HelpDesk/HelpPriorityList",
     "CRMHelpDesk/HelpDesk/ViewProblemTypes" => "EnterpriseASPHelpDesk/HelpDesk/HelpProblemTypeList",
