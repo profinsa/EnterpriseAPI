@@ -122,7 +122,7 @@
                 if(!key_exists($dataProvider, $GLOBALS["dialogChooserTypes"]))
                     $GLOBALS["dialogChooserTypes"][$dataProvider] = "hophop";
                 $GLOBALS["dialogChooserInputs"][$key] = $dataProvider;
-                $renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\" onchange=\"gridChangeItem(this, '$key', '$current_row');\">";
+                $renderedString .=  "<input type=\"text\" id=\"{$keyString}___". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"$value\" onchange=\"gridChangeItem(this, '$key', '$current_row');\" " . ( (key_exists("disabledEdit", $gridFields[$key]) && ($ascope["mode"] == "edit" || $ascope["mode"] == "view")) || (key_exists("disabledNew", $gridFields[$key]) && $ascope["mode"] == "new") ? "disabled" : "") . ">";
                 break;
 
             case "dropdown" :

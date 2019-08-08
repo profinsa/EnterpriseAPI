@@ -4,7 +4,7 @@
    
   Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerItemCrossReferenceList.php It provides data from database and default values, column names and categories
    
-  Date created: 02/16/2017  Kenna Fetterman
+  Date created: 02/16/2017 Nikita Zaharov
    
   Use: this model used by views/CustomerItemCrossReferenceList for:
   - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
@@ -25,9 +25,10 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/14/2017
+  Last Modified: 08/08/2019
   Last Modified by: Nikta Zaharov
 */
+
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     public $tableName = "customeritemcrossreference";
@@ -63,7 +64,8 @@ class gridData extends gridDataSource{
         "Main" => [
             "CustomerID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getCustomers",
                 "defaultValue" => "",
                 "disabledEdit" => "true"
             ],
@@ -72,7 +74,7 @@ class gridData extends gridDataSource{
                 "inputType" => "dialogChooser",
                 "defaultValue" => "",
                 "dataProvider" => "getItems",
-                "disabledEdit" => "true"
+                "disabledEdit" => true
             ],
             "CustomerItemDescription" => [
                 "dbType" => "varchar(80)",

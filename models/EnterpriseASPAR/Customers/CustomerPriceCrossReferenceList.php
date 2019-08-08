@@ -1,33 +1,32 @@
 <?php
-
 /*
-Name of Page: CustomerPriceCrossReferenceList model
- 
-Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerPriceCrossReferenceList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017  Kenna Fetterman
- 
-Use: this model used by views/CustomerPriceCrossReferenceList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerPriceCrossReferenceList.php
-used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerPriceCrossReferenceList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 08/14/2017
-Last Modified by: Nikita Zaharov
+  Name of Page: CustomerPriceCrossReferenceList model
+   
+  Method: Model for www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerPriceCrossReferenceList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017  Kenna Fetterman
+   
+  Use: this model used by views/CustomerPriceCrossReferenceList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerPriceCrossReferenceList.php
+  used as model by views/www.integralaccountingx.com\NewTechPhp\app\Http\Models\EnterpriseASPAR\Customers\CustomerPriceCrossReferenceList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 08/08/2019
+  Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
@@ -38,7 +37,6 @@ class gridData extends gridDataSource{
     public $idField ="CustomerID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","CustomerID","ItemPricingCode"];
     public $gridFields = [
-
         "CustomerID" => [
             "dbType" => "varchar(50)",
             "inputType" => "text"
@@ -76,15 +74,18 @@ class gridData extends gridDataSource{
 
     public $editCategories = [
         "Main" => [
-
             "CustomerID" => [
                 "dbType" => "varchar(50)",
-                "inputType" => "text",
+                "inputType" => "dialogChooser",
+                "dataProvider" => "getCustomers",
+                "disabledEdit" => true,
                 "defaultValue" => ""
             ],
             "ItemPricingCode" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getInventoryPricingCodes",
+                "disabledEdit" => true,
                 "defaultValue" => ""
             ],
             "ItemPrice" => [
@@ -117,9 +118,10 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ]
-        ]];
+        ]
+    ];
+    
     public $columnNames = [
-
         "CustomerID" => "Customer ID",
         "ItemPricingCode" => "Item Pricing Code",
         "ItemPrice" => "Item Price",
