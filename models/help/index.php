@@ -28,13 +28,15 @@
 
 class helpData{
     protected $id = "";
+    protected $user;
 
     public function __construct($id){
+        $this->user = $GLOBALS["scope"]->user;
         $this->id = $id;
     }
 
     public function getDocument(){
-        $user = Session::get("user");
+        $user = $this->user;
         $result = [];
         if($this->id)
             $result = DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentURL=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $this->id])[0];
@@ -48,7 +50,7 @@ class helpData{
     }
 
     public function getModules(){
-        $user = Session::get("user");
+        $user = $this->user;
         $result = json_decode(json_encode(DB::Select("select * from helpdocumentmodule WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])), true);
 
         $modules = [];
@@ -77,7 +79,7 @@ class helpData{
     }
 
     public function getTopics(){
-        $user = Session::get("user");
+        $user = $this->user;
         //        return DB::Select("select * from helpdocumenttopic WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
     }
 }

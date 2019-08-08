@@ -24,14 +24,14 @@
   models/help/*
   app from index.php
 
-  Last Modified: 16.07.2019
+  Last Modified: 08.08.2019
   Last Modified by: Nikita Zaharov
 */
 
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
-require 'models/users.php';
+//require 'models/users.php';
 require 'models/linksMaker.php';
 
 class controller{
@@ -41,19 +41,22 @@ class controller{
     public $path;
 
     public function process($app){
-        $users = new users();
+        /*$users = new users();
         $users->checkLoginInUrl();
         if(!key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
             $_SESSION["user"] = false;
             http_response_code(401);
             echo "wrong session";
             exit;
-        }
+            }*/
 
         $id = $_GET["url"];
+        $config = config();
+        $this->user = $config["user"];
+        $scope = $GLOBALS["scope"] = $this;
         require "models/help/index.php";
         
-        $this->user = $_SESSION["user"];
+        //$this->user = $_SESSION["user"];
                
         $data = new helpData($id);
 
@@ -64,8 +67,6 @@ class controller{
             if(key_exists("title", $_GET))
                 $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Help System" );
             
-               $scope = $this;
-
                $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
                require 'views/help/index.php';
         }
