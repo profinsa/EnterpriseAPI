@@ -361,8 +361,9 @@
                 <script type="text/javascript">
                  function onRequestSubmit(event){
                      var loginform = $('#requestForm');
-                     console.log(loginform);
-                     console.log(loginform.serialize());
+                     $("#contact-form").hide();
+                     //console.log(loginform);
+                     //console.log(loginform.serialize());
                      
                      serverProcedureAnyCall("CRMHelpDesk/HelpDesk/ViewSupportRequests", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
                          var values = JSON.parse(data);
