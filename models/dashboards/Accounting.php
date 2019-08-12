@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 12.06.2019
+  Last Modified: 12.08.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -31,7 +31,7 @@ class dashboardData{
     public $dashboardTitle = "General Ledger";
     
     public function CompanyAccountsStatus(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
         $results = DB::select("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
@@ -39,7 +39,7 @@ class dashboardData{
     }
 
     public function CollectionAlerts(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
         $results = DB::select("CALL spCollectionAlerts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
 
@@ -62,7 +62,7 @@ class dashboardData{
     }
 
     public function CompanyIncomeStatement(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
         $results = DB::select("CALL spCompanyIncomeStatement('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
@@ -70,7 +70,7 @@ class dashboardData{
     }
 
     public function CompanySystemWideMessage(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
         $results = DB::select("CALL spCompanySystemWideMessage('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
@@ -78,7 +78,7 @@ class dashboardData{
     }
 
     public function InventoryLowStockAlert(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
         $results = DB::select("CALL spInventoryLowStockAlert('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
 
@@ -86,7 +86,7 @@ class dashboardData{
     }
 
     public function LeadFollowUp(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
         $results = DB::select("CALL spLeadFollowUp('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
 
@@ -94,7 +94,7 @@ class dashboardData{
     }
 
     public function TodaysTasks(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
         $results = DB::select("CALL spTodaysTasks('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
 
@@ -102,7 +102,7 @@ class dashboardData{
     }
 
     public function TopOrdersReceipts(){
-        $user = $_SESSION["user"];
+        $user = Session::get("user");
 
         $results = [];
         $results["orders"] = DB::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
@@ -127,6 +127,14 @@ class dashboardData{
         $result = json_decode(json_encode($result), true);
         
         return $result;
+    }
+
+    public function helpRequests(){
+        $user = Session::get("user");
+
+        $results = DB::select("select CustomerID, CaseID, SupportQuestion from helpsupportrequest WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? limit 10", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+
+        return $results;
     }
 }
 ?>

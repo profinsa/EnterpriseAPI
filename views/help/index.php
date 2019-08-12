@@ -1,6 +1,6 @@
 <?php
     $modules = $data->getModules();
-//    $topics = $data->getTopics();
+    //    $topics = $data->getTopics();
     $currentDocument = $data->getDocument();
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
         <script src="assets/js/help/plugins.js"></script>
         <script src="assets/js/help/main.js"></script>
     </head>
-    <body>
+    <body>        
         <div class="site--wrap">
             <header class="site--header custom-site-header-color">
                 <div class="container">
@@ -291,7 +291,7 @@
         
         <div class="modal fade" id="contact-form" tabindex="-1" role="dialog" aria-labelledby="contact-form-header" aria-hidden="true">
             <div class="modal-dialog">
-                <form action="//stfbinc.helpdocs.com" method="POST" id="contactForm" enctype="multipart/form-data" onsubmit="checkValidUser();">
+                <form  action="#" onsubmit="return false" id="requestForm">
                     <input type="hidden" name="timer" value="0" id="ft" />
                     <div class="modal-content">
                         <div class="modal-header">
@@ -300,16 +300,16 @@
                         </div>
                         <div class="modal-body">
                             <input type="hidden" name="articleId" value="0" />
-                            <div class="form-group">
-                                <div class="col-labels">
-                                    <span class="in_label">Your Name</span>
-                                </div>
-                                <div class="col-inputs">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="name" required="true" id="contact-form-name" />
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- <div class="form-group">
+                                 <div class="col-labels">
+                                 <span class="in_label">Your Name</span>
+                                 </div>
+                                 <div class="col-inputs">
+                                 <div class="form-group">
+                                 <input type="text" class="form-control" name="name" required="true" id="contact-form-name" />
+                                 </div>
+                                 </div>
+                                 </div>  -->
                             <div class="form-group">
                                 <div class="col-labels">
                                     <span class="in_label">Email</span>
@@ -353,16 +353,44 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" value="Send Inquiry" />
+                            <input type="submit" class="btn btn-primary" value="Send Inquiry" id="requestButton" />
                         </div>
                 </form>
-                    </div>
-	            <script type="text/javascript">
-	             if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
-	                 window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
-	             }
-	             //window.baseURL = "//stfbinc.helpdocs.com";
-	             //window.urlPrefix = "//stfbinc.helpdocs.com";
-	            </script>
+	        <script type="text/javascript">
+                 $('#requestButton').click(function(){
+                     var loginform = $('#requestForm');
+                     console.log(loginform);
+                     console.log(loginform.serialize());
+                     /* serverProcedureAnyCall("users", "login", loginform.serialize(), function(data, error){
+	                if(data)
+	                location.reload();
+	                else {
+	                console.log(data, error);
+	                var res = error.responseJSON;
+
+	                if(res.wrong_user){
+		        $("#captcha").addClass("has-error");
+		        $("#username").addClass("has-error");
+		        $("#password").addClass("has-error");
+		        $("#user_wrong_message").css("display", "block");
+	                }else{
+		        $("#username").removeClass("has-error");
+		        $("#password").removeClass("has-error");
+		        $("#user_wrong_message").css("display", "none");
+		        $("#captcha").removeClass("has-error");
+	                }
+	                document.getElementById('imgcaptcha').src = res.captcha; 
+	                }
+                        });*/
+                     
+                 });
+	         if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
+	             window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
+	         }
+	         //window.baseURL = "//stfbinc.helpdocs.com";
+	         //window.urlPrefix = "//stfbinc.helpdocs.com";
+	        </script>
+            </div>
+        </div>
     </body>
 </html>

@@ -29,6 +29,7 @@
  			<?php require "blocks/todayTasks.php"; ?>
  			<?php require "blocks/leadFollowUp.php"; ?>
  			<?php require "blocks/collectionsAllerts.php"; ?>
+ 			<?php require "blocks/helpRequests.php"; ?>
 		    </div>
 		</div>
 	    </div>
