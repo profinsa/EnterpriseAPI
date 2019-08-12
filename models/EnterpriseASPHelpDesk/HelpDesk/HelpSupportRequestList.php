@@ -90,9 +90,9 @@ class gridData extends gridDataSource{
                 "dbType" => "int(11)",
                 "inputType" => "text",
                 "disabledEdit" => true,
-                //                "disabledNew" => true,
-                "defaultValue" => "",
-                //"dirtyAutoincrement" => "true"
+                "disabledNew" => true,
+                "defaultValue" => "-1",
+                "dirtyAutoincrement" => "true"
             ],
             "CustomerId" => [
                 "dbType" => "varchar(36)",
@@ -282,5 +282,29 @@ class gridData extends gridDataSource{
         return $this->getDetailGridFields($id, "Main");
     }
 
+    public function insertItemRemote(){
+        parent::insertItemRemote($_POST);
+        $mail = new PHPMailer();
+
+        // Settings
+        $mail->IsSMTP();
+        $mail->CharSet = 'UTF-8';
+
+        $mail->Host       = "box789.bluehost.com"; // SMTP server example
+        $mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
+        $mail->SMTPAuth   = true;                  // enable SMTP authentication
+        $mail->Port       = 465;                    // set the SMTP port for the GMAIL server
+        $mail->Username   = "support@stfb.com"; // SMTP account username example
+        $mail->Password   = "STFB!xticket1024";        // SMTP account password example
+
+        // Content
+        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->Subject = '$values["SupportQuestion"]';
+        $mail->Body    = '$values["SupportDescription"]';
+        $mail->AltBody = '$values["SupportDescription"]';
+        $mail->setFrom('support@stfb.com', 'Support');
+        $mail->addAddress($values["CustomerEmail"], '');    
+        $mail->send();
+    }
 }
 ?>

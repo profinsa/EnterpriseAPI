@@ -132,7 +132,7 @@ class dashboardData{
     public function helpRequests(){
         $user = Session::get("user");
 
-        $results = DB::select("select CustomerID, CaseID, SupportQuestion from helpsupportrequest WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? limit 10", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $results = DB::select("select CustomerID, CaseID, SupportQuestion from helpsupportrequest WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? order by SupportDate DESC limit 10", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
 
         return $results;
     }

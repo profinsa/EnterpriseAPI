@@ -30,6 +30,12 @@
 
 class linksMaker{
     protected $accounts = null;
+
+    function makeHelpKeyString(){
+        $defaultCompany = $GLOBALS["scope"]->user;
+        return "{$defaultCompany["CompanyID"]}__{$defaultCompany["DivisionID"]}__{$defaultCompany["DepartmentID"]}";
+    }
+    
     function makeGridItemSave($path){
         return "index.php?page=grid&action=$path&update=true";
     }

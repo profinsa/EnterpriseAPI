@@ -25,6 +25,7 @@
         <script src="assets/js/help/bootstrap.min.js"></script>
         <script src="assets/js/help/plugins.js"></script>
         <script src="assets/js/help/main.js"></script>
+	<?php require './views/components/commonJavascript.php';?>
     </head>
     <body>        
         <div class="site--wrap">
@@ -52,18 +53,18 @@
             </header>
             <section class="site--main">
                 <div class="search--row search-inner">
-	            <div class="container">
-		        <div class="row-content">
-			    <h1 class="row-title"><a href="//stfbinc.helpdocs.com">Knowledge Base</a></h1>
-			    <ul class="history-path">
-			        <li><a href="//stfbinc.helpdocs.com//"></a></li>
-			    </ul>
-		        </div>
+                    <div class="container">
+                        <div class="row-content">
+                            <h1 class="row-title"><a href="//stfbinc.helpdocs.com">Knowledge Base</a></h1>
+                            <ul class="history-path">
+                                <li><a href="//stfbinc.helpdocs.com//"></a></li>
+                            </ul>
+                        </div>
                         <form action="//stfbinc.helpdocs.com/search" method="GET" class="search-form">
                             <input type="text" placeholder="Search" class="search_input" name="query" value="">
                             <input type="button" value="Search" class="search_submit">
-		        </form>
-	            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="container content-main">
                     <section class="category--structure">
@@ -279,19 +280,19 @@
                         </div>
                     </div>
                 </div>
-	            </section>
-	            <footer class="site--footer">
-	                <div class="container">
-		            <p class="copyrights">
+                    </section>
+                    <footer class="site--footer">
+                        <div class="container">
+                            <p class="copyrights">
                                 &copy; 2019 STFB Inc. Integral Accounting and the STFB Inc Logo are Trademarks of STFB Inc.</p>
-	                </div>
-	            </footer>
+                        </div>
+                    </footer>
         </div>
         
         
         <div class="modal fade" id="contact-form" tabindex="-1" role="dialog" aria-labelledby="contact-form-header" aria-hidden="true">
             <div class="modal-dialog">
-                <form  action="#" onsubmit="return false" id="requestForm">
+                <form  action="#" onsubmit="return onRequestSubmit(event);" id="requestForm">
                     <input type="hidden" name="timer" value="0" id="ft" />
                     <div class="modal-content">
                         <div class="modal-header">
@@ -316,7 +317,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" name="email" required="true" />
+                                        <input type="email" class="form-control" name="email" required="true" id="CustomerEmail" />
                                     </div>
                                 </div>
                             </div>
@@ -326,7 +327,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="subject" required="true" />
+                                        <input type="text" class="form-control" name="subject" required="true" id="SupportQuestion" />
                                     </div>
                                 </div>
                             </div>
@@ -336,60 +337,55 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="message" required="true" id="contact-message"></textarea>
+                                        <textarea class="form-control" name="message" required="true" id="SupportDescription"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-labels">
-                                    <span class="in_label">Attachments</span>
-                                </div>
-                                <div class="col-inputs">
-                                    <div class="form-group">
-                                        <input type="file" class="form-control" name="attachment" />
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- <div class="form-group">
+                                 <div class="col-labels">
+                                 <span class="in_label">Attachments</span>
+                                 </div>
+                                 <div class="col-inputs">
+                                 <div class="form-group">
+                                 <input type="file" class="form-control" name="attachment" />
+                                 </div>
+                                 </div>
+                                 </div> -->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <input type="submit" class="btn btn-primary" value="Send Inquiry" id="requestButton" />
                         </div>
+                    </div>
                 </form>
-	        <script type="text/javascript">
-                 $('#requestButton').click(function(){
+                <script type="text/javascript">
+                 function onRequestSubmit(event){
                      var loginform = $('#requestForm');
                      console.log(loginform);
                      console.log(loginform.serialize());
-                     /* serverProcedureAnyCall("users", "login", loginform.serialize(), function(data, error){
-	                if(data)
-	                location.reload();
-	                else {
-	                console.log(data, error);
-	                var res = error.responseJSON;
-
-	                if(res.wrong_user){
-		        $("#captcha").addClass("has-error");
-		        $("#username").addClass("has-error");
-		        $("#password").addClass("has-error");
-		        $("#user_wrong_message").css("display", "block");
-	                }else{
-		        $("#username").removeClass("has-error");
-		        $("#password").removeClass("has-error");
-		        $("#user_wrong_message").css("display", "none");
-		        $("#captcha").removeClass("has-error");
-	                }
-	                document.getElementById('imgcaptcha').src = res.captcha; 
-	                }
-                        });*/
                      
-                 });
-	         if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
-	             window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
-	         }
-	         //window.baseURL = "//stfbinc.helpdocs.com";
-	         //window.urlPrefix = "//stfbinc.helpdocs.com";
-	        </script>
+                     serverProcedureAnyCall("CRMHelpDesk/HelpDesk/ViewSupportRequests", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                         var values = JSON.parse(data);
+                         values.CustomerId = "test";
+                         values.SupportQuestion = $("#SupportQuestion").val();
+                         values.SupportDescription = $("#SupportDescription").val();
+                         console.log(values);
+
+                         //updating customer information
+                         values.id = "<?php echo $linksMaker->makeHelpKeyString(); ?>";
+                         values.type = "Main";
+	                 serverProcedureAnyCall("CRMHelpDesk/HelpDesk/ViewSupportRequests", "insertItemRemote", values, function(data, error){
+                             console.log("request is sent");
+	                 });
+                     });
+                     return false;
+                 };
+                 if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
+                     window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
+                 }
+                 //window.baseURL = "//stfbinc.helpdocs.com";
+                 //window.urlPrefix = "//stfbinc.helpdocs.com";
+                </script>
             </div>
         </div>
     </body>

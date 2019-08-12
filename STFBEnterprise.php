@@ -15,6 +15,12 @@ function config(){
         "timeoutMinutes" => 10,
         "warningMinutes" => 2,
         "timeoutWarning" => "Your session will end in 2 minutes!",
+        "user" => [
+            "CompanyID" => "DINOS",
+            "DivisionID" => "DEFAULT",
+            "DepartmentID" => "DEFAULT",
+            "language" => "english"
+        ]
     );
 }
 

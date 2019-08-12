@@ -1,6 +1,7 @@
 {
     "require": {
         "gregwar/captcha": "1.*",
-        "asgrim/ofxparser": "^1.2"
+        "asgrim/ofxparser": "^1.2",
+        "phpmailer/phpmailer": "^6.0"
     }
 }

@@ -1606,6 +1606,9 @@ EOF;
                 //"columns" => "InvoiceNumber",
                 "tables" => ["edipaymentsheader"]
             ],
+            "helpsupportrequest" => [
+                "tables" => ["helpsupportrequest"]
+            ]
         ];
 
         $tablesForGetNextEntity = [
