@@ -1864,7 +1864,7 @@ EOF;
     }
     
     public function insertItemRemote(){
-        $this->insertItem($_POST);
+        $this->insertItem($_POST, true);
     }
    
     //add row to table

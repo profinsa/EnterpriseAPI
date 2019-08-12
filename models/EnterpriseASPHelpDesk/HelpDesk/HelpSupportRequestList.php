@@ -30,6 +30,9 @@
 */
 
 require "./models/gridDataSource.php";
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class gridData extends gridDataSource{
     public $tableName = "helpsupportrequest";
     public $dashboardTitle ="Help Support Requests";
@@ -284,6 +287,7 @@ class gridData extends gridDataSource{
 
     public function insertItemRemote(){
         parent::insertItemRemote($_POST);
+        /*        $values = $_POST;
         $mail = new PHPMailer();
 
         // Settings
@@ -291,20 +295,27 @@ class gridData extends gridDataSource{
         $mail->CharSet = 'UTF-8';
 
         $mail->Host       = "box789.bluehost.com"; // SMTP server example
-        $mail->SMTPDebug  = 0;                     // enables SMTP debug information (for testing)
+        $mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
         $mail->SMTPAuth   = true;                  // enable SMTP authentication
         $mail->Port       = 465;                    // set the SMTP port for the GMAIL server
         $mail->Username   = "support@stfb.com"; // SMTP account username example
+        $mail->SMTPSecure = 'tls';
         $mail->Password   = "STFB!xticket1024";        // SMTP account password example
 
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = '$values["SupportQuestion"]';
-        $mail->Body    = '$values["SupportDescription"]';
-        $mail->AltBody = '$values["SupportDescription"]';
+        $mail->Subject = $values["SupportQuestion"];
+        $mail->Body    = $values["SupportDescription"];
+        $mail->AltBody = $values["SupportDescription"];
+        $mail->From = "support@stfb.com";
         $mail->setFrom('support@stfb.com', 'Support');
-        $mail->addAddress($values["CustomerEmail"], '');    
-        $mail->send();
+        $mail->addAddress($values["CustomerEmail"]);
+        echo(json_encode($values));
+        try{
+            $mail->send();
+        } catch(Exception $e){
+            echo $mail->ErrorInfo;
+            }*/
     }
 }
 ?>

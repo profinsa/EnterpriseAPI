@@ -367,6 +367,7 @@
                      serverProcedureAnyCall("CRMHelpDesk/HelpDesk/ViewSupportRequests", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
                          var values = JSON.parse(data);
                          values.CustomerId = "test";
+                         values.CustomerEmail = $("#CustomerEmail").val();
                          values.SupportQuestion = $("#SupportQuestion").val();
                          values.SupportDescription = $("#SupportDescription").val();
                          console.log(values);
