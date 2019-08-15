@@ -50,6 +50,7 @@ class controller{
             exit;
         }
 
+        $config = config();
         $this->screen =  key_exists("screen", $_GET) ? $_GET["screen"] : "Accounting";
         $modelsRewrite = [
             "Accounting" => "Accounting",
@@ -110,6 +111,8 @@ class controller{
                 $dashboardFile = $_GET["screen"];
             }else{
                 $dashboardFile = "Accounting";
+                if(key_exists("defaultDashboard", $config))
+                    $dashboardFile = $config["defaultDashboard"];
                 $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Accounting");
                 if($user["accesspermissions"]["DefaultDashboard"] != ""){
                     $dashboardFile = preg_replace("/[\s]+/", "", $user["accesspermissions"]["DefaultDashboard"]);

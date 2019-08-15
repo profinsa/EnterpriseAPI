@@ -3,18 +3,19 @@ function config(){
     return array(
         "theme" => 'none',
         //"theme" => 'dark', uncomment for dark theme
-        "title" => 'Integral Accounting X Admin',
+        "title" => 'Enterprise X Admin',
         "loginForm" => "login",
         "db_host" => "localhost",
         "db_user" => "enterprise",
         "db_password" => "enterprise",
-        "db_base" => "enterprise",
+        "db_base" => "EnterpriseAdmin",
         "loginLogo" => "assets/images/stfb-logo.gif",
         "mediumLogo" => "assets/images/stfb-logo.gif",
         "smallLogo" => "assets/images/stfblogosm.jpg",
         "timeoutMinutes" => 10,
         "warningMinutes" => 2,
         "timeoutWarning" => "Your session will end in 2 minutes!",
+        "defaultDashboard" => "Admin",
         "user" => [
             "CompanyID" => "DINOS",
             "DivisionID" => "DEFAULT",
