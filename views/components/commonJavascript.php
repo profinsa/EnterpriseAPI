@@ -107,7 +107,7 @@
  }
  <?php endif; ?>
  function serverProcedureAnyCallWithParams(path, params, methodName, props, cb, jsonRequest, successAlert){
-     $.post(linksMaker.makeProcedureLink(path + params, methodName), jsonRequest ? JSON.stringify(props) : props, 'text')
+     $.post(linksMaker.makeProcedureLink(path, methodName) + params, jsonRequest ? JSON.stringify(props) : props, 'text')
       .success(function(data) {
           if(successAlert)
               alert(data);

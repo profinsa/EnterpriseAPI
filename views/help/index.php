@@ -365,7 +365,7 @@
                      //console.log(loginform);
                      //console.log(loginform.serialize());
                      
-                     serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                     serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
                          var values = JSON.parse(data);
                          values.CustomerId = "test";
                          values.CustomerEmail = $("#CustomerEmail").val();
@@ -376,7 +376,7 @@
                          //updating customer information
                          values.id = "<?php echo $linksMaker->makeHelpKeyString(); ?>";
                          values.type = "Main";
-                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "insertItemRemote", values, function(data, error){
+                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "", "insertItemRemote", values, function(data, error){
                              console.log("request is sent");
 	                 });
                      });
