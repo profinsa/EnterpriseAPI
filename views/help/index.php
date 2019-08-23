@@ -1,6 +1,6 @@
 <?php
-    $modules = $data->getModules();
-    //    $topics = $data->getTopics();
+    //$modules = $data->getModules();
+    $topics = $data->getTopics();
     $currentDocument = $data->getDocument();
 ?>
 <!DOCTYPE html>
@@ -70,23 +70,23 @@
                     <section class="category--structure">
                         <aside class="left-sidebar">
                             <ul class="list-links js_tinynav hidden-xs">
-                                <!--                                 <li><a href="//stfbinc.helpdocs.com/categories">All Articles</a></li> -->
+                                <!--                                 <li><a href="//stfbinc.helpdocs.com/categories">All Articles</a></li>
                                 <li>
                                     <a href="<?php echo $linksMaker->makeHelpLinkById("welcome"); ?>">Welcome</a>
-                                </li>
-                                <?php foreach($modules as $name=>$module): ?>
-                                    <?php if(count($module["topics"])): ?>
+                                </li>-->
+                                <?php foreach($topics as $name=>$topic): ?>
+                                    <?php if(count($topic["modules"])): ?>
                                         <li>
-                                            <a data-toggle="collapse" data-target="#collapse-<?php echo $module["ModuleID"]; ?>" class="have_drop collapsed"></a>
-                                            <a class="cat-name" href="#"><?php echo $module["ModuleName"]; ?></a>
-                                            <ul class="collapse" id="collapse-<?php echo $module["ModuleID"]; ?>">
-                                                <?php foreach($module["topics"] as $topicId=>$topic): ?>
-                                                    <?php if(count($topic["documents"])): ?>
+                                            <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"]; ?>" class="have_drop collapsed"></a>
+                                            <a class="cat-name" href="#"><?php echo $topic["TopicName"]; ?></a>
+                                            <ul class="collapse" id="collapse-<?php echo $topic["TopicID"]; ?>">
+                                                <?php foreach($topic["modules"] as $moduleId=>$module): ?>
+                                                    <?php if(count($module["documents"])): ?>
                                                         <li>
-                                                            <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"]; ?>" class="have_drop collapsed"></a>
-                                                            <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-receivable"><?php echo $topic["TopicName"]; ?></a>
-                                                            <ul class="collapse" id="collapse-<?php echo $topic["TopicID"]; ?>">
-                                                                <?php foreach($topic["documents"] as $documentId=>$document): ?>
+                                                            <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"] . $module["ModuleID"]; ?>" class="have_drop collapsed"></a>
+                                                            <a class="cat-name" href=""><?php echo $module["ModuleName"]; ?></a>
+                                                            <ul class="collapse" id="collapse-<?php echo $topic["TopicID"] . $module["ModuleID"]; ?>">
+                                                                <?php foreach($module["documents"] as $documentId=>$document): ?>
                                                                     <li><a href="<?php echo $linksMaker->makeHelpLinkById($document["DocumentTitleID"]); ?>"><?php echo $document["DocumentTitle"]; ?></a></li>
                                                                 <?php endforeach; ?>
                                                             </ul>
@@ -365,7 +365,7 @@
                      //console.log(loginform);
                      //console.log(loginform.serialize());
                      
-                     serverProcedureAnyCall("CRMHelpDesk/HelpDesk/ViewSupportRequests", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                     serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
                          var values = JSON.parse(data);
                          values.CustomerId = "test";
                          values.CustomerEmail = $("#CustomerEmail").val();
@@ -376,7 +376,7 @@
                          //updating customer information
                          values.id = "<?php echo $linksMaker->makeHelpKeyString(); ?>";
                          values.type = "Main";
-	                 serverProcedureAnyCall("CRMHelpDesk/HelpDesk/ViewSupportRequests", "insertItemRemote", values, function(data, error){
+                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "insertItemRemote", values, function(data, error){
                              console.log("request is sent");
 	                 });
                      });

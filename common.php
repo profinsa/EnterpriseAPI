@@ -20,6 +20,11 @@ function config(){
             "DivisionID" => "DEFAULT",
             "DepartmentID" => "DEFAULT",
             "language" => "english"
+        ],
+        "supportInsertUser" => [
+            "CompanyID" => "DINOS",
+            "DivisionID" => "DEFAULT",
+            "DepartmentID" => "DEFAULT"
         ]
     );
 }

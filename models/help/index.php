@@ -22,7 +22,7 @@
    Calls:
    sql
 
-   Last Modified: 16.07.2019
+   Last Modified: 20.08.2019
    Last Modified by: Nikita Zaharov
  */
 
@@ -49,7 +49,7 @@ class helpData{
         return $result;
     }
 
-    public function getModules(){
+    /*public function getModules(){
         $user = $this->user;
         $result = json_decode(json_encode(DB::Select("select * from helpdocumentmodule WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])), true);
 
@@ -76,11 +76,43 @@ class helpData{
             //if(
         //        echo json_encode($modules);
         return $modules;
-    }
+    }*/
 
     public function getTopics(){
         $user = $this->user;
-        //        return DB::Select("select * from helpdocumenttopic WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $ret_topics = [];
+        
+        $modules = json_decode(json_encode(DB::Select("select * from helpdocumentmodule WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])), true);
+       
+        $documents = json_decode(json_encode(DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])), true);
+        $topics = json_decode(json_encode(DB::Select("select * from helpdocumenttopic WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])), true);
+
+        foreach($documents as $document){
+            foreach($topics as $topic){
+                if($topic["TopicID"] == $document["DocumentTopic"]){
+                    if(!key_exists($document["DocumentTopic"], $ret_topics)){
+                        $ret_topics[$document["DocumentTopic"]] = $topic;
+                        $ret_topics[$document["DocumentTopic"]]["modules"] = [];
+                    }
+                    if(!key_exists($document["DocumentModule"], $ret_topics[$document["DocumentTopic"]]["modules"])){
+                        foreach($modules as $module)
+                            if($module["ModuleID"] == $document["DocumentModule"]){
+                                $module["documents"] = [];
+                                $ret_topics[$document["DocumentTopic"]]["modules"][$document["DocumentModule"]] = $module;
+                            }
+                    }
+
+                    $ret_topics[$document["DocumentTopic"]]["modules"][$document["DocumentModule"]]["documents"][] = $document;
+                }
+            }
+        }
+        //echo json_encode($ret_topics);
+        return $ret_topics;
     }
+
+    //    public function getTopics(){
+    //  $user = $this->user;
+        //        return DB::Select("select * from helpdocumenttopic WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+    //    }
 }
 ?>
