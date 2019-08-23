@@ -50,7 +50,7 @@ class controller{
             exit;
             }*/
 
-        $id = $_GET["url"];
+        $id = key_exists("url", $_GET) ? $_GET["url"] : "";
         $config = config();
         $this->user = $config["user"];
         $scope = $GLOBALS["scope"] = $this;

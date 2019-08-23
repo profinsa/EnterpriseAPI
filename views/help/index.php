@@ -78,13 +78,13 @@
                                     <?php if(count($topic["modules"])): ?>
                                         <li>
                                             <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"]; ?>" class="have_drop collapsed"></a>
-                                            <a class="cat-name" href="#"><?php echo $topic["TopicName"]; ?></a>
+                                            <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"]; ?>" class="cat-name" href="#"><?php echo $topic["TopicName"]; ?></a>
                                             <ul class="collapse" id="collapse-<?php echo $topic["TopicID"]; ?>">
                                                 <?php foreach($topic["modules"] as $moduleId=>$module): ?>
                                                     <?php if(count($module["documents"])): ?>
                                                         <li>
                                                             <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"] . $module["ModuleID"]; ?>" class="have_drop collapsed"></a>
-                                                            <a class="cat-name" href=""><?php echo $module["ModuleName"]; ?></a>
+                                                            <a data-toggle="collapse" data-target="#collapse-<?php echo $topic["TopicID"] . $module["ModuleID"]; ?>" class="cat-name" href="#"><?php echo $module["ModuleName"]; ?></a>
                                                             <ul class="collapse" id="collapse-<?php echo $topic["TopicID"] . $module["ModuleID"]; ?>">
                                                                 <?php foreach($module["documents"] as $documentId=>$document): ?>
                                                                     <li><a href="<?php echo $linksMaker->makeHelpLinkById($document["DocumentTitleID"]); ?>"><?php echo $document["DocumentTitle"]; ?></a></li>
