@@ -106,8 +106,32 @@ class helpData{
                 }
             }
         }
-        //echo json_encode($ret_topics);
-        return $ret_topics;
+
+        $orderedRetFirst = [];
+        $orderedRetSecond = [];
+        $orderedRetLast = [];
+        foreach($ret_topics as $key=>$topic)
+            if($topic["TopicID"] == "WELCOME")
+                $orderedRetFirst[] = $topic;
+            else if($topic["TopicID"] != "WELCOME" &&
+                    $topic["TopicID"] != "TECH" &&
+                    $topic["TopicID"] != "TROUBLE" &&
+                    $topic["TopicID"] != "USER")
+                $orderedRetSecond[] = $topic;
+                
+        foreach($ret_topics as $key=>$topic)
+            if($topic["TopicID"] == "TECH")
+                $orderedRetFirst[] = $topic;
+
+        foreach($ret_topics as $key=>$topic)
+            if($topic["TopicID"] == "TROUBLE")
+                $orderedRetFirst[] = $topic;
+
+        foreach($ret_topics as $key=>$topic)
+            if($topic["TopicID"] == "USER")
+                $orderedRetLast[] = $topic;
+
+        return array_merge($orderedRetFirst, $orderedRetSecond, $orderedRetLast);
     }
 
     //    public function getTopics(){
