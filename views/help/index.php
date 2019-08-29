@@ -46,7 +46,7 @@
                     <nav class="header--nav">
                         <ul>
                             <li><a href="https://www.stfb.com">STFB Inc. Home Page</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#contact-form">Submit a Request</a></li>
+                            <li><a href="#contact-form" data-toggle="modal" data-target="#contact-form">Submit a Request</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -71,9 +71,9 @@
                         <aside class="left-sidebar">
                             <ul class="list-links js_tinynav hidden-xs">
                                 <!--                                 <li><a href="//stfbinc.helpdocs.com/categories">All Articles</a></li>
-                                <li>
-                                    <a href="<?php echo $linksMaker->makeHelpLinkById("welcome"); ?>">Welcome</a>
-                                </li>-->
+                                     <li>
+                                     <a href="<?php echo $linksMaker->makeHelpLinkById("welcome"); ?>">Welcome</a>
+                                     </li>-->
                                 <?php foreach($topics as $name=>$topic): ?>
                                     <?php if(count($topic["modules"])): ?>
                                         <li>
@@ -359,6 +359,13 @@
                     </div>
                 </form>
                 <script type="text/javascript">
+                 $(document).ready(function() {
+
+                     if(window.location.href.indexOf('#contact-form') != -1) {
+                         $('#contact-form').modal('show');
+                     }
+
+                 });
                  function onRequestSubmit(event){
                      var loginform = $('#requestForm');
                      $("#contact-form").hide();
