@@ -180,13 +180,13 @@
                 [
                     "type" => "absoluteLink",
                     "target" => "_blank",
-                    "href" => "/EnterpriseX/Help/index.php#contact-form",
+                    "href" => "https://stfb.net/EnterpriseX/Help/index.php#contact-form",
                     "full" => $translation->translateLabel('New Ticket')
                 ],
                 [
                     "type" => "absoluteLink",
                     "target" => "_blank",
-                    "href" => "/EnterpriseX/Help/index.php",
+                    "href" => "https://stfb.net/EnterpriseX/Help/index.php",
                     "full" => $translation->translateLabel('Help System')
                 ],
             ]

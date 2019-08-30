@@ -374,17 +374,17 @@
                      
                      serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
                          console.log(data);
-                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "&config=STFBEnterprise&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
                              var values = JSON.parse(data);
-                             values.CustomerId = "test";
-                             values.CustomerEmail = $("#CustomerEmail").val();
+                             //values.CustomerId = "test";
+                             values.CustomerId = values.CustomerEmail = $("#CustomerEmail").val();
                              values.SupportQuestion = $("#SupportQuestion").val();
                              values.SupportDescription = $("#SupportDescription").val();
 
                              //updating customer information
                              values.id = "<?php echo $linksMaker->makeHelpKeyString(); ?>";
                              values.type = "Main";
-                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "", "insertItemRemote", values, function(data, error){
+                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "&config=STFBEnterprise&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo", "insertItemRemote", values, function(data, error){
                                  serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
                                      console.log(data);
                                  });

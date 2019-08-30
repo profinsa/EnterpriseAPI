@@ -28,8 +28,8 @@
                 <span style="font-size: 30px" class="favorits glyphicon glyphicon-question-sign" aria-hidden="true"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="helpDropdown" aria-expanded="false" style="left:-90px">
-                <li><a href="/EnterpriseX/Help/index.php" target="_blank" class="lang-item"><?php echo $translation->translateLabel("Help Documentation"); ?></a></li>
-                <li><a href="/EnterpriseX/Help/index.php#contact-form" target="_blank" class="lang-item"><?php echo $translation->translateLabel("Enter Support Ticket"); ?></a></li>
+                <li><a href="https://stfb.net/EnterpriseX/Help/index.php" target="_blank" class="lang-item"><?php echo $translation->translateLabel("Help Documentation"); ?></a></li>
+                <li><a href="https://stfb.net/EnterpriseX/Help/index.php#contact-form" target="_blank" class="lang-item"><?php echo $translation->translateLabel("Enter Support Ticket"); ?></a></li>
             </ul>
         </li>
         <li class="top-bar-link2 float-right" id="zoomcontainer" style="display:none">

@@ -4266,14 +4266,14 @@ $leftMenu = [
 	    [
 		"type" => "absoluteLink",
 		"title" => "Help Documentaion",
-		"link" => "/EnterpriseX/Help/index.php",
+		"link" => "https://stfb.net/EnterpriseX/Help/index.php",
 		"target" => "_Blank",
 		"icon" => "icon-docs"
 	    ],
 	    [
 		"type" => "absoluteLink",
 		"title" => "Support Ticket",
-		"link" => "/EnterpriseX/Help/index.php#contact-form",
+		"link" => "https://stfb.net/EnterpriseX/Help/index.php#contact-form",
 		"target" => "_Blank",
 		"icon" => "icon-support"
 	    ],
