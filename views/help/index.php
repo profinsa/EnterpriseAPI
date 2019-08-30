@@ -372,25 +372,30 @@
                      //console.log(loginform);
                      //console.log(loginform.serialize());
                      
-                     serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
-                         var values = JSON.parse(data);
-                         values.CustomerId = "test";
-                         values.CustomerEmail = $("#CustomerEmail").val();
-                         values.SupportQuestion = $("#SupportQuestion").val();
-                         values.SupportDescription = $("#SupportDescription").val();
-                         console.log(values);
+                     serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
+                         console.log(data);
+                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                             var values = JSON.parse(data);
+                             values.CustomerId = "test";
+                             values.CustomerEmail = $("#CustomerEmail").val();
+                             values.SupportQuestion = $("#SupportQuestion").val();
+                             values.SupportDescription = $("#SupportDescription").val();
 
-                         //updating customer information
-                         values.id = "<?php echo $linksMaker->makeHelpKeyString(); ?>";
-                         values.type = "Main";
-                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "", "insertItemRemote", values, function(data, error){
-                             console.log("request is sent");
-	                 });
+                             //updating customer information
+                             values.id = "<?php echo $linksMaker->makeHelpKeyString(); ?>";
+                             values.type = "Main";
+                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "", "insertItemRemote", values, function(data, error){
+                                 serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                                     console.log(data);
+                                 });
+                                 console.log("request is sent");
+	                     });
+                         });
                      });
                      return false;
-                 };
+                 }
                  if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
-                     window.location.href = "https:" + window.location.href.substring(window.location.protocol.length)
+                     window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
                  }
                  //window.baseURL = "//stfbinc.helpdocs.com";
                  //window.urlPrefix = "//stfbinc.helpdocs.com";

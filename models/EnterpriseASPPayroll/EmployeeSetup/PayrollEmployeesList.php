@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/02/2019
+  Last Modified: 30/08/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -717,6 +717,19 @@ class gridData extends gridDataSource{
         $user["interface"] = strtolower($_GET["interface"]);
         Session::set("user", $user);
         echo '{ "message" : "ok"}';
+    }
+
+    public function saveCurrentSession(){
+        $_SESSION["previousSession"] = json_encode($_SESSION);
+        //        $_SESSION["configName"] = "Admin";
+        echo json_encode($_SESSION, JSON_PRETTY_PRINT);
+    }
+
+    public function restorePreviousSession(){
+        $session = json_decode($_SESSION["previousSession"], true);
+        foreach($session as $key=>$value)
+            $_SESSION[$key] = $value;
+        echo json_encode($_SESSION, JSON_PRETTY_PRINT);
     }
 }
 ?>
