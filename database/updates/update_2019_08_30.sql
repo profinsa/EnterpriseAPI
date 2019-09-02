@@ -6,7 +6,10 @@ CREATE TABLE AppInstallations(
     InstallationDate datetime,
     ExpirationDate datetime,
     Active tinyint(1),
-    LoggedIn int
+    Clean tinyint(1),
+    LoggedIn int,
+    LockedBy nvarchar(36),
+    LockTS datetime
 );
 
 /*

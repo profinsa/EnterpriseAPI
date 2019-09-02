@@ -25,15 +25,15 @@
   Calls:
   MySql Database
 
-  Last Modified: 30/08/2019
+  Last Modified: 02/09/2019
   Last Modified by: Zaharov Nikita
 */
 
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     public $tableName = "AppInstallations";
-    public $dashboardTitle ="AppInstallations";
-    public $breadCrumbTitle ="AppInstallations";
+    public $dashboardTitle ="App Installations";
+    public $breadCrumbTitle ="App Installations";
     public $idField ="CustomerID";
     public $idFields = ["CustomerID"];
     public $gridFields = [
@@ -107,6 +107,11 @@ class gridData extends gridDataSource{
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ],
+            "Clean" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
             "LoggedIn" => [
                 "dbType" => "int(11)",
                 "inputType" => "text",
@@ -123,7 +128,69 @@ class gridData extends gridDataSource{
         "InstallationDate" => "Installation Date",
         "ExpirationDate" => "Expiration Date",
         "Active" => "Active",
+        "Clean" => "Clean",
         "LoggedIn" => "Logged In"
     ];
+
+    public function createInstallation(){
+        $result = DB::SELECT("select * from appinstallations WHERE Clean=1");
+        if(!count($result)); //need to clone new database from cleanenterprise;
+        $installation = $result[0];
+        DB::UPDATE("update appinstallations set Clean=0 WHERE ConfigName=?", [$installation->ConfigName]);
+        $title = "Integral Accounting Test";
+        $dbname = $installation->ConfigName;
+        $dbuser = "enterprise";
+        $dbpassword = "enterprise";
+        $config = <<<EOF
+<?php
+function config(){
+    return array(
+        "theme" => 'none',
+        //"theme" => 'dark', uncomment for dark theme
+        "title" => '$title',
+        "loginForm" => "login",
+        "db_host" => "localhost",
+        "db_user" => "$dbuser",
+        "db_password" => "$dbpassword",
+        "db_base" => "$dbname",
+        "loginLogo" => "assets/images/stfb-logo.gif",
+        "mediumLogo" => "assets/images/stfb-logo.gif",
+        "smallLogo" => "assets/images/stfblogosm.jpg",
+        "timeoutMinutes" => 10,
+        "warningMinutes" => 2,
+        "timeoutWarning" => "Your session will end in 2 minutes!",
+        "user" => [
+            "CompanyID" => "DINOS",
+            "DivisionID" => "DEFAULT",
+            "DepartmentID" => "DEFAULT",
+            "language" => "english"
+        ],
+        "supportInsertUser" => [
+            "CompanyID" => "DINOS",
+            "DivisionID" => "DEFAULT",
+            "DepartmentID" => "DEFAULT"
+        ]
+    );
+}
+
+function defaultUser(){
+    return [
+        "Company" => "DINOS",
+        "Division" => "DEFAULT",
+        "Department" => "DEFAULT",
+        "Username" => "Demo",
+        "Password" => "Demo",
+        "Language" => "English"
+    ];
+}
+
+function isDebug(){
+    return true;
+}
+?>
+EOF;
+        file_put_contents(__DIR__ . "/../../../" . $installation->ConfigName . ".php", $config);
+        echo $config;
+    }
 }
 ?>
