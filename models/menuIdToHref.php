@@ -426,6 +426,8 @@
     "SystemSetup/EDISetup/EDIPaymentsDetail" => "EnterpriseASPSystem/EDISetup/EDIPaymentsDetail",
     "SystemSetup/EDISetup/EDIItems" => "EnterpriseASPSystem/EDISetup/EDIItemsList",
     "Reports/Financials/ExcelWorksheets" => "reports/Worksheets/Worksheet",
-    "Reports/Autoreport/GenericReportDetail" => "EnterpriseASPSystem/Autoreport/GenericReportDetail"
+    "Reports/Autoreport/GenericReportDetail" => "EnterpriseASPSystem/Autoreport/GenericReportDetail",
+
+    "SystemSetup/Admin/AppInstallations" => "EnterpriseASPSystem/Admin/AppInstallationsList",
 ];
 ?>

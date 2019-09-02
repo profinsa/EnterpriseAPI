@@ -721,15 +721,14 @@ class gridData extends gridDataSource{
 
     public function saveCurrentSession(){
         $_SESSION["previousSession"] = json_encode($_SESSION);
-        //        $_SESSION["configName"] = "Admin";
-        echo json_encode($_SESSION, JSON_PRETTY_PRINT);
+        //echo json_encode($_SESSION, JSON_PRETTY_PRINT);
     }
 
     public function restorePreviousSession(){
         $session = json_decode($_SESSION["previousSession"], true);
         foreach($session as $key=>$value)
             $_SESSION[$key] = $value;
-        echo json_encode($_SESSION, JSON_PRETTY_PRINT);
+        //echo json_encode($_SESSION, JSON_PRETTY_PRINT);
     }
 }
 ?>

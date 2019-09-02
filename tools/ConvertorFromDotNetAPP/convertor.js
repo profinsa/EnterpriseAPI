@@ -22,7 +22,7 @@
  Calls:
  mysql
 
- Last Modified: 19.02.2019
+ Last Modified: 02.09.2019
  Last Modified by: Nikita Zaharov
  */
 
@@ -613,6 +613,4 @@ var EDITables = [
 //for(ind in EDITables)
   //  generate_model_by_table(EDITables[ind]);
 
-generate_model_by_table("helpsupportrequest");
-generate_model_by_table("helpsupportrequestdetail");
-generate_model_by_table("helpsupportrequesttype");
+generate_model_by_table("AppInstallations");

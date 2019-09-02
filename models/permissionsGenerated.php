@@ -133,6 +133,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "AppInstallations" => [
+        "select" => "ARView|APView|GLView|OEView|ADView|ADSetup",
+        "update" => "ARView|ADSetup",
+        "insert" => "ARView|ADSetup",
+        "delete" => "any",
+    ],
     "Companies" => [
         "select" => "ARView|APView|GLView|OEView|ADView|ADSetup",
         "update" => "ARView|ADSetup",
