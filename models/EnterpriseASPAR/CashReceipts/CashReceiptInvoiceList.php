@@ -171,9 +171,6 @@ EOF;
         $user = Session::get("user");
         $postData = file_get_contents("php://input");
         
-        // `application/x-www-form-urlencoded`  `multipart/form-data`
-        $data = parse_str($postData);
-        // or
         // `application/json`
         $data = json_decode($postData, true);
         $success = true;

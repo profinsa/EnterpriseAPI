@@ -3,6 +3,7 @@ include "../init.php";
 $pdo = DB::connection()->getPdo();
 $result = DB::select("show tables", array());
 $databaseName = "Tables_in_" . $config["db_base"];
+
 foreach($result as $key=>$row){
     if($row->$databaseName != "activeemployee" &&
        $row->$databaseName != "translation" &&

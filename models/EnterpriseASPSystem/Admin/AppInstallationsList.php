@@ -34,8 +34,8 @@ class gridData extends gridDataSource{
     public $tableName = "AppInstallations";
     public $dashboardTitle ="App Installations";
     public $breadCrumbTitle ="App Installations";
-    public $idField ="CustomerID";
-    public $idFields = ["CustomerID"];
+    public $idField ="ConfigName";
+    public $idFields = ["ConfigName"];
     public $gridFields = [
         "CustomerID" => [
             "dbType" => "varchar(50)",
@@ -85,6 +85,7 @@ class gridData extends gridDataSource{
             "ConfigName" => [
                 "dbType" => "varchar(100)",
                 "inputType" => "text",
+                "disabledEdit" => true,
                 "defaultValue" => ""
             ],
             "InstallationName" => [
@@ -132,15 +133,7 @@ class gridData extends gridDataSource{
         "LoggedIn" => "Logged In"
     ];
 
-    public function createInstallation(){
-        $result = DB::SELECT("select * from appinstallations WHERE Clean=1");
-        if(!count($result)); //need to clone new database from cleanenterprise;
-        $installation = $result[0];
-        DB::UPDATE("update appinstallations set Clean=0 WHERE ConfigName=?", [$installation->ConfigName]);
-        $title = "Integral Accounting Test";
-        $dbname = $installation->ConfigName;
-        $dbuser = "enterprise";
-        $dbpassword = "enterprise";
+    function generateConfig($dbname, $dbuser, $dbpassword, $title){
         $config = <<<EOF
 <?php
 function config(){
@@ -189,8 +182,29 @@ function isDebug(){
 }
 ?>
 EOF;
-        file_put_contents(__DIR__ . "/../../../" . $installation->ConfigName . ".php", $config);
-        echo $config;
+        return $config;
+    }
+    
+    public function createInstallation(){
+        $postData = file_get_contents("php://input");
+        
+        // `application/json`
+        $data = json_decode($postData, true);
+        $ret = [];
+        $ret["message"] = "ok";
+        $installations = DB::SELECT("select * from appinstallations WHERE Clean=1");
+        if(count($installations)){ //need to clone new database from cleanenterprise if clean databases is not enough;
+            foreach($data["items"] as $ItemID=>$item){
+                $installation = array_shift($installations);
+                DB::UPDATE("update appinstallations set SoftwareID=?,CustomerID=?, Clean=0, Active=1 WHERE ConfigName=?", [$item["ItemName"], $data["customer"]["CustomerID"], $installation->ConfigName]);
+                $config = $this->generateConfig($installation->ConfigName, "enterprise", "enterprise", "Integral Accounting Test"); 
+                file_put_contents(__DIR__ . "/../../../" . $installation->ConfigName . ".php", $config);
+            }
+        }
+        echo json_encode($ret, JSON_PRETTY_PRINT);
+        return;
+        
+        //echo $config;
     }
 }
 ?>

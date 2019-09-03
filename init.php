@@ -3,8 +3,11 @@ session_name("EnterpriseX");
 session_start([
     "cookie_lifetime" => 30
 ]);
-
-if((key_exists("config", $_GET) && ($configName = $_GET["config"]) != 'default') ||
+if(key_exists("configName", $GLOBALS)){
+    $configName = $GLOBALS["configName"];
+    require $configName . '.php';
+    $_SESSION["configName"] = $configName;
+}else if((key_exists("config", $_GET) && ($configName = $_GET["config"]) != 'default') ||
    (key_exists("configName", $_SESSION) && ($configName = $_SESSION["configName"]) != 'default') && (!key_exists("page", $_GET) || ($_GET["page"] != 'ByPassLogin' && $_GET["page"] != 'login'))){
     require $configName . '.php';
     $_SESSION["configName"] = $configName;
@@ -50,7 +53,8 @@ class DB{
         $queryKey = $query . implode("!", $args);
         $result = [];
 
-        if(key_exists($queryKey, $_SESSION["DBQueries"]) &&
+        if(!key_exists("configName", $GLOBALS)&&
+           key_exists($queryKey, $_SESSION["DBQueries"]) &&
            $_SESSION["DBQueries"][$queryKey]["timestamp"] < time() + 3){
             $result = $_SESSION["DBQueries"][$queryKey]["result"];
             $_SESSION["cachedQueries"][$queryKey] = "from cache";
