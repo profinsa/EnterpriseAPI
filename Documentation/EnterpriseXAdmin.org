@@ -59,21 +59,21 @@
 
 * Real Hosting Cart scenario
   + User follow to Hosting Cart and doing registation.
-    Cart call EnterpriseX Admin API(this API is EnterpriseX) to create Customer and Customer Financials
+    - Cart call EnterpriseX Admin API(this API is EnterpriseX) to create Customer and Customer Financials
   + User choose product, added to Shopping Cart
-    Cart call own Cart API to get list of products, add to cart etc.
-    All Cart API uses inventoryitems table of enterpriseadmin database and other regular EnterpriseX tables directly.
+    - Cart call own Cart API to get list of products, add to cart etc.
+    - All Cart API uses inventoryitems table of enterpriseadmin database and other regular EnterpriseX tables directly.
   + User goes to checkout and click process
-    Cart call EnterpriseX Admin API(this API is EnterpriseX) to create Order, Post Order, Get Doc Order etc
-    Cart call EnterpriseX Admin API to request creating application. EnterpriseX Admin calls Hosting Manager to alloc some
-    fresh installed database from pull and initialize it for new application.
+    - Cart call EnterpriseX Admin API(this API is EnterpriseX) to create Order, Post Order, Get Doc Order etc
+    - Cart call EnterpriseX Admin API to request creating application. EnterpriseX Admin calls Hosting Manager to alloc some
+    - fresh installed database from pull and initialize it for new application.
   + User goes to Account
-    Cart call own Cart API to get list of orders
-    Cart call EnterpriseX Admin API to get list of Customer Applications and their status
+    - Cart call own Cart API to get list of orders
+    - Cart call EnterpriseX Admin API to get list of Customer Applications and their status
   + User click on Application link. Link looks like standard link - https://stfb.net/EnterpriseX/index.php?page=login&config=someconfig but with
-    config param where config param is uniq id of Customer application.
+    - config param where config param is uniq id of Customer application.
   + Application is loaded, loads Customer config and Customer database.
-    Application is ready to go
+    - Application is ready to go
 
 * Real Hosting Manager scenario
   Hosting Manager daemon watches appinstallations table and if this table doesn't contains enouch fresh and clean installation
