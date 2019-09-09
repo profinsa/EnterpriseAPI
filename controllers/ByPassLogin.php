@@ -27,7 +27,7 @@
   models/translation.php
   app from index.php
 
-  Last Modified: 07.03.2019
+  Last Modified: 10.09.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -42,6 +42,7 @@ class controller{
     
     public function process($app){
         $users = new users();
+        $config = config();
         $defaultUser = defaultUser();
         
         if($_SERVER['REQUEST_METHOD'] === 'GET') { //log in as default user and redirect to index
@@ -59,7 +60,10 @@ class controller{
             $user["language"] = (!empty($_GET['language'])) ? $_GET['language'] : $defaultUser["Language"];
 
             $_SESSION["user"] = $user;
-            $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
+            if(key_exists("interface", $config))
+                $_SESSION["user"]["interface"] = $config["interface"];
+            else
+                $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
             $_SESSION["user"]["interfaceType"] = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : "ltr");
 
             header("Location: index.php#/?page=dashboard");
