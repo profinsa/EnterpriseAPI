@@ -1,11 +1,6 @@
 <?php
-    $rows = [
-        [
-            "new" => 5,
-            "expiring" => 10,
-            "expired" => 2
-        ]
-    ];
+    $rows = [];
+    $rows[] = $data->adminGetCustomersStatus();
 ?>
 <div class="white-box">
     <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Customers Status"); ?></h3>
@@ -22,7 +17,7 @@
             <tbody>
                 <?php
                     foreach($rows as $row){
-                        echo "<tr><td>{$row["new"]}</td><td>{$row["expiring"]}</td><td>{$row["expired"]}</td></tr>";
+                        echo "<tr><td><a href=\"" . $linksMaker->makeGridLink("SystemSetup/Admin/AppInstallations") . "&filter=new\">{$row["new"]}</a></td><td><a href=\"" . $linksMaker->makeGridLink("SystemSetup/Admin/AppInstallations") . "&filter=expiring\">{$row["expiring"]}</a></td><td><a href=\"" . $linksMaker->makeGridLink("SystemSetup/Admin/AppInstallations") . "&filter=expired\">{$row["expired"]}</a></td></tr>";
                     }
                 ?>
             </tbody>

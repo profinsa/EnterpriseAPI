@@ -195,7 +195,7 @@
 
     if(key_exists("software", $ascope["config"]) && $ascope["config"]["software"] == "Admin"){
         array_unshift($iconbarCategories, [
-            "full" => $translation->translateLabel('Administration'),
+            "full" => $translation->translateLabel('ADMIN'),
             "link" => "index.php#/?page=dashboard&screen=Admin",
             //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
             "iconclass" => "wrench",

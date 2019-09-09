@@ -32,6 +32,7 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     public $tableName = "AppInstallations";
+    public $gridConditions = "";
     public $dashboardTitle ="App Installations";
     public $breadCrumbTitle ="App Installations";
     public $idField ="ConfigName";
@@ -205,6 +206,30 @@ EOF;
         return;
         
         //echo $config;
+    }
+
+    public function getPage($id){
+        $user = Session::get("user");
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "new"){
+            $this->gridConditions = "Clean=0 AND InstallationDate <= NOW() AND InstallationDate > NOW() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "expiring"){
+            $this->gridConditions = "Clean=0 AND ExpirationDate >= NOW() - INTERVAL 30 DAY AND ExpirationDate < now()";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "expired"){
+            $this->gridConditions = "Clean=0 AND ExpirationDate >= now()";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "customers"){
+            $this->gridConditions = "Clean=1 AND Active=1";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
     }
 }
 ?>

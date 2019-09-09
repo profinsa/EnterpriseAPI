@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 12.08.2019
+  Last Modified: 10.09.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -135,6 +135,21 @@ class dashboardData{
         $results = DB::select("select CustomerID, CaseID, SupportQuestion from helpsupportrequest WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? order by SupportDate DESC limit 10", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
 
         return $results;
+    }
+
+    public function adminGetCustomersStatus(){
+        $user = Session::get("user");
+
+        $new = DB::select("select * from appinstallations WHERE Clean=0 AND InstallationDate <= NOW() AND InstallationDate > NOW() - INTERVAL 30 DAY");
+        $expiring = DB::select("select * from appinstallations WHERE Clean=0 AND ExpirationDate >= NOW() - INTERVAL 30 DAY AND ExpirationDate < now()");
+        $expired = DB::select("select * from appinstallations WHERE Clean=0 AND ExpirationDate >= now()");
+        $ret = [
+            "new" => count($new),
+            "expiring" => count($expiring),
+            "expired" => count($expired)
+        ];
+
+        return $ret;
     }
 }
 ?>
