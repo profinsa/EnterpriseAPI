@@ -223,7 +223,7 @@ EOF;
             $result = parent::getPage($id);
             return $result;
         }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "customers"){
-            $this->gridConditions = "Clean=1 AND Active=1";
+            $this->gridConditions = "Clean=0 AND Active=1";
             $result = parent::getPage($id);
             return $result;
         }else{

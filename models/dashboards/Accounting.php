@@ -151,5 +151,13 @@ class dashboardData{
 
         return $ret;
     }
+
+    public function adminGetCustomers(){
+        $user = Session::get("user");
+
+        $ret = DB::select("select * from appinstallations WHERE Clean=0 AND Active=1");
+
+        return $ret;
+    }
 }
 ?>

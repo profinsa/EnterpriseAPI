@@ -1,9 +1,5 @@
 <?php
-    $rows = [
-        [
-            "customers" => 50,
-        ]
-    ];
+    $customersNumber = count($data->adminGetCustomers());
 ?>
 <div class="white-box">
     <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Total number of customers"); ?></h3>
@@ -17,9 +13,7 @@
             </thead>
             <tbody>
                 <?php
-                    foreach($rows as $row){
-                        echo "<tr><td>{$row["customers"]}</td></tr>";
-                    }
+                    echo "<tr><td><a href=\"" . $linksMaker->makeGridLink("SystemSetup/Admin/AppInstallations") . "&filter=customers\">$customersNumber</a></td></tr>";
                 ?>
             </tbody>
         </table>
