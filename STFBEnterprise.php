@@ -16,7 +16,7 @@ function config(){
         "warningMinutes" => 2,
         "timeoutWarning" => "Your session will end in 2 minutes!",
         "user" => [
-            "CompanyID" => "DINOS",
+            "CompanyID" => "STFB",
             "DivisionID" => "DEFAULT",
             "DepartmentID" => "DEFAULT",
             "language" => "english"
@@ -26,7 +26,7 @@ function config(){
 
 function defaultUser(){
     return [
-        "Company" => "DINOS",
+        "Company" => "STFB",
         "Division" => "DEFAULT",
         "Department" => "DEFAULT",
         "Username" => "Demo",
