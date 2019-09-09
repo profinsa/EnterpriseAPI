@@ -59,7 +59,8 @@ class controller{
             "Item" => "Accounting",
             "PurchaseAndReceiving" => "Accounting",
             "SalesAndShipping" => "Accounting",
-            "Tasks" => "Tasks"
+            "Tasks" => "Tasks",
+            "Admin" => "Accounting"
         ];
 
         $titlesRewrite = [
@@ -68,7 +69,8 @@ class controller{
             "Vendor" => "Vendor",
             "Item" => "Item",
             "PurchaseAndReceiving" => "Purchase & Receiving",
-            "SalesAndShipping" => "Sales & Shipping"
+            "SalesAndShipping" => "Sales & Shipping",
+            "Admin" => "Admin"
         ];
         
         $modelName = $modelsRewrite[$this->screen];
@@ -111,9 +113,11 @@ class controller{
                 $dashboardFile = $_GET["screen"];
             }else{
                 $dashboardFile = "Accounting";
-                if(key_exists("defaultDashboard", $config))
-                    $dashboardFile = $config["defaultDashboard"];
                 $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Accounting");
+                if(key_exists("defaultDashboard", $config)){
+                    $dashboardFile = $config["defaultDashboard"];
+                    $this->breadCrumbTitle = $this->dashboardTitle = $titlesRewrite[$config["defaultDashboard"]];
+                }
                 if($user["accesspermissions"]["DefaultDashboard"] != ""){
                     $dashboardFile = preg_replace("/[\s]+/", "", $user["accesspermissions"]["DefaultDashboard"]);
                     $this->breadCrumbTitle = $this->dashboardTitle =  $translation->translateLabel($user["accesspermissions"]["DefaultDashboard"]); 

@@ -4,6 +4,7 @@ function config(){
         "theme" => 'none',
         //"theme" => 'dark', uncomment for dark theme
         "title" => 'Enterprise X Admin',
+        "software" => "Admin",
         "loginForm" => "login",
         "db_host" => "localhost",
         "db_user" => "enterprise",

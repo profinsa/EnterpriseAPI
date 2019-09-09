@@ -42,6 +42,7 @@ class controller{
     public $interfaceType = "ltr";
     public $dashboardTitle = "Accounting Dashboard";
     public $breadCrumbTitle = "Accounting Dashboard";
+    public $config;
     
     public function process($app){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -71,6 +72,7 @@ class controller{
             $translation = new translation($this->user["language"]);
             $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
             $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);
+            $this->config = config();
             $scope = $this;
             $ascope = json_decode(json_encode($scope), true);
             $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];

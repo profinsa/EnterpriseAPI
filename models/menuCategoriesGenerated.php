@@ -4286,4 +4286,28 @@ $leftMenu = [
 	]
     ]
 ];
+
+if(key_exists("software", $ascope["config"]) && $ascope["config"]["software"] == "Admin"){
+	$leftMenu["My"]["data"] = [
+            [
+                "type" => "absoluteLink",
+                "title" => "Dashboard",
+                "link" => "index.php#/?page=dashboard",
+                "icon" => "linea-icon linea-basic"
+            ],
+            [
+		       "short" => "AD",
+                "type" => "absoluteLink",
+                "title" => "Administration",
+ 	              "link" =>  $linksMaker->makeGridLink("SystemSetup/Admin/AppInstallations"),
+                "icon" => "linea-icon linea-basic"
+            ],
+            [
+                "type" => "absoluteLink",
+                "title" => "Tasks",
+                "link" => "index.php#/?page=dashboard&screen=Tasks",
+                "icon" => "linea-icon linea-basic"
+            ],
+        ];
+}
 ?>

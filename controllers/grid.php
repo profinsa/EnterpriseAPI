@@ -37,6 +37,7 @@ require 'models/drillDowner.php';
 require 'models/linksMaker.php';
 
 class controller{
+    public $config;
     public $user = false;
     public $interface = "default";
     public $interfaceType = "ltr";
@@ -472,6 +473,7 @@ class controller{
                     $this->item = $_GET["item"];
                 
                 $security->setModel($data, $this->item, $this->mode);
+                $this->config = config();
                 
                 $scope = $this;
                 $user = $this->user;
