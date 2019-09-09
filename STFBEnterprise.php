@@ -30,7 +30,7 @@ function defaultUser(){
         "Division" => "DEFAULT",
         "Department" => "DEFAULT",
         "Username" => "Demo",
-        "Password" => "Demo",
+        "Password" => "DemoDemo",
         "Language" => "English"
     ];
 }
