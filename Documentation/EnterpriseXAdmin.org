@@ -1,0 +1,82 @@
+* Hosting Cart
+  It is special version of Cart application with own custom pages, but it works like Cart in most cases.
+- All items takes from InventoryItems table like regular Cart
+  Also Hosting cart loads configs for each Product from Hosting Manager. Config for product contains informations like:
+  + modules(Main, AR, AP, GL, Cart etc) for adding to product
+  + list of included modules in price(for Trial version etc).
+  When user chooser preffered modules, they are sent to Hosting Manager during checkout process
+- checkout worked with EnterpriseX API(Create Order, Post, print doc) like regular Cart checkout process. 
+  After checkouting, Hosting Cart send request to Hosting Manager to create application for user and receives uniq id for
+  application.
+- Links to applications in Account
+  Link is created from received uniq id for applications. When user click to Account or Account Page is result of checkout
+  procees Hosting Cart requests list of applications for Customer from Hosting Manager. 
+  List of applications is list from uniq id, status and other information.
+  Hosting cart creates table with applications information and links to applications. 
+  Links are generated from uniq id and standard part of url like EnterpriseX/index.php?config=
+  Each application uses same application code EnterpriseX, but it uses different databases and configs.
+
+* EnterpriseX Admin
+  Part of EnterpriseX application, but with own database and own Dashbord and other special screens like 
+  - App Aplications
+    list of all created by Admin EnterpriseX applications 
+  - Customers Errors
+    list of errors from Customers installations
+
+  This application is backend for Hosting Cart for
+  - Checkout
+    all things like creating order, post etc are done over EnterpriseXAdmin using AJAX API
+  - Application management
+    Hosting Cart uses AJAX API to do this:
+    + creating applications as result of checkout process
+    + listing of Customer applications and their status
+    + changing access, shuting down and other things
+    For doing it EnterpriseX Admin uses Hosting Manager because of some operations takes a time and cannot be done in request
+    handler process, only in background process
+   
+  Also EnterpriseX Admin is Admin and hoster workplace
+  It shows:
+  - dashboards with most important statistics.
+  - Customer Errors
+  - App Installation screen for working with installations and to manage it
+  - any other screens for admin hoster convenience
+
+* Hosting Manager
+  This module is consists from two parts. 
+  - as part of EnterpriseX Admin. 
+  - as separated worker(script) which is executed as daemon(service) process
+
+  This module does following things:
+  - creates new databases for customers, uploads cleanenterprise database to it, grant privileges to db user
+    new databases are created in advance by daemon. It always keeps about 5 fresh and ready to go databases with uploaded cleanenterprise image.
+    It need to create new installation fast, without lags because of uploading database image to database takes minutes.
+    informations about all databases is written to appinstallation tables.
+  - delete and saving database to file
+    not implemented now, but all basement is ready for it
+  - apply any script to database like DatesUpdater to update dates to lattest sql updates to database
+    almost done, need to implemented simple tools for doing it
+  -
+
+* Real Hosting Cart scenario
+  + User follow to Hosting Cart and doing registation.
+    - Cart call EnterpriseX Admin API(this API is EnterpriseX) to create Customer and Customer Financials
+  + User choose product, added to Shopping Cart
+    - Cart call own Cart API to get list of products, add to cart etc.
+    - All Cart API uses inventoryitems table of enterpriseadmin database and other regular EnterpriseX tables directly.
+  + User goes to checkout and click process
+    - Cart call EnterpriseX Admin API(this API is EnterpriseX) to create Order, Post Order, Get Doc Order etc
+    - Cart call EnterpriseX Admin API to request creating application. EnterpriseX Admin calls Hosting Manager to alloc some
+    - fresh installed database from pull and initialize it for new application.
+  + User goes to Account
+    - Cart call own Cart API to get list of orders
+    - Cart call EnterpriseX Admin API to get list of Customer Applications and their status
+  + User click on Application link. Link looks like standard link - https://stfb.net/EnterpriseX/index.php?page=login&config=someconfig but with
+    - config param where config param is uniq id of Customer application.
+  + Application is loaded, loads Customer config and Customer database.
+    - Application is ready to go
+
+* Real Hosting Manager scenario
+  Hosting Manager daemon watches appinstallations table and if this table doesn't contains enouch fresh and clean installation
+  he created new fresh installation with loading cleanenterprise data to it and then adds it to appinstallations table.
+  For now it's all. But Also Hosting manager will be responsible for deleting, saving and updating databases. It will do it in
+  same way like creating - as background process, becase of all off these operations(creating, deleting, saving, updating) takes a time.
