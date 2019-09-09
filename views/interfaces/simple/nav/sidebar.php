@@ -192,6 +192,22 @@
             ]
         ]
     ];
+
+    if(key_exists("software", $ascope["config"]) && $ascope["config"]["software"] == "Admin"){
+        array_unshift($iconbarCategories, [
+            "full" => $translation->translateLabel('Administration'),
+            "link" => "index.php#/?page=dashboard&screen=Admin",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "wrench",
+            "data" => [
+                [
+                    "id" => "SystemSetup/Admin/AppInstallations",
+                    "full" => $translation->translateLabel('Manage Applications')
+                ]
+            ],
+            "topbar" => $leftMenu["Main"]["data"][7]["data"]
+        ]);
+    }
 ?>
 
 <div class="bs-glyphicons">
