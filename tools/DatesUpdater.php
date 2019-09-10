@@ -1,5 +1,5 @@
 <?php
-$GLOBALS["configName"] = "cleanenterprise";
+$GLOBALS["configName"] = "common_clean";
 
 include './init.php';
 
