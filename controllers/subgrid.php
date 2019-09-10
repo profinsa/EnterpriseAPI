@@ -25,7 +25,7 @@
   models/gridDataSource derevatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 24.07.2019
+  Last Modified: 10.09.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,6 +36,7 @@ require 'models/drillDowner.php';
 require 'models/linksMaker.php';
 
 class controller{
+    public $config = [];
     public $user = false;
     public $action = "";
     public $mode = "subgrid";
@@ -121,7 +122,8 @@ class controller{
                 $translation = new translation($this->user["language"]);
                 $this->dashboardTitle = $translation->translateLabel($data->dashboardTitle);
                 $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
-            
+
+                $this->config = config();
                 $scope = $this;
                 if(key_exists("mode", $_GET))
                     $this->mode = $_GET["mode"];
