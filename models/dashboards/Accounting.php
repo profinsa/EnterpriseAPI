@@ -159,5 +159,22 @@ class dashboardData{
 
         return $ret;
     }
+
+    public function adminGetPrefferedProducts(){
+        $user = Session::get("user");
+
+        $prefferedProducts = [];
+        $ret = DB::select("select SoftwareID from appinstallations WHERE Clean=0 AND Active=1");
+        foreach($ret as $row)
+            if(key_exists($row->SoftwareID, $prefferedProducts))
+                $prefferedProducts[$row->SoftwareID]["numbers"]++;
+            else
+                $prefferedProducts[$row->SoftwareID] = [
+                    "name" => $row->SoftwareID,
+                    "numbers" => 1
+                ];
+        
+        return $prefferedProducts;
+    }
 }
 ?>
