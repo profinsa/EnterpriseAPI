@@ -1,29 +1,29 @@
 <?php
 /*
-Name of Page: dashboard data sourcee
+  Name of Page: dashboard data sourcee
 
-Method: It provides data from database for Tasks dashboard
+  Method: It provides data from database for Tasks dashboard
 
-Date created: Nikita Zaharov, 06.06.2016
+  Date created: Nikita Zaharov, 06.06.2017
 
-Use: this model used for 
-- for loading data using stored procedures
+  Use: this model used for 
+  - for loading data using stored procedures
 
-Input parameters:
-$capsule: database instance
-methods has own parameters
+  Input parameters:
+  $capsule: database instance
+  methods has own parameters
 
-Output parameters:
-- methods has own output
+  Output parameters:
+  - methods has own output
 
-Called from:
-controllers/dashboard
+  Called from:
+  controllers/dashboard
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 06.06.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 06.06.2017
+  Last Modified by: Nikita Zaharov
 */
 
 class dashboardData{

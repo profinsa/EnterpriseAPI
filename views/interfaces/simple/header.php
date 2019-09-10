@@ -1,3 +1,4 @@
+<link href="dependencies/assets/css/style.css" rel="stylesheet"> <!-- style from default interface for icons and other -->
 <script src="dependencies/assets/js/moment.min.js"></script>
 <script src="dependencies/assets/js/jquery.min.js"></script>
 <script src="dependencies/assets/js/bootstrap.min.js"></script>

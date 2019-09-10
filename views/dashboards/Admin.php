@@ -9,14 +9,15 @@
 
     <div style="<?php echo $ascope["interface"] == "simple" ? "background-color:#e8eced; padding:15px" : ""; ?>">
         <div class="row">
-            <?php require "blocks/systemWideMessage.php"; ?>
+            <div class="col-md-12">
+                <?php require "blocks/Admin/customersStatus.php"; ?>
+            </div>
         </div>
         <!--row -->
         <div class="row">
             <div class="col-md-8">
                 <div>
                     <div>
-                        <?php require "blocks/Admin/customersStatus.php"; ?>
                         <?php require "blocks/Admin/receivablePayable.php"; ?>
                         <?php require "blocks/Admin/monthlyIncome.php"; ?>
                     </div>
