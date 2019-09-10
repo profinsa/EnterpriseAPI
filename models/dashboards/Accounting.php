@@ -211,18 +211,26 @@ class dashboardData{
     }
 
     public function adminGetReceivablesPayables(){
-        $ret = [
+        $receivables = DB::SELECT("select GLAccountNumber, GLAccountName, GLAccountBalance from ledgerchartofaccounts where GLAccountType='Accounts Receivable'");
+        $rTotal = 0;
+        foreach($receivables as $row)
+            $rTotal += $row->GLAccountBalance;
+
+        $payables = DB::SELECT("select GLAccountNumber, GLAccountName, GLAccountBalance from ledgerchartofaccounts where GLAccountType='Accounts Payable'");
+        $pTotal = 0;
+        foreach($payables as $row)
+            $pTotal += $row->GLAccountBalance;
+
+        return [
             [
                 "name" => "Receivables",
-                "numbers" => 10000.99
+                "numbers" => $rTotal
             ],
             [
                 "name" => "Payables",
-                "numbers" => 25000.99
+                "numbers" => $pTotal
             ]
         ];
-        
-        return $ret;
     }
 }
 ?>
