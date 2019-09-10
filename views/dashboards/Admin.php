@@ -26,7 +26,6 @@
             <div class="col-md-4">
                 <div>
                     <div>
-                        <?php require "blocks/Admin/totalCustomers.php"; ?>
                         <?php require "blocks/Admin/currentLogins.php"; ?>
                     </div>
                 </div>

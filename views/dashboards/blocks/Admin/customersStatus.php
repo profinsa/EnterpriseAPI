@@ -1,8 +1,9 @@
 <?php
     $rows[] = $data->adminGetCustomersStatus();
+    $customersNumber = count($data->adminGetCustomers());
 ?>
 <div class="row">
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-3 col-sm-6">
         <div class="white-box">
             <div class="r-icon-stats">
                 <i class="ti-user bg-success"></i>
@@ -13,7 +14,7 @@
             </div>  
         </div>
     </div>
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-3 col-sm-6">
         <div class="white-box">
             <div class="r-icon-stats">
                 <i class="ti-user bg-warning"></i>
@@ -24,7 +25,7 @@
             </div>  
         </div>
     </div>
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-3 col-sm-6">
         <div class="white-box">
             <div class="r-icon-stats">
                 <i class="ti-user bg-danger"></i>
@@ -35,5 +36,17 @@
             </div>  
         </div>
     </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="white-box">
+            <div class="r-icon-stats">
+                <i class="ti-user bg-info"></i>
+                <div class="bodystate">
+                    <h2><?php echo "<a href=\"" . $linksMaker->makeGridLink("SystemSetup/Admin/AppInstallations") . "&filter=customers\">$customersNumber</a>"; ?></h2>
+                    <span class="text-muted"><?php echo $translation->translateLabel("Total Customers"); ?></span>
+                </div>
+            </div>  
+        </div>
+    </div>
 </div>
+
 
