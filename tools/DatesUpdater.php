@@ -1,4 +1,6 @@
 <?php
+$GLOBALS["configName"] = "cleanenterprise";
+
 include './init.php';
 
 $columnIgnoreList = [
