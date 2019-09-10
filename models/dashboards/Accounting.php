@@ -140,7 +140,7 @@ class dashboardData{
     public function adminGetCustomersStatus(){
         $user = Session::get("user");
 
-        $new = DB::select("select * from appinstallations WHERE Clean=0 AND InstallationDate <= NOW() AND InstallationDate > NOW() - INTERVAL 30 DAY");
+        $new = DB::select("select * from appinstallations WHERE Clean=0 AND InstallationDate <= NOW() AND InstallationDate > NOW() - INTERVAL 7 DAY");
         $expiring = DB::select("select * from appinstallations WHERE Clean=0 AND ExpirationDate >= NOW() - INTERVAL 30 DAY AND ExpirationDate < now()");
         $expired = DB::select("select * from appinstallations WHERE Clean=0 AND ExpirationDate >= now()");
         $ret = [
@@ -175,6 +175,39 @@ class dashboardData{
                 ];
         
         return $prefferedProducts;
+    }
+
+    public function adminGetApplicationsPerYear(){
+        $user = Session::get("user");
+
+        $ret = [
+            "labels" => [],
+            "data" => []
+        ];
+        $periods = [];
+        $result = DB::select("select InstallationDate, SoftwareID from appinstallations WHERE Clean=0 AND Active=1 AND InstallationDate <= NOW() AND InstallationDate > NOW() - INTERVAL 1 YEAR order by InstallationDate");
+        foreach($result as $row){
+            if(!in_array($row->SoftwareID, $ret["labels"]))
+                $ret["labels"][] = $row->SoftwareID;
+        }
+        
+        foreach($result as $row){
+            $dateArr = date_parse($row->InstallationDate);
+            if(!key_exists($dateArr["year"] . "-" . $dateArr["month"], $periods)){
+                $periods[$dateArr["year"] . "-" . $dateArr["month"]] = [
+                    "period" => $dateArr["year"] . "-" . $dateArr["month"]
+                ];
+                foreach($ret["labels"] as $label)
+                    $periods[$dateArr["year"] . "-" . $dateArr["month"]][$label] = 0;
+                $periods[$dateArr["year"] . "-" . $dateArr["month"]][$row->SoftwareID]++;
+            }else{
+                $periods[$dateArr["year"] . "-" . $dateArr["month"]][$row->SoftwareID]++;
+            }
+        }
+        foreach($periods as $period)
+            $ret["data"][] = $period;
+
+        return $ret;
     }
 }
 ?>

@@ -27,6 +27,7 @@
             <div class="col-md-8">
                 <div>
                     <div>
+                        <?php require "blocks/Admin/applicationsPerYear.php"; ?>
                         <?php require "blocks/Admin/currentLogins.php"; ?>
                     </div>
                 </div>
