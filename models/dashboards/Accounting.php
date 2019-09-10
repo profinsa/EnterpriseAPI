@@ -209,5 +209,20 @@ class dashboardData{
 
         return $ret;
     }
+
+    public function adminGetReceivablesPayables(){
+        $ret = [
+            [
+                "name" => "Receivables",
+                "numbers" => 10000.99
+            ],
+            [
+                "name" => "Payables",
+                "numbers" => 25000.99
+            ]
+        ];
+        
+        return $ret;
+    }
 }
 ?>

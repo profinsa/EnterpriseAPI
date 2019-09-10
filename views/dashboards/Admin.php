@@ -15,21 +15,21 @@
         </div>
         <!--row -->
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div>
                     <div>
                         <?php require "blocks/Admin/prefferedProducts.php"; ?>
                         <?php require "blocks/Admin/receivablePayable.php"; ?>
-                        <?php require "blocks/Admin/monthlyIncome.php"; ?>
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div>
                     <div>
                         <?php require "blocks/Admin/applicationsPerYear.php"; ?>
-                        <?php require "blocks/Admin/currentLogins.php"; ?>
-                    </div>
+                        <?php require "blocks/Admin/monthlyIncome.php"; ?>
+                        <?php //require "blocks/Admin/currentLogins.php"; ?>
+                     </div>
                 </div>
             </div>
         </div>

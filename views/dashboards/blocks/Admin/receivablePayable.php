@@ -1,29 +1,35 @@
 <?php
-    $rows = [
-        [
-            "receivable" => "10,000.99",
-            "payable" => "2,500.00"
-        ]
-    ];
+    $receivablesPayables = $data->adminGetReceivablesPayables();
 ?>
 <div class="white-box">
-    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Receivables / Payable Summary"); ?></h3>
-    <!-- <p class="text-muted">this is the sample data</p> -->
-    <div class="table-responsive">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th><?php echo $translation->translateLabel("Receivable"); ?></th>
-                    <th><?php echo $translation->translateLabel("Payable"); ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                    foreach($rows as $row){
-                        echo "<tr><td>{$row["receivable"]}</td><td>{$row["payable"]}</td></tr>";
-                    }
-                ?>
-            </tbody>
-        </table>
-    </div>
+    <h3 class="box-title"><?php echo $translation->translateLabel("Receivables / Payables Summary"); ?></h3>
+    <div id="receivable-payable-chart" class="ecomm-donute" style="height: 317px;"></div>
+    <ul class="list-inline m-t-30 text-center">
+        <?php
+            $colors = ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"];
+            while (true) {
+                $colors[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+                if(count($colors) == 10000)
+                    break;
+            }
+            $colorInd = 0;
+            
+            foreach($receivablesPayables as $row)
+            echo "<li class=\"p-r-20\"><h5 class=\"text-muted\"><i class=\"fa fa-circle\" style=\"color: " . $colors[$colorInd++] . ";\"></i>" . $row["name"]  ."</h5><h4 class=\"m-b-0\">" . formatField(["format"=>"{0:n}"], $row["numbers"]) . "</h4></li>";
+
+        ?>
+    </ul>
 </div>
+<script> 
+ Morris.Donut({
+     element: 'receivable-payable-chart',
+     data: [
+         <?php
+             foreach($receivablesPayables as $row)
+             echo "{ label : \"" . $row["name"] . "\", value : \"" .  $row["numbers"] . "\"},";
+         ?>
+     ],
+     resize: true,
+     colors: <?php echo json_encode($colors); ?>
+ });
+</script>

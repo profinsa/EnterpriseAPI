@@ -3,7 +3,7 @@
 ?>
 <div class="white-box">
     <h3 class="box-title"><?php echo $translation->translateLabel("Preffered Products"); ?></h3>
-    <div id="morris-donut-chart" class="ecomm-donute" style="height: 317px;"></div>
+    <div id="preffered-products-chart" class="ecomm-donute" style="height: 317px;"></div>
     <ul class="list-inline m-t-30 text-center">
         <?php
             $colors = ["#0074D9", "#FF4136", "#2ECC40", "#FF851B", "#7FDBFF", "#B10DC9", "#FFDC00", "#001f3f", "#39CCCC", "#01FF70", "#85144b", "#F012BE", "#3D9970", "#111111", "#AAAAAA"];
@@ -22,7 +22,7 @@
 </div>
 <script> 
  Morris.Donut({
-     element: 'morris-donut-chart',
+     element: 'preffered-products-chart',
      data: [
          <?php
              foreach($prefferedProducts as $row)
