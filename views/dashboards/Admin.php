@@ -19,7 +19,7 @@
                 <div>
                     <div>
                         <?php require "blocks/Admin/prefferedProducts.php"; ?>
-                        <?php require "blocks/Admin/receivablePayable.php"; ?>
+                        <?php require "blocks/Admin/monthlyIncome.php"; ?>
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 <div>
                     <div>
                         <?php require "blocks/Admin/applicationsPerYear.php"; ?>
-                        <?php require "blocks/Admin/monthlyIncome.php"; ?>
+                        <?php require "blocks/Admin/receivablePayable.php"; ?>
                         <?php //require "blocks/Admin/currentLogins.php"; ?>
                      </div>
                 </div>
