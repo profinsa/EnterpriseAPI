@@ -96,7 +96,7 @@ class dashboardData{
     public function TodaysTasks(){
         $user = Session::get("user");
 
-        $results = DB::select("CALL spTodaysTasks('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
+        $results = DB::select("SELECT DueDate, TaskTypeID as Task, Description  FROM PayrollEmployeesTaskHeader WHERE CompanyID=? and DivisionID=? and DepartmentID=? and EmployeeID=? and DueDate <= CURRENT_TIMESTAMP and	IFNULL(Completed,0) = 0 and LOWER(EmployeeTaskID) <> 'default'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $user["EmployeeID"]]);
 
         return $results; // employee
     }

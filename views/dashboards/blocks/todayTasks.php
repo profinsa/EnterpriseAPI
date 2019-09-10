@@ -9,13 +9,14 @@
 	    <thead>
 		<tr>
 		    <th><?php echo $translation->translateLabel("Due Date"); ?></th>
-		    <th><?php echo $translation->translateLabel("Task"); ?></th>
+		    <th><?php echo $translation->translateLabel("Task ID"); ?></th>
+		    <th><?php echo $translation->translateLabel("Description"); ?></th>
 		</tr>
 	    </thead>
 	    <tbody>
 		<?php
 		    foreach($todaysTasks as $row)
-		    echo "<tr><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . date("m/d/y", strtotime($row->DueDate)) . "</a></td><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . $row->Task . "</a></td></tr>";
+		    echo "<tr><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . date("m/d/y", strtotime($row->DueDate)) . "</a></td><td><a href=\"" . $linksMaker->makeDashboardLink() . "&screen=Tasks\">" . $row->Task . "</a></td><td>" . $row->Description . "</td></tr>";
 		?>
 	    </tbody>
 	</table>
