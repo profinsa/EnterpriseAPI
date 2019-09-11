@@ -613,4 +613,4 @@ var EDITables = [
 //for(ind in EDITables)
   //  generate_model_by_table(EDITables[ind]);
 
-generate_model_by_table("AppInstallations");
+generate_model_by_table("inventoryitems");

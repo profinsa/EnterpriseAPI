@@ -2,7 +2,7 @@
 /*
   Name of Page: InventoryItemsList model
    
-  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryItemsList.php It provides data from database and default values, column names and categories
+  Method: Model for grid controller. It provides data from database and default values, column names and categories
    
   Date created: 02/16/2017 Nikita Zaharov
    
@@ -19,13 +19,13 @@
   - methods have their own output
    
   Called from:
-  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryItemsList.php
-  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryItemsList.php
+  created and used for ajax requests by grid controllers
+  used as model by views/gridView
    
   Calls:
   MySql Database
    
-  Last Modified: 07/05/2019
+  Last Modified: 11/09/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -157,6 +157,73 @@ class gridData extends gridDataSource{
 				"defaultValue" => ""
 			]
 		],
+		"Product Profile" => [
+            "ProfileARModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfileAPModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfileGLModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfileInventoryModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfileMRPModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfileCRMModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfilePayrollModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfileSystemModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfileReportsModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfileCARTModule" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ProfileExpirationDays" => [
+                "dbType" => "int(11)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ProfileDefaultInterface" => [
+                "dbType" => "varchar(40)",
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],
+            "ProfileInterfaceRTL" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ]
+        ],
 		"Item Details" => [
             "Price" => [ //Item Default Price
                 "label" => "Item Default Price",
@@ -756,7 +823,20 @@ class gridData extends gridDataSource{
         "CartItem" => "Cart Item",
         "SalesPrice" => "Sales Price",
         "SaleStartDate" => "Sale Start Date",
-        "SaleEndDate" => "Sale End Date"
+        "SaleEndDate" => "Sale End Date",
+        "ProfileARModule" => "Enable AR Module",
+        "ProfileAPModule" => "Enable AP Module",
+        "ProfileGLModule" => "Enable GL Module",
+        "ProfileInventoryModule" => "Enable Inventory Module",
+        "ProfileMRPModule" => "Enable MRP Module",
+        "ProfileCRMModule" => "Enable CRM Module",
+        "ProfilePayrollModule" => "Enable Payroll Module",
+        "ProfileSystemModule" => "Enable System Module",
+        "ProfileReportsModule" => "Enable Reports Module",
+        "ProfileCARTModule" => "Enable CART Module",
+        "ProfileExpirationDays" => "Subscription Expiration Days",
+        "ProfileDefaultInterface" => "Default Interface",
+        "ProfileInterfaceRTL" => "Interface RTL"
 	];
 
     public function getPricingCode($id){
