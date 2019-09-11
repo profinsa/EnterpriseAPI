@@ -211,12 +211,14 @@ class dashboardData{
     }
 
     public function adminGetReceivablesPayables(){
-        $receivables = DB::SELECT("select GLAccountNumber, GLAccountName, GLAccountBalance from ledgerchartofaccounts where GLAccountType='Accounts Receivable'");
+        $user = Session::get("user");
+
+        $receivables = DB::SELECT("select GLAccountNumber, GLAccountName, GLAccountBalance from ledgerchartofaccounts where GLAccountType='Accounts Receivable' AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
         $rTotal = 0;
         foreach($receivables as $row)
             $rTotal += $row->GLAccountBalance;
 
-        $payables = DB::SELECT("select GLAccountNumber, GLAccountName, GLAccountBalance from ledgerchartofaccounts where GLAccountType='Accounts Payable'");
+        $payables = DB::SELECT("select GLAccountNumber, GLAccountName, GLAccountBalance from ledgerchartofaccounts where GLAccountType='Accounts Payable'AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
         $pTotal = 0;
         foreach($payables as $row)
             $pTotal += $row->GLAccountBalance;
@@ -230,6 +232,25 @@ class dashboardData{
                 "name" => "Payables",
                 "numbers" => $pTotal
             ]
+        ];
+    }
+
+    public function adminGetMonthlyIncome(){
+        $user = Session::get("user");
+
+        $orders = DB::SELECT("select BalanceDue from orderheader WHERE OrderDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $pTotal = 0;
+        foreach($orders as $row)
+            $pTotal += $row->BalanceDue;
+
+        $invoices = DB::SELECT("select BalanceDue from invoiceheader WHERE InvoiceDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=? AND Shipped=1", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $rTotal = 0;
+        foreach($invoices as $row)
+            $rTotal += $row->BalanceDue;
+
+        return [
+            "real" => $rTotal,
+            "projected" => $pTotal
         ];
     }
 }

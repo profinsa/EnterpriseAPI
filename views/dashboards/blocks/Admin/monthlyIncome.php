@@ -1,10 +1,5 @@
 <?php
-    $rows = [
-        [
-            "real" => "15,000.00",
-            "projected" => "20,000.00",
-        ]
-    ];
+    $income = $data->adminGetMonthlyIncome();
 ?>
 <div class="white-box">
     <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Monthly Income"); ?></h3>
@@ -17,11 +12,11 @@
      data: [
 	 {
 	     y : "Real",
-	     a : 20000
+	     a : <?php echo $income["real"]; ?>
 	 },
 	 {
 	     y : "Projected",
-	     a : 40000
+	     a : <?php echo $income["projected"]; ?>
 	 }
      ],
      xkey: 'y',
