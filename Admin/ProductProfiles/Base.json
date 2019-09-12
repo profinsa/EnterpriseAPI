@@ -1,0 +1,15 @@
+{
+    "ProfileARModule": "1",
+    "ProfileAPModule": "1",
+    "ProfileGLModule": "0",
+    "ProfileInventoryModule": "0",
+    "ProfileMRPModule": "1",
+    "ProfileCRMModule": "0",
+    "ProfilePayrollModule": "0",
+    "ProfileSystemModule": "0",
+    "ProfileReportsModule": "0",
+    "ProfileCARTModule": "1",
+    "ProfileExpirationDays": "40",
+    "ProfileDefaultInterface": "default",
+    "ProfileInterfaceRTL": "0"
+}

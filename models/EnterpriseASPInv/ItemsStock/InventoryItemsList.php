@@ -1021,5 +1021,24 @@ class gridData extends gridDataSource{
     public function getItemTransactionsHistory($ID){
         return $this->getTransactionsWithType($ID, "history");
     }
+
+    function updateProfile($values){
+        $ProductProfile = [];
+        foreach($values as $key=>$value){
+            if(strpos($key, 'Profile') === 0)
+                $ProductProfile[$key] = $value;
+        }
+        file_put_contents(__DIR__ . "/../../../Admin/ProductProfiles/" . $values["ItemID"] . ".json", json_encode($ProductProfile, JSON_PRETTY_PRINT));
+    }
+    
+    public function updateItem($id, $category, $values){
+        $this->updateProfile($values);
+        parent::updateItem($id, $category, $values);
+    }
+
+    public function insertItem($values, $remoteCall = false){
+        $this->updateProfile($values);
+        parent::insertItem($values, $remoteCall);
+    }
 }
 ?>
