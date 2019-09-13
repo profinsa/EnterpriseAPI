@@ -73,6 +73,60 @@
      }
  };
 
+ <?php if(isset($ascope) && key_exists("security", $ascope)): ?>
+ var security = <?php echo json_encode($ascope["security"]); ?>;
+ security.checkMenu = function(name){
+     if(this.useraccess.hasOwnProperty(this.menuFlags[name])){
+         if(this.useraccess[this.menuFlags[name]] != 0){
+             if(!this.productProfile)
+                 return true;
+             if(this.productProfile.hasOwnProperty(this.menuToProfileFlags[name])){
+                 if(this.productProfile[this.menuToProfileFlags[name]] != 0)
+                     return true;
+             }
+             else
+                 return true;
+         }
+     }
+     else
+         return true
+     return false;
+ }
+
+ ///NOT PORTED YET
+ /* 
+    public function can($action){
+    $user = $_SESSION["user"];
+    if($this->permissions[$action] == "any" || $this->permissions[$action] == "Always")
+    return 1;
+    $perms = explode("|", $this->permissions[$action]);
+    
+    $lockedBy;
+    if($this->mode == "view" && $this->model && $this->item != 'all' && ($lockedBy = $this->model->lockedBy($this->item)) && $lockedBy->LockedBy != $user["EmployeeID"])
+    return false;
+    
+    foreach($perms as $value)
+    if(key_exists($value, $this->useraccess) && $this->useraccess[$value])
+    return true;
+    return false;
+    }
+    
+    public function isAdmin(){
+    if($this->useraccess["ADSetup"] || $this->useraccess["ADSecurity"])
+    return true;
+    
+    return false;
+    }
+
+    public function isGLAdmin(){
+    if($this->useraccess["GLSetup"])
+    return true;
+    
+    return false;
+    }
+  */
+ <?php endif; ?>
+ 
  //setting up recalc for detail items to recalculation after changing and adding detail record to header record
  function setRecalc(id){
      var recalcLink = linksMaker.makeProcedureLink(context.path, "Recalc");

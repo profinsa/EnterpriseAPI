@@ -197,7 +197,7 @@
 
     $iconbarCategories["Help"] = [
         "full" => $translation->translateLabel('HELP'),
-        "link" => "https://stfbinc.helpdocs.com",
+        "link" => "https://www.stfb.net/EnterpriseX/Help/index.php",
         "target" => "_blank",
         "iconclass" => "question-sign",
         "data" => [

@@ -43,6 +43,7 @@ class controller{
     public $dashboardTitle = "Accounting Dashboard";
     public $breadCrumbTitle = "Accounting Dashboard";
     public $config;
+    public $security;
     
     public function process($app){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -68,7 +69,7 @@ class controller{
             $linksMaker = new linksMaker();
             $this->user = $user = $_SESSION["user"];
                
-            $security = new Security($this->user["accesspermissions"], []);
+            $security = $this->security = new Security($this->user["accesspermissions"], []);
             $translation = new translation($this->user["language"]);
             $this->dashboardTitle = $translation->translateLabel($this->dashboardTitle);
             $this->breadCrumbTitle = $translation->translateLabel($this->breadCrumbTitle);

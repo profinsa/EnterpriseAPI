@@ -12,8 +12,8 @@
              <span style="font-size: 30px;" class="favorits glyphicon glyphicon-heart" aria-hidden="true"></span>
              </a>
              <?php
-                 foreach ($menuCategories as $key=>$item){
-                 if ($item["type"] == "custom") {
+                 foreach($menuCategories as $key=>$item){
+                 if($item["type"] == "custom"){
                  echo "<ul id=\"" . $item["id"] . "2\" class=\"iconbarsubmenu dropdown-menu\" style=\"z-index: 9999; top: auto !important; left: auto !important; right: 0 !important\">";
                  foreach($item["actions"] as $key=>$subitem) {
                  echo '<li id="' . $subitem["id"] . '2" onclick="' . $subitem["action"] . '"  style="height:60px; width: 100%"><a style="width: 100%; height: 100%; padding-top: 25px;padding-right: 5px; padding-left: 5px;" href="javascript:;" class="nav-link">' . $subitem["full"] .'</a></li>';
@@ -238,11 +238,10 @@
      var items = <?php echo json_encode($iconbarCategories, JSON_PRETTY_PRINT); ?>,
          topbar = key ? items[key].topbar : topbarmenuCategories,
          ind, iind, iiind, iiiind, item, subitem, ssubitem, sssubitem, _html = '', href;
-     console.log(menuCategories);
 
      for(ind in topbar){
          item = topbar[ind];
-         if(item["type"] == "submenu"){// && $security->checkMenu($item["id"])){ FIXME
+         if(item["type"] == "submenu" && security.checkMenu(item["id"])){
              _html += "<li class=\"dropdown top-bar-link\">";
              _html += "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded\"false\">" + item["full"] + "</a>";
 
@@ -298,7 +297,7 @@
                  _html += "</li>";
              }
              _html += "</ul></li>";
-         }else{
+         }else if(item["type"] != "submenu"){
              _html += "<li class=\"top-bar-link\">";
              _html += "<a href=\"" + "index.php#/?page=grid&action=" + (item.hasOwnProperty("href_ended") ? item["href_ended"] : item["id"]) + "\" role=\"button\">" + item["full"] + "</a>";
              _html += "</li>";

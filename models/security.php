@@ -25,9 +25,9 @@
 */
 
 class Security{
-    protected $permissions;
-    protected $useraccess;
-    protected $menuFlags = [
+    public $permissions;
+    public $useraccess;
+    public $menuFlags = [
         "AccountsReceivable" => "MTARView",
         "AccountsPayable" => "MTAPView",
         "GeneralLedger" => "MTGLView",
@@ -41,7 +41,7 @@ class Security{
         "Reports" => "MTReportsView"
     ];
 
-    protected $menuToProfileFlags = [
+    public $menuToProfileFlags = [
         "AccountsReceivable" => "ProfileARModule",
         "AccountsPayable" => "ProfileAPModule",
         "GeneralLedger" => "ProfileGLModule",
@@ -55,11 +55,11 @@ class Security{
         "Reports" => "ProfileReportsModule"
     ];
 
-    protected $model = false;
-    protected $mode = "view";
-    protected $item;
-    protected $config = null;
-    protected $productProfile = null;
+    public $model = false;
+    public $mode = "view";
+    public $item;
+    public $config = null;
+    public $productProfile = null;
 
     public function __construct($useraccessperm, $perm){
         $this->config = config();
