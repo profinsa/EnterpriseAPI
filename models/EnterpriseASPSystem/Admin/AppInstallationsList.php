@@ -134,11 +134,12 @@ class gridData extends gridDataSource{
         "LoggedIn" => "Logged In"
     ];
 
-    function generateConfig($dbname, $dbuser, $dbpassword, $title){
+    function generateConfig($dbname, $dbuser, $dbpassword, $profile, $title){
         $config = <<<EOF
 <?php
 function config(){
     return array(
+        "productProfile" => "$profile",
         "theme" => 'none',
         //"theme" => 'dark', uncomment for dark theme
         "title" => '$title',
@@ -198,7 +199,7 @@ EOF;
             foreach($data["items"] as $ItemID=>$item){
                 $installation = array_shift($installations);
                 DB::UPDATE("update appinstallations set SoftwareID=?,CustomerID=?, Clean=0, Active=1, InstallationDate=NOW(), ExpirationDate=NOW() + INTERVAL 30 DAY WHERE ConfigName=?", [$item["ItemName"], $data["customer"]["CustomerID"], $installation->ConfigName]);
-                $config = $this->generateConfig($installation->ConfigName, "enterprise", "enterprise", "Integral Accounting Test"); 
+                $config = $this->generateConfig($installation->ConfigName, "enterprise", "enterprise", $item["ItemID"], "Integral Accounting Test"); 
                 file_put_contents(__DIR__ . "/../../../" . $installation->ConfigName . ".php", $config);
             }
         }
