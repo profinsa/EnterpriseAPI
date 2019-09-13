@@ -2,17 +2,17 @@
 </ul>
 <div class="custom-menu-bar">
     <ul id="custom-toolbar" class="nav">
-	<li class="top-bar-link2 float-right">
-	    <a class="mysubmenu" href="javascript:toggleStyleBar()" title="<?php echo $translation->translateLabel('Profile'); ?>">
-		<span style="font-size: 30px" class="favorits glyphicon glyphicon-user" aria-hidden="true"></span>
-	    </a>
-	</li>
-	<!-- <li class="top-bar-link2 float-right dropdown-submenu bs-glyphicons2" style="background-color: unset;">
-	     <a class="mysubmenu" title="<?php echo $translation->translateLabel('Favorits'); ?>">
-	     <span style="font-size: 30px;" class="favorits glyphicon glyphicon-heart" aria-hidden="true"></span>
-	     </a>
-	     <?php
-		 foreach ($menuCategories as $key=>$item){
+        <li class="top-bar-link2 float-right">
+            <a class="mysubmenu" href="javascript:toggleStyleBar()" title="<?php echo $translation->translateLabel('Profile'); ?>">
+                <span style="font-size: 30px" class="favorits glyphicon glyphicon-user" aria-hidden="true"></span>
+            </a>
+        </li>
+        <!-- <li class="top-bar-link2 float-right dropdown-submenu bs-glyphicons2" style="background-color: unset;">
+             <a class="mysubmenu" title="<?php echo $translation->translateLabel('Favorits'); ?>">
+             <span style="font-size: 30px;" class="favorits glyphicon glyphicon-heart" aria-hidden="true"></span>
+             </a>
+             <?php
+                 foreach ($menuCategories as $key=>$item){
                  if ($item["type"] == "custom") {
                  echo "<ul id=\"" . $item["id"] . "2\" class=\"iconbarsubmenu dropdown-menu\" style=\"z-index: 9999; top: auto !important; left: auto !important; right: 0 !important\">";
                  foreach($item["actions"] as $key=>$subitem) {
@@ -20,9 +20,9 @@
                  }
                  echo '</ul>';
                  }
-		 }        
-		 ?>
-	     </li> -->
+                 }        
+                 ?>
+             </li> -->
         <li class="top-bar-link2 float-right">
             <button class="btn btn-default dropdown-toggle" type="button" id="helpDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 16px; color:#555555; border:0px; margin-top:3px; background-color:inherit;">
                 <span style="font-size: 30px" class="favorits glyphicon glyphicon-question-sign" aria-hidden="true"></span>

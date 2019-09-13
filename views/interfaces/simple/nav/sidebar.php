@@ -1,6 +1,7 @@
 <?php
-    $iconbarCategories = [
-        "Customer" => [
+    $iconbarCategories = [];
+    if($security->checkMenu("AccountsReceivable")){
+        $iconbarCategories["Customer"] = [
             "full" => $translation->translateLabel('CUSTOMER'),
             "link" => "index.php#/?page=dashboard&screen=Customer",
             //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
@@ -21,8 +22,11 @@
                 ],
             ],
             "topbar" => $leftMenu["Main"]["data"][2]["data"][0]["data"]
-        ],
-        "Vendor" => [
+        ];
+    }
+
+    if($security->checkMenu("AccountsPayable")){
+        $iconbarCategories["Vendor"] = [
             "full" => $translation->translateLabel('VENDOR'),
             "link" => "index.php#/?page=dashboard&screen=Vendor",
             //     "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
@@ -43,8 +47,11 @@
                 ],
             ],
             "topbar" => $leftMenu["Main"]["data"][3]["data"][0]["data"]
-        ],
-        "Items" => [
+        ];
+    }
+
+    if($security->checkMenu("Inventory")){
+        $iconbarCategories["Items"] = [
             "full" => $translation->translateLabel('ITEM'),
             "link" => "index.php#/?page=dashboard&screen=Item",
             "iconclass" => "list",
@@ -64,8 +71,11 @@
                 ],
             ],
             "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
-        ],
-        "Sales" => [
+        ];
+    }
+
+    if($security->checkMenu("AccountsReceivable")){
+        $iconbarCategories["Sales"] = [
             "full" => $translation->translateLabel('SALES'),
             "link" => "index.php#/?page=dashboard&screen=SalesAndShipping",
             "iconclass" => "list-alt",
@@ -86,8 +96,11 @@
                 ]
             ],
             "topbar" => $leftMenu["Main"]["data"][2]["data"]
-        ],
-        "Purchase" => [
+        ];
+    }
+    
+    if($security->checkMenu("AccountsPayable")){
+        $iconbarCategories["Purchase"] = [
             "full" => $translation->translateLabel('PURCHASE'),
             "link" => "index.php#/?page=dashboard&screen=PurchaseAndReceiving",
             "iconclass" => "calendar",
@@ -112,8 +125,13 @@
                 ]
             ],
             "topbar" => $leftMenu["Main"]["data"][3]["data"]
-        ],
-        "Accounting" => [
+        ];
+    }
+    
+    if($security->checkMenu("AccountsReceivable") &&
+       $security->checkMenu("AccountsPayable") &&
+       $security->checkMenu("GeneralLedger")){
+        $iconbarCategories["Accounting"] = [
             "full" => $translation->translateLabel('ACCOUNTING'),
             "link" => "index.php#/?page=dashboard",
             "iconclass" => "calendar",
@@ -142,8 +160,11 @@
                 ],
             ],
             "topbar" => $leftMenu["Main"]["data"]
-        ],
-        "Reports" => [
+        ];
+    }
+    
+    if($security->checkMenu("Reports")){
+        $iconbarCategories["Reports"] = [
             "full" => $translation->translateLabel('REPORTS'),
             "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
             "iconclass" => "stats",
@@ -165,31 +186,33 @@
                 ],
             ],
             "topbar" => $leftMenu["Main"]["data"][7]["data"]
-        ],
-        "Favorits" => [
-            "full" => $translation->translateLabel('FAVORITES'),
-            "favorits" => true,
-            "iconclass" => "heart"
-        ],
-        "Help" => [
-            "full" => $translation->translateLabel('HELP'),
-            "link" => "https://stfbinc.helpdocs.com",
-            "target" => "_blank",
-            "iconclass" => "question-sign",
-            "data" => [
-                [
-                    "type" => "absoluteLink",
-                    "target" => "_blank",
-                    "href" => "https://www.stfb.net/EnterpriseX/Help/index.php#contact-form",
-                    "full" => $translation->translateLabel('New Ticket')
-                ],
-                [
-                    "type" => "absoluteLink",
-                    "target" => "_blank",
-                    "href" => "https://www.stfb.net/EnterpriseX/Help/index.php",
-                    "full" => $translation->translateLabel('Help System')
-                ],
-            ]
+        ];
+    }
+
+    $iconbarCategories["Favorits"] = [
+        "full" => $translation->translateLabel('FAVORITES'),
+        "favorits" => true,
+        "iconclass" => "heart"
+    ];
+
+    $iconbarCategories["Help"] = [
+        "full" => $translation->translateLabel('HELP'),
+        "link" => "https://stfbinc.helpdocs.com",
+        "target" => "_blank",
+        "iconclass" => "question-sign",
+        "data" => [
+            [
+                "type" => "absoluteLink",
+                "target" => "_blank",
+                "href" => "https://www.stfb.net/EnterpriseX/Help/index.php#contact-form",
+                "full" => $translation->translateLabel('New Ticket')
+            ],
+            [
+                "type" => "absoluteLink",
+                "target" => "_blank",
+                "href" => "https://www.stfb.net/EnterpriseX/Help/index.php",
+                "full" => $translation->translateLabel('Help System')
+            ],
         ]
     ];
 
