@@ -12,3 +12,4 @@ uploads/*
 tools/ConvertorFromDotNetAPP/node_modules/*
 Cart/*
 db*
+Admin/ProductProfiles/*

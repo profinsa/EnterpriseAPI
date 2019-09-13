@@ -1028,7 +1028,8 @@ class gridData extends gridDataSource{
             if(strpos($key, 'Profile') === 0)
                 $ProductProfile[$key] = $value;
         }
-        file_put_contents(__DIR__ . "/../../../Admin/ProductProfiles/" . $values["ItemID"] . ".json", json_encode($ProductProfile, JSON_PRETTY_PRINT));
+        if(count($ProductProfile))
+            file_put_contents(__DIR__ . "/../../../Admin/ProductProfiles/" . $values["ItemID"] . ".json", json_encode($ProductProfile, JSON_PRETTY_PRINT));
     }
     
     public function updateItem($id, $category, $values){
