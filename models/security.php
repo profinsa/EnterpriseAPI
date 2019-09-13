@@ -37,15 +37,35 @@ class Security{
         "CRMHelpDesk" => "MTCRMView",
         "Payroll" => "MTPayrollView",
         "SystemSetup" => "MTSystemView",
-        "Financials" => "MTReportsView",
+        "Financials" => "MTFinancialsView",
         "Reports" => "MTReportsView"
+    ];
+
+    protected $menuToProfileFlags = [
+        "AccountsReceivable" => "ProfileARModule",
+        "AccountsPayable" => "ProfileAPModule",
+        "GeneralLedger" => "ProfileGLModule",
+        "Inventory" => "ProfileInventoryModule",
+        "MRP" => "ProfileMRPModule",
+        "FundAccounting" => "ProfileFundModule",
+        "CRMHelpDesk" => "ProfileCRMModule",
+        "Payroll" => "ProfilePayrollModule",
+        "SystemSetup" => "ProfileSystemModule",
+        "Financials" => "ProfileFinancialsModule",
+        "Reports" => "ProfileReportsModule"
     ];
 
     protected $model = false;
     protected $mode = "view";
     protected $item;
+    protected $config = null;
+    protected $productProfile = null;
 
     public function __construct($useraccessperm, $perm){
+        $this->config = config();
+        if(key_exists("productProfile", $this->config)){
+            $this->productProfile = json_decode(file_get_contents(__DIR__ . "/../Admin/ProductProfiles/" . $this->config["productProfile"] . ".json"), true);
+        }
         $this->permissions = $perm;
         $this->useraccess = $useraccessperm;
     }
@@ -57,8 +77,11 @@ class Security{
     }
 
     public function checkMenu($name){
-        if(key_exists($this->menuFlags[$name], $this->useraccess) && $this->useraccess[$this->menuFlags[$name]])
-           return true;
+        if(key_exists($this->menuFlags[$name], $this->useraccess) &&
+           $this->useraccess[$this->menuFlags[$name]] &&
+           (!key_exists("productProfile", $this->config) || (key_exists($this->menuToProfileFlags[$name], $this->productProfile) &&
+                                                             $this->productProfile[$this->menuToProfileFlags[$name]])))
+            return true;
         return false;
     }
     

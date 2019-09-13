@@ -2,26 +2,26 @@
 <div class="navbar-default sidebar sidebar-lift" role="navigation">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
 	<?php include './views/interfaces/default/nav/leftUser.php'; ?>
-	<ul class="nav" id="side-menu">	    
-	    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
-		<!-- input-group -->
-		<div class="input-group custom-search-form">
-		    <input type="text" class="form-control" placeholder="Search...">
-		    <span class="input-group-btn">
-			<button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
-		    </span> </div>
-		<!-- /input-group -->
-	    </li>
-	    <?php
-		foreach ($leftMenu as $category){
-		    echo "<li class=\"nav-small-cap m-t-10\">--- " .  $translation->translateLabel($category["title"]) . "</li>";
-		    foreach($category["data"] as $item){
-			if($item["type"] == "absoluteLink")
-			    echo "<li><a href=\"" . $item["link"] . "\" ". (key_exists("target", $item) ? "target=\"" . $item["target"] . "\"" : "") ." class=\"waves-effect\"><i class=\"" . $item["icon"] . " fa-fw\" data-icon=\"v\"></i> <span class=\"hide-menu\">".  $translation->translateLabel($item["title"]) . "</span></a></li>";
-			else if($item["type"] == "item")
-			    echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") ."\"  class=\"not-in-more\"><a href=\"" . $item["data"]["id"] . "\" class=\"nav-link nav-item-level1\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li></ul></li>";
-			else if($item["type"] == "submenu" && $security->checkMenu($item["id"])){			
-			    echo "<li id=\"list" . $item["id"] . "\"><a href=\"javascript:void(0);\" class=\"waves-effect\"><i class=\"icon-" . (key_exists("icon", $item) ? $item["icon"] : "people"). " fa-fw\"></i> <span class=\"hide-menu\">" . $item["full"] . "<span class=\"fa arrow\"></span></span></a>";
+        <ul class="nav" id="side-menu">     
+            <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                <!-- input-group -->
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
+                    </span> </div>
+                <!-- /input-group -->
+            </li>
+            <?php
+                foreach ($leftMenu as $category){
+                    echo "<li class=\"nav-small-cap m-t-10\">--- " .  $translation->translateLabel($category["title"]) . "</li>";
+                    foreach($category["data"] as $item){
+                        if($item["type"] == "absoluteLink")
+                            echo "<li><a href=\"" . $item["link"] . "\" ". (key_exists("target", $item) ? "target=\"" . $item["target"] . "\"" : "") ." class=\"waves-effect\"><i class=\"" . $item["icon"] . " fa-fw\" data-icon=\"v\"></i> <span class=\"hide-menu\">".  $translation->translateLabel($item["title"]) . "</span></a></li>";
+                        else if($item["type"] == "item")
+                            echo "<li><ul class=\"nav navbar-nav tabs navbar-items\"><li data-name=\"". ( key_exists("id", $item["data"]) ? $item["data"]["id"] : "") ."\"  class=\"not-in-more\"><a href=\"" . $item["data"]["id"] . "\" class=\"nav-link nav-item-level1\"><span class=\"full-label\">". $item["data"]["full"] ."</span><span class=\"short-label\" title=\"". $item["data"]["short"] ."\">". $item["data"]["short"] ."</span></a></li></ul></li>";
+                        else if($item["type"] == "submenu" && $security->checkMenu($item["id"])){   
+                            echo "<li id=\"list" . $item["id"] . "\"><a href=\"javascript:void(0);\" class=\"waves-effect\"><i class=\"icon-" . (key_exists("icon", $item) ? $item["icon"] : "people"). " fa-fw\"></i> <span class=\"hide-menu\">" . $item["full"] . "<span class=\"fa arrow\"></span></span></a>";
                             echo "<ul class=\"nav nav-second-level\">";
                             foreach($item["data"] as $key=>$subitem){
                                 if(!key_exists("type", $subitem))
