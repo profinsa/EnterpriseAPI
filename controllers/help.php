@@ -24,7 +24,7 @@
   models/help/*
   app from index.php
 
-  Last Modified: 08.08.2019
+  Last Modified: 16.09.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -33,6 +33,7 @@ require 'models/security.php';
 require 'models/permissionsGenerated.php';
 //require 'models/users.php';
 require 'models/linksMaker.php';
+require 'models/EnterpriseASPHelpDesk/CRM/LeadInformationList.php';
 
 class controller{
     public $user = false;
@@ -53,6 +54,8 @@ class controller{
         $id = key_exists("url", $_GET) ? $_GET["url"] : "";
         $config = config();
         $this->user = $config["user"];
+        $this->user["EmployeeID"] = "Help";
+        SESSION::set("user", $this->user);
         $scope = $GLOBALS["scope"] = $this;
         require "models/help/index.php";
         
@@ -62,6 +65,21 @@ class controller{
 
         $linksMaker = new linksMaker();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(key_exists("method", $_GET)){
+                $leadInformation = new LeadInformationList();
+                switch($_GET["method"]){
+                case "newsletterSubscribe" :
+                    $result = [];
+                    foreach($leadInformation->editCategories as $key=>$value)
+                        $result = array_merge($result, $leadInformation->getNewItem("", $key));
+                    $result["LeadID"] = $_POST["EMAIL"];
+                    $leadInformation->insertItemLocal($result, true);
+                    echo "<html><body>Thanks for your interest to our software!<br>Newletter we will email you when updates are made to the software!</body></html>";
+                    break;
+                default:
+                    echo "ok";
+                }
+            }
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
             $translation = new translation($this->user["language"]);
             if(key_exists("title", $_GET))

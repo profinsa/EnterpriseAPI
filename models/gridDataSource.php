@@ -1866,9 +1866,8 @@ EOF;
     public function insertItemRemote(){
         $this->insertItem($_POST, true);
     }
-   
-    //add row to table
-    public function insertItem($values, $remoteCall = false){
+
+    public function insertItemLocal($values){
         $user = Session::get("user");
         $pdo = DB::connection()->getPdo();
         
@@ -1952,7 +1951,12 @@ EOF;
 
         $result = DB::insert("INSERT INTO " . $this->tableName . "(" . $insert_fields . ") values(" . $insert_values .")");
 
-        echo json_encode($ret);
+        return $ret;
+    }
+    
+    //add row to table
+    public function insertItem($values, $remoteCall = false){
+        echo json_encode($this->insertItemLocal($values));
         if(!$remoteCall)
             exit;
     }

@@ -29,7 +29,7 @@
   Last Modified by: Nikita Zaharov
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class LeadInformationList extends gridDataSource{
     public $tableName = "leadinformation";
     public $dashboardTitle ="Lead Information";
     public $breadCrumbTitle ="Lead Information";
