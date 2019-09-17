@@ -140,9 +140,9 @@ class dashboardData{
     public function adminGetCustomersStatus(){
         $user = Session::get("user");
 
-        $new = DB::select("select * from appinstallations WHERE Clean=0 AND InstallationDate <= NOW() AND InstallationDate > NOW() - INTERVAL 7 DAY");
-        $expiring = DB::select("select * from appinstallations WHERE Clean=0 AND ExpirationDate >= NOW() - INTERVAL 30 DAY AND ExpirationDate < now()");
-        $expired = DB::select("select * from appinstallations WHERE Clean=0 AND ExpirationDate >= now()");
+        $new = DB::select("select * from appinstallations WHERE Clean=0 AND InstallationDate <= NOW() AND InstallationDate > NOW() - INTERVAL 7 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $expiring = DB::select("select * from appinstallations WHERE Clean=0 AND ExpirationDate >= NOW() - INTERVAL 30 DAY AND ExpirationDate < now() AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $expired = DB::select("select * from appinstallations WHERE Clean=0 AND ExpirationDate >= now() AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
         $ret = [
             "new" => count($new),
             "expiring" => count($expiring),
@@ -155,7 +155,7 @@ class dashboardData{
     public function adminGetCustomers(){
         $user = Session::get("user");
 
-        $ret = DB::select("select * from appinstallations WHERE Clean=0 AND Active=1");
+        $ret = DB::select("select * from appinstallations WHERE Clean=0 AND Active=1 AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
 
         return $ret;
     }
@@ -164,7 +164,7 @@ class dashboardData{
         $user = Session::get("user");
 
         $prefferedProducts = [];
-        $ret = DB::select("select SoftwareID from appinstallations WHERE Clean=0 AND Active=1");
+        $ret = DB::select("select SoftwareID from appinstallations WHERE Clean=0 AND Active=1 AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
         foreach($ret as $row)
             if(key_exists($row->SoftwareID, $prefferedProducts))
                 $prefferedProducts[$row->SoftwareID]["numbers"]++;
@@ -185,7 +185,7 @@ class dashboardData{
             "data" => []
         ];
         $periods = [];
-        $result = DB::select("select InstallationDate, SoftwareID from appinstallations WHERE Clean=0 AND Active=1 AND InstallationDate <= NOW() AND InstallationDate > NOW() - INTERVAL 1 YEAR order by InstallationDate");
+        $result = DB::select("select InstallationDate, SoftwareID from appinstallations WHERE Clean=0 AND Active=1 AND InstallationDate <= NOW() AND InstallationDate > NOW() - INTERVAL 1 YEAR AND CompanyID=? AND DivisionID=? AND DepartmentID=? order by InstallationDate ", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
         foreach($result as $row){
             if(!in_array($row->SoftwareID, $ret["labels"]))
                 $ret["labels"][] = $row->SoftwareID;
@@ -218,7 +218,7 @@ class dashboardData{
         foreach($receivables as $row)
             $rTotal += $row->GLAccountBalance;
 
-        $payables = DB::SELECT("select GLAccountNumber, GLAccountName, GLAccountBalance from ledgerchartofaccounts where GLAccountType='Accounts Payable'AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $payables = DB::SELECT("select GLAccountNumber, GLAccountName, GLAccountBalance from ledgerchartofaccounts where GLAccountType='Accounts Payable' AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
         $pTotal = 0;
         foreach($payables as $row)
             $pTotal += $row->GLAccountBalance;
