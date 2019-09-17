@@ -1389,7 +1389,7 @@ EOF;
             else
                 $keyFields = $this->gridConditions;
         }
-        
+
         $result = DB::select("SELECT " . implode(",", $fields) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
 
         $result = json_decode(json_encode($result), true);

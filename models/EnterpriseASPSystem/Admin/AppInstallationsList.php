@@ -32,11 +32,10 @@
 require "./models/gridDataSource.php";
 class gridData extends gridDataSource{
     public $tableName = "AppInstallations";
-    public $gridConditions = "";
     public $dashboardTitle ="App Installations";
     public $breadCrumbTitle ="App Installations";
     public $idField ="ConfigName";
-    public $idFields = ["ConfigName"];
+    public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "ConfigName"];
     public $gridFields = [
         "CustomerID" => [
             "dbType" => "varchar(50)",
@@ -188,6 +187,7 @@ EOF;
     }
     
     public function createInstallation(){
+        $user = Session::get("user");
         $postData = file_get_contents("php://input");
         
         // `application/json`
@@ -198,7 +198,7 @@ EOF;
         if(count($installations)){ //need to clone new database from cleanenterprise if clean databases is not enough;
             foreach($data["items"] as $ItemID=>$item){
                 $installation = array_shift($installations);
-                DB::UPDATE("update appinstallations set SoftwareID=?,CustomerID=?, Clean=0, Active=1, InstallationDate=NOW(), ExpirationDate=NOW() + INTERVAL 30 DAY WHERE ConfigName=?", [$item["ItemName"], $data["customer"]["CustomerID"], $installation->ConfigName]);
+                DB::UPDATE("update appinstallations set CompanyID=?, DivisionID=?, DepartmentID=?, SoftwareID=?,CustomerID=?, Clean=0, Active=1, InstallationDate=NOW(), ExpirationDate=NOW() + INTERVAL 30 DAY WHERE ConfigName=?", [$item["ItemName"], $data["customer"]["CustomerID"], $installation->ConfigName]);
                 $config = $this->generateConfig($installation->ConfigName, "enterprise", "enterprise", $item["ItemID"], "Integral Accounting Test"); 
                 file_put_contents(__DIR__ . "/../../../" . $installation->ConfigName . ".php", $config);
             }
