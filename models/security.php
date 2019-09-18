@@ -4,7 +4,7 @@
 
   Method: Response for security management
 
-  Date created: Nikita Zaharov, 24.02.2016
+  Date created: Nikita Zaharov, 24.02.2017
 
   Use: Provide simple methods for checking user rights. Searches in permissionGenerated page permissions and then check user rights
 
@@ -20,7 +20,7 @@
 
   Calls:
 
-  Last Modified: 07.12.2016
+  Last Modified: 19.09.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -38,7 +38,8 @@ class Security{
         "Payroll" => "MTPayrollView",
         "SystemSetup" => "MTSystemView",
         "Financials" => "MTFinancialsView",
-        "Reports" => "MTReportsView"
+        "Reports" => "MTReportsView",
+        "MetaAdmin" => "MetaView"
     ];
 
     public $menuToProfileFlags = [

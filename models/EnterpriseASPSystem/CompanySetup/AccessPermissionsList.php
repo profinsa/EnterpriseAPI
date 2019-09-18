@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/21/2017
+  Last Modified: 19/09/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -668,6 +668,43 @@ class gridData extends gridDataSource{
                 "inputType" => "checkbox",
                 "defaultValue" => "0"
             ]
+        ],
+        "Meta Admin" => [
+            "MetaView" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "MetaAdd" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "MetaEdit" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "MetaDelete" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "MetaReports" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ApproveCloudCustomers" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ],
+            "ApproveCustomerRemoval" => [
+                "dbType" => "tinyint(1)",
+                "inputType" => "checkbox",
+                "defaultValue" => "0"
+            ]
         ]
     ];
     public $columnNames = [
@@ -788,7 +825,14 @@ class gridData extends gridDataSource{
         "RTInventoryView" => "RT Inventory View",
         "RTCRMView" => "RT CRM View",
         "RTPayrollView" => "RT Payroll View",
-        "RTSystemView" => "RT System View"
+        "RTSystemView" => "RT System View",
+        "MetaView" => "Meta View",
+        "MetaAdd" => "Meta Add",
+        "MetaEdit" => "Meta Edit",
+        "MetaDelete" => "Meta Delete",
+        "MetaReports" => "Meta Reports",
+        "ApproveCloudCustomers" => "Approve Cloud Customers",
+        "ApproveCustomerRemoval" => "Approve Customer Removal"
     ];
     
     //getting list of dashboards list
