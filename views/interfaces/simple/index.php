@@ -128,6 +128,8 @@
              <span id="topBarShower" class="glyphicon glyphicon glyphicon-menu-down"></span>
 	     </a>-->
 	<?php require "footer.php"; ?>
+        <?php require './views/components/ui.php';?>
+        
 	<div id="content" class="container content top-bar-offset" style="background: #ffffff; padding-bottom:10px; padding-right:0px; padding-left:0px;">
             <?php
 		if(isset($content))
@@ -155,6 +157,7 @@
          });
          
 	 var startSessionTime = (new Date()).getTime();
+         var warningDialogOpened = false;
 	 var sessionTimer = setInterval(function(){
 	     var timeoutSeconds = <?php echo intval(($GLOBALS["config"]["timeoutMinutes"] + $GLOBALS["config"]["warningMinutes"]) * 60); ?>,
 		 warningSeconds = <?php echo intval($GLOBALS["config"]["warningMinutes"] * 60); ?>,
@@ -163,14 +166,21 @@
 	     if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000){
 		 window.location = "index.php?page=login";
 	     }else if((new Date()).getTime() > startSessionTime + (timeoutSeconds - warningSeconds)*1000){
-		 //clearInterval(sessionTimer);
-		 alert(message);
-		 if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000)
-		     window.location = "index.php?page=login";
-		 else
-		     onlocation(window.location);
+                 //clearInterval(sessionTimer);
+                 if(!warningDialogOpened){
+                     warningDialogOpened = true;
+                     dialogAlert("<?php echo $translation->translateLabel("Warning"); ?>", message, function(){
+                         console.log((new Date()).getTime(), startSessionTime, timeoutSeconds*1000);
+                         if((new Date()).getTime() > startSessionTime + timeoutSeconds*1000)
+                             window.location = "index.php?page=login";
+                         else{
+                             warningDialogOpened = false;
+                             onlocation(window.location);
+                         }
+                     });
+                 }
 	     }
-	 },1000*120);
+	 },1000*30);
 	 
 	 function escapeRegExp(str) {
              return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
