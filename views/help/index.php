@@ -401,7 +401,7 @@
                      if (/\S/.test(res.value)) {
                          if (res.value != prevSearch){
                              delay(function(){
-                                 serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo" , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
+                                 serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo" , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
                                      var html = "";
                                      var results = JSON.parse(data);
                                      results.forEach(function(record) {
