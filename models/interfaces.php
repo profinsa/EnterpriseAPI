@@ -26,13 +26,13 @@
 
 class interfaces{
     public $description = [
-        "simplebusiness" => [
+        "simple" => [
             "title" => "Simple Business",
             "interface" => "simple",
             "interfaceType" => "ltr",
             "defaultDashboard" => "Accounting.php"
         ],
-        "simplebusinessrtl" => [
+        "simplertl" => [
             "title" => "Simple Business RTL",
             "interface" => "simple",
             "interfaceType" => "rtl",

@@ -32,6 +32,7 @@ require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
 require "models/drillDowner.php";
+require 'models/interfaces.php';
 
 function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
@@ -45,6 +46,11 @@ class controller{
     public $dashboardTitle = "";
     public $breadCrumbTitle = "";
     public $path;
+    public $interfaces;
+
+    function __construct(){
+        $this->interfaces = new interfaces();
+    }
 
     public function process($app){
         if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users

@@ -115,6 +115,10 @@ class controller{
         "EnterpriseASPGL/Ledger/LedgerTransactionsHistoryList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList"
     ];
 
+    function __construct(){
+        $this->interfaces = new interfaces();
+    }
+    
     public function process($app){
         $users = new users();
         $users->checkLoginInUrl();

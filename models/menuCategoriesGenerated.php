@@ -4287,7 +4287,7 @@ $leftMenu = [
     ]
 ];
 
-if(key_exists("software", $ascope["config"]) && $ascope["config"]["software"] == "Admin"){
+if(key_exists("config", $ascope) && key_exists("software", $ascope["config"]) && $ascope["config"]["software"] == "Admin"){
 	$leftMenu["My"]["data"] = [
             [
                 "type" => "absoluteLink",
