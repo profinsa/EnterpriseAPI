@@ -413,7 +413,7 @@
                                      $(".search-results").append(html);
                                      prevSearch = res.value;
                                  });
-                             }, 1000);
+                             }, 500);
                          }
                          prevSearch = "";
                      }
