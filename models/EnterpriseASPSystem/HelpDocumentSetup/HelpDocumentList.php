@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 24/06/2019
+  Last Modified: 20/09/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -101,6 +101,7 @@ class gridData extends gridDataSource{
             ]
         ]
     ];
+    
     public $columnNames = [
         "DocumentTitleID" => "Document ID",
         "DocumentTitle" => "Document Title",
@@ -109,5 +110,10 @@ class gridData extends gridDataSource{
         "DocumentURL" => "Document URL",
         "DocumentContents" => "Document Contents"
     ];
+
+    public function searchDocument(){
+        echo $_POST["query"];
+        //        DB::
+    }
 }
 ?>

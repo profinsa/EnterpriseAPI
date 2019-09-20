@@ -31,7 +31,7 @@
         <div class="site--wrap">
             <header class="site--header custom-site-header-color">
                 <div class="container">
-                    <a href="//stfbinc.helpdocs.com" class="brand-logo">
+                    <a href="/EnterpriseX/Help/index.php" class="brand-logo">
                         <img src="https://s3.amazonaws.com/tw-desk/i/113954/doclogo/72179.20180523160644009.72179.201805231606440090wnSy.jpg" alt="Integral Accounting Enterprise (All Versions)">
                         
                     </a>
@@ -55,13 +55,13 @@
                 <div class="search--row search-inner">
                     <div class="container">
                         <div class="row-content">
-                            <h1 class="row-title"><a href="//stfbinc.helpdocs.com">Knowledge Base</a></h1>
+                            <h1 class="row-title"><a href="/EnterpriseX/Help/index.php">Knowledge Base</a></h1>
                             <ul class="history-path">
-                                <li><a href="//stfbinc.helpdocs.com//"></a></li>
+                                <li><a href="/EnterpriseX/Help/index.php"></a></li>
                             </ul>
                         </div>
-                        <form action="//stfbinc.helpdocs.com/search" method="GET" class="search-form">
-                            <input type="text" placeholder="Search" class="search_input" name="query" value="">
+                        <form action="#" method="GET"  onsubmit="return onSearchSubmit(event);" class="search-form" id="searchForm">
+                            <input type="text" placeholder="Search" class="search_input" name="query" value="" id="searchQuery">
                             <input type="button" value="Search" class="search_submit">
                         </form>
                     </div>
@@ -394,6 +394,50 @@
                      });
                      return false;
                  }
+
+                 var prevSearch = [];
+                 $(".search_input").keyup(function(e) {
+                     var res = this;
+                     console.log($("#searchQuery").val());
+                     
+                     if (/\S/.test(res.value)) {
+                         if (res.value != prevSearch) {
+                             serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo" , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
+                                 console.log(data);
+                             });
+                             // string is not empty and not just whitespace
+                             // Call the search endpoint
+                             /*                        $.ajax({
+                                url: window.baseURL + '/search.json?query=' + res.value,
+                                }).done(function(results) {*/
+                             var html = "";
+                             var results = [
+                                 {
+                                     url : "http://google.ru",
+                                     value : "om"
+                                 },
+                                 {
+                                     url : "http://google.ru",
+                                     value : "ome"
+                                 }
+                             ];
+                             results.forEach(function(article) {
+                                 html += '<li>' +
+                                         '<a href="' + article.url + '">' + article.value + '</a>' + 
+                                         '</li>'
+                             });
+                             $(".search-results").empty();
+                             $(".search-results").append(html);
+                             //                        });
+                             prevSearch = res.value;
+                         }
+                         prevSearch = "";
+                     }
+                     else {
+                         $(".search-results").empty();
+                     }
+                 });
+                 
                  if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
                      window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
                  }

@@ -75,34 +75,6 @@ if(!Modernizr.svg) {
         var prevSearch = "";
         $(".search-form").append('<ul class="search-results"></ul>');
         $(".search_input").attr("autocomplete", "off");
-        $(".search_input").keyup(function(e) {
-            var res = this;
-            delay(function() {
-                if (/\S/.test(res.value)) {
-                    if (res.value != prevSearch) {
-                        // string is not empty and not just whitespace
-                        // Call the search endpoint
-                        $.ajax({
-                            url: window.baseURL + '/search.json?query=' + res.value,
-                        }).done(function(results) {
-                            var html = "";
-                            results.forEach(function(article) {
-                                html += '<li>' +
-                                '<a href="' + article.url + '">' + article.value + '</a>' + 
-                                '</li>'
-                            });
-                            $(".search-results").empty();
-                            $(".search-results").append(html);
-                        });
-                        prevSearch = res.value;
-                    }
-                    prevSearch = "";
-                }
-                else {
-                    $(".search-results").empty();
-                }
-            }, 250);
-        });
          
         // Add a unique id to each image
         var setImageId = function(element, index) {
