@@ -5,7 +5,7 @@ function config(){
         //"theme" => 'dark', uncomment for dark theme
         "title" => 'Enterprise X Admin',
         "software" => "Admin",
-        "interface" => "simple",
+        "interface" => "saasadmin",
         "loginForm" => "login",
         "db_host" => "localhost",
         "db_user" => "enterprise",

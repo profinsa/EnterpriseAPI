@@ -60,10 +60,7 @@ class controller{
             $user["language"] = (!empty($_GET['language'])) ? $_GET['language'] : $defaultUser["Language"];
 
             $_SESSION["user"] = $user;
-            if(key_exists("interface", $config))
-                $_SESSION["user"]["interface"] = $config["interface"];
-            else
-                $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
+            $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : (key_exists("interface", $config) ? $config["interface"] : "default"));
             $_SESSION["user"]["interfaceType"] = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : "ltr");
 
             header("Location: index.php#/?page=dashboard");
