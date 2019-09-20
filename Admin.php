@@ -32,8 +32,8 @@ function defaultUser(){
         "Company" => "DINOS",
         "Division" => "DEFAULT",
         "Department" => "DEFAULT",
-        "Username" => "Demo",
-        "Password" => "Demo",
+        "Username" => "Admin",
+        "Password" => "AdminAdmin",
         "Language" => "English"
     ];
 }

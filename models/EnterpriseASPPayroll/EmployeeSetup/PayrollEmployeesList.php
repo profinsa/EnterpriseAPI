@@ -723,9 +723,12 @@ class gridData extends gridDataSource{
     }
 
     public function restorePreviousSession(){
-        $session = json_decode($_SESSION["previousSession"], true);
-        foreach($session as $key=>$value)
-            $_SESSION[$key] = $value;
+        if(key_exists("previousSession", $_SESSION)){
+            $session = json_decode($_SESSION["previousSession"], true);
+            unset($_SESSION["previousSession"]);
+            foreach($session as $key=>$value)
+                $_SESSION[$key] = $value;
+        }
         //echo json_encode($_SESSION, JSON_PRETTY_PRINT);
     }
 }

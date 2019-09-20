@@ -107,40 +107,46 @@
      item.parents(".dropdown").find('.btn').html(item.text() + ' <span class="caret"></span>');
      item.parents(".dropdown").find('.btn').val(name);
      var current = "<?php echo $scope->user["interface"]; ?>";
-     if(context.ascope.interfaces.description[current].hasOwnProperty("link"))
-         window.location = context.ascope.interfaces.description[current].link;
-     else
-         if(name != current)
-             $.post("<?php echo $linksMaker->makeProcedureLink("Payroll/EmployeeManagement/ViewEmployees", "changeInterface"); ?>&interface=" + name, null, null, 'json').success(function(data){
-                 location.reload();
-             })
-              .error(function(data){
-                  console.log(data);
-              });
+     console.log(context.ascope.interfaces.description[name]);
+         if(context.ascope.interfaces.description[name].hasOwnProperty("link")){
+             serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
+                 window.location = context.ascope.interfaces.description[name].link;
+             });
+         }else
+         if(name != current){
+             serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                 $.post("<?php echo $linksMaker->makeProcedureLink("Payroll/EmployeeManagement/ViewEmployees", "changeInterface"); ?>&interface=" + name, null, null, 'json').success(function(data){
+                     location.reload();
+                 })
+                  .error(function(data){
+                      console.log(data);
+                  });
+             });
+         }
  });
 
- if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){ //firefox
- }else
- $("#zoomcontainer").css("display", "block");
- var zoomvalue = localStorage.getItem("currentZoom");
- if(zoomvalue == null)
-     zoomvalue = 90;
- else
-     zoomvalue = parseInt(zoomvalue.toString());
- $('#zoomvalue').html(zoomvalue +'%');
- $('body').css('zoom', zoomvalue + '%');
-
- function zoomin(){
-     zoomvalue += 10;
-     localStorage.setItem("currentZoom", zoomvalue);
+     if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){ //firefox
+     }else
+     $("#zoomcontainer").css("display", "block");
+     var zoomvalue = localStorage.getItem("currentZoom");
+     if(zoomvalue == null)
+         zoomvalue = 90;
+     else
+         zoomvalue = parseInt(zoomvalue.toString());
      $('#zoomvalue').html(zoomvalue +'%');
      $('body').css('zoom', zoomvalue + '%');
- }
 
- function zoomout(){
-     zoomvalue -= 10;
-     localStorage.setItem("currentZoom", zoomvalue);
-     $('#zoomvalue').html(zoomvalue +'%');
-     $('body').css('zoom', zoomvalue + '%');
- }
+     function zoomin(){
+         zoomvalue += 10;
+         localStorage.setItem("currentZoom", zoomvalue);
+         $('#zoomvalue').html(zoomvalue +'%');
+         $('body').css('zoom', zoomvalue + '%');
+     }
+
+     function zoomout(){
+         zoomvalue -= 10;
+         localStorage.setItem("currentZoom", zoomvalue);
+         $('#zoomvalue').html(zoomvalue +'%');
+         $('body').css('zoom', zoomvalue + '%');
+     }
 </script>
