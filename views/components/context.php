@@ -10,7 +10,11 @@
      data :  <?php echo json_encode($data, JSON_PRETTY_PRINT); ?>,
      item : "<?php echo $ascope["item"]; ?>",
      screenId : "<?php echo $ascope["path"]; ?>",
+     ascope : <?php echo json_encode($ascope) ?>,
      <?php else: ?>
+     <?php if(isset($ascope)): ?>
+     ascope : <?php echo json_encode($ascope) ?>,
+     <?php endif; ?>
      path : "",
      screenId : "default"
      <?php endif; ?>

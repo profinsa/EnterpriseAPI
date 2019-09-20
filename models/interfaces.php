@@ -106,12 +106,14 @@ class interfaces{
     
         "saasadmin" => [
             "title" => "Saas Admin",
+            "link" => "/EnterpriseX/index.php?page=ByPassLogin&config=Admin",
             "interface" => "simple",
             "interfaceType" => "ltr",
             "defaultDashboard" => "Admin.php"
         ],
         "saasadminrtl" => [
             "title" => "Saas Admin RTL",
+            "link" => "/EnterpriseX/index.php?page=ByPassLogin&config=Admin&interface=saasadminrtl",
             "interface" => "simple",
             "interfaceType" => "rtl",
             "defaultDashboard" => "Admin.php"
