@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 30/08/2019
+  Last Modified: 20/09/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -704,18 +704,16 @@ class gridData extends gridDataSource{
     }
 
     public function changeInterface(){
+        $interfaces = new interfaces();
         $user = Session::get("user");
-        $user["interfaceName"] = $_GET["interface"];
-        if(strtolower($_GET["interface"]) == "default rtl"){
-            $user["interfaceType"] = "rtl";
-            $_GET["interface"] = "Default";
-        }else if(strtolower($_GET["interface"]) == "simple rtl"){
-            $user["interfaceType"] = "rtl";
-            $_GET["interface"] = "Simple";
-        }else
-            $user["interfaceType"] = "ltr";
-        $user["interface"] = strtolower($_GET["interface"]);
+
+        $user["interface"] = $_GET["interface"];
+        $user["interfaceName"] = $interfaces->description[$_GET["interface"]]["title"];
+        $user["interfaceType"] = $interfaces->description[$_GET["interface"]]["interfaceType"];
+        $_GET["interface"] = $user["interfaceName"];
+        
         Session::set("user", $user);
+                                                          
         echo '{ "message" : "ok"}';
     }
 
