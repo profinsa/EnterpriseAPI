@@ -112,8 +112,16 @@ class gridData extends gridDataSource{
     ];
 
     public function searchDocument(){
-        echo $_POST["query"];
-        //        DB::
+        $user = Session::get("user");
+        $ret = [];
+        if($_POST["query"] != ""){
+            $result = DB::SELECT("select DocumentTitleID, DocumentTitle, DocumentContents from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [ $user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            foreach($result as $record)
+                if(strpos($record->DocumentContents, $_POST["query"]))
+                    $ret[] = $record;
+        }
+
+        echo json_encode($ret, JSON_PRETTY_PRINT);
     }
 }
 ?>

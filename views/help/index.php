@@ -398,38 +398,22 @@
                  var prevSearch = [];
                  $(".search_input").keyup(function(e) {
                      var res = this;
-                     console.log($("#searchQuery").val());
-                     
                      if (/\S/.test(res.value)) {
-                         if (res.value != prevSearch) {
-                             serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo" , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
-                                 console.log(data);
-                             });
-                             // string is not empty and not just whitespace
-                             // Call the search endpoint
-                             /*                        $.ajax({
-                                url: window.baseURL + '/search.json?query=' + res.value,
-                                }).done(function(results) {*/
-                             var html = "";
-                             var results = [
-                                 {
-                                     url : "http://google.ru",
-                                     value : "om"
-                                 },
-                                 {
-                                     url : "http://google.ru",
-                                     value : "ome"
-                                 }
-                             ];
-                             results.forEach(function(article) {
-                                 html += '<li>' +
-                                         '<a href="' + article.url + '">' + article.value + '</a>' + 
-                                         '</li>'
-                             });
-                             $(".search-results").empty();
-                             $(".search-results").append(html);
-                             //                        });
-                             prevSearch = res.value;
+                         if (res.value != prevSearch){
+                             delay(function(){
+                                 serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo" , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
+                                     var html = "";
+                                     var results = JSON.parse(data);
+                                     results.forEach(function(record) {
+                                         html += '<li>' +
+                                                 '<a href="' + linksMaker.makeHelpLinkByURL(record.DocumentTitleID) + '">' + record.DocumentTitle + '</a>' + 
+                                                 '</li>'
+                                     });
+                                     $(".search-results").empty();
+                                     $(".search-results").append(html);
+                                     prevSearch = res.value;
+                                 });
+                             }, 1000);
                          }
                          prevSearch = "";
                      }
