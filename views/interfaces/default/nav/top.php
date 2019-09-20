@@ -50,11 +50,11 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu interface-chooser-popup" aria-labelledby="interfaceChooserDropdown" aria-expanded="false">
-                        <li><a href="javascript:;" data-value="<?php echo $scope->user["interfaceName"]; ?>" class="lang-item"><?php echo $scope->user["interfaceName"]; ?></a></li>
+                        <li><a href="javascript:;" data-value="<?php echo $scope->user["interface"]; ?>" class="lang-item"><?php echo $scope->user["interfaceName"]; ?></a></li>
                         <?php
-                            foreach(["Default", "Default RTL", "Simple", "Simple RTL"] as $value)
-                            if($value != $scope->user["interfaceName"])
-                                echo "<li><a href=\"javascript:;\" data-value=\"$value\" class=\"lang-item\">" . $value . "</a></li>";
+                            foreach($ascope["interfaces"]["description"] as $key=>$value)
+                            if($key != $scope->user["interface"])
+                                echo "<li><a href=\"javascript:;\" data-value=\"$key\" class=\"lang-item\">" . $value["title"] . "</a></li>";
                         ?>
                     </ul>
                 </div>

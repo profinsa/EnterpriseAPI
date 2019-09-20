@@ -26,7 +26,7 @@
   models/translation.php
   app from index.php
 
-  Last Modified: 07.03.2019
+  Last Modified: 20.09.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -35,6 +35,7 @@ require 'models/translation.php';
 require 'models/security.php';
 require 'models/drillDowner.php';
 require 'models/linksMaker.php';
+require 'models/interfaces.php';
 
 class controller{
     public $user = false;
@@ -44,6 +45,11 @@ class controller{
     public $breadCrumbTitle = "Accounting Dashboard";
     public $config;
     public $security;
+    public $interfaces;
+
+    function __construct(){
+        $this->interfaces = new interfaces();
+    }
     
     public function process($app){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -57,14 +63,11 @@ class controller{
             }
             
             $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
-            if(!key_exists("interfaceName", $_SESSION["user"])){
-                if($interface == "default")
-                    $_SESSION["user"]["interfaceName"] = "Default";
-                else if($interface == "simple")
-                    $_SESSION["user"]["interfaceName"] = "Simple";
-            }
+            if(!key_exists("interfaceName", $_SESSION["user"]))
+                $_SESSION["user"]["interfaceName"] = $this->interfaces->description[$this->interface]["title"]; 
                 
             $this->interfaceType = $_SESSION["user"]["interfaceType"] = $interfaceType = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : $this->interfaceType);
+            
             $drill = new drillDowner();
             $linksMaker = new linksMaker();
             $this->user = $user = $_SESSION["user"];
@@ -78,7 +81,7 @@ class controller{
             $ascope = json_decode(json_encode($scope), true);
             $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
             require 'models/menuCategoriesGenerated.php';
-            require 'views/interfaces/' . $interface . '/index.php';
+            require 'views/interfaces/' . $this->interfaces->description[$interface]["interface"] . '/index.php';
         }
     }
 }

@@ -41,17 +41,17 @@
 <script>
  var datatableInitialized = false;
 </script>
-<div class="container-fluid" style="<?php  echo $ascope["interface"] == "simple" ? "margin-left:0px; margin-right:0px;" : ""; ?>">
+<div class="container-fluid" style="<?php  echo $ascope["interfaces"]["description"][$ascope["interface"]]["interface"] == "simple" ? "margin-left:0px; margin-right:0px;" : ""; ?>">
     <?php if($ascope["interface"] == "default")
 	require __DIR__ . '/interfaces/default/uiItems/dashboard.php';
     ?>
 
     <?php if($ascope["interface"] == "simple"): ?>
 	<div style="margin-left: 25px; margin-bottom:-25px; margin-top:30px;">
-	    <?php require __DIR__ . '/interfaces/' . $ascope["interface"] . '/breadcrumbs.php'; ?>
+	    <?php require __DIR__ . '/interfaces/' . $ascope["interfaces"]["description"][$ascope["interface"]]["interface"] . '/breadcrumbs.php'; ?>
 	</div>
     <?php endif; ?>
-    <div class="col-sm-12" style="<?php  echo $ascope["interface"] == "simple" ? "margin-top:10px;" : ""; ?>">
+    <div class="col-sm-12" style="<?php  echo $ascope["interfaces"]["description"][$ascope["interface"]]["interface"] == "simple" ? "margin-top:10px;" : ""; ?>">
 	<div class="white-box">
 	    <!--
 		 This is conditional page generation.

@@ -3,7 +3,7 @@
 	if($ascope["interface"] == "default")
 	    require './views/uiItems/dashboard.php';
 	else
-	    require __DIR__ . '/../interfaces/' . $ascope["interface"] . '/breadcrumbs.php';
+	    require __DIR__ . '/../interfaces/' . $ascope["interfaces"]["description"][$ascope["interface"]]["interface"] . '/breadcrumbs.php';
 	require __DIR__ . '/../format.php';
     ?>
 

@@ -25,7 +25,7 @@
   models/dashboard/*
   app from index.php
 
-  Last Modified: 05.29.2019
+  Last Modified: 20.09.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -34,14 +34,20 @@ require 'models/security.php';
 require 'models/permissionsGenerated.php';
 require 'models/drillDowner.php';
 require 'models/linksMaker.php';
+require 'models/interfaces.php';
 
 class controller{
     public $user = false;
     public $interface = "default";
+    public $interfaces;
     public $category = "Accounting";
     public $path;
     public $mode = "dashboard";
 
+    function __construct(){
+        $this->interfaces = new interfaces();
+    }
+    
     public function process($app){
         if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
             $_SESSION["user"] = false;
