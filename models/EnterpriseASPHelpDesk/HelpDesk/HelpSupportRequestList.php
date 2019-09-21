@@ -285,8 +285,21 @@ class gridData extends gridDataSource{
     }
 
     public function insertItemRemote(){
+        $config = config();
         $mailer = new mailer();
-        $mailer->send($_POST);
+        
+        $mailer->send([
+            "subject" => $_POST["SupportQuestion"],
+            "body" => "Message from {$_POST["CustomerEmail"]}: {$_POST["SupportDescription"]}",
+            "email" => "ix@2du.ru"//$config["mailFrom"]
+        ]);
+
+        $mailer->send([
+            "subject" => "Support Request",
+            "body" => "Your request has been accepted.",
+            "email" => $_POST["CustomerEmail"]
+        ]);
+        
         parent::insertItemRemote($_POST);
     }
 }

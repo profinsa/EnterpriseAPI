@@ -20,12 +20,12 @@ class mailer{
 
         // Content
         $mail->isHTML(true);                                  // Set email format to HTML
-        $mail->Subject = $values["SupportQuestion"];
-        $mail->Body    = $values["SupportDescription"];
-        $mail->AltBody = $values["SupportDescription"];
+        $mail->Subject = $values["subject"];
+        $mail->Body    = $values["body"];
+        $mail->AltBody = $values["body"];
         $mail->From = $config["mailFrom"];
         $mail->setFrom($config["mailFrom"], $config["mailFromTitle"]);
-        $mail->addAddress($values["CustomerEmail"]);
+        $mail->addAddress($values["email"]);
         //echo(json_encode($values));
         try{
             $mail->send();
