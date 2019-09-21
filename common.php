@@ -25,7 +25,12 @@ function config(){
             "CompanyID" => "DINOS",
             "DivisionID" => "DEFAULT",
             "DepartmentID" => "DEFAULT"
-        ]
+        ],
+        "mailServer" => "box789.bluehost.com",
+        "mailUsername" => "support@stfb.com",
+        "mailUserpass" => "STFB!xticket1024",
+        "mailFrom" => "support@stfb.com",
+        "mailFromTitle" => "Support"
     );
 }
 

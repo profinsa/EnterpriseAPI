@@ -374,7 +374,7 @@
                      
                      serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
                          //console.log(data);
-                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "&config=STFBEnterprise&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
                              var values = JSON.parse(data);
                              //values.CustomerId = "test";
                              values.CustomerId = values.CustomerEmail = $("#CustomerEmail").val();

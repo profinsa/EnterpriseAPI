@@ -182,7 +182,10 @@
               cb(data);
       })
       .error(function(xhr){
-          alert(xhr.responseText);
+          if(cb)
+              cb(null, xhr.responseText);
+          else
+              alert(xhr.responseText);
       });
  }
 

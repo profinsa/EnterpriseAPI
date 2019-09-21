@@ -23,7 +23,12 @@ function config(){
             "DivisionID" => "DEFAULT",
             "DepartmentID" => "DEFAULT",
             "language" => "english"
-        ]
+        ],
+        "mailServer" => "box789.bluehost.com",
+        "mailUsername" => "support@stfb.com",
+        "mailUserpass" => "STFB!xticket1024",
+        "mailFrom" => "support@stfb.com",
+        "mailFromTitle" => "Support"
     );
 }
 
