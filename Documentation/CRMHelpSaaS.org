@@ -1,0 +1,58 @@
+* CRM
+  Newsletter subscribe and View Demo Handler with entering Customer information is implemented by two ways:
+  - server side logic
+    implemented in EnterpriseX project in Help controller(controllers/help.php). It uses EnterpriseX LeadInformation
+    model to work with data - getting, updating, inserting
+  - client side logic
+    + Subscribe form is same as it was in past, but now it uses differ address and point to EnterpriseX/index.php?page=help 
+      For this case can be used any just html form with inputs which will send form data to EnterpriseX. Example of form in
+      Documentation/examples/subscribeForm.html
+      If you need put form like it on your site - you need change sending address on own.
+    + View Demo Handler is mix of some html and js for working with EnterpriseX Help over AJAX requests.
+      Code of View Demo Hanlder in Documentation/examples/ViewDemoHandler.html
+      This component is simple. Just html for button and forms and some javascript for working with button, forms and sending
+      AJAX requests.
+
+   How it works?:
+   Client enter email on subscribe form, then click on subscribe. Form sends data to EnterpriseX which uses Help controller to
+   handle data. It sends confirmation email to client which contains link to EnterpriseX Help controller with confirmation info.
+   When user click on link, Help controller calls LeanInformation to insert Lead data
+
+   Client click on View demo. System checks cookies and if they contains customer info - just open Application. If not it
+   opens Customer Creation form. Client fill the form and click send. Request is sent to EnterpriseX Help controller, which
+   uses LeadInformation model to create Customer and send customer cookies back.  Client is redirected to opened Application.
+
+* Help Module 
+  Help module is part of EnterpriseX and uses Help controler to work.
+  If you need help tickets feature - you need to create another database, load cleanenterprise to it and create config as
+  clone of EnterpriseX/common.php, EnterpriseX/help.php for example. To use this database you need open it in Browser as
+  EnterpriseX/index.php?page=login&config=help.php. Then you need change default passwords of users to avoid access to data
+  for someone else.
+  Any installations which you own can point to you ticket system. For this you need to edit each config of your installation and
+  change following parameters:
+  "supportLink" => "https://stfb.net/EnterpriseX/index.php?config=STFBEnterprise",
+  "supportInsertUser" => [
+  supportLink is link to your EnterpriseX installation which will store support requests
+  supportInsertUser is credentials for user which had access to insert support requests
+
+* SaaS Module
+  SaaS Module is part of EnterpriseX. That means any EnterpriseX installation potencially can create other EnterpriseX installations,
+  sell it and expose to users. But SaaS Module had own security, if user don't have right he don't see SaaS functions.
+  + Hosting Manager
+    For creating installations(databases) SaaS module uses EnterpriseX/tools/HostingManager. This tool need to execute from
+    command like like:
+    php HostingManager.php
+    Also you need to Edit first line of HostingManager.php to change config name to another from Admin, if you use other config
+    name for SaaS Module.
+    That's all, Hosting Manager will create new databases and loads images to it.
+  + HostingCart
+    HostingCart is part of EnterpriseX/Cart application
+    by default it uses EnterpriseX/Cart/AppShop.php config
+    you need change CompanyID, DivisionID, DepartmentID, User and Pass if you using other
+    Also you can change database, for default it enterpriseadmin
+    When client uses HostingCart he uses it as regular Cart but Hosting Cart uses additional EnterpriseX features for creating
+    installations. Created installations is just databases with own configs. Each created installation just like default, but 
+    created installations don't have Admin part because of he don't have rights and don't have own Hosting Manager. Technically
+    we can allow to each new installation to have own Hosting Manager and create own installation if it will need to someone.
+    
+ 

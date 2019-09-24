@@ -21,6 +21,7 @@ function config(){
             "DepartmentID" => "DEFAULT",
             "language" => "english"
         ],
+        "supportLink" => "https://stfb.net/EnterpriseX/index.php?config=STFBEnterprise",
         "supportInsertUser" => [
             "CompanyID" => "DINOS",
             "DivisionID" => "DEFAULT",
