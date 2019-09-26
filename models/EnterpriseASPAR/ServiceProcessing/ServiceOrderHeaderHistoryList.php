@@ -25,18 +25,18 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 27/09/2019
   Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
-
 
 class gridData extends gridDataSource{
 	public $tableName = "orderheaderhistory";
 	public $gridConditions = "(LOWER(IFNULL(OrderHeaderHistory.TransactionTypeID, N'')) = 'service order')";
 	public $dashboardTitle ="Service Orders";
 	public $breadCrumbTitle ="Service Orders";
+    public $docType = "serviceorderhistory";
 	public $idField ="OrderNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber"];
     public $modes = ["grid", "view", "edit"];

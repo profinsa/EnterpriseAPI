@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 21/05/2019
+  Last Modified: 27/09/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -37,6 +37,7 @@ class ServiceOrderHeaderList extends gridDataSource{
     public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N''))='service order') AND IFNULL(Invoiced,0) = 0 AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold')";
     public $dashboardTitle ="Service Orders";
     public $breadCrumbTitle ="Service Orders";
+    public $docType = "serviceorder";
     public $idField ="OrderNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber"];
     public $gridFields = [

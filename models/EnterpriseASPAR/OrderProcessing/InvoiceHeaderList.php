@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 30/07/2019
+  Last Modified: 27/09/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -39,6 +39,7 @@ class InvoiceHeaderList extends gridDataSource{
 	public $gridConditions = "(NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0))";
 	public $dashboardTitle ="Invoices";
 	public $breadCrumbTitle ="Invoices";
+    public $docType = "invoice";
 	public $idField ="InvoiceNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
     public $id = "";

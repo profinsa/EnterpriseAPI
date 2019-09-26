@@ -1,14 +1,3 @@
-<a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailPrint(context.item)">
-    <?php
-        echo $translation->translateLabel("Print");
-    ?>
-</a>
-
-<a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailEmail(context.item)">
-    <?php
-        echo $translation->translateLabel("Email");
-    ?>
-</a>
 <a class="btn btn-info" href="javascript:;" onclick="callRecalc('<?php echo $headerItem["OrderNumber"]; ?>')">
     <?php
         echo $translation->translateLabel("Recalc");

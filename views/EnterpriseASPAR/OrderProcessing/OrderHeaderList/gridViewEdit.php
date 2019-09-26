@@ -20,7 +20,7 @@
      Calls:
      model
 
-     Last Modified: 12/11/2018
+     Last Modified: 27/09/2019
      Last Modified by: Zaharov Nikita
 -->
 
@@ -373,6 +373,17 @@
 			<?php echo $translation->translateLabel("Save"); ?>
 		    </a>
 		<?php endif; ?>
+                <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailPrint(context.item)">
+                    <?php
+                        echo $translation->translateLabel("Print");
+                    ?>
+                </a>
+
+                <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailEmail(context.item)">
+                    <?php
+                        echo $translation->translateLabel("Email");
+                    ?>
+                </a>
 		<?php 
 		    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "editActions.php"))
 			require __DIR__ . "/../../../" . $PartsPath . "editActions.php";

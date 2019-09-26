@@ -20,7 +20,7 @@
      Calls:
      model
 
-     Last Modified: 20/02/2019
+     Last Modified: 27/09/2019
      Last Modified by: Zaharov Nikita
 -->
 <?php
@@ -284,6 +284,17 @@
 		<a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"]); ?>">
 		    <?php echo $translation->translateLabel("Edit"); ?>
 		</a>
+                <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailPrint(context.item)">
+                    <?php
+                        echo $translation->translateLabel("Print");
+                    ?>
+                </a>
+
+                <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailEmail(context.item)">
+                    <?php
+                        echo $translation->translateLabel("Email");
+                    ?>
+                </a>
 		<?php
 		    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "viewActions.php"))
 			require __DIR__ . "/../../../" . $PartsPath . "viewActions.php";

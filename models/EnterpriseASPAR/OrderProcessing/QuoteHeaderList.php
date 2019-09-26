@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 07/06/2019
+  Last Modified: 27/09/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -37,6 +37,7 @@ class QuoteHeaderList extends gridDataSource{
 	public $gridConditions = "LOWER(OrderTypeID) = LOWER('Quote')";
 	public $dashboardTitle ="Quotes";
 	public $breadCrumbTitle ="Quotes";
+    public $docType = "quote";
 	public $idField ="OrderNumber";
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","OrderNumber"];
 	public $gridFields = [

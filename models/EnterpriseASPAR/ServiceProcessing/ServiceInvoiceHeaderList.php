@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 21/05/2019
+  Last Modified: 27/09/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -38,6 +38,7 @@ class ServiceInvoiceHeaderList extends gridDataSource{
     public $gridConditions="(LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) ='service invoice') AND (ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0)";
     public $dashboardTitle ="Service Invoices";
     public $breadCrumbTitle ="Service Invoices";
+    public $docType = "serviceinvoice";
     public $idField ="InvoiceNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
     public $gridFields = [
