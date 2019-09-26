@@ -168,7 +168,8 @@
 
  //printing Detail page to pdf
  function callDetailPrint(keyString){
-     var path = linksMaker.makeDocreportsLink(context.data.docType, context.item.split("__").pop());
+     var path = window.location.protocol + "//" + window.location.host + "/" + linksMaker.makeDocreportsLink(context.data.docType, context.item.split("__").pop());
+     console.log("printing " + path);
      //production
      downloadURI("http://stfb.net:3900/generatePdf?url=" + encodeURIComponent(path + "&printmode=1"), "export.pdf");
      //     console.log(linksMaker.makeGridItemView(context.path,keyString));
