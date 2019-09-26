@@ -19,6 +19,27 @@
      document.body.removeChild(element);
  }
 
+ function downloadURI(uri, name) {
+     var link = document.createElement("a");
+     link.download = name;
+     link.href = uri;
+     link.target = "_Blank";
+     document.body.appendChild(link);
+     link.click();
+     document.body.removeChild(link);
+     delete link;
+ }
+
+ function exportPdf(){
+     var path = window.location.toString();
+     path = path.replace(/index\.php.*\#\//, "index.php?<?php echo "CompanyID={$ascope["user"]["CompanyID"]}&DivisionID={$ascope["user"]["DivisionID"]}&DepartmentID={$ascope["user"]["DepartmentID"]}&EmployeeID={$ascope["user"]["EmployeeID"]}&EmployeePassword={$ascope["user"]["EmployeePassword"]}"; ?>#/");
+
+     //production
+     downloadURI("http://stfb.net:3900/generatePdf?url=" + encodeURIComponent(path + "&printmode=1"), "export.pdf");
+     //test
+     //downloadURI("http://localhost:3900/generatePdf?url=" + encodeURIComponent(path + "&printmode=1"), "export.pdf");
+ }
+ 
  function getFormData($form){
      var unindexed_array = $form.serializeArray();
      var indexed_array = {};
@@ -144,8 +165,19 @@
      autorecalcData[context.data.idFields[3]] = id;
      serverProcedureCall('Recalc', autorecalcData, true);
  }
- //calling procedure from server
 
+ //printing Detail page to pdf
+ function callDetailPrint(keyString){
+     exportPdf();
+//     console.log(linksMaker.makeGridItemView(context.path,keyString));
+ }
+
+ //sending Detail page as pdf to customer or vendor
+ function callDetailEmail(keyString){
+     console.log(linksMaker.makeGridItemView(context.path,keyString));
+ }
+
+ //calling procedure from server
  <?php if(isset($ascope) && key_exists("mode", $ascope)): ?>
  function serverProcedureCall(methodName, props, reloadPage, jsonRequest, successAlert){
      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, jsonRequest ? JSON.stringify(props) : props, 'text')
