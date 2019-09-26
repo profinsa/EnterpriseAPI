@@ -1358,11 +1358,13 @@ EOF;
         $keyFields = "";
         $fields = [];
         foreach($this->gridFields as $key=>$value){
-            $fields[] = $key;
-            if(key_exists("addFields", $value)){
-                $_fields = explode(",", $value["addFields"]);
-                foreach($_fields as $addfield)
-                    $fields[] = $addfield;
+            if(!key_exists("fake", $value)){
+                $fields[] = $key;
+                if(key_exists("addFields", $value)){
+                    $_fields = explode(",", $value["addFields"]);
+                    foreach($_fields as $addfield)
+                        $fields[] = $addfield;
+                }
             }
         }
         foreach($this->idFields as $key){

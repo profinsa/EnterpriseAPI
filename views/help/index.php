@@ -406,14 +406,14 @@
                      //console.log(loginform.serialize());
                      
                      serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
-                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : "<?php echo makeHelpKeyString(); ?>"}, function(data, error){
                              var values = JSON.parse(data);
                              values.CustomerId = values.CustomerEmail = CustomerID;
                              values.SupportQuestion = $("#SupportQuestion").val();
                              values.SupportDescription = $("#SupportDescription").val();
 
                              //updating customer information
-                             values.id = "<?php echo $linksMaker->makeHelpKeyString(); ?>";
+                             values.id = "<?php echo makeHelpKeyString(); ?>";
                              values.type = "Main";
                              serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
                                  serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
@@ -427,7 +427,7 @@
                  }
 
                  function onCreateCustomerSubmit(event){
-                     serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                     serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : "<?php echo makeHelpKeyString(); ?>"}, function(data, error){
                          var values = JSON.parse(data);
                          values.CustomerID = values.CustomerEmail = $("input[name=CustomerEmail]").val();
                          values.CustomerName = $("input[name=CustomerName]").val();
@@ -506,7 +506,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="CustomerName" id="CustomerName" />
+                                        <input type="text" class="form-control" name="CustomerName" id="CustomerName" required="true"/>
                                     </div>
                                 </div>
                             </div>
@@ -516,7 +516,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="CustomerFirstName" id="CustomerFirstName" />
+                                        <input type="text" class="form-control" name="CustomerFirstName" id="CustomerFirstName" required="true"/>
                                     </div>
                                 </div>
                             </div>
@@ -526,7 +526,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="CustomerLastName" id="CustomerLastName" />
+                                        <input type="text" class="form-control" name="CustomerLastName" id="CustomerLastName" required="true"/>
                                     </div>
                                 </div>
                             </div>
@@ -536,7 +536,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="CustomerAddress1" id="CustomerAddress1" />
+                                        <input type="text" class="form-control" name="CustomerAddress1" id="CustomerAddress1" required="true"/>
                                     </div>
                                 </div>
                             </div>
@@ -546,7 +546,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="CustomerPhone" id="CustomerPhone" />
+                                        <input type="text" class="form-control" name="CustomerPhone" id="CustomerPhone" required="true"/>
                                     </div>
                                 </div>
                             </div>
@@ -556,7 +556,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <select class="form-control" name="CustomerTypeID" id="CustomerTypeID">
+                                        <select class="form-control" name="CustomerTypeID" id="CustomerTypeID" required="true">
                                             <?php foreach($ascope["config"]["supportProducts"] as $productName): ?>
                                                 <option value="<?php echo $productName ?>">
                                                     <?php echo $productName ?>

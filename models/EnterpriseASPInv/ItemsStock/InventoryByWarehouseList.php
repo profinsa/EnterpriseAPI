@@ -1,32 +1,32 @@
 <?php
 /*
-Name of Page: InventoryByWarehouseList model
- 
-Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryByWarehouseList.php It provides data from database and default values, column names and categories
- 
-Date created: 02/16/2017 Nikita Zaharov
- 
-Use: this model used by views/InventoryByWarehouseList for:
-- as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
-- for loading data from tables, updating, inserting and deleting
- 
-Input parameters:
-$db: database instance
-methods have their own parameters
- 
-Output parameters:
-- dictionaries as public properties
-- methods have their own output
- 
-Called from:
-created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryByWarehouseList.php
-used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryByWarehouseList.php
- 
-Calls:
-MySql Database
- 
-Last Modified: 04/28/2019
-Last Modified by: Nikita Zaharov
+  Name of Page: InventoryByWarehouseList model
+   
+  Method: Model for www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryByWarehouseList.php It provides data from database and default values, column names and categories
+   
+  Date created: 02/16/2017 Nikita Zaharov
+   
+  Use: this model used by views/InventoryByWarehouseList for:
+  - as a dictionary for view during building interface(tabs and them names, fields and them names etc, column name and corresponding translationid)
+  - for loading data from tables, updating, inserting and deleting
+   
+  Input parameters:
+  $db: database instance
+  methods have their own parameters
+   
+  Output parameters:
+  - dictionaries as public properties
+  - methods have their own output
+   
+  Called from:
+  created and used for ajax requests by controllers/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryByWarehouseList.php
+  used as model by views/www.integralaccountingx.com\EnterpriseX\models\EnterpriseASPInv\ItemStock\InventoryByWarehouseList.php
+   
+  Calls:
+  MySql Database
+   
+  Last Modified: 26/09/2019
+  Last Modified by: Nikita Zaharov
 */
 
 require "./models/gridDataSource.php";
@@ -54,6 +54,11 @@ class gridData extends gridDataSource{
             "inputType" => "text"
         ],
         "QtyCommitted" => [
+            "dbType" => "int(11)",
+            "inputType" => "text"
+        ],
+        "QtyAvailable" => [
+            "fake" => true,
             "dbType" => "int(11)",
             "inputType" => "text"
         ],
@@ -123,6 +128,7 @@ class gridData extends gridDataSource{
         "WarehouseBinID" => "Warehouse Bin ID",
         "QtyOnHand" => "Qty On Hand",
         "QtyCommitted" => "Qty Committed",
+        "QtyAvailable" => "Qty Available",
         "QtyOnOrder" => "Qty On Order",
         "QtyOnBackorder" => "Qty On Backorder",
         "CycleCode" => "Cycle Code",
@@ -150,9 +156,9 @@ class gridData extends gridDataSource{
             $qtyCommitted = 0;
             foreach($details as $drow)
                 $qtyCommitted += $drow->OrderQty;
-
+            $row["QtyAvailable"] = $row["QtyOnHand"] - $row["QtyCommitted"];
             //echo json_encode($detail);
-            //$row["QtyCommitted"] = $qtyCommitted;
+            $row["QtyCommitted"] = $qtyCommitted;
             //echo "update inventorybywarehouse set QtyCommitted='{qtyCommitted}' WHERE CompanyID='{$user["CompanyID"]}' AND DivisionID='{$user["DivisionID"]}' AND DepartmentID='{$user["DepartmentID"]}' AND ItemID='{$row["ItemID"]}'";
         }
         return $result;
