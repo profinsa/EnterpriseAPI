@@ -16,7 +16,7 @@ function config(){
         "warningMinutes" => 2,
         "timeoutWarning" => "Your session will end in 2 minutes!",
         "user" => [
-            "CompanyID" => "STFB", //production, for help module
+            "CompanyID" => "DINOS", //production, for help module
             //            "CompanyID" => "DINOS",
             "DivisionID" => "DEFAULT",
             "DepartmentID" => "DEFAULT",

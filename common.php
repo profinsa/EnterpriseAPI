@@ -16,7 +16,7 @@ function config(){
         "warningMinutes" => 2, //time to wait for warning message, after that session is expired
         "timeoutWarning" => "Your session will end in 2 minutes!", //text of expiration message
         "user" => [
-            "CompanyID" => "STFB", //production, for help module
+            "CompanyID" => "DINOS", //production, for help module
             //"CompanyID" => "DINOS",
             
             "DivisionID" => "DEFAULT",

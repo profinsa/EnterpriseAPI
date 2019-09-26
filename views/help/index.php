@@ -385,10 +385,17 @@
                      if(type == "help")
                          //production
                          return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
-                         //test
-                         //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
+                     //test
+                     //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
                      if(type == "common")
                          return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
+                 }
+                 
+                 function makeHelpKeyString(){
+                     //production
+                     return "STFB__DEFAULT__DEFAULT";
+                     //test
+                     //return "DINOS__DEFAULT__DEFAULT";
                  }
                  
                  function onRequestSubmit(event){
