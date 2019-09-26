@@ -168,8 +168,8 @@
 
  //printing Detail page to pdf
  function callDetailPrint(keyString){
-     var path = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;
-     path = path.replace(/index\.php/, linksMaker.makeDocreportsLink(context.data.docType, context.item.split("__").pop()));
+     var path = window.location.protocol + "//" + window.location.host + "" + window.location.pathname;
+     path = path.replace(/index\.php/, linksMaker.makeDocreportsLink(context.data.docType, context.item.split("__").pop()) + "&" + "<?php echo "CompanyID={$ascope["user"]["CompanyID"]}&DivisionID={$ascope["user"]["DivisionID"]}&DepartmentID={$ascope["user"]["DepartmentID"]}&EmployeeID={$ascope["user"]["EmployeeID"]}&EmployeePassword={$ascope["user"]["EmployeePassword"]}"; ?>");
      console.log("printing " + path);
      //production
      downloadURI("http://stfb.net:3900/generatePdf?url=" + encodeURIComponent(path + "&printmode=1"), "export.pdf");
