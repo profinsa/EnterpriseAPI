@@ -21,6 +21,16 @@ function config(){
             "DepartmentID" => "DEFAULT",
             "language" => "english"
         ],
+        "supportProducts" => [
+            "Enterprise X",
+            "Enterprise Cloud"
+        ],
+        "supportLink" => "https://stfb.net/EnterpriseX/index.php?config=STFBEnterprise", //link to support system, it uses for links to Help from menu and topbar
+        "supportInsertUser" => [ //user credentials for inserting Help Request tickets as they are in STFBEnterprise config
+            "CompanyID" => "DINOS",
+            "DivisionID" => "DEFAULT",
+            "DepartmentID" => "DEFAULT"
+        ],
         "mailServer" => "box789.bluehost.com",
         "mailUsername" => "support@stfb.com",
         "mailUserpass" => "STFB!xticket1024",

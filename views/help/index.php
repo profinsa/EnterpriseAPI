@@ -317,7 +317,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" name="email" required="true" id="CustomerEmail" />
+                                        <input type="email" class="form-control" name="EmailCustomer" required="true" id="EmailCustomer" />
                                     </div>
                                 </div>
                             </div>
@@ -365,31 +365,74 @@
                          $('#contact-form').modal('show');
                      }
 
+                     var email = $("#EmailCustomer").on("change", function(){
+                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
+                             serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "checkIfExists", { CustomerID : email.val()}, function(data, error){
+                                 data = JSON.parse(data);
+                                 if(!data.founded){
+                                     $('#create-customer-form').modal('show');
+                                     $('#CustomerEmail').val($('#EmailCustomer').val());
+                                 }
+                                 serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                                 });
+                             });
+                         });
+                     });
+
                  });
+
+                 function makeHelpCredentialsString(type){
+                     if(type == "help")
+                         //production
+                         return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
+                         //test
+                         //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
+                     if(type == "common")
+                         return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
+                 }
+                 
                  function onRequestSubmit(event){
                      var loginform = $('#requestForm');
                      $("#contact-form").hide();
+                     var CustomerID = $("#EmailCustomer").val();
                      //console.log(loginform);
                      //console.log(loginform.serialize());
                      
                      serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
-                         //console.log(data);
-                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo", "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
                              var values = JSON.parse(data);
-                             //values.CustomerId = "test";
-                             values.CustomerId = values.CustomerEmail = $("#CustomerEmail").val();
+                             values.CustomerId = values.CustomerEmail = CustomerID;
                              values.SupportQuestion = $("#SupportQuestion").val();
                              values.SupportDescription = $("#SupportDescription").val();
 
                              //updating customer information
                              values.id = "<?php echo $linksMaker->makeHelpKeyString(); ?>";
                              values.type = "Main";
-                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo", "insertItemRemote", values, function(data, error){
+                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
                                  serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
                                      console.log(data);
                                  });
                                  console.log("request is sent");
 	                     });
+                         });
+                     });
+                     return false;
+                 }
+
+                 function onCreateCustomerSubmit(event){
+                     serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : "<?php echo $linksMaker->makeHelpKeyString(); ?>"}, function(data, error){
+                         var values = JSON.parse(data);
+                         values.CustomerID = values.CustomerEmail = $("input[name=CustomerEmail]").val();
+                         values.CustomerName = $("input[name=CustomerName]").val();
+                         values.CustomerFirstName = $("input[name=CustomerFirstName]").val();
+                         values.CustomerLastName = $("input[name=CustomerLastName]").val();
+                         values.CustomerPhone = $("input[name=CustomerPhone]").val();
+                         values.CustomerAddress1 = $("input[name=CustomerAddress1]").val();
+                         values.CustomerTypeID = $("input[name=CustomerTypeID]").val();
+                         console.log(values);
+                         
+                         serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
+                             $("#create-customer-form").hide();                             
                          });
                      });
                      return false;
@@ -401,7 +444,7 @@
                      if (/\S/.test(res.value)) {
                          if (res.value != prevSearch){
                              delay(function(){
-                                 serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo" , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
+                                 serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", makeHelpCredentialsString("common") , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
                                      var html = "";
                                      var results = JSON.parse(data);
                                      results.forEach(function(record) {
@@ -428,6 +471,101 @@
                  //window.baseURL = "//stfbinc.helpdocs.com";
                  //window.urlPrefix = "//stfbinc.helpdocs.com";
                 </script>
+            </div>
+        </div>
+        <div class="modal fade" id="create-customer-form" tabindex="-1" role="dialog" aria-labelledby="create-customer-form-header" aria-hidden="true">
+            <div class="modal-dialog">
+                <form  action="#" onsubmit="return onCreateCustomerSubmit(event);" id="createCustomerForm">
+                    <input type="hidden" name="timer" value="0" id="ft" />
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="create-customer-header">Please, fill your data</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Email</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="CustomerEmail" required="true" id="CustomerEmail" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Company Name</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="CustomerName" id="CustomerName" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">First Name</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="CustomerFirstName" id="CustomerFirstName" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Last Name</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="CustomerLastName" id="CustomerLastName" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Address</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="CustomerAddress1" id="CustomerAddress1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Phone Number</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="CustomerPhone" id="CustomerPhone" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Product</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <select class="form-control" name="CustomerTypeID" id="CustomerTypeID">
+                                            <?php foreach($ascope["config"]["supportProducts"] as $productName): ?>
+                                                <option value="<?php echo $productName ?>">
+                                                    <?php echo $productName ?>
+                                                </option>
+                                            <?php endforeach; ?>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Send" id="createCustomerButton"/>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </body>

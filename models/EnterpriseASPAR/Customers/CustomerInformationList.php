@@ -1282,5 +1282,17 @@ class gridData extends gridDataSource{
         $result = DB::insert("INSERT INTO customerfinancials (CompanyID, DivisionID, DepartmentID, CustomerID) values(?, ?, ?, ?)", array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $values["CustomerID"]));
         parent::insertItem($values);
     }
+
+    public function checkIfExists(){
+        $records = parent::getPage(1);
+        $founded = false;
+        foreach($records as $record)
+            if($record["CustomerID"] == $_POST["CustomerID"]){
+                $founded = true;
+                break;
+            }
+
+        echo json_encode([ "founded" => $founded], JSON_PRETTY_PRINT);
+    }
 }
 ?>

@@ -16,10 +16,16 @@ function config(){
         "warningMinutes" => 2, //time to wait for warning message, after that session is expired
         "timeoutWarning" => "Your session will end in 2 minutes!", //text of expiration message
         "user" => [
-            "CompanyID" => "DINOS",
+            "CompanyID" => "STFB", //production, for help module
+            //"CompanyID" => "DINOS",
+            
             "DivisionID" => "DEFAULT",
             "DepartmentID" => "DEFAULT",
             "language" => "english"
+        ],
+        "supportProducts" => [
+            "Enterprise X",
+            "Enterprise Cloud"
         ],
         "supportLink" => "https://stfb.net/EnterpriseX/index.php?config=STFBEnterprise", //link to support system, it uses for links to Help from menu and topbar
         "supportInsertUser" => [ //user credentials for inserting Help Request tickets as they are in STFBEnterprise config

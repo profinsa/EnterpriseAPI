@@ -39,6 +39,7 @@ class controller{
     public $user = false;
     public $action = "";
     public $mode = "docreports";
+    public $config;
     public $path;
 
     public function process($app){
@@ -52,7 +53,7 @@ class controller{
             }*/
 
         $id = key_exists("url", $_GET) ? $_GET["url"] : "";
-        $config = config();
+        $this->config = $config = config();
         $this->user = $config["user"];
         $this->user["EmployeeID"] = "Help";
         SESSION::set("user", $this->user);
@@ -62,8 +63,8 @@ class controller{
         //$this->user = $_SESSION["user"];
                
         $data = new helpData($id);
-
         $linksMaker = new linksMaker();
+        $ascope = json_decode(json_encode($this), true);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if(key_exists("method", $_GET)){
                 $leadInformation = new LeadInformationList();
