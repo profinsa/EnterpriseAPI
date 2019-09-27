@@ -60,6 +60,31 @@
      <?php endif; ?>
  }
 
+ var docTypeToCV = {
+     "invoice" : "CustomerID",
+     "invoicehistory" : "CustomerID",
+     "quote" : "CustomerID",
+     "order" : "CustomerID",
+     "orderpick" : "CustomerID",
+     "orderhistory" : "CustomerID",
+     "serviceorder" : "CustomerID",
+     "serviceorderhistory" : "CustomerID",
+     "serviceinvoice" : "CustomerID",
+     "serviceinvoicehistory" : "CustomerID",
+     "creditmemo" : "CustomerID",
+     "creditmemohistory" : "CustomerID",
+     "debitmemo" : "VendorID",
+     "debitmemohistory" : "VendorID",
+     "rmaorder" : "VendorID",
+     "purchaseorder" : "VendorID",
+     "returninvoice" : "CustomerID",
+     "receiving" : "VendorID",
+     //"customertransactions" : "customertransactions",
+     //"customerstatements" : "customerstatements",
+     "payment" : "payment",
+     //"apcheck" : "apcheck"            
+ };
+
  //global object used for creatink links to any part of application
  var linksMaker = {
      makeDashboardLink : function(type){
@@ -179,7 +204,25 @@
 
  //sending Detail page as pdf to customer or vendor
  function callDetailEmail(keyString){
-     console.log(linksMaker.makeGridItemView(context.path,keyString));
+     //production
+     var path = window.location.protocol + "//" + window.location.host + "" + window.location.pathname;
+     //test
+     //var path = "http://stfb.net/EnterpriseX/index.php";
+     path = path.replace(/index\.php/, linksMaker.makeDocreportsLink(context.data.docType, context.item.split("__").pop()) + "&" + "<?php echo "CompanyID={$ascope["user"]["CompanyID"]}&DivisionID={$ascope["user"]["DivisionID"]}&DepartmentID={$ascope["user"]["DepartmentID"]}&EmployeeID={$ascope["user"]["EmployeeID"]}&EmployeePassword={$ascope["user"]["EmployeePassword"]}"; ?>");
+
+     //console.log("printing " + path);
+     //window.location = path;
+     path = "http://stfb.net:3900/generatePdf?url=" + encodeURIComponent(path + "&printmode=1");
+     serverProcedureAnyCall(context.path, "sendPDFToCustomerOrVendor", {
+         pdfUrl : path,
+         CVValue : context.headerItems[docTypeToCV[context.data.docType]],
+         CVField : docTypeToCV[context.data.docType]
+     }, function(data){
+         alert("Document is sent to " + (docTypeToCV[context.data.docType] == "CustomerID" ? "Customer" : "Vendor") + "!");
+     });
+     //production
+     //downloadURI(path, "export.pdf");
+     //     console.log(linksMaker.makeGridItemView(context.path,keyString));
  }
 
  //calling procedure from server

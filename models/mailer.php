@@ -26,6 +26,10 @@ class mailer{
         $mail->From = $config["mailFrom"];
         $mail->setFrom($config["mailFrom"], $config["mailFromTitle"]);
         $mail->addAddress($values["email"]);
+        if(key_exists("attachments", $values))
+            foreach($values["attachments"] as $key=>$attachment)
+                $mail->AddAttachment($key, $attachment["name"]);
+
         //echo(json_encode($values));
         try{
             $mail->send();

@@ -85,8 +85,7 @@ class controller{
             "customertransactions" => "customertransactions",
             "customerstatements" => "customerstatements",
             "payment" => "payment",
-            "apcheck" => "apcheck"
-            
+            "apcheck" => "apcheck"            
         ];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
