@@ -535,6 +535,13 @@
                             <?php echo $translation->translateLabel("Save"); ?>
                         </a>
                         <?php if(property_exists($data, "docType")): ?>
+                            <?php if($ascope["mode"] != "new"): ?>
+                                <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="saveItemAndPrint()">
+                                    <?php
+                                        echo $translation->translateLabel("Save & Print");
+                                    ?>
+                                </a>
+                            <?php endif; ?>
                             <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailPrint(context.item)">
                                 <?php
                                     echo $translation->translateLabel("Print");
@@ -765,7 +772,7 @@
      return true;
  }
  //handler of save button if we in edit mode. Just doing XHR request to save data
- function saveItem(){
+ function saveItem(cb){
      var itemData = $("#itemData");
      if (validateForm(itemData)) {
          $.post("<?php echo $linksMaker->makeGridItemSave($ascope["path"]); ?>", itemData.serialize(), null, 'json')
@@ -775,7 +782,10 @@
                   <?php echo $data->idField; ?> : '<?php echo $headerItem[$data->idField]; ?>'
               }, function(){
                   callRecalc('<?php echo $headerItem[$data->idField]; ?>');
-                  window.location = "<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>";
+                  if(cb)
+                      cb();
+                  else
+                      window.location = "<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>";
               });
           })
           .error(function(err){
@@ -783,7 +793,15 @@
           });
      }
  }
- 
+
+ function saveItemAndPrint(){
+     saveItem(function(){
+         callDetailPrint(context.item, function(){
+             window.location = "<?php echo $linksMaker->makeGridLink($ascope["path"]); ?>";
+         });
+     });
+ }
+
  //handler delete button from rows. Just doing XHR request to delete item and redirect to grid if success
  function orderDetailDelete(item){
      if(confirm("Are you sure?")){
