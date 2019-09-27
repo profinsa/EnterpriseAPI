@@ -534,6 +534,19 @@
                         <a class="btn btn-info" onclick="<?php echo ($ascope["mode"] != "new" ? "saveItem()" : "createItem()"); ?>">
                             <?php echo $translation->translateLabel("Save"); ?>
                         </a>
+                        <?php if(property_exists($data, "docType")): ?>
+                            <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailPrint(context.item)">
+                                <?php
+                                    echo $translation->translateLabel("Print");
+                                ?>
+                            </a>
+
+                            <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailEmail(context.item)">
+                                <?php
+                                    echo $translation->translateLabel("Email");
+                                ?>
+                            </a>
+                        <?php endif; ?>
                         <?php
                             if(file_exists(__DIR__ . "/../../../../" . $PartsPath . "viewActions.php"))
                                 require __DIR__ . "/../../../../" . $PartsPath . "viewActions.php";

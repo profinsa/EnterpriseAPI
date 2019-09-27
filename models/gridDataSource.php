@@ -2136,11 +2136,13 @@ EOF;
         if($_POST["CVField"] == "CustomerID"){
             $CVEmail = "CustomerEmail";
             $CVName = "Customer";
+            $tableName = "customerinformation";
         }else{
             $CVEmail = "VendorEmail";
             $CVName = "Vendor";
+            $tableName = "vendorinformation";
         }
-        $records = DB::select("select {$CVName}Email from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND {$CVName}ID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["CVValue"]]);
+        $records = DB::select("select {$CVName}Email from $tableName WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND {$CVName}ID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_POST["CVValue"]]);
         if(!count($records)){
             http_response_code(400);
             echo "There is no $CVName with that {$_POST["CVField"]}";
