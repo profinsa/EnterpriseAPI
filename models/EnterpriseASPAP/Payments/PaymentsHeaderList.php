@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 10/06/2019
+  Last Modified: 27/09/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,6 +36,7 @@ class PaymentsHeaderList extends gridDataSource{
     public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0)";
     public $dashboardTitle ="Payments";
     public $breadCrumbTitle ="Payments";
+    public $docType = "payment";
     public $idField ="PaymentID";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","PaymentID"];
     public $gridFields = [

@@ -284,17 +284,19 @@
 		<a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"]); ?>">
 		    <?php echo $translation->translateLabel("Edit"); ?>
 		</a>
-                <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailPrint(context.item)">
-                    <?php
-                        echo $translation->translateLabel("Print");
-                    ?>
-                </a>
+                <?php if(property_exists($data, "docType")): ?>
+                    <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailPrint(context.item)">
+                        <?php
+                            echo $translation->translateLabel("Print");
+                        ?>
+                    </a>
 
-                <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailEmail(context.item)">
-                    <?php
-                        echo $translation->translateLabel("Email");
-                    ?>
-                </a>
+                    <a class="btn btn-info <?php echo !$headerItem["Posted"] ? "disabled" : "";?>" href="javascript:;" onclick="callDetailEmail(context.item)">
+                        <?php
+                            echo $translation->translateLabel("Email");
+                        ?>
+                    </a>
+                <?php endif; ?>
 		<?php
 		    if(file_exists(__DIR__ . "/../../../" . $PartsPath . "viewActions.php"))
 			require __DIR__ . "/../../../" . $PartsPath . "viewActions.php";

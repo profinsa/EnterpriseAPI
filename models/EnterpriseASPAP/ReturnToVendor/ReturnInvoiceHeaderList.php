@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 10/07/2019
+  Last Modified: 27/09/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -37,6 +37,7 @@ class ReturnInvoiceHeaderList extends gridDataSource{
     public $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return'))  AND (NOT   (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) < 0.005 AND InvoiceHeader.Posted = 1))";
     public $dashboardTitle ="Return Invoices";
     public $breadCrumbTitle ="Return Invoices";
+    public $docType = "returninvoice";
     public $idField ="InvoiceNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
     public $gridFields = [

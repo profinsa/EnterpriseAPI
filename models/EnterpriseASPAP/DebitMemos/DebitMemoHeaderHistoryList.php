@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 27/09/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,6 +36,7 @@ class gridData extends gridDataSource{
     public $gridConditions = "(LOWER(PurchaseHeaderHistory.TransactionTypeID) = 'debit memo')";
     public $dashboardTitle ="Debit Memos History";
     public $breadCrumbTitle ="Debit Memos History";
+    public $docType = "debitmemohistory";
     public $idField ="PurchaseNumber";
     public $modes = ["grid", "view"];
     public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];

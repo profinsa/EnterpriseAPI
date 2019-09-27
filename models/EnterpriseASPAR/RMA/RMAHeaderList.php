@@ -7,6 +7,7 @@ class RMAHeaderList extends gridDataSource{
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND ((IFNULL(Received,0) = 0) OR (IFNULL(Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT')";
     public $dashboardTitle ="RMA's";
     public $breadCrumbTitle ="RMA's";
+    public $docType = "rmaorder";
     public $idField ="PurchaseNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
     public $gridFields = [
@@ -1034,7 +1035,7 @@ class RMAHeaderList extends gridDataSource{
             $keyFields .= " AND CustomerID='" . $id . "'";
         
         $result = DB::select("SELECT " . implode(",", $fields) . " from customerinformation " .  ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-
+        
         $result = json_decode(json_encode($id ? $result[0] : $result), true);
         
         return $result;

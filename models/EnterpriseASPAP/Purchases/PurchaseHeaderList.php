@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 25/07/2019
+  Last Modified: 27/09/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,6 +36,7 @@ class PurchaseHeaderList extends gridDataSource{
 	public $gridConditions = "(NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND ((IFNULL(Received,0) = 0) OR (IFNULL(PurchaseHeader.Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT')";
 	public $dashboardTitle ="Purchases";
 	public $breadCrumbTitle ="Purchases";
+    public $docType = "purchaseorder";
 	public $idField ="PurchaseNumber";
     //	public $modes = ["grid", "view", "edit];
 	public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];

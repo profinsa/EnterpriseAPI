@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 21/05/2019
+  Last Modified: 27/09/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -38,6 +38,7 @@ class CreditMemoHeaderList extends gridDataSource{
     public $gridConditions = "(ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0) AND (LOWER(InvoiceHeader.TransactionTypeID) IN ('credit memo'))";
     public $dashboardTitle ="Credit Memos";
     public $breadCrumbTitle ="Credit Memos";
+    public $docType = "creditmemo";
     public $idField ="InvoiceNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
     public $gridFields = [

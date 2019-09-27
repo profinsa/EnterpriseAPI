@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 14/05/2019
+  Last Modified: 27/09/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -37,6 +37,7 @@ class DebitMemoHeaderList extends gridDataSource{
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'debit memo') AND (ABS(IFNULL(PurchaseHeader.BalanceDue,0)) >= 0.005 OR ABS(IFNULL(PurchaseHeader.Total,0)) < 0.005 OR IFNULL(PurchaseHeader.Posted,0)=0)";
     public $dashboardTitle ="Debit Memos";
     public $breadCrumbTitle ="Debit Memos";
+    public $docType = "debitmemo";
     public $idField ="PurchaseNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","PurchaseNumber"];
     public $gridFields = [

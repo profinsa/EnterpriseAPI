@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/30/2018
+  Last Modified: 27/09/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,6 +36,7 @@ class gridData extends gridDataSource{
     public $gridConditions = "(LOWER(InvoiceHeaderHistory.TransactionTypeID) IN ('credit memo'))";
     public $dashboardTitle ="Credit Memos History";
     public $breadCrumbTitle ="Credit Memos History";
+    public $docType = "creditmemohistory";
     public $idField ="InvoiceNumber";
     public $idFields = ["CompanyID","DivisionID","DepartmentID","InvoiceNumber"];
     public $modes = ["grid", "view"];
