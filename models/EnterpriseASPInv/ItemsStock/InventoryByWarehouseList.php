@@ -159,7 +159,7 @@ class gridData extends gridDataSource{
             $row["QtyAvailable"] = $row["QtyOnHand"] - $row["QtyCommitted"];
             //echo json_encode($detail);
             $row["QtyCommitted"] = $qtyCommitted;
-            //echo "update inventorybywarehouse set QtyCommitted='{qtyCommitted}' WHERE CompanyID='{$user["CompanyID"]}' AND DivisionID='{$user["DivisionID"]}' AND DepartmentID='{$user["DepartmentID"]}' AND ItemID='{$row["ItemID"]}'";
+            DB::UPDATE("update inventorybywarehouse set QtyCommitted='{$qtyCommitted}' WHERE CompanyID='{$user["CompanyID"]}' AND DivisionID='{$user["DivisionID"]}' AND DepartmentID='{$user["DepartmentID"]}' AND ItemID='{$row["ItemID"]}'");
         }
         return $result;
     }

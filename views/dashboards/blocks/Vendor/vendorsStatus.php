@@ -1,5 +1,5 @@
 <?php
-    $vendorsNumbers = $data->customerGetVendorsNumbers();
+    $vendorsNumbers = $data->vendorGetVendorsNumbers();
 ?>
 <div class="row">
     <div class="col-md-3 col-sm-6">

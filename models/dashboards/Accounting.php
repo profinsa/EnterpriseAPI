@@ -356,7 +356,7 @@ EOF;
     }
 
     //Vendor dashboard
-    public function customerGetVendorsNumbers(){
+    public function vendorGetVendorsNumbers(){
         $user = Session::get("user");
 
         $newmonth = DB::select("select VendorID from vendorinformation WHERE CustomerSince >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
@@ -473,6 +473,33 @@ EOF;
         $results["payments"] = DB::select($paymentsQuery, array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
         
         return $results;
+    }
+
+    //Item dashboard
+
+    function itemGetCriticalyLowInventory(){
+        $user = Session::get("user");
+
+        $results = DB::select("SELECT * from inventorybywarehouse WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND QtyCommitted > 0 AND QtyOnHand=0", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+
+        return $results;
+    }
+
+    public function itemGetItemsNumbers(){
+        $user = Session::get("user");
+
+        $receivingstoday = DB::select("select VendorID from purchaseheader WHERE ShipDate >= NOW() - INTERVAL 1 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=? AND Received=1", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $receivingsmonth = DB::select("select VendorID from purchaseheader WHERE ShipDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=? AND Received=1", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $transitstoday = DB::select("select TransitID from warehousetransitheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND TransitEnteredDate <= NOW() - INTERVAL 1 DAY", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $transitstotal = DB::select("select TransitID from warehousetransitheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $ret = [
+            "receivingstoday" => count($receivingstoday),
+            "receivingsmonth" => count($receivingsmonth),
+            "transitstoday" => count($transitstoday),
+            "transitstotal" => count($transitstotal)
+        ];
+
+        return $ret;
     }
 }
 ?>
