@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 08.10.2019
+  Last Modified: 09.10.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -355,5 +355,124 @@ EOF;
         return $ret;
     }
 
+    //Vendor dashboard
+    public function customerGetVendorsNumbers(){
+        $user = Session::get("user");
+
+        $newmonth = DB::select("select VendorID from vendorinformation WHERE CustomerSince >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $newyear = DB::select("select VendorID from vendorinformation WHERE CustomerSince >= NOW() - INTERVAL 365 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $inactive = DB::select("select VendorID from vendorinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $total = DB::select("select VendorID from vendorinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $ret = [
+            "newmonth" => count($newmonth),
+            "newyear" => count($newyear),
+            "inactive" => count($inactive),
+            "total" => count($total)
+        ];
+
+        return $ret;
+    }
+
+
+    public function vendorReceivables(){
+        $user = Session::get("user");
+
+        $results = DB::select("select * from vendorfinancials WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        
+        //        $results = DB::select("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        $ret = [
+            "Over90" => [
+                "FieldName" => "Over 90",
+                "Totals" => 0
+            ],
+            "Over60" => [
+                "FieldName" => "60-90",
+                "Totals" => 0
+            ],
+            "Over30" => [
+                "FieldName" => "30-60",
+                "Totals" => 0
+            ],
+            "Current" => [
+                "FieldName" => "Current",
+                "Totals" => 0
+            ]
+        ];
+
+        foreach($results as $row){
+            $ret["Over30"]["Totals"] += $row->Over30;
+            $ret["Over60"]["Totals"] += $row->Over60;
+            $ret["Over90"]["Totals"] += $row->Over90;
+            $ret["Current"]["Totals"] += $row->CurrentAPBalance;
+        }
+
+        return $ret;
+    }
+
+    public function vendorGetMonthlyExpenses(){
+        $user = Session::get("user");
+
+        $orders = DB::SELECT("select BalanceDue from purchaseheader WHERE PurchaseDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $pTotal = 0;
+        foreach($orders as $row)
+            $pTotal += $row->BalanceDue;
+
+        $payments = DB::SELECT("select Amount from paymentsheader WHERE PaymentDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=? AND Paid=1", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $rTotal = 0;
+        foreach($payments as $row)
+            $rTotal += $row->Amount;
+
+        return [
+            "real" => $rTotal,
+            "projected" => $pTotal
+        ];
+    }
+
+    public function Top10PurchasesPayables(){
+        $user = Session::get("user");
+
+        $results = [];
+        $ordersQuery = <<<EOF
+   SELECT 
+   PurchaseNumber,
+	  PurchaseShipDate,
+	  VendorID,
+	  (IFNULL(Total,0)) as PurchaseTotal
+   FROM PurchaseHeader
+   WHERE CompanyID = ? AND
+   DivisionID = ? AND
+   DepartmentID = ? and
+   lower(PurchaseNumber) <> 'default' and
+   Total <> 0 and
+   PurchaseDate <= CURRENT_TIMESTAMP AND
+   (LOWER(IFNULL(PurchaseHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND
+   (IFNULL(Posted, 0) = 1)
+   ORDER BY PurchaseTotal DESC LIMIT 10;
+EOF;
+        $results["orders"] = DB::select($ordersQuery, array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
+        
+        $paymentsQuery = <<<EOF
+   SELECT 
+   PaymentID,
+	  PurchaseDate,
+	  VendorID,
+	  (IFNULL(Amount,0)) as PaymentTotal
+   FROM PaymentsHeader
+   WHERE CompanyID = ? AND
+   DivisionID = ? AND
+   DepartmentID = ? and
+   lower(PaymentID) <> 'default' and
+   Amount <> 0 and
+   PaymentDate <= CURRENT_TIMESTAMP AND
+   (LOWER(IFNULL(PaymentsHeader.PaymentTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND
+   (IFNULL(Paid, 0) = 1)
+   ORDER BY PaymentTotal DESC LIMIT 10;
+EOF;
+        
+        $results["payments"] = DB::select($paymentsQuery, array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
+        
+        return $results;
+    }
 }
 ?>
