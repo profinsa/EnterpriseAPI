@@ -9,7 +9,9 @@
 
     <div style="<?php echo $ascope["interfaces"]["description"][$ascope["interface"]]["interface"] == "simple" ? "background-color:#e8eced; padding:15px" : ""; ?>">
         <div class="row">
-            <?php require "blocks/systemWideMessage.php"; ?>
+            <div class="col-md-12">
+                <?php require "blocks/Customer/customersStatus.php"; ?>
+            </div>
         </div>
         <!--row -->
         <div class="row">

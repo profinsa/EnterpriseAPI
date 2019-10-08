@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 25/04/2019
+  Last Modified: 08/10/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -1293,6 +1293,26 @@ class gridData extends gridDataSource{
             }
 
         echo json_encode([ "founded" => $founded], JSON_PRETTY_PRINT);
+    }
+
+    public function getPage($id){
+        $user = Session::get("user");
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newmonth"){
+            $this->gridConditions = "CustomerSince >= NOW() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newyear"){
+            $this->gridConditions = "CustomerSince >= NOW() - INTERVAL 365 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "inactive"){
+            //            $this->gridConditions .= "and OrderDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
     }
 }
 ?>

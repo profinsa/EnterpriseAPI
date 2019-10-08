@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 10.09.2019
+  Last Modified: 08.10.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -252,6 +252,24 @@ class dashboardData{
             "real" => $rTotal,
             "projected" => $pTotal
         ];
+    }
+
+    //Functions for Customer Dashboard
+    public function customerGetCustomersNumbers(){
+        $user = Session::get("user");
+
+        $newmonth = DB::select("select CustomerID from customerinformation WHERE CustomerSince >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $newyear = DB::select("select CustomerID from customerinformation WHERE CustomerSince >= NOW() - INTERVAL 365 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $inactive = DB::select("select CustomerID from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $total = DB::select("select CustomerID from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $ret = [
+            "newmonth" => count($newmonth),
+            "newyear" => count($newyear),
+            "inactive" => count($inactive),
+            "total" => count($total)
+        ];
+
+        return $ret;
     }
 }
 ?>
