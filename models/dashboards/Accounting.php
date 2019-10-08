@@ -318,5 +318,42 @@ EOF;
 
         return $ret;
     }
+
+    public function customerReceivables(){
+        $user = Session::get("user");
+
+        $results = DB::select("select * from customerfinancials WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        
+        //        $results = DB::select("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+
+        $ret = [
+            "Over90" => [
+                "FieldName" => "Over 90",
+                "Totals" => 0
+            ],
+            "Over60" => [
+                "FieldName" => "60-90",
+                "Totals" => 0
+            ],
+            "Over30" => [
+                "FieldName" => "30-60",
+                "Totals" => 0
+            ],
+            "Current" => [
+                "FieldName" => "Current",
+                "Totals" => 0
+            ]
+        ];
+
+        foreach($results as $row){
+            $ret["Over30"]["Totals"] += $row->Over30;
+            $ret["Over60"]["Totals"] += $row->Over60;
+            $ret["Over90"]["Totals"] += $row->Over90;
+            $ret["Current"]["Totals"] += $row->CurrentARBalance;
+        }
+
+        return $ret;
+    }
+
 }
 ?>

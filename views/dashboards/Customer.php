@@ -26,7 +26,7 @@
             <div class="col-md-7">
                 <div>
                     <div>
-                        <?php require "blocks/companyStatusChart.php"; ?>
+                        <?php require "blocks/Customer/receivables.php"; ?>
                         <?php require "blocks/top10OrdersInvoices.php"; ?>
                     </div>
                 </div>
