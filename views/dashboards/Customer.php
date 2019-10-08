@@ -15,22 +15,19 @@
         </div>
         <!--row -->
         <div class="row">
-            <div class="col-md-8">
-                <div>
-                    <div>
-                        <?php require "blocks/companyStatusTable.php"; ?>
-                        <?php require "blocks/companyStatusChart.php"; ?>
-                        <?php require "blocks/topOrdersReceipts.php"; ?>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div>
                     <div>
                         <?php require "blocks/companyDailyActivity.php"; ?>
-                        <?php require "blocks/todayTasks.php"; ?>
-                        <?php require "blocks/leadFollowUp.php"; ?>
-                        <?php require "blocks/collectionsAllerts.php"; ?>
+                        <?php require "blocks/Admin/monthlyIncome.php"; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div>
+                    <div>
+                        <?php require "blocks/companyStatusChart.php"; ?>
+                        <?php require "blocks/top10OrdersInvoices.php"; ?>
                     </div>
                 </div>
             </div>

@@ -111,6 +111,53 @@ class dashboardData{
         return $results;
     }
 
+    public function Top10OrdersInvoices(){
+        $user = Session::get("user");
+
+        $results = [];
+        $ordersQuery = <<<EOF
+   SELECT 
+   OrderNumber,
+	  OrderShipDate,
+	  CustomerID,
+	  (IFNULL(Total,0)) as OrderTotal
+   FROM OrderHeader
+   WHERE CompanyID = ? AND
+   DivisionID = ? AND
+   DepartmentID = ? and
+   lower(OrderNumber) <> 'default' and
+   Total <> 0 and
+   OrderDate <= CURRENT_TIMESTAMP AND
+   (LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND
+   (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold')AND
+   (IFNULL(Posted, 0) = 1)
+   ORDER BY OrderTotal DESC LIMIT 10;
+EOF;
+        $results["orders"] = DB::select($ordersQuery, array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
+        
+        $invoicesQuery = <<<EOF
+   SELECT 
+   InvoiceNumber,
+	  InvoiceShipDate,
+	  CustomerID,
+	  (IFNULL(Total,0)) as InvoiceTotal
+   FROM InvoiceHeader
+   WHERE CompanyID = ? AND
+   DivisionID = ? AND
+   DepartmentID = ? and
+   lower(InvoiceNumber) <> 'default' and
+   Total <> 0 and
+   InvoiceDate <= CURRENT_TIMESTAMP AND
+   (LOWER(IFNULL(InvoiceHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND
+   (IFNULL(Posted, 0) = 1)
+   ORDER BY InvoiceTotal DESC LIMIT 10;
+EOF;
+        
+        $results["invoices"] = DB::select($invoicesQuery, array($user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]));
+        
+        return $results;
+    }
+
     public function getShipmentsForCalendar(){
         $user = Session::get("user");
 
