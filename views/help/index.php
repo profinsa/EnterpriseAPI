@@ -358,126 +358,6 @@
                         </div>
                     </div>
                 </form>
-                <script type="text/javascript">
-                 $(document).ready(function() {
-
-                     if(window.location.href.indexOf('#contact-form') != -1) {
-                         $('#contact-form').modal('show');
-                     }
-
-                     var email = $("#EmailCustomer").on("change", function(){
-                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
-                             serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "checkIfExists", { CustomerID : email.val()}, function(data, error){
-                                 data = JSON.parse(data);
-                                 if(!data.founded){
-                                     $('#create-customer-form').modal('show');
-                                     $('#CustomerEmail').val($('#EmailCustomer').val());
-                                 }
-                                 serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
-                                 });
-                             });
-                         });
-                     });
-
-                 });
-
-                 function makeHelpCredentialsString(type){
-                     if(type == "help")
-                         //production
-                         return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
-                     //test
-                     //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
-                     if(type == "common")
-                         return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
-                 }
-                 
-                 function makeHelpKeyString(){
-                     //production
-                     return "STFB__DEFAULT__DEFAULT";
-                     //test
-                     //return "DINOS__DEFAULT__DEFAULT";
-                 }
-                 
-                 function onRequestSubmit(event){
-                     var loginform = $('#requestForm');
-                     $("#contact-form").hide();
-                     var CustomerID = $("#EmailCustomer").val();
-                     //console.log(loginform);
-                     //console.log(loginform.serialize());
-                     
-                     serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
-                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : "<?php echo makeHelpKeyString(); ?>"}, function(data, error){
-                             var values = JSON.parse(data);
-                             values.CustomerId = values.CustomerEmail = CustomerID;
-                             values.SupportQuestion = $("#SupportQuestion").val();
-                             values.SupportDescription = $("#SupportDescription").val();
-
-                             //updating customer information
-                             values.id = "<?php echo makeHelpKeyString(); ?>";
-                             values.type = "Main";
-                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
-                                 serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
-                                     console.log(data);
-                                 });
-                                 console.log("request is sent");
-	                     });
-                         });
-                     });
-                     return false;
-                 }
-
-                 function onCreateCustomerSubmit(event){
-                     serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : "<?php echo makeHelpKeyString(); ?>"}, function(data, error){
-                         var values = JSON.parse(data);
-                         values.CustomerID = values.CustomerEmail = $("input[name=CustomerEmail]").val();
-                         values.CustomerName = $("input[name=CustomerName]").val();
-                         values.CustomerFirstName = $("input[name=CustomerFirstName]").val();
-                         values.CustomerLastName = $("input[name=CustomerLastName]").val();
-                         values.CustomerPhone = $("input[name=CustomerPhone]").val();
-                         values.CustomerAddress1 = $("input[name=CustomerAddress1]").val();
-                         values.CustomerTypeID = $("input[name=CustomerTypeID]").val();
-                         console.log(values);
-                         
-                         serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
-                             $("#create-customer-form").hide();                             
-                         });
-                     });
-                     return false;
-                 }
-
-                 var prevSearch = [];
-                 $(".search_input").keyup(function(e) {
-                     var res = this;
-                     if (/\S/.test(res.value)) {
-                         if (res.value != prevSearch){
-                             delay(function(){
-                                 serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", makeHelpCredentialsString("common") , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
-                                     var html = "";
-                                     var results = JSON.parse(data);
-                                     results.forEach(function(record) {
-                                         html += '<li>' +
-                                                 '<a href="' + linksMaker.makeHelpLinkByURL(record.DocumentTitleID) + '">' + record.DocumentTitle + '</a>' + 
-                                                 '</li>'
-                                     });
-                                     $(".search-results").empty();
-                                     $(".search-results").append(html);
-                                     prevSearch = res.value;
-                                 });
-                             }, 500);
-                         }
-                         prevSearch = "";
-                     }
-                     else {
-                         $(".search-results").empty();
-                     }
-                 });
-                 
-                 if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
-                     window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
-                 }
-                 //window.baseURL = "//stfbinc.helpdocs.com";
-                 //window.urlPrefix = "//stfbinc.helpdocs.com";
-                </script>
             </div>
         </div>
         <div class="modal fade" id="create-customer-form" tabindex="-1" role="dialog" aria-labelledby="create-customer-form-header" aria-hidden="true">
@@ -575,5 +455,124 @@
                 </form>
             </div>
         </div>
+        <script type="text/javascript">
+         $(document).ready(function() {
+
+             if(window.location.href.indexOf('#contact-form') != -1) {
+                 $('#contact-form').modal('show');
+             }
+
+             var email = $("#EmailCustomer").on("change", function(){
+                 serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
+                     serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "checkIfExists", { CustomerID : email.val()}, function(data, error){
+                         data = JSON.parse(data);
+                         if(!data.founded){
+                             $('#create-customer-form').modal('show');
+                             $('#CustomerEmail').val($('#EmailCustomer').val());
+                         }
+                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                         });
+                     });
+                 });
+             });
+
+         });
+
+         function makeHelpCredentialsString(type){
+             if(type == "help")
+                 //production
+                 return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
+             //test
+             //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
+             if(type == "common")
+                 return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
+         }
+         
+         function makeHelpKeyString(){
+             //production
+             return "STFB__DEFAULT__DEFAULT";
+             //test
+             //return "DINOS__DEFAULT__DEFAULT";
+         }
+         
+         function onRequestSubmit(event){
+             var loginform = $('#requestForm');
+             $("#contact-form").hide();
+             var CustomerID = $("#EmailCustomer").val();
+             //console.log(loginform);
+             //console.log(loginform.serialize());
+             serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
+                 serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
+                     var values = JSON.parse(data);
+                     values.CustomerId = values.CustomerEmail = CustomerID;
+                     values.SupportQuestion = $("#SupportQuestion").val();
+                     values.SupportDescription = $("#SupportDescription").val();
+
+                     //updating customer information
+                     values.id = makeHelpKeyString();
+                     values.type = "Main";
+                     serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
+                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                             console.log(data);
+                         });
+                         console.log("request is sent");
+                     });
+                 });
+             });
+             return false;
+         }
+
+         function onCreateCustomerSubmit(event){
+             serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
+                 var values = JSON.parse(data);
+                 values.CustomerID = values.CustomerEmail = $("input[name=CustomerEmail]").val();
+                 values.CustomerName = $("input[name=CustomerName]").val();
+                 values.CustomerFirstName = $("input[name=CustomerFirstName]").val();
+                 values.CustomerLastName = $("input[name=CustomerLastName]").val();
+                 values.CustomerPhone = $("input[name=CustomerPhone]").val();
+                 values.CustomerAddress1 = $("input[name=CustomerAddress1]").val();
+                 values.CustomerTypeID = $("input[name=CustomerTypeID]").val();
+                 console.log(values);
+                 
+                 serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
+                     $("#create-customer-form").hide();                             
+                 });
+             });
+             return false;
+         }
+
+         var prevSearch = [];
+         $(".search_input").keyup(function(e) {
+             var res = this;
+             if (/\S/.test(res.value)) {
+                 if (res.value != prevSearch){
+                     delay(function(){
+                         serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", makeHelpCredentialsString("common") , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
+                             var html = "";
+                             var results = JSON.parse(data);
+                             results.forEach(function(record) {
+                                 html += '<li>' +
+                                         '<a href="' + linksMaker.makeHelpLinkByURL(record.DocumentTitleID) + '">' + record.DocumentTitle + '</a>' + 
+                                         '</li>'
+                             });
+                             $(".search-results").empty();
+                             $(".search-results").append(html);
+                             prevSearch = res.value;
+                         });
+                     }, 500);
+                 }
+                 prevSearch = "";
+             }
+             else {
+                 $(".search-results").empty();
+             }
+         });
+         
+         if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
+             window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+         }
+         //window.baseURL = "//stfbinc.helpdocs.com";
+         //window.urlPrefix = "//stfbinc.helpdocs.com";
+        </script>
     </body>
 </html>
