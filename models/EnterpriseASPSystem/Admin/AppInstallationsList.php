@@ -198,7 +198,7 @@ EOF;
         if(count($installations)){ //need to clone new database from cleanenterprise if clean databases is not enough;
             foreach($data["items"] as $ItemID=>$item){
                 $installation = array_shift($installations);
-                DB::UPDATE("update appinstallations set CompanyID=?, DivisionID=?, DepartmentID=?, SoftwareID=?,CustomerID=?, Clean=0, Active=1, InstallationDate=NOW(), ExpirationDate=NOW() + INTERVAL 30 DAY WHERE ConfigName=?", [$item["ItemName"], $data["customer"]["CustomerID"], $installation->ConfigName]);
+                DB::UPDATE("update appinstallations set CompanyID=?, DivisionID=?, DepartmentID=?, SoftwareID=?,CustomerID=?, Clean=0, Active=1, InstallationDate=NOW(), ExpirationDate=NOW() + INTERVAL 30 DAY WHERE ConfigName=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $item["ItemName"], $data["customer"]["CustomerID"], $installation->ConfigName]);
                 $config = $this->generateConfig($installation->ConfigName, "enterprise", "enterprise", $item["ItemID"], "Integral Accounting Test"); 
                 file_put_contents(__DIR__ . "/../../../" . $installation->ConfigName . ".php", $config);
             }
