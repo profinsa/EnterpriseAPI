@@ -30,7 +30,6 @@
 */
 
 require "./models/gridDataSource.php";
-require "./models/mailer.php";
 
 class gridData extends gridDataSource{
     public $tableName = "helpsupportrequest";

@@ -27,7 +27,8 @@
         <script src="assets/js/help/main.js"></script>
 	<?php require './views/components/commonJavascript.php';?>
     </head>
-    <body>        
+    <body>
+	<?php require './views/components/ui.php';?>
         <div class="site--wrap">
             <header class="site--header custom-site-header-color">
                 <div class="container">
@@ -512,6 +513,7 @@
                      values.id = makeHelpKeyString();
                      values.type = "Main";
                      serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
+                         dialogAlert("Request is sent", "Thanks for your message!");
                          serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
                              console.log(data);
                          });
