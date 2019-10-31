@@ -260,7 +260,7 @@ $leftMenu = [
 			    [
 				"id" => "Financials/GaapMain",
 				"type" => "relativeLink",
-				"full" => $translation->translateLabel('Gaap Financials'),
+				"full" => $translation->translateLabel('GAAP Financials'),
 				"href"=> "page=financials&type=gaap&module=main",
 				"short" => "Le"
 			    ],
@@ -273,8 +273,8 @@ $leftMenu = [
 			    ],
 			    [
 				"type" => "submenu",
-				"id" => "Financialsials/GaapAgedReports",
-				"full" => $translation->translateLabel('Gaap Aged Reports'),
+				"id" => "Financials/GaapAgedReports",
+				"full" => $translation->translateLabel('GAAP Aged Reports'),
 				"short" => "Ga",
 				"data" => [
 				    [
