@@ -254,7 +254,7 @@ $leftMenu = [
 		    [
 			"type" => "submenu",
 			"id" => "Financials",
-			"full" => $translation->translateLabel('Financial Reports'),
+			"full" => $translation->translateLabel('Financial Statements'),
 			"short" => "Fi",
 			"data" => [
 			    [

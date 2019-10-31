@@ -37,7 +37,7 @@ class Security{
         "CRMHelpDesk" => "MTCRMView",
         "Payroll" => "MTPayrollView",
         "SystemSetup" => "MTSystemView",
-        "Financials" => "MTFinancialsView",
+        "Financials" => "MTGLView",
         "Reports" => "MTReportsView",
         "MetaAdmin" => "MetaView"
     ];
