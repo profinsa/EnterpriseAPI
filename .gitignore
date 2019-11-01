@@ -1,5 +1,6 @@
 error.log
 *~
+database/backups/stfbenterprise.sql
 tools/AuditLogin.json
 tools/AuditTrail.json
 tools/pdfgenerator/node_modules
