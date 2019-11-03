@@ -292,7 +292,7 @@
         
         
         <div class="modal fade" id="contact-form" tabindex="-1" role="dialog" aria-labelledby="contact-form-header" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <form  action="#" onsubmit="return onRequestSubmit(event);" id="requestForm">
                     <input type="hidden" name="timer" value="0" id="ft" />
                     <div class="modal-content">
@@ -314,11 +314,51 @@
                                  </div>  -->
                             <div class="form-group">
                                 <div class="col-labels">
+                                    <span class="in_label">First Name</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="CustomerFirstName" id="CustomerFirstName" required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Last Name</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="CustomerLastName" id="CustomerLastName" required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Company Name</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="CustomerName" id="CustomerName" required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
                                     <span class="in_label">Email</span>
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
                                         <input type="email" class="form-control" name="EmailCustomer" required="true" id="EmailCustomer" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Confimation Email</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" name="ConfirmationEmail" required="true" id="EmailCustomer" />
                                     </div>
                                 </div>
                             </div>
@@ -339,6 +379,17 @@
                                 <div class="col-inputs">
                                     <div class="form-group">
                                         <textarea class="form-control" name="message" required="true" id="SupportDescription"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <input class="file_attachment" type="hidden" name="screenshot" id="screenshot" value="" />
+			    <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Screenshot</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <input type="file" id="screenshot_attachment" name="screenshot_attachment" class="form-control" value="">
                                     </div>
                                 </div>
                             </div>
@@ -497,30 +548,64 @@
          }
          
          function onRequestSubmit(event){
-             var loginform = $('#requestForm');
-             $("#contact-form").hide();
-             var CustomerID = $("#EmailCustomer").val();
-             //console.log(loginform);
-             //console.log(loginform.serialize());
-             serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
-                 serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
-                     var values = JSON.parse(data);
-                     values.CustomerId = values.CustomerEmail = CustomerID;
-                     values.SupportQuestion = $("#SupportQuestion").val();
-                     values.SupportDescription = $("#SupportDescription").val();
+             
+             var attachments = $("input[type=file]");
+             var formData = new FormData();
+             console.log(attachments);
+             //            return false;
+             formData.append('imageFile[screenshot]', attachments[0].files[0]);
+             console.log(formData);
 
-                     //updating customer information
-                     values.id = makeHelpKeyString();
-                     values.type = "Main";
-                     serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
-                         dialogAlert("Request is sent", "Thanks for your message!");
-                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
-                             console.log(data);
+             $.ajax({
+                 url : 'upload.php',
+                 type : 'POST',
+                 data : formData,
+                 processData: false,  // tell jQuery not to process the data
+                 contentType: false,  // tell jQuery not to set contentType
+                 error: function(e) {
+                     var errors = JSON.parse(e.responseText);
+                     alert(errors.message);
+                 },
+                 success : function(e) {
+                     console.log('dfdf' + e);
+                     try {
+                         var res = JSON.parse(e).data;
+                         var ind;
+                         console.log(res);
+                         $("#screenshot").val(res[screenshot]);
+
+                         var loginform = $('#requestForm');
+                         $("#contact-form").hide();
+                         var CustomerID = $("#EmailCustomer").val();
+                         //console.log(loginform);
+                         //console.log(loginform.serialize());
+                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
+                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
+                                 var values = JSON.parse(data);
+                                 values.CustomerId = values.CustomerEmail = CustomerID;
+                                 values.SupportQuestion = $("#SupportQuestion").val();
+                                 values.SupportDescription = $("#SupportDescription").val();
+
+                                 //updating customer information
+                                 values.id = makeHelpKeyString();
+                                 values.type = "Main";
+                                 serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
+                                     dialogAlert("Request is sent", "Thanks for your message!");
+                                     serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                                         console.log(data);
+                                     });
+                                     console.log("request is sent");
+                                 });
+                             });
                          });
-                         console.log("request is sent");
-                     });
-                 });
+                         /*                         for(ind in res) {
+                            $("#" + ind).val(res[ind]);
+                            }*/
+                     }
+                     catch (e){}
+                 }
              });
+
              return false;
          }
 
