@@ -1,4 +1,4 @@
-update databaseinfo set value='2019_10_04',lastupdate=now() WHERE id='Version';
+update databaseinfo set value='2019_11_04',lastupdate=now() WHERE id='Version';
 
 alter table inventoryitems ADD COLUMN ProfileARModule tinyint(1) after VATSupply;
 alter table inventoryitems ADD COLUMN ProfileAPModule tinyint(1) after ProfileARModule;
