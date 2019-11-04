@@ -58,7 +58,7 @@
                 </form>
             </li>
             <li>
-		<a href="index.php?page=login" class="nav-link">
+		<a href="index.php?page=index&logout=true" class="nav-link">
                     <?php echo $translation->translateLabel('Log out'); ?>
 		</a>
             </li>

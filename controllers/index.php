@@ -26,7 +26,7 @@
   models/translation.php
   app from index.php
 
-  Last Modified: 20.09.2019
+  Last Modified: 04.11.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -58,7 +58,7 @@ class controller{
             $users->checkLoginInUrl();
             if(key_exists("logout", $_GET) || !key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //Logout action or redirect to prevent access un logined users
                 $_SESSION["user"] = false;
-                header("Location: index.php?page=login");
+                header("Location: index.php?page=login&config=" . $_SESSION["configName"]);
                 exit;
             }
             
