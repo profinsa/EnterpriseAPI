@@ -15,6 +15,10 @@ function config(){
         "timeoutMinutes" => 144000, //time to wait before automatic session expired
         "warningMinutes" => 2, //time to wait for warning message, after that session is expired
         "timeoutWarning" => "Your session will end in 2 minutes!", //text of expiration message
+        "editCategoriesWidth" => [ //how many space left and right blocks takes in Detail mode. Left+Right must be 12
+            "left" => 4,
+            "right" => 8
+        ],
         "user" => [
             "CompanyID" => "DINOS", //production, for help module
             //"CompanyID" => "DINOS",

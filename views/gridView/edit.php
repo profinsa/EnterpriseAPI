@@ -6,27 +6,27 @@
 <!-- edit and new -->
 <?php
     if(key_exists("back", $_GET)){
-	if(strpos($_GET["back"], "=" . $ascope["path"] . "&") === false){
-	    $backhref = $_GET["back"] . "&back=" . urlencode($_GET["back"]);
-	    $back = "&back=" . urlencode($_GET["back"]);
-	}else{
-	    $backhref = $linksMaker->makeGridLink($ascope["path"]);//$linksMaker->makeGridLink($ascope["path"]);
-	    $back = "&back=" . urlencode($linksMaker->makeGridLink($ascope["path"]));
-	}
+        if(strpos($_GET["back"], "=" . $ascope["path"] . "&") === false){
+            $backhref = $_GET["back"] . "&back=" . urlencode($_GET["back"]);
+            $back = "&back=" . urlencode($_GET["back"]);
+        }else{
+            $backhref = $linksMaker->makeGridLink($ascope["path"]);//$linksMaker->makeGridLink($ascope["path"]);
+            $back = "&back=" . urlencode($linksMaker->makeGridLink($ascope["path"]));
+        }
     }else{
-	$backhref = $linksMaker->makeGridLink($ascope["path"]);
-	$back = "";
+        $backhref = $linksMaker->makeGridLink($ascope["path"]);
+        $back = "";
     }
 
     function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
-	$user = $GLOBALS["user"];
-	$keyString = "";
-	if(key_exists("detailIdFields",$ctx["detailTable"])){
+        $user = $GLOBALS["user"];
+        $keyString = "";
+        if(key_exists("detailIdFields",$ctx["detailTable"])){
             $values = [];
             foreach($ctx["detailTable"]["detailIdFields"] as $value){
-		if(key_exists($value, $user))
+                if(key_exists($value, $user))
                     $values[] = $user[$value];
-		else
+                else
                     $values[] = $row[$value];
             }
             $keyString = join("__", $values);
@@ -74,8 +74,8 @@
                                 $data->getNewItem($ascope["item"], $category);
                         //used as translated field name
                         $translatedFieldName = '';
-                        $leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : 6;
-                        $rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : 6;
+                        $leftWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["left"]) : $ascope["config"]["editCategoriesWidth"]["left"];
+                        $rightWidth = property_exists($data, "editCategoriesWidth") ? round(12 / 100 * $data->editCategoriesWidth["right"]) : $ascope["config"]["editCategoriesWidth"]["right"];
                     ?>
                     <?php if(!property_exists($data, "detailPages") ||
                              !key_exists($curCategory, $data->detailPages)||

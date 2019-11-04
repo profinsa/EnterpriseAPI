@@ -153,6 +153,10 @@ function config(){
         "timeoutMinutes" => 10,
         "warningMinutes" => 2,
         "timeoutWarning" => "Your session will end in 2 minutes!",
+        "editCategoriesWidth" => [ //how many space left and right blocks takes in Detail mode. Left+Right must be 12
+            "left" => 4,
+            "right" => 8
+        ],
         "user" => [
             "CompanyID" => "DINOS",
             "DivisionID" => "DEFAULT",
