@@ -29,6 +29,15 @@
 include './init.php';
 
 function errorHandler($message, $error){
+    $record = [
+        "timestamp" => date('U = Y-m-d H:i:s'),
+        "query" => $_SERVER["REQUEST_URI"],
+        "file" => $error["file"],
+        "message" => $error["message"],
+        "code" => $error["type"],
+        "line" => $error["line"]
+    ];
+    file_put_contents(__DIR__ . "/error.log", json_encode($record) . ",\n", FILE_APPEND);
     if(isDebug()){        
         echo <<<EOT
 <html>
@@ -38,15 +47,6 @@ function errorHandler($message, $error){
 </html>
 EOT;
     }else{
-        $record = [
-            "timestamp" => date('U = Y-m-d H:i:s'),
-            "query" => $_SERVER["REQUEST_URI"],
-            "file" => $error["file"],
-            "message" => $error["message"],
-            "code" => $error["type"],
-            "line" => $error["line"]
-        ];
-        file_put_contents(__DIR__ . "/error.log", json_encode($record) . ",\n", FILE_APPEND);
         echo "<div class=\"centered\"><h2>This page cannot be loaded because of errors happened while execution. The incident is logged</h2></div>";
         exit;
     }
