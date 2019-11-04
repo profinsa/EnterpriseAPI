@@ -304,16 +304,20 @@
                                  tableFooter.prepend(buttons);
                              },300);
                              function newSubgridItem<?php echo $newButtonId;?>(){
-                                 createItem(function(insertedData){
-                                     var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
-                                     for(ind in idFields){
-                                         if(keyString == "")
-                                             keyString = insertedData[idFields[ind]];
-                                         else
-                                             keyString += "__" + insertedData[idFields[ind]];
+                                 createItem(function(insertedData, error){
+                                     if(error)
+                                         dialogAlert("<?php echo $translation->translateLabel("Warning"); ?>", "<?php echo $translation->translateLabel("You need fill the Detail fields before adding elements to the any subgrids!"); ?>");
+                                     else{
+                                         var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
+                                         for(ind in idFields){
+                                             if(keyString == "")
+                                                 keyString = insertedData[idFields[ind]];
+                                             else
+                                                 keyString += "__" + insertedData[idFields[ind]];
+                                         }
+                                         var link = "index.php#/?page=grid&action=<?php echo $data->detailPages[$curCategory]["viewPath"]; ?>&mode=new&category=Main&item=new&back=<?php echo urlencode("index.php#/?page=grid&action={$ascope["path"]}&mode=edit&category=Main&item="); ?>" + keyString + "&<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>" + "=" + insertedData["<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>"];
+                                         window.location = link;
                                      }
-                                     var link = "index.php#/?page=grid&action=<?php echo $data->detailPages[$curCategory]["viewPath"]; ?>&mode=new&category=Main&item=new&back=<?php echo urlencode("index.php#/?page=grid&action={$ascope["path"]}&mode=edit&category=Main&item="); ?>" + keyString + "&<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>" + "=" + insertedData["<?php echo $data->detailPages[$curCategory]["newKeyField"]; ?>"];
-                                     window.location = link;
                                  });
                              }
                             </script>
@@ -548,6 +552,7 @@
                                                   window.location = "<?php echo $backhref?>";
                                           })
                                           .error(function(err){
+                                              cb(undefined, err);
                                               console.log('wrong');
                                           });
                  }
