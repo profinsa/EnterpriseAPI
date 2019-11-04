@@ -3993,7 +3993,7 @@ $leftMenu = [
 	                 "target" => "_blank",
                      "id" => "Tools/ECommerce/ShoppingCart",
                      "full" => $translation->translateLabel('Open Cart'),
-                     "href" => "/EnterpriseX/Cart/index.php?loadusername=dland&loadpassword=dland&CompanyID={$ascope["user"]["CompanyID"]}&DivisionID={$ascope["user"]["DivisionID"]}&DepartmentID={$ascope["user"]["DepartmentID"]}"
+                     "href" => "/EnterpriseX/Cart/index.php?config={$_SESSION["configName"]}&loadusername=dland&loadpassword=dland&CompanyID={$ascope["user"]["CompanyID"]}&DivisionID={$ascope["user"]["DivisionID"]}&DepartmentID={$ascope["user"]["DepartmentID"]}"
                  ],
 		    [
 			"type" => "submenu",
