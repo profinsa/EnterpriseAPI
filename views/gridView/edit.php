@@ -306,7 +306,7 @@
                              function newSubgridItem<?php echo $newButtonId;?>(){
                                  createItem(function(insertedData, error){
                                      if(error)
-                                         dialogAlert("<?php echo $translation->translateLabel("Warning"); ?>", "<?php echo $translation->translateLabel("You need fill the Detail fields before adding elements to the any subgrids!"); ?>");
+                                         dialogAlert("<?php echo $translation->translateLabel("Warning"); ?>", "<?php echo $translation->translateLabel("You need to fill the Detail fields before adding elements to any subgrids!"); ?>");
                                      else{
                                          var idFields = <?php echo json_encode($data->idFields); ?>, ind, keyString = "";
                                          for(ind in idFields){
