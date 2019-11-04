@@ -13,3 +13,6 @@ alter table inventoryitems ADD COLUMN ProfileCARTModule tinyint(1) after Profile
 alter table inventoryitems ADD COLUMN ProfileDefaultInterface varchar(40) after ProfileCARTModule;
 alter table inventoryitems ADD COLUMN ProfileInterfaceRTL tinyint(1) after ProfileDefaultInterface;
 alter table inventoryitems ADD COLUMN ProfileExpirationDays int after ProfileCARTModule;
+
+alter table helpsupportrequest ADD COLUMN SupportScreenShot NVARCHAR(255) after SupportScreenShotURL;
+

@@ -318,7 +318,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="CustomerFirstName" id="CustomerFirstName" required="true"/>
+                                        <input type="text" class="form-control" name="RequestCustomerFirstName" id="RequestCustomerFirstName" required="true"/>
                                     </div>
                                 </div>
                             </div>
@@ -328,7 +328,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="CustomerLastName" id="CustomerLastName" required="true"/>
+                                        <input type="text" class="form-control" name="RequestCustomerLastName" id="RequestCustomerLastName" required="true"/>
                                     </div>
                                 </div>
                             </div>
@@ -338,7 +338,7 @@
                                 </div>
                                 <div class="col-inputs">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="CustomerName" id="CustomerName" required="true"/>
+                                        <input type="text" class="form-control" name="RequestCustomerName" id="RequestCustomerName" required="true"/>
                                     </div>
                                 </div>
                             </div>
@@ -391,6 +391,11 @@
                                     <div class="form-group">
                                         <input type="file" id="screenshot_attachment" name="screenshot_attachment" class="form-control" value="">
                                     </div>
+                                </div>
+                            </div>
+			    <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">When you send us screen-shot, you need to send ENTIRE Screen with the URL bar on ther top or support will not even look at it. This is very important!</span>
                                 </div>
                             </div>
                             <!-- <div class="form-group">
@@ -514,7 +519,8 @@
                  $('#contact-form').modal('show');
              }
 
-             var email = $("#EmailCustomer").on("change", function(){
+             //disabled Customer Creation feature, now it created during Request sending
+/*             var email = $("#EmailCustomer").on("change", function(){
                  serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
                      serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "checkIfExists", { CustomerID : email.val()}, function(data, error){
                          data = JSON.parse(data);
@@ -526,7 +532,7 @@
                          });
                      });
                  });
-             });
+             });*/
 
          });
 
@@ -534,8 +540,8 @@
              if(type == "help")
                  //production
                  return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
-             //test
-             //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
+                 //test
+                 //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
              if(type == "common")
                  return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
          }
@@ -551,10 +557,7 @@
              
              var attachments = $("input[type=file]");
              var formData = new FormData();
-             console.log(attachments);
-             //            return false;
              formData.append('imageFile[screenshot]', attachments[0].files[0]);
-             console.log(formData);
 
              $.ajax({
                  url : 'upload.php',
@@ -567,36 +570,56 @@
                      alert(errors.message);
                  },
                  success : function(e) {
-                     console.log('dfdf' + e);
                      try {
                          var res = JSON.parse(e).data;
                          var ind;
                          console.log(res);
-                         $("#screenshot").val(res[screenshot]);
+                         var screenshotName = res.screenshot;
+                         $("#screenshot").val(res.screenshot);
 
                          var loginform = $('#requestForm');
                          $("#contact-form").hide();
                          var CustomerID = $("#EmailCustomer").val();
                          //console.log(loginform);
                          //console.log(loginform.serialize());
-                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
-                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
-                                 var values = JSON.parse(data);
-                                 values.CustomerId = values.CustomerEmail = CustomerID;
-                                 values.SupportQuestion = $("#SupportQuestion").val();
-                                 values.SupportDescription = $("#SupportDescription").val();
+                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){                             
+                             var values = {};
+                             values.CustomerID = values.CustomerEmail = CustomerID;
+                             values.CustomerName = $("input[name=RequestCustomerName]").val();
+                             values.CustomerFirstName = $("input[name=RequestCustomerFirstName]").val();
+                             values.CustomerLastName = $("input[name=RequestCustomerLastName]").val();
+                             values.ConfirmationEmail = $("#ConfirmationEmail").val();
+                             values.SupportQuestion = $("#SupportQuestion").val();
+                             values.SupportDescription = $("#SupportDescription").val();
+                             values.SupportScreenShot = screenshotName;
 
-                                 //updating customer information
-                                 values.id = makeHelpKeyString();
-                                 values.type = "Main";
-                                 serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
-                                     dialogAlert("Request is sent", "Thanks for your message!");
-                                     serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
-                                         console.log(data);
-                                     });
-                                     console.log("request is sent");
+                             //updating customer information
+                             values.id = makeHelpKeyString();
+                             values.type = "Main";
+                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertRequestWithCustomer", values, function(data, error){
+                                 dialogAlert("Request is sent", "Thanks for your message!");
+                                 serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                                     console.log(data);
                                  });
+                                 console.log("request is sent");
                              });
+                             /*                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
+                                var values = JSON.parse(data);
+                                values.CustomerId = values.CustomerEmail = CustomerID;
+                                values.SupportQuestion = $("#SupportQuestion").val();
+                                values.SupportDescription = $("#SupportDescription").val();
+
+                                //updating customer information
+                                values.id = makeHelpKeyString();
+                                values.type = "Main";
+                                serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
+                                dialogAlert("Request is sent", "Thanks for your message!");
+                                serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                                console.log(data);
+                                });
+                                console.log("request is sent");
+                                });
+                                });*/
                          });
                          /*                         for(ind in res) {
                             $("#" + ind).val(res[ind]);

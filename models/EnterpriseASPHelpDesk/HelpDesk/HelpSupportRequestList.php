@@ -25,16 +25,18 @@
   Calls:
   MySql Database
    
-  Last Modified: 21/08/2019
+  Last Modified: 04/11/2019
   Last Modified by: Nikita Zaharov
 */
 
-require "./models/gridDataSource.php";
+require_once "./models/gridDataSource.php";
+require "./models/EnterpriseASPAR/Customers/CustomerInformationList.php";
 
 class gridData extends gridDataSource{
     public $tableName = "helpsupportrequest";
     public $dashboardTitle ="Help Support Requests";
     public $breadCrumbTitle ="Help Support Requests";
+    //    public $gridConditions = "SupportStatus <> 'NotConfirmed'";
     public $idField ="CaseID";
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "CaseID"];
     public $gridFields = [
@@ -178,6 +180,11 @@ class gridData extends gridDataSource{
                 "inputType" => "text",
                 "defaultValue" => ""
             ],
+            "SupportScreenShot" => [
+                "dbType" => "varchar(255)",
+                "inputType" => "imageFile",
+                "defaultValue" => ""
+            ],
             "SupportResolution" => [
                 "dbType" => "varchar(999)",
                 "inputType" => "text",
@@ -300,6 +307,36 @@ class gridData extends gridDataSource{
         ]);
         
         parent::insertItemRemote($_POST);
+    }
+
+    public function insertRequestWithCustomer(){
+        $user = Session::get("user");
+        $config = config();
+
+        $customersDS = new CustomerInformationList();
+        $customer = [];
+        foreach($customersDS->editCategories as $key=>$value)
+            $customer = array_merge($customer, $customersDS->getNewItem($_POST["id"], $key));
+        $customer["CustomerID"] = $_POST["CustomerID"];
+        $customer["CustomerName"] = $_POST["CustomerName"];
+        $customer["CustomerFirstName"] = $_POST["CustomerFirstName"];
+        $customer["CustomerLastName"] = $_POST["CustomerLastName"];
+        $customer["CustomerEmail"] = $_POST["CustomerEmail"];
+        if(count(DB::select("select CustomerID from customerinformation where CompanyID=? AND DivisionID=? AND DepartmentID=? AND CustomerID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $customer["CustomerID"]])) == 0)
+            $customersDS->insertItemLocal($customer);
+        
+        echo json_encode($customer, JSON_PRETTY_PRINT);
+
+        $helpRequest = [];
+        foreach($this->editCategories as $key=>$value)
+            $helpRequest = array_merge($helpRequest, $this->getNewItem($_POST["id"], $key));
+        $helpRequest["CustomerId"] = $_POST["CustomerID"];
+        $helpRequest["SupportQuestion"] = $_POST["SupportQuestion"];
+        $helpRequest["SupportDescription"] = $_POST["SupportDescription"];
+        $helpRequest["SupportScreenShot"] = $_POST["SupportScreenShot"];
+
+        $this->insertItemLocal($helpRequest);
+        echo json_encode($helpRequest, JSON_PRETTY_PRINT);
     }
 }
 ?>

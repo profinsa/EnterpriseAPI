@@ -25,13 +25,13 @@
   Calls:
   MySql Database
    
-  Last Modified: 08/10/2019
+  Last Modified: 04/11/2019
   Last Modified by: Zaharov Nikita
 */
 
-require "./models/gridDataSource.php";
+require_once "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class CustomerInformationList extends gridDataSource{
 	public $tableName = "customerinformation";
 	public $dashboardTitle ="Customer Information";
 	public $breadCrumbTitle ="Customer Information";
