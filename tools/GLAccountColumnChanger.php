@@ -56,7 +56,7 @@ file_put_contents("fields.json", json_encode($fields, JSON_PRETTY_PRINT));
 
 $sqlQueries = [];
 foreach($fields as $name=>$desc){
-    $sqlQueries[] = "alter table {$desc->tableName} MODIFY COLUMN {$desc->Field} NVARCHAR(255);";
+    $sqlQueries[] = "SET SQL_MODE='ALLOW_INVALID_DATES'; alter table {$desc->tableName} MODIFY COLUMN {$desc->Field} NVARCHAR(255);";
 }
 
 //echo $sqlQueries;
