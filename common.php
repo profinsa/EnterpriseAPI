@@ -47,7 +47,7 @@ function config(){
         "mailFromTitle" => "Support",
         "mailSales" => "sales@stfb.com",
         //"confirmationHost" => "http://192.168.56.107", //development
-        "confirmationHost" => "https://stfb.net" production
+        "confirmationHost" => "https://stfb.net" //production
     );
 }
 
