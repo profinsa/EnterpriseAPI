@@ -2,8 +2,8 @@
 //$GLOBALS["configName"] = "Admin";
 $GLOBALS["DBDONTCACHE"] = true;
 $dbuser = "root";
-$dbpass = "32167";
-//$dbpass = "mysqlroot";
+//$dbpass = "32167";
+$dbpass = "mysqlroot";
 
 include './init.php';
 
@@ -66,7 +66,7 @@ foreach($sqlQueries as $query){
     $mysqlcmd1 = substr(php_uname(), 0, 7) == "Windows" ? "\"C:\Program Files\MySQL\MySQL Server 5.5\bin\mysql.exe --defaults-file=C:\Program Files\MySQL\MySQL Server 5.5\my.ini -u$dbuser -p$dbpass" : "\"mysql -u $dbuser -p$dbpass";
 
     $cmd1 = "echo \"$query\" | $mysqlcmd enterprise -f";
-    echo $cmd1 . "\n";
+    //    echo $cmd1 . "\n";
     exec($cmd1, $retval);
 }
 ?>
