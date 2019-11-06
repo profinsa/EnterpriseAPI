@@ -1,6 +1,7 @@
 <?php
 //$GLOBALS["configName"] = "Admin";
 $GLOBALS["DBDONTCACHE"] = true;
+$dbname = "stfbenterprise";
 $dbuser = "root";
 //$dbpass = "32167";
 $dbpass = "mysqlroot";
@@ -10,14 +11,14 @@ include './init.php';
 $columnIgnoreList = [];
 
 $tableIgnoreList = [
-    "companies",
+   // "companies",
     "audittrail",
     "audittraishistory",
     "currencytypes",
     "currencytypeshistory",
     "errorlog",
     "ledgerchartofaccountsprioryears",
-    "ledgerstoredchartofaccounts",
+   // "ledgerstoredchartofaccounts",
     "inventoryledger"
 ];
 
@@ -57,6 +58,7 @@ file_put_contents("fields.json", json_encode($fields, JSON_PRETTY_PRINT));
 $sqlQueries = [];
 foreach($fields as $name=>$desc){
     $sqlQueries[] = "SET SQL_MODE='ALLOW_INVALID_DATES'; alter table {$desc->tableName} MODIFY COLUMN {$desc->Field} NVARCHAR(255);";
+    //$sqlQueries[] = "alter table {$desc->tableName} MODIFY COLUMN {$desc->Field} NVARCHAR(255);";
 }
 
 //echo $sqlQueries;
@@ -65,8 +67,8 @@ foreach($sqlQueries as $query){
     $mysqlcmd = substr(php_uname(), 0, 7) == "Windows" ? "\"C:\Program Files\MySQL\MySQL Server 5.5\bin\mysql.exe\" \"--defaults-file=C:\Program Files\MySQL\MySQL Server 5.5\my.ini\" -u$dbuser -p$dbpass" : "mysql -u $dbuser -p$dbpass";
     $mysqlcmd1 = substr(php_uname(), 0, 7) == "Windows" ? "\"C:\Program Files\MySQL\MySQL Server 5.5\bin\mysql.exe --defaults-file=C:\Program Files\MySQL\MySQL Server 5.5\my.ini -u$dbuser -p$dbpass" : "\"mysql -u $dbuser -p$dbpass";
 
-    $cmd1 = "echo \"$query\" | $mysqlcmd enterprise -f";
-    //    echo $cmd1 . "\n";
+    $cmd1 = substr(php_uname(), 0, 7) == "Windows" ? "echo $query | $mysqlcmd $dbname -f" : "echo \"$query\" | $mysqlcmd $dbname -f";
+    echo $cmd1 . "\n";
     exec($cmd1, $retval);
 }
 ?>
