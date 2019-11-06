@@ -331,6 +331,7 @@ class gridData extends gridDataSource{
         foreach($this->editCategories as $key=>$value)
             $helpRequest = array_merge($helpRequest, $this->getNewItem($_POST["id"], $key));
         $helpRequest["CustomerId"] = $_POST["CustomerID"];
+        $helpRequest["ProductId"] = $_POST["ProductId"];
         $helpRequest["SupportQuestion"] = $_POST["SupportQuestion"];
         $helpRequest["SupportDescription"] = $_POST["SupportDescription"];
         $helpRequest["SupportScreenShot"] = $_POST["SupportScreenShot"];

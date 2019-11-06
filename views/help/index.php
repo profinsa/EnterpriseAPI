@@ -382,6 +382,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <div class="col-labels">
+                                    <span class="in_label">Product</span>
+                                </div>
+                                <div class="col-inputs">
+                                    <div class="form-group">
+                                        <select class="form-control" name="ProductId" id="ProductId" required="true">
+                                            <?php foreach($ascope["config"]["supportProducts"] as $productName): ?>
+                                                <option value="<?php echo $productName ?>">
+                                                    <?php echo $productName ?>
+                                                </option>
+                                            <?php endforeach; ?>                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <input class="file_attachment" type="hidden" name="screenshot" id="screenshot" value="" />
 			    <div class="form-group">
                                 <div class="col-labels">
@@ -398,6 +414,16 @@
                                     <span class="in_label">When you send us screen-shot, you need to send ENTIRE Screen with the URL bar on ther top or support will not even look at it. This is very important!</span>
                                 </div>
                             </div>
+			    <div class="form-group">
+			        <div class="row">
+				    <div class="col-xs-6">
+				        <input name="captcha" id="icaptcha" class="form-control" type="text" required placeholder="<?php echo $translation->translateLabel("Enter captcha"); ?>">
+				    </div>
+				    <div class="col-xs-6">
+				        <img id="captcha" src="<?php echo $scope->captchaBuilder->inline(); ?>" />
+				    </div>
+			        </div>
+			    </div>
                             <!-- <div class="form-group">
                                  <div class="col-labels">
                                  <span class="in_label">Attachments</span>
@@ -520,115 +546,125 @@
              }
 
              //disabled Customer Creation feature, now it created during Request sending
-/*             var email = $("#EmailCustomer").on("change", function(){
-                 serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
-                     serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "checkIfExists", { CustomerID : email.val()}, function(data, error){
-                         data = JSON.parse(data);
-                         if(!data.founded){
-                             $('#create-customer-form').modal('show');
-                             $('#CustomerEmail').val($('#EmailCustomer').val());
-                         }
-                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
-                         });
-                     });
-                 });
-             });*/
+             /*             var email = $("#EmailCustomer").on("change", function(){
+                serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
+                serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "checkIfExists", { CustomerID : email.val()}, function(data, error){
+                data = JSON.parse(data);
+                if(!data.founded){
+                $('#create-customer-form').modal('show');
+                $('#CustomerEmail').val($('#EmailCustomer').val());
+                }
+                serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                });
+                });
+                });
+                });*/
 
          });
 
          function makeHelpCredentialsString(type){
              if(type == "help")
                  //production
-                 return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
+                 //return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
                  //test
-                 //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
+                 return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
              if(type == "common")
                  return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
          }
          
          function makeHelpKeyString(){
              //production
-             return "STFB__DEFAULT__DEFAULT";
+             //return "STFB__DEFAULT__DEFAULT";
              //test
-             //return "DINOS__DEFAULT__DEFAULT";
+             return "DINOS__DEFAULT__DEFAULT";
          }
          
          function onRequestSubmit(event){
-             
-             var attachments = $("input[type=file]");
-             var formData = new FormData();
-             formData.append('imageFile[screenshot]', attachments[0].files[0]);
+	     $.post("index.php?page=help&method=checkCaptcha", $("#requestForm").serialize(), null, 'json')
+	      .success(function(data) {
+                  var attachments = $("input[type=file]");
+                  var formData = new FormData();
+                  formData.append('imageFile[screenshot]', attachments[0].files[0]);
 
-             $.ajax({
-                 url : 'upload.php',
-                 type : 'POST',
-                 data : formData,
-                 processData: false,  // tell jQuery not to process the data
-                 contentType: false,  // tell jQuery not to set contentType
-                 error: function(e) {
-                     var errors = JSON.parse(e.responseText);
-                     alert(errors.message);
-                 },
-                 success : function(e) {
-                     try {
-                         var res = JSON.parse(e).data;
-                         var ind;
-                         console.log(res);
-                         var screenshotName = res.screenshot;
-                         $("#screenshot").val(res.screenshot);
+                  $.ajax({
+                      url : 'upload.php',
+                      type : 'POST',
+                      data : formData,
+                      processData: false,  // tell jQuery not to process the data
+                      contentType: false,  // tell jQuery not to set contentType
+                      error: function(e) {
+                          var errors = JSON.parse(e.responseText);
+                          alert(errors.message);
+                      },
+                      success : function(e) {
+                          try {
+                              var res = JSON.parse(e).data;
+                              var ind;
+                              console.log(res);
+                              var screenshotName = res.screenshot;
+                              $("#screenshot").val(res.screenshot);
 
-                         var loginform = $('#requestForm');
-                         $("#contact-form").hide();
-                         var CustomerID = $("#EmailCustomer").val();
-                         //console.log(loginform);
-                         //console.log(loginform.serialize());
-                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){                             
-                             var values = {};
-                             values.CustomerID = values.CustomerEmail = CustomerID;
-                             values.CustomerName = $("input[name=RequestCustomerName]").val();
-                             values.CustomerFirstName = $("input[name=RequestCustomerFirstName]").val();
-                             values.CustomerLastName = $("input[name=RequestCustomerLastName]").val();
-                             values.ConfirmationEmail = $("#ConfirmationEmail").val();
-                             values.SupportQuestion = $("#SupportQuestion").val();
-                             values.SupportDescription = $("#SupportDescription").val();
-                             values.SupportScreenShot = screenshotName;
+                              var loginform = $('#requestForm');
+                              $("#contact-form").hide();
+                              var CustomerID = $("#EmailCustomer").val();
+                              //console.log(loginform);
+                              //console.log(loginform.serialize());
+                              serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){                             
+                                  var values = {};
+                                  values.CustomerID = values.CustomerEmail = CustomerID;
+                                  values.ProductId = $("#ProductId").val();
+                                  values.CustomerName = $("input[name=RequestCustomerName]").val();
+                                  values.CustomerFirstName = $("input[name=RequestCustomerFirstName]").val();
+                                  values.CustomerLastName = $("input[name=RequestCustomerLastName]").val();
+                                  values.ConfirmationEmail = $("#ConfirmationEmail").val();
+                                  values.SupportQuestion = $("#SupportQuestion").val();
+                                  values.SupportDescription = $("#SupportDescription").val();
+                                  values.SupportScreenShot = screenshotName;
 
-                             //updating customer information
-                             values.id = makeHelpKeyString();
-                             values.type = "Main";
-                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertRequestWithCustomer", values, function(data, error){
-                                 dialogAlert("Request is sent", "Thanks for your message!");
-                                 serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                                  //updating customer information
+                                  values.id = makeHelpKeyString();
+                                  values.type = "Main";
+                                  serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertRequestWithCustomer", values, function(data, error){
+                                      dialogAlert("Request is sent", "Thanks for your message!");
+                                      serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                                          console.log(data);
+                                      });
+                                      console.log("request is sent");
+                                  });
+                                  /*                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
+                                     var values = JSON.parse(data);
+                                     values.CustomerId = values.CustomerEmail = CustomerID;
+                                     values.SupportQuestion = $("#SupportQuestion").val();
+                                     values.SupportDescription = $("#SupportDescription").val();
+
+                                     //updating customer information
+                                     values.id = makeHelpKeyString();
+                                     values.type = "Main";
+                                     serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
+                                     dialogAlert("Request is sent", "Thanks for your message!");
+                                     serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
                                      console.log(data);
-                                 });
-                                 console.log("request is sent");
-                             });
-                             /*                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
-                                var values = JSON.parse(data);
-                                values.CustomerId = values.CustomerEmail = CustomerID;
-                                values.SupportQuestion = $("#SupportQuestion").val();
-                                values.SupportDescription = $("#SupportDescription").val();
-
-                                //updating customer information
-                                values.id = makeHelpKeyString();
-                                values.type = "Main";
-                                serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
-                                dialogAlert("Request is sent", "Thanks for your message!");
-                                serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
-                                console.log(data);
-                                });
-                                console.log("request is sent");
-                                });
-                                });*/
-                         });
-                         /*                         for(ind in res) {
-                            $("#" + ind).val(res[ind]);
-                            }*/
-                     }
-                     catch (e){}
-                 }
-             });
-
+                                     });
+                                     console.log("request is sent");
+                                     });
+                                     });*/
+                              });
+                              /*                         for(ind in res) {
+                                 $("#" + ind).val(res[ind]);
+                                 }*/
+                          }
+                          catch (e){}
+                      }
+                  });
+	      })
+	      .error(function(err){
+		  var res = err.responseJSON;
+		  if(res.wrong_captcha)
+		      $("#icaptcha").addClass("has-error");
+		  else
+		      $("#icaptcha").removeClass("has-error");
+		  document.getElementById('captcha').src = res.captcha; 
+	      });
              return false;
          }
 

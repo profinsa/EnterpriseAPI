@@ -24,7 +24,7 @@
   models/help/*
   app from index.php
 
-  Last Modified: 16.09.2019
+  Last Modified: 06.11.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -35,13 +35,20 @@ require 'models/permissionsGenerated.php';
 require 'models/linksMaker.php';
 require 'models/EnterpriseASPHelpDesk/CRM/LeadInformationList.php';
 
+use Gregwar\Captcha\CaptchaBuilder;
+
 class controller{
     public $user = false;
     public $action = "";
     public $mode = "docreports";
     public $config;
     public $path;
+    public $captchaBuilder = false;
 
+    public function __construct(){
+        $this->captchaBuilder = new CaptchaBuilder;
+    }
+    
     public function process($app){
         /*$users = new users();
         $users->checkLoginInUrl();
@@ -56,7 +63,7 @@ class controller{
         $this->config = $config = config();
         $this->user = $config["user"];
         $this->user["EmployeeID"] = "Help";
-        SESSION::set("user", $this->user);
+        SESSION::set("user", $this->user);          
         $scope = $GLOBALS["scope"] = $this;
         require "models/help/index.php";
         
@@ -77,11 +84,28 @@ class controller{
                     $leadInformation->insertItemLocal($result, true);
                     echo "<html><body>Thanks for your interest to our software!<br>Newletter we will email you when updates are made to the software!</body></html>";
                     break;
+                case "checkCaptcha" :
+                    $response = [];
+                    if($_POST["captcha"] != $_SESSION["captcha"]){
+                        $response["captchaText"] = $this->captchaBuilder->getPhrase();
+                        $this->captchaBuilder->build();
+                        $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
+                        $response["captcha"] =  $this->captchaBuilder->inline();
+                        $response["wrong_captcha"] = true;
+                        http_response_code(401);
+                    }
+                
+                    header('Content-Type: application/json');
+                    echo json_encode($response);
+
+                    break;
                 default:
                     echo "ok";
                 }
             }
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
+            $this->captchaBuilder->build();
+            $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
             $translation = new translation($this->user["language"]);
             if(key_exists("title", $_GET))
                 $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Help System" );

@@ -29,7 +29,8 @@ function config(){
         ],
         "supportProducts" => [
             "Enterprise X",
-            "Enterprise Cloud"
+            "Enterprise X Cart",
+            "Enterprise Cloud",
         ],
         "supportLink" => "https://stfb.net/EnterpriseX/index.php?config=STFBEnterprise", //link to support system, it uses for links to Help from menu and topbar
         "supportInsertUser" => [ //user credentials for inserting Help Request tickets as they are in STFBEnterprise config
