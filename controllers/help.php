@@ -103,15 +103,28 @@ class controller{
                     echo "ok";
                 }
             }
-        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
-            $this->captchaBuilder->build();
-            $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
-            $translation = new translation($this->user["language"]);
-            if(key_exists("title", $_GET))
-                $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Help System" );
+        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if(key_exists('testmail', $_GET)){
+                echo "ok";
+                session_write_close(); //close the session
+                fastcgi_finish_request(); //this returns 200 to the user, and processing continues
+                $mailer = new mailer();
+        
+                $mailer->send([
+                    "subject" => "test",
+                    "body" => "Test message",
+                    "email" => "ix@2du.ru"//$config["mailFrom"]
+                ]);
+            }else{
+                $this->captchaBuilder->build();
+                $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
+                $translation = new translation($this->user["language"]);
+                if(key_exists("title", $_GET))
+                    $this->breadCrumbTitle = $this->dashboardTitle = $translation->translateLabel("Help System" );
             
-               $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
-               require 'views/help/index.php';
+                $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
+                require 'views/help/index.php';
+            }
         }
     }
 }

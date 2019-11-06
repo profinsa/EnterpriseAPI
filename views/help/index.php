@@ -565,18 +565,18 @@
          function makeHelpCredentialsString(type){
              if(type == "help")
                  //production
-                 //return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
+                 return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
                  //test
-                 return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
+                 //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
              if(type == "common")
                  return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
          }
          
          function makeHelpKeyString(){
              //production
-             //return "STFB__DEFAULT__DEFAULT";
+             return "STFB__DEFAULT__DEFAULT";
              //test
-             return "DINOS__DEFAULT__DEFAULT";
+             //return "DINOS__DEFAULT__DEFAULT";
          }
          
          function onRequestSubmit(event){

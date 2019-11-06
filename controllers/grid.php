@@ -181,8 +181,11 @@ class controller{
                 $name = $_GET["procedure"];
                 $data->$name();
             }
-        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
-            if(key_exists("getItem", $_GET)){
+        }else if($_SERVER['REQUEST_METHOD'] === 'GET'){            
+            if(key_exists("procedure", $_GET)){
+                $name = $_GET["procedure"];
+                $data->$name();
+            }else if(key_exists("getItem", $_GET)){
                 echo json_encode($data->getItem($_GET["getItem"]));
             }else if(key_exists("delete", $_GET)){
                 $data->deleteItem($_GET["id"]);

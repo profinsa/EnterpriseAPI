@@ -39,11 +39,15 @@ function config(){
             "DepartmentID" => "DEFAULT"
         ],
         //mail server address, credentials and from Title
+        //"mailServer" => "stfb.com",
         "mailServer" => "box789.bluehost.com",
         "mailUsername" => "support@stfb.com",
         "mailUserpass" => "STFB!xticket1024",
         "mailFrom" => "support@stfb.com",
-        "mailFromTitle" => "Support"
+        "mailFromTitle" => "Support",
+        "mailSales" => "sales@stfb.com",
+        //"confirmationHost" => "http://192.168.56.107", //development
+        "confirmationHost" => "https://stfb.net" production
     );
 }
 

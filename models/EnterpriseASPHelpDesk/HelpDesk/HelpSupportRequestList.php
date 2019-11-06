@@ -36,7 +36,7 @@ class gridData extends gridDataSource{
     public $tableName = "helpsupportrequest";
     public $dashboardTitle ="Help Support Requests";
     public $breadCrumbTitle ="Help Support Requests";
-    //    public $gridConditions = "SupportStatus <> 'NotConfirmed'";
+    public $gridConditions = "EmailConfirmed = 1";
     public $idField ="CaseID";
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "CaseID"];
     public $gridFields = [
@@ -215,7 +215,14 @@ class gridData extends gridDataSource{
                 "inputType" => "dropdown",
                 "dataProvider" => "getEmployees",
                 "defaultValue" => ""
-            ]
+            ],
+            "UniqID" => [
+                "dbType" => "varchar(50)",
+                "disabledEdit" => true,
+                "disabledNew" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]            
         ]
     ];
     
@@ -290,25 +297,25 @@ class gridData extends gridDataSource{
         return $this->getDetailGridFields($id, "Main");
     }
 
-    public function insertItemRemote(){
+    public function confirm(){
+        DB::update("update helpsupportrequest set EmailConfirmed=1 WHERE uniqid=?", [$_GET["uniqid"]]);
+        echo "Your request is confirmed";
+    }
+    
+    public function mailtest(){
         $config = config();
+        echo "ok";
+        session_write_close(); //close the session
+        fastcgi_finish_request(); //this returns 200 to the user, and processing continues
         $mailer = new mailer();
-        
+        $uid = uniqid();
         $mailer->send([
-            "subject" => $_POST["SupportQuestion"],
-            "body" => "Message from {$_POST["CustomerEmail"]}: {$_POST["SupportDescription"]}",
+            "subject" => "test",
+            "body" => "<html><body>To confirm your support request please click <a href=\"{$config["confirmationHost"]}/EnterpriseX/index.php?page=grid&action=CRMHelpDesk/HelpDesk/ViewSupportRequests&mode=view&category=Main&uniqid=$uid&procedure=confirm\">here</a></body></html>",
             "email" => "ix@2du.ru"//$config["mailFrom"]
         ]);
-
-        $mailer->send([
-            "subject" => "Support Request",
-            "body" => "Your request has been accepted.",
-            "email" => $_POST["CustomerEmail"]
-        ]);
-        
-        parent::insertItemRemote($_POST);
     }
-
+    
     public function insertRequestWithCustomer(){
         $user = Session::get("user");
         $config = config();
@@ -332,12 +339,31 @@ class gridData extends gridDataSource{
             $helpRequest = array_merge($helpRequest, $this->getNewItem($_POST["id"], $key));
         $helpRequest["CustomerId"] = $_POST["CustomerID"];
         $helpRequest["ProductId"] = $_POST["ProductId"];
+        $uid = $helpRequest["UniqID"] = uniqid();
         $helpRequest["SupportQuestion"] = $_POST["SupportQuestion"];
         $helpRequest["SupportDescription"] = $_POST["SupportDescription"];
         $helpRequest["SupportScreenShot"] = $_POST["SupportScreenShot"];
+        $helpRequest["EmailConfirmed"] = 0;
 
-        $this->insertItemLocal($helpRequest);
+        $item = $this->insertItemLocal($helpRequest);
         echo json_encode($helpRequest, JSON_PRETTY_PRINT);
+
+        //session_write_close(); //close the session
+        //fastcgi_finish_request(); //this returns 200 to the user, and processing continues
+        $mailer = new mailer();
+        $mailer->send([
+            "subject" => "The confirmation message",
+            "body" => "<html><body>Your request has been accepted.<br/>To confirm your support request please click <a href=\"{$config["confirmationHost"]}/EnterpriseX/index.php?page=grid&action=CRMHelpDesk/HelpDesk/ViewSupportRequests&mode=view&category=Main&uniqid=$uid&procedure=confirm\">here</a></body></html>",
+            "email" => $_POST["CustomerEmail"]
+        ]);
+        
+        
+        $mailer1 = new mailer();
+        $mailer1->send([
+            "subject" => $_POST["SupportQuestion"],
+            "body" => "<html><body>Help Request from {$_POST["CustomerEmail"]}: <br/> Title: {$_POST["SupportQuestion"]} <br/> Message: {$_POST["SupportDescription"]}</body></html>",
+            "email" => "ix@2du.ru"//$config["mailSales"]
+        ]);
     }
 }
 ?>

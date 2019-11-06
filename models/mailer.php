@@ -12,6 +12,7 @@ class mailer{
 
         $mail->Host       = $config["mailServer"]; // SMTP server example
         $mail->Port       = 587;                    // set the SMTP port for the GMAIL server
+        //$mail->Port       = 465;
         $mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
         $mail->SMTPAuth   = true;                  // enable SMTP authentication
         $mail->Username   = $config["mailUsername"]; // SMTP account username example
