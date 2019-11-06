@@ -353,7 +353,7 @@ class gridData extends gridDataSource{
         $mailer = new mailer();
         $mailer->send([
             "subject" => "The confirmation message",
-            "body" => "<html><body>Your request has been accepted.<br/>To confirm your support request please click <a href=\"{$config["confirmationHost"]}/EnterpriseX/index.php?page=grid&action=CRMHelpDesk/HelpDesk/ViewSupportRequests&mode=view&category=Main&uniqid=$uid&procedure=confirm\">here</a></body></html>",
+            "body" => "<html><body>Your request has been accepted.<br/>To confirm your support request please click <a href=\"{$config["confirmationHost"]}/EnterpriseX/index.php?config=STFBEnterprise&page=grid&action=CRMHelpDesk/HelpDesk/ViewSupportRequests&mode=view&category=Main&uniqid=$uid&procedure=confirm\">here</a></body></html>",
             "email" => $_POST["CustomerEmail"]
         ]);
         
