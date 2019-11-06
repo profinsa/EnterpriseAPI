@@ -362,7 +362,7 @@ class gridData extends gridDataSource{
         $mailer1->send([
             "subject" => $_POST["SupportQuestion"],
             "body" => "<html><body>Help Request from {$_POST["CustomerEmail"]}: <br/> Title: {$_POST["SupportQuestion"]} <br/> Message: {$_POST["SupportDescription"]}</body></html>",
-            "email" => "ix@2du.ru"//$config["mailSales"]
+            "email" => $config["mailSales"]
         ]);
     }
 }
