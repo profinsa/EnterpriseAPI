@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 27/09/2019
+  Last Modified: 07/11/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -1377,7 +1377,15 @@ class OrderHeaderList extends gridDataSource{
             $result = parent::getPage($id);
             return $result;
         }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "shiptoday"){
-            $this->gridConditions .= "and OrderShipDate >= now() - INTERVAL 1 DAY";
+            $this->gridConditions = "OrderShipDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "shipthismonth"){
+            $this->gridConditions = "OrderShipDate >= now() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "total"){
+            $this->gridConditions = "1=1";
             $result = parent::getPage($id);
             return $result;
         }else if(key_exists("ShipDate", $_GET)){

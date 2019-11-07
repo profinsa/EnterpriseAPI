@@ -512,5 +512,22 @@ EOF;
 
         return $ret;
     }
+
+    public function salesGetNumbers(){
+        $user = Session::get("user");
+
+        $orders = DB::select("select OrderNumber, Total from orderheader WHERE  CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $totalAmount = 0;
+        foreach($orders as $record)
+            $totalAmount += $record->Total;
+        $ret = [
+            "shiptoday" => count(DB::select("select OrderNumber from orderheader WHERE OrderShipDate >= NOW() - INTERVAL 1 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "shipthismonth" => count(DB::select("select OrderNumber from orderheader WHERE OrderShipDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "totalorders" => count(DB::select("select OrderNumber from orderheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "totalordersamount" => $totalAmount
+        ];
+
+        return $ret;
+    }
 }
 ?>
