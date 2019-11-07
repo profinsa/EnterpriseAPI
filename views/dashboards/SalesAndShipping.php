@@ -9,11 +9,11 @@
 
     <div style="<?php echo $ascope["interfaces"]["description"][$ascope["interface"]]["interface"] == "simple" ? "background-color:#e8eced; padding:15px" : ""; ?>">
         <div class="row">
-            <div class="row">
-                <div class="col-md-12">
-                    <?php require "blocks/Sales/status.php"; ?>
-                </div>
+            <div class="col-md-12">
+                <?php require "blocks/Sales/status.php"; ?>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-6">
                 <div>
                     <div>

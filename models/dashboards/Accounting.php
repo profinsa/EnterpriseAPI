@@ -529,5 +529,22 @@ EOF;
 
         return $ret;
     }
+
+    public function purchaseGetNumbers(){
+        $user = Session::get("user");
+
+        $orders = DB::select("select PurchaseNumber, Total from purchaseheader WHERE  CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $totalAmount = 0;
+        foreach($orders as $record)
+            $totalAmount += $record->Total;
+        $ret = [
+            "receivingtoday" => count(DB::select("select PurchaseNumber from purchaseheader WHERE PurchaseShipDate >= NOW() - INTERVAL 1 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "receivingthismonth" => count(DB::select("select PurchaseNumber from purchaseheader WHERE PurchaseShipDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "totalorders" => count(DB::select("select PurchaseNumber from purchaseheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "totalordersamount" => $totalAmount
+        ];
+
+        return $ret;
+    }
 }
 ?>

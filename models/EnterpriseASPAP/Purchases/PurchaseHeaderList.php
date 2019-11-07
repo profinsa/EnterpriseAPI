@@ -1338,6 +1338,18 @@ class PurchaseHeaderList extends gridDataSource{
             $this->gridConditions .= "and Received=0 and PurchaseDate >= now() - INTERVAL 1 DAY";
             $result = parent::getPage($id);
             return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "receivingtoday"){
+            $this->gridConditions .= "and PurchaseShipDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "receivingthismonth"){
+            $this->gridConditions .= "and PurchaseShipDate >= now() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "total"){
+            $this->gridConditions = "1 = 1";
+            $result = parent::getPage($id);
+            return $result;
         }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newmonth"){
             $this->gridConditions .= "and PurchaseDate >= NOW() - INTERVAL 30 DAY";
             $result = parent::getPage($id);
