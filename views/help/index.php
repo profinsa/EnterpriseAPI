@@ -563,163 +563,163 @@
 
          });
 
-             function makeHelpCredentialsString(type){
-                 if(type == "help")
-                     //production
-                     return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
-                     //test
-                     //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
-                 if(type == "common")
-                     return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
-             }
-             
-             function makeHelpKeyString(){
+         function makeHelpCredentialsString(type){
+             if(type == "help")
                  //production
-                 return "STFB__DEFAULT__DEFAULT";
-                 //test
-                 //return "DINOS__DEFAULT__DEFAULT";
-             }
-             
-             function onRequestSubmit(event){
-	         $.post("index.php?page=help&method=checkCaptcha", $("#requestForm").serialize(), null, 'json')
-	          .success(function(data) {
-                      var attachments = $("input[type=file]");
-                      var formData = new FormData();
-                      formData.append('imageFile[screenshot]', attachments[0].files[0]);
+                 return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
+             //test
+             //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
+             if(type == "common")
+                 return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
+         }
+         
+         function makeHelpKeyString(){
+             //production
+             return "STFB__DEFAULT__DEFAULT";
+             //test
+             //return "DINOS__DEFAULT__DEFAULT";
+         }
+         
+         function onRequestSubmit(event){
+	     $.post("index.php?page=help&method=checkCaptcha", $("#requestForm").serialize(), null, 'json')
+	      .success(function(data) {
+                  var attachments = $("input[type=file]");
+                  var formData = new FormData();
+                  formData.append('imageFile[screenshot]', attachments[0].files[0]);
 
-                      $.ajax({
-                          url : 'upload.php',
-                          type : 'POST',
-                          data : formData,
-                          processData: false,  // tell jQuery not to process the data
-                          contentType: false,  // tell jQuery not to set contentType
-                          error: function(e) {
-                              var errors = JSON.parse(e.responseText);
-                              alert(errors.message);
-                          },
-                          success : function(e) {
-                              try {
-                                  var res = JSON.parse(e).data;
-                                  var ind;
-                                  console.log(res);
-                                  var screenshotName = res.screenshot;
-                                  $("#screenshot").val(res.screenshot);
+                  $.ajax({
+                      url : 'upload.php',
+                      type : 'POST',
+                      data : formData,
+                      processData: false,  // tell jQuery not to process the data
+                      contentType: false,  // tell jQuery not to set contentType
+                      error: function(e) {
+                          var errors = JSON.parse(e.responseText);
+                          alert(errors.message);
+                      },
+                      success : function(e) {
+                          try {
+                              var res = JSON.parse(e).data;
+                              var ind;
+                              console.log(res);
+                              var screenshotName = res.screenshot;
+                              $("#screenshot").val(res.screenshot);
 
-                                  var loginform = $('#requestForm');
-                                  $("#contact-form").hide();
-                                  var CustomerID = $("#EmailCustomer").val();
-                                  //console.log(loginform);
-                                  //console.log(loginform.serialize());
-                                  serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){                             
-                                      var values = {};
-                                      values.CustomerID = values.CustomerEmail = CustomerID;
-                                      values.ProductId = $("#ProductId").val();
-                                      values.CustomerName = $("input[name=RequestCustomerName]").val();
-                                      values.CustomerFirstName = $("input[name=RequestCustomerFirstName]").val();
-                                      values.CustomerLastName = $("input[name=RequestCustomerLastName]").val();
-                                      values.ConfirmationEmail = $("#ConfirmationEmail").val();
-                                      values.SupportQuestion = $("#SupportQuestion").val();
-                                      values.SupportDescription = $("#SupportDescription").val();
-                                      values.SupportScreenShot = screenshotName;
+                              var loginform = $('#requestForm');
+                              $("#contact-form").hide();
+                              var CustomerID = $("#EmailCustomer").val();
+                              //console.log(loginform);
+                              //console.log(loginform.serialize());
+                              serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){                             
+                                  var values = {};
+                                  values.CustomerID = values.CustomerEmail = CustomerID;
+                                  values.ProductId = $("#ProductId").val();
+                                  values.CustomerName = $("input[name=RequestCustomerName]").val();
+                                  values.CustomerFirstName = $("input[name=RequestCustomerFirstName]").val();
+                                  values.CustomerLastName = $("input[name=RequestCustomerLastName]").val();
+                                  values.ConfirmationEmail = $("#ConfirmationEmail").val();
+                                  values.SupportQuestion = $("#SupportQuestion").val();
+                                  values.SupportDescription = $("#SupportDescription").val();
+                                  values.SupportScreenShot = screenshotName;
 
-                                      //updating customer information
-                                      values.id = makeHelpKeyString();
-                                      values.type = "Main";
-                                      serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertRequestWithCustomer", values, function(data, error){
-                                          dialogAlert("Request is sent", "Thanks for your message!");
-                                          serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
-                                              console.log(data);
-                                          });
-                                          console.log("request is sent");
+                                  //updating customer information
+                                  values.id = makeHelpKeyString();
+                                  values.type = "Main";
+                                  serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertRequestWithCustomer", values, function(data, error){
+                                      dialogAlert("Request is sent", "Thanks for your message!");
+                                      serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                                          console.log(data);
                                       });
-                                      /*                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
-                                         var values = JSON.parse(data);
-                                         values.CustomerId = values.CustomerEmail = CustomerID;
-                                         values.SupportQuestion = $("#SupportQuestion").val();
-                                         values.SupportDescription = $("#SupportDescription").val();
-
-                                         //updating customer information
-                                         values.id = makeHelpKeyString();
-                                         values.type = "Main";
-                                         serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
-                                         dialogAlert("Request is sent", "Thanks for your message!");
-                                         serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
-                                         console.log(data);
-                                         });
-                                         console.log("request is sent");
-                                         });
-                                         });*/
+                                      console.log("request is sent");
                                   });
-                                  /*                         for(ind in res) {
-                                     $("#" + ind).val(res[ind]);
-                                     }*/
-                              }
-                              catch (e){}
+                                  /*                             serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
+                                     var values = JSON.parse(data);
+                                     values.CustomerId = values.CustomerEmail = CustomerID;
+                                     values.SupportQuestion = $("#SupportQuestion").val();
+                                     values.SupportDescription = $("#SupportDescription").val();
+
+                                     //updating customer information
+                                     values.id = makeHelpKeyString();
+                                     values.type = "Main";
+                                     serverProcedureAnyCallWithParams("CRMHelpDesk/HelpDesk/ViewSupportRequests", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
+                                     dialogAlert("Request is sent", "Thanks for your message!");
+                                     serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                                     console.log(data);
+                                     });
+                                     console.log("request is sent");
+                                     });
+                                     });*/
+                              });
+                              /*                         for(ind in res) {
+                                 $("#" + ind).val(res[ind]);
+                                 }*/
                           }
-                      });
-	          })
-	          .error(function(err){
-		      var res = err.responseJSON;
-		      if(res.wrong_captcha)
-		          $("#icaptcha").addClass("has-error");
-		      else
-		          $("#icaptcha").removeClass("has-error");
-		      document.getElementById('captcha').src = res.captcha; 
-	          });
-                 return false;
-             }
+                          catch (e){}
+                      }
+                  });
+	      })
+	      .error(function(err){
+		  var res = err.responseJSON;
+		  if(res.wrong_captcha)
+		      $("#icaptcha").addClass("has-error");
+		  else
+		      $("#icaptcha").removeClass("has-error");
+		  document.getElementById('captcha').src = res.captcha; 
+	      });
+             return false;
+         }
 
-             function onCreateCustomerSubmit(event){
-                 serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
-                     var values = JSON.parse(data);
-                     values.CustomerID = values.CustomerEmail = $("input[name=CustomerEmail]").val();
-                     values.CustomerName = $("input[name=CustomerName]").val();
-                     values.CustomerFirstName = $("input[name=CustomerFirstName]").val();
-                     values.CustomerLastName = $("input[name=CustomerLastName]").val();
-                     values.CustomerPhone = $("input[name=CustomerPhone]").val();
-                     values.CustomerAddress1 = $("input[name=CustomerAddress1]").val();
-                     values.CustomerTypeID = $("input[name=CustomerTypeID]").val();
-                     console.log(values);
-                     
-                     serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
-                         $("#create-customer-form").hide();                             
-                     });
+         function onCreateCustomerSubmit(event){
+             serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "getNewItemAllRemote", { id : makeHelpKeyString()}, function(data, error){
+                 var values = JSON.parse(data);
+                 values.CustomerID = values.CustomerEmail = $("input[name=CustomerEmail]").val();
+                 values.CustomerName = $("input[name=CustomerName]").val();
+                 values.CustomerFirstName = $("input[name=CustomerFirstName]").val();
+                 values.CustomerLastName = $("input[name=CustomerLastName]").val();
+                 values.CustomerPhone = $("input[name=CustomerPhone]").val();
+                 values.CustomerAddress1 = $("input[name=CustomerAddress1]").val();
+                 values.CustomerTypeID = $("input[name=CustomerTypeID]").val();
+                 console.log(values);
+                 
+                 serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "insertItemRemote", values, function(data, error){
+                     $("#create-customer-form").hide();                             
                  });
-                 return false;
-             }
-
-             var prevSearch = [];
-             $(".search_input").keyup(function(e) {
-                 var res = this;
-                 if (/\S/.test(res.value)) {
-                     if (res.value != prevSearch){
-                         delay(function(){
-                             serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", makeHelpCredentialsString("common") , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
-                                 var html = "";
-                                 var results = JSON.parse(data);
-                                 results.forEach(function(record) {
-                                     html += '<li>' +
-                                             '<a href="' + linksMaker.makeHelpLinkByURL(record.DocumentTitleID) + '">' + record.DocumentTitle + '</a>' + 
-                                             '</li>'
-                                 });
-                                 $(".search-results").empty();
-                                 $(".search-results").append(html);
-                                 prevSearch = res.value;
-                             });
-                         }, 500);
-                     }
-                     prevSearch = "";
-                 }
-                 else {
-                     $(".search-results").empty();
-                 }
              });
-             
-             if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
-                 window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+             return false;
+         }
+
+         var prevSearch = [];
+         $(".search_input").keyup(function(e) {
+             var res = this;
+             if (/\S/.test(res.value)) {
+                 if (res.value != prevSearch){
+                     delay(function(){
+                         serverProcedureAnyCallWithParams("SystemSetup/HelpDocumentSetup/HelpDocument", makeHelpCredentialsString("common") , "searchDocument", { query : $("#searchQuery").val() }, function(data, error){
+                             var html = "";
+                             var results = JSON.parse(data);
+                             results.forEach(function(record) {
+                                 html += '<li>' +
+                                         '<a href="' + linksMaker.makeHelpLinkByURL(record.DocumentTitleID) + '">' + record.DocumentTitle + '</a>' + 
+                                         '</li>'
+                             });
+                             $(".search-results").empty();
+                             $(".search-results").append(html);
+                             prevSearch = res.value;
+                         });
+                     }, 500);
+                 }
+                 prevSearch = "";
              }
-             //window.baseURL = "//stfbinc.helpdocs.com";
-             //window.urlPrefix = "//stfbinc.helpdocs.com";
+             else {
+                 $(".search-results").empty();
+             }
+         });
+         
+         if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
+             window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+         }
+         //window.baseURL = "//stfbinc.helpdocs.com";
+         //window.urlPrefix = "//stfbinc.helpdocs.com";
         </script>
     </body>
 </html>

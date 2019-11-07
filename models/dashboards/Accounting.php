@@ -1,6 +1,6 @@
 <?php
 /*
-  Name of Page: dashboard data sourcee
+  Name of Page: dashboard data source
 
   Method: It provides data from database for dashboards
 
@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 09.10.2019
+  Last Modified: 07.11.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -497,6 +497,17 @@ EOF;
             "receivingsmonth" => count($receivingsmonth),
             "transitstoday" => count($transitstoday),
             "transitstotal" => count($transitstotal)
+        ];
+
+        return $ret;
+    }
+
+    public function accountingGetNumbers(){
+        $user = Session::get("user");
+
+        $ret = [
+            "newinvoices" => count(DB::select("select InvoiceNumber from invoiceheader WHERE (NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0)) AND InvoiceDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "newpurchases" => count(DB::select("select PurchaseNumber from purchaseheader WHERE (NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND ((IFNULL(Received,0) = 0) OR (IFNULL(PurchaseHeader.Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT') AND PurchaseDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]))
         ];
 
         return $ret;

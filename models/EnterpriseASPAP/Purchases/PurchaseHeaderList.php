@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 27/09/2019
+  Last Modified: 07/11/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -1336,6 +1336,10 @@ class PurchaseHeaderList extends gridDataSource{
             return $result;
         }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "receivedtoday"){
             $this->gridConditions .= "and Received=0 and PurchaseDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newmonth"){
+            $this->gridConditions .= "and PurchaseDate >= NOW() - INTERVAL 30 DAY";
             $result = parent::getPage($id);
             return $result;
         }else if(key_exists("ShipDate", $_GET)){

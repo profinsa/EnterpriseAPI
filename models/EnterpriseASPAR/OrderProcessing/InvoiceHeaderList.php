@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 27/09/2019
+  Last Modified: 07/11/2019
   Last Modified by: Zaharov Nikita
 */
 
@@ -1362,6 +1362,18 @@ class InvoiceHeaderList extends gridDataSource{
             $keyFields = substr($keyFields, 0, -5);
         DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields, array());
         echo "ok";
+    }
+
+    public function getPage($id){
+        $user = Session::get("user");
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newmonth"){
+            $this->gridConditions .= "and InvoiceDate >= NOW() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
     }
 }
 
