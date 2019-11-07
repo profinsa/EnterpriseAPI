@@ -1350,6 +1350,9 @@ EOF;
         ];
     }
 
+    public function getPageRemote(){
+        echo json_encode($this->getPage(""), JSON_PRETTY_PRINT);
+    }
     //getting rows for grid
     public function getPage($number){
         $user = Session::get("user");
