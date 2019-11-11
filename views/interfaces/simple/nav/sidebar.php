@@ -2,7 +2,7 @@
     $iconbarCategories = [];
     if($security->checkMenu("AccountsReceivable")){
         $iconbarCategories["Customer"] = [
-            "full" => $translation->translateLabel('CUSTOMER'),
+            "full" => strtoupper($translation->translateLabel('Customer')),
             "link" => "index.php#/?page=dashboard&screen=Customer",
             //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
             "iconclass" => "user",
@@ -27,7 +27,7 @@
 
     if($security->checkMenu("AccountsPayable")){
         $iconbarCategories["Vendor"] = [
-            "full" => $translation->translateLabel('VENDOR'),
+            "full" => strtoupper($translation->translateLabel('Vendor')),
             "link" => "index.php#/?page=dashboard&screen=Vendor",
             //     "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
             "iconclass" => "user",
@@ -52,7 +52,7 @@
 
     if($security->checkMenu("Inventory")){
         $iconbarCategories["Items"] = [
-            "full" => $translation->translateLabel('ITEM'),
+            "full" => strtoupper($translation->translateLabel('Item')),
             "link" => "index.php#/?page=dashboard&screen=Item",
             "iconclass" => "list",
             "data" => [
@@ -76,7 +76,7 @@
 
     if($security->checkMenu("AccountsReceivable")){
         $iconbarCategories["Sales"] = [
-            "full" => $translation->translateLabel('SALES'),
+            "full" => strtoupper($translation->translateLabel('Sales')),
             "link" => "index.php#/?page=dashboard&screen=SalesAndShipping",
             "iconclass" => "list-alt",
             "data" => [
@@ -101,7 +101,7 @@
     
     if($security->checkMenu("AccountsPayable")){
         $iconbarCategories["Purchase"] = [
-            "full" => $translation->translateLabel('PURCHASE'),
+            "full" => strtoupper($translation->translateLabel('Purchase')),
             "link" => "index.php#/?page=dashboard&screen=PurchaseAndReceiving",
             "iconclass" => "calendar",
             "data" => [
@@ -132,7 +132,7 @@
        $security->checkMenu("AccountsPayable") &&
        $security->checkMenu("GeneralLedger")){
         $iconbarCategories["Accounting"] = [
-            "full" => $translation->translateLabel('ACCOUNTING'),
+            "full" => strtoupper($translation->translateLabel('Accounting')),
             "link" => "index.php#/?page=dashboard",
             "iconclass" => "calendar",
             "data" => [
@@ -165,7 +165,7 @@
     
     if($security->checkMenu("Reports")){
         $iconbarCategories["Reports"] = [
-            "full" => $translation->translateLabel('REPORTS'),
+            "full" => strtoupper($translation->translateLabel('Reports')),
             "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
             "iconclass" => "stats",
             "data" => [
@@ -190,13 +190,13 @@
     }
 
     $iconbarCategories["Favorits"] = [
-        "full" => $translation->translateLabel('FAVORITES'),
+        "full" => strtoupper($translation->translateLabel('Favorites')),
         "favorits" => true,
         "iconclass" => "heart"
     ];
 
     $iconbarCategories["Help"] = [
-        "full" => $translation->translateLabel('HELP'),
+        "full" => strtoupper($translation->translateLabel('Help')),
         "link" => "https://www.stfb.net/EnterpriseX/Help/index.php",
         "target" => "_blank",
         "iconclass" => "question-sign",
@@ -218,7 +218,7 @@
 
     if($security->checkMenu("MetaAdmin") && key_exists("software", $ascope["config"]) && $ascope["config"]["software"] == "Admin"){
         array_unshift($iconbarCategories, [
-            "full" => $translation->translateLabel('ADMIN'),
+            "full" => strtoupper($translation->translateLabel('Admin')),
             "link" => "index.php#/?page=dashboard&screen=Admin",
             //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
             "iconclass" => "wrench",
