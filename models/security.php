@@ -28,31 +28,35 @@ class Security{
     public $permissions;
     public $useraccess;
     public $menuFlags = [
+        "GeneralLedger" => "MTGLView",
+        "Financials" => "MTGLView",
         "AccountsReceivable" => "MTARView",
         "AccountsPayable" => "MTAPView",
-        "GeneralLedger" => "MTGLView",
         "Inventory" => "MTInventoryView",
-        "MRP" => "MTMRPView",
         "FundAccounting" => "MTFundView",
-        "CRMHelpDesk" => "MTCRMView",
         "Payroll" => "MTPayrollView",
+        "ECommerce" => "MTARView",
+        "CRMHelpDesk" => "MTCRMView",
+        "MRP" => "MTMRPView",
+        "HelpDesk" => "MTCRMView",
         "SystemSetup" => "MTSystemView",
-        "Financials" => "MTGLView",
         "Reports" => "MTReportsView",
         "MetaAdmin" => "MetaView"
     ];
 
     public $menuToProfileFlags = [
+        "GeneralLedger" => "ProfileGLModule",
+        "Financials" => "ProfileFinancialsModule",
         "AccountsReceivable" => "ProfileARModule",
         "AccountsPayable" => "ProfileAPModule",
-        "GeneralLedger" => "ProfileGLModule",
         "Inventory" => "ProfileInventoryModule",
-        "MRP" => "ProfileMRPModule",
         "FundAccounting" => "ProfileFundModule",
-        "CRMHelpDesk" => "ProfileCRMModule",
         "Payroll" => "ProfilePayrollModule",
+        "CRMHelpDesk" => "ProfileCRMModule",
+        "ECommerce" => "ProfileARModule",
+        "MRP" => "ProfileMRPModule",
+        "HelpDesk" => "ProfileCRMModule",
         "SystemSetup" => "ProfileSystemModule",
-        "Financials" => "ProfileFinancialsModule",
         "Reports" => "ProfileReportsModule"
     ];
 

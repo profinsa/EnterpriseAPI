@@ -65,6 +65,8 @@ class controller{
             "Item" => "Accounting",
             "PurchaseAndReceiving" => "Accounting",
             "SalesAndShipping" => "Accounting",
+            "Support" => "Accounting",
+            "CRM" => "Accounting",
             "Tasks" => "Tasks",
             "Admin" => "Accounting"
         ];
@@ -76,7 +78,9 @@ class controller{
             "Item" => "Item",
             "PurchaseAndReceiving" => "Purchase & Receiving",
             "SalesAndShipping" => "Sales & Shipping",
-            "Admin" => "Admin"
+            "Admin" => "Admin",
+            "Support" => "Support",
+            "CRM" => "CRM"
         ];
         
         $modelName = $modelsRewrite[$this->screen];
