@@ -26,6 +26,7 @@ $leftMenu = [
 		"type" => "submenu",
 		"id" => "GeneralLedger",
 		"full" => $translation->translateLabel('General Ledger'),
+		"link" => "index.php#/?page=dashboard",
 		"short" => "Ge",
 		"data" => [
 		    [
@@ -397,12 +398,14 @@ $leftMenu = [
 		"type" => "submenu",
 		"id" => "AccountsReceivable",
 		"full" => $translation->translateLabel('Receivables'),
+		"link" => "index.php#/?page=dashboard&screen=SalesAndShipping",
 		"short" => "Ac",
 		"data" => [
 		    [
 			"type" => "submenu",
 			"id" => "AccountsReceivable/Customers",
 			"full" => $translation->translateLabel('Customers'),
+            "link" => "index.php#/?page=dashboard&screen=Customer",	
 			"short" => "Cu",
 			"data" => [
 			    [
@@ -1020,12 +1023,14 @@ $leftMenu = [
 		"type" => "submenu",
 		"id" => "AccountsPayable",
 		"full" => $translation->translateLabel('Payables'),
+        "link" => "index.php#/?page=dashboard&screen=PurchaseAndReceiving",
 		"short" => "Ac",
 		"data" => [
 		    [
 			"type" => "submenu",
 			"id" => "AccountsPayable/Vendors",
 			"full" => $translation->translateLabel('Vendors'),
+            "link" => "index.php#/?page=dashboard&screen=Vendor",
 			"short" => "Ve",
 			"data" => [
 			    [
@@ -1482,6 +1487,7 @@ $leftMenu = [
 		"id" => "Inventory",
 		"full" => $translation->translateLabel('Inventory'),
 		"short" => "In",
+        "link" => "index.php#/?page=dashboard&screen=Item",
 		"data" => [
 
 		    [
@@ -2168,6 +2174,7 @@ $leftMenu = [
 		"id" => "Reports",
 		"full" => $translation->translateLabel('Reports'),
 		"short" => "Re",
+        "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $keyString,
 		"data" => [
 				    [
 					"id" => "Reports/GenericReport",

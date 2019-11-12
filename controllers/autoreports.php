@@ -31,7 +31,8 @@
 require 'models/translation.php';
 require 'models/security.php';
 require 'models/permissionsGenerated.php';
-require "models/drillDowner.php";
+require 'models/drillDowner.php';
+require 'models/linksMaker.php';
 require 'models/interfaces.php';
 
 function numberToStr($strin){
@@ -60,6 +61,7 @@ class controller{
             exit;
         }
 
+        $linksMaker = new linksMaker();
         require 'models/reports/autoreports.php';
         
         //$_perm = new permissionsByFile();

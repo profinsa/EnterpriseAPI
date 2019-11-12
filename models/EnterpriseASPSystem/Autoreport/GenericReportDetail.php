@@ -45,6 +45,7 @@ class gridData extends autoreportsData{
         //        $translation = new translation($this->user["language"]);
         $translation = new translation($user["language"]);
         $keyString = '';
+        $linksMaker = new linksMaker();
         require __DIR__ . "/../../menuCategoriesGenerated.php";
         
         //        print_r($leftMenu["Main"]["data"][6]["data"]);
