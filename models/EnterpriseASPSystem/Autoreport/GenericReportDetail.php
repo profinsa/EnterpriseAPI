@@ -48,9 +48,9 @@ class gridData extends autoreportsData{
         $linksMaker = new linksMaker();
         require __DIR__ . "/../../menuCategoriesGenerated.php";
         
-        //        print_r($leftMenu["Main"]["data"][6]["data"]);
+        //        print_r($leftMenu["Main"]["data"][12]["data"]);
         $reportTypes = [];
-        foreach($leftMenu["Main"]["data"][6]["data"] as $item)
+        foreach($leftMenu["Main"]["data"][12]["data"] as $item)
             if($item["id"] != "Reports/GenericReport" && $item["id"] != "Reports/SavedReports"){
                 if(key_exists("type", $item) && $item["type"] == "submenu"){
                     foreach($item["data"] as $subitem)

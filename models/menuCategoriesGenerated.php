@@ -363,6 +363,7 @@ $leftMenu = [
                 "id" => "CRMHelpDesk",
                 "full" => $translation->translateLabel('CRM'),
                 "short" => "CR",
+                "link" => "index.php#/?page=dashboard&screen=CRM",
                 "data" => $categories["CRM"]
             ],
             [
@@ -377,7 +378,29 @@ $leftMenu = [
                 "id" => "MRP",
                 "full" => $translation->translateLabel('MRP'),
                 "short" => "MR",
+                "link" => "index.php#/?page=dashboard&screen=MRP",
                 "data" => $categories["MRP"]
+            ],
+            [
+                "type" => "submenu",
+                "id" => "HelpDesk",
+                "full" => $translation->translateLabel('Help Desk'),
+                "short" => "Co",
+                "link" => "index.php#/?page=dashboard&screen=Support",
+                "data" => [
+                    [
+                        "id" => "CRMHelpDesk/HelpDesk/ViewSupportTypes",
+                        "full" => $translation->translateLabel('View Support Types'),
+                        "href"=> "EnterpriseASPHelpDesk/HelpDesk/HelpSupportRequestTypeList",
+                        "short" => "Vi"
+                    ],
+                    [
+                        "id" => "CRMHelpDesk/HelpDesk/ViewSupportRequests",
+                        "full" => $translation->translateLabel('View Support Requests'),
+                        "href"=> "EnterpriseASPHelpDesk/HelpDesk/HelpSupportRequestsList",
+                        "short" => "Vi"
+                    ]
+                ]
             ],
             [
                 "type" => "submenu",
@@ -498,26 +521,6 @@ $leftMenu = [
                         "full" => $translation->translateLabel('MRP'),
                         "short" => "MR",
                         "data" => $categories["MRP"]
-                    ]
-                ]
-            ],
-            [
-                "type" => "submenu",
-                "id" => "HelpDesk",
-                "full" => $translation->translateLabel('Help Desk'),
-                "short" => "Co",
-                "data" => [
-                    [
-                        "id" => "CRMHelpDesk/HelpDesk/ViewSupportTypes",
-                        "full" => $translation->translateLabel('View Support Types'),
-                        "href"=> "EnterpriseASPHelpDesk/HelpDesk/HelpSupportRequestTypeList",
-                        "short" => "Vi"
-                    ],
-                    [
-                        "id" => "CRMHelpDesk/HelpDesk/ViewSupportRequests",
-                        "full" => $translation->translateLabel('View Support Requests'),
-                        "href"=> "EnterpriseASPHelpDesk/HelpDesk/HelpSupportRequestsList",
-                        "short" => "Vi"
                     ]
                 ]
             ],

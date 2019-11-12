@@ -37,7 +37,7 @@
                                 }else if($subitem["type"] == "absoluteLink"){
                                     echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"" . $subitem["href"] . "\" target=\"_blank\">" . $subitem["full"] . "</a></li>";                    
                                 }else if($subitem["type"] == "submenu"){
-                                    if(key_exists("link", $item))
+                                    if(key_exists("link", $subitem))
                                         $link = "location='{$subitem["link"]}'";
                                     else
                                         $link = "void(0)";
