@@ -30,78 +30,78 @@ class interfaces{
             "title" => "Simple Business",
             "interface" => "simple",
             "interfaceType" => "ltr",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Accounting"
         ],
         "simplertl" => [
             "title" => "Simple Business RTL",
             "interface" => "simple",
             "interfaceType" => "rtl",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Accounting"
         ],
 
         "simpleservice" => [
             "title" => "Simple Service",
             "interface" => "simple",
             "interfaceType" => "ltr",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Accounting"
         ],
         "simpleservicertl" => [
             "title" => "Simple Service RTL",
             "interface" => "simple",
             "interfaceType" => "rtl",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Accounting"
         ],
     
         "distribution" => [
             "title" => "Distribution",
             "interface" => "default",
             "interfaceType" => "ltr",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Distribution"
         ],
         "distributionrtl" => [
             "title" => "Distribution RTL",
             "interface" => "default",
             "interfaceType" => "rtl",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Distribution"
         ],
     
         "financial" => [
             "title" => "Financial",
             "interface" => "default",
             "interfaceType" => "ltr",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Financial"
         ],
         "financialrtl" => [
             "title" => "Financial RTL",
             "interface" => "default",
             "interfaceType" => "rtl",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Financial"
         ],
     
         "trustaccounting" => [
             "title" => "Trust Accounting",
             "interface" => "default",
             "interfaceType" => "ltr",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Trust"
         ],
         "trustaccountingrtl" => [
             "title" => "Trust Accounting RTL",
             "interface" => "default",
             "interfaceType" => "rtl",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Trust"
         ],
     
         "ngoaccounting" => [
             "title" => "NGO Accounting",
             "interface" => "default",
             "interfaceType" => "ltr",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "NGO"
         ],
         "ngoaccountingrtl" => [
             "title" => "NGO Accounting RTL",
             "interface" => "default",
             "interfaceType" => "rtl",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "NGO"
         ],
     
         "saasadmin" => [
@@ -109,27 +109,27 @@ class interfaces{
             "link" => "/EnterpriseX/index.php?page=ByPassLogin&config=Admin&interface=saasadmin",
             "interface" => "simple",
             "interfaceType" => "ltr",
-            "defaultDashboard" => "Admin.php"
+            "defaultDashboard" => "Admin"
         ],
         "saasadminrtl" => [
             "title" => "Saas Admin RTL",
             "link" => "/EnterpriseX/index.php?page=ByPassLogin&config=Admin&interface=saasadminrtl",
             "interface" => "simple",
             "interfaceType" => "rtl",
-            "defaultDashboard" => "Admin.php"
+            "defaultDashboard" => "Admin"
         ],
     
         "default" => [
             "title" => "All Functions",
             "interface" => "default",
             "interfaceType" => "ltr",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Accounting"
         ],
         "defaultrtl" => [
             "title" => "All Functions RTL",
             "interface" => "default",
             "interfaceType" => "rtl",
-            "defaultDashboard" => "Accounting.php"
+            "defaultDashboard" => "Accounting"
         ]
     ];
 }

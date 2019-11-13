@@ -25,7 +25,7 @@
   models/dashboard/*
   app from index.php
 
-  Last Modified: 20.09.2019
+  Last Modified: 13.11.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -65,10 +65,15 @@ class controller{
             "Item" => "Accounting",
             "PurchaseAndReceiving" => "Accounting",
             "SalesAndShipping" => "Accounting",
-            "Support" => "Accounting",
             "CRM" => "Accounting",
+            "MRP" => "Accounting",
             "Tasks" => "Tasks",
-            "Admin" => "Accounting"
+            "Support" => "Accounting",
+            "Admin" => "Accounting",
+            "Distribution" => "Accounting",
+            "Financial" => "Accounting",
+            "Trust" => "Accounting",
+            "NGO" => "Accounting"
         ];
 
         $titlesRewrite = [
@@ -78,9 +83,17 @@ class controller{
             "Item" => "Item",
             "PurchaseAndReceiving" => "Purchase & Receiving",
             "SalesAndShipping" => "Sales & Shipping",
-            "Admin" => "Admin",
+            "CRM" => "CRM",
+            "MRP" => "MRP",
             "Support" => "Support",
-            "CRM" => "CRM"
+            "Admin" => "Admin",
+            "Distribution" => "Distribution",
+            "Financial" => "Financials",
+            "Trust" => "Trust",
+            "NGO" => "NGO",
+            "simple" => "Accounting",
+            "simpleservice" => "Accounting",
+            "Accounting" => "Accounting"
         ];
         
         $modelName = $modelsRewrite[$this->screen];
@@ -127,6 +140,9 @@ class controller{
                 if(key_exists("defaultDashboard", $config)){
                     $dashboardFile = $config["defaultDashboard"];
                     $this->breadCrumbTitle = $this->dashboardTitle = $titlesRewrite[$config["defaultDashboard"]];
+                }else{
+                    $dashboardFile = $this->interfaces->description[$this->interface]["defaultDashboard"];
+                    $this->breadCrumbTitle = $this->dashboardTitle = $titlesRewrite[$dashboardFile];
                 }
                 if($user["accesspermissions"]["DefaultDashboard"] != ""){
                     $dashboardFile = preg_replace("/[\s]+/", "", $user["accesspermissions"]["DefaultDashboard"]);
