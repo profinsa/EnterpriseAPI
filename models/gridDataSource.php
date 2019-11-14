@@ -1319,6 +1319,10 @@ EOF;
         return $this->helperForDropdownToGet("helpdocumentmodule", "ModuleID", "ModuleID");
     }
 
+    public function getHelpStatuses(){
+        return $this->helperForDropdownToGet("helpstatus", "StatusId", "StatusId");
+    }
+
     public function Inventory_PopulateItemInfo(){
         $user = Session::get("user");
 

@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 04/11/2019
+  Last Modified: 14/11/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,7 +36,7 @@ class gridData extends gridDataSource{
     public $tableName = "helpsupportrequest";
     public $dashboardTitle ="Help Support Requests";
     public $breadCrumbTitle ="Help Support Requests";
-    public $gridConditions = "EmailConfirmed = 1";
+    public $gridConditions = "EmailConfirmed = 1 AND IFNULL(SupportStatus, '') <> 'Resolved'";
     public $idField ="CaseID";
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "CaseID"];
     public $gridFields = [
@@ -72,7 +72,8 @@ class gridData extends gridDataSource{
         ],
         "SupportStatus" => [
             "dbType" => "varchar(36)",
-            "inputType" => "text",
+            "inputType" => "dropdown",
+            "dataSource" => "getHelpStatuses",
             "defaultValue" => ""
         ],
         "SupportDate" => [
@@ -137,7 +138,8 @@ class gridData extends gridDataSource{
             ],
             "SupportStatus" => [
                 "dbType" => "varchar(36)",
-                "inputType" => "text",
+                "inputType" => "dropdown",
+                "dataProvider" => "getHelpStatuses",
                 "defaultValue" => ""
             ],
             "SupportPriority" => [

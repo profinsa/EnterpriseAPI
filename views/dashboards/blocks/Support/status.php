@@ -30,7 +30,7 @@
                 <i class="ti-user bg-danger"></i>
                 <div class="bodystate">
                     <h2><?php echo "<a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers") . "&filter=inactive\">{$customersNumbers["inactive"]}</a>"; ?></h2>
-                    <span class="text-muted"><?php echo $translation->translateLabel("Inactive Customer Support Requests"); ?></span>
+                    <span class="text-muted"><?php echo $translation->translateLabel("Resolved Customer Support Requests"); ?></span>
                 </div>
             </div>  
         </div>
