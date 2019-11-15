@@ -18,14 +18,15 @@
                 <div>
                     <div>
                         <?php require "blocks/Purchase/calendar.php"; ?>
+                        <?php require "blocks/topReceivings.php"; ?>
+                        <?php require "blocks/todayTasks.php"; ?>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div>
                     <div>
-                        <?php require "blocks/topReceivings.php"; ?>
-                        <?php require "blocks/todayTasks.php"; ?>
+                        <?php require "blocks/topOrders.php"; ?>
                         <?php require "blocks/leadFollowUp.php"; ?>
                     </div>
                 </div>

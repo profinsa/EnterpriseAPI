@@ -7,7 +7,7 @@
             <div class="r-icon-stats">
                 <i class="ti-user bg-success"></i>
                 <div class="bodystate">
-                    <h2><?php echo "<a href=\"" . $linksMaker->makeGridLink("CRMHelpDesk/HelpDesk/ViewSupportRequests") . "&filter=newtoday\">{$supportNumbers["newtoday"]}</a>"; ?></h2>
+                    <h2><?php echo "<a href=\"" . $linksMaker->makeGridLink("CRMHelpDesk/HelpDesk/ViewSupportRequests") . "&filter=newmonth\">{$supportNumbers["newmonth"]}</a>"; ?></h2>
                     <span class="text-muted"><?php echo $translation->translateLabel("New Customer Support Requests This Month"); ?></span>
                 </div>
             </div>  
@@ -18,7 +18,7 @@
             <div class="r-icon-stats">
                 <i class="ti-user bg-warning"></i>
                 <div class="bodystate">
-                    <h2><?php echo "<a href=\"" . $linksMaker->makeGridLink("CRMHelpDesk/HelpDesk/ViewSupportRequests") . "&filter=newmonth\">{$supportNumbers["newmonth"]}</a>"; ?></h2>
+                    <h2><?php echo "<a href=\"" . $linksMaker->makeGridLink("CRMHelpDesk/HelpDesk/ViewSupportRequests") . "&filter=newyear\">{$supportNumbers["newyear"]}</a>"; ?></h2>
                     <span class="text-muted"><?php echo $translation->translateLabel("New Customer Support Requests This Year"); ?></span>
                 </div>
             </div>  

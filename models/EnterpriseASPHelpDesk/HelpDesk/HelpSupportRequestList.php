@@ -305,12 +305,12 @@ class gridData extends gridDataSource{
             $this->gridConditions = "IFNULL(SupportStatus, 0) = 'Resolved'";
             $result = parent::getPage($id);
             return $result;
-        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newtoday"){
-            $this->gridConditions .= "and SupportDate >= NOW() - INTERVAL 1 DAY";
-            $result = parent::getPage($id);
-            return $result;
         }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newmonth"){
             $this->gridConditions .= "and SupportDate >= NOW() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newyear"){
+            $this->gridConditions .= "and SupportDate >= NOW() - INTERVAL 365 DAY";
             $result = parent::getPage($id);
             return $result;
         }else{
