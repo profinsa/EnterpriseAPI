@@ -546,5 +546,18 @@ EOF;
 
         return $ret;
     }
+
+    public function supportGetNumbers(){
+        $user = Session::get("user");
+
+        $ret = [
+            "newtoday" => count(DB::select("select CaseId from helpsupportrequest WHERE SupportDate >= NOW() - INTERVAL 1 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmailConfirmed=1 AND IFNULL(SupportStatus, '') <> 'Resolved'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "newmonth" => count(DB::select("select CaseId from helpsupportrequest WHERE SupportDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmailConfirmed=1 AND IFNULL(SupportStatus, '') <> 'Resolved'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "resolved" => count(DB::select("select CaseId from helpsupportrequest WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND IFNULL(SupportStatus, '') = 'Resolved' AND EmailConfirmed=1", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "total" => count(DB::select("select CaseId from helpsupportrequest WHERE  CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmailConfirmed=1", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]))
+        ];
+
+        return $ret;
+    }
 }
 ?>

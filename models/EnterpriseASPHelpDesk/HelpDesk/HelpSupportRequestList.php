@@ -295,6 +295,30 @@ class gridData extends gridDataSource{
         ]
     ];
 
+    public function getPage($id){
+        $user = Session::get("user");
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "total"){
+            $this->gridConditions = "EmailConfirmed=1";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "resolved"){
+            $this->gridConditions = "IFNULL(SupportStatus, 0) = 'Resolved'";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newtoday"){
+            $this->gridConditions .= "and SupportDate >= NOW() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newmonth"){
+            $this->gridConditions .= "and SupportDate >= NOW() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
+    }
+
     public function getMain($id){
         return $this->getDetailGridFields($id, "Main");
     }
