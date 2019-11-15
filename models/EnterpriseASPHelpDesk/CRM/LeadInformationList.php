@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 19/11/2018
+  Last Modified: 15/11/2019
   Last Modified by: Nikita Zaharov
 */
 require "./models/gridDataSource.php";
@@ -519,6 +519,26 @@ class LeadInformationList extends gridDataSource{
             ]
         ],
     ];
+
+    public function getPage($id){
+        $user = Session::get("user");
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newmonth"){
+            $this->gridConditions = "FirstContacted >= NOW() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newyear"){
+            $this->gridConditions = "FirstContacted >= NOW() - INTERVAL 365 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "inactive"){
+            $this->gridConditions = "LastVisit < NOW() - INTERVAL 100 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
+    }
 
     //getting rows for Lead Contacts grid
     public function getLeadContacts($LeadID){

@@ -547,6 +547,7 @@ EOF;
         return $ret;
     }
 
+    //functions for Support dashboard
     public function supportGetNumbers(){
         $user = Session::get("user");
 
@@ -555,6 +556,24 @@ EOF;
             "newmonth" => count(DB::select("select CaseId from helpsupportrequest WHERE SupportDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmailConfirmed=1 AND IFNULL(SupportStatus, '') <> 'Resolved'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
             "resolved" => count(DB::select("select CaseId from helpsupportrequest WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND IFNULL(SupportStatus, '') = 'Resolved' AND EmailConfirmed=1", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
             "total" => count(DB::select("select CaseId from helpsupportrequest WHERE  CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmailConfirmed=1", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]))
+        ];
+
+        return $ret;
+    }
+
+    //Functions for CRM Dashboard
+    public function leadsGetNumbers(){
+        $user = Session::get("user");
+
+        $newmonth = DB::select("select LeadID from leadinformation WHERE FirstContacted >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $newyear = DB::select("select LeadID from leadinformation WHERE FirstContacted >= NOW() - INTERVAL 365 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $inactive = DB::select("select LeadID from leadinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND LastVisit < NOW() - INTERVAL 100 DAY", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $total = DB::select("select LeadID from leadinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $ret = [
+            "newmonth" => count($newmonth),
+            "newyear" => count($newyear),
+            "inactive" => count($inactive),
+            "total" => count($total)
         ];
 
         return $ret;
