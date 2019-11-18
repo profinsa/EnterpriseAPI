@@ -2,16 +2,26 @@
   Newsletter subscribe and View Demo Handler with entering Customer information is implemented by two ways:
   - server side logic
     implemented in EnterpriseX project in Help controller(controllers/help.php). It uses EnterpriseX LeadInformation
-    model to work with data - getting, updating, inserting
+    model to work with data - getting, updating, inserting. Also uses new API controller(controllers/api.php) which will main
+    point to work with EnterpriseX API.
   - client side logic
     + Subscribe form is same as it was in past, but now it uses differ address and point to EnterpriseX/index.php?page=help 
       For this case can be used any just html form with inputs which will send form data to EnterpriseX. Example of form in
       Documentation/examples/subscribeForm.html
       If you need put form like it on your site - you need change sending address on own.
-    + View Demo Handler is mix of some html and js for working with EnterpriseX Help over AJAX requests.
-      Code of View Demo Hanlder in Documentation/examples/ViewDemoHandler.html
-      This component is simple. Just html for button and forms and some javascript for working with button, forms and sending
-      AJAX requests.
+    + View Demo Handler is just a js code for working with EnterpriseX Help over new EnterpriseX API subsystem as AJAX requests.
+      Code of View Demo Hanlder in Documentation/examples/viewButton.html
+      Example consist from three part: 
+      - template based on template of stfb.com and uses same parts as stfb.com
+      - loading api compoment in <head> section of template like
+        <script src="https://stfb.net/EnterpriseX/index.php?page=api"></script>
+        All things does here and you need add that script to your head section on stfb.com
+      - button for opening demo. You can use any link for working with API. API is simple:
+        <a class="btn" href="javascript:;" onclick="viewDemoPage('EnterpriseX', 'https://stfb.net/EnterpriseX/index.php?page=ByPassLogin&interface=simple')">
+            Live Enterprise X PHP & MySQL ERP Demo!
+        </a>
+        Where 'EnterpriseX' is just a string, name of Product, you can use any name.
+        And 'https://stfb.net/EnterpriseX/index.php?page=ByPassLogin&interface=simple' is just a link, you can use any link
 
    How it works?:
    Client enter email on subscribe form, then click on subscribe. Form sends data to EnterpriseX which uses Help controller to
@@ -19,8 +29,8 @@
    When user click on link, Help controller calls LeanInformation to insert Lead data
 
    Client click on View demo. System checks cookies and if they contains customer info - just open Application. If not it
-   opens Customer Creation form. Client fill the form and click send. Request is sent to EnterpriseX Help controller, which
-   uses LeadInformation model to create Customer and send customer cookies back.  Client is redirected to opened Application.
+   opens Lead Creation form. Client fill the form and click send. Request is sent to EnterpriseX APIr, which
+   uses LeadInformation model to create Lead and send cookies back.  Client is redirected to opened Application.
 
 * Help Module 
   Help module is part of EnterpriseX and uses Help controler to work.

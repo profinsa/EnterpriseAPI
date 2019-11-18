@@ -134,9 +134,9 @@ function viewDemoPage(projectName, link){
 
     $("#LeadMemo2").val(_projectName = projectName);
     _link = link;
-    //         if(!viewed){
-    $("body").append(viewPageModal);
-    $("#viewPageModal").modal("show");
-    //       }else
-    //     window.location = link;
+    if(!viewed){
+        $("body").append(viewPageModal);
+        $("#viewPageModal").modal("show");
+    }else
+    window.location = link;
 }
