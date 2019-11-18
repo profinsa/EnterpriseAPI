@@ -83,7 +83,7 @@ class controller{
             $translation = new translation($this->user["language"]);
             
             $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
-            require 'views/api/index.php';
+            require 'views/api/index.js';
         }
     }
 }

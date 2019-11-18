@@ -1,3 +1,4 @@
+
  function redirectBlank(url) {
      var a = document.createElement('a');
      a.target="_blank";
@@ -88,34 +89,34 @@
  //global object used for creatink links to any part of application
  var linksMaker = {
      makeDashboardLink : function(type){
-         return "index.php#/?page=dashboard" + (type ? "&screen=" + type : "");
+         return (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php#/?page=dashboard" + (type ? "&screen=" + type : "");
      },
      makeGridLink : function (path){
-         return "index.php#/?page=grid&action=" + path + "&mode=grid&category=Main&item=all";
+         return (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php#/?page=grid&action=" + path + "&mode=grid&category=Main&item=all";
      },
      makeGridItemView : function(path, item, category){
-         return "index.php#/?page=grid&action=" + path + "&mode=view&category=" + (category ? category : "Main") + "&item=" + item;
+         return (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php#/?page=grid&action=" + path + "&mode=view&category=" + (category ? category : "Main") + "&item=" + item;
      },
      makeEmbeddedgridItemNewLink : function(viewpath, backpath, keyString, item){
-         return "index.php#/?page=grid&action=" + viewpath + "&mode=new&category=Main&item=" + keyString + "&back=" + encodeURIComponent("index.php#/?page=grid&action=" + backpath + "&mode=view&category=Main&item=" + item);
+         return (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php#/?page=grid&action=" + viewpath + "&mode=new&category=Main&item=" + keyString + "&back=" + encodeURIComponent("index.php#/?page=grid&action=" + backpath + "&mode=view&category=Main&item=" + item);
      },
      makeEmbeddedgridItemEditLink : function(viewpath, backpath, keyString, item){
-         return "index.php#/?page=grid&action=" + viewpath + "&mode=edit&category=Main&item=" + keyString + "&back=" + encodeURIComponent("index.php#/?page=grid&action=" + backpath + "&mode=view&category=Main&item=" + item);
+         return (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php#/?page=grid&action=" + viewpath + "&mode=edit&category=Main&item=" + keyString + "&back=" + encodeURIComponent("index.php#/?page=grid&action=" + backpath + "&mode=view&category=Main&item=" + item);
      },
      makeProcedureLink : function (path, procedure){
-         return "index.php?page=grid&action=" + path + "&procedure=" + procedure;
+         return (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php?page=grid&action=" + path + "&procedure=" + procedure;
      },
      makeAutoreportsViewLink : function(type, name, id, title, options){
-         return "index.php?page=autoreports&getreport=" + name + "&type=" + type + "&title=" + title + "&" + options;
+         return (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php?page=autoreports&getreport=" + name + "&type=" + type + "&title=" + title + "&" + options;
      },
      makeDocreportsLink : function(type, id){
-         return "index.php?page=docreports&type=" + type + "&id=" + id;
+         return (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php?page=docreports&type=" + type + "&id=" + id;
      },
      makeReportsEngineLink : function(report){
-         return  "index.php#/?page=grid&action=Reports/Autoreport/GenericReportDetail&mode=new&category=Main&item=" + generateKeyString() + "&report=" + report;
+         return  (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php#/?page=grid&action=Reports/Autoreport/GenericReportDetail&mode=new&category=Main&item=" + generateKeyString() + "&report=" + report;
      },
      makeHelpLinkByURL : function(url){
-         return "index.php?page=help&url=" + url;
+         return (typeof linkSoftwarePrefix != 'undefined' ? linkSoftwarePrefix : "") + "index.php?page=help&url=" + url;
      }
  };
 
@@ -235,39 +236,39 @@
  <?php if(isset($ascope) && key_exists("mode", $ascope)): ?>
  function serverProcedureCall(methodName, props, reloadPage, jsonRequest, successAlert){
      $.post("<?php echo $linksMaker->makeProcedureLink($ascope["path"], ""); ?>" + methodName, jsonRequest ? JSON.stringify(props) : props, 'text')
-      .success(function(data) {
+      .done(function(data) {
           if(successAlert)
               alert(data);
           if(reloadPage)
               onlocation(window.location);
       })
-      .error(function(xhr){
+      .fail(function(xhr){
           alert(xhr.responseText);
       });
  }
  <?php endif; ?>
  function serverProcedureAnyCallWithParams(path, params, methodName, props, cb, jsonRequest, successAlert){
      $.post(linksMaker.makeProcedureLink(path, methodName) + params, jsonRequest ? JSON.stringify(props) : props, 'text')
-      .success(function(data) {
+      .done(function(data) {
           if(successAlert)
               alert(data);
           if(cb)
               cb(data);
       })
-      .error(function(xhr){
+      .fail(function(xhr){
           alert(xhr.responseText);
       });
  }
 
  function serverProcedureAnyCall(path, methodName, props, cb, jsonRequest, successAlert){
      $.post(linksMaker.makeProcedureLink(path, methodName), jsonRequest ? JSON.stringify(props) : props, 'text')
-      .success(function(data) {
+      .done(function(data) {
           if(successAlert)
               alert(data);
           if(cb)
               cb(data);
       })
-      .error(function(xhr){
+      .fail(function(xhr){
           if(cb)
               cb(null, xhr.responseText);
           else

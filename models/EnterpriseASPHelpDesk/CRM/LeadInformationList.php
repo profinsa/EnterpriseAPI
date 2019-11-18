@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 15/11/2019
+  Last Modified: 18/11/2019
   Last Modified by: Nikita Zaharov
 */
 require "./models/gridDataSource.php";
@@ -319,7 +319,15 @@ class LeadInformationList extends gridDataSource{
                 "dbType" => "varchar(60)",
                 "inputType" => "text",
                 "defaultValue" => ""
-            ]/*,
+            ],
+            "UniqID" => [
+                "dbType" => "varchar(50)",
+                "disabledEdit" => true,
+                "disabledNew" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
+            ]            
+            /*,
             "LastVisit" => [
                 "dbType" => "datetime",
                 "inputType" => "datetime",
@@ -520,6 +528,85 @@ class LeadInformationList extends gridDataSource{
         ],
     ];
 
+    public $columnNames = [
+        "LeadID" => "Lead ID",
+        "LeadLastName" => "Last Name",
+        "LeadFirstName" => "First Name",
+        "LeadEmail" => "Email",
+        "LeadLogin" => "Login",
+        "LeadPassword" => "Password",
+        "Hot" => "Hot",
+        "Confirmed" => "Confirmed",
+        "LeadCompany" => "Lead Company",
+        "LeadSalutation" => "Lead Salutation",
+        "LeadAddress1" => "Lead Address 1",
+        "LeadAddress2" => "Lead Address 2",
+        "LeadAddress3" => "Lead Address 3",
+        "LeadCity" => "Lead City",
+        "LeadState" => "Lead State",
+        "LeadZip" => "Lead Zip",
+        "LeadCountry" => "Lead Country",
+        "LeadWebPage" => "Lead Web Page",
+        "LeadPhone" => "Lead Phone",
+        "LeadFax" => "Lead Fax",
+        "LeadPasswordOld" => "Lead Password Old",
+        "LeadPasswordDate" => "Lead Password Date",
+        "LeadPasswordExpires" => "Lead Password Expires",
+        "LeadPasswordExpiresDate" => "Lead Password Expires Date",
+        "LeadSecurityGroup" => "Lead Security Group",
+        "Attention" => "Attention",
+        "EmployeeID" => "Employee ID",
+        "CurrencyID" => "Currency ID",
+        "LeadTypeID" => "LeadType ID",
+        "LeadRegionID" => "Lead Region ID",
+        "LeadSourceID" => "Lead Source ID",
+        "LeadIndustryID" => "Lead Industry ID",
+        "FirstContacted" => "First Contacted",
+        "LastFollowUp" => "Last Follow Up",
+        "NextFollowUp" => "Next Follow Up",
+        "ReferedByExistingCustomer" => "Refered By Existing Customer",
+        "ReferedBy" => "Refered By",
+        "ReferedDate" => "Refered Date",
+        "ReferalURL" => "Referal URL",
+        "LastVisit" => "Last Visit",
+        "IPAddress" => "IP Address",
+        "NumberOfVisits" => "Number Of Visits",
+        "PrimaryInterest" => "Primary Interest",
+        "Validated" => "Validated",
+        "OptInEmail" => "Opt In Email",
+        "Newsletter" => "Newsletter",
+        "OptInNewsletter" => "Opt In Newsletter",
+        "MessageBoard" => "Message Board",
+        "Portal" => "Portal",
+        "ConvertedToCustomer" => "Converted To Customer",
+        "ConvertedToCustomerBy" => "Converted To Customer By",
+        "ConvertedToCustomerDate" => "Converted To Customer Date",
+        "LeadMemo1" => "Lead Memo 1",
+        "LeadMemo2" => "Lead Memo 2",
+        "LeadMemo3" => "Lead Memo 3",
+        "LeadMemo4" => "Lead Memo 4",
+        "LeadMemo5" => "Lead Memo 5",
+        "LeadMemo6" => "Lead Memo 6",
+        "LeadMemo7" => "Lead Memo 7",
+        "LeadMemo8" => "Lead Memo 8",
+        "LeadMemo9" => "Lead Memo 9",
+        "ContactID" => "Contact ID",
+        "LeadType" => "Lead Type",
+        "ContactDescription" => "Description",
+        "ContactLastName" => "Last Name",
+        "ContactFirstName" => "First Name",
+        "ContactTitle" => "Title",
+        "ContactPhone" => "Phone",
+        "ContactEmail" => "Email",
+        "CommentNumber" => "Comment Number",
+        "CommentDate" => "Comment Date",
+        "CommentType" => "Comment Type",
+        "Comment" => "Comment",
+        "ItemID" => "Item ID",
+        "SurveyDate" => "Survey Date",
+        "UniqID" => "Uniq ID"
+    ];
+
     public function getPage($id){
         $user = Session::get("user");
         if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "newmonth"){
@@ -675,82 +762,46 @@ class LeadInformationList extends gridDataSource{
             echo "ok";
          }
     }
-    
-    public $columnNames = [
-        "LeadID" => "Lead ID",
-        "LeadLastName" => "Last Name",
-        "LeadFirstName" => "First Name",
-        "LeadEmail" => "Email",
-        "LeadLogin" => "Login",
-        "LeadPassword" => "Password",
-        "Hot" => "Hot",
-        "Confirmed" => "Confirmed",
-        "LeadCompany" => "Lead Company",
-        "LeadSalutation" => "Lead Salutation",
-        "LeadAddress1" => "Lead Address 1",
-        "LeadAddress2" => "Lead Address 2",
-        "LeadAddress3" => "Lead Address 3",
-        "LeadCity" => "Lead City",
-        "LeadState" => "Lead State",
-        "LeadZip" => "Lead Zip",
-        "LeadCountry" => "Lead Country",
-        "LeadWebPage" => "Lead Web Page",
-        "LeadPhone" => "Lead Phone",
-        "LeadFax" => "Lead Fax",
-        "LeadPasswordOld" => "Lead Password Old",
-        "LeadPasswordDate" => "Lead Password Date",
-        "LeadPasswordExpires" => "Lead Password Expires",
-        "LeadPasswordExpiresDate" => "Lead Password Expires Date",
-        "LeadSecurityGroup" => "Lead Security Group",
-        "Attention" => "Attention",
-        "EmployeeID" => "Employee ID",
-        "CurrencyID" => "Currency ID",
-        "LeadTypeID" => "LeadType ID",
-        "LeadRegionID" => "Lead Region ID",
-        "LeadSourceID" => "Lead Source ID",
-        "LeadIndustryID" => "Lead Industry ID",
-        "FirstContacted" => "First Contacted",
-        "LastFollowUp" => "Last Follow Up",
-        "NextFollowUp" => "Next Follow Up",
-        "ReferedByExistingCustomer" => "Refered By Existing Customer",
-        "ReferedBy" => "Refered By",
-        "ReferedDate" => "Refered Date",
-        "ReferalURL" => "Referal URL",
-        "LastVisit" => "Last Visit",
-        "IPAddress" => "IP Address",
-        "NumberOfVisits" => "Number Of Visits",
-        "PrimaryInterest" => "Primary Interest",
-        "Validated" => "Validated",
-        "OptInEmail" => "Opt In Email",
-        "Newsletter" => "Newsletter",
-        "OptInNewsletter" => "Opt In Newsletter",
-        "MessageBoard" => "Message Board",
-        "Portal" => "Portal",
-        "ConvertedToCustomer" => "Converted To Customer",
-        "ConvertedToCustomerBy" => "Converted To Customer By",
-        "ConvertedToCustomerDate" => "Converted To Customer Date",
-        "LeadMemo1" => "Lead Memo 1",
-        "LeadMemo2" => "Lead Memo 2",
-        "LeadMemo3" => "Lead Memo 3",
-        "LeadMemo4" => "Lead Memo 4",
-        "LeadMemo5" => "Lead Memo 5",
-        "LeadMemo6" => "Lead Memo 6",
-        "LeadMemo7" => "Lead Memo 7",
-        "LeadMemo8" => "Lead Memo 8",
-        "LeadMemo9" => "Lead Memo 9",
-        "ContactID" => "Contact ID",
-        "LeadType" => "Lead Type",
-        "ContactDescription" => "Description",
-        "ContactLastName" => "Last Name",
-        "ContactFirstName" => "First Name",
-        "ContactTitle" => "Title",
-        "ContactPhone" => "Phone",
-        "ContactEmail" => "Email",
-        "CommentNumber" => "Comment Number",
-        "CommentDate" => "Comment Date",
-        "CommentType" => "Comment Type",
-        "Comment" => "Comment",
-        "ItemID" => "Item ID",
-        "SurveyDate" => "Survey Date"
-    ];
+
+    public function insertLeadForViewDemo(){
+        $user = Session::get("user");
+        $config = config();
+
+        if(count(DB::select("select LeadID from leadinformation WHERE LeadID=?", [$_POST["LeadID"]])) == 0){
+            $leadInformation = [];
+            foreach($this->editCategories as $key=>$value)
+                $leadInformation = array_merge($leadInformation, $this->getNewItem($_POST["id"], $key));
+            $leadInformation["LeadID"] = $_POST["LeadID"];
+            $leadInformation["Hot"] = 1;
+            $leadInformation["Confirmed"] = 0;
+            $leadInformation["LeadEmail"] = $_POST["LeadEmail"];
+            $leadInformation["LeadCompany"] = $_POST["LeadCompany"];
+            $leadInformation["LeadFirstName"] = $_POST["LeadFirstName"];
+            $leadInformation["LeadLastName"] = $_POST["LeadLastName"];
+            $leadInformation["LeadPhone"] = $_POST["LeadPhone"];
+            $leadInformation["LeadAddress1"] = $_POST["LeadAddress1"];
+            $leadInformation["LeadMemo1"] = $_POST["LeadMemo1"];
+            $leadInformation["LeadMemo2"] = $_POST["LeadMemo2"];
+            $uid = $leadInformation["UniqID"] = uniqid();
+
+            $item = $this->insertItemLocal($leadInformation);
+            echo json_encode($leadInformation, JSON_PRETTY_PRINT);
+
+            //session_write_close(); //close the session
+            //fastcgi_finish_request(); //this returns 200 to the user, and processing continues
+            $mailer = new mailer();
+            $mailer->send([
+                "subject" => "The confirmation message",
+                "body" => "<html><body>To confirm your email please click <a href=\"{$config["confirmationHost"]}/EnterpriseX/index.php?config=STFBEnterprise&page=grid&action=CRMHelpDesk/CRM/ViewLeads&mode=view&category=Main&uid=$uid&procedure=confirm\">here</a></body></html>",
+                "email" => $_POST["LeadEmail"]
+            ]);
+        }else{
+            $this->updateItem($_POST["id"] . "__" . $_POST["LeadID"], "Main", $_POST);
+        }
+    }
+
+    public function confirm(){
+        DB::update("update leadinformation set Confirmed=1, OptInEmail = 1 WHERE UniqID=?", [$_GET["uid"]]);
+        echo "Your Email is confirmed";
+    }
 }?>
