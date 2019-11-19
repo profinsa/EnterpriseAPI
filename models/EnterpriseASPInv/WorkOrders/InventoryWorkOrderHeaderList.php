@@ -482,6 +482,11 @@ class gridData extends gridDataSource{
             $this->gridConditions = "and WorkOrderStartDate >= now() - INTERVAL 30 DAY";
             $result = parent::getPage($id);
             return $result;
+        }else if(key_exists("WorkOrderCompletedDate", $_GET)){
+            $WorkOrderCompletedDate = $_GET["WorkOrderCompletedDate"];
+            $this->gridConditions = "date(WorkOrderCompletedDate)='$WorkOrderCompletedDate'";
+            $result = parent::getPage($id);
+            return $result;
         }else{
             $result = parent::getPage($id);
             return $result;

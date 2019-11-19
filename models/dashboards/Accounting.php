@@ -586,7 +586,7 @@ EOF;
         $orders = DB::select("select WorkOrderNumber, WorkOrderTotalCost from workorderheader WHERE  CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
         $totalAmount = 0.01;
         foreach($orders as $record)
-            $totalAmount += $record->WorkOrderTotaCost;
+            $totalAmount += $record->WorkOrderTotalCost;
         $ret = [
             "today" => count(DB::select("select WorkOrderNumber from workorderheader WHERE WorkOrderStartDate >= NOW() - INTERVAL 1 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
             "thismonth" => count(DB::select("select WorkOrderNumber from workorderheader WHERE WorkOrderStartDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
@@ -604,6 +604,14 @@ EOF;
         $result = json_decode(json_encode($result), true);
         
         return $result;
+    }
+
+    public function MRPgetTopWarehouseTransits(){
+        $user = Session::get("user");
+
+        return DB::select("select * from warehousetransitheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND TransitID <> 'DEFAULT' ORDER BY TransitEnteredDate DESC LIMIT 5", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $results["orders"] = DB::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results["purchases"] = DB::select("CALL spTopOrdersReceiptsPurchases('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
     }
 }
 ?>

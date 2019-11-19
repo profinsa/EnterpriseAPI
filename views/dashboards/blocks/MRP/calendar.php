@@ -2,14 +2,14 @@
  var ordersByDate = {};
  function calendarOnSelect(start, end){
      if(ordersByDate.hasOwnProperty(datetimeToISO(start._d)))
-         location.href = "<?php echo $linksMaker->makeGridLink("MRP/WorkOrders/ViewWorkOrders"); ?>" + "&WorkOrderCompleteDate=" + datetimeToISO(start._d);
+         location.href = "<?php echo $linksMaker->makeGridLink("MRP/WorkOrders/ViewWorkOrders"); ?>" + "&WorkOrderCompletedDate=" + datetimeToISO(start._d);
      else
          location.href = "<?php echo $linksMaker->makeGridLink("Payroll/EmployeeSetup/ViewTaskList"); ?>" + "&from=" + datetimeToISO(start._d);
      //     console.log(start._d,end);
  }
  function calendarOnClick(calEvent, jsEvent, view){
      //console.log(calEvent.start._i);
-     location.href = "<?php echo $linksMaker->makeGridLink("MRP/WorkOrders/ViewWorkOrders"); ?>" + "&WorkOrderCompleteDate=" + calEvent.start._i;
+     location.href = "<?php echo $linksMaker->makeGridLink("MRP/WorkOrders/ViewWorkOrders"); ?>" + "&WorkOrderCompletedDate=" + calEvent.start._i;
  }
  function calendarDataSource(){
      var orders = <?php echo json_encode($data->getWorkOrdersForCalendar(), JSON_PRETTY_PRINT); ?>,
