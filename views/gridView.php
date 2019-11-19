@@ -108,10 +108,11 @@
 </style>
 
 <script language="javascript" type="text/javascript">
- <?php if($ascope["interface"] == "default"): ?>
+ <?php if($ascope["interfaces"]["description"][$ascope["interface"]]["interface"] == "default"): ?>
  if(!datatableInitialized){
      datatableInitialized = true;
      try{
+         console.log("date table initialization");
 	 if(!$.fn.DataTable.isDataTable("#example23")){
 	     $('#example23').DataTable( {
 		 <?php  echo (!property_exists($data, "features") || !in_array("disabledGridPageUI", $data->features) ? "" : "dom : \"tip\","); ?>
@@ -132,7 +133,7 @@
      }
  }
 
- <?php elseif($ascope["interface"] == "simple"): ?>
+ <?php elseif($ascope["interfaces"]["description"][$ascope["interface"]]["interface"] == "simple"): ?>
  //"https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"
  //inlined for fast
  /*!
