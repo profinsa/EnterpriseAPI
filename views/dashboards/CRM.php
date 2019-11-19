@@ -15,15 +15,15 @@
         </div>
         <!--row -->
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div>
                     <div>
+                        <?php require "blocks/leadFollowUp.php"; ?>
                         <?php require "blocks/companyDailyActivity.php"; ?>
-                        <?php require "blocks/Admin/monthlyIncome.php"; ?>
                     </div>
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div>
                     <div>
                         <?php require "blocks/Customer/receivables.php"; ?>
