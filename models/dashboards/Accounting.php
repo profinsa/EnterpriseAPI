@@ -584,7 +584,7 @@ EOF;
         $user = Session::get("user");
 
         $orders = DB::select("select WorkOrderNumber, WorkOrderTotalCost from workorderheader WHERE  CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
-        $totalAmount = 100.99;
+        $totalAmount = 0.01;
         foreach($orders as $record)
             $totalAmount += $record->WorkOrderTotaCost;
         $ret = [
@@ -595,6 +595,15 @@ EOF;
         ];
 
         return $ret;
+    }
+
+    public function getWorkOrdersForCalendar(){
+        $user = Session::get("user");
+
+        $result = DB::select("select WorkOrderNumber, WorkOrderCompletedDate from workorderheader WHERE WorkOrderNumber <> 'DEFAULT' AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $result = json_decode(json_encode($result), true);
+        
+        return $result;
     }
 }
 ?>

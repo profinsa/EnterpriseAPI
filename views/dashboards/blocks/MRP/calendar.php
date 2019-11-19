@@ -2,20 +2,20 @@
  var ordersByDate = {};
  function calendarOnSelect(start, end){
      if(ordersByDate.hasOwnProperty(datetimeToISO(start._d)))
-         location.href = "<?php echo $linksMaker->makeGridLink("AccountsPayable/PurchaseScreens/ViewPurchases"); ?>" + "&ShipDate=" + datetimeToISO(start._d);
+         location.href = "<?php echo $linksMaker->makeGridLink("MRP/WorkOrders/ViewWorkOrders"); ?>" + "&WorkOrderCompleteDate=" + datetimeToISO(start._d);
      else
          location.href = "<?php echo $linksMaker->makeGridLink("Payroll/EmployeeSetup/ViewTaskList"); ?>" + "&from=" + datetimeToISO(start._d);
      //     console.log(start._d,end);
  }
  function calendarOnClick(calEvent, jsEvent, view){
      //console.log(calEvent.start._i);
-     location.href = "<?php echo $linksMaker->makeGridLink("AccountsPayable/PurchaseScreens/ViewPurchases"); ?>" + "&ShipDate=" + calEvent.start._i;
+     location.href = "<?php echo $linksMaker->makeGridLink("MRP/WorkOrders/ViewWorkOrders"); ?>" + "&WorkOrderCompleteDate=" + calEvent.start._i;
  }
  function calendarDataSource(){
-     var orders = <?php echo json_encode($data->getReceivingsForCalendar(), JSON_PRETTY_PRINT); ?>,
+     var orders = <?php echo json_encode($data->getWorkOrdersForCalendar(), JSON_PRETTY_PRINT); ?>,
          ind, ordersCounters = {}, shipDate;
      for(ind in orders){
-         shipDate = datetimeToISO(orders[ind].ShipDate);
+         shipDate = datetimeToISO(orders[ind].WorkOrderCompletedDate);
          if(ordersCounters.hasOwnProperty(shipDate))
              ordersCounters[shipDate]++;
          else
