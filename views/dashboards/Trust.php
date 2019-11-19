@@ -11,7 +11,7 @@
         <!--row -->
         <div class="row">
             <div class="col-md-12">
-                <?php require "blocks/Accounting/status.php"; ?>
+                <?php require "blocks/Trust/status.php"; ?>
             </div>
             <div class="col-md-8">
                 <div>
