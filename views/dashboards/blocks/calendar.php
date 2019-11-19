@@ -125,10 +125,10 @@
          selectable: true,
          aspectRatio: 0.9,
          selectHelper: true,
-         select: calendarOnSelect,
-         eventClick : calendarOnClick,
+         select: <?php echo (isset($calendarOnSelect) ? $calendarOnSelect : "calendarOnSelect"); ?>,
+         eventClick : <?php echo (isset($calendarOnClick) ? $calendarOnClick : "calendarOnClick"); ?>,
          editable: true,
-         events: calendarDataSource()
+         events: <?php echo (isset($calendarDataSource) ? $calendarDataSource : "calendarDataSource"); ?>()
      });
      
  });

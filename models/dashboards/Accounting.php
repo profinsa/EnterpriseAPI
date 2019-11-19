@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 07.11.2019
+  Last Modified: 19.11.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -574,6 +574,24 @@ EOF;
             "newyear" => count($newyear),
             "inactive" => count($inactive),
             "total" => count($total)
+        ];
+
+        return $ret;
+    }
+
+
+    public function MRPGetNumbers(){
+        $user = Session::get("user");
+
+        $orders = DB::select("select WorkOrderNumber, WorkOrderTotalCost from workorderheader WHERE  CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $totalAmount = 100.99;
+        foreach($orders as $record)
+            $totalAmount += $record->WorkOrderTotaCost;
+        $ret = [
+            "today" => count(DB::select("select WorkOrderNumber from workorderheader WHERE WorkOrderStartDate >= NOW() - INTERVAL 1 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "thismonth" => count(DB::select("select WorkOrderNumber from workorderheader WHERE WorkOrderStartDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "totalorders" => count(DB::select("select WorkOrderNumber from workorderheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND WorkOrderNumber <> 'DEFAULT'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "totalordersamount" => $totalAmount
         ];
 
         return $ret;

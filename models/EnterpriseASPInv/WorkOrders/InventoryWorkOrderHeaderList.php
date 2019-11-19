@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 05/29/2017
+  Last Modified: 19/11/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -470,6 +470,22 @@ class gridData extends gridDataSource{
         $result = json_decode(json_encode($result), true);
         
         return $result;
+    }
+
+        public function getPage($id){
+        $user = Session::get("user");
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "today"){
+            $this->gridConditions = "and WorkOrderStartDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "thismonth"){
+            $this->gridConditions = "and WorkOrderStartDate >= now() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
     }
 
     public function detailDelete(){
