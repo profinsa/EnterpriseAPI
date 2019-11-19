@@ -88,7 +88,7 @@
     </div>
     <div id="calendar-wrapper-id">
         <h3 class="box-title m-b-0"><?php echo $translation->translateLabel($calendarTitle); ?></h3>
-        <div id='records-calendar-id' style="margin-top: 15px"></div>
+        <div id='records-calendar-id<?php echo (isset($calendarPrefix) ? $calendarPrefix : "")?>' style="margin-top: 15px"></div>
     </div>
 </div>
 <script>
@@ -114,7 +114,7 @@
      //     console.log(orders);
      //   console.log(eventsJson);
 
-     $('#records-calendar-id').fullCalendar({
+     $('#records-calendar-id<?php echo (isset($calendarPrefix) ? $calendarPrefix : "")?>').fullCalendar({
          themeSystem: 'bootstrap3',
          header: {
              left: 'prev,next today',

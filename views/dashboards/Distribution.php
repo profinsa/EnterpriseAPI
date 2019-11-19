@@ -26,6 +26,7 @@
             <div class="col-md-6">
                 <div>
                     <div>
+                        <?php require "blocks/Sales/calendar.php" ?>
                         <?php require "blocks/topOrders.php"; ?>
                         <?php require "blocks/leadFollowUp.php"; ?>
                     </div>

@@ -1,17 +1,17 @@
 <script>
  var ordersByDate = {};
- function calendarOnSelect(start, end){
+ function receivingCalendarOnSelect(start, end){
      if(ordersByDate.hasOwnProperty(datetimeToISO(start._d)))
          location.href = "<?php echo $linksMaker->makeGridLink("AccountsPayable/PurchaseScreens/ViewPurchases"); ?>" + "&ShipDate=" + datetimeToISO(start._d);
      else
          location.href = "<?php echo $linksMaker->makeGridLink("Payroll/EmployeeSetup/ViewTaskList"); ?>" + "&from=" + datetimeToISO(start._d);
      //     console.log(start._d,end);
  }
- function calendarOnClick(calEvent, jsEvent, view){
+ function receivingCalendarOnClick(calEvent, jsEvent, view){
      //console.log(calEvent.start._i);
      location.href = "<?php echo $linksMaker->makeGridLink("AccountsPayable/PurchaseScreens/ViewPurchases"); ?>" + "&ShipDate=" + calEvent.start._i;
  }
- function calendarDataSource(){
+ function receivingCalendarDataSource(){
      var orders = <?php echo json_encode($data->getReceivingsForCalendar(), JSON_PRETTY_PRINT); ?>,
          ind, ordersCounters = {}, shipDate;
      for(ind in orders){
@@ -34,6 +34,10 @@
  }
 </script>
 <?php
+    $calendarOnSelect = "receivingCalendarOnSelect";
+    $calendarOnClick = "receivingCalendarOnClick";
+    $calendarDataSource = "receivingCalendarDataSource";
     $calendarTitle = "Receiving Calendar";
+    $calendarPrefix = 'Receiving';
     require __DIR__ . "/../calendar.php";
 ?>
