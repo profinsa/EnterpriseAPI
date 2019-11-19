@@ -1,9 +1,8 @@
 <?php
-    $leadFollowUp = $data->LeadFollowUp();
+    $leadFollowUp = $data->top10Leads();
 ?>
 <div class="white-box">
-    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Follow Up Today"); ?></h3>
-    <!-- <p class="text-muted">this is the sample data</p> -->
+    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Top 10 Leads"); ?></h3>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>

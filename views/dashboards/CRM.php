@@ -18,7 +18,7 @@
             <div class="col-md-6">
                 <div>
                     <div>
-                        <?php require "blocks/leadFollowUp.php"; ?>
+                        <?php require "blocks/top10Leads.php"; ?>
                         <?php require "blocks/companyDailyActivity.php"; ?>
                     </div>
                 </div>

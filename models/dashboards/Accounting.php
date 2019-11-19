@@ -92,6 +92,12 @@ class dashboardData{
 
         return $results; //employee
     }
+    
+    public function top10Leads(){
+        $user = Session::get("user");
+
+        return DB::select("select LeadID, LeadEmail from leadinformation WHERE FirstContacted >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=? ORDER BY FirstContacted DESC LIMIT 10", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+    }
 
     public function TodaysTasks(){
         $user = Session::get("user");
