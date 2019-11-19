@@ -613,5 +613,22 @@ EOF;
         $results["orders"] = DB::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
         $results["purchases"] = DB::select("CALL spTopOrdersReceiptsPurchases('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
     }
+
+        public function financialGetNumbers(){
+        $user = Session::get("user");
+
+        $orders = DB::select("select PaymentID, Amount from paymentsheader WHERE  CompanyID=? AND DivisionID=? AND DepartmentID=? AND (IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        $totalAmount = 0.01;
+        foreach($orders as $record)
+            $totalAmount += $record->Amount;
+        $ret = [
+            "today" => count(DB::select("select PaymentID from paymentsheader WHERE DueToDate >= NOW() - INTERVAL 1 DAY AND DueToDate < NOW() + INTERVAL 1 DAY  AND CompanyID=? AND DivisionID=? AND DepartmentID=? AND (IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "thismonth" => count(DB::select("select PaymentID from paymentsheader WHERE DueToDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=? AND (IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "total" => count(DB::select("select PaymentID from paymentsheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND PaymentID <> 'DEFAULT' AND (IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "totalamount" => $totalAmount
+        ];
+
+        return $ret;
+    }
 }
 ?>

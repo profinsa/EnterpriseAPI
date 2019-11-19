@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 27/09/2019
+  Last Modified: 19/11/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -33,7 +33,7 @@ require "./models/gridDataSource.php";
 
 class PaymentsHeaderList extends gridDataSource{
     public $tableName = "paymentsheader";
-    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0)";
+    public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND PaymentID <> 'DEFAULT'";
     public $dashboardTitle ="Payments";
     public $breadCrumbTitle ="Payments";
     public $docType = "payment";
@@ -804,6 +804,22 @@ class PaymentsHeaderList extends gridDataSource{
         DB::delete("DELETE from paymentsdetail " .   ( $keyFields != "" ? " WHERE ". $keyFields : ""));
     }
 
+    public function getPage($id){
+        $user = Session::get("user");
+        if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "duetoday"){
+            $this->gridConditions .= "and DueToDate >= now() - INTERVAL 1 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "duethismonth"){
+            $this->gridConditions .= "and DueToDate >= now() - INTERVAL 30 DAY";
+            $result = parent::getPage($id);
+            return $result;
+        }else{
+            $result = parent::getPage($id);
+            return $result;
+        }
+    }
+    
     public function Post(){
         $user = Session::get("user");
 

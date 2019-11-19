@@ -472,7 +472,7 @@ class gridData extends gridDataSource{
         return $result;
     }
 
-        public function getPage($id){
+    public function getPage($id){
         $user = Session::get("user");
         if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "today"){
             $this->gridConditions = "and WorkOrderStartDate >= now() - INTERVAL 1 DAY";
