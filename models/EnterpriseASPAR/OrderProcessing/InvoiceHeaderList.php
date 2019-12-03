@@ -911,6 +911,32 @@ class InvoiceHeaderList extends gridDataSource{
 				"dbType" => "varchar(50)",
 				"inputType" => "textarea",
 				"defaultValue" => ""
+			],
+			"CreditCardTypeID" => [
+				"dbType" => "varchar(36)",
+				"inputType" => "dropdown",
+                "dataProvider" => "getCreditCardTypes",
+				"defaultValue" => ""
+			],
+			"CreditCardName" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CreditCardNumber" => [
+				"dbType" => "varchar(50)",
+				"inputType" => "text",
+				"defaultValue" => ""
+			],
+			"CreditCardExpDate" => [
+				"dbType" => "datetime",
+				"inputType" => "datetime",
+				"defaultValue" => "now"
+			],
+			"CreditCardCSVNumber" => [
+				"dbType" => "varchar(5)",
+				"inputType" => "text",
+				"defaultValue" => ""
 			]
         ]
     ];
