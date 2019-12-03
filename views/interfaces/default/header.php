@@ -15,6 +15,8 @@
     <script src="dependencies/assets/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="dependencies/assets/js/fullcalendar.min.js"></script>
     <link href="dependencies/assets/css/fullcalendar.min.css" rel="stylesheet">
+    <link href="assets/css/apexcharts.css" rel="stylesheet" type="text/css" />
+    <script src="assets/js/apexcharts.min.js"></script>
     <link href="dependencies/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link href="dependencies/assets/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
     <!-- Menu CSS -->
