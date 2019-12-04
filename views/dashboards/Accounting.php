@@ -25,7 +25,7 @@
             <div class="col-md-4">
                 <div>
                     <div>
-                        <?php require "blocks/companyDailyActivity.php"; ?>
+                        <?php require "blocks/multi-entity/companyDailyActivity.php"; ?>
                         <?php require "blocks/todayTasks.php"; ?>
                         <?php require "blocks/leadFollowUp.php"; ?>
                         <?php require "blocks/collectionsAllerts.php"; ?>
