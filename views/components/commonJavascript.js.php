@@ -1,3 +1,10 @@
+ function currencyFormat(precision, value){
+     var parts;
+     if((parts = value.match(/([-+\d]+)\.(\d+)/)) != null)
+         value = parts[1].replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.' + parts[2].substring(0, precision);
+
+     return value;
+ }
 
  function redirectBlank(url) {
      var a = document.createElement('a');

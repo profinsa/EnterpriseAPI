@@ -10,6 +10,8 @@
 <!-- morris CSS -->
 <link href="dependencies/assets/css/morris.css" rel="stylesheet">
 <link href="dependencies/assets/css/fullcalendar.min.css" rel="stylesheet">
+<link href="assets/css/apexcharts.css" rel="stylesheet" type="text/css" />
+<script src="assets/js/apexcharts.min.js"></script>
 <link href="dependencies/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <!-- <link href="dependencies/assets/css/fullcalendar.print.min.css" rel="stylesheet"> -->
 <!--Morris JavaScript -->

@@ -29,7 +29,8 @@
 class dashboardData{
     public $breadCrumbTitle = "General Ledger";
     public $dashboardTitle = "General Ledger";
-    
+
+    //Accounting dashboard    
     public function CompanyAccountsStatus(){
         $user = Session::get("user");
 
@@ -117,6 +118,21 @@ class dashboardData{
         return $results;
     }
 
+    //For multi-entity Accounting
+    public function getDepartments(){
+        $user = Session::get("user");
+        return DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
+    }
+
+    public function getAccountsStatusesByDepartments(){
+        $user = Session::get("user");
+        
+        $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
+        foreach($departments as &$row)
+            $row->Status = DB::select("CALL spCompanyAccountsStatus(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+        return $departments;
+    }
+    
     public function Top10OrdersInvoices(){
         $user = Session::get("user");
 

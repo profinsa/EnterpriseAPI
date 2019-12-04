@@ -16,8 +16,8 @@
             <div class="col-md-8">
                 <div>
                     <div>
-                        <?php require "blocks/companiesStatusChart.php"; ?>
-                        <?php require "blocks/companiesStatusTable.php"; ?>
+                        <?php require "blocks/multi-entity/companiesStatusChart.php"; ?>
+                        <?php require "blocks/multi-entity/companiesStatusTable.php"; ?>
                         <?php require "blocks/topOrdersReceipts.php"; ?>
                     </div>
                 </div>
