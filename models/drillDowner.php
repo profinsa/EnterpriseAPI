@@ -25,7 +25,7 @@
   Calls:
   sql
 
-  Last Modified: 25.06.2019
+  Last Modified: 05.11.2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -67,9 +67,10 @@ class drillDowner{
         return $name;
     }
 
-    public function getLinkByAccountNameAndAccountType($name, $type){
+    public function getLinkByAccountNameAndAccountType($name, $type, $keyString = ""){
         $user = $GLOBALS["user"];
-        $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
+        if($keyString == "")
+            $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
 
         if(!$this->accounts){
             $this->accounts = DB::select("SELECT GLAccountNumber,GLAccountName,GLAccountType from ledgerchartofaccounts WHERE CompanyID='" . $user["CompanyID"] . "' AND DivisionID='". $user["DivisionID"] ."' AND DepartmentID='" . $user["DepartmentID"] . "'", array());
