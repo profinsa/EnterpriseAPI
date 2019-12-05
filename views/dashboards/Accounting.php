@@ -18,7 +18,7 @@
                     <div>
                         <?php require "blocks/multi-entity/companiesStatusChart.php"; ?>
                         <?php require "blocks/multi-entity/companiesStatusTable.php"; ?>
-                        <?php require "blocks/topOrdersReceipts.php"; ?>
+                        <?php require "blocks/multi-entity/topOrdersReceipts.php"; ?>
                     </div>
                 </div>
             </div>

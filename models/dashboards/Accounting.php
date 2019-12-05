@@ -152,6 +152,20 @@ class dashboardData{
         return $departments;
     }
     
+    public function getTopOrdersReceiptsByDepartments(){
+        $user = Session::get("user");
+
+        $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
+        foreach($departments as &$row){
+            $row->Status = [];
+            $row->Status["orders"] = DB::select("CALL spTopOrdersReceipts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+            $row->Status["purchases"] = DB::select("CALL spTopOrdersReceiptsPurchases('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        }
+        
+        return $departments;
+    }
+
+    //for other Accounting dashboards
     public function Top10OrdersInvoices(){
         $user = Session::get("user");
 
