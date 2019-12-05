@@ -3,7 +3,7 @@
     $statusByDepartments = $data->getAccountsStatusesByDepartments();
 ?>
 <div class="white-box">
-    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Company Status"); ?></h3>
+    <h3 class="box-title m-b-0"><?php echo $translation->translateLabel("Summary By"); ?></h3>
     <!--       <p class="text-muted">this is the sample data</p> --> 
     <div class="table-responsive">
         <table class="table">

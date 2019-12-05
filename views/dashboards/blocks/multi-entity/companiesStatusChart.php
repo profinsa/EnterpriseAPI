@@ -23,8 +23,23 @@
        echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType)  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";*/
 ?>
 <div class="white-box">
-    <h3 class="box-title"><?php echo $translation->translateLabel("Company Status"); ?></h3>
+    <h3 class="box-title"><?php echo $translation->translateLabel("Company Summary"); ?></h3>
     <div id="CompaniesHorizontalChart"></div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <a target="_blank" href="<?php echo $linksMaker->makeFinancialsLink("gaap", "BalanceSheetCompany", 0, 0, "Standard"); ?>" style="font-weight:400; margin-left:20px"><?php echo $translation->translateLabel("Balance Sheet"); ?></a>
+        </div>
+        <div class="col-md-3">
+            <a target="_blank" href="<?php echo $linksMaker->makeFinancialsLink("gaap", "IncomeStatementCompany", 0, 0, "Standard"); ?>" style="font-weight:400"><?php echo $translation->translateLabel("Income Statement"); ?></a>
+        </div>
+        <div class="col-md-3">
+            <a target="_blank" href="<?php echo $linksMaker->makeFinancialsLink("gaap", "CashFlowCompany", 0, 0, "Standard"); ?>" style="font-weight:400"><?php echo $translation->translateLabel("Direct Cash Flow Statement"); ?></a>
+        </div>
+        <div class="col-md-3">
+            <a target="_blank" href="<?php echo $linksMaker->makeFinancialsLink("gaap", "TrialBalanceCompany", 0, 0, "Standard"); ?>" style="font-weight:400"><?php echo $translation->translateLabel("Trial Balance"); ?></a>
+        </div>
+    </div>
 </div>
 <script>     
  var options = {

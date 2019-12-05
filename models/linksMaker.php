@@ -109,6 +109,10 @@ class linksMaker{
         return "index.php?page=autoreports&getreport=$name&type=$type&title=$title&$options";
     }
 
+    function makeFinancialsLink($type, $module, $year, $period, $itype){
+        return "index.php?page=financials&type=$type&module=$module&year=$year&period=$period&itype=$itype";
+    }
+
     function makeImageLink($name, $item, $itemDesc){
         $imageLink = "";
         
