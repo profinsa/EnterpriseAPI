@@ -71,6 +71,7 @@
                          echo json_encode($names);
                      ?>,
          labels: {
+             trim : false,
              formatter: function(val) {
                  return currencyFormat(2, val + '.00')
              }

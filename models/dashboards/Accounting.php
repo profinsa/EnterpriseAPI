@@ -147,8 +147,12 @@ class dashboardData{
         $user = Session::get("user");
         
         $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
-        foreach($departments as &$row)
+        foreach($departments as &$row){
             $row->Status = DB::select("CALL spCompanyAccountsStatus(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+            $row->Total = 0;
+            foreach($row->Status as $record)
+                $row->Total += $record->Totals;
+        }
         return $departments;
     }
     
@@ -159,7 +163,13 @@ class dashboardData{
         foreach($departments as &$row){
             $row->Status = [];
             $row->Status["orders"] = DB::select("CALL spTopOrdersReceipts(?, ?, ?, @SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+            $row->OrdersTotal = 0;
+            foreach($row->Status["orders"] as $record)
+                $row->OrdersTotal += $record->OrderTotal;
             $row->Status["purchases"] = DB::select("CALL spTopOrdersReceiptsPurchases(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+            $row->ReceiptsTotal = 0;
+            foreach($row->Status["purchases"] as $record)
+                $row->ReceiptsTotal += $record->ReceiptTotal;
         }
         
         return $departments;

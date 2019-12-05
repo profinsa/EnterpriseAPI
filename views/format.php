@@ -44,7 +44,8 @@ function formatField($typeDef, $value){
                     $afterdot = $match[2];
                 if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts)){
                     return $match[1] . numberToStr($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot) . $match[4];
-                }
+                }else
+                    return numberToStr($value);
                 break;
             }
         }

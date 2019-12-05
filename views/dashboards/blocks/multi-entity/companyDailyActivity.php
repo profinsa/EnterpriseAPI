@@ -17,7 +17,7 @@
                 <?php
                     foreach($departments as $department)
                     foreach($department->Status["quotes"] as $row)
-                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewQuotes") . "&filter=last24\">{$row->Quotes}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->QuoteTotals) . "</td></tr>";
+                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"30%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewQuotes") . "&filter=last24\">{$row->Quotes}</a>" . "</td><td width=\"30%\">" . formatField(["format"=>"{0:n}"], $row->QuoteTotals) . "</td></tr>";
                 ?>
             </tbody>
         </table>
@@ -35,7 +35,7 @@
                 <?php
                     foreach($departments as $department)
                     foreach($department->Status["orders"] as $row)
-                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=last24\">{$row->Orders}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotals) . "</td></tr>";
+                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"30%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=last24\">{$row->Orders}</a>" . "</td><td width=\"30%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotals) . "</td></tr>";
                 ?>
             </tbody>
         </table>
@@ -53,7 +53,7 @@
                 <?php
                     foreach($departments as $department)
                     foreach($department->Status["shipments"] as $row)
-                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=shiptoday\">{$row->Shipments}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->ShipTotals) . "</td></tr>";
+                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"30%\"><a href=\"" . $linksMaker->makeGridLink("AccountsReceivable/OrderScreens/ViewOrders") . "&filter=shiptoday\">{$row->Shipments}</a>" . "</td><td width=\"30%\">" . formatField(["format"=>"{0:n}"], $row->ShipTotals) . "</td></tr>";
                 ?>
             </tbody>
         </table>
@@ -71,7 +71,7 @@
                 <?php
                     foreach($departments as $department)
                     foreach($department->Status["purchases"] as $row)
-                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=last24\">{$row->Purchases}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->PurchaseTotals) . "</td></tr>";
+                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"30%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=last24\">{$row->Purchases}</a>" . "</td><td width=\"30%\">" . formatField(["format"=>"{0:n}"], $row->PurchaseTotals) . "</td></tr>";
                 ?>
             </tbody>
         </table>
@@ -89,7 +89,7 @@
                 <?php
                     foreach($departments as $department)
                     foreach($department->Status["receivings"] as $row)
-                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"50%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=receivedtoday\">{$row->Receivings}</a>" . "</td><td width=\"50%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotals) . "</td></tr>";
+                    echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"30%\"><a href=\"" . $linksMaker->makeGridLink("AccountsPayable/PurchaseProcessing/ViewPurchases") . "&filter=receivedtoday\">{$row->Receivings}</a>" . "</td><td width=\"30%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotals) . "</td></tr>";
                 ?>
             </tbody>
         </table>
