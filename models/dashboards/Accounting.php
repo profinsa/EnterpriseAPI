@@ -165,6 +165,28 @@ class dashboardData{
         return $departments;
     }
 
+    public function getTodaysTasksByDepartments(){
+        $user = Session::get("user");
+
+        $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
+        
+        foreach($departments as &$row)
+            $row->Status = DB::select("SELECT DueDate, TaskTypeID as Task, Description  FROM PayrollEmployeesTaskHeader WHERE CompanyID=? and DivisionID=? and DepartmentID=? and EmployeeID=? and DueDate <= CURRENT_TIMESTAMP and	IFNULL(Completed,0) = 0 and LOWER(EmployeeTaskID) <> 'default'", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $user["EmployeeID"]]);
+
+        return $departments;
+    }
+
+    public function getLeadFollowUpByDepartments(){
+        $user = Session::get("user");
+
+        $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
+        
+        foreach($departments as &$row)
+            $row->Status = DB::select("CALL spLeadFollowUp('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $user["EmployeeID"] . "')", array());
+
+        return $departments;
+    }
+
     //for other Accounting dashboards
     public function Top10OrdersInvoices(){
         $user = Session::get("user");

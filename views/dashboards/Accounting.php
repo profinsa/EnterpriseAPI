@@ -26,8 +26,8 @@
                 <div>
                     <div>
                         <?php require "blocks/multi-entity/companyDailyActivity.php"; ?>
-                        <?php require "blocks/todayTasks.php"; ?>
-                        <?php require "blocks/leadFollowUp.php"; ?>
+                        <?php require "blocks/multi-entity/todayTasks.php"; ?>
+                        <?php require "blocks/multi-entity/leadFollowUp.php"; ?>
                         <?php require "blocks/collectionsAllerts.php"; ?>
                     </div>
                 </div>
