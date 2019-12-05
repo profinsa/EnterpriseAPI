@@ -23,7 +23,7 @@
        echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType)  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";*/
 ?>
 <div class="white-box">
-    <h3 class="box-title"><?php echo $translation->translateLabel("Company Summary"); ?></h3>
+    <h3 class="box-title"><?php echo $translation->translateLabel("Financial Summary"); ?></h3>
     <div id="CompaniesHorizontalChart"></div>
 
     <div class="row">

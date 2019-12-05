@@ -93,7 +93,8 @@ class controller{
             "NGO" => "NGO",
             "simple" => "Accounting",
             "simpleservice" => "Accounting",
-            "Accounting" => "Accounting"
+            "Accounting" => "Multi-Entity Accounting Dashboard"
+            //            "Accounting" => "Accounting"
         ];
         
         $modelName = $modelsRewrite[$this->screen];
