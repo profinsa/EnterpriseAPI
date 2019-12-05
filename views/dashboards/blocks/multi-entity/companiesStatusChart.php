@@ -29,7 +29,7 @@
 <script>     
  var options = {
      chart: {
-         height: 350,
+         height: 450,
          type: 'bar',
          stacked: true,
      },
@@ -40,7 +40,7 @@
          
      },
      stroke: {
-         width: 1,
+         width: 0.5,
          colors: ['#fff']
      },
      series: <?php echo json_encode($statusesForChart); ?>
