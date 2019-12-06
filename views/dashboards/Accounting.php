@@ -19,6 +19,7 @@
                         <?php require "blocks/multi-entity/companiesStatusChart.php"; ?>
                         <?php require "blocks/multi-entity/companiesStatusTable.php"; ?>
                         <?php require "blocks/multi-entity/topOrdersReceipts.php"; ?>
+                        <?php require "blocks/multi-entity/todayTasks.php"; ?>
                     </div>
                 </div>
             </div>
@@ -26,7 +27,6 @@
                 <div>
                     <div>
                         <?php require "blocks/multi-entity/companyDailyActivity.php"; ?>
-                        <?php require "blocks/multi-entity/todayTasks.php"; ?>
                         <?php require "blocks/multi-entity/leadFollowUp.php"; ?>
                         <?php require "blocks/collectionsAllerts.php"; ?>
                     </div>
