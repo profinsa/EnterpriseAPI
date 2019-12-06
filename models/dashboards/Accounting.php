@@ -62,25 +62,6 @@ class dashboardData{
         return $results;
     }
 
-        public function getCompanyDailyActivityByDepartments(){
-        $user = Session::get("user");
-
-        $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
-        foreach($departments as &$row){
-            $row->Status = [];
-
-           $row->Status["quotes"] = DB::select("select count(OrderNumber) as Quotes, sum(IFNULL(Total,0)) as QuoteTotals from orderheader WHERE LOWER(OrderTypeID) = LOWER('Quote') and  OrderDate >= now() - INTERVAL 1 DAY and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
-            //        $results["quotes"] = DB::select("CALL spCompanyDailyActivityQuotes('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
-            $row->Status["orders"] = DB::select("CALL spCompanyDailyActivityOrders(?, ?, ?, @SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
-            $row->Status["receivings"] = DB::select("select count(PurchaseNumber) as Receivings, sum(IFNULL(Total,0)) as ReceiptTotals from purchaseheader WHERE Received=0 and  PurchaseDate >= now() - INTERVAL 1 DAY and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
-            //        $results["receivings"] = DB::select("CALL spCompanyDailyActivityReceivings('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
-            $row->Status["purchases"] = DB::select("CALL spCompanyDailyActivityPurchases(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
-            $row->Status["shipments"] = DB::select("CALL spCompanyDailyActivityShipments(?, ?, ?,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
-        }
-        
-        return $departments;
-    }
-
     public function CompanyIncomeStatement(){
         $user = Session::get("user");
 
@@ -196,6 +177,49 @@ class dashboardData{
             $row->Status = DB::select("CALL spLeadFollowUp(?, ?, ? ,'" . $user["EmployeeID"] . "')", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
 
         return $departments;
+    }
+
+    public function getCompanyDailyActivityByDepartments(){
+        $user = Session::get("user");
+
+        $divisions = DB::select("SELECT DISTINCT DivisionID, CompanyID from divisions WHERE CompanyID=?", [$user["CompanyID"]]);
+
+        foreach($divisions as &$division){
+            $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=? AND DivisionID=?", [$user["CompanyID"], $division->DivisionID]);
+            foreach($departments as &$row){
+                $row->Status = [];
+
+                $row->Status["quotes"] = DB::select("select count(OrderNumber) as Quotes, sum(IFNULL(Total,0)) as QuoteTotals from orderheader WHERE LOWER(OrderTypeID) = LOWER('Quote') and  OrderDate >= now() - INTERVAL 1 DAY and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                //        $results["quotes"] = DB::select("CALL spCompanyDailyActivityQuotes('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+                $division->QuotesTotal = 0;
+                foreach($row->Status["quotes"] as $record)
+                    $division->QuotesTotal += $record->Quotes;
+
+                $row->Status["orders"] = DB::select("CALL spCompanyDailyActivityOrders(?, ?, ?, @SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                $division->OrdersTotal = 0;
+                foreach($row->Status["orders"] as $record)
+                    $division->OrdersTotal += $record->Orders;
+                
+                $row->Status["receivings"] = DB::select("select count(PurchaseNumber) as Receivings, sum(IFNULL(Total,0)) as ReceiptTotals from purchaseheader WHERE Received=0 and  PurchaseDate >= now() - INTERVAL 1 DAY and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                $division->ReceivingsTotal = 0;
+                foreach($row->Status["receivings"] as $record)
+                    $division->ReceivingsTotal += $record->Receivings;
+
+                //        $results["receivings"] = DB::select("CALL spCompanyDailyActivityReceivings('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+                $row->Status["purchases"] = DB::select("CALL spCompanyDailyActivityPurchases(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                $division->PurchasesTotal = 0;
+                foreach($row->Status["purchases"] as $record)
+                    $division->PurchasesTotal += $record->Purchases;
+
+                $row->Status["shipments"] = DB::select("CALL spCompanyDailyActivityShipments(?, ?, ?,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                $division->ShipmentsTotal = 0;
+                foreach($row->Status["shipments"] as $record)
+                    $division->ShipmentsTotal += $record->Shipments;
+            }
+            $division->departments = $departments;
+        }
+        
+        return $divisions;
     }
 
     //for other Accounting dashboards
