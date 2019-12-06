@@ -334,5 +334,17 @@
              });
 	 }
 	</script>
+        <style>
+         .panel-heading {
+             background-color : white !important;
+             border-color : white !important;
+         }
+         .white-box .box-title {
+             padding-bottom: 10px !important;
+         }
+         .panel-default {
+             border: none !important;
+         }
+        </style>
     </body>
 </html>
