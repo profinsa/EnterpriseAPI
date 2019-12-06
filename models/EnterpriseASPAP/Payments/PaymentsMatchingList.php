@@ -180,9 +180,9 @@ SELECT DISTINCT
 	PaymentsHeader.Amount
 	FROM
 	PaymentsHeader INNER JOIN PurchaseHeader
-	ON PaymentsHeader.CompanyID = '{$user["CompanyID"]}'
-	AND PaymentsHeader.DivisionID = '{$user["DivisionID"]}'
-	AND	PaymentsHeader.DepartmentID = '{$user["DepartmentID"]}'
+	ON PaymentsHeader.CompanyID = PurchaseHeader.CompanyID
+	AND PaymentsHeader.DivisionID = PurchaseHeader.DivisionID
+	AND	PaymentsHeader.DepartmentID = PurchaseHeader.DepartmentID
 	AND PaymentsHeader.InvoiceNumber = PurchaseHeader.PurchaseNumber
 	WHERE
 	PaymentsHeader.CompanyID = '{$user["CompanyID"]}'
@@ -191,7 +191,6 @@ SELECT DISTINCT
 	AND PurchaseHeader.PurchaseNumber != 'DEFAULT'
 	ORDER BY PurchaseHeader.VendorID
 EOF;
-        
         $result = DB::select($query, array());
 
         $result = json_decode(json_encode($result), true);
