@@ -27,28 +27,28 @@
                     case "QtyCommitted" :
                         return $drill->getLinkWarehouseForOrders($linksMaker, $row["ItemID"], $outValue);
 		    case "CustomerID" :
-			echo $drill->getLinkByField($key,$value);
+			return $drill->getLinkByField($key,$value);
 			break;
 		    case "VendorID" :
-			echo $drill->getLinkByField($key,$value);
+			return $drill->getLinkByField($key,$value);
 			break;
 		    case "OrderNumber" :
-			echo $drill->getReportLinkByOrderNumber($value, $ascope["pathPage"]);
+			return $drill->getReportLinkByOrderNumber($value, $ascope["pathPage"]);
 			break;
 		    case "InvoiceNumber" :
-			echo $drill->getReportLinkByInvoiceNumber($value, $ascope["pathPage"]);
+			return $drill->getReportLinkByInvoiceNumber($value, $ascope["pathPage"]);
 			break;
 		    case "TransactionNumber" :
 			if(key_exists("TransactionType", $row))
-			    echo $drill->getViewLinkByTransactionNumberAndType($value, $row["TransactionType"]);
+			    return $drill->getViewLinkByTransactionNumberAndType($value, $row["TransactionType"]);
 			else
-			    echo $value;
+			    return $value;
 			break;
 		    case "CVID" :
 			if(key_exists("TransactionType", $row))
-			    echo $drill->getLinkByCVID($row["TransactionType"], $value);
+			    return $drill->getLinkByCVID($row["TransactionType"], $value);
 			else
-			    echo $value;
+			    return $value;
 			break;
                     default :
                         return (key_exists("currencySymbol", $gridFields[$key])) ? $data->getCurrencySymbol()["symbol"] . $outValue : $outValue;
@@ -145,7 +145,7 @@
                 foreach($types as $type)
                 if(!$value || $type["value"] != $value)
                     $renderedString .=  "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
-                echo"</select>";
+                $renderedString .= "</select>";
                 break;
         }
         return $renderedString;
