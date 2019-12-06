@@ -25,7 +25,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <!-- <th></th>  -->
                                         <th><?php echo $translation->translateLabel("Account Type"); ?></th>
                                         <th><?php echo $translation->translateLabel("Account Name"); ?></th>
                                         <th><?php echo $translation->translateLabel("Account Totals"); ?></th>
@@ -34,7 +34,7 @@
                                 <tbody>
                                     <?php 
                                         foreach($department->Status as $row)
-                                        echo "<tr><td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType,"{$department->CompanyID}__{$department->DivisionID}__{$department->DepartmentID}")  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";
+                                        echo "<tr><!-- <td>{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td> --><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType,"{$department->CompanyID}__{$department->DivisionID}__{$department->DepartmentID}")  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";
                                         
                                     ?>
                                 </tbody>

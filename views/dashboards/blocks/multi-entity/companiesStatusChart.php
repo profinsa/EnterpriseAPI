@@ -64,6 +64,7 @@
          //             text: 'Fiction Books Sales'
      },
      xaxis: {
+         trim : false,
          categories: <?php
                          $names = [];
                          foreach($departments as $row)
@@ -81,6 +82,10 @@
          title: {
              text: undefined
          },
+         trim : false,
+         labels : {
+             trim : false
+         }
          
      },
      tooltip: {

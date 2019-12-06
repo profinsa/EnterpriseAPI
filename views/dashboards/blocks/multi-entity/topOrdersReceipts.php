@@ -24,7 +24,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <!-- <th></th>  -->
                                         <th><?php echo $translation->translateLabel("Order Number"); ?></th>
                                         <th><?php echo $translation->translateLabel("Customer"); ?></th>
                                         <th><?php echo $translation->translateLabel("Ship Date"); ?></th>
@@ -34,7 +34,7 @@
                                 <tbody>
                                     <?php
                                         foreach($department->Status["orders"] as $row)
-                                        echo "<tr><td width=\"25%\">{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"10%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsReceivable/OrderScreens/ViewOrders", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->OrderNumber}") . "\">{$row->OrderNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td width=\"15%\">" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
+                                        echo "<tr><!-- <td width=\"25%\">{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td> --><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsReceivable/OrderScreens/ViewOrders", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->OrderNumber}") . "\">{$row->OrderNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("CustomerID", $row->CustomerID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->OrderShipDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->OrderTotal) . "</td></tr>";
                                     ?>
                                 </tbody>
                             </table>
@@ -67,7 +67,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <!-- <th></th> -->
                                         <th><?php echo $translation->translateLabel("Receiving"); ?></th>
                                         <th><?php echo $translation->translateLabel("Vendor"); ?></th>
                                         <th><?php echo $translation->translateLabel("Arrival Date"); ?></th>
@@ -77,7 +77,7 @@
                                 <tbody>
                                     <?php
                                         foreach($department->Status["purchases"] as $row)
-                                        echo "<tr><td width=\"25%\">{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td><td width=\"10%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsPayable/PurchaseProcessing/ViewPurchases", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->PurchaseNumber}") . "\">{$row->PurchaseNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("VendorID", $row->VendorID) . "</td><td width=\"15%\">" . date("m/d/y", strtotime($row->PurchaseDueDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotal) . "</td></tr>";
+                                        echo "<tr><!-- <td width=\"25%\">{$department->CompanyID} / {$department->DivisionID} / {$department->DepartmentID}</td> --><td width=\"25%\">" . "<a target=\"_blank\" href=\"" . $linksMaker->makeGridItemView("AccountsPayable/PurchaseProcessing/ViewPurchases", "{$user["CompanyID"]}__{$user["DivisionID"]}__{$user["DepartmentID"]}__{$row->PurchaseNumber}") . "\">{$row->PurchaseNumber}</a></td><td width=\"25%\">" . $drill->getLinkByField("VendorID", $row->VendorID) . "</td><td width=\"25%\">" . date("m/d/y", strtotime($row->PurchaseDueDate)) . "</td><td width=\"25%\">" . formatField(["format"=>"{0:n}"], $row->ReceiptTotal) . "</td></tr>";
                                     ?>
                                 </tbody>
                             </table>
