@@ -22,7 +22,7 @@
    Calls:
    sql
 
-   Last Modified: 03.11.2019
+   Last Modified: 12.12.2019
    Last Modified by: Nikita Zaharov
  */
 
@@ -39,12 +39,14 @@ class helpData{
         $user = $this->user;
         $result = [];
         if($this->id)
-            $result = DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentURL=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $this->id])[0];
+            $result = DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentURL=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $this->id]);
         else
-            $result = DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentTitleID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $_GET["id"]])[0];
+            $result = DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentTitleID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], key_exists("id", $_GET) ? $_GET["id"] : ""]);
 
         if(!count($result))
             $result = DB::Select("select * from helpdocument WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND DocumentTitleID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], 'GettingStarted'])[0];
+        else
+            $result = $result[0];
 
         return $result;
     }
