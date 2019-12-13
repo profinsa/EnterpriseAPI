@@ -77,17 +77,17 @@
 	    <tbody>
 		<tr><td colspan="6">ASSET</td></tr>
 		<?php
-		foreach($tdata["Asset"] as $row){
-		    echo "<tr>";
-		    //		    if($_GET["itype"] != "Comparative")
-		    echo"<td style=\"width:100px\"></td>";
-		    echo "<td>" . ($data->type == "Company" ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . ($data->type == "Division" || $data->type == "Company" ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) . "</td>";
-		    if($_GET["itype"] == "Comparative")
-			echo "<td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td><td>" .  $row["GLAccountBalanceComparative"] ."</td>";
-		    else
-			echo "<td></td><td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td>";
-		    echo "<td></td></tr>";
-		}
+		    foreach($tdata["Asset"] as $row){
+		        echo "<tr>";
+		        //		    if($_GET["itype"] != "Comparative")
+		        echo"<td style=\"width:100px\"></td>";
+		        echo "<td>" . ($data->type == "Company" ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . ($data->type == "Division" || $data->type == "Company" ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) . "</td>";
+		        if($_GET["itype"] == "Comparative")
+			    echo "<td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td><td>" .  $row["GLAccountBalanceComparative"] ."</td>";
+		        else
+			    echo "<td></td><td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td>";
+		        echo "<td></td></tr>";
+		    }
 		?>
  		<tr>
 		    <td></td>
@@ -109,14 +109,14 @@
 		    <td colspan="6"  style="padding-top:20px;">LIABILITIES</td>
 		</tr>
 		<?php
-		foreach($tdata["Liability"] as $row){
-		    echo "<tr><td style=\"width:100px\"></td><td>" . ($data->type == "Company" ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . ($data->type == "Division" || $data->type == "Company" ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) . "</td>";
-		    if($_GET["itype"] == "Comparative")
-			echo "<td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td><td>" .  $row["GLAccountBalanceComparative"] ."</td>";
-		    else
-			echo "<td></td><td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td>";
-		    echo "<td></td></tr>";
-		}
+		    foreach($tdata["Liability"] as $row){
+		        echo "<tr><td style=\"width:100px\"></td><td>" . ($data->type == "Company" ? $row["DivisionID"] . "&nbsp - &nbsp" : "") . ($data->type == "Division" || $data->type == "Company" ? $row["DepartmentID"] . "&nbsp - &nbsp" : "") . $drill->getLinkByAccountNameAndBalanceForTrial($row["GLAccountName"], $row["GLAccountBalanceOriginal"], $proc) . "</td>";
+		        if($_GET["itype"] == "Comparative")
+			    echo "<td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td><td>" .  $row["GLAccountBalanceComparative"] ."</td>";
+		        else
+			    echo "<td></td><td style=\"" . negativeStyle($row["GLAccountBalance"]) . "\">" . $currencySymbol . $row["GLAccountBalance"] . "</td><td></td>";
+		        echo "<td></td></tr>";
+		    }
 		?>
 		<tr>
 		    <td></td>

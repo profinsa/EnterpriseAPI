@@ -84,14 +84,15 @@
                                         </label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" name="<?php echo $fieldName; ?>" placeholder="" value="<?php echo $headerItem[$fieldName]; ?>" class="pull-right" />
+                                        <?php echo renderInput($ascope, $data, $data->editCategories["...fields"], $data->editCategories["...fields"][$fieldName], $fieldName, $headerItem[$fieldName], $keyString, 1); ?>
+                                        <!-- <input type="text" name="<?php echo $fieldName; ?>" placeholder="" value="<?php echo $headerItem[$fieldName]; ?>" class="pull-right" /> -->
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style=border-top:none">
                     <button type="button" class="btn btn-primary" id="processButton">
                         <?php echo $translation->translateLabel("Process"); ?>
                     </button>

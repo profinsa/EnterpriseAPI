@@ -80,7 +80,6 @@ class financialsReportData{
 
         //echo "CALL RptGLBalanceSheet" . $typesToProc[$this->type] . ( $_GET["itype"] == "Standard" ? "" : $_GET["itype"]) . "('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', " . $params . "@PeriodEndDate, @ret)";
         $stmt = $conn->prepare("CALL RptGLBalanceSheet" . $typesToProc[$this->type] . ( $_GET["itype"] == "Standard" ? "" : $_GET["itype"]) . "('" . $user["CompanyID"] . "', '" . $user["DivisionID"] . "', '" . $user["DepartmentID"] . "', " . $params . "@PeriodEndDate, @ret)",array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
-
         $rs = $stmt->execute();
 
         $rcount = $stmt->rowCount();
