@@ -14,6 +14,9 @@
 	 .has-error {
 	     border : 1px solid red !Important;
 	 }
+         .form-horizontal .form-group {
+             padding-right : 15px !important;
+         }
 	</style>
 	<!-- Preloader -->
 	<div class="preloader">
