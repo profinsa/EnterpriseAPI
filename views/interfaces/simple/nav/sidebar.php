@@ -185,7 +185,7 @@
                     "full" => $translation->translateLabel('Financial Statements IFRS')
                 ],
             ],
-            "topbar" => $leftMenu["Main"]["data"][7]["data"]
+            "topbar" => $leftMenu["Main"]["data"][13]["data"]
         ];
     }
 

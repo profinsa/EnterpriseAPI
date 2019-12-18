@@ -432,27 +432,6 @@ $categories["AccountsReceivable"] = [
     ],
     [
         "type" => "submenu",
-        "id" => "AccountsReceivable/ProjectsJobs",
-        "full" => $translation->translateLabel('Projects & Jobs'),
-        "short" => "Pr",
-        "data" => [
-
-            [
-				"id" => "AccountsReceivable/ProjectsJobs/ViewProjects",
-				"full" => $translation->translateLabel('View Projects'),
-				"href"=> "EnterpriseASPAR/Projects/ProjectsList",
-				"short" => "Vi"
-            ],
-            [
-				"id" => "AccountsReceivable/ProjectsJobs/ProjectTypes",
-				"full" => $translation->translateLabel('Project Types'),
-				"href"=> "EnterpriseASPAR/Projects/ProjectTypesList",
-				"short" => "Pr"
-            ]
-        ]
-    ],
-    [
-        "type" => "submenu",
         "id" => "AccountsReceivable/CreditMemos",
         "full" => $translation->translateLabel('Credit Memos'),
         "short" => "Cr",

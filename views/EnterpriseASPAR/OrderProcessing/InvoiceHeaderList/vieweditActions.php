@@ -107,12 +107,11 @@
      $('#processButton').click(function(){
          var registerform = $('#registerForm');
          var requiredFields = [
-             "CustomerPhone", 
-             "CustomerPassword", 
-             "CustomerFirstName",
-             "CustomerLastName",
-             "CustomerName",
-             "CustomerEmail"
+             "CreditCardTypeID",
+             "CreditCardName",
+             "CreditCardNumber",
+             "CreditCardExpDate",
+             "CreditCardCSVNumber"
          ], ind, success = true;
          
          for(ind in requiredFields){
@@ -124,7 +123,7 @@
          }
          
          if(success){
-             serverEnterpriseXProcedureAnyCall("AccountsReceivable/Customers/ViewCustomers", "getNewItemAllRemote", { id : ""}, function(data, error){
+             serverProcedureAnyCall("AccountsReceivable/Customers/ViewCustomers", "getNewItemAllRemote", { id : ""}, function(data, error){
                  var values = JSON.parse(data);
                  values.CustomerID = values.CustomerFirstName = $("input[name=CustomerFirstName]").val();
                  values.CustomerLastName = $("input[name=CustomerLastName]").val();
