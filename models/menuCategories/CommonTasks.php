@@ -50,5 +50,13 @@ $categories["CommonTasks"] =[
         "href"=> $linksMaker->makeGridItemNewPartial("AccountsPayable/Vendors/ViewVendors"),
         "short" => "Vi"
     ],
+    [
+        "id" => "AccountsPayable/Vendors/ViewVendors",
+        "full" => $translation->translateLabel('Run Income Statement'),
+        "type" => "absoluteLink",
+        "href" => "index.php?page=financials&type=gaap&module=IncomeStatementCompany&year=0&period=0&itype=Standard",
+        "target" => "_Blank",
+        "short" => "Vi"
+    ],
 ];
 ?>

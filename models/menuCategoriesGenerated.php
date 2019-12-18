@@ -39,8 +39,8 @@ $leftMenu = [
                 "onlyForDefault" => true,
                 "id" => "CommonTasks",
                 "full" => $translation->translateLabel('Common Tasks'),
-                "link" => "index.php#/?page=financials&type=gaap&module=IncomeStatementCompany&year=0&period=0&itype=Standard&partial=true",
-                "short" => "Ge",
+                "link" => "index.php#/?page=dashboard",
+                "short" => "Ct",
                 "data" => $categories["CommonTasks"]
             ],
             [
