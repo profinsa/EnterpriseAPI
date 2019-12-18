@@ -156,7 +156,7 @@ class controller{
 
                $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
                $content = $templates[$type][$module] . ".php";
-               require "views/reports/financials/" . ( key_exists("partial",$_GET) || $module == "worksheets" || $module =="main" ? $templates[$type][$module] :"container") .'.php';
+               require "views/reports/financials/container.php";
         }
     }
 }
