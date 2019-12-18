@@ -35,7 +35,7 @@
                                     echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"" . $href . "\" " . (key_exists("target", $subitem) && $subitem["target"] == "_blank" ? "target=\"_blank\"" : "") . ">" . $subitem["full"] . "</a></li>";
                                     
                                 }else if($subitem["type"] == "absoluteLink"){
-                                    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"" . $subitem["href"] . "\" target=\"_blank\">" . $subitem["full"] . "</a></li>";                    
+                                    echo "<li id=\"" . ( key_exists("id", $subitem) ? $subitem["id"] : "") . "\"><a href=\"" . $subitem["href"] . "\" " . (key_exists("target", $item) ? "target=\"" . $item["target"] . "\"" : "") . ">" . $subitem["full"] . "</a></li>";                    
                                 }else if($subitem["type"] == "submenu"){
                                     if(key_exists("link", $subitem))
                                         $link = "location='{$subitem["link"]}'";

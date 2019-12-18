@@ -28,6 +28,7 @@ class Security{
     public $permissions;
     public $useraccess;
     public $menuFlags = [
+        "CommonTasks" => "MTARView",
         "GeneralLedger" => "MTGLView",
         "Financials" => "MTGLView",
         "AccountsReceivable" => "MTARView",
@@ -46,6 +47,7 @@ class Security{
     ];
 
     public $menuToProfileFlags = [
+        "CommonTasks" => "ProfileARModule",
         "GeneralLedger" => "ProfileGLModule",
         "Financials" => "ProfileFinancialsModule",
         "AccountsReceivable" => "ProfileARModule",

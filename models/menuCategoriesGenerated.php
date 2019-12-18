@@ -1,5 +1,6 @@
 <?php
 $categories = [];
+require "menuCategories/CommonTasks.php";
 require "menuCategories/GeneralLedger.php";
 require "menuCategories/AccountsReceivable.php";
 require "menuCategories/AccountsPayable.php";
@@ -33,6 +34,15 @@ $leftMenu = [
         "type" => "category",
         "title" => "Main menu",
         "data" => [
+            [
+                "type" => "submenu",
+                "onlyForDefault" => true,
+                "id" => "CommonTasks",
+                "full" => $translation->translateLabel('Common Tasks'),
+                "link" => "index.php#/?page=financials&type=gaap&module=IncomeStatementCompany&year=0&period=0&itype=Standard&partial=true",
+                "short" => "Ge",
+                "data" => $categories["CommonTasks"]
+            ],
             [
                 "type" => "submenu",
                 "id" => "GeneralLedger",
@@ -430,7 +440,7 @@ $leftMenu = [
                 "short" => "Sy",
                 "icon" => "wrench",
                 "data" => [
-                    [
+                    /*[
                         "type" => "submenu",
                         "id" => "CRMHelpDesk",
                         "full" => $translation->translateLabel('CRM'),
@@ -443,7 +453,7 @@ $leftMenu = [
                         "full" => $translation->translateLabel('ECommerce'),
                         "short" => "EC",
                         "data" => $categories["ECommerce"]
-                    ],
+                        ],*/
                     [
                         "type" => "submenu",
                         "id" => "SystemSetup/CompanySetup",
@@ -535,14 +545,14 @@ $leftMenu = [
                                 "short" => "ED"
                             ]
                         ]
-                    ],
+                    ]/*,
                     [
                         "type" => "submenu",
                         "id" => "MRP",
                         "full" => $translation->translateLabel('MRP'),
                         "short" => "MR",
                         "data" => $categories["MRP"]
-                    ]
+                        ]*/
                 ]
             ],
             [

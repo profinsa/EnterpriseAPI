@@ -21,7 +21,7 @@
                     "full" => $translation->translateLabel('View Customer Balances')
                 ],
             ],
-            "topbar" => $leftMenu["Main"]["data"][2]["data"][0]["data"]
+            "topbar" => $leftMenu["Main"]["data"][3]["data"][0]["data"]
         ];
     }
 
@@ -46,7 +46,7 @@
                     "full" => $translation->translateLabel('View Vendor Balances')
                 ],
             ],
-            "topbar" => $leftMenu["Main"]["data"][3]["data"][0]["data"]
+            "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
         ];
     }
 
@@ -70,7 +70,7 @@
                     "full" => $translation->translateLabel('New Item')
                 ],
             ],
-            "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
+            "topbar" => $leftMenu["Main"]["data"][5]["data"][0]["data"]
         ];
     }
 
@@ -95,7 +95,7 @@
                     "full" => $translation->translateLabel('View Invoices')
                 ]
             ],
-            "topbar" => $leftMenu["Main"]["data"][2]["data"]
+            "topbar" => $leftMenu["Main"]["data"][3]["data"]
         ];
     }
     
@@ -124,7 +124,7 @@
                     "full" => $translation->translateLabel('Receive Purchase')
                 ]
             ],
-            "topbar" => $leftMenu["Main"]["data"][3]["data"]
+            "topbar" => $leftMenu["Main"]["data"][4]["data"]
         ];
     }
     
@@ -185,7 +185,7 @@
                     "full" => $translation->translateLabel('Financial Statements IFRS')
                 ],
             ],
-            "topbar" => $leftMenu["Main"]["data"][13]["data"]
+            "topbar" => $leftMenu["Main"]["data"][14]["data"]
         ];
     }
 

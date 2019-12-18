@@ -241,7 +241,7 @@
 
      for(ind in topbar){
          item = topbar[ind];
-         if(item["type"] == "submenu" && security.checkMenu(item["id"])){
+         if(item["type"] == "submenu" && security.checkMenu(item["id"]) && !item.hasOwnProperty("onlyForDefault")){
              _html += "<li class=\"dropdown top-bar-link\">";
              _html += "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded\"false\">" + item["full"] + "</a>";
 
