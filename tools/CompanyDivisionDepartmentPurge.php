@@ -1,4 +1,6 @@
 <?php
+//config name to use
+$GLOBALS["configName"] = "common_clean"; 
 include './init.php';
 
 ///////////////////////////
@@ -11,12 +13,11 @@ include './init.php';
 - STFBEnterprise 
   uses stfbenterprise database
 */
-$GLOBALS["configName"] = "common"; 
 
 //CompanyID for deleting records
-$CompanyID = 'DINOS';
+$CompanyID = 'AMultiNational';
 //DivisionID for deleting records
-$DivisionID = 'Test';
+$DivisionID = 'Florida';
 //DepartmentID for deleting records
 $DepartmentID = 'Test';
 
