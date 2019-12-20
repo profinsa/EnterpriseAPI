@@ -37,7 +37,7 @@
 				    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Company"); ?>:</label>
 				</div>
 				<div class="col-xs-6">
-				    <select name="company" id="icompany" class="form-control pull-right row b-none" onchange="companySelect(event);">
+				    <select name="company" id="icompany" class="form-control pull-right row b-none" onchange="companySelect(event.target.value);">
 					<option>DEFAULT</option>
 				    </select>
 				</div>
@@ -49,7 +49,7 @@
 				    <label class="dropdown-label pull-left"><?php echo $translation->translateLabel("Division"); ?>:</label>
 				</div>
 				<div class="col-xs-6">
-				    <select name="division" id="idivision" class="form-control pull-right row b-none">
+				    <select name="division" id="idivision" class="form-control pull-right row b-none" onchange="divisionSelect(event.target.value);">
 					<option>DEFAULT</option>
 				    </select>
 				</div>
@@ -147,6 +147,20 @@
 	     return false;
 	 });
 	 var companies = <?php echo json_encode($companies->companies); ?>;
+         var companiesNested = {}, cind, dind, company, division;
+         for(cind in companies){
+             if(!companiesNested.hasOwnProperty(companies[cind].CompanyID))
+                 companiesNested[companies[cind].CompanyID] = {};
+             company = companiesNested[companies[cind].CompanyID];
+             if(!company.hasOwnProperty(companies[cind].DivisionID))
+                 company[companies[cind].DivisionID] = {};
+             division = company[companies[cind].DivisionID];
+
+             if(!division.hasOwnProperty(companies[cind].DepartmentID))
+                 division[companies[cind].DepartmentID] = companies[cind];
+             //             division = company[companies[cind].DivisionID];
+         }
+         
 	 $(document).ready(function(){
 	     var companiesList = {},
 		 companies_options = '',
@@ -159,33 +173,32 @@
 		 companies_options += '<option>' + ind + '</option>';
 
 	     icompany.innerHTML = companies_options;
+             companySelect($("#icompany").val());
 	 });
 	 
-	 function companySelect(event){
+	 function companySelect(company){
 	     var idivision = $("#idivision")[0],
-		 ideparment = $("#idepartments")[0],
 		 division_options = '',
-		 department_options = '',
-		 ind,
-		 divisions = {},
-		 departments = {},
-		 company = event.target.value;
+		 ind;
 
-	     for(ind in companies){
-		 if(companies[ind].CompanyID == company){
-		     divisions[companies[ind].DivisionID] = true;
-		     departments[companies[ind].DepartmentID] = true;
-		 }
-	     }
-
-	     for(ind in divisions)
+	     for(ind in companiesNested[company])
 		 division_options += '<option>' + ind + '</option>';
+             
+	     idivision.innerHTML = division_options;
+             divisionSelect($("#idivision").val());
+	 }
+
+         function divisionSelect(division){
+	     var ideparment = $("#idepartments")[0],
+		 department_options = '',
+                 departments = companiesNested[$("#icompany").val()][division],
+	         ind;
+
 	     for(ind in departments)
 		 department_options += '<option>' + ind + '</option>';
 	     
-	     idivision.innerHTML = division_options;
 	     idepartment.innerHTML = department_options;
-	 }
+         }
 	 
 	 function changeLanguage(event){
 	     $.getJSON("index.php?page=language&setLanguage=" + event.target.value)

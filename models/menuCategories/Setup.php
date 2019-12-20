@@ -494,32 +494,6 @@ $categories["Setup"] = [
     ],
     [
         "type" => "submenu",
-        "id" => "SystemSetup/HelpDocumentSetup",
-        "full" => $translation->translateLabel('Help Document Setup'),
-        "short" => "Co",
-        "data" => [
-            [
-                "id" => "SystemSetup/HelpDocumentSetup/HelpDocumentTopic",
-                "full" => $translation->translateLabel('Help Document Topic'),
-                "href"=> "EnterpriseASPSystem/HelpDocumentSetup/HelpDocumentTopicList",
-                "short" => "Co"
-            ],
-            [
-                "id" => "SystemSetup/HelpDocumentSetup/HelpDocumentModule",
-                "full" => $translation->translateLabel('Help Document Module'),
-                "href"=> "EnterpriseASPSystem/HelpDocumentSetup/HelpDocumentModuleList",
-                "short" => "Co"
-            ],
-            [
-                "id" => "SystemSetup/HelpDocumentSetup/HelpDocument",
-                "full" => $translation->translateLabel('Help Document'),
-                "href"=> "EnterpriseASPSystem/HelpDocumentSetup/HelpDocumentList",
-                "short" => "Co"
-            ],
-        ]
-    ],
-    [
-        "type" => "submenu",
         "id" => "SystemSetup/SupportSetup",
         "full" => $translation->translateLabel('Support Set-up'),
         "short" => "Co",
