@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 11/02/2019
+  Last Modified: 28/12/2019
   Last Modified by: Nikita Zaharov
 */
 
@@ -37,7 +37,7 @@ class gridData extends gridDataSource{
     public $breadCrumbTitle ="Departments";
     public $idField ="undefined";
     public $idFields = ["CompanyID","DivisionID","DepartmentID"];
-    public $modes = ["view", "edit", "grid"];
+    public $modes = ["edit", "grid"];
     public $gridFields = [
         "DepartmentID" => [
             "dbType" => "varchar(36)",
@@ -170,9 +170,9 @@ class gridData extends gridDataSource{
             case "DivisionID" :
                 $keyFields .= "DivisionID='" . $user["DivisionID"] . "' AND ";
                 break;
-            case "DepartmentID" :
-                $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
-                break;
+                //            case "DepartmentID" :
+                // $keyFields .= "DepartmentID='" . $user["DepartmentID"] . "' AND ";
+                //break;
             }
             if(!in_array($key, $fields))
                 $fields[] = $key;                
