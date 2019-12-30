@@ -12,7 +12,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Language" content="en">
         <meta name="description" content="Help documentation, installation instructions, technical reference guide and user manual for all Integral Accounting Enterprise Versions." />
-        <!--        <base href="//stfbinc.helpdocs.com/" /> -->
         <link rel="stylesheet" href="assets/css/help/photoswipe.css"> 
         <link rel="stylesheet" href="assets/css/help/default-skin.css"> 
         <link rel="stylesheet" href="assets/css/help/styles.css" media="screen, handheld">
@@ -33,7 +32,7 @@
             <header class="site--header custom-site-header-color">
                 <div class="container">
                     <a href="/EnterpriseX/Help/index.php" class="brand-logo">
-                        <img src="https://s3.amazonaws.com/tw-desk/i/113954/doclogo/72179.20180523160644009.72179.201805231606440090wnSy.jpg" alt="Integral Accounting Enterprise (All Versions)">
+                        <img src="assets/images/stfblogo_help.jpg" alt="Integral Accounting Enterprise (All Versions)">
                         
                     </a>
                     <a href="#" class="menu-toggle visible-xs" tabindex="1">
@@ -71,10 +70,6 @@
                     <section class="category--structure">
                         <aside class="left-sidebar">
                             <ul class="list-links js_tinynav hidden-xs">
-                                <!--                                 <li><a href="//stfbinc.helpdocs.com/categories">All Articles</a></li>
-                                     <li>
-                                     <a href="<?php echo $linksMaker->makeHelpLinkById("welcome"); ?>">Welcome</a>
-                                     </li>-->
                                 <?php foreach($topics as $name=>$topic): ?>
                                     <?php if(count($topic["modules"])): ?>
                                         <li>
@@ -99,43 +94,6 @@
                                         </li>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-                                <!--                                <li>
-                                     <a href="//stfbinc.helpdocs.com/getting-started">Getting Started</a>
-                                     
-                                     </li>
-                                     <li>
-                                     <a data-toggle="collapse" data-target="#collapse-1315" class="have_drop collapsed"></a>
-                                     <a class="cat-name" href="//stfbinc.helpdocs.com/installation">Installation</a>
-                                     <ul class="collapse" id="collapse-1315">
-                                     <li>
-                                     <a href="//stfbinc.helpdocs.com/integral-accounting-enterprise-x-specific-information">Integral Accounting Enterprise X Specific Information </a>
-                                     
-                                     </li>
-                                     </ul>
-                                     
-                                     </li> -->
-                                <!--                                 <li>
-                                     <a data-toggle="collapse" data-target="#collapse-1318" class="have_drop collapsed"></a>
-                                     <a class="cat-name" href="//stfbinc.helpdocs.com/user-manual">User Manual</a>
-                                     <ul class="collapse" id="collapse-1318">
-                                     <li>
-                                     <a data-toggle="collapse" data-target="#collapse-1350" class="have_drop collapsed"></a>
-                                     <a class="cat-name" href="//stfbinc.helpdocs.com/accounts-receivable">Accounts Receivable</a>
-                                     <ul class="collapse" id="collapse-1350">
-                                     <li><a href="//stfbinc.helpdocs.com/orders">Orders</a></li>
-                                     <li><a href="//stfbinc.helpdocs.com/invoices">Invoices</a></li>
-                                     <li><a href="//stfbinc.helpdocs.com/cash-receipts">Cash Receipts</a></li>
-                                     <li><a href="//stfbinc.helpdocs.com/credit-memos">Credit Memos</a></li>
-                                     </ul>
-                                     </li>
-                                -->                                   
-                                
-                                <!--                                 <li>
-                                     <a href="//stfbinc.helpdocs.com/cart">Cart</a>
-                                     
-                                     </li> -->
-                                
-                                
                             </ul>
                         </aside>
                         <section class="right-content" style="line-height: 1.5;">
@@ -718,8 +676,6 @@
          if(window.location.protocol != "https:" && window.location.href.indexOf("helpdocs.com") != -1) {
              window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
          }
-         //window.baseURL = "//stfbinc.helpdocs.com";
-         //window.urlPrefix = "//stfbinc.helpdocs.com";
         </script>
     </body>
 </html>
