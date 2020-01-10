@@ -8,7 +8,7 @@
   Output parameters:
   Called from:
   Calls:
-  Last Modified: 11/04/2019
+  Last Modified: 10/12/2020
   Last Modified by:  Nikita Zaharov
 */
 
@@ -48,9 +48,13 @@ class gridData extends autoreportsData{
         $linksMaker = new linksMaker();
         require __DIR__ . "/../../menuCategoriesGenerated.php";
         
-        //        print_r($leftMenu["Main"]["data"][12]["data"]);
         $reportTypes = [];
-        foreach($leftMenu["Main"]["data"][12]["data"] as $item)
+        $reportsMenu;
+        foreach($leftMenu["Main"]["data"] as $submenu){
+            if($submenu["id"] == "Reports")
+                $reportsMenu = $submenu;
+        }
+        foreach($reportsMenu["data"] as $item)
             if($item["id"] != "Reports/GenericReport" && $item["id"] != "Reports/SavedReports"){
                 if(key_exists("type", $item) && $item["type"] == "submenu"){
                     foreach($item["data"] as $subitem)
