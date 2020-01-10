@@ -73,7 +73,8 @@ class controller{
             "Distribution" => "Accounting",
             "Financial" => "Accounting",
             "Trust" => "Accounting",
-            "NGO" => "Accounting"
+            "NGO" => "Accounting",
+            "ECommerce" => "Accounting"
         ];
 
         $titlesRewrite = [
@@ -93,7 +94,8 @@ class controller{
             "NGO" => "NGO",
             "simple" => "Accounting",
             "simpleservice" => "Accounting",
-            "Accounting" => "Multi-Entity Accounting Dashboard"
+            "Accounting" => "Multi-Entity Accounting Dashboard",
+            "ECommerce" => "ECommerce Fulfillment"
             //            "Accounting" => "Accounting"
         ];
         

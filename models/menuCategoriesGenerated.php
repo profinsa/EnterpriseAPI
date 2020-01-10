@@ -402,6 +402,7 @@ $leftMenu = [
                 "id" => "ECommerce",
                 "full" => $translation->translateLabel('ECommerce'),
                 "short" => "EC",
+                "link" => "index.php#/?page=dashboard&screen=ECommerce",
                 "data" => $categories["ECommerce"]
             ],
             [
