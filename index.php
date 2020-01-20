@@ -22,12 +22,12 @@
    + /controllers/*
 
 
-   Last Modified: 16.07.2019
+   Last Modified: 21/01/2020
    Last Modified by: Nikita Zaharov
  */
 //require 'vendor/autoload.php';
-include './maliciousfilter.php';
 include './init.php';
+include './maliciousfilter.php';
 
 function errorHandler($message, $error){
     $record = [
