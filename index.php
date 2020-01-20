@@ -26,6 +26,7 @@
    Last Modified by: Nikita Zaharov
  */
 //require 'vendor/autoload.php';
+include './maliciousfilter.php';
 include './init.php';
 
 function errorHandler($message, $error){

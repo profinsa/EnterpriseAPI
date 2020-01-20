@@ -7,14 +7,18 @@
    + unpack in some place which accesable for webserver, for example it may be C:\inetpub\EnterpriseX
      It means that address in browser will be something like that: localhost\EnterpriseX
    + create database myenterprise and user for that database with full permissions. 
-     For example this user will be "myenteprise" with password "enterprisepass"
-   + load database from sql/backup_[last date].sql
-     like that mysql -u enteprise -p myenterprise < backup_05_21_2017.sql
+     For example this user will be "enteprise" with password "enterprisepass"
+     You need change config values for mysqld([mysqld] section) in my.cnf:
+     - lower_case_table_names = 1
+     - max_allowed_packet = 64M
+     - wait_timeout = 600
+   + load database from database/backups/enterprise.sql
+     like that mysql -u enteprise -p enterprise < database/backups/enterprise.sql
    + change database settings in app/common.php
      - change db_host if it need
-     - change db_user to myenterprise
+     - change db_user to enterprise
      - change db_password to enterprisepass
-     - change db_base to myenterprise
+     - change db_base to enterprise
 
    If all steps is done, you can go to browser, type localhost/EnterpriseX/index.php and you will see login page
    
