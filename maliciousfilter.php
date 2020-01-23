@@ -27,7 +27,7 @@ if(key_exists("page", $_GET)){
         exit;
     }
 
-    $pattern = "/[\'\s&]/";
+    $pattern = "/[\'\&]/";
     foreach($paramsToCheck as $value){
         if(key_exists($value, $_GET) && preg_match($pattern, $_GET[$value], $matches)){
             file_put_contents(__DIR__ . "/malicious.log", json_encode($record) . ",\n", FILE_APPEND);
