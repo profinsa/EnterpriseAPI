@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 14/11/2019
+  Last Modified: 23/01/2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -39,6 +39,9 @@ class gridData extends gridDataSource{
     public $gridConditions = "EmailConfirmed = 1 AND IFNULL(SupportStatus, '') <> 'Resolved'";
     public $idField ="CaseID";
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "CaseID"];
+    public $publicAccess = [
+            "procedure" => ["confirm", "test"]
+    ];
     public $gridFields = [
         "CaseId" => [
             "dbType" => "int(11)",
@@ -390,6 +393,10 @@ class gridData extends gridDataSource{
             "body" => "<html><body>Help Request from {$_POST["CustomerEmail"]}: <br/> Title: {$_POST["SupportQuestion"]} <br/> Message: {$_POST["SupportDescription"]}</body></html>",
             "email" => $config["mailSales"]
         ]);
+    }
+    
+    public function test(){
+        echo "test";
     }
 }
 ?>

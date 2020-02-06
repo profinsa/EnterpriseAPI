@@ -19,6 +19,13 @@ function config(){
             "left" => 4,
             "right" => 8
         ],
+        "publicAccess" => [
+            "CompanyID" => "STFB", //production, for help module
+            //"CompanyID" => "DINOS",            
+            "DivisionID" => "DEFAULT",
+            "DepartmentID" => "DEFAULT",
+            "language" => "english"
+        ],
         "user" => [
             "CompanyID" => "STFB",
             "DivisionID" => "DEFAULT",
@@ -35,12 +42,14 @@ function config(){
             "DivisionID" => "DEFAULT",
             "DepartmentID" => "DEFAULT"
         ],
-        "mailServer" => "box789.bluehost.com",
+        "mailServer" => "stfb.com",
+        //"mailServer" => "box789.bluehost.com",
         "mailUsername" => "support@stfb.com",
         "mailUserpass" => "STFB!xticket1024",
         "mailFrom" => "support@stfb.com",
         "mailFromTitle" => "Support",
-        "mailSales" => "sales@stfb.com",
+        //        "mailSales" => "sales@stfb.com",
+        "mailSales" => "ix@2du.ru",
         //"confirmationHost" => "http://192.168.56.107", //development
         "confirmationHost" => "https://stfb.net" //production
     );

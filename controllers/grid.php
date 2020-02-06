@@ -25,7 +25,7 @@
   models/gridDataSource derivatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 20.09.2019
+  Last Modified: 24.01.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,6 +36,7 @@ require 'models/permissionsGenerated.php';
 require 'models/drillDowner.php';
 require 'models/linksMaker.php';
 require 'models/interfaces.php';
+require 'models/redirects.php';
 
 class controller{
     public $config;
@@ -52,92 +53,58 @@ class controller{
     public $path;
     public $pathPage;
     
-    protected  $redirectModel = [
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderSimpleList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderMemorizedList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderBackList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderPickList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderShipList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderShipStep2List" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderHoldList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/OrderHeaderShipDateList" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList",
-        "EnterpriseASPAR/OrderProcessing/QuoteHeaderMemorizedList" => "EnterpriseASPAR/OrderProcessing/QuoteHeaderList",
-
-        "EnterpriseASPAR/OrderProcessing/InvoiceHeaderSimpleList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
-        "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
-        "EnterpriseASPAR/OrderProcessing/InvoiceHeaderMemorizedList" => "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList",
-
-        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderHoldList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
-        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderClosedList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
-        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderPickList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
-        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderShipList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
-        "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderInvoiceList" => "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList",
-
-        "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderClosedList" => "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderList",
-
-        "EnterpriseASPAR/CreditMemos/CreditMemoHeaderClosedList" => "EnterpriseASPAR/CreditMemos/CreditMemoHeaderList",
-        "EnterpriseASPAR/CreditMemos/CreditMemoIssuePaymentsList" => "EnterpriseASPAR/CreditMemos/CreditMemoHeaderList",
-
-        "EnterpriseASPAR/CashReceipts/ReceiptsHeaderClosedList" => "EnterpriseASPAR/CashReceipts/ReceiptsHeaderList",
-
-        "EnterpriseASPAR/RMA/RMAHeaderClosedList" => "EnterpriseASPAR/RMA/RMAHeaderList",
-        "EnterpriseASPAR/RMA/RMAHeaderApproveList" => "EnterpriseASPAR/RMA/RMAHeaderList",
-        "EnterpriseASPAR/RMA/RMAHeaderReceiveList" => "EnterpriseASPAR/RMA/RMAHeaderList",
-        "EnterpriseASPAR/RMA/RMAHeaderReceivedList" => "EnterpriseASPAR/RMA/RMAHeaderList",
-
-        "EnterpriseASPAP/Purchases/PurchaseDetail" => "EnterpriseASPAP/Purchases/PurchaseDetail",
-        "EnterpriseASPAP/Purchases/PurchaseHeaderSimpleList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
-        "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
-        "EnterpriseASPAP/Purchases/PurchaseHeaderClosedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
-        "EnterpriseASPAP/Purchases/PurchaseHeaderApproveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
-        "EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
-        "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList" => "EnterpriseASPAP/Purchases/PurchaseHeaderList",
-
-        "EnterpriseASPAP/DebitMemos/DebitMemoHeaderClosedList" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderList",
-        "EnterpriseASPAP/DebitMemos/DebitMemoHeaderPaymentsList" => "EnterpriseASPAP/DebitMemos/DebitMemoHeaderList",
-
-        "EnterpriseASPAP/Payments/PaymentsHeaderVoidList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
-        "EnterpriseASPAP/Payments/PaymentsHeaderClosedList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
-        "EnterpriseASPAP/Payments/PaymentsHeaderApproveList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
-        "EnterpriseASPAP/Payments/PaymentsHeaderIssueCreditMemoList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
-        "EnterpriseASPAP/Payments/PaymentsHeaderIssueList" => "EnterpriseASPAP/Payments/PaymentsHeaderList",
-
-        "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
-        "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
-        "EnterpriseASPAP/ReturnToVendor/ReturnHeaderInvoiceList" => "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList",
-        "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderClosedList" => "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList",
-        "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderShippedList" => "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList",
-        
-        "EnterpriseASPGL/Ledger/LedgerTransactionsClosedList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList",
-        "EnterpriseASPGL/Ledger/LedgerTransactionsMemorizedList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList",
-        "EnterpriseASPGL/Ledger/LedgerTransactionsHistoryList" => "EnterpriseASPGL/Ledger/LedgerTransactionsList"
-    ];
-
+    protected $redirectModel;
     function __construct(){
+        $this->redirectModel = redirects::$Models;
         $this->interfaces = new interfaces();
     }
-    
-    public function process($app){
-        $users = new users();
-        $users->checkLoginInUrl();
-        if(!key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
+
+    public function checkPermissions($model_path, $data, &$security, $type, $param1 = ""){
+        if(!key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ 
+            //redirect to prevent access unlogined users
             $_SESSION["user"] = false;
             http_response_code(401);
             echo "wrong session";
             exit;
         }
 
-        $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
-        $this->interfaceType = $_SESSION["user"]["interfaceType"] = $interfaceType = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : $this->interfaceType);
-            
+        ///////////////////////
+        //checking permissions
+        preg_match("/\/(\w+)$/", $this->action, $page);
+        $this->pathPage = $page = $page[1];
+
+        $_perm = new permissionsByFile();
+        if(property_exists($data, "publicAccess") && key_exists($type, $data->publicAccess)){
+            if($type == "procedure" && in_array($_GET["procedure"], $data->publicAccess["procedure"]));
+            else{
+                http_response_code(400);
+                echo 'not allowed';
+                exit;
+            }
+        }else{
+            preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
+            if(key_exists($filename[1], $_perm->permissions))
+                $security = new Security($_SESSION["user"]["accesspermissions"], $_perm->permissions[$filename[1]]);
+            else{
+                http_response_code(400);
+                echo 'permissions not found';
+                exit;
+            }
+        }
+    }
+        
+    public function process($app){
+        ///////////////////////
+        //loading common models
         require 'models/menuIdToHref.php';
         $drill = new drillDowner();
         $linksMaker = new linksMaker();
-        
+
+        //////////////////////
+        //loading data source
         $this->action = $this->path =  $_GET["action"];
         $model_path = $menuIdToPath[$_GET["action"]];
+        $PartsPath = $model_path . "/";
 
         $requireModelPath = key_exists($model_path, $this->redirectModel) ? $this->redirectModel[$model_path] : $model_path;
         if(!file_exists('models/' . $requireModelPath . '.php'))
@@ -151,329 +118,56 @@ class controller{
         }
         else
             $data = new gridData();
-
-        preg_match("/\/(\w+)$/", $this->action, $page);
-        $this->pathPage = $page = $page[1];
-
-        $PartsPath = $model_path . "/";
-        $_perm = new permissionsByFile();
-        preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
-        if(key_exists($filename[1], $_perm->permissions))
-            $security = new Security($_SESSION["user"]["accesspermissions"], $_perm->permissions[$filename[1]]);
-        else{
-            http_response_code(400);
-            echo 'permissions not found';
-            return;
+        
+        /////////////////////
+        //loading user
+        $users = new users();
+        $users->checkLoginInUrl();
+        if(key_exists("user", $_SESSION) && $_SESSION["user"] && key_exists("EmployeeUserName", $_SESSION["user"])){
+            $this->interface = $_SESSION["user"]["interface"] = $interface = key_exists("interface", $_GET) ? $_GET["interface"] : (key_exists("interface", $_SESSION["user"]) ? $_SESSION["user"]["interface"] : "default");
+            $this->interfaceType = $_SESSION["user"]["interfaceType"] = $interfaceType = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] : (key_exists("interfaceType", $_SESSION["user"]) ? $_SESSION["user"]["interfaceType"] : $this->interfaceType);
         }
 
-        $this->user = $GLOBALS["user"] = $_SESSION["user"];               
+        if(key_exists("user", $_SESSION))
+            $this->user = $GLOBALS["user"] = $_SESSION["user"];               
         
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(key_exists("update", $_GET)){
+                $this->checkPermissions($model_path, $data, $security, "update");
                 $data->updateItem($_POST["id"], $_POST["category"], $_POST);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }else if(key_exists("new", $_GET)){
+                $this->checkPermissions($model_path, $data, $security, "insert");
                 $data->insertItem($_POST);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }else if(key_exists("procedure", $_GET)){
                 $name = $_GET["procedure"];
+                $this->checkPermissions($model_path, $data, $security, "procedure", $name);
                 $data->$name();
             }
         }else if($_SERVER['REQUEST_METHOD'] === 'GET'){            
             if(key_exists("procedure", $_GET)){
                 $name = $_GET["procedure"];
+                $this->checkPermissions($model_path, $data, $security, "procedure", $name);
                 $data->$name();
             }else if(key_exists("getItem", $_GET)){
+                $this->checkPermissions($model_path, $data, $security, "getItem");
                 echo json_encode($data->getItem($_GET["getItem"]));
             }else if(key_exists("delete", $_GET)){
+                $this->checkPermissions($model_path, $data, $security, "delete");
                 $data->deleteItem($_GET["id"]);
                 header('Content-Type: application/json');
                 echo "{ \"message\" : \"ok\"}";
             }else{
+                $this->checkPermissions($model_path, $data, $security, "getPage");
+
                 $translation = new translation($this->user["language"]);
                 $this->dashboardTitle = $translation->translateLabel($data->dashboardTitle);
                 $this->breadCrumbTitle = $translation->translateLabel($data->breadCrumbTitle);
             
-                $redirectView = [
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderSimpleList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderMemorizedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderPickList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderShipList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderInvoiceList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderHoldList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderShipDateList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/OrderHeaderBackList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/QuoteHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/QuoteHeaderMemorizedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/InvoiceHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/InvoiceHeaderSimpleList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/InvoiceHeaderMemorizedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/InvoiceHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderHoldList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderShipList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderPickList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/ServiceProcessing/ServiceOrderHeaderInvoiceList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/OrderProcessing/InvoiceHeaderHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/ServiceProcessing/ServiceInvoiceHeaderHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/CreditMemos/CreditMemoHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/CreditMemos/CreditMemoHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/CreditMemos/CreditMemoHeaderHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/RMA/RMAHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/RMA/RMAHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    /*                    "EnterpriseASPAR/RMA/RMAHeaderReceiveList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                        ],*/
-                    "EnterpriseASPAR/RMA/RMAHeaderReceivedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/CashReceipts/ReceiptsHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/CashReceipts/ReceiptsHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAR/CashReceipts/ReceiptsHeaderHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-            
-                    "EnterpriseASPAP/Purchases/PurchaseHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/Purchases/PurchaseHeaderSimpleList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/simple/"
-                    ],
-                    "EnterpriseASPAP/Purchases/PurchaseHeaderMemorizedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/Purchases/PurchaseHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    /*"EnterpriseASPAP/Purchases/PurchaseHeaderReceiveList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                        ],*/
-                    "EnterpriseASPAP/Purchases/PurchaseHeaderReceivedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/PurchaseContract/PurchaseContractHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-            
-                    "EnterpriseASPAP/DebitMemos/DebitMemoHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/DebitMemos/DebitMemoHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/DebitMemos/DebitMemoHeaderHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-
-                    "EnterpriseASPAP/ReturnToVendor/ReturnHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/ReturnToVendor/ReturnHeaderPickList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/ReturnToVendor/ReturnHeaderShipList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/ReturnToVendor/ReturnHeaderInvoiceList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderShippedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/ReturnToVendor/ReturnInvoiceHeaderHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/ReturnToVendor/ReturnReceiptsHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/Payments/PaymentsHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/Payments/PaymentsHeaderVoidList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/Payments/PaymentsHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/Payments/PaymentsHeaderVoidHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPAP/Payments/PaymentsHeaderHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-
-                    "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderClosedList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPInv/WorkOrders/InventoryWorkOrderHeaderHistoryList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPSystem/EDISetup/EDIInvoiceHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPSystem/EDISetup/EDIOrderHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ] ,
-                    "EnterpriseASPSystem/EDISetup/EDIReceiptsHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPSystem/EDISetup/EDIPurchaseHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ],
-                    "EnterpriseASPSystem/EDISetup/EDIPaymentsHeaderList/" => [
-                        "view" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/",
-                        "edit" => "EnterpriseASPAR/OrderProcessing/OrderHeaderList/"
-                    ]
-               ];
+                $redirectView = redirects::$Views;
                 if(key_exists("mode", $_GET))
                     $this->mode = $_GET["mode"];
                 if(key_exists("category", $_GET))

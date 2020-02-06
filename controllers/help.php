@@ -106,8 +106,8 @@ class controller{
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
             if(key_exists('testmail', $_GET)){
                 echo "ok";
-                session_write_close(); //close the session
-                fastcgi_finish_request(); //this returns 200 to the user, and processing continues
+                //                session_write_close(); //close the session
+                //fastcgi_finish_request(); //this returns 200 to the user, and processing continues
                 $mailer = new mailer();
         
                 $mailer->send([

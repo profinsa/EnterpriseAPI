@@ -1,28 +1,28 @@
 <?php
 /*
-Name of Page: Translation
+  Name of Page: Translation
 
-Method: Translation model, used for translation ui items
+  Method: Translation model, used for translation ui items
 
-Date created: Nikita Zaharov, 09.02.2016
+  Date created: Nikita Zaharov, 09.02.2017
 
-Use: translationg used by all page controllers for translating purpose
+  Use: translationg used by all page controllers for translating purpose
 
-Input parameters:
-$db: database instance
-$language: language to translate to
+  Input parameters:
+  $db: database instance
+  $language: language to translate to
 
-Output parameters:
-$translation: model, it is responsible for translation in view
+  Output parameters:
+  $translation: model, it is responsible for translation in view
 
-Called from:
-+ most controllers from /controllers
+  Called from:
+  + most controllers from /controllers
 
-Calls:
-sql
+  Calls:
+  sql
 
-Last Modified: 06.03.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 06.03.2017
+  Last Modified by: Nikita Zaharov
 */
 
 
