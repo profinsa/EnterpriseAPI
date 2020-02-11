@@ -4,7 +4,7 @@
 
   Method: Users model, used for log in users, searching and working with permissions
 
-  Date created: Nikita Zaharov, 09.02.2018
+  Date created: Nikita Zaharov, 09.02.2017
 
   Use: For searching, verificating users. Also this model provide method for work with permissions
 

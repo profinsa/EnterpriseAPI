@@ -27,6 +27,13 @@ function config(){
             "DepartmentID" => "DEFAULT",
             "language" => "english"
         ],
+        "publicAccess" => [
+            "CompanyID" => "DINOS", //production, for help module
+            //"CompanyID" => "DINOS",            
+            "DivisionID" => "DEFAULT",
+            "DepartmentID" => "DEFAULT",
+            "language" => "english"
+        ],
         "supportProducts" => [
             "Enterprise X",
             "Enterprise X Cart",
@@ -39,8 +46,8 @@ function config(){
             "DepartmentID" => "DEFAULT"
         ],
         //mail server address, credentials and from Title
-        //"mailServer" => "stfb.com",
-        "mailServer" => "box789.bluehost.com",
+        "mailServer" => "stfb.com",
+        //"mailServer" => "box789.bluehost.com",
         "mailUsername" => "support@stfb.com",
         "mailUserpass" => "STFB!xticket1024",
         "mailFrom" => "support@stfb.com",

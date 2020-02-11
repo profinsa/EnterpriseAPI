@@ -1,29 +1,29 @@
 <?php
 /*
-Name of Page: language
+  Name of Page: language
 
-Method: used for changing ui language
+  Method: used for changing ui language
 
-Date created: Nikita Zaharov, 15.02.2016
+  Date created: Nikita Zaharov, 15.02.2017
 
-Use: 
+  Use: 
 
-Input parameters:
-$db: database instance
-$app : application instance, object
+  Input parameters:
+  $db: database instance
+  $app : application instance, object
 
-Output parameters:
-exposed language management api
+  Output parameters:
+  exposed language management api
 
-Called from:
-+ index.php
+  Called from:
+  + index.php
 
-Calls:
-models/translation.php
-app from index.php
+  Calls:
+  models/translation.php
+  app from index.php
 
-Last Modified: 16.02.2016
-Last Modified by: Nikita Zaharov
+  Last Modified: 16.02.2016
+  Last Modified by: Nikita Zaharov
 */
 
 //require 'models/translation.php';
