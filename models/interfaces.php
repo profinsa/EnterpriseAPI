@@ -38,7 +38,6 @@ class interfaces{
             "interfaceType" => "rtl",
             "defaultDashboard" => "Accounting"
         ],
-
         "simpleservice" => [
             "title" => "Simple Service",
             "interface" => "simple",
@@ -117,8 +116,56 @@ class interfaces{
             "interface" => "simple",
             "interfaceType" => "rtl",
             "defaultDashboard" => "Admin"
+        ],    
+        "nonprofit" => [
+            "title" => "Non-Profit",
+            "interface" => "simple",
+            "interfaceType" => "ltr",
+            "defaultDashboard" => "Accounting"
         ],
-    
+        "nonprofitrtl" => [
+            "title" => "Non-Profit RTL",
+            "interface" => "simple",
+            "interfaceType" => "rtl",
+            "defaultDashboard" => "Accounting"
+        ],
+        "farmingandranching" => [
+            "title" => "Farming & Ranching",
+            "interface" => "simple",
+            "interfaceType" => "ltr",
+            "defaultDashboard" => "Accounting"
+        ],
+        "farmingandranchingrtl" => [
+            "title" => "Farming & Ranching RTL",
+            "interface" => "simple",
+            "interfaceType" => "rtl",
+            "defaultDashboard" => "Accounting"
+        ],
+        "propertymanagement" => [
+            "title" => "Property Management",
+            "interface" => "simple",
+            "interfaceType" => "ltr",
+            "defaultDashboard" => "Accounting"
+        ],
+        "propertymanagementrtl" => [
+            "title" => "Property Management RTL",
+            "interface" => "simple",
+            "interfaceType" => "rtl",
+            "defaultDashboard" => "Accounting"
+        ],
+        "fleetmanagement" => [
+            "title" => "Fleet Management",
+            "interface" => "simple",
+            "interfaceType" => "ltr",
+            "defaultDashboard" => "Accounting"
+        ],
+        "fleetmanagementttl" => [
+            "title" => "Fleet Management RTL",
+            "interface" => "simple",
+            "interfaceType" => "rtl",
+            "defaultDashboard" => "Accounting"
+        ],
+        //" , "
         "default" => [
             "title" => "All Functions",
             "interface" => "default",
