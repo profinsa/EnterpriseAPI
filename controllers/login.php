@@ -29,7 +29,7 @@
   models/companies.php
   app from index.php
 
-  Last Modified: 07.03.2019
+  Last Modified: 26.02.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -38,6 +38,7 @@ use Gregwar\Captcha\CaptchaBuilder;
 require 'models/translation.php';
 require 'models/companies.php';
 require 'models/users.php';
+require 'models/interfaces.php';
 
 $GLOBALS["capsule"]->setAsGlobal();
 
@@ -47,6 +48,7 @@ class controller{
         "gray"
     ];
 
+    public $interfaces;
     public $captchaBuilder = false;
 
     public $user = false;
@@ -54,6 +56,7 @@ class controller{
     //controllers constructor, initialize CaptchaBuilder
     public function __construct(){
         $this->captchaBuilder = new CaptchaBuilder;
+        $this->interfaces = new interfaces();
     }
 
     /*

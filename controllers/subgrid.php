@@ -25,7 +25,7 @@
   models/gridDataSource derevatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 10.09.2019
+  Last Modified: 26.02.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -34,6 +34,7 @@ require 'models/security.php';
 require 'models/permissionsGenerated.php';
 require 'models/drillDowner.php';
 require 'models/linksMaker.php';
+require 'models/interfaces.php';
 
 class controller{
     public $config = [];
@@ -48,7 +49,13 @@ class controller{
     public $redirectModel = [
         "EnterpriseASPAP/Purchases/PurchaseDetail" => "EnterpriseASPAP/Purchases/PurchaseDetail"
     ];
+    public $interfaces;
     
+    //controllers constructor, initialize CaptchaBuilder
+    public function __construct(){
+        $this->interfaces = new interfaces();
+    }
+
     public function process($app){
         if(!$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ //redirect to prevent access unlogined users
             $_SESSION["user"] = false;

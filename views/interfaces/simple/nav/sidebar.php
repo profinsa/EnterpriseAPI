@@ -1,6 +1,6 @@
 <?php
     $iconbarCategories = [];
-    if($user["interface"] == "farmingandranching" || $user["inteface"] == "farmingandranchingrtl"){
+    if($user["interface"] == "farmingandranching" || $user["interface"] == "farmingandranchingrtl"){
         $iconbarCategories["FarmingAndRanching"] = [
             "full" => strtoupper($translation->translateLabel('Fields & Animals')),
             "link" => "index.php#/?page=dashboard&screen=Customer",
@@ -20,7 +20,7 @@
             "topbar" => $leftMenu["Main"]["data"][8]["data"]
         ];
     }
-    if($user["interface"] == "fleetmanagement" || $user["inteface"] == "fleetmanagementrtl"){
+    if($user["interface"] == "fleetmanagement" || $user["interface"] == "fleetmanagementrtl"){
         $iconbarCategories["FleetManagement"] = [
             "full" => strtoupper($translation->translateLabel('Fleet Management')),
             "link" => "index.php#/?page=dashboard&screen=Customer",
@@ -40,7 +40,7 @@
             "topbar" => $leftMenu["Main"]["data"][8]["data"]
         ];
     }
-    if($user["interface"] == "propertymanagement" || $user["inteface"] == "propertymanagementrtl"){
+    if($user["interface"] == "propertymanagement" || $user["interface"] == "propertymanagementrtl"){
         $iconbarCategories["Properties"] = [
             "full" => strtoupper($translation->translateLabel('Properties')),
             "link" => "index.php#/?page=dashboard&screen=Customer",

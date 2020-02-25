@@ -121,6 +121,12 @@ class interfaces{
             "title" => "Non-Profit",
             "interface" => "simple",
             "interfaceType" => "ltr",
+            "translationsRewrite" => [
+                "/(Customer)/i" => "Donor",
+                "/(Customer ID)/i" => "Donor ID",
+                "/(CustomerID)/i" => "Donor ID",
+                "/(Lead)/i" => "Potential Donor"
+            ],
             "defaultDashboard" => "Accounting"
         ],
         "nonprofitrtl" => [
