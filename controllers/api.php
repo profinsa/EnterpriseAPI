@@ -24,7 +24,7 @@
   models/help/*
   app from index.php
 
-  Last Modified: 17.10.2019
+  Last Modified: 26.02.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -33,6 +33,7 @@ require 'models/security.php';
 require 'models/permissionsGenerated.php';
 //require 'models/users.php';
 require 'models/linksMaker.php';
+require 'models/interfaces.php';
 require 'models/EnterpriseASPHelpDesk/CRM/LeadInformationList.php';
 
 class controller{
@@ -41,7 +42,12 @@ class controller{
     public $mode = "docreports";
     public $config;
     public $path;
+    public $interfaces;
 
+    public function __construct(){
+        $this->interfaces = new interfaces();
+    }
+    
     public function process($app){
         /*$users = new users();
         $users->checkLoginInUrl();

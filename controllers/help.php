@@ -33,6 +33,7 @@ require 'models/security.php';
 require 'models/permissionsGenerated.php';
 //require 'models/users.php';
 require 'models/linksMaker.php';
+require 'models/interfaces.php';
 require 'models/EnterpriseASPHelpDesk/CRM/LeadInformationList.php';
 
 use Gregwar\Captcha\CaptchaBuilder;
@@ -44,9 +45,11 @@ class controller{
     public $config;
     public $path;
     public $captchaBuilder = false;
+    public $interfaces;
 
     public function __construct(){
         $this->captchaBuilder = new CaptchaBuilder;
+        $this->interfaces = new interfaces();
     }
     
     public function process($app){

@@ -51,7 +51,7 @@ class controller{
     ];
     public $interfaces;
     
-    //controllers constructor, initialize CaptchaBuilder
+    //controllers constructor
     public function __construct(){
         $this->interfaces = new interfaces();
     }

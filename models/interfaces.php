@@ -133,30 +133,60 @@ class interfaces{
             "title" => "Non-Profit RTL",
             "interface" => "simple",
             "interfaceType" => "rtl",
+            "translationsRewrite" => [
+                "/(Customer)/i" => "Donor",
+                "/(Customer ID)/i" => "Donor ID",
+                "/(CustomerID)/i" => "Donor ID",
+                "/(Lead)/i" => "Potential Donor"
+            ],
             "defaultDashboard" => "Accounting"
         ],
         "farmingandranching" => [
             "title" => "Farming & Ranching",
             "interface" => "simple",
             "interfaceType" => "ltr",
-            "defaultDashboard" => "Accounting"
+             "translationsRewrite" => [
+                 "/(Projects & Jobs)/" => "Fields & Animals",
+                "/(Project ID)/i" => "Field or Animal ID",
+                "/(Project)/i" => "Field or Animal"
+            ],
+           "defaultDashboard" => "Accounting"
         ],
         "farmingandranchingrtl" => [
             "title" => "Farming & Ranching RTL",
             "interface" => "simple",
             "interfaceType" => "rtl",
+             "translationsRewrite" => [
+                 "/(Projects & Jobs)/" => "Fields & Animals",
+                "/(Project ID)/i" => "Field or Animal ID",
+                "/(Project)/i" => "Field or Animal"
+            ],
             "defaultDashboard" => "Accounting"
         ],
         "propertymanagement" => [
             "title" => "Property Management",
             "interface" => "simple",
             "interfaceType" => "ltr",
+             "translationsRewrite" => [
+                 "/(Customer)/" => "Tenant",
+                 "/(Lead)/" => "Prospective Tenant",
+                 "/(Projects & Jobs)/" => "Properties",
+                "/(Project ID)/i" => "Property ID",
+                "/(Project)/i" => "Property"
+            ],
             "defaultDashboard" => "Accounting"
         ],
         "propertymanagementrtl" => [
             "title" => "Property Management RTL",
             "interface" => "simple",
             "interfaceType" => "rtl",
+             "translationsRewrite" => [
+                 "/(Customer)/" => "Tenant",
+                 "/(Lead)/" => "Prospective Tenant",
+                 "/(Projects & Jobs)/" => "Properties",
+                "/(Project ID)/i" => "Property ID",
+                "/(Project)/i" => "Property"
+            ],
             "defaultDashboard" => "Accounting"
         ],
         "fleetmanagement" => [
