@@ -163,6 +163,28 @@ class interfaces{
             ],
             "defaultDashboard" => "Accounting"
         ],
+        "fleetmanagement" => [
+            "title" => "Fleet Management",
+            "interface" => "simple",
+            "interfaceType" => "ltr",
+             "translationsRewrite" => [
+                 "/(Projects & Jobs)/" => "Vehicles",
+                "/(Project ID)/i" => "Vehicle ID",
+                "/(Project)/i" => "Vehicle"
+            ],
+            "defaultDashboard" => "Accounting"
+        ],
+        "fleetmanagementrtl" => [
+            "title" => "Fleet Management RTL",
+            "interface" => "simple",
+            "interfaceType" => "rtl",
+             "translationsRewrite" => [
+                 "/(Projects & Jobs)/" => "Vehicles",
+                "/(Project ID)/i" => "Vehicle ID",
+                "/(Project)/i" => "Vehicle"
+            ],
+            "defaultDashboard" => "Accounting"
+        ],
         "propertymanagement" => [
             "title" => "Property Management",
             "interface" => "simple",
@@ -187,18 +209,6 @@ class interfaces{
                 "/(Project ID)/i" => "Property ID",
                 "/(Project)/i" => "Property"
             ],
-            "defaultDashboard" => "Accounting"
-        ],
-        "fleetmanagement" => [
-            "title" => "Fleet Management",
-            "interface" => "simple",
-            "interfaceType" => "ltr",
-            "defaultDashboard" => "Accounting"
-        ],
-        "fleetmanagementttl" => [
-            "title" => "Fleet Management RTL",
-            "interface" => "simple",
-            "interfaceType" => "rtl",
             "defaultDashboard" => "Accounting"
         ],
         //" , "
