@@ -721,6 +721,23 @@ class CustomerInformationList extends gridDataSource{
 				"defaultValue" => ""
 			]
 		],
+        "Property Management" => [
+            "LeaseRentalAgreement" => [
+                "dbType" => "varchar(255)",
+                "inputType" => "imageFile",
+                "defaultValue" => ""
+            ],
+            "RentalApplication" => [
+                "dbType" => "varchar(255)",
+                "inputType" => "imageFile",
+                "defaultValue" => ""
+            ],
+            "HOAInterview" => [
+                "dbType" => "varchar(255)",
+                "inputType" => "imageFile",
+                "defaultValue" => ""
+            ]
+        ],
         /*        "Ship To" =>[
             "CustomerID" => [
                 "dbType" => "varchar(50)",
@@ -929,7 +946,10 @@ class CustomerInformationList extends gridDataSource{
         "ShipForWebPage" => "ShipForWebPage",
         "ShipForAttention" => "ShipForAttention",
         "ShipForNotes" => "ShipForNotes",
-        "CommentLineID" => "Comment Line ID"
+        "CommentLineID" => "Comment Line ID",
+        "LeaseRentalAgreement" => "Lease / Rental Agreement",
+        "RentalApplication" => "RentalApplication",
+        "HOAInterview" => "HOA Interview"
 	];
 
     public $detailPages = [
