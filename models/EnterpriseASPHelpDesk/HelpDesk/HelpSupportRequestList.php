@@ -93,6 +93,13 @@ class gridData extends gridDataSource{
 
     public $editCategories = [
         "Main" => [
+            "UniqID" => [
+                "dbType" => "varchar(50)",
+                "disabledEdit" => true,
+                "disabledNew" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
+            ],            
             "CaseId" => [
                 "dbType" => "int(11)",
                 "inputType" => "text",
@@ -220,14 +227,7 @@ class gridData extends gridDataSource{
                 "inputType" => "dropdown",
                 "dataProvider" => "getEmployees",
                 "defaultValue" => ""
-            ],
-            "UniqID" => [
-                "dbType" => "varchar(50)",
-                "disabledEdit" => true,
-                "disabledNew" => true,
-                "inputType" => "text",
-                "defaultValue" => ""
-            ]            
+            ]
         ]
     ];
     
