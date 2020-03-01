@@ -60,28 +60,26 @@ class controller{
     }
 
     public function checkPermissions($model_path, $data, &$security, $type, $param1 = ""){
-        if(!key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ 
-            //redirect to prevent access unlogined users
-            $_SESSION["user"] = false;
-            http_response_code(401);
-            echo "wrong session";
-            exit;
-        }
-
-        ///////////////////////
-        //checking permissions
-        preg_match("/\/(\w+)$/", $this->action, $page);
-        $this->pathPage = $page = $page[1];
-
-        $_perm = new permissionsByFile();
-        if(property_exists($data, "publicAccess") && key_exists($type, $data->publicAccess)){
-            if($type == "procedure" && in_array($_GET["procedure"], $data->publicAccess["procedure"]));
-            else{
-                http_response_code(400);
-                echo 'not allowed';
+        if(property_exists($data, "publicAccess") &&
+           key_exists($type, $data->publicAccess) &&
+           $type == "procedure" &&
+           in_array($_GET["procedure"], $data->publicAccess["procedure"]));
+        else{
+            if(!key_exists("user", $_SESSION) || !$_SESSION["user"] || !key_exists("EmployeeUserName", $_SESSION["user"])){ 
+                //redirect to prevent access unlogined users
+                echo json_encode($_SESSION["user"]);
+                $_SESSION["user"] = false;
+                http_response_code(401);
+                echo "wrong session";
                 exit;
             }
-        }else{
+
+            ///////////////////////
+            //checking permissions
+            preg_match("/\/(\w+)$/", $this->action, $page);
+            $this->pathPage = $page = $page[1];
+
+            $_perm = new permissionsByFile();
             preg_match("/\/([^\/]+)(List|Detail)$/", $model_path, $filename);
             if(key_exists($filename[1], $_perm->permissions))
                 $security = new Security($_SESSION["user"]["accesspermissions"], $_perm->permissions[$filename[1]]);

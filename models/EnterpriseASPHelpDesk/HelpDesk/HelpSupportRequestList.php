@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 23/01/2020
+  Last Modified: 01/03/2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -40,7 +40,7 @@ class gridData extends gridDataSource{
     public $idField ="CaseID";
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "CaseID"];
     public $publicAccess = [
-            "procedure" => ["confirm", "test"]
+        "procedure" => ["confirm", "test", "mailtest"]
     ];
     public $gridFields = [
         "CaseId" => [
@@ -334,14 +334,14 @@ class gridData extends gridDataSource{
     public function mailtest(){
         $config = config();
         echo "ok";
-        session_write_close(); //close the session
-        fastcgi_finish_request(); //this returns 200 to the user, and processing continues
+        //        session_write_close(); //close the session
+        //fastcgi_finish_request(); //this returns 200 to the user, and processing continues
         $mailer = new mailer();
         $uid = uniqid();
         $mailer->send([
             "subject" => "test",
             "body" => "<html><body>To confirm your support request please click <a href=\"{$config["confirmationHost"]}/EnterpriseX/index.php?page=grid&action=CRMHelpDesk/HelpDesk/ViewSupportRequests&mode=view&category=Main&uniqid=$uid&procedure=confirm\">here</a></body></html>",
-            "email" => "ix@2du.ru"//$config["mailFrom"]
+            "email" => "ix@2du.ru"
         ]);
     }
     
