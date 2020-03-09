@@ -1,0 +1,13 @@
+When user click on process, code, starting from line:
+ $("#confirmButton").click(     function(){
+is executed.
+
+This code calls AccountsReceivable/OrderScreens/ViewOrders", "getNewItemAllRemote
+from EnterpriseX/models/EnterpriseASPAR/OrderProcessing/OrderHeaderList.php which inherit from gridDataSource.php which contains code getNewItemAllRemote.
+
+Then code calls insertItemRemote from same OrderHeaderList.php.
+Then code calls getNewItemAllRemote and insertItemsRemote from EnterpriseX/models/EnterpriseASPAR/OrderProcessing/OrderDetail.php
+
+Then code calls Recals from OrderHeaderList.php to recalc order.
+
+In many places of project we using virtual paths like AccountsReceivable/OrderScreens/ViewOrders, to map it to real models you need to check file - EnterpriseX/models/menuIdToHref.php
