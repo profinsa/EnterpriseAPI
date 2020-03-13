@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 01/03/2020
+  Last Modified: 12/03/2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,7 +36,7 @@ class gridData extends gridDataSource{
     public $tableName = "helpsupportrequest";
     public $dashboardTitle ="Help Support Requests";
     public $breadCrumbTitle ="Help Support Requests";
-    public $gridConditions = "EmailConfirmed = 1 AND IFNULL(SupportStatus, '') <> 'Resolved'";
+    //    public $gridConditions = "EmailConfirmed = 1 AND IFNULL(SupportStatus, '') <> 'Resolved'";
     public $idField ="CaseID";
     public $idFields = ["CompanyID", "DivisionID", "DepartmentID", "CaseID"];
     public $publicAccess = [
@@ -326,6 +326,13 @@ class gridData extends gridDataSource{
         return $this->getDetailGridFields($id, "Main");
     }
 
+    public function Resolve(){
+        if($_POST["SupportStatus"] != "Resolved")
+            DB::update("update helpsupportrequest set SupportStatus='Resolved'");
+        else
+            DB::update("update helpsupportrequest set SupportStatus='In Review'");            
+    }
+    
     public function confirm(){
         DB::update("update helpsupportrequest set EmailConfirmed=1 WHERE uniqid=?", [$_GET["uniqid"]]);
         echo "Your request is confirmed";

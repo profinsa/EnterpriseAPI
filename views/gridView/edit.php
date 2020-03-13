@@ -225,7 +225,8 @@
                                      "ViewGLTransactions" : "LedgerTransactionsDetail",
                                      "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
                                      "ReceivePurchases" : "ReceivePurchasesDetail",
-                                     "BankDeposits" : "LedgerTransactionsDetail"
+                                     "BankDeposits" : "LedgerTransactionsDetail",
+                                     "ViewAdjustments" : "InventoryAdjustmentsDetail"
                                  }, ind;
                                  var path = new String(window.location);
                                  path = path.replace(/#\/\?/, "?");
