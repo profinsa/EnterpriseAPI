@@ -22,11 +22,11 @@ $item = $data->getEditItem($ascope["item"], "Main");
              <img src="" class="item-header-image" />
              </div> -->
         <div class="col-md-6 col-lg-6" style="padding:10px;">
-            <div class="item-header-label">
-                <span class="glyphicon glyphicon-envelope"></span> <?php echo $item["CustomerId"]; ?>
+            <div class="item-header-label" style="padding-left:20px;">
+                From: <a href="mailto:<?php echo $item["CustomerId"]; ?>"><?php echo $item["CustomerId"]; ?></a>
             </div>
-            <div class="item-header-label">
-                <?php echo "12:30 02.03.2020"; ?>
+            <div class="item-header-label" style="padding-left:20px; padding-bottom:10px">
+                Request ID: <?php echo $item["UniqID"]; ?></a>
             </div>
         </div>
     </div>

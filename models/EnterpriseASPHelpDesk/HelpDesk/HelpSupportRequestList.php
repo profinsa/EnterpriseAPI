@@ -93,13 +93,6 @@ class gridData extends gridDataSource{
 
     public $editCategories = [
         "Main" => [
-            "UniqID" => [
-                "dbType" => "varchar(50)",
-                "disabledEdit" => true,
-                "disabledNew" => true,
-                "inputType" => "text",
-                "defaultValue" => ""
-            ],            
             "CaseId" => [
                 "dbType" => "int(11)",
                 "inputType" => "text",
@@ -227,6 +220,13 @@ class gridData extends gridDataSource{
                 "inputType" => "dropdown",
                 "dataProvider" => "getEmployees",
                 "defaultValue" => ""
+            ],
+            "UniqID" => [
+                "dbType" => "varchar(50)",
+                "disabledEdit" => true,
+                "disabledNew" => true,
+                "inputType" => "text",
+                "defaultValue" => ""
             ]
         ]
     ];
@@ -327,8 +327,9 @@ class gridData extends gridDataSource{
     }
 
     public function Resolve(){
+        $ts = date("Y-m-d H:i:s");
         if($_POST["SupportStatus"] != "Resolved")
-            DB::update("update helpsupportrequest set SupportStatus='Resolved'");
+            DB::update("update helpsupportrequest set SupportStatus='Resolved', SupportResolutionDate='$ts'");
         else
             DB::update("update helpsupportrequest set SupportStatus='In Review'");            
     }
