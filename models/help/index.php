@@ -48,6 +48,9 @@ class helpData{
         else
             $result = $result[0];
 
+        $result->ModuleDescription = DB::Select("select * from helpdocumentmodule WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ModuleID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $result->DocumentModule])[0];
+        $result->TopicDescription = DB::Select("select * from helpdocumenttopic WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND TopicID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $result->DocumentTopic])[0];
+
         return $result;
     }
 

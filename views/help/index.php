@@ -8,10 +8,14 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Welcome - Integral Accounting Enterprise (All Versions)</title>
+        <title>STFB Help Desk - <?php echo $currentDocument->ModuleDescription->ModuleDescription; ?> - <?php echo $currentDocument->TopicDescription->TopicDescription; ?> - <?php echo $currentDocument->DocumentTitle; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Language" content="en">
-        <meta name="description" content="Help documentation, installation instructions, technical reference guide and user manual for all Integral Accounting Enterprise Versions." />
+        <meta name="keywords" content="stfb, erp, erp source code, accounting source code, php, MySQL, <?php echo $currentDocument->ModuleDescription->ModuleDescription; ?>, <?php echo $currentDocument->TopicDescription->TopicDescription; ?>, <?php echo $currentDocument->DocumentTitle; ?>" />
+        <meta name="description" content="STFB Help Desk - <?php echo $currentDocument->ModuleDescription->ModuleDescription; ?> - <?php echo $currentDocument->TopicDescription->TopicDescription; ?> - <?php echo $currentDocument->DocumentTitle; ?>"/>
+        <META name="Copyright" content="Copyright 2020 STFB Inc. http://www.stfb.com">
+        <META name="Publisher" content="STFB Inc. https://stfb.com">
+        <META name="Author" content="Emanuel D. Errico III & STFB Inc https://stfb.com/">
         <link rel="stylesheet" href="assets/css/help/photoswipe.css"> 
         <link rel="stylesheet" href="assets/css/help/default-skin.css"> 
         <link rel="stylesheet" href="assets/css/help/styles.css" media="screen, handheld">
@@ -504,20 +508,20 @@
                          _html += "<option value=\"" + items[ind].ItemID + "\">" + items[ind].ItemName + "</option>";
                  $("#ProductId").html(_html);
              });
-                 //disabled Customer Creation feature, now it created during Request sending
-                 /*             var email = $("#EmailCustomer").on("change", function(){
-                    serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
-                    serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "checkIfExists", { CustomerID : email.val()}, function(data, error){
-                    data = JSON.parse(data);
-                    if(!data.founded){
-                    $('#create-customer-form').modal('show');
-                    $('#CustomerEmail').val($('#EmailCustomer').val());
-                    }
-                    serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
-                    });
-                    });
-                    });
-                    });*/
+             //disabled Customer Creation feature, now it created during Request sending
+             /*             var email = $("#EmailCustomer").on("change", function(){
+                serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "saveCurrentSession", {}, function(data, error){
+                serverProcedureAnyCallWithParams("AccountsReceivable/Customers/ViewCustomers", makeHelpCredentialsString("help"), "checkIfExists", { CustomerID : email.val()}, function(data, error){
+                data = JSON.parse(data);
+                if(!data.founded){
+                $('#create-customer-form').modal('show');
+                $('#CustomerEmail').val($('#EmailCustomer').val());
+                }
+                serverProcedureAnyCall("Payroll/EmployeeManagement/ViewEmployees", "restorePreviousSession", {}, function(data, error){
+                });
+                });
+                });
+                });*/
 
          });
 
@@ -525,8 +529,8 @@
              if(type == "help")
                  //production
                  return "&config=STFBEnterprise&CompanyID=STFB&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=DemoDemo";
-             //test
-             //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
+                 //test
+                 //return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";
              if(type == "common")
                  return "&config=common&CompanyID=DINOS&DivisionID=DEFAULT&DepartmentID=DEFAULT&EmployeeID=Demo&EmployeePassword=Demo";                     
          }
