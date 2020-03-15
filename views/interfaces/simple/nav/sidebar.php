@@ -1,4 +1,62 @@
 <?php
+    $customerMenu =  [
+        "type" => "submenu",
+        "id" => "AccountsReceivable/Customers",
+        "full" => $translation->translateLabel('Customers'),
+        "link" => "index.php#/?page=dashboard&screen=Customer",	
+        "short" => "Cu",
+        "data" => [
+            [
+		"id" => "AccountsReceivable/Customers/ViewCustomerFinancials",
+		"full" => $translation->translateLabel('View Customer Financials'),
+		"href"=> "EnterpriseASPAR/Customers/CustomerFinancialsList",
+		"short" => "Vi"
+            ],
+            [
+		"id" => "AccountsReceivable/Customers/ViewCustomers",
+		"full" => $translation->translateLabel('View Customers'),
+		"href"=> "EnterpriseASPAR/Customers/CustomerInformationList",
+		"short" => "Vi"
+            ],
+            [
+		"id" => "AccountsReceivable/Customers/ViewShipToLocations",
+		"full" => $translation->translateLabel('View Ship To Locations'),
+		"href"=> "EnterpriseASPAR/Customers/CustomerShipToLocationsList",
+		"short" => "Vi"
+            ],
+            [
+		"id" => "AccountsReceivable/Customers/ViewShipForLocations",
+		"full" => $translation->translateLabel('View Ship For Locations'),
+		"href"=> "EnterpriseASPAR/Customers/CustomerShipForLocationsList",
+		"short" => "Vi"
+            ],
+            [
+		"id" => "AccountsReceivable/Customers/ViewCreditReferences",
+		"full" => $translation->translateLabel('View Credit References'),
+		"href"=> "EnterpriseASPAR/Customers/CustomerCreditReferencesList",
+		"short" => "Vi"
+            ],
+            [
+		"id" => "AccountsReceivable/Customers/ViewAccountStatus",
+		"full" => $translation->translateLabel('View Account Status'),
+		"href"=> "EnterpriseASPAR/Customers/CustomerAccountStatusesList",
+		"short" => "Vi"
+            ],
+            [
+		"id" => "AccountsReceivable/Customers/ViewItemXref",
+		"full" => $translation->translateLabel('View Item Xref'),
+		"href"=> "EnterpriseASPAR/Customers/CustomerItemCrossReferenceList",
+		"short" => "Vi"
+            ],
+            [
+		"id" => "AccountsReceivable/Customers/ViewPriceXref",
+		"full" => $translation->translateLabel('View Price Xref'),
+		"href"=> "EnterpriseASPAR/Customers/CustomerPriceCrossReferenceList",
+		"short" => "Vi"
+            ]
+        ]
+    ];
+
     $iconbarCategories = [];
     if($user["interface"] == "farmingandranching" || $user["interface"] == "farmingandranchingrtl"){
         $iconbarCategories["FarmingAndRanching"] = [
@@ -60,243 +118,243 @@
             "topbar" => $leftMenu["Main"]["data"][8]["data"]
         ];
     }
-        if($security->checkMenu("AccountsReceivable")){
-            $iconbarCategories["Customer"] = [
-                "full" => strtoupper($translation->translateLabel('Customer')),
-                "link" => "index.php#/?page=dashboard&screen=Customer",
-                //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
-                "iconclass" => "user",
-                "data" => [
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/Customers/ViewCustomers"),
-                        "full" => $translation->translateLabel('New Customer')
-                    ],
-                    [
-                        "id" => "AccountsReceivable/Customers/ViewCustomers",
-                        "full" => $translation->translateLabel('View Customers')
-                    ],
-                    [
-                        "id" => "AccountsReceivable/Customers/ViewCustomerFinancials",
-                        "full" => $translation->translateLabel('View Customer Balances')
-                    ],
-                ],
-                "topbar" => $leftMenu["Main"]["data"][3]["data"][0]["data"]
-            ];
-        }
-
-        if($security->checkMenu("AccountsPayable")){
-            $iconbarCategories["Vendor"] = [
-                "full" => strtoupper($translation->translateLabel('Vendor')),
-                "link" => "index.php#/?page=dashboard&screen=Vendor",
-                //     "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
-                "iconclass" => "user",
-                "data" => [
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/Vendors/ViewVendors"),
-                        "full" => $translation->translateLabel('New Vendor')
-                    ],
-                    [
-                        "id" => "AccountsPayable/Vendors/ViewVendors",
-                        "full" => $translation->translateLabel('View Vendors')
-                    ],
-                    [
-                        "id" => "AccountsPayable/Vendors/ViewVendorFinancials",
-                        "full" => $translation->translateLabel('View Vendor Balances')
-                    ],
-                ],
-                "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
-            ];
-        }
-
-        if($security->checkMenu("Inventory")){
-            $iconbarCategories["Items"] = [
-                "full" => strtoupper($translation->translateLabel('Item')),
-                "link" => "index.php#/?page=dashboard&screen=Item",
-                "iconclass" => "list",
-                "data" => [
-                    [
-                        "id" => "Inventory/ItemsStock/ViewInventoryOnHand",
-                        "full" => $translation->translateLabel('List Invetory') //FIXME
-                    ],
-                    [
-                        "id" => "Inventory/ItemsStock/ViewInventoryItems",
-                        "full" => $translation->translateLabel('View Items')
-                    ],
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("Inventory/ItemsStock/ViewInventoryItems"),
-                        "full" => $translation->translateLabel('New Item')
-                    ],
-                ],
-                "topbar" => $leftMenu["Main"]["data"][5]["data"][0]["data"]
-            ];
-        }
-
-        if($security->checkMenu("AccountsReceivable")){
-            $iconbarCategories["Sales"] = [
-                "full" => strtoupper($translation->translateLabel('Sales')),
-                "link" => "index.php#/?page=dashboard&screen=SalesAndShipping",
-                "iconclass" => "list-alt",
-                "data" => [
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/OrderProcessing/ViewInvoicesSimple"),
-                        "full" => $translation->translateLabel('New Quick Invoice')
-                    ],
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/OrderProcessing/ViewInvoices"),
-                        "full" => $translation->translateLabel('New Full Invoice')
-                    ],
-                    [
-                        "id" => "AccountsReceivable/OrderProcessing/ViewInvoices",
-                        "full" => $translation->translateLabel('View Invoices')
-                    ]
-                ],
-                "topbar" => $leftMenu["Main"]["data"][3]["data"]
-            ];
-        }
-        
-        if($security->checkMenu("AccountsPayable")){
-            $iconbarCategories["Purchase"] = [
-                "full" => strtoupper($translation->translateLabel('Purchase')),
-                "link" => "index.php#/?page=dashboard&screen=PurchaseAndReceiving",
-                "iconclass" => "calendar",
-                "data" => [
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/PurchaseProcessing/ViewPurchasesSimple"),
-                        "full" => $translation->translateLabel('New Quick Purchase')
-                    ],
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/PurchaseProcessing/ViewPurchases"),
-                        "full" => $translation->translateLabel('New Full Purchase')
-                    ],
-                    [
-                        "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
-                        "full" => $translation->translateLabel('View Purchases')
-                    ],
-                    [
-                        "id" => "AccountsPayable/PurchaseProcessing/ReceivePurchases",
-                        "full" => $translation->translateLabel('Receive Purchase')
-                    ]
-                ],
-                "topbar" => $leftMenu["Main"]["data"][4]["data"]
-            ];
-        }
-        
-        if($security->checkMenu("AccountsReceivable") &&
-           $security->checkMenu("AccountsPayable") &&
-           $security->checkMenu("GeneralLedger")){
-            $iconbarCategories["Accounting"] = [
-                "full" => strtoupper($translation->translateLabel('Accounting')),
-                "link" => "index.php#/?page=dashboard",
-                "iconclass" => "calendar",
-                "data" => [
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("GeneralLedger/Ledger/ViewGLTransactions"),
-                        "full" => $translation->translateLabel('New GL Transaction')
-                    ],
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("Payroll/EmployeeManagement/ViewEmployees"),
-                        "full" => $translation->translateLabel('New Employee')
-                    ],
-                    /*   [
-                       "id" => "ccountsPayable/Checks/QuickCheck",
-                       "full" => $translation->translateLabel('Quick Check')
-                       ],*/
-                    [
-                        "id" => "AccountsReceivable/CashReceiptsProcessing/ViewCashReceipts",
-                        "full" => $translation->translateLabel('Receive Payment') //FIXME
-                    ],
-                    [
-                        "id" => "AccountsPayable/VoucherScreens/ViewVouchers",
-                        "full" => $translation->translateLabel('Make Payment') //FIXME
-                    ],
-                ],
-                "topbar" => $leftMenu["Main"]["data"]
-            ];
-        }
-        
-        if($security->checkMenu("Reports")){
-            $iconbarCategories["Reports"] = [
-                "full" => strtoupper($translation->translateLabel('Reports')),
-                "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
-                "iconclass" => "stats",
-                "data" => [
-                    [
-                        "type" => "absoluteLink",
-                        "href" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
-                        "full" => $translation->translateLabel('Reports Engine')
-                    ],
-                    [
-                        "type" => "relativeLink",
-                        "href" => "page=financials&type=gaap&module=main",
-                        "full" => $translation->translateLabel('Financial Statements GAAP')
-                    ],
-                    [
-                        "type" => "relativeLink",
-                        "href" => "page=financials&type=ifrs&module=main",
-                        "full" => $translation->translateLabel('Financial Statements IFRS')
-                    ],
-                ],
-                "topbar" => $leftMenu["Main"]["data"][14]["data"]
-            ];
-        }
-
-        $iconbarCategories["Favorits"] = [
-            "full" => strtoupper($translation->translateLabel('Favorites')),
-            "favorits" => true,
-            "iconclass" => "heart"
-        ];
-
-        $iconbarCategories["Help"] = [
-            "full" => strtoupper($translation->translateLabel('Help')),
-            "link" => "https://www.stfb.net/EnterpriseX/Help/index.php",
-            "target" => "_blank",
-            "iconclass" => "question-sign",
+    if($security->checkMenu("AccountsReceivable")){
+        $iconbarCategories["Customer"] = [
+            "full" => strtoupper($translation->translateLabel('Customer')),
+            "link" => "index.php#/?page=dashboard&screen=Customer",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "user",
             "data" => [
                 [
                     "type" => "absoluteLink",
-                    "target" => "_blank",
-                    "href" => "https://www.stfb.net/EnterpriseX/Help/index.php#contact-form",
-                    "full" => $translation->translateLabel('New Ticket')
+                    "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/Customers/ViewCustomers"),
+                    "full" => $translation->translateLabel('New Customer')
+                ],
+                [
+                    "id" => "AccountsReceivable/Customers/ViewCustomers",
+                    "full" => $translation->translateLabel('View Customers')
+                ],
+                [
+                    "id" => "AccountsReceivable/Customers/ViewCustomerFinancials",
+                    "full" => $translation->translateLabel('View Customer Balances')
+                ],
+            ],
+            "topbar" => $customerMenu["data"]
+        ];
+    }
+
+    if($security->checkMenu("AccountsPayable")){
+        $iconbarCategories["Vendor"] = [
+            "full" => strtoupper($translation->translateLabel('Vendor')),
+            "link" => "index.php#/?page=dashboard&screen=Vendor",
+            //     "link" => $linksMaker->makeGridLink("AccountsPayable/Vendors/ViewVendors"),
+            "iconclass" => "user",
+            "data" => [
+                [
+                    "type" => "absoluteLink",
+                    "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/Vendors/ViewVendors"),
+                    "full" => $translation->translateLabel('New Vendor')
+                ],
+                [
+                    "id" => "AccountsPayable/Vendors/ViewVendors",
+                    "full" => $translation->translateLabel('View Vendors')
+                ],
+                [
+                    "id" => "AccountsPayable/Vendors/ViewVendorFinancials",
+                    "full" => $translation->translateLabel('View Vendor Balances')
+                ],
+            ],
+            "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
+        ];
+    }
+
+    if($security->checkMenu("Inventory")){
+        $iconbarCategories["Items"] = [
+            "full" => strtoupper($translation->translateLabel('Item')),
+            "link" => "index.php#/?page=dashboard&screen=Item",
+            "iconclass" => "list",
+            "data" => [
+                [
+                    "id" => "Inventory/ItemsStock/ViewInventoryOnHand",
+                    "full" => $translation->translateLabel('List Invetory') //FIXME
+                ],
+                [
+                    "id" => "Inventory/ItemsStock/ViewInventoryItems",
+                    "full" => $translation->translateLabel('View Items')
                 ],
                 [
                     "type" => "absoluteLink",
-                    "target" => "_blank",
-                    "href" => "https://www.stfb.net/EnterpriseX/Help/index.php",
-                    "full" => $translation->translateLabel('Help System')
+                    "href" => $linksMaker->makeGridItemNewPartial("Inventory/ItemsStock/ViewInventoryItems"),
+                    "full" => $translation->translateLabel('New Item')
                 ],
-            ]
+            ],
+            "topbar" => $leftMenu["Main"]["data"][5]["data"][0]["data"]
         ];
+    }
 
-        if($security->checkMenu("MetaAdmin") && key_exists("software", $ascope["config"]) && $ascope["config"]["software"] == "Admin"){
-            array_unshift($iconbarCategories, [
-                "full" => strtoupper($translation->translateLabel('Admin')),
-                "link" => "index.php#/?page=dashboard&screen=Admin",
-                //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
-                "iconclass" => "wrench",
-                "data" => [
-                    [
-                        "id" => "SystemSetup/Admin/AppInstallations",
-                        "full" => $translation->translateLabel('Manage Applications')
-                    ],
-                    [
-                        "type" => "absoluteLink",
-                        "href" => "/EnterpriseX/HostingCart/index.php?loadusername=dland&loadpassword=dland&CompanyID={$ascope["user"]["CompanyID"]}&DivisionID={$ascope["user"]["DivisionID"]}&DepartmentID={$ascope["user"]["DepartmentID"]}",
-                        "target" => "_blank",
-                        "full" => $translation->translateLabel('Open Hosting Cart')
-                    ]
+    if($security->checkMenu("AccountsReceivable")){
+        $iconbarCategories["Sales"] = [
+            "full" => strtoupper($translation->translateLabel('Sales')),
+            "link" => "index.php#/?page=dashboard&screen=SalesAndShipping",
+            "iconclass" => "list-alt",
+            "data" => [
+                [
+                    "type" => "absoluteLink",
+                    "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/OrderProcessing/ViewInvoicesSimple"),
+                    "full" => $translation->translateLabel('New Quick Invoice')
                 ],
-                "topbar" => $leftMenu["Main"]["data"][7]["data"]
-            ]);
-        }
+                [
+                    "type" => "absoluteLink",
+                    "href" => $linksMaker->makeGridItemNewPartial("AccountsReceivable/OrderProcessing/ViewInvoices"),
+                    "full" => $translation->translateLabel('New Full Invoice')
+                ],
+                [
+                    "id" => "AccountsReceivable/OrderProcessing/ViewInvoices",
+                    "full" => $translation->translateLabel('View Invoices')
+                ]
+            ],
+            "topbar" => $leftMenu["Main"]["data"][3]["data"]
+        ];
+    }
+    
+    if($security->checkMenu("AccountsPayable")){
+        $iconbarCategories["Purchase"] = [
+            "full" => strtoupper($translation->translateLabel('Purchase')),
+            "link" => "index.php#/?page=dashboard&screen=PurchaseAndReceiving",
+            "iconclass" => "calendar",
+            "data" => [
+                [
+                    "type" => "absoluteLink",
+                    "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/PurchaseProcessing/ViewPurchasesSimple"),
+                    "full" => $translation->translateLabel('New Quick Purchase')
+                ],
+                [
+                    "type" => "absoluteLink",
+                    "href" => $linksMaker->makeGridItemNewPartial("AccountsPayable/PurchaseProcessing/ViewPurchases"),
+                    "full" => $translation->translateLabel('New Full Purchase')
+                ],
+                [
+                    "id" => "AccountsPayable/PurchaseProcessing/ViewPurchases",
+                    "full" => $translation->translateLabel('View Purchases')
+                ],
+                [
+                    "id" => "AccountsPayable/PurchaseProcessing/ReceivePurchases",
+                    "full" => $translation->translateLabel('Receive Purchase')
+                ]
+            ],
+            "topbar" => $leftMenu["Main"]["data"][4]["data"]
+        ];
+    }
+    
+    if($security->checkMenu("AccountsReceivable") &&
+       $security->checkMenu("AccountsPayable") &&
+       $security->checkMenu("GeneralLedger")){
+        $iconbarCategories["Accounting"] = [
+            "full" => strtoupper($translation->translateLabel('Accounting')),
+            "link" => "index.php#/?page=dashboard",
+            "iconclass" => "calendar",
+            "data" => [
+                [
+                    "type" => "absoluteLink",
+                    "href" => $linksMaker->makeGridItemNewPartial("GeneralLedger/Ledger/ViewGLTransactions"),
+                    "full" => $translation->translateLabel('New GL Transaction')
+                ],
+                [
+                    "type" => "absoluteLink",
+                    "href" => $linksMaker->makeGridItemNewPartial("Payroll/EmployeeManagement/ViewEmployees"),
+                    "full" => $translation->translateLabel('New Employee')
+                ],
+                /*   [
+                   "id" => "ccountsPayable/Checks/QuickCheck",
+                   "full" => $translation->translateLabel('Quick Check')
+                   ],*/
+                [
+                    "id" => "AccountsReceivable/CashReceiptsProcessing/ViewCashReceipts",
+                    "full" => $translation->translateLabel('Receive Payment') //FIXME
+                ],
+                [
+                    "id" => "AccountsPayable/VoucherScreens/ViewVouchers",
+                    "full" => $translation->translateLabel('Make Payment') //FIXME
+                ],
+            ],
+            "topbar" => $leftMenu["Main"]["data"]
+        ];
+    }
+    
+    if($security->checkMenu("Reports")){
+        $iconbarCategories["Reports"] = [
+            "full" => strtoupper($translation->translateLabel('Reports')),
+            "link" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
+            "iconclass" => "stats",
+            "data" => [
+                [
+                    "type" => "absoluteLink",
+                    "href" => $linksMaker->makeGridItemNewPartial("Reports/Autoreport/GenericReportDetail") . "&category=Main&item=" . $user["CompanyID"] . '__' . $user["DivisionID"] . '__' . $user["DepartmentID"],
+                    "full" => $translation->translateLabel('Reports Engine')
+                ],
+                [
+                    "type" => "relativeLink",
+                    "href" => "page=financials&type=gaap&module=main",
+                    "full" => $translation->translateLabel('Financial Statements GAAP')
+                ],
+                [
+                    "type" => "relativeLink",
+                    "href" => "page=financials&type=ifrs&module=main",
+                    "full" => $translation->translateLabel('Financial Statements IFRS')
+                ],
+            ],
+            "topbar" => $leftMenu["Main"]["data"][14]["data"]
+        ];
+    }
+
+    $iconbarCategories["Favorits"] = [
+        "full" => strtoupper($translation->translateLabel('Favorites')),
+        "favorits" => true,
+        "iconclass" => "heart"
+    ];
+
+    $iconbarCategories["Help"] = [
+        "full" => strtoupper($translation->translateLabel('Help')),
+        "link" => "https://www.stfb.net/EnterpriseX/Help/index.php",
+        "target" => "_blank",
+        "iconclass" => "question-sign",
+        "data" => [
+            [
+                "type" => "absoluteLink",
+                "target" => "_blank",
+                "href" => "https://www.stfb.net/EnterpriseX/Help/index.php#contact-form",
+                "full" => $translation->translateLabel('New Ticket')
+            ],
+            [
+                "type" => "absoluteLink",
+                "target" => "_blank",
+                "href" => "https://www.stfb.net/EnterpriseX/Help/index.php",
+                "full" => $translation->translateLabel('Help System')
+            ],
+        ]
+    ];
+
+    if($security->checkMenu("MetaAdmin") && key_exists("software", $ascope["config"]) && $ascope["config"]["software"] == "Admin"){
+        array_unshift($iconbarCategories, [
+            "full" => strtoupper($translation->translateLabel('Admin')),
+            "link" => "index.php#/?page=dashboard&screen=Admin",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "wrench",
+            "data" => [
+                [
+                    "id" => "SystemSetup/Admin/AppInstallations",
+                    "full" => $translation->translateLabel('Manage Applications')
+                ],
+                [
+                    "type" => "absoluteLink",
+                    "href" => "/EnterpriseX/HostingCart/index.php?loadusername=dland&loadpassword=dland&CompanyID={$ascope["user"]["CompanyID"]}&DivisionID={$ascope["user"]["DivisionID"]}&DepartmentID={$ascope["user"]["DepartmentID"]}",
+                    "target" => "_blank",
+                    "full" => $translation->translateLabel('Open Hosting Cart')
+                ]
+            ],
+            "topbar" => $leftMenu["Main"]["data"][7]["data"]
+        ]);
+    }
 ?>
 
 <div class="bs-glyphicons">
