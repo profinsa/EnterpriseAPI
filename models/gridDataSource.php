@@ -1450,7 +1450,7 @@ EOF;
 
     public function lockedBy($id){
         $user = Session::get("user");
-        if($this->tableName == "lock")
+        if($this->tableName == "lock" || property_exists($this, "withoutSql"))
             return false;
         
         $keyValues = explode("__", $id);

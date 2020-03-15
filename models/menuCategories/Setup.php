@@ -192,8 +192,14 @@ $categories["Setup"] = [
             ],
             [
                 "id" => "SystemSetup/SecuritySetup/SystemErrorLog",
-                "full" => $translation->translateLabel('System Error Log'),
+                "full" => $translation->translateLabel('SQL Error Log'),
                 "href"=> "EnterpriseASPSystem/CompanySetup/ErrorLogList",
+                "short" => "Sy"
+            ],
+            [
+                "id" => "SystemSetup/SecuritySetup/ApplicationErrorLog",
+                "full" => $translation->translateLabel('Application Error Log'),
+                "href"=> "EnterpriseASPSystem/CompanySetup/ApplicationErrorLogList",
                 "short" => "Sy"
             ],
             [

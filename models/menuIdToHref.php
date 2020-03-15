@@ -380,6 +380,7 @@
     "SystemSetup/SecuritySetup/SecuritySetup" => "EnterpriseASPSystem/CompanySetup/AccessPermissionsList",
     "SystemSetup/SecuritySetup/UnlockRecords" => "EnterpriseASPSystem/CompanySetup/UnlockList",
     "SystemSetup/SecuritySetup/SystemErrorLog" => "EnterpriseASPSystem/CompanySetup/ErrorLogList",
+    "SystemSetup/SecuritySetup/ApplicationErrorLog" => "EnterpriseASPSystem/CompanySetup/ApplicationErrorLogList",
     "SystemSetup/SecuritySetup/AuditDescription" => "EnterpriseASPSystem/CompanySetup/AuditTablesDescriptionList",
     "SystemSetup/SecuritySetup/AuditTrail" => "EnterpriseASPSystem/CompanySetup/AuditTrailList",
     "SystemSetup/SecuritySetup/AuditTrailHistory" => "EnterpriseASPSystem/CompanySetup/AuditTrailHistoryList",

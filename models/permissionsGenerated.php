@@ -559,6 +559,12 @@ public $permissions = [
         "insert" => "any",
         "delete" => "any",
     ],
+    "ApplicationErrorLog" => [
+        "select" => "any",
+        "update" => "any",
+        "insert" => "any",
+        "delete" => "any",
+    ],
     "ExpenseReportHeader" => [
         "select" => "any",
         "update" => "any",
