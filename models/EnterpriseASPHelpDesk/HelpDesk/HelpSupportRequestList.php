@@ -327,11 +327,14 @@ class gridData extends gridDataSource{
     }
 
     public function Resolve(){
-        $ts = date("Y-m-d H:i:s");
-        if($_POST["SupportStatus"] != "Resolved")
-            DB::update("update helpsupportrequest set SupportStatus='Resolved', SupportResolutionDate='$ts'");
+        $values = [];
+        if($_POST["SupportStatus"] != "Resolved"){
+            $values["SupportStatus"] = 'Resolved';
+            $values["SupportResolutionDate"] = date("Y-m-d H:i:s");
+        }
         else
-            DB::update("update helpsupportrequest set SupportStatus='In Review'");            
+            $values["SupportStatus"] = 'In Review';
+        $this->updateItem($_POST["id"], "Main", $values);
     }
     
     public function confirm(){
