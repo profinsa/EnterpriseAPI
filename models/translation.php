@@ -65,9 +65,9 @@ class translation{
     public function translateLabel($label){
         $user = Session::get("user");
         $interfaces = new interfaces();
-        $interface = $interfaces->description[$user["interface"]];
+        $interface = key_exists("interface", $user) ? $interfaces->description[$user["interface"]] : NULL;
         //        echo json_encode($interfaces->description, JSON_PRETTY_PRINT);
-        if(key_exists("translationsRewrite", $interface)){
+        if($interface != NULL && key_exists("translationsRewrite", $interface)){
             foreach($interface["translationsRewrite"] as $key=>$value){
                 $label = preg_replace($key, $value, $label);
                 // && key_exists($label, $interface["translationsRewrite"]))
