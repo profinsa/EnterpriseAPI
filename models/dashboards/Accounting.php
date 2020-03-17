@@ -633,8 +633,8 @@ EOF;
         foreach($orders as $record)
             $totalAmount += $record->Total;
         $ret = [
-            "shiptoday" => count(DB::select("select OrderNumber from orderheader WHERE OrderShipDate >= NOW() - INTERVAL 1 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
-            "shipthismonth" => count(DB::select("select OrderNumber from orderheader WHERE OrderShipDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "shiptoday" => count(DB::select("select OrderNumber from orderheader WHERE ShipDate >= NOW() - INTERVAL 1 DAY AND ShipDate <= NOW() AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+            "shipthismonth" => count(DB::select("select OrderNumber from orderheader WHERE ShipDate >= LAST_DAY(NOW()) - INTERVAL 1 MONTH AND ShipDate < LAST_DAY(NOW()) + INTERVAL 1 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
             "totalorders" => count(DB::select("select OrderNumber from orderheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
             "totalordersamount" => $totalAmount
         ];

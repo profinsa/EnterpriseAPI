@@ -1,5 +1,4 @@
 <?php
-    $customersNumbers = $data->customerGetCustomersNumbers();
     $salesNumbers = $data->salesGetNumbers();
     //
 ?>

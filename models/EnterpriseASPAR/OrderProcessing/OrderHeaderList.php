@@ -1377,11 +1377,11 @@ class OrderHeaderList extends gridDataSource{
             $result = parent::getPage($id);
             return $result;
         }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "shiptoday"){
-            $this->gridConditions = "OrderShipDate >= now() - INTERVAL 1 DAY";
+            $this->gridConditions = "ShipDate >= now() - INTERVAL 1 DAY AND ShipDate <= NOW()";
             $result = parent::getPage($id);
             return $result;
         }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "shipthismonth"){
-            $this->gridConditions = "OrderShipDate >= now() - INTERVAL 30 DAY";
+            $this->gridConditions = "ShipDate > LAST_DAY(NOW()) - INTERVAL 1 MONTH AND ShipDate < LAST_DAY(NOW()) + INTERVAL 1 DAY";
             $result = parent::getPage($id);
             return $result;
         }else if(key_exists("filter", $_GET) && ($filter = $_GET["filter"]) == "total"){
