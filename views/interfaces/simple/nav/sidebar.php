@@ -141,6 +141,14 @@
             ],
             "topbar" => $customerMenu["data"]
         ];
+    }else{
+        $iconbarCategories["Customer"] = [
+            "full" => strtoupper($translation->translateLabel('Customer')),
+            "link" => "javascript:accessDeniedMessage();",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "user",
+            //"topbar" => $customerMenu["data"]
+        ];
     }
 
     if($security->checkMenu("AccountsPayable")){
@@ -166,6 +174,14 @@
             ],
             "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
         ];
+    }else{
+        $iconbarCategories["Vendor"] = [
+            "full" => strtoupper($translation->translateLabel('Vendor')),
+            "link" => "javascript:accessDeniedMessage();",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "user",
+            //"topbar" => $customerMenu["data"]
+        ];
     }
 
     if($security->checkMenu("Inventory")){
@@ -189,6 +205,14 @@
                 ],
             ],
             "topbar" => $leftMenu["Main"]["data"][5]["data"][0]["data"]
+        ];
+    }else{
+        $iconbarCategories["Items"] = [
+            "full" => strtoupper($translation->translateLabel('Item')),
+            "link" => "javascript:accessDeniedMessage();",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "list",
+            //"topbar" => $customerMenu["data"]
         ];
     }
 
@@ -214,6 +238,14 @@
                 ]
             ],
             "topbar" => $leftMenu["Main"]["data"][3]["data"]
+        ];
+    }else{
+        $iconbarCategories["Sales"] = [
+            "full" => strtoupper($translation->translateLabel('Sales')),
+            "link" => "javascript:accessDeniedMessage();",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "list-alt",
+            //"topbar" => $customerMenu["data"]
         ];
     }
     
@@ -243,6 +275,14 @@
                 ]
             ],
             "topbar" => $leftMenu["Main"]["data"][4]["data"]
+        ];
+    }else{
+        $iconbarCategories["Purchase"] = [
+            "full" => strtoupper($translation->translateLabel('Purchase')),
+            "link" => "javascript:accessDeniedMessage();",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "calendar",
+            //"topbar" => $customerMenu["data"]
         ];
     }
     
@@ -279,6 +319,14 @@
             ],
             "topbar" => $leftMenu["Main"]["data"]
         ];
+    }else{
+        $iconbarCategories["Accounting"] = [
+            "full" => strtoupper($translation->translateLabel('Accounting')),
+            "link" => "javascript:accessDeniedMessage();",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "calendar",
+            //"topbar" => $customerMenu["data"]
+        ];
     }
     
     if($security->checkMenu("Reports")){
@@ -304,6 +352,14 @@
                 ],
             ],
             "topbar" => $leftMenu["Main"]["data"][14]["data"]
+        ];
+    }else{
+        $iconbarCategories["Reports"] = [
+            "full" => strtoupper($translation->translateLabel('Reports')),
+            "link" => "javascript:accessDeniedMessage();",
+            //            "link" => $linksMaker->makeGridLink("AccountsReceivable/Customers/ViewCustomers"),
+            "iconclass" => "stats",
+            //"topbar" => $customerMenu["data"]
         ];
     }
 

@@ -14,6 +14,7 @@ function config(){
         "loginLogo" => "assets/images/stfb-logo.gif",
         "mediumLogo" => "assets/images/stfb-logo.gif",
         "smallLogo" => "assets/images/stfblogosm.jpg",
+        "hideDeniedFeatures" => false,
         "timeoutMinutes" => 10,//time to wait before automatic session expired
         "warningMinutes" => 2,//time to wait for warning message, after that session is expired
         "timeoutWarning" => "Your session will end in 2 minutes!",//text of expiration message

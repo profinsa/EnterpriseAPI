@@ -12,6 +12,7 @@ function config(){
         "loginLogo" => "assets/images/stfb-logo.gif",
         "mediumLogo" => "assets/images/stfb-logo.gif",
         "smallLogo" => "assets/images/stfblogosm.jpg",
+        "hideDeniedFeatures" => false,
         "timeoutMinutes" => 10,
         "warningMinutes" => 2,
         "timeoutWarning" => "Your session will end in 2 minutes!",

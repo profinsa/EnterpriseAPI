@@ -74,6 +74,9 @@
                                 }
                             }
                             echo "</ul></li>";
+                        }else if(!$ascope["config"]["hideDeniedFeatures"]){
+                            echo "<li id=\"list" . $item["id"] . "\"><a href=\"javascript:$link;\" class=\"waves-effect\" onclick=\"accessDeniedMessage();\"><i class=\"icon-" . (key_exists("icon", $item) ? $item["icon"] : "people"). " fa-fw\"></i> <span class=\"hide-menu\">" . $item["full"] . "<span class=\"fa arrow\"></span></span></a></li>";
+                            //echo "<li>" . json_encode($ascope["config"]). "</li>";
                         }
                     }
                 }
