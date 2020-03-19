@@ -32,7 +32,11 @@
          dialog.on('hidden.bs.modal', cb);
  }
 
- function accessDeniedMessage(){
-     dialogAlert("<?php echo $translation->translateLabel("Access denied"); ?>", "<?php echo $translation->translateLabel("You do't have permissions for this action"); ?>");
+ function accessDeniedMessage(e){
+     if(e){
+         e.stopPropagation();
+         e.preventDefault();
+     }
+     dialogAlert("<?php echo $translation->translateLabel("Access denied"); ?>", "<?php echo $translation->translateLabel("You don't have permissions for this action"); ?>");
  }
 </script>
