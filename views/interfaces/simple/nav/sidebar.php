@@ -141,7 +141,7 @@
             ],
             "topbar" => $customerMenu["data"]
         ];
-    }else{
+    }else if(!$ascope["config"]["hideDeniedFeatures"]){
         $iconbarCategories["Customer"] = [
             "full" => strtoupper($translation->translateLabel('Customer')),
             "link" => "javascript:accessDeniedMessage();",
@@ -174,7 +174,7 @@
             ],
             "topbar" => $leftMenu["Main"]["data"][4]["data"][0]["data"]
         ];
-    }else{
+    }else if(!$ascope["config"]["hideDeniedFeatures"]){
         $iconbarCategories["Vendor"] = [
             "full" => strtoupper($translation->translateLabel('Vendor')),
             "link" => "javascript:accessDeniedMessage();",
@@ -206,7 +206,7 @@
             ],
             "topbar" => $leftMenu["Main"]["data"][5]["data"][0]["data"]
         ];
-    }else{
+    }else if(!$ascope["config"]["hideDeniedFeatures"]){
         $iconbarCategories["Items"] = [
             "full" => strtoupper($translation->translateLabel('Item')),
             "link" => "javascript:accessDeniedMessage();",
@@ -239,7 +239,7 @@
             ],
             "topbar" => $leftMenu["Main"]["data"][3]["data"]
         ];
-    }else{
+    }else if(!$ascope["config"]["hideDeniedFeatures"]){
         $iconbarCategories["Sales"] = [
             "full" => strtoupper($translation->translateLabel('Sales')),
             "link" => "javascript:accessDeniedMessage();",
@@ -276,7 +276,7 @@
             ],
             "topbar" => $leftMenu["Main"]["data"][4]["data"]
         ];
-    }else{
+    }else if(!$ascope["config"]["hideDeniedFeatures"]){
         $iconbarCategories["Purchase"] = [
             "full" => strtoupper($translation->translateLabel('Purchase')),
             "link" => "javascript:accessDeniedMessage();",
@@ -319,7 +319,7 @@
             ],
             "topbar" => $leftMenu["Main"]["data"]
         ];
-    }else{
+    }else if(!$ascope["config"]["hideDeniedFeatures"]){
         $iconbarCategories["Accounting"] = [
             "full" => strtoupper($translation->translateLabel('Accounting')),
             "link" => "javascript:accessDeniedMessage();",
@@ -353,7 +353,7 @@
             ],
             "topbar" => $leftMenu["Main"]["data"][14]["data"]
         ];
-    }else{
+    }else if(!$ascope["config"]["hideDeniedFeatures"]){
         $iconbarCategories["Reports"] = [
             "full" => strtoupper($translation->translateLabel('Reports')),
             "link" => "javascript:accessDeniedMessage();",

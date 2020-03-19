@@ -1,31 +1,31 @@
 <?php
     if(key_exists("back", $_GET)){
-	if(strpos($_GET["back"], "=" . $ascope["path"] . "&") === false){
-	    $backhref = $_GET["back"] . "&back=" . urlencode($_GET["back"]);
-	    $back = "&back=" . urlencode($_GET["back"]);
-	}else{
-	    $backhref = $linksMaker->makeGridLink($ascope["path"]);
-	    $back = "&back=" . urlencode($linksMaker->makeGridLink($ascope["path"]));
-	}
+        if(strpos($_GET["back"], "=" . $ascope["path"] . "&") === false){
+            $backhref = $_GET["back"] . "&back=" . urlencode($_GET["back"]);
+            $back = "&back=" . urlencode($_GET["back"]);
+        }else{
+            $backhref = $linksMaker->makeGridLink($ascope["path"]);
+            $back = "&back=" . urlencode($linksMaker->makeGridLink($ascope["path"]));
+        }
     }else{
-	$backhref = "index.php#/?page=grid&action={$ascope["path"]}&mode=grid&category=Main&item=all";
-	$back = "";
+        $backhref = "index.php#/?page=grid&action={$ascope["path"]}&mode=grid&category=Main&item=all";
+        $back = "";
     }
 
     function makeRowActions($linksMaker, $data, $ascope, $row, $ctx){
-	$user = $GLOBALS["user"];
-	$keyString = "";
-	if(key_exists("detailIdFields",$ctx["detailTable"])){
-	    $values = [];
-	    foreach($ctx["detailTable"]["detailIdFields"] as $value){
-		if(key_exists($value, $user))
-		    $values[] = $user[$value];
-		else
-		    $values[] = $row[$value];
-	    }
-	    $keyString = join("__", $values);
-	}else{
-	    $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$ctx["detailTable"]["keyFields"][0]] . (count($ctx["detailTable"]["keyFields"]) > 1 ? "__" . $row[$ctx["detailTable"]["keyFields"][1]] : "");
+        $user = $GLOBALS["user"];
+        $keyString = "";
+        if(key_exists("detailIdFields",$ctx["detailTable"])){
+            $values = [];
+            foreach($ctx["detailTable"]["detailIdFields"] as $value){
+                if(key_exists($value, $user))
+                    $values[] = $user[$value];
+                else
+                    $values[] = $row[$value];
+            }
+            $keyString = join("__", $values);
+        }else{
+            $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"] . "__" . $row[$ctx["detailTable"]["keyFields"][0]] . (count($ctx["detailTable"]["keyFields"]) > 1 ? "__" . $row[$ctx["detailTable"]["keyFields"][1]] : "");
         }
         if(!key_exists("editDisabled", $ctx["detailTable"])){
             echo "<a href=\"" . $linksMaker->makeEmbeddedgridItemViewLink($ctx["detailTable"]["viewPath"], $ascope["path"], $keyString, $ascope["item"]);
@@ -306,13 +306,18 @@
                  for translation uses translation model
                  for category(which tab is activated) uses $ascope of controller
             -->
-            <?php if($security->can("update") &&
-                     ((property_exists($data, "modes") &&
+            <?php if((property_exists($data, "modes") &&
                       in_array("edit", $data->modes)) ||
-                      !property_exists($data, "modes"))): ?>
-                <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"] . $back); ?>">
-                    <?php echo $translation->translateLabel("Edit"); ?>
-                </a>
+                     !property_exists($data, "modes")): ?>
+                <?php if($security->can("update")): ?>
+                    <a class="btn btn-info" href="<?php echo $linksMaker->makeGridItemEdit($ascope["path"], $ascope["item"] . $back); ?>">
+                        <?php echo $translation->translateLabel("Edit"); ?>
+                    </a>
+                <?php elseif(!$ascope["config"]["hideDeniedFeatures"]): ?>
+                    <a class="btn btn-info" href="javascript:accessDeniedMessage()">
+                        <?php echo $translation->translateLabel("Edit"); ?>
+                    </a>
+                <?php endif; ?>
             <?php endif; ?>
             <?php
                 if(file_exists(__DIR__ . "/../" . $PartsPath . "viewActions.php"))

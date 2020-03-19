@@ -301,6 +301,10 @@
              _html += "<li class=\"top-bar-link\">";
              _html += "<a href=\"" + "index.php#/?page=grid&action=" + (item.hasOwnProperty("href_ended") ? item["href_ended"] : item["id"]) + "\" role=\"button\">" + item["full"] + "</a>";
              _html += "</li>";
+         }else{
+             _html += "<li class=\"top-bar-link\">";
+             _html += "<a href=\"javascript:accessDeniedMessage();\" role=\"button\">" + item["full"] + "</a>";
+             _html += "</li>";
          }
      }
 

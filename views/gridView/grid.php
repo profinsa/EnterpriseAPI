@@ -21,7 +21,7 @@
      grid model
      app as model
 
-     Last Modified: 26.06.2019
+     Last Modified: 19.03.2020
      Last Modified by: Nikita Zaharov
 -->
 
@@ -96,8 +96,12 @@
 			if(!property_exists($data, "modes") || count($data->modes) != 1 || !in_array("grid", $data->modes) || file_exists(__DIR__ . "/../" . $PartsPath . "gridRowActions.php")){
 			    echo "<td>";
 			    //edit action, just link on edit page. Showed if user has select permission
-			    if($security->can("select") && (!property_exists($data, "modes") || in_array("view", $data->modes)))
-				echo "<a href=\"" . (property_exists($data, "onlyEdit") ? $linksMaker->makeGridItemEdit($ascope["path"], urlencode($keyString)) : $linksMaker->makeGridItemView($ascope["path"], urlencode($keyString))) ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+			    if(!property_exists($data, "modes") || in_array("view", $data->modes)){
+                                if($security->can("select"))
+				    echo "<a href=\"" . (property_exists($data, "onlyEdit") ? $linksMaker->makeGridItemEdit($ascope["path"], urlencode($keyString)) : $linksMaker->makeGridItemView($ascope["path"], urlencode($keyString))) ."\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+                                else if(!$ascope["config"]["hideDeniedFeatures"])
+				    echo "<a href=\"javascript:accessDeniedMessage()\"><span class=\"grid-action-button glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>";
+                            }
 			    /*delete action, call javascript function with keyString as parameter then function call XHR
 			       delete request on server
 			       It is showed only if not disabled by modes property of data model and user has delete permission
@@ -105,6 +109,8 @@
 			    if(!property_exists($data, "modes") || in_array("delete", $data->modes)){
 				if($security->can("delete"))
 				    echo "<span onclick=\"gridDeleteItem('" . myurlencode($keyString) . "')\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
+                                else if(!$ascope["config"]["hideDeniedFeatures"])
+				    echo "<span onclick=\"accessDeniedMessage()\" class=\"grid-action-button glyphicon glyphicon-remove\" aria-hidden=\"true\"></span>";
 			    }
 
 			    /*
@@ -144,10 +150,16 @@
 <?php if(!property_exists($data, "features") || !in_array("disabledGridPageUI", $data->features)): ?>
 	</div>
 	<div class="dt-buttons-container row col-md-12">
-	    <?php if((!property_exists($data, "modes") || in_array("new", $data->modes)) && $security->can("insert")): ?>
-		<a class="btn btn-info new-button-action dt-button waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page; ?>&action=<?php echo $scope->action ?>&mode=new&category=Main">
-		    <?php echo $translation->translateLabel("New"); ?>
-		</a>
+	    <?php if((!property_exists($data, "modes") || in_array("new", $data->modes))): ?>
+                <?php if($security->can("insert")): ?>
+		    <a class="btn btn-info new-button-action dt-button waves-effect waves-light m-r-10" href="index.php#/?page=<?php echo  $app->page; ?>&action=<?php echo $scope->action ?>&mode=new&category=Main">
+		        <?php echo $translation->translateLabel("New"); ?>
+		    </a>
+                <?php elseif(!$ascope["config"]["hideDeniedFeatures"]): ?>
+		    <a class="btn btn-info new-button-action dt-button waves-effect waves-light m-r-10" href="javascript:accessDeniedMessage()">
+		        <?php echo $translation->translateLabel("New"); ?>
+		    </a>
+                <?php endif; ?>
 	    <?php endif; ?>
 	    <?php
 		if(file_exists(__DIR__ . "/../" . $PartsPath . "gridActions.php"))
