@@ -32,7 +32,24 @@ $GLOBALS["capsule"] = $GLOBALS["DB"] = new Capsule;
 
 $config = $GLOBALS["config"] = config();
 //class for emulating global DB class from laravel
-class DB{    
+class DB{
+    public static function describe($tableName){
+        if($GLOBALS["config"]["db_type"] == "mysql")
+            return  DB::select("describe " . $tableName);
+        else{
+            $results = DB::select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'PayrollEmployees'", array());
+            $columns = [];
+            foreach($results as $columnDef){
+                $column = new stdClass();
+                $column->Field = $columnDef->COLUMN_NAME;
+                $column->Type = $columnDef->DATA_TYPE;
+                $column->Null = $columnDef->IS_NULLABLE;
+                $column->Default = $columnDef->COLUMN_DEFAULT;
+                $columns[] = $column;
+            }
+            return $columns;
+        }            
+    }
     public static function statement($query, $args = false){
         if(key_exists("user", $_SESSION)){
             if($GLOBALS["config"]["db_type"] == "mysql")

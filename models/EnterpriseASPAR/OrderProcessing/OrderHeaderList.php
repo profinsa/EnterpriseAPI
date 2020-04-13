@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 07/11/2019
+  Last Modified: 14/04/2020
   Last Modified by: Zaharov Nikita
 */
 
@@ -34,7 +34,7 @@ require "./models/helpers/recalc.php";
 
 class OrderHeaderList extends gridDataSource{
 	public $tableName = "orderheader";
-	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
+	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";
 	public $dashboardTitle ="Orders";
 	public $breadCrumbTitle ="Orders";
     public $docType = "order";

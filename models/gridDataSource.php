@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 27/09/2019
+  Last Modified: 13/04/2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -1395,6 +1395,8 @@ EOF;
             $keyFields = substr($keyFields, 0, -5);
 
         if(property_exists($this, "gridConditions")){
+            if($GLOBALS["config"]["db_type"] == "sqlsrv")
+                $this->gridConditions = preg_replace("/IFNULL/i", "ISNULL", $this->gridConditions);
             if($keyFields != "")
                 $keyFields .= " AND " . $this->gridConditions;
             else
@@ -1462,7 +1464,7 @@ EOF;
 
         $result = DB::select("SELECT LockedBy, LockTS from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
     
-        if($result[0]->LockedBy != ""){
+        if($result[0]->LockedBy != "" && $GLOBALS["config"]["db_type"] == "mysql"){
             $lastSessionUpdateTime = strtotime(DB::select("select LastSessionUpdateTime from payrollemployees WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $result[0]->LockedBy])[0]->LastSessionUpdateTime);
             $lastSessionUpdateTime += intval(config()["timeoutMinutes"] * 60);
             if($lastSessionUpdateTime < time())
@@ -1525,7 +1527,7 @@ EOF;
 
             $result = json_decode(json_encode($result), true)[0];
         
-            $describe = DB::select("describe " . $this->tableName);
+            $describe = DB::describe($this->tableName);
 
             foreach($this->editCategories[$type] as $key=>$value) {
                 foreach($describe as $struct) {
@@ -1699,11 +1701,11 @@ EOF;
         else
             $defaultRecord = false;
         
-        $result = DB::select("describe " . $this->tableName);
+        $result = DB::describe($this->tableName);
 
         foreach($this->editCategories[$type] as $key=>$value) {
             foreach($result as $struct) {
-                if ($struct->Field == $key) {
+                if($struct->Field == $key) {
                     if(!key_exists("defaultOverride", $this->editCategories[$type][$key]) &&
                        !key_exists("dirtyAutoincrement", $this->editCategories[$type][$key])){
                         /*loading default values in order: 
