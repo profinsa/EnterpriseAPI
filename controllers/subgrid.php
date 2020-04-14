@@ -25,7 +25,7 @@
   models/gridDataSource derevatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 13.03.2020
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,7 +36,7 @@ require 'models/drillDowner.php';
 require 'models/linksMaker.php';
 require 'models/interfaces.php';
 
-class controller{
+class subgridController{
     public $config = [];
     public $user = false;
     public $action = "";

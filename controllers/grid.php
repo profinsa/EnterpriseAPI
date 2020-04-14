@@ -25,20 +25,20 @@
   models/gridDataSource derivatives -- models who inherits from gridDataSource
   app from index.php
 
-  Last Modified: 24.01.2020
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
-require 'models/users.php';
-require 'models/translation.php';
-require 'models/security.php';
-require 'models/permissionsGenerated.php';
-require 'models/drillDowner.php';
-require 'models/linksMaker.php';
-require 'models/interfaces.php';
-require 'models/redirects.php';
+require_once 'models/users.php';
+require_once 'models/translation.php';
+require_once 'models/security.php';
+require_once 'models/permissionsGenerated.php';
+require_once 'models/drillDowner.php';
+require_once 'models/linksMaker.php';
+require_once 'models/interfaces.php';
+require_once 'models/redirects.php';
 
-class controller{
+class gridController{
     public $config;
     public $user = false;
     public $interface = "default";

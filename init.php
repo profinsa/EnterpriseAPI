@@ -72,7 +72,10 @@ class DB{
         $args = $args ? $args : array();
         $queryKey = $query . implode("!", $args);
         $result = [];
-       
+        if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+            $query = preg_replace("/IFNULL/i", "ISNULL", $query);
+            $query = preg_replace("/now\(\)/i", "CURRENT_TIMESTAMP", $query);
+        }
         if(!key_exists("configName", $GLOBALS)&&
            key_exists($queryKey, $_SESSION["DBQueries"]) &&
            $_SESSION["DBQueries"][$queryKey]["timestamp"] < time() + 3){

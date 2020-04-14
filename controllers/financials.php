@@ -24,7 +24,7 @@
   models/financials/*.php
   app from index.php
 
-  Last Modified: 25.02.2019
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -34,7 +34,7 @@ require 'models/permissionsGenerated.php';
 require 'models/drillDowner.php';
 require 'models/interfaces.php';
 
-class controller{
+class financialsController{
     public $user = false;
     public $action = "";
     public $mode = "financials";
