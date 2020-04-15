@@ -18,7 +18,8 @@
   A common API using scenario:
   - request for login and getting session_id
   - request for
-    + get record or records
+    + list records
+    + get record
     + insert record
     + update record
     + delete record
@@ -56,10 +57,81 @@
 ** auth
    Module exports API for working with authentification and session management.
    For now it expose only "login" action for login and getting session_id which you need to use in any other API request.
+   Method: POST
+   URL: /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login'
+   example: examples/list.html and other examples
 ** forms
    Module exports API for
-   - get record or records
-   - insert record
+   - list
+     Method: GET
+     URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=sessionId
+     example: examples/list.html
+   - get empty record(record filled by default values for filling with values and inserting into system)
+     Method: GET
+     URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=emptyRecord&session_id=sessionId
+     example: examples/create.html
+   - get record
+     Method: GET
+     URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=get&id=DINOS__DEFAULT__DEFAULT__2110&session_id=sessionId
+     example: examples/get_and_upate.html
+   - create record
+     Method: POST
+     URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=create&session_id=sessionId
+     example: examples/create.html
    - update record
+     Method: POST
+     URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=update&id=DINOS__DEFAULT__DEFAULT__2110&session_id=${session.session_id}
+     example: examples/get_and_update.html
    - delete record
+     Method: GET
+     URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=delete&id=DINOS__DEFAULT__DEFAULT__2110&session_id=${session.session_id}
    - execute some action(in most cases Action is sql stored procedure or analog, implemented inside API server)
+     For now it's still under development, but will be done soon
+
+   Most actions has following parameters:
+   - session_id
+     session_id which was getted by login request
+   - path
+     it's path to submodule which uses for actions. For example: AccountsReceivable/OrderProcessing/ViewOrders is path for working with Orders
+     There is many paths in system and we working on documentation about it. For now you can use these paths:
+     + AccountsReceivable/OrderScreens/ViewOrders
+       for Orders
+     + AccountsReceivable/OrderScreens/ViewInvoices
+       for Invoices
+     + AccountsReceivable/ServiceScreens/ViewServiceOrders
+       for Service Orders
+     + AccountsReceivable/ServiceScreens/ViewServiceInvoices
+       for Service Invoices
+     + AccountsReceivable/CreditMemos/ViewCreditMemos 
+       for Credit Memos
+     + AccountsReceivable/RMAProcessing/ViewRMA
+       for RMA
+     + AccountsReceivable/CashReceiptsProcessing/ViewCashReceipts
+       for Cash Receipts
+     + AccountsReceivable/Customers/ViewCustomers
+       for Customers
+     + AccountsPayable/Vendors/ViewVendors
+       for Vendors
+     + AccountsPayable/PurchaseScreens/ViewPurchases
+       for Purchases
+     + AccountsPayable/VoucherScreens/ViewVouchers
+       for Payments
+     + AccountsPayable/DebitMemos/ViewDebitMemos
+       for Debit Memo
+     + AccountsPayable/ReturntoVendorProcessing/ViewReturns
+       for Returns
+     + GeneralLedger/Ledger/ViewGLTransactions
+       for GL Transactions
+     + GeneralLedger/Ledger/ViewChartofAccounts
+       for Chart Of Accounts
+     and many other paths. We working on full list and explanation about each path.
+   - id
+     it's "__" separated key values of records. For example: order has four key values: CompanyID, DivisionID, DepartmentID, OrderNumber and id is DINOS__DEFAULT__DEFAULT__2110
+     we working on getting description request to know which submodule which key expected.
+** dictionaries
+   For now it's still tested, but will be done soon.
+   Dictionaries used for getting some common lists from system like
+   - list all Customers
+   - list all Warehouses
+   - list all Items
+   It need to fill records with correct values
