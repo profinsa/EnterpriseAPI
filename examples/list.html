@@ -9,8 +9,33 @@
         </title>
         <script>
          async function main(){
+             /*
+                For ALL API requests we using GET and POST HTTP methods.
+                For body we using JSON encoding. 
+                You can use any language which can send the GET and POST HTTP requests.
+              */
              let session;
              try{
+                 /*
+                    This request sent to get session_id. If request success, then session object will contains field session_id which we will use in all other requests.
+                    Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login
+                    Request Method: POST
+                    Request JSON Body:
+                    {
+                      CompanyID : "DINOS",
+                      DivisionID : "DEFAULT",
+                      DepartmentID : "DEFAULT",
+                      EmployeeID : "Demo",
+                      EmployeePassword : "Demo",
+                      language : "english"
+                    }
+                    JSON Response:
+                    {
+                      session_id : "session number"
+                    }
+                    or
+                    401 status if credentials wrong
+                  */
                  session = await $.ajax({
                      url: '/EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login',
                      type: 'POST',
@@ -26,7 +51,15 @@
                  });
                  
                  try{
-                     let data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=grid&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
+                     /*
+                        This request sent to get list of Orders. If request success, then data will be array of the order records.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=session_number
+                        Request Method: GET
+                        JSON Response:
+                        [ ... ] - array of order objects
+                        401 status if credentials wrong
+                      */
+                     let data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
                      data = JSON.parse(data);
                      console.log(JSON.stringify(data, null, 3));
                      let _html = '';

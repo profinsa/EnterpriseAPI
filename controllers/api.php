@@ -62,6 +62,9 @@ class apiController{
             case "auth":
                 $_GET["module"] = "login";
                 break;
+            case "forms":
+                $_GET["module"] = "grid";
+                break;
             }
             require 'controllers/' . $_GET["module"] . '.php';
             $controllerName = $_GET["module"] . "Controller";
