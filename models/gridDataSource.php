@@ -1646,8 +1646,17 @@ EOF;
 
         $columnMax = 0;
         if(key_exists($this->tableName, $tablesForGetNextEntity)){
-            DB::statement("CALL GetNextEntityID2(?, ?, ?, ?, @nextNumber, @ret)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $tablesForGetNextEntity[$this->tableName]]);
-            $columnMax = DB::select("select @nextNumber as nextNumber, @ret")[0]->nextNumber;
+            if($GLOBALS["config"]["db_type"] == "mysql"){
+                DB::statement("CALL GetNextEntityID2(?, ?, ?, ?, @nextNumber, @ret)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $tablesForGetNextEntity[$this->tableName]]);
+                $columnMax = DB::select("select @nextNumber as nextNumber")[0]->nextNumber;
+            }else {
+                $tmpTableName = "GetNextEntityIDResult";
+                DB::statement("DROP TABLE IF EXISTS $tmpTableName");
+                DB::statement("CREATE TABLE $tmpTableName ( nextNumber NVARCHAR(36) )");
+                DB::statement("DECLARE @nextNumber NVARCHAR(36);EXEC Enterprise.GetNextEntityID ?, ?, ?, ?, @nextNumber OUTPUT; insert into $tmpTableName (nextNumber) values (@nextNumber)", ['DINOS', 'DEFAULT', 'DEFAULT', 'NextOrderNumber']);
+                $columnMax = DB::select("select * from $tmpTableName")[0]->nextNumber;
+            }
+            //$columnMax = DB::select("select @nextNumber as nextNumber, @ret")[0]->nextNumber;
         }else{
             if(key_exists($this->tableName, $forDirtyAutoincrement)){
                 foreach($forDirtyAutoincrement[$this->tableName]["tables"] as $tableName){
