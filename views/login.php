@@ -124,8 +124,8 @@
 	 var loginform = $('#loginform');
 	 loginform.submit(function(e){
 	     var req = $.post("index.php?page=login<?php echo key_exists("config", $_GET) ? "&config={$_GET["config"]}" : ""; ?>", loginform.serialize(), null, 'json')
-			.success(function(data) {
-			    window.location = "index.php#/?page=dashboard";
+                        .success(function(data) {
+                            window.location = "index.php#/?page=dashboard";
 			})
 			.error(function(err){
 			    var res = err.responseJSON;

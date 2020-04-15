@@ -24,7 +24,7 @@
   models/help/*
   app from index.php
 
-  Last Modified: 14.04.2020
+  Last Modified: 15.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -58,11 +58,30 @@ class apiController{
             }*/
 
         if(key_exists("module", $_GET)){
-                require 'controllers/' . $_GET["module"] . '.php';
-                $controllerName = $_GET["module"] . "Controller";
-                $app->controller = new $controllerName();
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            switch($_GET["module"]){
+            case "auth":
+                $_GET["module"] = "login";
+                break;
+            }
+            require 'controllers/' . $_GET["module"] . '.php';
+            $controllerName = $_GET["module"] . "Controller";
+            $app->controller = new $controllerName();
+            if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $postData = file_get_contents("php://input");
+                $_POST = json_decode($postData, true);
+
                 switch($_GET["module"]){
+                case "login" :
+                    switch($_GET["action"]){
+                    case "login":
+                        $_POST["company"] = $_POST["CompanyID"];
+                        $_POST["division"] = $_POST["DivisionID"];
+                        $_POST["department"] = $_POST["DepartmentID"];
+                        $_POST["name"] = $_POST["EmployeeID"];
+                        $_POST["password"] = $_POST["EmployeePassword"];
+                        break;
+                    }
+                    break;
                 case "grid" :
                     switch($_GET["action"]){
                     case "create":

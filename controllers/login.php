@@ -29,16 +29,16 @@
   models/companies.php
   app from index.php
 
-  Last Modified: 14.04.2020
+  Last Modified: 15.04.2020
   Last Modified by: Nikita Zaharov
 */
 
 use Gregwar\Captcha\CaptchaBuilder;
 
-require 'models/translation.php';
-require 'models/companies.php';
-require 'models/users.php';
-require 'models/interfaces.php';
+require_once 'models/translation.php';
+require_once 'models/companies.php';
+require_once 'models/users.php';
+require_once 'models/interfaces.php';
 
 $GLOBALS["capsule"]->setAsGlobal();
 
@@ -70,10 +70,16 @@ class loginController{
             $config["loginForm"] = $_GET["loginform"]; 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {//login request process
             $wrong_captcha = false;
-            if($_POST["captcha"] != $_SESSION["captcha"])
+            if(key_exists("captcha", $_POST) && $_POST["captcha"] != $_SESSION["captcha"])
                 $wrong_captcha = true;
-            $interface = $_SESSION["user"]["interface"];
-            $interfaceType = $_SESSION["user"]["interfaceType"];
+            if(key_exists("captcha", $_POST)){
+                $interface = $_SESSION["user"]["interface"];
+                $interfaceType = $_SESSION["user"]["interfaceType"];
+            }else{
+                $interface = "default";
+                $interfaceType = "ltr";
+            }
+            
             if(($config["loginForm"] == "login" ?
                 ($user = $users->search($_POST["company"], $_POST["name"], $_POST["password"], $_POST["division"], $_POST["department"])) &&
                ($user["accesspermissions"]["RestrictSecurityIP"] ? $user["accesspermissions"]["IPAddress"] == $_SERVER['REMOTE_ADDR'] : true):
@@ -94,6 +100,7 @@ class loginController{
                 $_SESSION["user"]["interfaceType"] = $interfaceType;
                 header('Content-Type: application/json');
                 echo json_encode(array(
+                    "session_id" => session_id(),
                     "companies" => $companies,
                     "message" =>  "ok"
                 ), JSON_PRETTY_PRINT);
@@ -110,7 +117,7 @@ class loginController{
                     $response["wrong_captcha"] = true;
                 if(!$user)
                     $response["wrong_user"] = true;
-                
+
                 echo json_encode($response);
             }
         }else if($_SERVER['REQUEST_METHOD'] === 'GET') { //rendering login page

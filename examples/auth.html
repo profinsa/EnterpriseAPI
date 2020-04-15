@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>
+            Get list of orders
+        </title>
+        <script>
+         var session_id = localStorage.getItem("session_id");
+         function main(){
+             updateOrders();
+         }
+
+         function updateOrders(){
+             $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=grid&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list`)
+              .done(function(data) {
+                  data = JSON.parse(data);
+                  console.log(JSON.stringify(data, null, 3));
+                  let _html = '';
+                  for(let row of data){
+                      _html += '<tr>';
+                      for(let key in row){
+                          if(key != "CompanyID" && key != "DivisionID" && key != "DepartmendID")
+                              _html += `<td>${row[key]}</td>`;
+                      }
+                      _html += '</tr>';
+                  }
+                  $('#ordersBody').html(_html);
+              })
+              .fail(function(xhr){
+                  alert(xhr.responseText);
+              });
+             console.log("updating addresses");
+         }
+         
+        </script>
+    </head>
+    <body onload="main()">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Orders</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Order Number</th>
+                            <th scope="col">Order Type</th>
+                            <th scope="col">Order Date</th>
+                            <th scope="col">Customer ID</th>
+                            <th scope="col">Currency ID</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Ship Date</th>
+                            <th scope="col">Tracking #</th>
+                            <th scope="col">Invoiced</th>
+                            <th scope="col">Invoice #</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+         
+        </script>        
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

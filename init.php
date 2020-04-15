@@ -1,5 +1,8 @@
 <?php
 session_name("EnterpriseX");
+if(key_exists("session_id", $_GET))
+    session_id($_GET['session_id']);
+
 session_start([
     "cookie_lifetime" => 30
 ]);
