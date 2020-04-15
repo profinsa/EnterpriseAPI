@@ -54,4 +54,12 @@
 
 * Modules and their API
 ** auth
+   Module exports API for working with authentification and session management.
+   For now it expose only "login" action for login and getting session_id which you need to use in any other API request.
 ** forms
+   Module exports API for
+   - get record or records
+   - insert record
+   - update record
+   - delete record
+   - execute some action(in most cases Action is sql stored procedure or analog, implemented inside API server)

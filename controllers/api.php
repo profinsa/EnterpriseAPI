@@ -91,6 +91,8 @@ class apiController{
                         $_GET["procedure"] = "insertItemRemote";
                         break;
                     case "update":
+                        $_POST["id"] = $_GET["id"];
+                        $_POST["type"] = false;
                         $_GET["procedure"] = "updateItemRemote";
                         break;
                     }
@@ -106,8 +108,12 @@ class apiController{
                     case "list" :
                         $_GET["procedure"] = "getPageRemote";
                         break;
-                    case "getEmptyRecord":
-                        $_GET["procedure"] = "getEmptyRecord";
+                    case "get" :
+                        $_GET["procedure"] = "getEditItemAllRemote";
+                        break;
+                    case "emptyRecord":
+                        $_POST["id"] = "";
+                        $_GET["procedure"] = "getNewItemAllRemote";
                         break;
                     case "delete":
                         $_GET["procedure"] = "deleteItem";

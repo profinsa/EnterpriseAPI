@@ -1476,6 +1476,13 @@ EOF;
         return false;
     }
 
+    public function getEditItemAllRemote(){
+        $result = [];
+        foreach($this->editCategories as $key=>$value)
+            $result = array_merge($result, $this->getEditItem($_GET["id"], $key));
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+
     public function getEditItemRemote(){
         echo json_encode($this->getEditItem($_POST["id"], $_POST["type"]), JSON_PRETTY_PRINT);
     }

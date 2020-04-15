@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>
+            Create Order
+        </title>
+        <script>
+         async function main(){
+             /*
+                For ALL API requests we using GET and POST HTTP methods.
+                For body we using JSON encoding. 
+                You can use any language which can send the GET and POST HTTP requests.
+              */
+             let session;
+             try{
+                 /*
+                    This request sent to get session_id. If request success, then session object will contains field session_id which we will use in all other requests.
+                    Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login
+                    Request Method: POST
+                    Request JSON Body:
+                    {
+                    CompanyID : "DINOS",
+                    DivisionID : "DEFAULT",
+                    DepartmentID : "DEFAULT",
+                    EmployeeID : "Demo",
+                    EmployeePassword : "Demo",
+                    language : "english"
+                    }
+                    JSON Response:
+                    {
+                    session_id : "session number"
+                    }
+                    or
+                    401 status if credentials wrong
+                  */
+                 session = await $.ajax({
+                     url: '/EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login',
+                     type: 'POST',
+                     data : JSON.stringify({
+                         CompanyID : "DINOS",
+                         DivisionID : "DEFAULT",
+                         DepartmentID : "DEFAULT",
+                         EmployeeID : "Demo",
+                         EmployeePassword : "Demo",
+                         language : "english"
+                     }),
+                     contentType : 'application/json'
+                 });
+                 
+                 try{
+                     /*
+                        Request for getting empty record for filling it with data in future.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=emptyRecord&session_id=session_number
+                        Request Method: GET
+                        JSON Response:
+                        object with default values
+                        401 status if credentials wrong
+                      */
+                     let data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=emptyRecord&session_id=${session.session_id}`);
+                     data = JSON.parse(data);
+
+                     //filling record with data
+                     data.CustomerID = 'dland';
+                     data.CustomerPhone = '79998888888';
+                     
+                     /*
+                        Request for inserting record.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=create&session_id=session_number
+                        Request Method: POST
+                        JSON Response:
+                        object with values which was inserted to database
+                        Some values generated on server side during inserting like OrderNumber
+                        401 status if credentials wrong
+                      */
+                     data = await $.ajax({
+                         url: `/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=create&session_id=${session.session_id}`,
+                         type: 'POST',
+                         data : JSON.stringify(data),
+                         contentType : 'application/json'
+                     });
+                     data = JSON.parse(data);
+                     console.log(data);
+                     /*
+                        Request for getting list of Orders. If request success, then data will be array of the order records.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=session_number
+                        Request Method: GET
+                        JSON Response:
+                        [ ... ] - array of order objects
+                        401 status if credentials wrong
+                      */
+                     data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
+                     data = JSON.parse(data);
+                     let _html = '';
+                     for(let row of data){
+                         _html += '<tr>';
+                         for(let key in row){
+                             if(key != "CompanyID" && key != "DivisionID" && key != "DepartmendID")
+                                 _html += `<td>${row[key]}</td>`;
+                         }
+                         _html += '</tr>';
+                     }
+                     $('#ordersBody').html(_html);
+                 }catch(e){
+                     alert("Wrong response");
+                 }
+             }catch(e){
+                 alert("Wrong credentials");
+             }
+         }
+        </script>
+    </head>
+    <body onload="main()">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Orders</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Order Number</th>
+                            <th scope="col">Order Type</th>
+                            <th scope="col">Order Date</th>
+                            <th scope="col">Customer ID</th>
+                            <th scope="col">Currency ID</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Ship Date</th>
+                            <th scope="col">Tracking #</th>
+                            <th scope="col">Invoiced</th>
+                            <th scope="col">Invoice #</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+         
+        </script>        
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
