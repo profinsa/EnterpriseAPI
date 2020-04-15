@@ -51,7 +51,7 @@ class DB{
         }            
     }
     public static function statement($query, $args = false){
-        if(key_exists("user", $_SESSION)){
+        if(key_exists("user", $_SESSION) && key_exists("EmployeeID", $_SESSION["user"])){
             if($GLOBALS["config"]["db_type"] == "mysql")
                 $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
             //$GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=" . ($GLOBALS["config"]["db_type"] == "mysql" ? "NOW()" : "CURRENT_TIMESTAMP") . " WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
@@ -59,7 +59,7 @@ class DB{
         return $GLOBALS["DB"]::statement($query, $args ? $args : array());
     }
     public static function select($query, $args = false){
-        if(key_exists("user", $_SESSION)){
+        if(key_exists("user", $_SESSION) && key_exists("EmployeeID", $_SESSION["user"])){
             if($GLOBALS["config"]["db_type"] == "mysql")
                 $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
 			if(!key_exists("lastDBAccess", $_SESSION))
@@ -94,7 +94,7 @@ class DB{
         return $result;
     }
     public static function update($query, $args = false){
-        if(key_exists("user", $_SESSION)){
+        if(key_exists("user", $_SESSION) && key_exists("EmployeeID", $_SESSION["user"])){
             if($GLOBALS["config"]["db_type"] == "mysql")
                 $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
             //$GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=" . ($GLOBALS["config"]["db_type"] == "mysql" ? "NOW()" : "CURRENT_TIMESTAMP") . " WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
@@ -102,7 +102,7 @@ class DB{
         return $GLOBALS["DB"]::update($query, $args ? $args : array());
     }
     public static function insert($query, $args = false){
-        if(key_exists("user", $_SESSION)){
+        if(key_exists("user", $_SESSION) && key_exists("EmployeeID", $_SESSION["user"])){
             if($GLOBALS["config"]["db_type"] == "mysql")
                 $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
             //            $GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=" . ($GLOBALS["config"]["db_type"] == "mysql" ? "NOW()" : "CURRENT_TIMESTAMP") . " WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
@@ -110,7 +110,7 @@ class DB{
         return $GLOBALS["DB"]::insert($query, $args ? $args : array());
     }
     public static function delete($query, $args = false){
-        if(key_exists("user", $_SESSION)){
+        if(key_exists("user", $_SESSION) && key_exists("EmployeeID", $_SESSION["user"])){
             if($GLOBALS["config"]["db_type"] == "mysql")
                 $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
             // $GLOBALS["DB"]::update("update payrollemployees set LastSessionUpdateTime=" . ($GLOBALS["config"]["db_type"] == "mysql" ? "NOW()" : "CURRENT_TIMESTAMP") . " WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND EmployeeID=?", [$_SESSION["user"]["CompanyID"], $_SESSION["user"]["DivisionID"], $_SESSION["user"]["DepartmentID"], $_SESSION["user"]["EmployeeID"]]);
@@ -118,14 +118,14 @@ class DB{
         return $GLOBALS["DB"]::delete($query, $args ? $args : array());
     }
     public static function connection($query = false, $args = false){
-        if(key_exists("user", $_SESSION)){
+        if(key_exists("user", $_SESSION) && key_exists("EmployeeID", $_SESSION["user"])){
             if($GLOBALS["config"]["db_type"] == "mysql")
                 $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
         }
         return $GLOBALS["DB"]::connection();
     }
     public static function getDatabaseName(){
-        if(key_exists("user", $_SESSION))
+        if(key_exists("user", $_SESSION) && key_exists("EmployeeID", $_SESSION["user"]))
             if($GLOBALS["config"]["db_type"] == "mysql")
                 $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
         return $GLOBALS["DB"]::getDatabaseName();
