@@ -6,6 +6,11 @@ function config(){
         "title" => 'Integral Accounting X', // name of Software
         "loginForm" => "login", // default login form, can be login(full version) and simplelogin(for short version without Company, Division and Department
         "db_type" => "sqlsrv", //type of database. mssql
+        "db_host" => "23.254.215.125", //host of mssql database
+        "db_user" => "sa", //user of mssql database
+        "db_password" => "fq6sappTf6fBKh", //password of mssql database user
+        "db_base" => "Enterprise", //name of mssql database*/
+        /*        "db_type" => "sqlsrv", //type of database. mssql
         "db_host" => "localhost", //host of mssql database
         "db_user" => "enterprise", //user of mssql database
         "db_password" => "enterprise", //password of mssql database user
