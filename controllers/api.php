@@ -42,6 +42,73 @@ class apiController{
     public $config;
     public $path;
     public $interfaces;
+    public $dictionaries = [
+        "CompaniesWorkFlowTypes",
+        "InventoryFamilies",
+        "AdjustmentTypes",
+        "ReceiptClasses",
+        "ReceiptTypes",
+        "ExpenseReportTypes",
+        "ExpenseReportReasons",
+        "WorkOrderTypes",
+        "WorkOrderProgress",
+        "WorkOrderPriority",
+        "WorkOrderStatus",
+        "Companies",
+        "Divisions",
+        "Departments",
+        "TaxGroups",
+        "CreditCardTypes",
+        "PaymentMethods",
+        "PaymentTypes",
+        "ShipMethods",
+        "Terms",
+        "PayrollEmployees",
+        "Warehouses",
+        "WarehouseBinTypes",
+        "WarehouseBinZones",
+        "WarehouseBins",
+        "ARTransactionTypes",
+        "OrderTypes",
+        "LedgerBalanceTypes",
+        "LedgerBudgetId",
+        "LedgerAccountTypes",
+        "TransactionAccounts",
+        "ProjectTypes",
+        "Projects",
+        "ContactRegions",
+        "ContactTypes",
+        "LedgerTransactionTypes",
+        "BankTransactionTypes",
+        "GLControlNumbers",
+        "Accounts",
+        "CurrencyExchangeRates",
+        "CurrencyTypes",
+        "ContactSourceIds",
+        "ContactIndustryIds",
+        "LeadIds",
+        "LeadTypes",
+        "CommentTypes",
+        "EDIDirectionTypeIDs",
+        "EDIDocumentTypeIDs",
+        "InventoryAdjustmentTypes",
+        "InventoryItemTypes",
+        "InventoryCategories",
+        "InventoryPricingMethods",
+        "CustomerAccountStatuses",
+        "Employees",
+        "VendorAccountStatuses",
+        "CustomerTypes",
+        "VendorTypes",
+        "InventoryAssemblies",
+        "InventoryPricingCodes",
+        "PayrollEmployeesTaskTypes",
+        "HelpDocumentTopics",
+        "HelpDocumentModules",
+        "HelpStatuses",
+        "CurrentCompany",
+        "CurrencySymbol"
+    ];
 
     public function __construct(){
         $this->interfaces = new interfaces();
@@ -56,13 +123,16 @@ class apiController{
             echo "wrong session";
             exit;
             }*/
-
         if(key_exists("module", $_GET)){
+            $module = $_GET["module"]; 
             switch($_GET["module"]){
             case "auth":
                 $_GET["module"] = "login";
                 break;
             case "forms":
+                $_GET["module"] = "grid";
+                break;
+            case "dictionaries":
                 $_GET["module"] = "grid";
                 break;
             }
@@ -102,26 +172,31 @@ class apiController{
                 }
                 $app->controller->process($app);
             }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
-                switch($_GET["module"]){
-                case "grid" :
-                    switch($_GET["action"]){
-                    case "list" :
-                        $_GET["procedure"] = "getPageRemote";
-                        break;
-                    case "get" :
-                        $_GET["procedure"] = "getEditItemAllRemote";
-                        break;
-                    case "emptyRecord":
-                        $_POST["id"] = "";
-                        $_GET["procedure"] = "getNewItemAllRemote";
-                        break;
-                    case "delete":
-                        $_GET["procedure"] = "deleteItem";
+                if($module == "dictionaries"){
+                    $_GET["procedure"] = "getDictionaries";
+                    $_GET["action"] = "AccountsReceivable/OrderScreens/ViewOrders";
+                }else{
+                    switch($_GET["module"]){
+                    case "grid" :
+                        switch($_GET["action"]){
+                        case "list" :
+                            $_GET["procedure"] = "getPageRemote";
+                            break;
+                        case "get" :
+                            $_GET["procedure"] = "getEditItemAllRemote";
+                            break;
+                        case "emptyRecord":
+                            $_POST["id"] = "";
+                            $_GET["procedure"] = "getNewItemAllRemote";
+                            break;
+                        case "delete":
+                            $_GET["procedure"] = "deleteItem";
+                            break;
+                        }
+                        $_GET["action"] = $_GET["path"];
+                    
                         break;
                     }
-                    $_GET["action"] = $_GET["path"];
-                    
-                    break;
                 }
                 $app->controller->process($app);
             }

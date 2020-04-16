@@ -22,7 +22,7 @@
   Calls:
   sql
 
-  Last Modified: 13/04/2020
+  Last Modified: 17/04/2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -1352,6 +1352,18 @@ EOF;
             "id" => count($result) ? $result[0]->CurrencyID : "USD",
             "symbol" => count($result) ? $result[0]->CurrenycySymbol : "$"
         ];
+    }
+
+    public function getDictionaries(){
+        $list = explode(",", $_GET["list"]);
+        $result = [];
+        $methodName;
+        foreach($list as $name){
+            $methodName = "get" . $name;
+            $result[$name] = $this->$methodName();
+        }
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
     }
 
     public function getPageRemote(){
