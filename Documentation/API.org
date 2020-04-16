@@ -129,9 +129,77 @@
      it's "__" separated key values of records. For example: order has four key values: CompanyID, DivisionID, DepartmentID, OrderNumber and id is DINOS__DEFAULT__DEFAULT__2110
      we working on getting description request to know which submodule which key expected.
 ** dictionaries
-   For now it's still tested, but will be done soon.
-   Dictionaries used for getting some common lists from system like
-   - list all Customers
-   - list all Warehouses
-   - list all Items
-   It need to fill records with correct values
+   Method: GET
+   URL: /EnterpriseUniversalAPI/index.php?page=api&module=dictionaries&list=OrderTypes,CurrencySymbol,Projects,TaxGroups
+   Dictionaries list is comma separated.
+   Response where keys are Dictionary names but values are dictionaries itself.
+   Dictionaries used for getting some common lists or values from system which you need to fill records
+   For now, we implemented following dictionaries:
+   "CompaniesWorkFlowTypes",
+   "InventoryFamilies",
+   "AdjustmentTypes",
+   "ReceiptClasses",
+   "ReceiptTypes",
+   "ExpenseReportTypes",
+   "ExpenseReportReasons",
+   "WorkOrderTypes",
+   "WorkOrderProgress",
+   "WorkOrderPriority",
+   "WorkOrderStatus",
+   "Companies",
+   "Divisions",
+   "Departments",
+   "TaxGroups",
+   "CreditCardTypes",
+   "PaymentMethods",
+   "PaymentTypes",
+   "ShipMethods",
+   "Terms",
+   "PayrollEmployees",
+   "Warehouses",
+   "WarehouseBinTypes",
+   "WarehouseBinZones",
+   "WarehouseBins",
+   "ARTransactionTypes",
+   "OrderTypes",
+   "LedgerBalanceTypes",
+   "LedgerBudgetId",
+   "LedgerAccountTypes",
+   "TransactionAccounts",
+   "ProjectTypes",
+   "Projects",
+   "ContactRegions",
+   "ContactTypes",
+   "LedgerTransactionTypes",
+   "BankTransactionTypes",
+   "GLControlNumbers",
+   "Accounts",
+   "CurrencyExchangeRates",
+   "CurrencyTypes",
+   "ContactSourceIds",
+   "ContactIndustryIds",
+   "LeadIds",
+   "LeadTypes",
+   "CommentTypes",
+   "EDIDirectionTypeIDs",
+   "EDIDocumentTypeIDs",
+   "InventoryAdjustmentTypes",
+   "InventoryItemTypes",
+   "InventoryCategories",
+   "InventoryPricingMethods",
+   "CustomerAccountStatuses",
+   "Employees",
+   "VendorAccountStatuses",
+   "CustomerTypes",
+   "VendorTypes",
+   "InventoryAssemblies",
+   "InventoryPricingCodes",
+   "PayrollEmployeesTaskTypes",
+   "HelpDocumentTopics",
+   "HelpDocumentModules",
+   "HelpStatuses",
+   "CurrentCompany",
+   "CurrencySymbol"
+   This list of Dictionaries will be extended in following together with documentaion.
+
+   More complicated example how to use dictionaries and why you can see in examples/create_with_dictionaries.html
