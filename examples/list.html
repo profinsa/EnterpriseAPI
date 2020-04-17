@@ -60,7 +60,6 @@
                         401 status if credentials wrong
                       */
                      let data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
-                     data = JSON.parse(data);
                      console.log(JSON.stringify(data, null, 3));
                      let _html = '';
                      for(let row of data){

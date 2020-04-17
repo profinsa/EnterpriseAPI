@@ -139,9 +139,10 @@ class apiController{
             require 'controllers/' . $_GET["module"] . '.php';
             $controllerName = $_GET["module"] . "Controller";
             $app->controller = new $controllerName();
+            header('Content-Type: application/json');
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $postData = file_get_contents("php://input");
-                $_POST = json_decode($postData, true);
+                $_POST = $data = json_decode($postData, true);
 
                 switch($_GET["module"]){
                 case "login" :
@@ -159,6 +160,9 @@ class apiController{
                     switch($_GET["action"]){
                     case "create":
                         $_GET["procedure"] = "insertItemRemote";
+                        break;
+                    case "createMany":
+                        $_GET["procedure"] = "insertItemsRemote";
                         break;
                     case "update":
                         $_POST["id"] = $_GET["id"];

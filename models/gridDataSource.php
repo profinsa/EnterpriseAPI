@@ -1491,7 +1491,9 @@ EOF;
     public function getEditItemAllRemote(){
         $result = [];
         foreach($this->editCategories as $key=>$value)
-            $result = array_merge($result, $this->getEditItem($_GET["id"], $key));
+            if(!key_exists("loadFrom", $value))
+               $result = array_merge($result, $this->getEditItem($_GET["id"], $key));
+
         echo json_encode($result, JSON_PRETTY_PRINT);
     }
 
@@ -1890,10 +1892,6 @@ EOF;
     public function insertItemsRemote(){
         $postData = file_get_contents("php://input");
         
-        // `application/x-www-form-urlencoded`  `multipart/form-data`
-        $data = parse_str($postData);
-        // or
-        // `application/json`
         $data = json_decode($postData, true);
         echo "[";
         foreach($data as $item){

@@ -16,7 +16,6 @@
          function updateOrders(){
              $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=grid&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list`)
               .done(function(data) {
-                  data = JSON.parse(data);
                   console.log(JSON.stringify(data, null, 3));
                   let _html = '';
                   for(let row of data){

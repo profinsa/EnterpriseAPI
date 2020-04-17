@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>
-            Get Order and Update
+            Create Order with Detail records and filling a data from Dictionaries
         </title>
         <script>
          async function main(){
@@ -51,36 +51,61 @@
                  });
                  
                  try{
+                     let data;
                      /*
-                        Request for getting record for changes.
-                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=get&id=DINOS_DEFAULT_DEFAULT_2110&session_id=session_number
+                        Request for getting some Dictionaries which we need to fill OrderHeader and OrderDetail records.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=dictionaries&list=comma,separated,list,of,dictionaries&session_id=session_number
+                        Request Method: GET
+                        JSON Response:
+                        array of dictionaries
+                        401 status if credentials wrong
+                      */
+                     let dictionaries = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=dictionaries&list=Customers,Items,Warehouses,Employess,Terms&session_id=${session.session_id}`);
+                     dictionaries = JSON.parse(dictionaries);
+                     
+                     /*
+                        Request for getting empty OrderHeader record for filling it with data in future.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=emptyRecord&session_id=session_number
                         Request Method: GET
                         JSON Response:
                         object with default values
                         401 status if credentials wrong
                       */
-                     let data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=get&id=DINOS__DEFAULT__DEFAULT__2110&session_id=${session.session_id}`);
+                     let header = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=emptyRecord&session_id=${session.session_id}`);
+                     header = JSON.parse(data);
 
-                     //changing a data
-                     data.CustomerID = 'dland';
-                     //data.CustomerPhone = '79998888888';
+                     //filling Header record with data
+                     header.CustomerID = 'dland';
+                     header.CustomerPhone = '79998888888';
+                     /*
+                        Request for getting empty OrderDetail record for filling it with data in future.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrdersDetail&action=emptyRecord&session_id=session_number
+                        Request Method: GET
+                        JSON Response:
+                        object with default values
+                        401 status if credentials wrong
+                      */
+                     let emptyDetail = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrdersDetail&action=emptyRecord&session_id=${session.session_id}`);
+                     emptyDetail = JSON.parse(data);
+
                      
                      /*
-                        Request for updating record.
-                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=update&id=DINOS__DEFAULT__DEFAULT__2110&session_id=session_number
+                        Request for inserting record.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=create&session_id=session_number
                         Request Method: POST
                         JSON Response:
                         object with values which was inserted to database
                         Some values generated on server side during inserting like OrderNumber
                         401 status if credentials wrong
                       */
-                     data = await $.ajax({
-                         url: `/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=update&id=DINOS__DEFAULT__DEFAULT__2110&session_id=${session.session_id}`,
-                         type: 'POST',
-                         data : JSON.stringify(data),
-                         contentType : 'application/json'
-                     });
-                     console.log(data);
+                     /*                     data = await $.ajax({
+                        url: `/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=create&session_id=${session.session_id}`,
+                        type: 'POST',
+                        data : JSON.stringify(header),
+                        contentType : 'application/json'
+                        });
+                        header = JSON.parse(header);
+                        console.log(data);*/
                      /*
                         Request for getting list of Orders. If request success, then data will be array of the order records.
                         Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=session_number
@@ -90,6 +115,7 @@
                         401 status if credentials wrong
                       */
                      data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
+                     data = JSON.parse(data);
                      let _html = '';
                      for(let row of data){
                          _html += '<tr>';
