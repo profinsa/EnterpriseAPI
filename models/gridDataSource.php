@@ -1714,7 +1714,8 @@ EOF;
         $values = [];
 
         foreach($this->idFields as $value)
-            $idDefaults[] = "$value='DEFAULT'";
+            if($value != "OrderLineNumber")
+                $idDefaults[] = "$value='DEFAULT'";
 
         //loading default values from Company record
         $defaultRecord = DB::select("select * from {$this->tableName} WHERE " . implode(" AND ", $idDefaults), array());
