@@ -135,6 +135,9 @@
    Response where keys are Dictionary names but values are dictionaries itself.
    Dictionaries used for getting some common lists or values from system which you need to fill records
    For now, we implemented following dictionaries:
+   "Items",
+   "Customers",
+   "Vendors",
    "CompaniesWorkFlowTypes",
    "InventoryFamilies",
    "AdjustmentTypes",
@@ -202,4 +205,4 @@
    "CurrencySymbol"
    This list of Dictionaries will be extended in following together with documentaion.
 
-   More complicated example how to use dictionaries and why you can see in examples/create_with_dictionaries.html
+   More complicated example how to use dictionaries and why you can see in examples/create_complicated.html

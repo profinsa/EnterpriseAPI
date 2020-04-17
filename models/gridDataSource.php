@@ -37,6 +37,8 @@ class gridDataSource{
 
     //cheking if table in list of shared tables and sharing for this table is enabled
     public function checkTableSharing($tableName){
+        //disabled becase of not implemented for mssql now
+        return false;
         $user = Session::get("user");
         $sharedCategories = [
             "ShareEmployees" => [
@@ -1893,13 +1895,13 @@ EOF;
         $postData = file_get_contents("php://input");
         
         $data = json_decode($postData, true);
-        echo "[";
+        $result = "[";
         foreach($data as $item){
-            $this->insertItem($item, true);
-            echo ",";
+            $result .= json_encode($this->insertItemLocal($item)) . ",";
         }
-        echo "]";
-        //echo json_encode($data, JSON_PRETTY_PRINT);
+        $result = substr($result, 0, -1);
+        $result .= "]";
+        echo $result;
     }
     
     public function insertItemRemote(){
@@ -1909,11 +1911,12 @@ EOF;
     public function insertItemLocal($values){
         $user = Session::get("user");
         $pdo = DB::connection()->getPdo();
-        
-        if($this->checkTableSharing($this->tableName)){
+
+        //disabled becase of not implemented for mssql now
+        /*if($this->checkTableSharing($this->tableName)){
             $user["DivisionID"] = "DEFAULT";
             $user["DepartmentID"] = "DEFAULT";
-        }
+            }*/
         
         $insert_fields = "";
         $insert_values = "";

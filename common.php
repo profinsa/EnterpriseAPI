@@ -10,7 +10,7 @@ function config(){
         "db_user" => "enterprise", //user of mssql database
         "db_password" => "enterprise", //password of mssql database user
         "db_base" => "Enterprise", //name of mssql database*/
-        /*        "db_type" => "mysql", //type of database, mysql
+        /*"db_type" => "mysql", //type of database, mysql
         "db_host" => "localhost", //host of mysql database
         "db_user" => "enterprise", //user of mysql database
         "db_password" => "enterprise", //password of mysql database user

@@ -60,9 +60,22 @@
                         array of dictionaries
                         401 status if credentials wrong
                       */
-                     let dictionaries = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=dictionaries&list=Customers,Items,Warehouses,Employess,Terms&session_id=${session.session_id}`);
-                     dictionaries = JSON.parse(dictionaries);
-                     
+                     let dictionaries = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=dictionaries&list=Customers,Items,Warehouses,Employees,Terms&session_id=${session.session_id}`);
+                     let Customer, Item, EmployeeID, TermsID, WarehouseID;
+                     //getting first Customer and Item from array. Yes, you can use any Customer and Item which you need, it's a just an example
+                     Customer = dictionaries.Customers.values[0];
+                     Item = dictionaries.Items.values[0];
+
+                     //getting first Employee, Terms, Warehouse from object
+                     for(let Employee in dictionaries.Employees){
+                         EmployeeID = dictionaries.Employees[Employee].value;
+                     }
+                     for(let Terms in dictionaries.Terms){
+                         TermsID = dictionaries.Terms[Terms].value;
+                     }
+                     for(let Warehouse in dictionaries.Warehouses){
+                         WarehouseID = dictionaries.Warehouses[Warehouse].value;
+                     }
                      /*
                         Request for getting empty OrderHeader record for filling it with data in future.
                         Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=emptyRecord&session_id=session_number
@@ -72,11 +85,14 @@
                         401 status if credentials wrong
                       */
                      let header = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=emptyRecord&session_id=${session.session_id}`);
-                     header = JSON.parse(data);
 
                      //filling Header record with data
-                     header.CustomerID = 'dland';
-                     header.CustomerPhone = '79998888888';
+                     header.CustomerID = Customer.CustomerID;
+                     header.CustomerPhone = Customer.CustomerPhone;
+                     header.EmployeeID = EmployeeID;
+                     header.TermsID = TermsID;
+                     header.WarehouseID = WarehouseID;
+                     console.log(JSON.stringify(header, null, 3));
                      /*
                         Request for getting empty OrderDetail record for filling it with data in future.
                         Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrdersDetail&action=emptyRecord&session_id=session_number
@@ -85,12 +101,17 @@
                         object with default values
                         401 status if credentials wrong
                       */
-                     let emptyDetail = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrdersDetail&action=emptyRecord&session_id=${session.session_id}`);
-                     emptyDetail = JSON.parse(data);
-
+                     let detail = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrdersDetail&action=emptyRecord&session_id=${session.session_id}`);
                      
+                     //filling Detail record with data
+                     //We need also fill OrderNumber in detail record, but we'll do it after inserting OrderHeader, when we will to know OrderNumber
+                     detail.ItemID = Item.ItemID;
+                     detail.Description = Item.ItemDescription;
+                     detail.ItemUnitPrice = detail.ItemCost = Item.Price;
+                     detail.OrderQty = 20;
+                     console.log(JSON.stringify(detail, null, 3));
                      /*
-                        Request for inserting record.
+                        Request for inserting Header record.
                         Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=create&session_id=session_number
                         Request Method: POST
                         JSON Response:
@@ -98,14 +119,34 @@
                         Some values generated on server side during inserting like OrderNumber
                         401 status if credentials wrong
                       */
-                     /*                     data = await $.ajax({
-                        url: `/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=create&session_id=${session.session_id}`,
-                        type: 'POST',
-                        data : JSON.stringify(header),
-                        contentType : 'application/json'
-                        });
-                        header = JSON.parse(header);
-                        console.log(data);*/
+                     header = await $.ajax({
+                         url: `/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=create&session_id=${session.session_id}`,
+                         type: 'POST',
+                         data : JSON.stringify(header),
+                         contentType : 'application/json'
+                     });
+
+                     //Now we know real values of the OrderHeader fields and we can assing an OrderNumber to Detail record
+                     detail.OrderNumber = header.OrderNumber;
+                     console.log(JSON.stringify(header, null, 3));
+
+                     /*
+                        Request for inserting Detail record. We using action=createMany because of we need to insert two records at once
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrdersDetail&action=createMany&session_id=session_number
+                        Request Method: POST
+                        JSON Response:
+                        objects with values which was inserted to database
+                        Some values generated on server side during inserting like OrderLineNumber
+                        401 status if credentials wrong
+                      */
+                     details = await $.ajax({
+                         url: `/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrdersDetail&action=createMany&session_id=${session.session_id}`,
+                         type: 'POST',
+                         data : JSON.stringify([detail, detail]), // we inserting many same records for simplicity of exmaple, but in real life we inserting different detail records
+                         contentType : 'application/json'
+                     });
+
+                     console.log(JSON.stringify(details, null, 3));
                      /*
                         Request for getting list of Orders. If request success, then data will be array of the order records.
                         Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=session_number
@@ -115,7 +156,6 @@
                         401 status if credentials wrong
                       */
                      data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
-                     data = JSON.parse(data);
                      let _html = '';
                      for(let row of data){
                          _html += '<tr>';
@@ -127,7 +167,7 @@
                      }
                      $('#ordersBody').html(_html);
                  }catch(e){
-                     alert("Wrong response");
+                     alert("Wrong response" + e);
                  }
              }catch(e){
                  alert("Wrong credentials");

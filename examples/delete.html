@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>
-            Create Order
+            Delete Order
         </title>
         <script>
          async function main(){
@@ -60,7 +60,6 @@
                         401 status if credentials wrong
                       */
                      let data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=emptyRecord&session_id=${session.session_id}`);
-                     data = JSON.parse(data);
 
                      //filling record with data
                      data.CustomerID = 'dland';
@@ -81,7 +80,6 @@
                          data : JSON.stringify(data),
                          contentType : 'application/json'
                      });
-                     data = JSON.parse(data);
                      console.log(data);
                      /*
                         Request for getting list of Orders. If request success, then data will be array of the order records.
@@ -92,7 +90,6 @@
                         401 status if credentials wrong
                       */
                      data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
-                     data = JSON.parse(data);
                      let _html = '';
                      for(let row of data){
                          _html += '<tr>';
