@@ -155,7 +155,7 @@ class DB{
         if($routineDef != null){
             $params = DB::select("SELECT * FROM INFORMATION_SCHEMA.PARAMETERS  WHERE SPECIFIC_SCHEMA=? AND SPECIFIC_NAME=?  ORDER BY ORDINAL_POSITION", [$dbName, $fname]);
             return [
-                "def" => $routineDef,
+                "definition" => $routineDef,
                 "params" => $params
             ];
         }else
@@ -163,26 +163,81 @@ class DB{
     }
 
     public static function callProcedureOrFunction($name, $parameters){
-        $paramsDef = DB::getFuncOrProcDefinition($name);
-        if($paramsDef == null){
+        $procDef = DB::getFuncOrProcDefinition($name);
+        $dbName = DB::getDatabaseName();
+        if($procDef == null){
             echo "Procedure or Function doesn't exists";
             return null;
         }
-        echo json_encode($paramsDef, JSON_PRETTY_PRINT);
+        $paramsStr = [];
+        $paramsArr = [];
+        $outArr = [];
+        //echo json_encode($procDef, JSON_PRETTY_PRINT);
         if($GLOBALS["config"]["db_type"] == "mysql"){
+            foreach($procDef["params"] as $param){
+                $param->PARAMETER_NAME = preg_replace("/^v_/i", "", $param->PARAMETER_NAME);
+                if(key_exists($param->PARAMETER_NAME, $parameters)){
+                    $paramsStr[] = "?";
+                    $paramsArr[] = $parameters[$param->PARAMETER_NAME];
+                }else{
+                    $paramsStr[] = "@" . $param->PARAMETER_NAME ;
+                }
+                if($param->PARAMETER_MODE == "INOUT")
+                    $outArr[] = "@" . $param->PARAMETER_NAME;
+            }
+            $paramsStr = implode(",", $paramsStr);
+            $outStr = "";
+            foreach($outArr as $outVar)
+                $outStr .= $outVar . " as " . preg_replace("/^@/i", "", $outVar) . ",";
+            if($outStr != "")
+                $outStr = substr($outStr, 0, -1);
+            DB::statement("CALL {$procDef["definition"]->ROUTINE_NAME}($paramsStr)", $paramsArr);
+            if($outStr != "")
+                $result = DB::select("select $outStr")[0];
+            if(property_exists($result, "SWP_Ret_Value")){
+                $result->ReturnValue = $result->SWP_Ret_Value;
+                unset($result->SWP_Ret_Value);
+            }
+            print_r($paramsStr);
+            print_r($paramsArr);
+            print_r($outStr);
+            print_r($result);
         }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+            foreach($procDef["params"] as $param){
+                $param->PARAMETER_NAME = preg_replace("/^@/i", "", $param->PARAMETER_NAME);
+                if(key_exists($param->PARAMETER_NAME, $parameters)){
+                    $paramsStr[] = "?";
+                    $paramsArr[] = $parameters[$param->PARAMETER_NAME];
+                }else{
+                    $paramsStr[] = "@" . $param->PARAMETER_NAME . " OUTPUT" ;
+                }
+                if($param->PARAMETER_MODE == "INOUT")
+                    $outArr[] = "@" . $param->PARAMETER_NAME;
+            }
+            $outArr[] = "@ReturnValue";
+            $declareStmt = '';
+
+            $tmpTableName = $procDef["definition"]->ROUTINE_NAME . "Result";
+            $tableColumns = [];
+            return;
+            //foreach($outArr
+            $tableStmt = "CREATE TABLE $tmpTableName ( $tableColumns )";
+            print_r($paramsStr);
+            print_r($paramsArr);
+            print_r($outArr);
+            print_r($tmpTableName);
+            print_r($tableStmt);
+            print_r($declareStmt);
+            print_r($insertFields);
+            print_r($insertValues);
+            return;
+            DB::statement("DROP TABLE IF EXISTS $tmpTableName");
+            DB::statement($tableStmt);
+            DB::statement("DECLARE @nextNumber NVARCHAR(36);EXEC $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName (nextNumber) values (@nextNumber)", ['DINOS', 'DEFAULT', 'DEFAULT', 'NextOrderNumber']);
+            $columnMax = DB::select("select * from $tmpTableName")[0]->nextNumber;
+
         }
         return;
-        if($GLOBALS["config"]["db_type"] == "mysql"){
-            DB::statement("CALL GetNextEntityID2(?, ?, ?, ?, @nextNumber, @ret)", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $tablesForGetNextEntity[$this->tableName]]);
-            $columnMax = DB::select("select @nextNumber as nextNumber")[0]->nextNumber;
-        }else {
-            $tmpTableName = "GetNextEntityIDResult";
-            DB::statement("DROP TABLE IF EXISTS $tmpTableName");
-            DB::statement("CREATE TABLE $tmpTableName ( nextNumber NVARCHAR(36) )");
-            DB::statement("DECLARE @nextNumber NVARCHAR(36);EXEC Enterprise.GetNextEntityID ?, ?, ?, ?, @nextNumber OUTPUT; insert into $tmpTableName (nextNumber) values (@nextNumber)", ['DINOS', 'DEFAULT', 'DEFAULT', 'NextOrderNumber']);
-            $columnMax = DB::select("select * from $tmpTableName")[0]->nextNumber;
-        }
 
         DB::statement("CALL Order_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
 
