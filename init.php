@@ -142,7 +142,7 @@ class DB{
         $names = [$name, $name . "1", $name . "2"];
         $dbName = strtolower(DB::getDatabaseName());
         $fname;
-        echo $dbName;
+        //        echo $dbName;
         foreach($names as $name){
             $routineDef = DB::select("SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_NAME=? AND ROUTINE_SCHEMA=?", [$name, $dbName]);
             if(count($routineDef)){
@@ -166,7 +166,7 @@ class DB{
         $procDef = DB::getFuncOrProcDefinition($name);
         $dbName = DB::getDatabaseName();
         if($procDef == null){
-            echo "Procedure or Function doesn't exists";
+            //echo "Procedure or Function doesn't exists";
             return null;
         }
         $paramsStr = [];
@@ -174,24 +174,33 @@ class DB{
         $outArr = [];
         //echo json_encode($procDef, JSON_PRETTY_PRINT);
         if($GLOBALS["config"]["db_type"] == "mysql"){
+            //echo json_encode($procDef, JSON_PRETTY_PRINT);
             foreach($procDef["params"] as $param){
-                $param->PARAMETER_NAME = preg_replace("/^v_/i", "", $param->PARAMETER_NAME);
-                if(key_exists($param->PARAMETER_NAME, $parameters)){
-                    $paramsStr[] = "?";
-                    $paramsArr[] = $parameters[$param->PARAMETER_NAME];
-                }else{
-                    $paramsStr[] = "@" . $param->PARAMETER_NAME ;
+                if($param->PARAMETER_NAME != null){
+                    $param->PARAMETER_NAME = preg_replace("/^v_/i", "", $param->PARAMETER_NAME);
+                    if(key_exists($param->PARAMETER_NAME, $parameters)){
+                        $paramsStr[] = "?";
+                        $paramsArr[] = $parameters[$param->PARAMETER_NAME];
+                    }else{
+                        $paramsStr[] = "@" . $param->PARAMETER_NAME ;
+                    }
+                    if($param->PARAMETER_MODE == "INOUT")
+                        $outArr[] = "@" . $param->PARAMETER_NAME;
                 }
-                if($param->PARAMETER_MODE == "INOUT")
-                    $outArr[] = "@" . $param->PARAMETER_NAME;
             }
             $paramsStr = implode(",", $paramsStr);
             $outStr = "";
+            if($procDef["definition"]->ROUTINE_TYPE == "FUNCTION")
+                $outArr[] = "@SWP_Ret_Value";
             foreach($outArr as $outVar)
                 $outStr .= $outVar . " as " . preg_replace("/^@/i", "", $outVar) . ",";
             if($outStr != "")
                 $outStr = substr($outStr, 0, -1);
-            DB::statement("CALL {$procDef["definition"]->ROUTINE_NAME}($paramsStr)", $paramsArr);
+            if($procDef["definition"]->ROUTINE_TYPE == "PROCEDURE")
+                DB::statement("CALL {$procDef["definition"]->ROUTINE_NAME}($paramsStr)", $paramsArr);
+            else
+                DB::statement("SET @SWP_Ret_Value = {$procDef["definition"]->ROUTINE_NAME}($paramsStr)", $paramsArr);
+            
             if($outStr != "")
                 $result = DB::select("select $outStr")[0];
             if(property_exists($result, "SWP_Ret_Value")){
@@ -206,7 +215,7 @@ class DB{
             return $result;
         }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
             $tableColumns = [];
-            $declareStmt = [];
+            $declareStmt = "";
             $insertFields = [];
             foreach($procDef["params"] as $param){
                 $param->PARAMETER_NAME = preg_replace("/^@/i", "", $param->PARAMETER_NAME);
@@ -219,7 +228,7 @@ class DB{
                 if($param->PARAMETER_MODE == "INOUT"){
                     $insertFields[] = $param->PARAMETER_NAME;
                     $outArr[] = "@" . $param->PARAMETER_NAME;
-                    $declareStmt = "DECLARE @" . ($tableColumns[] = $param->PARAMETER_NAME . " " . $param->DATA_TYPE . ($param->DATA_TYPE == "nvarchar" ? "({$param->CHARACTER_MAXIMUM_LENGTH})" : "")) . ";";
+                    $declareStmt .= "DECLARE @" . ($tableColumns[] = $param->PARAMETER_NAME . " " . $param->DATA_TYPE . ($param->DATA_TYPE == "nvarchar" ? "({$param->CHARACTER_MAXIMUM_LENGTH})" : "")) . ";";
                 }
             }
             $outArr[] = "@ReturnValue";
@@ -242,7 +251,10 @@ class DB{
             DB::statement("DROP TABLE IF EXISTS $tmpTableName");
             DB::statement($tmpTableStmt);
             //echo "$declareStmt EXEC $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues);";
-            DB::statement("$declareStmt EXEC @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
+            if($procDef["definition"]->ROUTINE_TYPE == "PROCEDURE")
+                DB::statement("$declareStmt EXEC @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
+            else
+                DB::statement("$declareStmt SET @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME}($paramsStr); insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
             $result = DB::select("select * from $tmpTableName")[0];
             return $result;
         }

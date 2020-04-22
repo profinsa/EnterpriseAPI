@@ -278,8 +278,12 @@
       .fail(function(xhr){
           if(cb)
               cb(null, xhr.responseText);
-          else
+          try{
+              var res = JSON.parse(xhr.responseText);
+              alert(res.message);
+          }catch(e){
               alert(xhr.responseText);
+          }       
       });
  }
 

@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 14/04/2020
+  Last Modified: 22/04/2020
   Last Modified by: Zaharov Nikita
 */
 
@@ -1255,7 +1255,7 @@ class OrderHeaderList extends gridDataSource{
 
         $recalc->recalcOrder(Session::get("user"), $_POST["OrderNumber"]);
 
-        echo "ok";
+        echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
     }
 
     //getting rows for grid
@@ -1317,29 +1317,39 @@ class OrderHeaderList extends gridDataSource{
     public function Post(){
         $user = Session::get("user");
 
-         DB::statement("CALL Order_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
-
-         $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-             http_response_code(400);
-             echo $result[0]->PostingResult;
-         } else {
-            echo "ok";
-         }
+        $result = DB::callProcedureOrFunction("Order_Post",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"],
+                                                  "OrderNumber" => $_POST["OrderNumber"]
+                                              ]);
+        
+        if($result->ReturnValue == -1) {
+            http_response_code(400);
+            echo json_encode(["message" => $result->PostingResult], JSON_PRETTY_PRINT);
+        } else 
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
+        
+        //         DB::statement("CALL Order_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
     }
 
     public function UnPost(){
         $user = Session::get("user");
 
-         DB::statement("CALL Order_Cancel('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
-
-         $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-         if($result[0]->SWP_RET_VALUE == -1) {
-             http_response_code(400);
-             echo $result[0]->SWP_RET_VALUE;
-         } else {
-             echo "ok";
-         }
+        $result = DB::callProcedureOrFunction("Order_Cancel",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"],
+                                                  "OrderNumber" => $_POST["OrderNumber"]
+                                              ]);
+        
+        if($result->ReturnValue == -1) {
+            http_response_code(400);
+            echo json_encode($result, JSON_PRETTY_PRINT);
+        } else 
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
     }
 
     public function Memorize(){
@@ -1352,22 +1362,25 @@ class OrderHeaderList extends gridDataSource{
         if($keyFields != "")
             $keyFields = substr($keyFields, 0, -5);
         DB::update("UPDATE " . $this->tableName . " set Memorize='" . ($_POST["Memorize"] == '1' ? '0' : '1') . "' WHERE ". $keyFields);
-        echo "ok";
+        echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
     }
 
     public function contractCreateFromOrder() {
         $user = Session::get("user");
 
-        DB::statement("CALL Contract_CreateFromOrder('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)");
-
-        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE');
-
-        if($result[0]->SWP_RET_VALUE == -1) {
-            echo "error";
+        $result = DB::callProcedureOrFunction("Contract_CreateFromOrder",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"],
+                                                  "OrderNumber" => $_POST["OrderNumber"]
+                                              ]);
+        
+        if($result->ReturnValue == -1) {
             http_response_code(400);
-        } else {
-            echo "ok";
-        }
+            echo json_encode($result, JSON_PRETTY_PRINT);
+        } else 
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
     }
     
     public function getPage($id){
@@ -1512,33 +1525,41 @@ class OrderHeaderClosedList extends OrderHeaderList {
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
         foreach($numbers as $number){
-            DB::statement("CALL Order_CopyToHistory2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "',@SWP_RET_VALUE)", array());
-
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
-            if($result[0]->SWP_RET_VALUE == -1)
+            $result = DB::callProcedureOrFunction("Order_CopyToHistory",
+                                                  [
+                                                      "CompanyID" => $user["CompanyID"],
+                                                      "DivisionID" => $user["DivisionID"],
+                                                      "DepartmentID" => $user["DepartmentID"],
+                                                      "OrderNumber" => $number
+                                                  ]);
+        
+            if($result->ReturnValue == -1)
                 $success = false;
         }
 
         if($success)
-            echo "ok";
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
         else {
              http_response_code(400);
-             echo $result[0]->SWP_RET_VALUE;
+             echo json_encode($result, JSON_PRETTY_PRINT);
         }
     }
     
     public function CopyAllToHistory(){
         $user = Session::get("user");
-
-        DB::statement("CALL Order_CopyAllToHistory('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @SWP_RET_VALUE)", array());
-
-        $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
-        if($result[0]->SWP_RET_VALUE > -1)
-            echo $result[0]->SWP_RET_VALUE;
-        else {
+ 
+        $result = DB::callProcedureOrFunction("Order_CopyAllToHistory",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"]
+                                              ]);
+        
+        if($result->ReturnValue <= -1) {
             http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
-        }
+            echo json_encode($result, JSON_PRETTY_PRINT);
+        } else 
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
    }
 }
 
@@ -1551,44 +1572,31 @@ class OrderHeaderBackList extends OrderHeaderList{
     public function allocate() {
         $user = Session::get("user");
 
-        $recalc = new recalcHelper;
-
-        if ($recalc->lookForProcedure("Order_Allocate")) {
-            DB::statement("CALL Order_Allocate('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@Result,@SWP_RET_VALUE)", array());
-
-            $result = DB::select('select @Result as Result, @SWP_RET_VALUE as SWP_RET_VALUE', array());
-
-            if($result[0]->SWP_RET_VALUE == -1) {
-                http_response_code(400);
-                echo $result[0]->Result;
-            } else {
-                echo "ok";
-            }
-        } else {
+       $result = DB::callProcedureOrFunction("Order_Allocate",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"],
+                                                  "OrderNumber" => $_POST["OrderNumber"]
+                                              ]);
+        
+        if($result->ReturnValue == -1) {
             http_response_code(400);
-            echo "Procedure not found";
-        }
+            echo json_encode($result, JSON_PRETTY_PRINT);
+        } else 
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT); 
     }
 
     public function split() {
         $user = Session::get("user");
 
-        $recalc = new recalcHelper;
-
-        if ($recalc->lookForProcedure("Order_Split")) {
-            DB::statement("CALL Order_Split('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@SWP_RET_VALUE)", array());
-
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE', array());
-
-            if($result[0]->SWP_RET_VALUE == -1) {
-                http_response_code(400);
-                echo "error";
-            } else 
-                echo "ok";
-        } else {
-            http_response_code(400);
-            echo "Procedure not found";
-        }
+        $result = DB::callProcedureOrFunction("Order_Split",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"],
+                                                  "OrderNumber" => $_POST["OrderNumber"]
+                                              ]);        
     }
 }
 
@@ -1605,37 +1613,41 @@ class OrderHeaderPickList extends OrderHeaderList{
 
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
-        $rets = "";
         foreach($numbers as $number){
-            DB::statement("set @ret = Order_Picked('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')", array());
-            $result = DB::select('select @ret as ret', array());
-
-            if ($result[0]->ret == true) {
+            $result = DB::callProcedureOrFunction("Order_Picked",
+                                                  [
+                                                      "CompanyID" => $user["CompanyID"],
+                                                      "DivisionID" => $user["DivisionID"],
+                                                      "DepartmentID" => $user["DepartmentID"],
+                                                      "OrderNumber" => $number
+                                                  ]);
+            if($result->ReturnValue == true)
                 $success = false;
-            } else
-                $rets .= ' ' . $result[0]->ret;
         }
 
         if($success)
-            echo "ok";
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
         else {
             http_response_code(400);
-            echo $rets;
+            echo json_encode(["message" => "fail"], JSON_PRETTY_PRINT);
         }
     }
     
     public function PickAll(){
         $user = Session::get("user");
-
-        DB::statement("set @ret = Order_PickAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
-        $result = DB::select('select @ret as ret', array());
         
-        if ($result[0]->ret == 0)
-            echo "ok";
-        else {
+        $result = DB::callProcedureOrFunction("Order_PickAll",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"]
+                                              ]);
+        
+        if($result->ReturnValue != 0) {
             http_response_code(400);
-            echo $result[0]->ret;
-        }
+            echo json_encode($result, JSON_PRETTY_PRINT);
+        } else 
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
     }
 }
 
@@ -1651,39 +1663,42 @@ class OrderHeaderShipList extends OrderHeaderList{
 
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
-        $rets = '';
         foreach($numbers as $number){
-            DB::statement("set @ret = Order_Shipped('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "')");
-
-            $result = DB::select('select @ret as ret', array());
-
-            if ($result[0]->ret == true) {
+            $result = DB::callProcedureOrFunction("Order_Shipped",
+                                                  [
+                                                      "CompanyID" => $user["CompanyID"],
+                                                      "DivisionID" => $user["DivisionID"],
+                                                      "DepartmentID" => $user["DepartmentID"],
+                                                      "OrderNumber" => $number
+                                                  ]);
+        
+            if($result->ReturnValue == true)
                 $success = false;
-            } else
-                $rets .= ' ' . $result[0]->ret;
         }
 
         if($success)
-            echo "ok";
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
         else {
             http_response_code(400);
-            echo $rets;
+            echo json_encode(["message" => "fail"], JSON_PRETTY_PRINT);
         }
     }
     
     public function ShipAll(){
         $user = Session::get("user");
 
-        DB::statement("set @ret = Order_ShipAll('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')");
-
-        $result = DB::select('select @ret as ret', array());
+        $result = DB::callProcedureOrFunction("Order_ShipAll",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"]
+                                              ]);
         
-        if ($result[0]->ret == 0)
-            echo "ok";
-        else {
+        if($result->ReturnValue != 0) {
             http_response_code(400);
-            echo $result[0]->ret;
-        }
+            echo json_encode($result, JSON_PRETTY_PRINT);
+        } else 
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);        
     }
 }
 
@@ -1736,24 +1751,25 @@ class OrderHeaderShipStep2List extends OrderHeaderShipList{
 
         $data = json_decode($postData, true);
         $success = true;
-        $rets = "";
         foreach($data as $row){
             DB::update("update orderheader set ShipDate=?, TrackingNumber=? WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND OrderNumber=?", [date("Y-m-d H:i:s", strtotime($row["ShipDate"])), $row["TrackingNumber"], $user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["OrderNumber"]]);
-            DB::statement("set @ret = Order_Shipped(?, ?, ?, ?)",[ $user["CompanyID"], $user["DivisionID"], $user["DepartmentID"], $row["OrderNumber"]]);
-
-            $result = DB::select('select @ret as ret', array());
-
-            if ($result[0]->ret == true) {
+            $result = DB::callProcedureOrFunction("Order_Shipped",
+                                                  [
+                                                      "CompanyID" => $user["CompanyID"],
+                                                      "DivisionID" => $user["DivisionID"],
+                                                      "DepartmentID" => $user["DepartmentID"],
+                                                      "OrderNumber" => $row["OrderNumber"]
+                                                  ]);
+        
+            if($result->ReturnValue == true)
                 $success = false;
-            } else
-                $rets .= ' ' . $result[0]->ret;
         }
 
         if($success)
-            echo "ok";
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
         else {
             http_response_code(400);
-            echo $rets;
+            echo json_encode(["message" => "fail"], JSON_PRETTY_PRINT);
         }
     }
 }
@@ -1770,40 +1786,43 @@ class OrderHeaderInvoiceList extends OrderHeaderList{
 
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
-        $rets = '';
         foreach($numbers as $number){
             //            callStoredCode('Invoice_CreateFromOrder2', ['CompanyID', 'DivisionID', 'DepartmentID', '
-            DB::statement("call Invoice_CreateFromOrder2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @InvoiceNumber, @SWP_Ret_Value)", array());
-
-            $result = DB::select('select @SWP_Ret_Value as ret', array());
-
-            if ($result[0]->ret == true) {
+            $result = DB::callProcedureOrFunction("Invoice_CreateFromOrder",
+                                                  [
+                                                      "CompanyID" => $user["CompanyID"],
+                                                      "DivisionID" => $user["DivisionID"],
+                                                      "DepartmentID" => $user["DepartmentID"],
+                                                      "OrderNumber" => $number
+                                                  ]);
+        
+            if($result->ReturnValue == true)
                 $success = false;
-            } else
-                $rets .= ' ' . $result[0]->ret;
         }
 
         if($success)
-            echo "ok";
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
         else {
             http_response_code(400);
-            echo $rets;
+            echo json_encode(["message" => "fail"], JSON_PRETTY_PRINT);
         }
     }
     
     public function Invoice_AllOrders(){
         $user = Session::get("user");
 
-        DB::statement("call Invoice_AllOrders('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "', @ret)", array());
-
-        $result = DB::select('select @ret as ret', array());
+        $result = DB::callProcedureOrFunction("Invoice_AllOrders",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"]
+                                              ]);
         
-        if ($result[0]->ret == 0)
-            echo "ok";
-        else {
+        if($result->ReturnValue != 0) {
             http_response_code(400);
-            echo $result[0]->ret;
-        }
+            echo json_encode($result, JSON_PRETTY_PRINT);
+        } else 
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
     }
 }
 
@@ -1816,23 +1835,20 @@ class OrderHeaderHoldList extends OrderHeaderList{
     public function releaseOnHoldOrder() {
         $user = Session::get("user");
 
-        $recalc = new recalcHelper;
-
-        if ($recalc->lookForProcedure("Order_ReleaseOnHoldOrder")) {
-            DB::statement("CALL Order_ReleaseOnHoldOrder('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
-
-            $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-
-            if($result[0]->SWP_RET_VALUE == -1) {
-                http_response_code(400);
-                echo $result[0]->PostingResult;
-            } else {
-                echo "ok";
-            }
-        } else {
-                http_response_code(400);
-                echo "Procedure not found";
-        }
+        $result = DB::callProcedureOrFunction("Order_ReleaseOnHoldOrder",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"],
+                                                  "OrderNumber" => $_POST["OrderNumber"]
+                                              ]);
+        
+        if($result->ReturnValue == -1) {
+            http_response_code(400);
+            $result->message = $result->PostingResult;
+            echo json_encode($result, JSON_PRETTY_PRINT);
+        } else 
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
     }
 }
 
@@ -1849,18 +1865,23 @@ class OrderHeaderMemorizedList extends OrderHeaderList{
         $numbers = explode(",", $_POST["OrderNumbers"]);
         $success = true;
         foreach($numbers as $number){
-            DB::statement("CALL Order_CreateFromMemorized('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $number . "', @message, @SWP_RET_VALUE)", array());
-
-            $result = DB::select('select @SWP_RET_VALUE as SWP_RET_VALUE, @message as message', array());
-            if($result[0]->SWP_RET_VALUE == -1)
+            $result = DB::callProcedureOrFunction("Order_CreateFromMemorized",
+                                                  [
+                                                      "CompanyID" => $user["CompanyID"],
+                                                      "DivisionID" => $user["DivisionID"],
+                                                      "DepartmentID" => $user["DepartmentID"],
+                                                      "OrderNumber" => $number
+                                                  ]);
+        
+            if($result->ReturnValue == true)
                 $success = false;
         }
 
         if($success)
-            echo $result[0]->message;
+            echo json_encode(["message" => "ok"], JSON_PRETTY_PRINT);
         else {
             http_response_code(400);
-            echo $result[0]->SWP_RET_VALUE;
+            echo json_encode(["message" => "fail"], JSON_PRETTY_PRINT);
         }
     }
 }
