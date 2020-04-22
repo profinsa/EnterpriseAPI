@@ -198,11 +198,16 @@ class DB{
                 $result->ReturnValue = $result->SWP_Ret_Value;
                 unset($result->SWP_Ret_Value);
             }
-            print_r($paramsStr);
-            print_r($paramsArr);
-            print_r($outStr);
-            print_r($result);
+            //print_r($paramsStr);
+            //print_r($paramsArr);
+            //print_r($outStr);
+            //print_r($result);
+            
+            return $result;
         }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+            $tableColumns = [];
+            $declareStmt = [];
+            $insertFields = [];
             foreach($procDef["params"] as $param){
                 $param->PARAMETER_NAME = preg_replace("/^@/i", "", $param->PARAMETER_NAME);
                 if(key_exists($param->PARAMETER_NAME, $parameters)){
@@ -211,42 +216,35 @@ class DB{
                 }else{
                     $paramsStr[] = "@" . $param->PARAMETER_NAME . " OUTPUT" ;
                 }
-                if($param->PARAMETER_MODE == "INOUT")
+                if($param->PARAMETER_MODE == "INOUT"){
+                    $insertFields[] = $param->PARAMETER_NAME;
                     $outArr[] = "@" . $param->PARAMETER_NAME;
+                    $declareStmt = "DECLARE @" . ($tableColumns[] = $param->PARAMETER_NAME . " " . $param->DATA_TYPE . ($param->DATA_TYPE == "nvarchar" ? "({$param->CHARACTER_MAXIMUM_LENGTH})" : "")) . ";";
+                }
             }
             $outArr[] = "@ReturnValue";
-            $declareStmt = '';
-
+            $insertFields[] = "ReturnValue";
+            $tableColumns[] = "ReturnValue INT";
+            $declareStmt .= "DECLARE @ReturnValue INT;";
+            $tableColumns = implode(",", $tableColumns);
             $tmpTableName = $procDef["definition"]->ROUTINE_NAME . "Result";
-            $tableColumns = [];
-            return;
-            //foreach($outArr
-            $tableStmt = "CREATE TABLE $tmpTableName ( $tableColumns )";
-            print_r($paramsStr);
-            print_r($paramsArr);
-            print_r($outArr);
-            print_r($tmpTableName);
-            print_r($tableStmt);
-            print_r($declareStmt);
-            print_r($insertFields);
-            print_r($insertValues);
-            return;
+            $tmpTableStmt = "CREATE TABLE $tmpTableName ($tableColumns)";
+            $insertFields = implode(",", $insertFields);
+            $insertValues = implode(",", $outArr);
+            $paramsStr = implode(",", $paramsStr);
+            //echo "paramsStr: $paramsStr\n";
+            //echo "paramsArr: " . json_encode($paramsArr, JSON_PRETTY_PRINT) . "\n";
+            //echo "outArr: " .  json_encode($outArr, JSON_PRETTY_PRINT) . "\n";
+            //print_r("tmpTableStmt : $tmpTableStmt \n");
+            //print_r("declareStmt: $declareStmt \n");
+            //print_r("insertFields: $insertFields \n");
+            //print_r("insertValues: $insertValues \n");
             DB::statement("DROP TABLE IF EXISTS $tmpTableName");
-            DB::statement($tableStmt);
-            DB::statement("DECLARE @nextNumber NVARCHAR(36);EXEC $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName (nextNumber) values (@nextNumber)", ['DINOS', 'DEFAULT', 'DEFAULT', 'NextOrderNumber']);
-            $columnMax = DB::select("select * from $tmpTableName")[0]->nextNumber;
-
-        }
-        return;
-
-        DB::statement("CALL Order_Post2('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "','" . $_POST["OrderNumber"] . "',@PostingResult,@SWP_RET_VALUE)");
-
-        $result = DB::select('select @PostingResult as PostingResult, @SWP_RET_VALUE as SWP_RET_VALUE');
-        if($result[0]->SWP_RET_VALUE == -1) {
-            http_response_code(400);
-            echo $result[0]->PostingResult;
-        } else {
-            echo "ok";
+            DB::statement($tmpTableStmt);
+            //echo "$declareStmt EXEC $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues);";
+            DB::statement("$declareStmt EXEC @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
+            $result = DB::select("select * from $tmpTableName")[0];
+            return $result;
         }
     }
 }
