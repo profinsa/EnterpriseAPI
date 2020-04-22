@@ -141,6 +141,7 @@ class apiController{
             $app->controller = new $controllerName();
             header('Content-Type: application/json');
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                //FIXME we need list of exceptions procedures which already uses JSON
                 $postData = file_get_contents("php://input");
                 $_POST = $data = json_decode($postData, true);
 
@@ -168,6 +169,8 @@ class apiController{
                         $_POST["id"] = $_GET["id"];
                         $_POST["type"] = false;
                         $_GET["procedure"] = "updateItemRemote";
+                        break;
+                    case "procedure":
                         break;
                     }
                     $_GET["action"] = $_GET["path"];

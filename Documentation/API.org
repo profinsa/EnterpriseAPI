@@ -85,8 +85,11 @@
    - delete record
      Method: GET
      URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=delete&id=DINOS__DEFAULT__DEFAULT__2110&session_id=${session.session_id}
-   - execute some action(in most cases Action is sql stored procedure or analog, implemented inside API server)
-     For now it's still under development, but will be done soon
+   - procedure
+     execute some action(in most cases Action is sql stored procedure or analog, implemented inside API server)
+     METHOD: POST
+     URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=procedure&procedure=Post&session_id=${session.session_id}
+     
 
    Most actions has following parameters:
    - session_id
