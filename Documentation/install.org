@@ -1,12 +1,12 @@
 * system requirements
-   + mysql 5.5 or higher
+   + Mysql >= 5.5 or MS SQL Server
    + php 5.6(may be higher, but not tested yet)
    + iis version 6 or higher
    + iis php module 5.6 version
-*  installation
-   + unpack in some place which accesable for webserver, for example it may be C:\inetpub\EnterpriseX
+*  installation for Mysql
+   + unpack in some place which accesable for webserver, for example it may be C:\inetpub\EnterpriseUniversalAPI
      It means that address in browser will be something like that: localhost\EnterpriseX
-   + create database myenterprise and user for that database with full permissions. 
+   + create database enterprise and user for that database with full permissions. 
      For example this user will be "enteprise" with password "enterprisepass"
      You need change config values for mysqld([mysqld] section) in my.cnf:
      - lower_case_table_names = 1
@@ -22,4 +22,20 @@
 
    If all steps is done, you can go to browser, type localhost/EnterpriseX/index.php and you will see login page
    
+* installation for MS SQL Server
+   + install PHP Tools over Visual Studio -> Menu -> Manage Extensions
+   + install MS Web Platform installer(tool for installtion Web Platform components like PHP, Microsoft Drivers for PHP for SQL server etc)
+   + install PHP, Microsoft Drivers for PHP for SQL Server on IISExpress, Microsoft Drivers for PHP for SQL Server on IIS. 
+     ALl this components must have same version. You can install these components with MS Web Platform installer
+   + unpack in some place which accesable for webserver, for example it may be C:\inetpub\EnterpriseUniversalAPI
+     That means that address in browser will be something like that: localhost\EnterpriseUniversalAPI
+   + restore Enterprise database from Enterprise Cloud version
+   + change rights to EnterpriseUniversalAPI and Windows/Temp - allow read and write to Users and IIS Users
+
+   Then you can folow two different ways:
+   + start project from Visual Studio
+     - open solution in Visual Studio
+     - run
+   + start project from IIS(this is Windows Server way)
+     - just open localhost/EnterpriseUniversalAPI/examples/list.html in browser
    
