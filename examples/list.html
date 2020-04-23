@@ -37,7 +37,7 @@
                     401 status if credentials wrong
                   */
                  session = await $.ajax({
-                     url: '/EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login',
+                     url: '../index.php?page=api&module=auth&action=login',
                      type: 'POST',
                      data : JSON.stringify({
                          CompanyID : "DINOS",
@@ -59,7 +59,7 @@
                         [ ... ] - array of order objects
                         401 status if credentials wrong
                       */
-                     let data = await $.get(`/EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
+                     let data = await $.get(`../index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
                      console.log(JSON.stringify(data, null, 3));
                      let _html = '';
                      for(let row of data){

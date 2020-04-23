@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "EnterpriseUniversalAPI", "EnterpriseUniversalAPI.phpproj", "{FF804B2C-B8AE-4016-94B2-B15AAC3E9298}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF804B2C-B8AE-4016-94B2-B15AAC3E9298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF804B2C-B8AE-4016-94B2-B15AAC3E9298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE1B444C-CF5C-47B9-B7B2-31BCB3F48081}
+	EndGlobalSection
+EndGlobal
