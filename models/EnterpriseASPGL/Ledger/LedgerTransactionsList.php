@@ -308,7 +308,7 @@ class LedgerTransactionsList extends gridDataSource{
     }
 }
 
-class gridData extends LedgerTransactionsList {}
+class LedgerTransactionsList extends LedgerTransactionsList {}
 
 class LedgerTransactionsClosedList extends LedgerTransactionsList{
     public $tableName = "ledgertransactions";

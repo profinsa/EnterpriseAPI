@@ -30,7 +30,7 @@
 */
 
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class CustomerContactLogList extends gridDataSource{
     public $tableName = "customercontactlog";
     public $dashboardTitle ="Customer Contact Log";
     public $breadCrumbTitle ="Customer Contact Log";

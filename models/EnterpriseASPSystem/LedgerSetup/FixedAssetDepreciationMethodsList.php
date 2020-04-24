@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class FixedAssetDepreciationMethodsList extends gridDataSource{
     public $tableName = "fixedassetdepreciationmethods";
     public $dashboardTitle ="Fixed Asset Depreciation Methods";
     public $breadCrumbTitle ="Fixed Asset Depreciation Methods";

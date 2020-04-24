@@ -30,7 +30,7 @@ Last Modified: 04/09/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class InventoryCrossSellingList extends gridDataSource{
 public $tableName = "inventorycrossselling";
 public $dashboardTitle ="InventoryCrossSelling";
 public $breadCrumbTitle ="InventoryCrossSelling";

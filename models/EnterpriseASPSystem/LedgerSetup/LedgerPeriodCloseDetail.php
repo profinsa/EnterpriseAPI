@@ -30,7 +30,7 @@
 */
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class LedgerPeriodCloseDetail extends gridDataSource{
     public $tableName = "companies";
     public $dashboardTitle ="Period Close ";
     public $breadCrumbTitle ="Period Close ";

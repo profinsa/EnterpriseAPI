@@ -30,7 +30,7 @@
 */
 
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class AccessPermissionsList extends gridDataSource{
     public $tableName = "accesspermissions";
     public $dashboardTitle ="Access Permissions";
     public $breadCrumbTitle ="Access Permissions";

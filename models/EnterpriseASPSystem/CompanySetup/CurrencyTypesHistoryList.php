@@ -2,7 +2,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class CurrencyTypesHistoryList extends gridDataSource{
     public $tableName = "currencytypes";
     public $dashboardTitle ="Currencies";
     public $breadCrumbTitle ="Currencies";

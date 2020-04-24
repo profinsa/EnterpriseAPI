@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class ContractTypesList extends gridDataSource{
 public $tableName = "contracttypes";
 public $dashboardTitle ="Contract Types";
 public $breadCrumbTitle ="Contract Types";

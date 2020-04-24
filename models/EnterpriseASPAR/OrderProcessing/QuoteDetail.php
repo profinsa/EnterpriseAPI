@@ -31,7 +31,7 @@
 
 require "./models/subgridDataSource.php";
 
-class gridData extends subgridDataSource{
+class QuoteDetail extends subgridDataSource{
 	public $tableName = "orderdetail";
 	public $dashboardTitle ="Quote Detail";
 	public $breadCrumbTitle ="Quote Detail";

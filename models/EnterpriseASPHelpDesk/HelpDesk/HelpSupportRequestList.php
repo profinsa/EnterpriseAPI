@@ -32,7 +32,7 @@
 require_once "./models/gridDataSource.php";
 require "./models/EnterpriseASPAR/Customers/CustomerInformationList.php";
 
-class gridData extends gridDataSource{
+class HelpSupportRequestList extends gridDataSource{
     public $tableName = "helpsupportrequest";
     public $dashboardTitle ="Help Support Requests";
     public $breadCrumbTitle ="Help Support Requests";

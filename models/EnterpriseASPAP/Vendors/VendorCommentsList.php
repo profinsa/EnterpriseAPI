@@ -30,7 +30,7 @@ Last Modified: 04/13/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class VendorCommentsList extends gridDataSource{
 public $tableName = "vendorcomments";
 public $dashboardTitle ="Vendor Comments";
 public $breadCrumbTitle ="Vendor Comments";

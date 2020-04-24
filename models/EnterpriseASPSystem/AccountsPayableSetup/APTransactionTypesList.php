@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class APTransactionTypesList extends gridDataSource{
 public $tableName = "aptransactiontypes";
 public $dashboardTitle ="AP Transaction Types";
 public $breadCrumbTitle ="AP Transaction Types";

@@ -1,6 +1,6 @@
 <?php
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class EDIReceiptsDetail extends gridDataSource{
     public $tableName = "edireceiptsdetail";
     public $dashboardTitle ="EDI Receipts Detail";
     public $breadCrumbTitle ="EDI Receipts Detail";

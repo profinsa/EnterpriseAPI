@@ -30,7 +30,7 @@ Last Modified: 04/12/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class HelpResourceTypeList extends gridDataSource{
 public $tableName = "helpresourcetype";
 public $dashboardTitle ="Help Resource Types";
 public $breadCrumbTitle ="Help Resource Types";

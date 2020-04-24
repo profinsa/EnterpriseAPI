@@ -32,7 +32,7 @@
 require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
-class gridData extends gridDataSource{
+class ReturnReceiptsHeaderList extends gridDataSource{
     public $tableName = "receiptsheader";
     public $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Vendor')";
     public $dashboardTitle ="Return Receipts";

@@ -1,7 +1,7 @@
 <?php
 require "./models/subgridDataSource.php";
 
-class gridData extends subgridDataSource{
+class LedgerTransactionsHistoryDetail extends subgridDataSource{
     public $tableName = "ledgertransactionsdetailhistory";
     public $dashboardTitle ="Ledger Transactions History Detail";
     public $breadCrumbTitle ="Ledger Transactions History Detail";

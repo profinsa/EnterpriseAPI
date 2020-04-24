@@ -30,7 +30,7 @@ Last Modified: 04/12/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class HelpPriorityList extends gridDataSource{
 public $tableName = "helppriority";
 public $dashboardTitle ="Help Priorities";
 public $breadCrumbTitle ="Help Priorities";

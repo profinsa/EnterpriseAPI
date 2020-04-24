@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class ReturnDetail extends gridDataSource{
 	public $tableName = "orderdetail";
     public $parentTableName = "orderheader";
 	public $dashboardTitle ="Return Detail";

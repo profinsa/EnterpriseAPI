@@ -32,7 +32,7 @@
 require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
-class gridData extends gridDataSource{
+class PurchaseContractHeaderList extends gridDataSource{
 	public $tableName = "purchasecontractheader";
 	public $dashboardTitle ="View Purchase Contracts";
 	public $breadCrumbTitle ="View Purchase Contracts";

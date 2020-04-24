@@ -30,7 +30,7 @@ Last Modified: 04/12/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class HelpRequestMethodList extends gridDataSource{
 public $tableName = "helprequestmethod";
 public $dashboardTitle ="Help Request Methods";
 public $breadCrumbTitle ="Help Request Methods";

@@ -1323,8 +1323,6 @@ class ServiceOrderHeaderList extends gridDataSource{
     }
 }
 
-class gridData extends ServiceOrderHeaderList {}
-
 class ServiceOrderHeaderClosedList extends ServiceOrderHeaderList{
 	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N''))='service order') AND (OrderHeader.Invoiced = 1)";	
 	public $dashboardTitle ="Closed Service Orders";

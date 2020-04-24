@@ -1421,8 +1421,6 @@ class OrderHeaderList extends gridDataSource{
     }
 }
 
-class gridData extends OrderHeaderList {};
-
 class OrderHeaderSimpleList extends OrderHeaderList {
 	public $dashboardTitle ="Quick Order";
 	public $breadCrumbTitle ="Quick Order";
