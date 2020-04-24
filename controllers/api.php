@@ -24,7 +24,7 @@
   models/help/*
   app from index.php
 
-  Last Modified: 15.04.2020
+  Last Modified: 24.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -35,6 +35,244 @@ require_once 'models/permissionsGenerated.php';
 require_once 'models/linksMaker.php';
 require_once 'models/interfaces.php';
 
+/*! \mainpage Enterprirse Universal API Documentaion
+ *
+ * \section intro_sec Introduction
+ *
+ * - For ALL API requests we using GET and POST HTTP methods.
+ * - For body we using JSON encoding. 
+ * - You can use any language which can send the GET and POST HTTP requests.
+ * - Any request to API start from base of URL - /EnterpriseUniversalAPI/index.php?page=api&module=modulename
+ * - EnterpriseUniversalAPI can be changed to any other name, if you'll change folder of project.
+ * - modulename is name of module for using. For example, we have following modules:
+ *   + auth
+ *     for login, session control etc
+ *   + forms
+ *     for working with all records in system. It's all CRUD operations and actions
+ *   + language
+ *     for changing language
+ *   + etc
+
+ * Each module can have own paths(for some submodules) and actions.
+ * A common API using scenario:
+ * - request for login and getting session_id
+ * - request for
+ *   + list records
+ *   + get record
+ *   + insert record
+ *   + update record
+ *   + delete record
+ *   + execute some action(in most cases Action is sql stored procedure or analog, implemented inside API server)
+ *     
+ * Example:
+ * - request for login and getting session_id
+ *   +Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login
+ *   +Request Method: POST
+ *   + Request JSON:
+ *     {
+ *       CompanyID : "DINOS",
+ *       DivisionID : "DEFAULT",
+ *       DepartmentID : "DEFAULT",
+ *       EmployeeID : "Demo",
+ *       EmployeePassword : "Demo",
+ *       language : "english"
+ *    }
+ *   + Response JSON:
+ *     {
+ *       session_id : "session number"
+ *     }
+ *
+ *   or
+ *   401 status if credentials wrong
+ * 
+ * - request to get list of Orders. If request success, then data will be array of the order records.
+ *   + Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=session_number
+ *   + Request Method: GET
+ *   + JSON Response:
+ *     [ ... ] - array of order objects
+
+ *   401 status if credentials wrong
+ *
+ * \section modules_sec Modules and their API
+ * - auth
+ *   Module exports API for working with authentification and session management.
+ *   For now it expose only "login" action for login and getting session_id which you need to use in any other API request.
+ *   + Method: POST
+ *   + URL: /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login'
+ *   + example: examples/get_list.html and other examples
+ * - forms
+ *  Module exports API for
+ *  - list
+ *    Method: GET
+ *    URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=sessionId
+ *    example: examples/list.html
+ *  - get empty record(record filled by default values for filling with values and inserting into system)
+ *    Method: GET
+ *    URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=emptyRecord&session_id=sessionId
+ *    example: examples/create.html
+ *  - get record
+ *    Method: GET
+ *    URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=get&id=DINOS__DEFAULT__DEFAULT__2110&session_id=sessionId
+ *    example: examples/get_and_upate.html
+ *  - create record
+ *    Method: POST
+ *    URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=create&session_id=sessionId
+ *    example: examples/create.html
+ *  - update record
+ *    Method: POST
+ *    URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=update&id=DINOS__DEFAULT__DEFAULT__2110&session_id=${session.session_id}
+ *    example: examples/get_and_update.html
+ *  - delete record
+ *    Method: GET
+ *    URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=delete&id=DINOS__DEFAULT__DEFAULT__2110&session_id=${session.session_id}
+ *  - procedure
+ *    execute some action(in most cases Action is sql stored procedure or analog, implemented inside API server)
+ *    METHOD: POST
+ *    URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=procedure&procedure=Post&session_id=${session.session_id}
+ *    
+ *
+ *  Most actions has following parameters:
+ *  - session_id
+ *    session_id which was getted by login request
+ *  - path
+ *    it's path to submodule which uses for actions. For example: AccountsReceivable/OrderProcessing/ViewOrders is path for working with Orders
+ *    There is many paths in system and we working on documentation about it. For now you can use these paths:
+ *    + AccountsReceivable/OrderScreens/ViewOrders
+ *      for Orders
+ *    + AccountsReceivable/OrderScreens/ViewInvoices
+ *      for Invoices
+ *    + AccountsReceivable/ServiceScreens/ViewServiceOrders
+ *      for Service Orders
+ *    + AccountsReceivable/ServiceScreens/ViewServiceInvoices
+ *      for Service Invoices
+ *    + AccountsReceivable/CreditMemos/ViewCreditMemos 
+ *      for Credit Memos
+ *    + AccountsReceivable/RMAProcessing/ViewRMA
+ *      for RMA
+ *    + AccountsReceivable/CashReceiptsProcessing/ViewCashReceipts
+ *      for Cash Receipts
+ *    + AccountsReceivable/Customers/ViewCustomers
+ *      for Customers
+ *    + AccountsPayable/Vendors/ViewVendors
+ *      for Vendors
+ *    + AccountsPayable/PurchaseScreens/ViewPurchases
+ *      for Purchases
+ *    + AccountsPayable/VoucherScreens/ViewVouchers
+ *      for Payments
+ *    + AccountsPayable/DebitMemos/ViewDebitMemos
+ *      for Debit Memo
+ *    + AccountsPayable/ReturntoVendorProcessing/ViewReturns
+ *      for Returns
+ *    + GeneralLedger/Ledger/ViewGLTransactions
+ *      for GL Transactions
+ *    + GeneralLedger/Ledger/ViewChartofAccounts
+ *      for Chart Of Accounts
+ *    and many other paths. We working on full list and explanation about each path. Now you can get full list of path in models/menuIdToHref.php. It's a just array of values.
+ *  - id
+ *    it's "__" separated key values of records. For example: order has four key values: CompanyID, DivisionID, DepartmentID, OrderNumber and id is DINOS__DEFAULT__DEFAULT__2110
+ *    we working on getting description request to know which submodule which key expected.
+ * - dictionaries
+ *   + Method: GET
+ *   + URL: /EnterpriseUniversalAPI/index.php?page=api&module=dictionaries&list=OrderTypes,CurrencySymbol,Projects,TaxGroups
+ *     - Dictionaries list is comma separated.
+ *     - Response where keys are Dictionary names but values are dictionaries itself.
+ *     - Dictionaries used for getting some common lists or values from system which you need to fill records
+ *     - For now, we implemented following dictionaries:
+ *       + "Items",
+ *       + "Customers",
+ *       + "Vendors",
+ *       + "CompaniesWorkFlowTypes",
+ *       + "InventoryFamilies",
+ *       + "AdjustmentTypes",
+ *       + "ReceiptClasses",
+ *       + "ReceiptTypes",
+ *       + "ExpenseReportTypes",
+ *       + "ExpenseReportReasons",
+ *       + "WorkOrderTypes",
+ *       + "WorkOrderProgress",
+ *       + "WorkOrderPriority",
+ *       + "WorkOrderStatus",
+ *       + "Companies",
+ *       + "Divisions",
+ *       + "Departments",
+ *       + "TaxGroups",
+ *       + "CreditCardTypes",
+ *       + "PaymentMethods",
+ *       + "PaymentTypes",
+ *       + "ShipMethods",
+ *       + "Terms",
+ *       + "PayrollEmployees",
+ *       + "Warehouses",
+ *       + "WarehouseBinTypes",
+ *       + "WarehouseBinZones",
+ *       + "WarehouseBins",
+ *       + "ARTransactionTypes",
+ *       + "OrderTypes",
+ *       + "LedgerBalanceTypes",
+ *       + "LedgerBudgetId",
+ *       + "LedgerAccountTypes",
+ *       + "TransactionAccounts",
+ *       + "ProjectTypes",
+ *       + "Projects",
+ *       + "ContactRegions",
+ *       + "ContactTypes",
+ *       + "LedgerTransactionTypes",
+ *       + "BankTransactionTypes",
+ *       + "GLControlNumbers",
+ *       + "Accounts",
+ *       + "CurrencyExchangeRates",
+ *       + "CurrencyTypes",
+ *       + "ContactSourceIds",
+ *       + "ContactIndustryIds",
+ *       + "LeadIds",
+ *       + "LeadTypes",
+ *       + "CommentTypes",
+ *       + "EDIDirectionTypeIDs",
+ *       + "EDIDocumentTypeIDs",
+ *       + "InventoryAdjustmentTypes",
+ *       + "InventoryItemTypes",
+ *       + "InventoryCategories",
+ *       + "InventoryPricingMethods",
+ *       + "CustomerAccountStatuses",
+ *       + "Employees",
+ *       + "VendorAccountStatuses",
+ *       + "CustomerTypes",
+ *       + "VendorTypes",
+ *       + "InventoryAssemblies",
+ *       + "InventoryPricingCodes",
+ *       + "PayrollEmployeesTaskTypes",
+ *       + "HelpDocumentTopics",
+ *       + "HelpDocumentModules",
+ *       + "HelpStatuses",
+ *       + "CurrentCompany",
+ *       + "CurrencySymbol"
+ *       + This list of Dictionaries will be extended in following together with documentaion.
+ *   + More complicated example how to use dictionaries and why you can see in examples/create_complicated.html
+
+ * \section install_sec Installation
+ *  + install PHP Tools over Visual Studio -> Menu -> Manage Extensions
+ *  + install MS Web Platform installer(tool for installtion Web Platform components like PHP, Microsoft Drivers for PHP for SQL server etc)
+ *  + install PHP, Microsoft Drivers for PHP for SQL Server on IISExpress, Microsoft Drivers for PHP for SQL Server on IIS. 
+ *    ALl this components must have same version. You can install these components with MS Web Platform installer
+ *  + unpack in some place which accesable for webserver, for example it may be C:\inetpub\EnterpriseUniversalAPI
+ *    That means that address in browser will be something like that: localhost\EnterpriseUniversalAPI
+ *  + restore Enterprise database from Enterprise Cloud version
+ *  + change rights to EnterpriseUniversalAPI and Windows/Temp - allow read and write to Users and IIS Users
+ *
+ *  Then you can folow two different ways:
+ *  + start project from Visual Studio
+ *    - open solution in Visual Studio
+ *    - run
+ *  + start project from IIS(this is Windows Server way)
+ *    - just open localhost/EnterpriseUniversalAPI/examples/list.html in browser
+ */
+/**
+ * The main API controller, every REST API request is processed by this controller.
+ *
+ * Main purpose this controller - pre-processing REST requests and sending they to controllers which will do work by own
+ * specialization. Something like internal router which pre-process requests bodies before send it to spezialized controllers. 
+ * 
+ */
 class apiController{
     public $user = false;
     public $action = "";

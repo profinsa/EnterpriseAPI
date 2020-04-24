@@ -5,85 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>
-            Get list of orders
+            List of the examples which uses API
         </title>
-        <script>
-         async function main(){
-             /*
-                For ALL API requests we using GET and POST HTTP methods.
-                For body we using JSON encoding. 
-                You can use any language which can send the GET and POST HTTP requests.
-              */
-             let session;
-             try{
-                 /*
-                    This request sent to get session_id. If request success, then session object will contains field session_id which we will use in all other requests.
-                    Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login
-                    Request Method: POST
-                    Request JSON Body:
-                    {
-                      CompanyID : "DINOS",
-                      DivisionID : "DEFAULT",
-                      DepartmentID : "DEFAULT",
-                      EmployeeID : "Demo",
-                      EmployeePassword : "Demo",
-                      language : "english"
-                    }
-                    JSON Response:
-                    {
-                      session_id : "session number"
-                    }
-                    or
-                    401 status if credentials wrong
-                  */
-                 session = await $.ajax({
-                     url: '../index.php?page=api&module=auth&action=login',
-                     type: 'POST',
-                     data : JSON.stringify({
-                         CompanyID : "DINOS",
-                         DivisionID : "DEFAULT",
-                         DepartmentID : "DEFAULT",
-                         EmployeeID : "Demo",
-                         EmployeePassword : "Demo",
-                         language : "english"
-                     }),
-                     contentType : 'application/json'
-                 });
-                 
-                 try{
-                     /*
-                        This request sent to get list of Orders. If request success, then data will be array of the order records.
-                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=session_number
-                        Request Method: GET
-                        JSON Response:
-                        [ ... ] - array of order objects
-                        401 status if credentials wrong
-                      */
-                     let data = await $.get(`../index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=${session.session_id}`);
-                     console.log(JSON.stringify(data, null, 3));
-                     let _html = '';
-                     for(let row of data){
-                         _html += '<tr>';
-                         for(let key in row){
-                             if(key != "CompanyID" && key != "DivisionID" && key != "DepartmendID")
-                                 _html += `<td>${row[key]}</td>`;
-                         }
-                         _html += '</tr>';
-                     }
-                     $('#ordersBody').html(_html);
-                 }catch(e){
-                     alert("Wrong response");
-                 }
-             }catch(e){
-                 alert("Wrong credentials");
-             }
-         }
-        </script>
     </head>
     <body onload="main()">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Orders</h5>
+                <h5 class="card-title">Examples</h5>
                 <table class="table table-striped">
                     <thead>
                         <tr>

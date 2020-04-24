@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.16"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Enterprise X: Main Page</title>
+<title>Enterprise Universal API: Enterprirse Universal API Documentaion</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Enterprise X
+   <div id="projectname">Enterprise Universal API
    </div>
   </td>
  </tr>
@@ -60,11 +60,201 @@ $(function() {
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Enterprise X Documentation</div>  </div>
+<div class="title">Enterprirse Universal API Documentaion </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
+Introduction</h1>
+<ul>
+<li>For ALL API requests we using GET and POST HTTP methods.</li>
+<li>For body we using JSON encoding.</li>
+<li>You can use any language which can send the GET and POST HTTP requests.</li>
+<li>Any request to API start from base of URL - /EnterpriseUniversalAPI/index.php?page=api&amp;module=modulename</li>
+<li>EnterpriseUniversalAPI can be changed to any other name, if you'll change folder of project.</li>
+<li>modulename is name of module for using. For example, we have following modules:<ul>
+<li>auth for login, session control etc</li>
+<li>forms for working with all records in system. It's all CRUD operations and actions</li>
+<li>language for changing language</li>
+<li>etc</li>
+</ul>
+</li>
+</ul>
+<p>Each module can have own paths(for some submodules) and actions. A common API using scenario:</p><ul>
+<li>request for login and getting session_id</li>
+<li>request for<ul>
+<li>list records</li>
+<li>get record</li>
+<li>insert record</li>
+<li>update record</li>
+<li>delete record</li>
+<li>execute some action(in most cases Action is sql stored procedure or analog, implemented inside API server)</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p><ul>
+<li><p class="startli">request for login and getting session_id +Request URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=auth&amp;action=login +Request Method: POST</p><ul>
+<li>Request JSON: { CompanyID : "DINOS", DivisionID : "DEFAULT", DepartmentID : "DEFAULT", EmployeeID : "Demo", EmployeePassword : "Demo", language : "english" }</li>
+<li>Response JSON: { session_id : "session number" }</li>
+</ul>
+<p class="startli">or 401 status if credentials wrong</p>
+</li>
+<li><p class="startli">request to get list of Orders. If request success, then data will be array of the order records.</p><ul>
+<li>Request URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/OrderProcessing/ViewOrders&amp;action=list&amp;session_id=session_number</li>
+<li>Request Method: GET</li>
+<li>JSON Response: [ ... ] - array of order objects</li>
+</ul>
+<p class="startli">401 status if credentials wrong</p>
+</li>
+</ul>
+<h1><a class="anchor" id="modules_sec"></a>
+Modules and their API</h1>
+<ul>
+<li>auth Module exports API for working with authentification and session management. For now it expose only "login" action for login and getting session_id which you need to use in any other API request.<ul>
+<li>Method: POST</li>
+<li>URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=auth&amp;action=login'</li>
+<li>example: examples/get_list.html and other examples</li>
+</ul>
+</li>
+<li><p class="startli">forms Module exports API for</p><ul>
+<li>list Method: GET URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/OrderProcessing/ViewOrders&amp;action=list&amp;session_id=sessionId example: examples/list.html</li>
+<li>get empty record(record filled by default values for filling with values and inserting into system) Method: GET URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/OrderProcessing/ViewOrders&amp;action=emptyRecord&amp;session_id=sessionId example: examples/create.html</li>
+<li>get record Method: GET URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/OrderProcessing/ViewOrders&amp;action=get&amp;id=DINOS__DEFAULT__DEFAULT__2110&amp;session_id=sessionId example: examples/get_and_upate.html</li>
+<li>create record Method: POST URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/OrderProcessing/ViewOrders&amp;action=create&amp;session_id=sessionId example: examples/create.html</li>
+<li>update record Method: POST URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/OrderProcessing/ViewOrders&amp;action=update&amp;id=DINOS__DEFAULT__DEFAULT__2110&amp;session_id=${session.session_id} example: examples/get_and_update.html</li>
+<li>delete record Method: GET URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/OrderProcessing/ViewOrders&amp;action=delete&amp;id=DINOS__DEFAULT__DEFAULT__2110&amp;session_id=${session.session_id}</li>
+<li>procedure execute some action(in most cases Action is sql stored procedure or analog, implemented inside API server) METHOD: POST URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/OrderProcessing/ViewOrders&amp;action=procedure&amp;procedure=Post&amp;session_id=${session.session_id}</li>
+</ul>
+<p class="startli">Most actions has following parameters:</p><ul>
+<li>session_id session_id which was getted by login request</li>
+<li>path it's path to submodule which uses for actions. For example: AccountsReceivable/OrderProcessing/ViewOrders is path for working with Orders There is many paths in system and we working on documentation about it. For now you can use these paths:<ul>
+<li>AccountsReceivable/OrderScreens/ViewOrders for Orders</li>
+<li>AccountsReceivable/OrderScreens/ViewInvoices for Invoices</li>
+<li>AccountsReceivable/ServiceScreens/ViewServiceOrders for Service Orders</li>
+<li>AccountsReceivable/ServiceScreens/ViewServiceInvoices for Service Invoices</li>
+<li>AccountsReceivable/CreditMemos/ViewCreditMemos for Credit Memos</li>
+<li>AccountsReceivable/RMAProcessing/ViewRMA for RMA</li>
+<li>AccountsReceivable/CashReceiptsProcessing/ViewCashReceipts for Cash Receipts</li>
+<li>AccountsReceivable/Customers/ViewCustomers for Customers</li>
+<li>AccountsPayable/Vendors/ViewVendors for Vendors</li>
+<li>AccountsPayable/PurchaseScreens/ViewPurchases for Purchases</li>
+<li>AccountsPayable/VoucherScreens/ViewVouchers for Payments</li>
+<li>AccountsPayable/DebitMemos/ViewDebitMemos for Debit Memo</li>
+<li>AccountsPayable/ReturntoVendorProcessing/ViewReturns for Returns</li>
+<li>GeneralLedger/Ledger/ViewGLTransactions for GL Transactions</li>
+<li>GeneralLedger/Ledger/ViewChartofAccounts for Chart Of Accounts and many other paths. We working on full list and explanation about each path. Now you can get full list of path in models/menuIdToHref.php. It's a just array of values.</li>
+</ul>
+</li>
+<li>id it's "__" separated key values of records. For example: order has four key values: CompanyID, DivisionID, DepartmentID, OrderNumber and id is DINOS__DEFAULT__DEFAULT__2110 we working on getting description request to know which submodule which key expected.</li>
+</ul>
+</li>
+<li>dictionaries<ul>
+<li>Method: GET</li>
+<li>URL: /EnterpriseUniversalAPI/index.php?page=api&amp;module=dictionaries&amp;list=OrderTypes,CurrencySymbol,Projects,TaxGroups<ul>
+<li><a class="el" href="classDictionaries.html">Dictionaries</a> list is comma separated.</li>
+<li>Response where keys are Dictionary names but values are dictionaries itself.</li>
+<li><a class="el" href="classDictionaries.html">Dictionaries</a> used for getting some common lists or values from system which you need to fill records</li>
+<li>For now, we implemented following dictionaries:<ul>
+<li>"Items",</li>
+<li>"Customers",</li>
+<li>"Vendors",</li>
+<li>"CompaniesWorkFlowTypes",</li>
+<li>"InventoryFamilies",</li>
+<li>"AdjustmentTypes",</li>
+<li>"ReceiptClasses",</li>
+<li>"ReceiptTypes",</li>
+<li>"ExpenseReportTypes",</li>
+<li>"ExpenseReportReasons",</li>
+<li>"WorkOrderTypes",</li>
+<li>"WorkOrderProgress",</li>
+<li>"WorkOrderPriority",</li>
+<li>"WorkOrderStatus",</li>
+<li>"Companies",</li>
+<li>"Divisions",</li>
+<li>"Departments",</li>
+<li>"TaxGroups",</li>
+<li>"CreditCardTypes",</li>
+<li>"PaymentMethods",</li>
+<li>"PaymentTypes",</li>
+<li>"ShipMethods",</li>
+<li>"Terms",</li>
+<li>"PayrollEmployees",</li>
+<li>"Warehouses",</li>
+<li>"WarehouseBinTypes",</li>
+<li>"WarehouseBinZones",</li>
+<li>"WarehouseBins",</li>
+<li>"ARTransactionTypes",</li>
+<li>"OrderTypes",</li>
+<li>"LedgerBalanceTypes",</li>
+<li>"LedgerBudgetId",</li>
+<li>"LedgerAccountTypes",</li>
+<li>"TransactionAccounts",</li>
+<li>"ProjectTypes",</li>
+<li>"Projects",</li>
+<li>"ContactRegions",</li>
+<li>"ContactTypes",</li>
+<li>"LedgerTransactionTypes",</li>
+<li>"BankTransactionTypes",</li>
+<li>"GLControlNumbers",</li>
+<li>"Accounts",</li>
+<li>"CurrencyExchangeRates",</li>
+<li>"CurrencyTypes",</li>
+<li>"ContactSourceIds",</li>
+<li>"ContactIndustryIds",</li>
+<li>"LeadIds",</li>
+<li>"LeadTypes",</li>
+<li>"CommentTypes",</li>
+<li>"EDIDirectionTypeIDs",</li>
+<li>"EDIDocumentTypeIDs",</li>
+<li>"InventoryAdjustmentTypes",</li>
+<li>"InventoryItemTypes",</li>
+<li>"InventoryCategories",</li>
+<li>"InventoryPricingMethods",</li>
+<li>"CustomerAccountStatuses",</li>
+<li>"Employees",</li>
+<li>"VendorAccountStatuses",</li>
+<li>"CustomerTypes",</li>
+<li>"VendorTypes",</li>
+<li>"InventoryAssemblies",</li>
+<li>"InventoryPricingCodes",</li>
+<li>"PayrollEmployeesTaskTypes",</li>
+<li>"HelpDocumentTopics",</li>
+<li>"HelpDocumentModules",</li>
+<li>"HelpStatuses",</li>
+<li>"CurrentCompany",</li>
+<li>"CurrencySymbol"</li>
+<li>This list of <a class="el" href="classDictionaries.html">Dictionaries</a> will be extended in following together with documentaion.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>More complicated example how to use dictionaries and why you can see in examples/create_complicated.html</li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="install_sec"></a>
+Installation</h1>
+<ul>
+<li>install PHP Tools over Visual Studio -&gt; Menu -&gt; Manage Extensions</li>
+<li>install MS Web Platform installer(tool for installtion Web Platform components like PHP, Microsoft Drivers for PHP for SQL server etc)</li>
+<li>install PHP, Microsoft Drivers for PHP for SQL Server on IISExpress, Microsoft Drivers for PHP for SQL Server on IIS. ALl this components must have same version. You can install these components with MS Web Platform installer</li>
+<li>unpack in some place which accesable for webserver, for example it may be C:\inetpub\EnterpriseUniversalAPI That means that address in browser will be something like that: localhost\EnterpriseUniversalAPI</li>
+<li>restore Enterprise database from Enterprise Cloud version</li>
+<li>change rights to EnterpriseUniversalAPI and Windows/Temp - allow read and write to Users and IIS Users</li>
+</ul>
+<p>Then you can folow two different ways:</p><ul>
+<li>start project from Visual Studio<ul>
+<li>open solution in Visual Studio</li>
+<li>run</li>
+</ul>
+</li>
+<li>start project from IIS(this is Windows Server way)<ul>
+<li>just open localhost/EnterpriseUniversalAPI/examples/list.html in browser </li>
+</ul>
+</li>
+</ul>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
