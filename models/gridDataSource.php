@@ -314,7 +314,6 @@ class gridDataSource extends Dictionaries{
         return false;
     }
 
-<<<<<<< HEAD
     public function getEditItemAllRemote(){
         $result = [];
         foreach($this->editCategories as $key=>$value)
@@ -324,11 +323,9 @@ class gridDataSource extends Dictionaries{
         echo json_encode($result, JSON_PRETTY_PRINT);
     }
 
-=======
     /** 
      * It's same as getEditItem but for using as REST API
      */
->>>>>>> 3d03aa031c78d706d3c96c2610ac07a9bfe9458d
     public function getEditItemRemote(){
         echo json_encode($this->getEditItem($_POST["id"], $_POST["type"]), JSON_PRETTY_PRINT);
     }
@@ -340,7 +337,6 @@ class gridDataSource extends Dictionaries{
      *
      * @return object
      */
-
     public function getEditItem($id, $type){
         if(!$this->lockedBy($id))
             $this->lock($id);
