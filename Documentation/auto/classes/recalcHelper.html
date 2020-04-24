@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit--><script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">                    <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">                            <li><a href="../namespaces/App.html">\App</a></li>                        </ul>
+                    </li>                    <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">5583</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">6</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">                                    <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">    <section class="row-fluid">
+        <div class="span2 sidebar">    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">                    <a class="accordion-toggle" data-toggle="collapse" data-target="#namespace-857625296"></a>                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-857625296" class="accordion-body collapsein">
+                <div class="accordion-inner">    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">                    <a class="accordion-togglecollapsed" data-toggle="collapse" data-target="#namespace-792288838"></a>                <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
+            </div>
+            <div id="namespace-792288838" class="accordion-body collapse">
+                <div class="accordion-inner">    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">                    <a class="accordion-togglecollapsed" data-toggle="collapse" data-target="#namespace-2024953326"></a>                <a href="../namespaces/App.Models.html" style="margin-left: 30px; padding-left: 0">Models</a>
+            </div>
+            <div id="namespace-2024953326" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <ul>                            <li class="class"><a href="../classes/App.Models.gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/App.Models.gridData.html">gridData</a></li>                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+                    <ul>                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+                    <ul>                            <li class="class"><a href="../classes/apiController.html">apiController</a></li>                            <li class="class"><a href="../classes/autoreportsController.html">autoreportsController</a></li>                            <li class="class"><a href="../classes/autoreportsData.html">autoreportsData</a></li>                            <li class="class"><a href="../classes/ByPassLoginController.html">ByPassLoginController</a></li>                            <li class="class"><a href="../classes/companies.html">companies</a></li>                            <li class="class"><a href="../classes/CreditMemoHeaderClosedList.html">CreditMemoHeaderClosedList</a></li>                            <li class="class"><a href="../classes/CreditMemoHeaderList.html">CreditMemoHeaderList</a></li>                            <li class="class"><a href="../classes/CreditMemoIssuePaymentsList.html">CreditMemoIssuePaymentsList</a></li>                            <li class="class"><a href="../classes/CustomerInformationList.html">CustomerInformationList</a></li>                            <li class="class"><a href="../classes/dashboardController.html">dashboardController</a></li>                            <li class="class"><a href="../classes/dashboardData.html">dashboardData</a></li>                            <li class="class"><a href="../classes/dashboardData.html">dashboardData</a></li>                            <li class="class"><a href="../classes/DebitMemoHeaderApplyToPaymentsList.html">DebitMemoHeaderApplyToPaymentsList</a></li>                            <li class="class"><a href="../classes/DebitMemoHeaderClosedList.html">DebitMemoHeaderClosedList</a></li>                            <li class="class"><a href="../classes/DebitMemoHeaderList.html">DebitMemoHeaderList</a></li>                            <li class="class"><a href="../classes/DebitMemoHeaderPaymentsList.html">DebitMemoHeaderPaymentsList</a></li>                            <li class="class"><a href="../classes/Dictionaries.html">Dictionaries</a></li>                            <li class="class"><a href="../classes/docReportsBase.html">docReportsBase</a></li>                            <li class="class"><a href="../classes/docreportsController.html">docreportsController</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/docReportsData.html">docReportsData</a></li>                            <li class="class"><a href="../classes/drillDowner.html">drillDowner</a></li>                            <li class="class"><a href="../classes/excelImport.html">excelImport</a></li>                            <li class="class"><a href="../classes/financialsController.html">financialsController</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/financialsReportData.html">financialsReportData</a></li>                            <li class="class"><a href="../classes/gridController.html">gridController</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridData.html">gridData</a></li>                            <li class="class"><a href="../classes/gridDataSource.html">gridDataSource</a></li>                            <li class="class"><a href="../classes/helpController.html">helpController</a></li>                            <li class="class"><a href="../classes/helpData.html">helpData</a></li>                            <li class="class"><a href="../classes/indexController.html">indexController</a></li>                            <li class="class"><a href="../classes/interfaces.html">interfaces</a></li>                            <li class="class"><a href="../classes/InvoiceHeaderClosedList.html">InvoiceHeaderClosedList</a></li>                            <li class="class"><a href="../classes/InvoiceHeaderList.html">InvoiceHeaderList</a></li>                            <li class="class"><a href="../classes/InvoiceHeaderMemorizedList.html">InvoiceHeaderMemorizedList</a></li>                            <li class="class"><a href="../classes/InvoiceHeaderSimpleList.html">InvoiceHeaderSimpleList</a></li>                            <li class="class"><a href="../classes/languageController.html">languageController</a></li>                            <li class="class"><a href="../classes/LeadInformationList.html">LeadInformationList</a></li>                            <li class="class"><a href="../classes/LedgerTransactionsClosedList.html">LedgerTransactionsClosedList</a></li>                            <li class="class"><a href="../classes/LedgerTransactionsHistoryList.html">LedgerTransactionsHistoryList</a></li>                            <li class="class"><a href="../classes/LedgerTransactionsList.html">LedgerTransactionsList</a></li>                            <li class="class"><a href="../classes/LedgerTransactionsMemorizedList.html">LedgerTransactionsMemorizedList</a></li>                            <li class="class"><a href="../classes/linksMaker.html">linksMaker</a></li>                            <li class="class"><a href="../classes/loginController.html">loginController</a></li>                            <li class="class"><a href="../classes/mailer.html">mailer</a></li>                            <li class="class"><a href="../classes/OrderHeaderBackList.html">OrderHeaderBackList</a></li>                            <li class="class"><a href="../classes/OrderHeaderClosedList.html">OrderHeaderClosedList</a></li>                            <li class="class"><a href="../classes/OrderHeaderHoldList.html">OrderHeaderHoldList</a></li>                            <li class="class"><a href="../classes/OrderHeaderInvoiceList.html">OrderHeaderInvoiceList</a></li>                            <li class="class"><a href="../classes/OrderHeaderList.html">OrderHeaderList</a></li>                            <li class="class"><a href="../classes/OrderHeaderMemorizedList.html">OrderHeaderMemorizedList</a></li>                            <li class="class"><a href="../classes/OrderHeaderPickList.html">OrderHeaderPickList</a></li>                            <li class="class"><a href="../classes/OrderHeaderShipDateList.html">OrderHeaderShipDateList</a></li>                            <li class="class"><a href="../classes/OrderHeaderShipList.html">OrderHeaderShipList</a></li>                            <li class="class"><a href="../classes/OrderHeaderShipStep2List.html">OrderHeaderShipStep2List</a></li>                            <li class="class"><a href="../classes/OrderHeaderSimpleList.html">OrderHeaderSimpleList</a></li>                            <li class="class"><a href="../classes/PaymentsHeaderApproveList.html">PaymentsHeaderApproveList</a></li>                            <li class="class"><a href="../classes/PaymentsHeaderClosedList.html">PaymentsHeaderClosedList</a></li>                            <li class="class"><a href="../classes/PaymentsHeaderIssueCreditMemoList.html">PaymentsHeaderIssueCreditMemoList</a></li>                            <li class="class"><a href="../classes/PaymentsHeaderIssueList.html">PaymentsHeaderIssueList</a></li>                            <li class="class"><a href="../classes/PaymentsHeaderList.html">PaymentsHeaderList</a></li>                            <li class="class"><a href="../classes/PaymentsHeaderVoidList.html">PaymentsHeaderVoidList</a></li>                            <li class="class"><a href="../classes/PayrollEmployeesList.html">PayrollEmployeesList</a></li>                            <li class="class"><a href="../classes/permissionsByFile.html">permissionsByFile</a></li>                            <li class="class"><a href="../classes/PurchaseDetail.html">PurchaseDetail</a></li>                            <li class="class"><a href="../classes/PurchaseHeaderApproveList.html">PurchaseHeaderApproveList</a></li>                            <li class="class"><a href="../classes/PurchaseHeaderClosedList.html">PurchaseHeaderClosedList</a></li>                            <li class="class"><a href="../classes/PurchaseHeaderList.html">PurchaseHeaderList</a></li>                            <li class="class"><a href="../classes/PurchaseHeaderMemorizedList.html">PurchaseHeaderMemorizedList</a></li>                            <li class="class"><a href="../classes/PurchaseHeaderReceivedList.html">PurchaseHeaderReceivedList</a></li>                            <li class="class"><a href="../classes/PurchaseHeaderReceiveList.html">PurchaseHeaderReceiveList</a></li>                            <li class="class"><a href="../classes/PurchaseHeaderSimpleList.html">PurchaseHeaderSimpleList</a></li>                            <li class="class"><a href="../classes/QuoteHeaderList.html">QuoteHeaderList</a></li>                            <li class="class"><a href="../classes/QuoteHeaderMemorizedList.html">QuoteHeaderMemorizedList</a></li>                            <li class="class"><a href="../classes/recalcHelper.html">recalcHelper</a></li>                            <li class="class"><a href="../classes/ReceiptsHeaderClosedList.html">ReceiptsHeaderClosedList</a></li>                            <li class="class"><a href="../classes/ReceiptsHeaderList.html">ReceiptsHeaderList</a></li>                            <li class="class"><a href="../classes/redirects.html">redirects</a></li>                            <li class="class"><a href="../classes/ReturnHeaderInvoiceList.html">ReturnHeaderInvoiceList</a></li>                            <li class="class"><a href="../classes/ReturnHeaderList.html">ReturnHeaderList</a></li>                            <li class="class"><a href="../classes/ReturnHeaderPickList.html">ReturnHeaderPickList</a></li>                            <li class="class"><a href="../classes/ReturnHeaderShipList.html">ReturnHeaderShipList</a></li>                            <li class="class"><a href="../classes/ReturnInvoiceHeaderClosedList.html">ReturnInvoiceHeaderClosedList</a></li>                            <li class="class"><a href="../classes/ReturnInvoiceHeaderList.html">ReturnInvoiceHeaderList</a></li>                            <li class="class"><a href="../classes/ReturnInvoiceHeaderShippedList.html">ReturnInvoiceHeaderShippedList</a></li>                            <li class="class"><a href="../classes/RMAHeaderApproveList.html">RMAHeaderApproveList</a></li>                            <li class="class"><a href="../classes/RMAHeaderClosedList.html">RMAHeaderClosedList</a></li>                            <li class="class"><a href="../classes/RMAHeaderList.html">RMAHeaderList</a></li>                            <li class="class"><a href="../classes/RMAHeaderReceivedList.html">RMAHeaderReceivedList</a></li>                            <li class="class"><a href="../classes/RMAHeaderReceiveList.html">RMAHeaderReceiveList</a></li>                            <li class="class"><a href="../classes/Security.html">Security</a></li>                            <li class="class"><a href="../classes/ServiceInvoiceHeaderClosedList.html">ServiceInvoiceHeaderClosedList</a></li>                            <li class="class"><a href="../classes/ServiceInvoiceHeaderList.html">ServiceInvoiceHeaderList</a></li>                            <li class="class"><a href="../classes/ServiceOrderHeaderClosedList.html">ServiceOrderHeaderClosedList</a></li>                            <li class="class"><a href="../classes/ServiceOrderHeaderHoldList.html">ServiceOrderHeaderHoldList</a></li>                            <li class="class"><a href="../classes/ServiceOrderHeaderInvoiceList.html">ServiceOrderHeaderInvoiceList</a></li>                            <li class="class"><a href="../classes/ServiceOrderHeaderList.html">ServiceOrderHeaderList</a></li>                            <li class="class"><a href="../classes/ServiceOrderHeaderPickList.html">ServiceOrderHeaderPickList</a></li>                            <li class="class"><a href="../classes/ServiceOrderHeaderShipList.html">ServiceOrderHeaderShipList</a></li>                            <li class="class"><a href="../classes/shippingInfo.html">shippingInfo</a></li>                            <li class="class"><a href="../classes/shippingRate.html">shippingRate</a></li>                            <li class="class"><a href="../classes/shippingRateData.html">shippingRateData</a></li>                            <li class="class"><a href="../classes/subgridController.html">subgridController</a></li>                            <li class="class"><a href="../classes/subgridDataSource.html">subgridDataSource</a></li>                            <li class="class"><a href="../classes/transactionShippingRate.html">transactionShippingRate</a></li>                            <li class="class"><a href="../classes/translation.html">translation</a></li>                            <li class="class"><a href="../classes/users.html">users</a></li>                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav><a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>                    </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>recalcHelper</h1>
+                    <p><em></em></p>                    
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">                                    <a href="../classes/recalcHelper.html#method_getPrecision" class="">getPrecision()</a><br />                                    <a href="../classes/recalcHelper.html#method_lookForProcedure" class="">lookForProcedure()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcRMADetail" class="">recalcRMADetail()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcRMA" class="">recalcRMA()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcServiceOrderDetail" class="">recalcServiceOrderDetail()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcServiceOrder" class="">recalcServiceOrder()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcOrderDetail" class="">recalcOrderDetail()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcOrder" class="">recalcOrder()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcPurchaseDetail" class="">recalcPurchaseDetail()</a><br />                                    <a href="../classes/recalcHelper.html#method_purchaseRecalc" class="">purchaseRecalc()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcPurchaseContractDetail" class="">recalcPurchaseContractDetail()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcPurchaseContract" class="">recalcPurchaseContract()</a><br />                                    <a href="../classes/recalcHelper.html#method_invoiceDetailRecalc" class="">invoiceDetailRecalc()</a><br />                                    <a href="../classes/recalcHelper.html#method_invoiceRecalc" class="">invoiceRecalc()</a><br />                                    <a href="../classes/recalcHelper.html#method_serviceInvoiceDetailRecalc" class="">serviceInvoiceDetailRecalc()</a><br />                                    <a href="../classes/recalcHelper.html#method_serviceInvoiceRecalc" class="">serviceInvoiceRecalc()</a><br />                                    <a href="../classes/recalcHelper.html#method_debitMemoRecalc" class="">debitMemoRecalc()</a><br />                                    <a href="../classes/recalcHelper.html#method_creditMemoRecalc" class="">creditMemoRecalc()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcInventoryWorkOrderDetail" class="">recalcInventoryWorkOrderDetail()</a><br />                                    <a href="../classes/recalcHelper.html#method_recalcInventoryWorkOrder" class="">recalcInventoryWorkOrder()</a><br />                            </section>
+                            <section class="span4">                                    <em>No public properties found</em>                            </section>
+                            <section class="span4">                                    <em>No constants found</em>                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">                                    <em>No protected methods found</em>                            </section>
+                            <section class="span4">                                    <em>No protected properties found</em>                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">                                    <em>No private methods found</em>                            </section>
+                            <section class="span4">                                    <em>No private properties found</em>                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/models.helpers.recalc.html"><div class="path-wrapper">models/helpers/recalc.php</div></a></dd>                        <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>                        <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">                                <div class="namespace-wrapper">\recalcHelper</div>
+                            </dd>                    </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">                        <tr><td colspan="2"><em>None found</em></td></tr>                    </table>
+                </aside>
+            </div>            <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getPrecision" name="method_getPrecision" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">getPrecision()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getPrecision(  <span class="argument">$currencyID</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$currencyID</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_lookForProcedure" name="method_lookForProcedure" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">lookForProcedure()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">lookForProcedure(  <span class="argument">$procedureName</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$procedureName</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcRMADetail" name="method_recalcRMADetail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcRMADetail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcRMADetail(  <span class="argument">$currencyPrecision</span>,  <span class="argument">$purchaseDetail</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$currencyPrecision</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$purchaseDetail</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcRMA" name="method_recalcRMA" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcRMA()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcRMA(  <span class="argument">$user</span>,  <span class="argument">$purchaseNumber</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$user</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$purchaseNumber</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcServiceOrderDetail" name="method_recalcServiceOrderDetail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcServiceOrderDetail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcServiceOrderDetail(  <span class="argument">$currencyPrecision</span>,  <span class="argument">$allowanceDiscountPerc</span>,  <span class="argument">$serviceOrderDetail</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$currencyPrecision</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$allowanceDiscountPerc</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$serviceOrderDetail</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcServiceOrder" name="method_recalcServiceOrder" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcServiceOrder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcServiceOrder(  <span class="argument">$user</span>,  <span class="argument">$orderNumber</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$user</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$orderNumber</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcOrderDetail" name="method_recalcOrderDetail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcOrderDetail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcOrderDetail(  <span class="argument">$currencyPrecision</span>,  <span class="argument">$allowanceDiscountPerc</span>,  <span class="argument">$orderDetail</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$currencyPrecision</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$allowanceDiscountPerc</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$orderDetail</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcOrder" name="method_recalcOrder" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcOrder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcOrder(  <span class="argument">$user</span>,  <span class="argument">$orderNumber</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$user</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$orderNumber</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcPurchaseDetail" name="method_recalcPurchaseDetail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcPurchaseDetail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcPurchaseDetail(  <span class="argument">$currencyPrecision</span>,  <span class="argument">$purchaseDetail</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$currencyPrecision</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$purchaseDetail</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_purchaseRecalc" name="method_purchaseRecalc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">purchaseRecalc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">purchaseRecalc()</pre>
+                <p><em></em></p>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcPurchaseContractDetail" name="method_recalcPurchaseContractDetail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcPurchaseContractDetail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcPurchaseContractDetail(  <span class="argument">$currencyPrecision</span>,  <span class="argument">$purchaseContractDetail</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$currencyPrecision</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$purchaseContractDetail</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcPurchaseContract" name="method_recalcPurchaseContract" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcPurchaseContract()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcPurchaseContract()</pre>
+                <p><em></em></p>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_invoiceDetailRecalc" name="method_invoiceDetailRecalc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">invoiceDetailRecalc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">invoiceDetailRecalc(  <span class="argument">$header</span>,  <span class="argument">$Precision</span>,  <span class="argument">$detail</span>,  <span class="argument">$HItemTotalTaxable</span>,  <span class="argument">$HItemDicountAmount</span>,  <span class="argument">$HAllowanceDiscountPercent</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$header</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$Precision</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$detail</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$HItemTotalTaxable</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$HItemDicountAmount</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$HAllowanceDiscountPercent</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_invoiceRecalc" name="method_invoiceRecalc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">invoiceRecalc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">invoiceRecalc(  <span class="argument">$user</span>,  <span class="argument">$invoiceNumber</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$user</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$invoiceNumber</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_serviceInvoiceDetailRecalc" name="method_serviceInvoiceDetailRecalc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">serviceInvoiceDetailRecalc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">serviceInvoiceDetailRecalc(  <span class="argument">$header</span>,  <span class="argument">$Precision</span>,  <span class="argument">$detail</span>,  <span class="argument">$HItemTotalTaxable</span>,  <span class="argument">$HItemDicountAmount</span>,  <span class="argument">$HAllowanceDiscountPercent</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$header</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$Precision</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$detail</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$HItemTotalTaxable</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$HItemDicountAmount</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$HAllowanceDiscountPercent</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_serviceInvoiceRecalc" name="method_serviceInvoiceRecalc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">serviceInvoiceRecalc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">serviceInvoiceRecalc(  <span class="argument">$user</span>,  <span class="argument">$invoiceNumber</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$user</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$invoiceNumber</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_debitMemoRecalc" name="method_debitMemoRecalc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">debitMemoRecalc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">debitMemoRecalc(  <span class="argument">$user</span>,  <span class="argument">$purchaseNumber</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$user</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$purchaseNumber</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_creditMemoRecalc" name="method_creditMemoRecalc" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">creditMemoRecalc()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">creditMemoRecalc(  <span class="argument">$user</span>,  <span class="argument">$invoiceNumber</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$user</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$invoiceNumber</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcInventoryWorkOrderDetail" name="method_recalcInventoryWorkOrderDetail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcInventoryWorkOrderDetail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcInventoryWorkOrderDetail(  <span class="argument">$detail</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$detail</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_recalcInventoryWorkOrder" name="method_recalcInventoryWorkOrder" class="anchor"></a>
+            <article class="method">
+                <h3 class="public">recalcInventoryWorkOrder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">recalcInventoryWorkOrder(  <span class="argument">$user</span>,  <span class="argument">$WorkOrderNumber</span>)</pre>
+                <p><em></em></p>                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">                            <tr>
+                                <td></td>
+                                <td>$user</td>
+                                <td></td>
+                            </tr>                            <tr>
+                                <td></td>
+                                <td>$WorkOrderNumber</td>
+                                <td></td>
+                            </tr>                    </table>            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>            <dl>            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">                    <tr><td colspan="2"><em>None found</em></td></tr>            </table>
+        </aside>
+    </div>        </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">recalc.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/models/helpers/recalc.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">                            <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>                                        <li><a href="../namespaces/App.html">\App</a></li>                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">                            <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">                            <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    onApril 24th, 2020 at 08:41.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
