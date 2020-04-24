@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class WarehouseBinZonesList extends gridDataSource{
 public $tableName = "warehousebinzones";
 public $dashboardTitle ="WarehouseBinZones";
 public $breadCrumbTitle ="WarehouseBinZones";

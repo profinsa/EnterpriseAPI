@@ -35,7 +35,7 @@ require __DIR__ . "/../../../Models/gridDataSource.php";
 use Illuminate\Support\Facades\DB;
 use Session;
 
-class gridData extends gridDataSource{
+class PaymentsHistoryDetail extends gridDataSource{
 	public $tableName = "paymentsdetailhistory";
 
 	public $dashboardTitle ="Payments History Detail";

@@ -30,7 +30,7 @@ Last Modified: 04/08/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class PayrollEmailMessagesList extends gridDataSource{
 public $tableName = "payrollemailmessages";
 public $dashboardTitle ="PayrollEmailMessages";
 public $breadCrumbTitle ="PayrollEmailMessages";

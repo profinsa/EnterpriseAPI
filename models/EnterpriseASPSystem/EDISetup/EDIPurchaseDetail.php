@@ -30,7 +30,7 @@
 */
 
 require "./models/subgridDataSource.php";
-class gridData extends subgridDataSource{
+class EDIPurchaseDetail extends subgridDataSource{
     public $tableName = "edipurchasedetail";
     public $dashboardTitle ="EDI Purchase Detail";
     public $breadCrumbTitle ="EDI Purchase Detail";

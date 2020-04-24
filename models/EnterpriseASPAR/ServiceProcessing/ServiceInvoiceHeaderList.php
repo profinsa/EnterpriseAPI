@@ -1290,8 +1290,6 @@ class ServiceInvoiceHeaderList extends gridDataSource{
     }
 }
 
-class gridData extends ServiceInvoiceHeaderList {}
-
 class ServiceInvoiceHeaderClosedList extends ServiceInvoiceHeaderList{
     //	public $gridConditions = "((LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) ='service invoice') AND (Posted=1)  AND (ABS(InvoiceHeader.BalanceDue) < 0.005) AND (ABS(InvoiceHeader.Total) >= 0.005))";
     public $gridConditions = "((LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) ='service invoice') AND (Posted=1))";

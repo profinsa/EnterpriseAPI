@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class OrderTrackingHeaderList extends gridDataSource{
     public $tableName = "ordertrackingheader";
     public $dashboardTitle ="OrderTrackingHeader";
     public $breadCrumbTitle ="OrderTrackingHeader";

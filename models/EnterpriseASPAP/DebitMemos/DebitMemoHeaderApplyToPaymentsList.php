@@ -164,5 +164,5 @@ EOF;
     }
 }
 
-class gridData extends DebitMemoHeaderApplyToPaymentsList {}
+class DebitMemoHeaderApplyToPaymentsList extends DebitMemoHeaderApplyToPaymentsList {}
 ?>

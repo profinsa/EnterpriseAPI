@@ -31,7 +31,7 @@ Last Modified by: Nikita Zaharov
 
 require __DIR__ . "/../../../models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class ControlNumbersList extends gridDataSource{
     public $tableName = "glcontrolnumbers";
 
     //fields to render in grid

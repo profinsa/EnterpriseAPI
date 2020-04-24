@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class RMAHistoryDetail extends gridDataSource{
 	public $tableName = "purchasedetailhistory";
     //	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote')) AND (LOWER(IFNULL(OrderHeader.OrderTypeID, N'')) <> 'hold') AND (IFNULL(Picked, 0) = 0) AND (IFNULL(Shipped, 0) = 0) AND (IFNULL(Backordered, 0) = 0) AND (IFNULL(Invoiced, 0) = 0)";	
 	public $dashboardTitle ="RMA History Detail";

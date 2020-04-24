@@ -1403,8 +1403,6 @@ class InvoiceHeaderList extends gridDataSource{
     }
 }
 
-class gridData extends InvoiceHeaderList {}
-
 class InvoiceHeaderSimpleList extends InvoiceHeaderList{
 	public $dashboardTitle ="Quick Invoice";
 	public $breadCrumbTitle ="Quick Invoice";

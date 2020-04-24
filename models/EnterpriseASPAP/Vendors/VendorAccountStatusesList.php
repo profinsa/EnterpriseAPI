@@ -30,7 +30,7 @@ Last Modified: 04/13/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class VendorAccountStatusesList extends gridDataSource{
 public $tableName = "vendoraccountstatuses";
 public $dashboardTitle ="Vendor Account Statuses";
 public $breadCrumbTitle ="Vendor Account Statuses";

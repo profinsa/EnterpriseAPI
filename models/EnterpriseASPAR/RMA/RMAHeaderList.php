@@ -1323,8 +1323,6 @@ class RMAHeaderList extends gridDataSource{
 
 }
 
-class gridData extends RMAHeaderList {}
-
 class RMAHeaderClosedList extends RMAHeaderList{
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) = 'rma') AND ((IFNULL(Received,0) = 1) AND UPPER(PurchaseNumber) <> 'DEFAULT')";
     public $dashboardTitle ="Closed RMA's";

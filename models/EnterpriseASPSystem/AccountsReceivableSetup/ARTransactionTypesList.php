@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class ARTransactionTypesList extends gridDataSource{
 public $tableName = "artransactiontypes";
 public $dashboardTitle ="AR Transaction Types";
 public $breadCrumbTitle ="AR Transaction Types";

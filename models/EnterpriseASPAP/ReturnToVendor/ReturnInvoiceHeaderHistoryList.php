@@ -1,7 +1,7 @@
 <?php
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class ReturnInvoiceHeaderHistoryList extends gridDataSource{
     public $tableName = "invoiceheaderhistory";
     public $gridConditions = "(LOWER(IFNULL(InvoiceHeaderHistory.TransactionTypeID,N'')) = 'return')";
     public $dashboardTitle ="Return Invoices History";

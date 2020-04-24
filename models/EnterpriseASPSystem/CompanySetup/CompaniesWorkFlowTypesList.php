@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class CompaniesWorkFlowTypesList extends gridDataSource{
 public $tableName = "companiesworkflowtypes";
 public $dashboardTitle ="CompaniesWorkFlowTypes";
 public $breadCrumbTitle ="CompaniesWorkFlowTypes";

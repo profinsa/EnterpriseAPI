@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class AuditTrailList extends gridDataSource{
 public $tableName = "audittrail";
 public $dashboardTitle ="Audit Trail";
 public $breadCrumbTitle ="Audit Trail";

@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 09/07/2019
+  Last Modified: 24/04/2020
   Last Modified by: Zaharov Nikita
 */
 
@@ -1348,8 +1348,6 @@ class ReturnHeaderList extends gridDataSource{
         echo "ok";
     }
 }
-
-class gridData extends ReturnHeaderList {}
 
 class ReturnHeaderPickList extends ReturnHeaderList{
     public $gridConditions = "(LOWER(OrderHeader.TransactionTypeID) = LOWER('Return')) AND (IFNULL(OrderHeader.Posted,0) = 1) AND (IFNULL(OrderHeader.Picked,0) = 0)";

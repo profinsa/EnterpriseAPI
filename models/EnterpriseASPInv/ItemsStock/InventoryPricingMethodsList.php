@@ -30,7 +30,7 @@ Last Modified: 04/09/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class InventoryPricingMethodsList extends gridDataSource{
 public $tableName = "inventorypricingmethods";
 public $dashboardTitle ="Inventory Pricing Methods";
 public $breadCrumbTitle ="Inventory Pricing Methods";

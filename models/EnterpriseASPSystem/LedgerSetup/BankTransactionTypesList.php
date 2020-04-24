@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class BankTransactionTypesList extends gridDataSource{
     public $tableName = "banktransactiontypes";
     public $dashboardTitle ="Bank Transaction Types";
     public $breadCrumbTitle ="Bank Transaction Types";

@@ -1374,9 +1374,6 @@ class PurchaseHeaderList extends gridDataSource{
     }
 }
 
-class gridData extends PurchaseHeaderList {
-}
-
 class PurchaseHeaderSimpleList extends PurchaseHeaderList {
 	public $dashboardTitle ="Quick Purchase";
 	public $breadCrumbTitle ="Quick Purchase";

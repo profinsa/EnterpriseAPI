@@ -1,7 +1,7 @@
 <?php
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class FixedAssetsList extends gridDataSource{
     public $tableName = "fixedassets";
     public $dashboardTitle ="Fixed Assets";
     public $breadCrumbTitle ="Fixed Assets";

@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 19/11/2019
+  Last Modified: 24/04/2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -848,8 +848,6 @@ class PaymentsHeaderList extends gridDataSource{
         echo "ok";
     }
 }
-
-class gridData extends PaymentsHeaderList{}
 
 class PaymentsHeaderVoidList extends PaymentsHeaderList{
     public $gridConditions = "(IFNULL(PaymentsHeader.Posted,0)=0 OR IFNULL(PaymentsHeader.Paid,0)=0) AND IFNULL(PaymentsHeader.Void,0)=0";

@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class PaymentsMatchingList extends gridDataSource{
     public $tableName = "paymentsheader";
     public $dashboardTitle ="Voucher Three Matching";
     public $breadCrumbTitle ="Voucher Three Matching";

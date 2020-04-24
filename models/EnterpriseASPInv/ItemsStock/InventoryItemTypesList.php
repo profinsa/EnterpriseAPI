@@ -29,7 +29,7 @@
   Last Modified by: Nikita Zaharov
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class InventoryItemTypesList extends gridDataSource{
     public $tableName = "inventoryitemtypes";
     public $dashboardTitle ="InventoryItemTypes";
     public $breadCrumbTitle ="InventoryItemTypes";

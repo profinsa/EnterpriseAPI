@@ -32,7 +32,7 @@
 namespace App\Models;
 require __DIR__ . "/../../../Models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class InvoiceTrackingDetail extends gridDataSource{
     public $tableName = "invoicetrackingdetail";
     public $dashboardTitle ="Invoice Tracking Detail";
     public $breadCrumbTitle ="Invoice Tracking Detail";

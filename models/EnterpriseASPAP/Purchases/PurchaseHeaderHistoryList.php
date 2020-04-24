@@ -30,7 +30,7 @@
 */
 
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class PurchaseHeaderHistoryList extends gridDataSource{
 	public $tableName = "purchaseheaderhistory";
 	public $gridConditions = "(LOWER(IFNULL(PurchaseHeaderHistory.TransactionTypeID,N'')) NOT IN('rma','debit memo'))";
 	public $dashboardTitle ="Purchases History";

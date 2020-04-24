@@ -30,7 +30,7 @@ Last Modified: 04/09/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class InventoryItemsDisplayLangList extends gridDataSource{
 public $tableName = "inventoryitemsdisplaylang";
 public $dashboardTitle ="InventoryItemsDisplayLang";
 public $breadCrumbTitle ="InventoryItemsDisplayLang";

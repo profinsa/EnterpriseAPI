@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class DepartmentsList extends gridDataSource{
     public $tableName = "departments";
     public $dashboardTitle ="Departments";
     public $breadCrumbTitle ="Departments";

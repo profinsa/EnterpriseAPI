@@ -31,7 +31,7 @@
 
 require __DIR__ . "/../../gridDataSource.php";
 
-class gridData extends gridDataSource{
+class UnlockList extends gridDataSource{
     public $dashboardTitle ="Unlock";
     public $breadCrumbTitle ="Unlock";
     public $tableName = "lock";

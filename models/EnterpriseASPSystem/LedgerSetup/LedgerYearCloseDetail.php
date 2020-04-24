@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class LedgerYearCloseDetail extends gridDataSource{
     public $tableName = "companies";
     public $dashboardTitle ="Year Close ";
     public $breadCrumbTitle ="Year Close ";
