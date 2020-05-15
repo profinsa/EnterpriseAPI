@@ -52,7 +52,7 @@
                  
                  try{
                      /*
-                        This request sent to get list of Orders. If request success, then data will be array of the order records.
+                        This request sent to get list of Customers. If request success, then data will be array of the order records.
                         Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=list&session_id=session_number
                         Request Method: GET
                         JSON Response:
@@ -93,6 +93,7 @@
                  alert("Wrong credentials");
              }
          }
+         
          async function showCustomer(CustomerID){
              try{
                  let data = await $.get(`../../index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=get&id=DINOS__DEFAULT__DEFAULT__${CustomerID}&session_id=${session.session_id}`);

@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>
+            Create Customer with Detail records and filling a data from Dictionaries
+        </title>
+        <script>
+         let session;
+         async function main(){
+             /*
+                For ALL API requests we using GET and POST HTTP methods.
+                For body we using JSON encoding. 
+                You can use any language which can send the GET and POST HTTP requests.
+              */
+             try{
+                 /*
+                    This request sent to get session_id. If request success, then session object will contains field session_id which we will use in all other requests.
+                    Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login
+                    Request Method: POST
+                    Request JSON Body:
+                    {
+                    CompanyID : "DINOS",
+                    DivisionID : "DEFAULT",
+                    DepartmentID : "DEFAULT",
+                    EmployeeID : "Demo",
+                    EmployeePassword : "Demo",
+                    language : "english"
+                    }
+                    JSON Response:
+                    {
+                    session_id : "session number"
+                    }
+                    or
+                    401 status if credentials wrong
+                  */
+                 session = await $.ajax({
+                     url: '../../index.php?page=api&module=auth&action=login',
+                     type: 'POST',
+                     data : JSON.stringify({
+                         CompanyID : "DINOS",
+                         DivisionID : "DEFAULT",
+                         DepartmentID : "DEFAULT",
+                         EmployeeID : "Demo",
+                         EmployeePassword : "Demo",
+                         language : "english"
+                     }),
+                     contentType : 'application/json'
+                 });
+
+                 let CustomerID = prompt("Please, type CustomerID");
+                 try{
+                     let data;
+                     /*
+                        Request for getting some Dictionaries which we need to fill OrderHeader and OrderDetail records.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=dictionaries&list=comma,separated,list,of,dictionaries&session_id=session_number
+                        Request Method: GET
+                        JSON Response:
+                        array of dictionaries
+                        401 status if credentials wrong
+                      */
+                     let dictionaries = await $.get(`../../index.php?page=api&module=dictionaries&list=CurrencyTypes,CustomerAccountStatuses,Terms&session_id=${session.session_id}`);
+                     let CurrencyID, AccountStatus, TermsID;
+                     //getting first CurrencyID,AccountStatus,TermsID from array. Yes, you can use any Currency, AccountStatus which you need, it's a just an example
+
+                     for(let Currency in dictionaries.CurrencyTypes){
+                         //searching for USD currency, but you can use any from array
+                         if(dictionaries.CurrencyTypes[Currency].value == 'USD'){
+                             CurrencyID = dictionaries.CurrencyTypes[Currency].value;
+                             break;
+                         }
+                     }
+                     for(let CustomerAccountStatus in dictionaries.CustomerAccountStatuses){
+                         AccountStatus = dictionaries.CustomerAccountStatuses[CustomerAccountStatus].value;
+                         break;
+                     }
+                     for(let Terms in dictionaries.Terms){
+                         TermsID = dictionaries.Terms[Terms].value;
+                         break;
+                     }
+
+                     /*
+                        Request for getting empty CustomerInfromation record for filling it with data in future.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=emptyRecord&session_id=session_number
+                        Request Method: GET
+                        JSON Response:
+                        object with default values
+                        401 status if credentials wrong
+                      */
+                     let header = await $.get(`../../index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=emptyRecord&session_id=${session.session_id}`);
+
+                     //filling Header record with data
+                     //Customer has many fields, you can fill them all if it need, but only CustomerID is required
+                     header.CustomerID = CustomerID;
+                     header.CustomerPhone = 77777777;
+                     header.CustomerName = 'Test';
+                     header.TermsID = TermsID;
+                     header.AccountStatus = AccountStatus;
+                     header.CurrencyID = CurrencyID;
+                     console.log(JSON.stringify(header, null, 3));
+
+                     /*
+                        Request for inserting Header record.
+                        Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=create&session_id=session_number
+                        Request Method: POST
+                        JSON Response:
+                        object with values which was inserted to database
+                        Some values generated on server side during inserting like OrderNumber
+                        401 status if credentials wrong
+                      */
+                     header = await $.ajax({
+                        url: `../../index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=create&session_id=${session.session_id}`,
+                        type: 'POST',
+                        data : JSON.stringify(header),
+                        contentType : 'application/json'
+                        });
+
+                     console.log(JSON.stringify(header, null, 3));
+
+                     try{
+                         /*
+                            This request sent to get list of Customers. If request success, then data will be array of the order records.
+                            Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=list&session_id=session_number
+                            Request Method: GET
+                            JSON Response:
+                            [ ... ] - array of order objects
+                            401 status if credentials wrong
+                          */
+                         let data = await $.get(`../../index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=list&session_id=${session.session_id}`);
+                         //console.log(JSON.stringify(data, null, 3));
+                         let _html = '';
+                         let _listHeader = '';
+                         for(let row of data){
+                             _html += '<tr>';
+                             for(let key in row){
+                                 if(key != "CompanyID" && key != "DivisionID" && key != "DepartmentID"){
+                                     if(key == "CustomerID")
+                                         _html += `<td><a href="javascript:showCustomer('${row[key]}')">${row[key]}</a></td>`;
+                                     else
+                                         _html += `<td>${row[key]}</td>`;
+
+                                 }
+                             }
+                             _html += '</tr>';
+                         }
+                         _listHeader = '<tr>';
+                         for(let key in data[0]){
+                             if(key != "CompanyID" && key != "DivisionID" && key != "DepartmentID"){
+                                 _listHeader += `<td>${key}</td>`;                                 
+                             }
+                         }
+                         _listHeader += '</tr>';
+                         $('#listBody').html(_html);
+                         $('#listHeader').html(_listHeader);
+                     }catch(e){
+                         alert("Wrong response");
+                     }
+
+                 }catch(e){
+                     alert("Wrong response" + e);
+                 }
+                 
+             }catch(e){
+                 alert("Wrong credentials");
+             }
+         }
+
+         async function showCustomer(CustomerID){
+             try{
+                 let data = await $.get(`../../index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=get&id=DINOS__DEFAULT__DEFAULT__${CustomerID}&session_id=${session.session_id}`);
+                 alert(JSON.stringify(data, null, 3));
+             }catch(e){
+                 alert("Wrong responsee" + e.message);
+             }
+         }
+        </script>
+    </head>
+    <body onload="main()">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Records</h5>
+                <table class="table table-striped">
+                    <thead id="listHeader">
+                    </thead>
+                    <tbody id="listBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous">
+         
+        </script>        
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

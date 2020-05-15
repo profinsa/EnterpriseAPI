@@ -1,6 +1,6 @@
 <?php
 /**
- *  This class 0s collection of all most used Dictionaries in System.
+ *  This class is collection of all most used Dictionaries in System.
  *
  *  Each dictionary is just a method to get data. In most cases data is just an array of values. In some cases, dictionary
  *  is complicated data with own format.
