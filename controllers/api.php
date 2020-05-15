@@ -259,7 +259,7 @@ require_once 'models/interfaces.php';
  * - /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=get&session_id=session_number
  *   to get Customer Infromation
  *
- *  <a href="../examples/Customer/read.html">Example how to get Customers List and read Customer Information</a>
+ *  <a href="/EnterpriseUniversalAPI/examples/Customer/read.html">Example how to get Customers List and read Customer Information</a>
  *
  * To create Customer you need to do following steps:
  * - /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login 
@@ -271,7 +271,7 @@ require_once 'models/interfaces.php';
  * - /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=create&session_id=session_number
  *   To create Customer
  *
- *  <a href="../examples/Customer/create.html">Example how to create new Customer and the get Customers List</a>
+ *  <a href="/EnterpriseUniversalAPI/examples/Customer/create.html">Example how to create new Customer and the get Customers List</a>
  * \section inventory Inventory API
  * For getting Inventory Items and Inventory By Warehouse you need to use Forms API.
  *
@@ -285,8 +285,8 @@ require_once 'models/interfaces.php';
  *
  * To get Inventory By Warehouse you need to do same steps as for Inventory Item, but using path=Inventory/ItemsStock/ViewInventoryOnHand
  * Examples how to get Inventory Items and Inventory By Warehouse:
- * - <a href="../examples/Inventory/InventoryItems.html">Inventory Items</a>
- * - <a href="../examples/Inventory/InventoryOnHand.html">Inventory By Warehouse</a>
+ * - <a href="/EnterpriseUniversalAPI/examples/Inventory/InventoryItems.html">Inventory Items</a>
+ * - <a href="/EnterpriseUniversalAPI/examples/Inventory/InventoryOnHand.html">Inventory By Warehouse</a>
  * \section install_sec Installation
  *  + install PHP Tools over Visual Studio -> Menu -> Manage Extensions
  *  + install MS Web Platform installer(tool for installtion Web Platform components like PHP, Microsoft Drivers for PHP for SQL server etc)
