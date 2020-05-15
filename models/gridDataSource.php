@@ -342,6 +342,8 @@ class gridDataSource extends Dictionaries{
             $this->lock($id);
         
         $user = Session::get("user");
+        $describe = DB::describe($this->tableName);
+
         if($this->checkTableSharing($this->tableName)){
             $user["DivisionID"] = "DEFAULT";
             $user["DepartmentID"] = "DEFAULT";
@@ -364,13 +366,19 @@ class gridDataSource extends Dictionaries{
             return $this->$method($keyValue);
         }else {
             foreach($this->editCategories[$type] as $key=>$value){
-                if(!key_exists("fake", $value))
-                    $columns[] = $key;
-                else{
+                $describedFlag = false;
+                foreach($describe as $dcolumn)
+                    if($dcolumn->Field == $key)
+                        $describedFlag = true;
+
+                if(!key_exists("fake", $value)){
+                    if($describedFlag == true)
+                        $columns[] = $key;
+                }else{
                     if(key_exists("defaultValue", $this->editCategories[$type][$key]))
-                           $fresult[$key] = $this->editCategories[$type][$key]["defaultValue"];
+                        $fresult[$key] = $this->editCategories[$type][$key]["defaultValue"];
                     else
-                           $fresult[$key] = "";
+                        $fresult[$key] = "";
                 }
                 if(key_exists("addFields", $value)){
                     $_fields = explode(",", $value["addFields"]);
@@ -378,13 +386,14 @@ class gridDataSource extends Dictionaries{
                         $columns[] = $addfield;
                 }
             }
-        
-            $result = DB::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+
+            if(count($columns))
+                $result = DB::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
+            else
+                $result = [];
 
             $result = json_decode(json_encode($result), true)[0];
         
-            $describe = DB::describe($this->tableName);
-
             foreach($this->editCategories[$type] as $key=>$value) {
                 foreach($describe as $struct) {
                     if ($struct->Field == $key) {
