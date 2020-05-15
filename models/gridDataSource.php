@@ -317,8 +317,10 @@ class gridDataSource extends Dictionaries{
     public function getEditItemAllRemote(){
         $result = [];
         foreach($this->editCategories as $key=>$value)
-            if(!key_exists("loadFrom", $value))
-               $result = array_merge($result, $this->getEditItem($_GET["id"], $key));
+            if(!key_exists("loadFrom", $value)){
+                $nresult = $this->getEditItem($_GET["id"], $key);
+                $result = array_merge($result, $nresult == null ? [] : $nresult);
+            }
 
         echo json_encode($result, JSON_PRETTY_PRINT);
     }
@@ -387,12 +389,12 @@ class gridDataSource extends Dictionaries{
                 }
             }
 
-            if(count($columns))
+            if(count($columns)){
                 $result = DB::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-            else
+                $result = json_decode(json_encode($result), true)[0];
+            }else
                 $result = [];
 
-            $result = json_decode(json_encode($result), true)[0];
         
             foreach($this->editCategories[$type] as $key=>$value) {
                 foreach($describe as $struct) {
@@ -415,8 +417,11 @@ class gridDataSource extends Dictionaries{
                     }
                 }
             }
-
-            $result = array_merge($result,$fresult);
+            
+            if($result == null)
+                $result == [];
+            else
+                $result = array_merge($result,$fresult);
 
             return $result;
         }
