@@ -96,6 +96,14 @@
          
          async function showCustomer(CustomerID){
              try{
+                 /*
+                    This request sent to get Customer Information object. If request success, then data will object.
+                    Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=get&session_id=session_number
+                    Request Method: GET
+                    JSON Response:
+                    [ ... ] - Customer Information object
+                    401 status if credentials wrong
+                  */
                  let data = await $.get(`../../index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=get&id=DINOS__DEFAULT__DEFAULT__${CustomerID}&session_id=${session.session_id}`);
                  alert(JSON.stringify(data, null, 3));
              }catch(e){

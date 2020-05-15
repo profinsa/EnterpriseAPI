@@ -107,15 +107,15 @@
                         Request Method: POST
                         JSON Response:
                         object with values which was inserted to database
-                        Some values generated on server side during inserting like OrderNumber
+                        Some values can be generated on server side not filled dates and other
                         401 status if credentials wrong
                       */
                      header = await $.ajax({
-                        url: `../../index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=create&session_id=${session.session_id}`,
-                        type: 'POST',
-                        data : JSON.stringify(header),
-                        contentType : 'application/json'
-                        });
+                         url: `../../index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=create&session_id=${session.session_id}`,
+                         type: 'POST',
+                         data : JSON.stringify(header),
+                         contentType : 'application/json'
+                     });
 
                      console.log(JSON.stringify(header, null, 3));
 
@@ -169,6 +169,14 @@
 
          async function showCustomer(CustomerID){
              try{
+                 /*
+                    This request sent to get Customer Information object. If request success, then data will object.
+                    Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=get&session_id=session_number
+                    Request Method: GET
+                    JSON Response:
+                    [ ... ] - Customer Information object
+                    401 status if credentials wrong
+                  */
                  let data = await $.get(`../../index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=get&id=DINOS__DEFAULT__DEFAULT__${CustomerID}&session_id=${session.session_id}`);
                  alert(JSON.stringify(data, null, 3));
              }catch(e){

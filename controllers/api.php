@@ -248,7 +248,45 @@ require_once 'models/interfaces.php';
  *       + "CurrencySymbol"
  *       + This list of Dictionaries will be extended in following together with documentaion.
  *   + More complicated example how to use dictionaries and why you can see in examples/create_complicated.html
-
+ * \section customer_sec Customer API
+ * For Create, Get and Update Customer Information you need to use Forms API.
+ *
+ * To get Customer Information you need to do following steps:
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login 
+ *   To get session_id
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=list&session_id=session_number
+ *   To get list of Customers in Database. Then choose CustomerID which you need and
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=get&session_id=session_number
+ *   to get Customer Infromation
+ *
+ *  <a href="../examples/Customer/read.html">Example how to get Customers List and read Customer Information</a>
+ *
+ * To create Customer you need to do following steps:
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login 
+ *   To get session_id
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=dictionaries&list=comma,separated,list,of,dictionaries&session_id=session_number
+ *   To get values of choosen dictionaries
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=emptyRecord&session_id=session_number
+ *   To get empty record with default values
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=AccountsReceivable/Customers/ViewCustomers&action=create&session_id=session_number
+ *   To create Customer
+ *
+ *  <a href="../examples/Customer/create.html">Example how to create new Customer and the get Customers List</a>
+ * \section inventory Inventory API
+ * For getting Inventory Items and Inventory By Warehouse you need to use Forms API.
+ *
+ * To get Inventory Item you need to do following steps:
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=auth&action=login 
+ *   To get session_id
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=Inventory/ItemsStock/ViewInventoryItems&action=list&session_id=session_number
+ *   To get list of Items in Database. Then choose ItemID which you need and
+ * - /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=Inventory/ItemsStock/ViewInventoryItems&action=get&session_id=session_number
+ *   to get Inventory Item
+ *
+ * To get Inventory By Warehouse you need to do same steps as for Inventory Item, but using path=Inventory/ItemsStock/ViewInventoryOnHand
+ * Examples how to get Inventory Items and Inventory By Warehouse:
+ * - <a href="../examples/Inventory/InventoryItems.html">Inventory Items</a>
+ * - <a href="../examples/Inventory/InventoryOnHand.html">Inventory By Warehouse</a>
  * \section install_sec Installation
  *  + install PHP Tools over Visual Studio -> Menu -> Manage Extensions
  *  + install MS Web Platform installer(tool for installtion Web Platform components like PHP, Microsoft Drivers for PHP for SQL server etc)
@@ -266,6 +304,7 @@ require_once 'models/interfaces.php';
  *  + start project from IIS(this is Windows Server way)
  *    - just open localhost/EnterpriseUniversalAPI/examples/list.html in browser
  */
+
 /**
  * The main API controller, every REST API request is processed by this controller.
  *

@@ -229,9 +229,39 @@ Modules and their API</h1>
 </li>
 </ul>
 </li>
-<li>More complicated example how to use dictionaries and why you can see in examples/create_complicated.html</li>
+<li>More complicated example how to use dictionaries and why you can see in examples/create_complicated.html </li>
 </ul>
 </li>
+</ul>
+<h1><a class="anchor" id="customer_sec"></a>
+Customer API</h1>
+<p>For Create, Get and Update Customer Information you need to use Forms API.</p>
+<p>To get Customer Information you need to do following steps:</p><ul>
+<li>/EnterpriseUniversalAPI/index.php?page=api&amp;module=auth&amp;action=login To get session_id</li>
+<li>/EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/Customers/ViewCustomers&amp;action=list&amp;session_id=session_number To get list of Customers in Database. Then choose CustomerID which you need and</li>
+<li><p class="startli">/EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/Customers/ViewCustomers&amp;action=get&amp;session_id=session_number to get Customer Infromation</p>
+<p class="startli"><a href="../examples/Customer/read.html">Example how to get Customers List and read Customer Information</a></p>
+</li>
+</ul>
+<p>To create Customer you need to do following steps:</p><ul>
+<li>/EnterpriseUniversalAPI/index.php?page=api&amp;module=auth&amp;action=login To get session_id</li>
+<li>/EnterpriseUniversalAPI/index.php?page=api&amp;module=dictionaries&amp;list=comma,separated,list,of,dictionaries&amp;session_id=session_number To get values of choosen dictionaries</li>
+<li>/EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/Customers/ViewCustomers&amp;action=emptyRecord&amp;session_id=session_number To get empty record with default values</li>
+<li><p class="startli">/EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=AccountsReceivable/Customers/ViewCustomers&amp;action=create&amp;session_id=session_number To create Customer</p>
+<p class="startli"><a href="../examples/Customer/create.html">Example how to create new Customer and the get Customers List</a> </p>
+</li>
+</ul>
+<h1><a class="anchor" id="inventory"></a>
+Inventory API</h1>
+<p>For getting Inventory Items and Inventory By Warehouse you need to use Forms API.</p>
+<p>To get Inventory Item you need to do following steps:</p><ul>
+<li>/EnterpriseUniversalAPI/index.php?page=api&amp;module=auth&amp;action=login To get session_id</li>
+<li>/EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=Inventory/ItemsStock/ViewInventoryItems&amp;action=list&amp;session_id=session_number To get list of Items in Database. Then choose ItemID which you need and</li>
+<li>/EnterpriseUniversalAPI/index.php?page=api&amp;module=forms&amp;path=Inventory/ItemsStock/ViewInventoryItems&amp;action=get&amp;session_id=session_number to get Inventory Item</li>
+</ul>
+<p>To get Inventory By Warehouse you need to do same steps as for Inventory Item, but using path=Inventory/ItemsStock/ViewInventoryOnHand Examples how to get Inventory Items and Inventory By Warehouse:</p><ul>
+<li><a href="../examples/Inventory/InventoryItems.html">Inventory Items</a></li>
+<li><a href="../examples/Inventory/InventoryOnHand.html">Inventory By Warehouse</a> </li>
 </ul>
 <h1><a class="anchor" id="install_sec"></a>
 Installation</h1>

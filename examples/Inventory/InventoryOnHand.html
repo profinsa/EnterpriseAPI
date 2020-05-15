@@ -96,6 +96,14 @@
          
          async function showInventory(ItemID, WarehouseID, WarehouseBinID){
              try{
+                 /*
+                    This request sent to Inventory On Hand object. If request success, then data will object.
+                    Request URL: /EnterpriseUniversalAPI/index.php?page=api&module=forms&path=Inventory/ItemsStock/ViewInventoryOnHand&action=get&session_id=session_number
+                    Request Method: GET
+                    JSON Response:
+                    [ ... ] - inventory by warehouse object
+                    401 status if credentials wrong
+                  */
                  let data = await $.get(`../../index.php?page=api&module=forms&path=Inventory/ItemsStock/ViewInventoryOnHand&action=get&id=DINOS__DEFAULT__DEFAULT__${ItemID}__${WarehouseID}__${WarehouseBinID}&session_id=${session.session_id}`);
                  alert(JSON.stringify(data, null, 3));
              }catch(e){
