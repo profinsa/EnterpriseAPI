@@ -430,5 +430,7 @@
     "Reports/Autoreport/GenericReportDetail" => "EnterpriseASPSystem/Autoreport/GenericReportDetail",
 
     "SystemSetup/Admin/AppInstallations" => "EnterpriseASPSystem/Admin/AppInstallationsList",
+    "SystemSetup/Application/Interface" => "EnterpriseASPSystem/Application/InterfaceList",
+    "API/Ecommerce/Ecommerce" => "API/Ecommerce/EcommerceList"
 ];
 ?>

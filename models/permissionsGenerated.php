@@ -2336,6 +2336,18 @@ public $permissions = [
         "update" => "Always",
         "insert" => "Always",
         "delete" => "Always",
+    ],
+    "Interface" => [
+        "select" => "APView|ARView|GLView|ADView|ADSetup",
+        "update" => "Always",
+        "insert" => "Always",
+        "delete" => "Always",
+    ],
+    "Ecommerce" => [
+        "select" => "APView|ARView|GLView|ADView|ADSetup",
+        "update" => "Always",
+        "insert" => "Always",
+        "delete" => "Always",
     ]
 ];
 }
