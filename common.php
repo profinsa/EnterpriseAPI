@@ -26,6 +26,9 @@ function config(){
             "left" => 4,
             "right" => 8
         ],
+        "defaultCompanyID" => "DINOS",
+        "defaultDivisionID" => "DEFAULT",
+        "defaultDepartmentID" => "DEFAULT",
         "user" => [
             "CompanyID" => "DINOS", //production, for help module
             //"CompanyID" => "DINOS",
