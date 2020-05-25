@@ -193,7 +193,7 @@ class EcommerceList extends gridDataSource{
     //Account API
     public function getTransactions($remoteCall = false){
         $defaultCompany = Session::get("defaultCompany");
-        $result = DB::select("SELECT * from orderheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CustomerID=? AND OrderDate > '2019-04-00 00:00:00' order by OrderDate desc", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"], $_GET["CustomerID"]));
+        $result = DB::select("SELECT * from orderheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CustomerID=? order by OrderDate desc", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"], $_GET["CustomerID"]));
 
         echo json_encode($result, JSON_PRETTY_PRINT);
     }        
@@ -245,5 +245,13 @@ class EcommerceList extends gridDataSource{
         
         echo json_encode($res, JSON_PRETTY_PRINT);
     }
-}
+
+    //Users(Customers) API
+    public function getCustomerInformation(){
+        $defaultCompany = Session::get("defaultCompany");
+        $result = DB::select("SELECT * from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CustomerLogin=? AND CustomerPassword=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"], $_GET["CustomerLogin"], $_GET["CustomerPassword"]));
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+  }
 ?>
