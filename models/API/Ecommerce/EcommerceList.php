@@ -214,5 +214,36 @@ class EcommerceList extends gridDataSource{
         
         echo json_encode($result, JSON_PRETTY_PRINT);
     }
+
+    //Checkout Helpers
+        //getting list of available payment methods
+    public function getPaymentMethods(){
+        $defaultCompany = Session::get("defaultCompany");
+        $res = [];
+        $result = DB::select("SELECT PaymentMethodID from paymentmethods WHERE CompanyID='" . $defaultCompany["CompanyID"] . "' AND DivisionID='". $defaultCompany["DivisionID"] ."' AND DepartmentID='" . $defaultCompany["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->PaymentMethodID] = [
+                "title" => $value->PaymentMethodID,
+                "value" => $value->PaymentMethodID
+            ];
+        
+        echo json_encode($res, JSON_PRETTY_PRINT);
+    } 
+
+    //getting list of available shipment methods
+    public function getShipMethods(){
+        $defaultCompany = Session::get("defaultCompany");
+        $res = [];
+        $result = DB::select("SELECT ShipMethodID from shipmentmethods WHERE CompanyID='" . $defaultCompany["CompanyID"] . "' AND DivisionID='". $defaultCompany["DivisionID"] ."' AND DepartmentID='" . $defaultCompany["DepartmentID"] . "'", array());
+
+        foreach($result as $key=>$value)
+            $res[$value->ShipMethodID] = [
+                "title" => $value->ShipMethodID,
+                "value" => $value->ShipMethodID
+            ];
+        
+        echo json_encode($res, JSON_PRETTY_PRINT);
+    }
 }
 ?>
