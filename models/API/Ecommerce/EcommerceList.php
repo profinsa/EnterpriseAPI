@@ -66,7 +66,6 @@ class EcommerceList extends gridDataSource{
     }
 
     public function getCartSettings($remoteCall = false){
-        $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
         
         $result = DB::select("SELECT * from inventorycart WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"]));
@@ -75,7 +74,6 @@ class EcommerceList extends gridDataSource{
     }
     
     public function getCompany($remoteCall = false){
-        $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
         
         $result = DB::select("SELECT * from companies WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"]));
@@ -84,7 +82,6 @@ class EcommerceList extends gridDataSource{
    }
         
     public function getCurrencies($remoteCall = false){
-        $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
         
         $res = [];
@@ -97,7 +94,6 @@ class EcommerceList extends gridDataSource{
     }
     
     public function getFamilies($remoteCall = false){
-        $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
          $res = [];
         $result = DB::select("SELECT * from inventoryfamilies WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"]));
@@ -114,7 +110,6 @@ class EcommerceList extends gridDataSource{
             $familyName = $_GET["familyName"];
         else
             $familyName = false;
-        $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
         $res = [];
         if($remoteCall)
@@ -134,7 +129,6 @@ class EcommerceList extends gridDataSource{
         else
             $categoryName = false;
         
-        $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
         $res = [];
         if($remoteCall)
@@ -151,7 +145,6 @@ class EcommerceList extends gridDataSource{
     //Load content
 
     public function getContent($fieldName, $remoteCall = false){
-        $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
         $fieldName .= "Content";
         //FIXME!
@@ -163,9 +156,8 @@ class EcommerceList extends gridDataSource{
         ]);
     }
 
-    //Search
+    //Search API
     function searchProducts($remoteCall = false){
-        $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
         $res = [];
         $categoryName = '';
@@ -196,6 +188,31 @@ class EcommerceList extends gridDataSource{
         }
 
         echo json_encode($res, JSON_PRETTY_PRINT);
+    }
+
+    //Account API
+    public function getTransactions($remoteCall = false){
+        $defaultCompany = Session::get("defaultCompany");
+        $result = DB::select("SELECT * from orderheader WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND CustomerID=? AND OrderDate > '2019-04-00 00:00:00' order by OrderDate desc", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"], $_GET["CustomerID"]));
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }        
+
+    //for Hosting Cart
+    public function getInstallations($remoteCall = false){
+        $defaultCompany = Session::get("defaultCompany");
+        $result = DB::select("SELECT * from appinstallations WHERE CustomerID=? order by InstallationDate desc", [$_GET["CustomerID"]]);
+        $result = json_decode(json_encode($result), true);
+
+        echo json_encode($result, JSON_PRETTY_PRINT);
+    }
+
+    //Inventories API
+    public function getInventoryItem($remoteCall = false){
+        $defaultCompany = Session::get("defaultCompany");
+        $result = DB::select("SELECT * from inventoryitems WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ItemID=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"], $_GET["ItemID"]));
+        
+        echo json_encode($result, JSON_PRETTY_PRINT);
     }
 }
 ?>
