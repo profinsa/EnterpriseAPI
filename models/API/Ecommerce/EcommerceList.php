@@ -65,6 +65,24 @@ class EcommerceList extends gridDataSource{
             ]);
     }
 
+    public function getCartSettings($remoteCall = false){
+        $user = Session::get("user");
+        $defaultCompany = Session::get("defaultCompany");
+        
+        $result = DB::select("SELECT * from inventorycart WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"]));
+
+        echo json_encode($result[0], JSON_PRETTY_PRINT);
+    }
+    
+    public function getCompany($remoteCall = false){
+        $user = Session::get("user");
+        $defaultCompany = Session::get("defaultCompany");
+        
+        $result = DB::select("SELECT * from companies WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"]));
+
+        echo json_encode($result[0], JSON_PRETTY_PRINT);
+   }
+        
     public function getCurrencies($remoteCall = false){
         $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
@@ -136,11 +154,48 @@ class EcommerceList extends gridDataSource{
         $user = Session::get("user");
         $defaultCompany = Session::get("defaultCompany");
         $fieldName .= "Content";
-        $result = DB::select("SELECT $fieldName from inventorycart WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"]));
+        //FIXME!
+        // $result = DB::select("SELECT $fieldName from inventorycart WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"]));
 
-        if($remoteCall)
-            echo json_encode($result[0], JSON_PRETTY_PRINT);
-        return $result[0]->$fieldName;
-    }        
+        //        echo json_encode($result[0], JSON_PRETTY_PRINT);
+        echo json_encode([
+            [ "$fieldName" => "content" ]
+        ]);
+    }
+
+    //Search
+    function searchProducts($remoteCall = false){
+        $user = Session::get("user");
+        $defaultCompany = Session::get("defaultCompany");
+        $res = [];
+        $categoryName = '';
+        if($remoteCall){
+            $text = $_POST["text"];
+            $family = $_POST["family"];
+        }else{
+            $text = $_GET["text"];
+            $family = $_GET["family"];
+        }
+        
+        $categories = DB::select("SELECT * from inventorycategories WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? AND ItemFamilyID=?", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"], $family));
+
+        $categoryCondition = "";
+        foreach($categories as $category)
+            if($categoryCondition == "")
+                $categoryCondition .= "AND (ItemCategoryID='" . $category->ItemCategoryID . "'";
+            else
+                $categoryCondition .= " OR ItemCategoryID='" . $category->ItemCategoryID . "'";
+        if($categoryCondition)
+            $categoryCondition .= ")";
+
+        if($categoryCondition){
+            $result = DB::select("SELECT * from inventoryitems WHERE CompanyID=? AND DivisionID=? AND DepartmentID=? $categoryCondition AND (ItemID like '%" . $text ."%' or ItemName like '%".  $text  ."%' or ItemDescription like '%". $text ."%' or ItemLongDescription like '%". $text ."%')", array($defaultCompany["CompanyID"], $defaultCompany["DivisionID"], $defaultCompany["DepartmentID"]));
+
+            foreach($result as $record)
+                $res[$record->ItemID] = $record;
+        }
+
+        echo json_encode($res, JSON_PRETTY_PRINT);
+    }
 }
 ?>
