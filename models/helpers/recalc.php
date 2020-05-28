@@ -49,7 +49,7 @@ class recalcHelper{
         $DiscountPerc = $purchaseDetail->DiscountPerc;
         $Qty = $purchaseDetail->OrderQty;
         $Taxable = $purchaseDetail->Taxable;
-        $TaxPercent = $purchaseDetail->TaxPercent;
+        $TaxPercent = $purchaseDetail->TaxPercent ? $purchaseDetail->TaxPercent : 0;
         $ItemUnitPrice = $purchaseDetail->ItemUnitPrice;
         $SubTotal = round($Qty * $ItemUnitPrice, $currencyPrecision);
 
@@ -129,7 +129,7 @@ class recalcHelper{
         $DiscountPerc = $serviceOrderDetail->DiscountPerc + $allowanceDiscountPerc;
         $Qty = $serviceOrderDetail->OrderQty;
         $Taxable = $serviceOrderDetail->Taxable;
-        $TaxPercent = $serviceOrderDetail->TaxPercent;
+        $TaxPercent = $serviceOrderDetail->TaxPercent ? $serviceOrderDetail->TaxPercent : 0;
         $ItemUnitPrice = $serviceOrderDetail->ItemUnitPrice;
         $SubTotal = round($Qty * $ItemUnitPrice, $currencyPrecision);
 
@@ -208,7 +208,7 @@ class recalcHelper{
         $DiscountPerc = $orderDetail->DiscountPerc + $allowanceDiscountPerc;
         $Qty = $orderDetail->OrderQty;
         $Taxable = $orderDetail->Taxable;
-        $TaxPercent = $orderDetail->TaxPercent;
+        $TaxPercent = $orderDetail->TaxPercent ? $orderDetail->TaxPercent : 0;
         $ItemUnitPrice = $orderDetail->ItemUnitPrice;
         $SubTotal = round($Qty * $ItemUnitPrice, $currencyPrecision);
 
@@ -287,7 +287,7 @@ class recalcHelper{
         $DiscountPerc = $purchaseDetail->DiscountPerc;
         $Qty = $purchaseDetail->OrderQty;
         $Taxable = $purchaseDetail->Taxable;
-        $TaxPercent = $purchaseDetail->TaxPercent;
+        $TaxPercent = $purchaseDetail->TaxPercent ? $purchaseDetail->TaxPercent : 0;
         $ItemUnitPrice = $purchaseDetail->ItemUnitPrice;
         $SubTotal = round($Qty * $ItemUnitPrice, $currencyPrecision);
 
@@ -373,7 +373,7 @@ class recalcHelper{
         $DiscountPerc = $purchaseContractDetail->DiscountPerc;
         $Qty = $purchaseContractDetail->OrderQty;
         $Taxable = $purchaseContractDetail->Taxable;
-        $TaxPercent = $purchaseContractDetail->TaxPercent;
+        $TaxPercent = $purchaseContractDetail->TaxPercent ? $purchaseContractDetail->TaxPercent : 0;
         $ItemUnitPrice = $purchaseContractDetail->ItemUnitPrice;
         $SubTotal = round($Qty * $ItemUnitPrice, $currencyPrecision);
 
@@ -463,7 +463,7 @@ class recalcHelper{
         $DiscountPerc = $detail->DiscountPerc + $AllowanceDiscountPercent;
         $Qty = $detail->OrderQty;
         $Taxable = $detail->Taxable;
-        $TaxPercent = $detail->TaxPercent;
+        $TaxPercent = $detail->TaxPercent ? $detail->TaxPercent : 0;
         $ItemUnitPrice = $detail->ItemUnitPrice;
         $ItemSubtotal = round($Qty * $ItemUnitPrice, $Precision);
         $ItemDiscountAmount = round($Qty * $ItemUnitPrice * $DiscountPerc / 100, $Precision);
@@ -539,7 +539,7 @@ class recalcHelper{
         $DiscountPerc = $detail->DiscountPerc + $AllowanceDiscountPercent;
         $Qty = $detail->OrderQty;
         $Taxable = $detail->Taxable;
-        $TaxPercent = $detail->TaxPercent;
+        $TaxPercent = $detail->TaxPercent ? $detail->TaxPercent : 0;
         $ItemUnitPrice = $detail->ItemUnitPrice;
         $ItemSubtotal = round($Qty * $ItemUnitPrice, $Precision);
         $ItemDiscountAmount = round($Qty * $ItemUnitPrice * $DiscountPerc / 100, $Precision);

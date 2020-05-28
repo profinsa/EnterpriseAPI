@@ -37,7 +37,7 @@ class DB{
         if($GLOBALS["config"]["db_type"] == "mysql")
             return  DB::select("describe " . $tableName);
         else{
-            $results = DB::select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'PayrollEmployees'", array());
+            $results = DB::select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$tableName'", array());
             $columns = [];
             foreach($results as $columnDef){
                 $column = new stdClass();
