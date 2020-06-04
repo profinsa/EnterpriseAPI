@@ -25,7 +25,7 @@
   Calls:
   MySql Database
 
-  Last Modified: 27/09/2019
+  Last Modified: 24/04/2020
   Last Modified by: Zaharov Nikita
 */
 
@@ -1316,8 +1316,6 @@ class ReturnInvoiceHeaderList extends gridDataSource{
         echo "ok";
     }
 }
-
-class gridData extends ReturnInvoiceHeaderList {}
 
 class ReturnInvoiceHeaderClosedList extends ReturnInvoiceHeaderList{
     public $gridConditions = "(LOWER(InvoiceHeader.TransactionTypeID) = LOWER('Return'))  AND (InvoiceHeader.Shipped = 1 AND ABS(IFNULL(InvoiceHeader.BalanceDue,0)) < 0.005)";

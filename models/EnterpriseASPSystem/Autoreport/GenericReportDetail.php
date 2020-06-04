@@ -20,7 +20,7 @@ require __DIR__ . "/../../reports/autoreports.php";
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
     }*/
 
-class gridData extends autoreportsData{
+class GenericReportDetail extends autoreportsData{
     public $dashboardTitle ="Reports Engine";
     public $breadCrumbTitle ="Reports Engine";
 

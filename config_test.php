@@ -5,6 +5,7 @@ function config(){
         //"theme" => 'dark', uncomment for dark theme
         "title" => 'Integral Accounting X test',
         "loginForm" => "login",
+        "db_type" => "mysql", //type of database, mysql
         "db_host" => "localhost",
         "db_user" => "enterprise",
         "db_password" => "enterprise",

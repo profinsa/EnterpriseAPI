@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class LedgerAccountSubGroupList extends gridDataSource{
     public $tableName = "ledgersubaccountgroup";
 
     public $dashboardTitle = "Ledger Account Sub Group";

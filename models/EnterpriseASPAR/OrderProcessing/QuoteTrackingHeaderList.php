@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class QuoteTrackingHeaderList extends gridDataSource{
     public $tableName = "quotetrackingheader";
     public $dashboardTitle ="QuoteTrackingHeader";
     public $breadCrumbTitle ="QuoteTrackingHeader";

@@ -278,8 +278,12 @@
       .fail(function(xhr){
           if(cb)
               cb(null, xhr.responseText);
-          else
+          try{
+              var res = JSON.parse(xhr.responseText);
+              alert(res.message);
+          }catch(e){
               alert(xhr.responseText);
+          }       
       });
  }
 
@@ -292,9 +296,10 @@
                      $values = [];
                      foreach($data->editCategories as $name=>$category){
                          $cvalues = $data->getEditItem($ascope["item"], $name);
-                         foreach($cvalues as $key=>$value){
-                             $values[$key] = $value;
-                         }
+                         if($cvalues != null)
+                             foreach($cvalues as $key=>$value){
+                                 $values[$key] = $value;
+                             }
                          echo "values = " . json_encode($values, JSON_PRETTY_PRINT) . ";";
                      }
                  }

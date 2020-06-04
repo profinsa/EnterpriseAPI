@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class ReturnInvoiceDetail extends gridDataSource{
 	public $tableName = "invoicedetail";
     public $parentTableName = "invoiceheader";
 	public $dashboardTitle ="Return Invoice Detail";

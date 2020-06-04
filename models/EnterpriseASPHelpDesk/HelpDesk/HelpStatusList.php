@@ -30,7 +30,7 @@ Last Modified: 04/12/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class HelpStatusList extends gridDataSource{
 public $tableName = "helpstatus";
 public $dashboardTitle ="Help Statuses";
 public $breadCrumbTitle ="Help Statuses";

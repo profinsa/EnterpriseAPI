@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class LedgerTransactionTypesList extends gridDataSource{
     public $tableName = "ledgertransactiontypes";
     public $dashboardTitle ="Ledger Transaction Types";
     public $breadCrumbTitle ="Ledger Transaction Types";

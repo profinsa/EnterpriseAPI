@@ -26,7 +26,7 @@
   models/translation.php
   app from index.php
 
-  Last Modified: 04.11.2019
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -37,7 +37,7 @@ require 'models/drillDowner.php';
 require 'models/linksMaker.php';
 require 'models/interfaces.php';
 
-class controller{
+class indexController{
     public $user = false;
     public $interface = "default";
     public $interfaceType = "ltr";

@@ -1198,8 +1198,6 @@ class DebitMemoHeaderList extends gridDataSource{
     }
 }
 
-class gridData extends DebitMemoHeaderList {}
-
 class DebitMemoHeaderClosedList extends DebitMemoHeaderList{
     public $gridConditions = "(ABS(IFNULL(PurchaseHeader.BalanceDue, 0)) < 0.005) AND (ABS(IFNULL(PurchaseHeader.Total, 0)) >= 0.005) AND (LOWER(IFNULL(PurchaseHeader.TransactionTypeID, N'')) = 'debit memo') AND (IFNULL(PurchaseHeader.Posted, 0) = 1)"; 
     public $dashboardTitle ="Closed Debit Memos";

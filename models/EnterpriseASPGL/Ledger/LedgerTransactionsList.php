@@ -308,8 +308,6 @@ class LedgerTransactionsList extends gridDataSource{
     }
 }
 
-class gridData extends LedgerTransactionsList {}
-
 class LedgerTransactionsClosedList extends LedgerTransactionsList{
     public $tableName = "ledgertransactions";
     public $gridConditions = "IFNULL(GLTransactionPostedYN, 0) = 1 AND UPPER(GLTransactionNumber) <> 'DEFAULT'";

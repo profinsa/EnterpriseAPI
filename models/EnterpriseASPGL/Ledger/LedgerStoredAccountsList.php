@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class LedgerStoredAccountsList extends gridDataSource{
     public $tableName = "ledgerstoredchartofaccounts"; //table name which used for read and write fields
     public $dashboardTitle = "Stored Chart Of Accounts"; //title in dashboard
     public $breadCrumbTitle = "Stored Chart Of Accounts"; //title in breadCrumb

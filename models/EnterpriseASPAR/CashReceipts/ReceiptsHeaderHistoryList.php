@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class ReceiptsHeaderHistoryList extends gridDataSource{
     public $tableName = "receiptsheaderhistory";
     public $gridConditions = "(ReceiptsHeaderHistory.ReceiptClassID = 'Customer')";
     public $dashboardTitle ="Receipts History";

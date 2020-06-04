@@ -32,7 +32,7 @@
 require "./models/excelImport.php";
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class EDIInvoiceHeaderList extends gridDataSource{
     public $tableName = "ediinvoiceheader";
     public $dashboardTitle ="EDI Invoices";
     public $breadCrumbTitle ="EDI Invoices";

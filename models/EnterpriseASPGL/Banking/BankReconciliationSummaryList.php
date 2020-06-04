@@ -1,7 +1,7 @@
 <?php
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class BankReconciliationSummaryList extends gridDataSource{
     public $tableName = "bankreconciliationsummary";
     public $dashboardTitle ="Reconciliation Summary";
     public $breadCrumbTitle ="Reconciliation Summary";

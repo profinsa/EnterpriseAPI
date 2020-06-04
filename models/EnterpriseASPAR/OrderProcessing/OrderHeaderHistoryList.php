@@ -32,7 +32,7 @@
 require "./models/gridDataSource.php";
 require "./models/helpers/recalc.php";
 
-class gridData extends gridDataSource{
+class OrderHeaderHistoryList extends gridDataSource{
 	public $tableName = "orderheaderhistory";
 	public $gridConditions = "(LOWER(IFNULL(OrderHeaderHistory.TransactionTypeID, N'')) NOT IN ('return', 'service order', 'quote'))";
     public $dashboardTitle ="Orders History";

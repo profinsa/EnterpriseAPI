@@ -1,7 +1,7 @@
 <?php
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class RMAHeaderHistoryList extends gridDataSource{
     public $tableName = "purchaseheaderhistory";
     public $gridConditions = "(LOWER(IFNULL(PurchaseHeaderHistory.TransactionTypeID,N'')) = 'rma')";
     public $dashboardTitle ="RMA's History";

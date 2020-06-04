@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class ContactRegionsList extends gridDataSource{
 public $tableName = "contactregions";
 public $dashboardTitle ="Contact Regions";
 public $breadCrumbTitle ="Contact Regions";

@@ -31,7 +31,7 @@ Last Modified by: Nikita Zaharov
 
 require __DIR__ . "/../../../models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class LedgerBankDepositsList extends gridDataSource{
     public $tableName = "ledgertransactions";
     public $gridConditions = "UPPER(GLTransactionNumber) != 'DEFAULT' AND GLTransactionTypeID='Deposit'";
     public $dashboardTitle ="Bank Deposits";

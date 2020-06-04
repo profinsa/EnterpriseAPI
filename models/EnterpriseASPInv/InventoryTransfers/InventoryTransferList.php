@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class InventoryTransferList extends gridDataSource{
     public $tableName = "inventorybywarehouse";
     public $dashboardTitle ="Transfer Inventory";
     public $breadCrumbTitle ="Transfer Inventory";

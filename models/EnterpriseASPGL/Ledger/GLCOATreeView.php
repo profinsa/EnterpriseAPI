@@ -1,6 +1,6 @@
 <?php
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class GLCOATreeView extends gridDataSource{
 public $tableName = "ledgerchartofaccounts";
 public $dashboardTitle ="Ledger Chart Of Accounts";
 public $breadCrumbTitle ="Ledger Chart Of Accounts";

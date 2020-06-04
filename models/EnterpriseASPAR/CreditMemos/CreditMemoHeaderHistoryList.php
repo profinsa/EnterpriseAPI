@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class CreditMemoHeaderHistoryList extends gridDataSource{
     public $tableName = "invoiceheaderhistory";
     public $gridConditions = "(LOWER(InvoiceHeaderHistory.TransactionTypeID) IN ('credit memo'))";
     public $dashboardTitle ="Credit Memos History";

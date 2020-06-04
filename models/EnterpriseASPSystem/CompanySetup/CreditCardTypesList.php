@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class CreditCardTypesList extends gridDataSource{
 public $tableName = "creditcardtypes";
 public $dashboardTitle ="Credit Card Types";
 public $breadCrumbTitle ="Credit Card Types";

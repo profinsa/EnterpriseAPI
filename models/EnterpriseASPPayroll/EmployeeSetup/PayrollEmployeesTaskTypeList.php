@@ -30,7 +30,7 @@ Last Modified: 04/08/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class PayrollEmployeesTaskTypeList extends gridDataSource{
 public $tableName = "payrollemployeestasktype";
 public $dashboardTitle ="PayrollEmployeesTaskType";
 public $breadCrumbTitle ="PayrollEmployeesTaskType";

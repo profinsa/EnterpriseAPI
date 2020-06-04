@@ -7,6 +7,7 @@ function config(){
         "software" => "Admin", //type of sofware, activates some features from SaaS Admin
         "interface" => "saasadmin", //type of interface by default, can be default or simple or somethings else from interfaces list
         "loginForm" => "login", // default login form, can be login(full version) and simplelogin(for short version without Company, Division and Department
+        "db_type" => "mysql", //type of database, mysql
         "db_host" => "localhost",//host of mysql database
         "db_user" => "enterprise",//user of mysql database
         "db_password" => "enterprise",//password of mysql database user

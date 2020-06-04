@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class FixedAssetStatusList extends gridDataSource{
     public $tableName = "fixedassetstatus";
     public $dashboardTitle ="Fixed Asset Status";
     public $breadCrumbTitle ="Fixed Asset Status";

@@ -32,7 +32,7 @@
 require __DIR__ . "/../../gridDataSource.php";
 use \OfxParser\Parser as ofxparser;
 
-class gridData extends gridDataSource{
+class OFXImportList extends gridDataSource{
     public $dashboardTitle ="OFX & QFX Importing";
     public $breadCrumbTitle ="OFX & QFX Importing";
     public $columnNames = [

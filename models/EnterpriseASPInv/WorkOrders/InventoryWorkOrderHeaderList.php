@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class InventoryWorkOrderHeaderList extends gridDataSource{
     public $tableName = "workorderheader";
     public $dashboardTitle ="Inventory Work Orders";
     public $breadCrumbTitle ="Inventory Work Orders";

@@ -29,7 +29,7 @@
   Last Modified by: Zaharov Nikita
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class ReturnCashReceiptInvoiceList extends gridDataSource{
     public $tableName = "invoiceheader";
     public $dashboardTitle ="Return Cash Receipt Invoices List";
     public $breadCrumbTitle ="Return Cash Receipt Invoices List 	 ";

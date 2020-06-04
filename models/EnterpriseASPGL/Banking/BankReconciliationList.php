@@ -43,7 +43,7 @@ function formatCurrency($value){
 
 }
 
-class gridData extends gridDataSource{
+class BankReconciliationList extends gridDataSource{
     public $tableName = "bankreconciliation";
     public $dashboardTitle ="Bank Reconciliation";
     public $breadCrumbTitle ="Bank Reconciliation";

@@ -1,6 +1,6 @@
 <?php
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class ApplicationErrorLogList extends gridDataSource{
     public $tableName = "errorlog";
     public $dashboardTitle ="Application Error Log";
     public $breadCrumbTitle ="Application Error Log";

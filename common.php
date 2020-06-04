@@ -5,10 +5,11 @@ function config(){
         //"theme" => 'dark', uncomment for dark theme
         "title" => 'Integral Accounting X', // name of Software
         "loginForm" => "login", // default login form, can be login(full version) and simplelogin(for short version without Company, Division and Department
+        "db_type" => "mysql", //type of database, mysql
         "db_host" => "localhost", //host of mysql database
         "db_user" => "enterprise", //user of mysql database
         "db_password" => "enterprise", //password of mysql database user
-        "db_base" => "enterprise", //name of mysql database
+        "db_base" => "enterprise", //name of mysql database*/
         "loginLogo" => "assets/images/stfb-logo.gif",
         "mediumLogo" => "assets/images/stfb-logo.gif",
         "smallLogo" => "assets/images/stfblogosm.jpg",

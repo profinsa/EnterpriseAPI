@@ -30,7 +30,7 @@ Last Modified: 04/08/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class PayrollEmployeesTaskPriorityList extends gridDataSource{
 public $tableName = "payrollemployeestaskpriority";
 public $dashboardTitle ="PayrollEmployeesTaskPriority";
 public $breadCrumbTitle ="PayrollEmployeesTaskPriority";

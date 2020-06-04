@@ -30,7 +30,7 @@
 */
 
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class PurchaseContractLedgerHistoryList extends gridDataSource{
     public $tableName = "purchasecontractledgerhistory";
     public $dashboardTitle ="View Purchase Contract Ledger History";
     public $breadCrumbTitle ="View Purchase Contract Ledger History";
