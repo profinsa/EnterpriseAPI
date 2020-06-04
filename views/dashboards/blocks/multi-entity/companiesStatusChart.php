@@ -1,6 +1,5 @@
 <?php
     $departments = $data->getDepartments();
-    $companyStatus = $data->CompanyAccountsStatus();
     $statusByDepartments = $data->getAccountsStatusesByDepartments();
     $statuses = [];
     foreach($statusByDepartments as $row)
@@ -17,10 +16,6 @@
             "data" => $value
         ];
     }
-
-    /*foreach
-       foreach($companyStatus as $row)
-       echo "<tr><td>" . $row->GLAccountType . "</td><td>" . $drill->getLinkByAccountNameAndAccountType($row->GLAccountName,$row->GLAccountType)  . "</td><td>" . formatField(["format"=>"{0:n}"], $row->Totals) . "</td></tr>";*/
 ?>
 <div class="white-box">
     <h3 class="box-title"><?php echo $translation->translateLabel("Financial Summary"); ?></h3>

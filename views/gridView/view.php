@@ -55,241 +55,247 @@
     </ul>
     <div class="tab-content">
         <?php foreach($data->editCategories as $key =>$value):  ?>
-            <div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
-                <?php
-                    $curCategory = $key;
-                    $item = $data->getEditItem($ascope["item"], $key);
-                    $leftWidth = property_exists($data, "editCategoriesWidth") ? $data->editCategoriesWidth["left"] : 50;
-                    $rightWidth = property_exists($data, "editCategoriesWidth") ? $data->editCategoriesWidth["right"] : 50;
-                ?>
-                <div style="margin-top:10px;">
-                    <?php if(!property_exists($data, "detailPages") ||
-                             !key_exists($curCategory, $data->detailPages)||
-                             !key_exists("hideFields", $data->detailPages[$curCategory])):?>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width:<?php echo $leftWidth; ?>%">
-                                        <?php echo $translation->translateLabel("Field"); ?>
-                                    </th>
-                                    <th style="width:<?php echo $rightWidth; ?>%">
-                                        <?php echo $translation->translateLabel("Value"); ?>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="row_viewer_tbody">
-                                <?php
-                                    //renders table, contains record data using getEditItem from model
-                                    $category = $key;
-                                    foreach($item as $key =>$value){
-                                        if(key_exists($key, $data->editCategories[$category])){
-                                            $fieldDesc = $data->editCategories[$category][$key];
-                                            $translatedFieldName = $translation->translateLabel(key_exists($key, $data->editCategories[$category]) && key_exists("label", $fieldDesc) ? $fieldDesc["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
-                                            if(key_exists($key, $data->editCategories[$category]) && key_exists("alwaysEdit", $fieldDesc)){
-                                                switch($fieldDesc["inputType"]){
-                                                    case "text" :
-                                                        //renders text input with label
-                                                        echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
-                                                        if(key_exists("formatFunction", $fieldDesc)){
-                                                            $formatFunction = $fieldDesc["formatFunction"];
-                                                            echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-                                                        }
-                                                        else
-                                                            echo formatField($fieldDesc, $value);
+            <?php
+                $item = $data->getEditItem($ascope["item"], $key);
+                if($item == null)
+                    $item = [];
+            ?>
+            <?php if(count($item)): ?>
+                <div role="tabpanel" class="tab-pane <?php echo $ascope["category"] == $key ? "active" : ""; ?>" id="<?php echo makeId($key); ?>">
+                    <?php
+                        $curCategory = $key;
+                        $leftWidth = property_exists($data, "editCategoriesWidth") ? $data->editCategoriesWidth["left"] : 50;
+                        $rightWidth = property_exists($data, "editCategoriesWidth") ? $data->editCategoriesWidth["right"] : 50;
+                    ?>
+                    <div style="margin-top:10px;">
+                        <?php if(!property_exists($data, "detailPages") ||
+                                 !key_exists($curCategory, $data->detailPages)||
+                                 !key_exists("hideFields", $data->detailPages[$curCategory])):?>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:<?php echo $leftWidth; ?>%">
+                                            <?php echo $translation->translateLabel("Field"); ?>
+                                        </th>
+                                        <th style="width:<?php echo $rightWidth; ?>%">
+                                            <?php echo $translation->translateLabel("Value"); ?>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="row_viewer_tbody">
+                                    <?php
+                                        //renders table, contains record data using getEditItem from model
+                                        $category = $key;
+                                        foreach($item as $key =>$value){
+                                            if(key_exists($key, $data->editCategories[$category])){
+                                                $fieldDesc = $data->editCategories[$category][$key];
+                                                $translatedFieldName = $translation->translateLabel(key_exists($key, $data->editCategories[$category]) && key_exists("label", $fieldDesc) ? $fieldDesc["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key));
+                                                if(key_exists($key, $data->editCategories[$category]) && key_exists("alwaysEdit", $fieldDesc)){
+                                                    switch($fieldDesc["inputType"]){
+                                                        case "text" :
+                                                            //renders text input with label
+                                                            echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"";
+                                                            if(key_exists("formatFunction", $fieldDesc)){
+                                                                $formatFunction = $fieldDesc["formatFunction"];
+                                                                echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+                                                            }
+                                                            else
+                                                                echo formatField($fieldDesc, $value);
 
-                                                        echo"\" " . ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "readonly" : "")
-                                                       ."></td></tr>";
-                                                        break;
-                                                        
-                                                    case "datetime" :
-                                                        //renders text input with label
-                                                        echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
-                                                             ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "readonly" : "")
-                                                            ."></td></tr>";
-                                                        break;
+                                                            echo"\" " . ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "readonly" : "")
+                                                           ."></td></tr>";
+                                                            break;
+                                                            
+                                                        case "datetime" :
+                                                            //renders text input with label
+                                                            echo "<tr><td>$translatedFieldName</td><td><input type=\"text\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control fdatetime\" value=\"" . ($value == 'now'? date("m/d/y") : date("m/d/y", strtotime($value))) ."\" " .
+                                                                 ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit")  || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "readonly" : "")
+                                                                ."></td></tr>";
+                                                            break;
 
-                                                    case "checkbox" :
-                                                        //renders checkbox input with label
-                                                        echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
-                                                        echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
-                                                             ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit") || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "disabled" : "")
-                                                            ."></div></div>";
-                                                        break;
-                                                        
-                                                    case "dropdown" :
-                                                        //renders select with available values as dropdowns with label
-                                                        echo "<tr><td>$translatedFieldName</td><td><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\">";
-                                                        $method = $fieldDesc["dataProvider"];
-                                                        if(key_exists("depends", $fieldDesc)){
-                                                            $dropdownDepends[$key] = [
-                                                                "depends" =>$fieldDesc["depends"],
-                                                                "data" => $data->$method()
-                                                            ];
-                                                            $types = [];
-                                                        }else
-                                                        $types = $data->$method();
-                                                        
-                                                        if($value)
-                                                            echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
-                                                        else
-                                                            echo "<option></option>";
+                                                        case "checkbox" :
+                                                            //renders checkbox input with label
+                                                            echo "<input type=\"hidden\" name=\"" . $key . "\" value=\"0\"/>";
+                                                            echo "<div class=\"form-group\"><label class=\"col-md-6\" for=\"" . $key ."\">" . $translatedFieldName . "</span></label><div class=\"col-md-6\"><input class=\"grid-checkbox\" type=\"checkbox\" id=\"". $key ."\" name=\"" .  $key. "\" class=\"form-control\" value=\"1\" " . ($value ? "checked" : "") ." " .
+                                                                 ( (key_exists("disabledEdit", $fieldDesc) && $ascope["mode"] == "edit") || (key_exists("disabledNew", $fieldDesc) && $ascope["mode"] == "new") ? "disabled" : "")
+                                                                ."></div></div>";
+                                                            break;
+                                                            
+                                                        case "dropdown" :
+                                                            //renders select with available values as dropdowns with label
+                                                            echo "<tr><td>$translatedFieldName</td><td><select class=\"form-control\" name=\"" . $key . "\" id=\"" . $key . "\" onchange=\"gridViewEditOnDropdown(event)\">";
+                                                            $method = $fieldDesc["dataProvider"];
+                                                            if(key_exists("depends", $fieldDesc)){
+                                                                $dropdownDepends[$key] = [
+                                                                    "depends" =>$fieldDesc["depends"],
+                                                                    "data" => $data->$method()
+                                                                ];
+                                                                $types = [];
+                                                            }else
+                                                            $types = $data->$method();
+                                                            
+                                                            if($value)
+                                                                echo "<option value=\"" . $value . "\">" . (key_exists($value, $types) ? $types[$value]["title"] : $value) . "</option>";
+                                                            else
+                                                                echo "<option></option>";
 
-                                                        foreach($types as $type)
-                                                        if(!$value || $type["value"] != $value)
-                                                            echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
-                                                        echo"</select></td></tr>";
-                                                        break;
+                                                            foreach($types as $type)
+                                                            if(!$value || $type["value"] != $value)
+                                                                echo "<option value=\"" . $type["value"] . "\">" . $type["title"] . "</option>";
+                                                            echo"</select></td></tr>";
+                                                            break;
+                                                    }
+                                                }else if(key_exists($key, $data->editCategories[$category])){
+                                                    echo "<tr><td>" . $translation->translateLabel(key_exists("label", $fieldDesc) ? $fieldDesc["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key)) . "</td><td>";
+                                                    switch($fieldDesc["inputType"]){
+                                                        case "imageFile" :
+                                                            echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"" . $linksMaker->makeImageLink($value, $item, $fieldDesc) . "\">";
+                                                            break;
+                                                        case "checkbox" :
+                                                            echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
+                                                            break;
+                                                        case "timestamp" :
+                                                        case "datetime" :
+                                                            echo date("m/d/y", strtotime($value));
+                                                            break;
+                                                        case "dateTimeFull" :
+                                                            echo $value;
+                                                            //          echo date("Y-m-d H:i:s", strtotime($value));
+                                                            break;
+                                                            
+                                                        case "dropdown":
+                                                            //preparing value for displaying
+                                                            $method = $data->editCategories[$category][$key]["dataProvider"];
+                                                            $types = $data->$method();
+
+                                                            if($value && key_exists($value, $types))
+                                                                $value = $types[$value]["title"];
+
+                                                        case "textarea" :
+                                                        case "text":
+                                                        case "dialogChooser":
+                                                            if(key_exists("formatFunction", $fieldDesc)){
+                                                                $formatFunction = $fieldDesc["formatFunction"];
+                                                                echo $data->$formatFunction($item, "editCategories", $key, $value, false);
+                                                            }
+                                                            else
+                                                                echo htmlentities(formatField($fieldDesc, $value));
+                                                            break;
+                                                    }
+                                                    echo "</td></tr>";
                                                 }
-                                            }else if(key_exists($key, $data->editCategories[$category])){
-                                                echo "<tr><td>" . $translation->translateLabel(key_exists("label", $fieldDesc) ? $fieldDesc["label"] : (key_exists($key, $data->columnNames) ? $data->columnNames[$key] : $key)) . "</td><td>";
-                                                switch($fieldDesc["inputType"]){
-                                                    case "imageFile" :
-                                                        echo "<img style=\"height:50px;width:auto;max-width:200px\" src=\"" . $linksMaker->makeImageLink($value, $item, $fieldDesc) . "\">";
-                                                        break;
-                                                    case "checkbox" :
-                                                        echo "<input class=\"grid-checkbox\" type=\"checkbox\"  ". ($value ? "checked" : "") . " disabled />";
-                                                        break;
-                                                    case "timestamp" :
-                                                    case "datetime" :
-                                                        echo date("m/d/y", strtotime($value));
-                                                        break;
-                                                    case "dateTimeFull" :
-                                                        echo $value;
-                                                        //          echo date("Y-m-d H:i:s", strtotime($value));
-                                                        break;
-                                                        
-                                                    case "dropdown":
-                                                        //preparing value for displaying
-                                                        $method = $data->editCategories[$category][$key]["dataProvider"];
-                                                        $types = $data->$method();
-
-                                                        if($value && key_exists($value, $types))
-                                                            $value = $types[$value]["title"];
-
-                                                    case "textarea" :
-                                                    case "text":
-                                                    case "dialogChooser":
-                                                        if(key_exists("formatFunction", $fieldDesc)){
-                                                            $formatFunction = $fieldDesc["formatFunction"];
-                                                            echo $data->$formatFunction($item, "editCategories", $key, $value, false);
-                                                        }
-                                                        else
-                                                            echo htmlentities(formatField($fieldDesc, $value));
-                                                        break;
-                                                }
-                                                echo "</td></tr>";
                                             }
                                         }
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
-                    <?php endif; ?>
-                    <?php if(property_exists($data, "detailPages") && key_exists($curCategory, $data->detailPages)):?>
-                        <?php if(property_exists($data, "detailPagesAsSubgrid")):?>
-                            <div id="subgrid" class="col-md-12 col-xs-12">
-                            </div>
-                            
-                            <script>
-                             function setRecalc(id){
-                                 var recalcLink = "<?php echo $linksMaker->makeProcedureLink($ascope["path"], "Recalc"); ?>";
-                                 //automatic recalc if we back from detail
-                                 localStorage.setItem("recalclLink", recalcLink);
-                                 localStorage.setItem("autorecalcLink", recalcLink);
-                                 localStorage.setItem("autorecalcData", JSON.stringify({
-                                     "<?php echo $data->idFields[3]; ?>" : id
-                                 }));
-                             }
-                             newSubgridItemHook = false;
-                             function subgridView(subgridmode, keyString){
-                                 var detailRewrite = {
-                                     "MemorizedGLTransactions" : "LedgerTransactionsDetail",
-                                     "ViewGLTransactions" : "LedgerTransactionsDetail",
-                                     "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
-                                     "ReceivePurchases" : "ReceivePurchasesDetail",
-                                     "BankDeposits" : "LedgerTransactionsDetail",
-                                     "ViewAdjustments" : "InventoryAdjustmentsDetail"
-                                 }, ind;
-                                 var path = new String(window.location);
-                                 path = path.replace(/#\/\?/, "?");
-                                 path = path.replace(/page\=grid/, "page=subgrid");
-                                 path = path.replace(/mode\=view|mode\=edit|mode\=new/, "mode=subgrid");
-                                 if(keyString){
-                                     path = path.replace(/mode\=subgrid/, "mode=new");
-                                     if(path.search(/item\=/) == -1)
-                                         path += "&item=" + keyString;
-                                 }
-                                 
-                                 for(ind in detailRewrite)
-                                     path = path.replace(new RegExp(ind), detailRewrite[ind]);
-                                 $.get(path + "<?php echo (property_exists($data, "detailSubgridModes") && key_exists("view", $data->detailSubgridModes) ? "&modes=" . implode("__", $data->detailSubgridModes["view"]) : ""); ?>")
-                                  .done(function(data){
-                                      setTimeout(function(){
-                                          $("#subgrid").html(data);
-                                          datatableInitialized = true;
-                                          setTimeout(function(){
-                                              var buttons = $('.subgrid-buttons');
-                                              var tableFooter = $('.subgrid-table-footer');
-                                              tableFooter.prepend(buttons);
-                                          },300);
-                                      },0);
-                                  })
-                                  .error(function(xhr){
-                                      // if(xhr.status == 401)
-                                      //    else
-                                      //   alert("Unable to load page");
-                                  });
-                             }
-                             subgridView();
-                            </script>
-                        <?php else: ?>
-                            <div class="col-md-12 col-xs-12">
-                                <?php
-                                    $getmethod = "get" . makeId($curCategory);
-                                    $deletemethod = "delete" . makeId($curCategory);
-                                    $rows = $data->$getmethod(key_exists("OrderNumber", $item) ? $item["OrderNumber"] :
-                                                              $item[(key_exists("detailAliases", $data->detailPages[$curCategory]) &&
-                                                                     key_exists($data->detailPages[$curCategory]["keyFields"][0], $data->detailPages[$curCategory]["detailAliases"])
-                                                                   ? $data->detailPages[$curCategory]["detailAliases"][$data->detailPages[$curCategory]["keyFields"][0]]
-                                                                   : $data->detailPages[$curCategory]["keyFields"][0])]);
-                                    //   echo json_encode($rows);
-                                    $detailTable = $data->detailPages[$curCategory];
-                                    $gridFields = $embeddedgridFields = $detailTable["gridFields"];
-                                    $deleteProcedure = "delete" . makeid($curCategory);
-                                    $embeddedgridContext = [
-                                        "item" =>$item,
-                                        "detailTable" => $detailTable
-                                    ];
-                                    $embeddedGridClasses = $newButtonId = "new" . makeId($curCategory);
-                                    require __DIR__ . "/../embeddedgrid.php"; 
-                                ?>
-                            </div>
-                            <div id="<?php echo $newButtonId; ?>" class="row col-md-1">
-                                <?php if(!key_exists("disableNew", $data->detailPages[$curCategory])): ?>
-                                    <a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailPages[$curCategory]["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailPages[$curCategory]["newKeyField"]}={$embeddedgridContext["item"][$data->detailPages[$curCategory]["newKeyField"]]}" ?>">
-                                        <?php echo $translation->translateLabel("New"); ?>
-                                    </a>
-                                <?php endif; ?>
-                            </div>
-                            <script>
-                             //    if(!datatableInitialized){
-                             datatableInitialized = true;
-                             console.log("initializing datatable");
-                             var table = $('.<?php echo $newButtonId ?>').DataTable( {
-                                 dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'#footer<?php echo $newButtonId; ?>.row'<'col-sm-4'i><'col-sm-7'p>>"
-                             });
-                             //    }
-                             setTimeout(function(){
-                                 var buttons = $('#<?php echo $newButtonId; ?>');
-                                 var tableFooter = $('#footer<?php echo $newButtonId; ?>');
-                                 //console.log(tableFooter, buttons);
-                                 tableFooter.prepend(buttons);
-                             },300);
-                            </script>
+                                    ?>
+                                </tbody>
+                            </table>
                         <?php endif; ?>
-                    <?php endif; ?>
+                        <?php if(property_exists($data, "detailPages") && key_exists($curCategory, $data->detailPages)):?>
+                            <?php if(property_exists($data, "detailPagesAsSubgrid")):?>
+                                <div id="subgrid" class="col-md-12 col-xs-12">
+                                </div>
+                                
+                                <script>
+                                 function setRecalc(id){
+                                     var recalcLink = "<?php echo $linksMaker->makeProcedureLink($ascope["path"], "Recalc"); ?>";
+                                     //automatic recalc if we back from detail
+                                     localStorage.setItem("recalclLink", recalcLink);
+                                     localStorage.setItem("autorecalcLink", recalcLink);
+                                     localStorage.setItem("autorecalcData", JSON.stringify({
+                                         "<?php echo $data->idFields[3]; ?>" : id
+                                     }));
+                                 }
+                                 newSubgridItemHook = false;
+                                 function subgridView(subgridmode, keyString){
+                                     var detailRewrite = {
+                                         "MemorizedGLTransactions" : "LedgerTransactionsDetail",
+                                         "ViewGLTransactions" : "LedgerTransactionsDetail",
+                                         "ViewClosedGLTransactions" : "LedgerTransactionsDetail",
+                                         "ReceivePurchases" : "ReceivePurchasesDetail",
+                                         "BankDeposits" : "LedgerTransactionsDetail",
+                                         "ViewAdjustments" : "InventoryAdjustmentsDetail"
+                                     }, ind;
+                                     var path = new String(window.location);
+                                     path = path.replace(/#\/\?/, "?");
+                                     path = path.replace(/page\=grid/, "page=subgrid");
+                                     path = path.replace(/mode\=view|mode\=edit|mode\=new/, "mode=subgrid");
+                                     if(keyString){
+                                         path = path.replace(/mode\=subgrid/, "mode=new");
+                                         if(path.search(/item\=/) == -1)
+                                             path += "&item=" + keyString;
+                                     }
+                                     
+                                     for(ind in detailRewrite)
+                                         path = path.replace(new RegExp(ind), detailRewrite[ind]);
+                                     $.get(path + "<?php echo (property_exists($data, "detailSubgridModes") && key_exists("view", $data->detailSubgridModes) ? "&modes=" . implode("__", $data->detailSubgridModes["view"]) : ""); ?>")
+                                      .done(function(data){
+                                          setTimeout(function(){
+                                              $("#subgrid").html(data);
+                                              datatableInitialized = true;
+                                              setTimeout(function(){
+                                                  var buttons = $('.subgrid-buttons');
+                                                  var tableFooter = $('.subgrid-table-footer');
+                                                  tableFooter.prepend(buttons);
+                                              },300);
+                                          },0);
+                                      })
+                                      .error(function(xhr){
+                                          // if(xhr.status == 401)
+                                          //    else
+                                          //   alert("Unable to load page");
+                                      });
+                                 }
+                                 subgridView();
+                                </script>
+                            <?php else: ?>
+                                <div class="col-md-12 col-xs-12">
+                                    <?php
+                                        $getmethod = "get" . makeId($curCategory);
+                                        $deletemethod = "delete" . makeId($curCategory);
+                                        $rows = $data->$getmethod(key_exists("OrderNumber", $item) ? $item["OrderNumber"] :
+                                                                  $item[(key_exists("detailAliases", $data->detailPages[$curCategory]) &&
+                                                                         key_exists($data->detailPages[$curCategory]["keyFields"][0], $data->detailPages[$curCategory]["detailAliases"])
+                                                                       ? $data->detailPages[$curCategory]["detailAliases"][$data->detailPages[$curCategory]["keyFields"][0]]
+                                                                       : $data->detailPages[$curCategory]["keyFields"][0])]);
+                                        //   echo json_encode($rows);
+                                        $detailTable = $data->detailPages[$curCategory];
+                                        $gridFields = $embeddedgridFields = $detailTable["gridFields"];
+                                        $deleteProcedure = "delete" . makeid($curCategory);
+                                        $embeddedgridContext = [
+                                            "item" =>$item,
+                                            "detailTable" => $detailTable
+                                        ];
+                                        $embeddedGridClasses = $newButtonId = "new" . makeId($curCategory);
+                                        require __DIR__ . "/../embeddedgrid.php"; 
+                                    ?>
+                                </div>
+                                <div id="<?php echo $newButtonId; ?>" class="row col-md-1">
+                                    <?php if(!key_exists("disableNew", $data->detailPages[$curCategory])): ?>
+                                        <a class="btn btn-info" href="<?php echo $linksMaker->makeEmbeddedgridItemNewLink($data->detailPages[$curCategory]["viewPath"], $ascope["path"], "new", $ascope["item"]) . "&{$data->detailPages[$curCategory]["newKeyField"]}={$embeddedgridContext["item"][$data->detailPages[$curCategory]["newKeyField"]]}" ?>">
+                                            <?php echo $translation->translateLabel("New"); ?>
+                                        </a>
+                                    <?php endif; ?>
+                                </div>
+                                <script>
+                                 //    if(!datatableInitialized){
+                                 datatableInitialized = true;
+                                 console.log("initializing datatable");
+                                 var table = $('.<?php echo $newButtonId ?>').DataTable( {
+                                     dom : "<'subgrid-table-header row'<'col-sm-6'l><'col-sm-6'f>><'subgrid-table-content row't><'#footer<?php echo $newButtonId; ?>.row'<'col-sm-4'i><'col-sm-7'p>>"
+                                 });
+                                 //    }
+                                 setTimeout(function(){
+                                     var buttons = $('#<?php echo $newButtonId; ?>');
+                                     var tableFooter = $('#footer<?php echo $newButtonId; ?>');
+                                     //console.log(tableFooter, buttons);
+                                     tableFooter.prepend(buttons);
+                                 },300);
+                                </script>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
         <?php endforeach; ?>
     </div>
     <?php

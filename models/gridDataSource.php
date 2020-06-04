@@ -367,7 +367,10 @@ class gridDataSource extends Dictionaries{
             else
                 $result = [];
 
-            $result = json_decode(json_encode($result), true)[0];
+            if($result != null && count($result))
+                $result = json_decode(json_encode($result), true)[0];
+            else
+                $result = [];
         
             foreach($this->editCategories[$type] as $key=>$value) {
                 foreach($describe as $struct) {
@@ -392,6 +395,8 @@ class gridDataSource extends Dictionaries{
             }
 
             $result = array_merge($result,$fresult);
+            if($result == null)
+                $result = [];
 
             return $result;
         }
