@@ -32,7 +32,7 @@
 require "./models/helpers/recalc.php";
 require "./models/subgridDataSource.php";
 
-class gridData extends subgridDataSource{
+class InvoiceDetail extends subgridDataSource{
 	public $tableName = "invoicedetail";
     public $parentTableName = "invoiceheader";
 	public $dashboardTitle ="Invoice Detail";

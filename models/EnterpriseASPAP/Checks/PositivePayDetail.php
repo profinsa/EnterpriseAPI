@@ -32,7 +32,7 @@
 
 require __DIR__ . "/../../gridDataSource.php";
 
-class gridData extends gridDataSource{
+class PositivePayDetail extends gridDataSource{
     public $dashboardTitle ="Positive Pay";
     public $breadCrumbTitle ="Positive Pay";
     public $tableName = "";

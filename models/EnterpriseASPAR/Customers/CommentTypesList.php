@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 
  require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class CommentTypesList extends gridDataSource{
 public $tableName = "commenttypes";
 public $dashboardTitle ="Comment Types";
 public $breadCrumbTitle ="Comment Types";

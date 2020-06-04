@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class ReceiptMethodsList extends gridDataSource{
 public $tableName = "receiptmethods";
 public $dashboardTitle ="ReceiptMethods";
 public $breadCrumbTitle ="ReceiptMethods";

@@ -787,8 +787,6 @@ class ReceiptsHeaderList extends gridDataSource{
     }
 }
 
-class gridData extends ReceiptsHeaderList {}
-
 class ReceiptsHeaderClosedList extends ReceiptsHeaderList{
     public $gridConditions = "(ReceiptsHeader.ReceiptClassID = 'Customer') AND (NOT (ReceiptsHeader.CreditAmount IS NULL OR ReceiptsHeader.CreditAmount <> 0)) AND IFNULL(ReceiptsHeader.Posted,0) = 1";
     public $dashboardTitle ="Closed Receipt";

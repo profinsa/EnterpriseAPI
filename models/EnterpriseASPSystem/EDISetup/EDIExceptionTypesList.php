@@ -30,7 +30,7 @@
 */
 
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class EDIExceptionTypesList extends gridDataSource{
     public $tableName = "ediexceptiontypes";
     public $dashboardTitle ="EDI Exception Types";
     public $breadCrumbTitle ="EDI Eexception Types";

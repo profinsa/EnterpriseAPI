@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class PaymentsHeaderVoidHistoryList extends gridDataSource{
     public $tableName = "paymentsheader";
     public $gridConditions = "(IFNULL(PaymentsHeader.Void,0)=1)";
     public $dashboardTitle ="Voided Payments";

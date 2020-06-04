@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class CashReceiptsList extends gridDataSource{
     public $tableName = "receiptsheader";
     public $dashboardTitle ="View Customer Receipts List";
     public $breadCrumbTitle ="View Customer Receipts List";

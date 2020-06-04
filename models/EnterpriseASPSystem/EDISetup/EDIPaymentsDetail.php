@@ -30,7 +30,7 @@
 */
 
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class EDIPaymentsDetail extends gridDataSource{
     public $tableName = "edipaymentsdetail";
     public $dashboardTitle ="EDI Payment Detail";
     public $breadCrumbTitle ="EDI Payment Detail";

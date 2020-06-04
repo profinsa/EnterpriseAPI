@@ -25,7 +25,7 @@
   models/dashboard/*
   app from index.php
 
-  Last Modified: 13.11.2019
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -36,7 +36,7 @@ require 'models/drillDowner.php';
 require 'models/linksMaker.php';
 require 'models/interfaces.php';
 
-class controller{
+class dashboardController{
     public $user = false;
     public $interface = "default";
     public $interfaces;

@@ -24,7 +24,7 @@
   models/help/*
   app from index.php
 
-  Last Modified: 06.11.2019
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -38,7 +38,7 @@ require 'models/EnterpriseASPHelpDesk/CRM/LeadInformationList.php';
 
 use Gregwar\Captcha\CaptchaBuilder;
 
-class controller{
+class helpController{
     public $user = false;
     public $action = "";
     public $mode = "docreports";

@@ -31,7 +31,7 @@ Last Modified by: Nikita Zaharov
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class LedgerAccountGroupList extends gridDataSource{
     public $tableName = "ledgeraccountgroup";
 
     //fields to render in grid

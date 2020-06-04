@@ -30,7 +30,7 @@ Last Modified: 04/09/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class InventoryWishListList extends gridDataSource{
 public $tableName = "inventorywishlist";
 public $dashboardTitle ="InventoryWishList ";
 public $breadCrumbTitle ="InventoryWishList ";

@@ -27,14 +27,14 @@
   models/translation.php
   app from index.php
 
-  Last Modified: 10.09.2019
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
 require 'models/users.php';
 require 'models/translation.php';
 
-class controller{
+class ByPassLoginController{
     public $user = false;
     
     public function __construct(){

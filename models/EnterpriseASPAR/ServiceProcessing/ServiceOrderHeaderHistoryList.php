@@ -31,7 +31,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class ServiceOrderHeaderHistoryList extends gridDataSource{
 	public $tableName = "orderheaderhistory";
 	public $gridConditions = "(LOWER(IFNULL(OrderHeaderHistory.TransactionTypeID, N'')) = 'service order')";
 	public $dashboardTitle ="Service Orders";

@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class TaxGroupsList extends gridDataSource{
 public $tableName = "taxgroups";
 public $dashboardTitle ="Tax Groups";
 public $breadCrumbTitle ="Tax Groups";

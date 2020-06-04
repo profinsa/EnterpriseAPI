@@ -31,7 +31,7 @@ Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class ExpenseReportHeaderList extends gridDataSource{
     public $tableName = "expensereportheader";
     public $dashboardTitle ="ExpenseReportHeader";
     public $breadCrumbTitle ="ExpenseReportHeader";

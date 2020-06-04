@@ -30,7 +30,7 @@
 */
 
 require "./models/subgridDataSource.php";
-class gridData extends subgridDataSource{
+class InventoryAdjustmentsDetail extends subgridDataSource{
     public $tableName = "inventoryadjustmentsdetail";
     public $dashboardTitle ="inventoryadjustmentsdetail";
     public $breadCrumbTitle ="inventoryadjustmentsdetail";

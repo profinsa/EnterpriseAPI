@@ -30,7 +30,7 @@
 
 require "./models/gridDataSource.php";
 
-class gridData extends gridDataSource{
+class DebitMemoDetail extends gridDataSource{
 	public $tableName = "purchasedetail";
     public $parentTableName = "purchaseheader";
 

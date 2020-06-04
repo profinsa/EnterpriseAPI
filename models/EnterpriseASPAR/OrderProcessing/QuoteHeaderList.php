@@ -1403,9 +1403,6 @@ class QuoteHeaderList extends gridDataSource{
     }
 }
 
-class gridData extends QuoteHeaderList{
-}
-
 class QuoteHeaderMemorizedList extends QuoteHeaderList{
 	public $gridConditions = "(LOWER(IFNULL(OrderHeader.TransactionTypeID,N'')) NOT IN ('return', 'service order', 'order')) AND Memorize=1";
 	public $dashboardTitle ="Memorized Quotes";

@@ -24,7 +24,7 @@
   models/reports/doc/*
   app from index.php
 
-  Last Modified: 24.04.2019
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -33,7 +33,7 @@ require 'models/security.php';
 require 'models/permissionsGenerated.php';
 require 'models/users.php';
 
-class controller{
+class docreportsController{
     public $user = false;
     public $action = "";
     public $mode = "docreports";

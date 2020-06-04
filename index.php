@@ -22,7 +22,7 @@
    + /controllers/*
 
 
-   Last Modified: 21/01/2020
+   Last Modified: 14/04/2020
    Last Modified by: Nikita Zaharov
  */
 //require 'vendor/autoload.php';
@@ -61,9 +61,9 @@ class app{
     public $loginLogo = "";
     public $page = 'index';
     public function __construct(){
-	$config = config();
-	$this->theme = $config["theme"];
-	$this->title = $config["title"];
+        $config = config();
+        $this->theme = $config["theme"];
+        $this->title = $config["title"];
         if(isset($_GET["page"]))
             $this->page = $_GET["page"];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -72,7 +72,8 @@ class app{
         if(!file_exists('controllers/' . $this->page . '.php'))
             throw new Exception("controller ". 'controllers/' . $this->page . '.php' . " is not found");
         require 'controllers/' . $this->page . '.php';
-        $this->controller = new controller();
+        $controllerName = $this->page . "Controller";
+        $this->controller = new $controllerName();
     }
 }
 

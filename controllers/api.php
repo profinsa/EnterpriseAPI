@@ -24,19 +24,18 @@
   models/help/*
   app from index.php
 
-  Last Modified: 26.02.2020
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
-require 'models/translation.php';
-require 'models/security.php';
-require 'models/permissionsGenerated.php';
+require_once 'models/translation.php';
+require_once 'models/security.php';
+require_once 'models/permissionsGenerated.php';
 //require 'models/users.php';
-require 'models/linksMaker.php';
-require 'models/interfaces.php';
-require 'models/EnterpriseASPHelpDesk/CRM/LeadInformationList.php';
+require_once 'models/linksMaker.php';
+require_once 'models/interfaces.php';
 
-class controller{
+class apiController{
     public $user = false;
     public $action = "";
     public $mode = "docreports";
@@ -58,38 +57,80 @@ class controller{
             exit;
             }*/
 
-        $id = key_exists("url", $_GET) ? $_GET["url"] : "";
-        $this->config = $config = config();
-        $this->user = $config["user"];
-        $this->user["EmployeeID"] = "Help";
-        SESSION::set("user", $this->user);
-        $scope = $GLOBALS["scope"] = $this;
-        
-        //$this->user = $_SESSION["user"];
-               
-        $linksMaker = new linksMaker();
-        $ascope = json_decode(json_encode($this), true);
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(key_exists("method", $_GET)){
-                $leadInformation = new LeadInformationList();
-                switch($_GET["method"]){
-                case "addLead" :
-                    $result = [];
-                    foreach($leadInformation->editCategories as $key=>$value)
-                        $result = array_merge($result, $leadInformation->getNewItem("", $key));
-                    $result["LeadID"] = $_POST["EMAIL"];
-                    $leadInformation->insertItemLocal($result, true);
-                    echo "<html><body>Thanks for your interest to our software!<br>Newletter we will email you when updates are made to the software!</body></html>";
+        if(key_exists("module", $_GET)){
+                require 'controllers/' . $_GET["module"] . '.php';
+                $controllerName = $_GET["module"] . "Controller";
+                $app->controller = new $controllerName();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                switch($_GET["module"]){
+                case "grid" :
+                    switch($_GET["action"]){
+                    case "create":
+                        $_GET["procedure"] = "insertItemRemote";
+                        break;
+                    case "update":
+                        $_GET["procedure"] = "updateItemRemote";
+                        break;
+                    }
+                    $_GET["action"] = $_GET["path"];
+                    
                     break;
-                default:
-                    echo "ok";
                 }
+                $app->controller->process($app);
+            }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
+                switch($_GET["module"]){
+                case "grid" :
+                    switch($_GET["action"]){
+                    case "list" :
+                        $_GET["procedure"] = "getPageRemote";
+                        break;
+                    case "getEmptyRecord":
+                        $_GET["procedure"] = "getEmptyRecord";
+                        break;
+                    case "delete":
+                        $_GET["procedure"] = "deleteItem";
+                        break;
+                    }
+                    $_GET["action"] = $_GET["path"];
+                    
+                    break;
+                }
+                $app->controller->process($app);
             }
-        }else if($_SERVER['REQUEST_METHOD'] === 'GET') {            
-            $translation = new translation($this->user["language"]);
-            
-            $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
-            require 'views/api/index.js';
+        }else{
+            $id = key_exists("url", $_GET) ? $_GET["url"] : "";
+            $this->config = $config = config();
+            $this->user = $config["user"];
+            $this->user["EmployeeID"] = "Help";
+            SESSION::set("user", $this->user);
+            $scope = $GLOBALS["scope"] = $this;
+        
+            //$this->user = $_SESSION["user"];
+               
+            $linksMaker = new linksMaker();
+            $ascope = json_decode(json_encode($this), true);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if(key_exists("method", $_GET)){
+                    require_once 'models/EnterpriseASPHelpDesk/CRM/LeadInformationList.php';
+                    $leadInformation = new LeadInformationList();
+                    switch($_GET["method"]){
+                    case "addLead" :
+                        $result = [];
+                        foreach($leadInformation->editCategories as $key=>$value)
+                            $result = array_merge($result, $leadInformation->getNewItem("", $key));
+                        $result["LeadID"] = $_POST["EMAIL"];
+                        $leadInformation->insertItemLocal($result, true);
+                        echo "<html><body>Thanks for your interest to our software!<br>Newletter we will email you when updates are made to the software!</body></html>";
+                        break;
+                    default:
+                        echo "ok";
+                    }
+                }
+            }else if($_SERVER['REQUEST_METHOD'] === 'GET') {
+                $translation = new translation($this->user["language"]);            
+                $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
+                require 'views/api/index.js';
+            }
         }
     }
 }

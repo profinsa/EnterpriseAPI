@@ -30,7 +30,7 @@ Last Modified: 04/09/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class WorkOrderPriorityList extends gridDataSource{
 public $tableName = "workorderpriority";
 public $dashboardTitle ="Work Order Priorities";
 public $breadCrumbTitle ="Work Order Priorities";

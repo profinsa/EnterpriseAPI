@@ -24,7 +24,7 @@
   models/autoreports.php
   app from index.php
 
-  Last Modified: 26.02.2020
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -39,7 +39,7 @@ function numberToStr($strin){
     return preg_replace('/\B(?=(\d{3})+(?!\d))/', ',', $strin);
 }
 
-class controller{
+class autoreportsController{
     public $user = false;
     public $action = "";
     public $mode = "autoreports";

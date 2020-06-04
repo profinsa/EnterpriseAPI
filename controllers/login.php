@@ -29,7 +29,7 @@
   models/companies.php
   app from index.php
 
-  Last Modified: 26.02.2020
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
@@ -42,7 +42,7 @@ require 'models/interfaces.php';
 
 $GLOBALS["capsule"]->setAsGlobal();
 
-class controller{
+class loginController{
     public $styles = [
         "blue",
         "gray"

@@ -28,7 +28,7 @@ Last Modified: 16/01/2019
 Last Modified by: 
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class PayrollPayEmployeesList extends gridDataSource{
 public $tableName = "payrollemployees";
 public $dashboardTitle ="Pay Employees";
 public $breadCrumbTitle ="Pay Employees";

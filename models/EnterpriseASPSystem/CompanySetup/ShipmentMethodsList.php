@@ -30,7 +30,7 @@ Last Modified: 04/07/2017
 Last Modified by: Kenna Fetterman
 */
 require "./models/gridDataSource.php";
-class gridData extends gridDataSource{
+class ShipmentMethodsList extends gridDataSource{
 public $tableName = "shipmentmethods";
 public $dashboardTitle ="Shipment Methods";
 public $breadCrumbTitle ="Shipment Methods";

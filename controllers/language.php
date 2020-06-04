@@ -22,13 +22,13 @@
   models/translation.php
   app from index.php
 
-  Last Modified: 16.02.2016
+  Last Modified: 14.04.2020
   Last Modified by: Nikita Zaharov
 */
 
 //require 'models/translation.php';
 
-class controller{
+class languageController{
     public $user = false;
     
     public function process($app){

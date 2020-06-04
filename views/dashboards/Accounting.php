@@ -1,3 +1,15 @@
+<?php
+/*$dashboardData = [
+    "companyDailyActivity" => $data->getCompanyDailyActivityByDepartments(),
+    "departments" => $data->getDepartments(),
+    "companyAccountStatus" => $data->CompanyAccountsStatus(),
+    "companyAccountStatusByDepartments" => $data->getAccountsStatusesByDepartments(),
+    "leadFollowUpByDepartments" => $data->getLeadFollowUpByDepartments(),
+    "todaysTasksByDepartments" => $data->getTodaysTasksByDepartments(),
+    "topOrdersReceiptsByDepartments" => $data->getTopOrdersReceiptsByDepartments()
+];
+echo json_encode($dashboardData, JSON_PRETTY_PRINT);*/
+?>
 <div class="container-fluid">
     <?php
         if($ascope["interfaces"]["description"][$ascope["interface"]]["interface"] == "default")
