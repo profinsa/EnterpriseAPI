@@ -16,3 +16,5 @@ db*
 Admin/ProductProfiles/*
 ./malicious.log
 .vs/*
+examples/dotnet/bin/*
+examples/dotnet/obj/*
