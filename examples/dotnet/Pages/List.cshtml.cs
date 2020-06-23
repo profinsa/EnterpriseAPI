@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 //using API;
 
-public class LoginModel : PageModel {
+public class ListModel : PageModel {
     /*
       Request URL for Login action
      */
@@ -20,7 +20,11 @@ public class LoginModel : PageModel {
     
     static HttpClient myAppHTTPClient = new HttpClient();
 
-    public LoginModel(){
+    public ListModel(){
+        APIRequests();
+    }
+
+    public async void APIRequests(){
         dynamic body = new JObject();
         /*Credentials for Login request*/
         body.CompanyID = "DINOS";
@@ -31,7 +35,7 @@ public class LoginModel : PageModel {
         body.language = "english";
 
         /*
-          doing request. Request Body is JSON, Response body is JSON
+          Login request. Request Body is JSON, Response body is JSON
           Response is json like:
           {
           "session_id": "aud8s4l449frcnponmv1ithvoo",
@@ -40,6 +44,11 @@ public class LoginModel : PageModel {
           }
           Where session_id is uuid, which used for any other API request
          */
-        API.doRequest(this.login_method, this.login_url, this.login_request = body.ToString()).ContinueWith(t => login_response = t.Result);
+        dynamic sessionResult = JObject.Parse(await(API.doRequest(this.login_method, this.login_url, this.login_request = body.ToString())));
+        Console.WriteLine(sessionResult);
+        /*
+          List Request.
+         */
+        Console.WriteLine(await(API.doRequest("GET", "/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=" + sessionResult.session_id, null)));
     }
 }
