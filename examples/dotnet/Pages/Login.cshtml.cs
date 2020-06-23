@@ -9,6 +9,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 public class LoginModel : PageModel {
+    public string login_url = "/index.php?page=api&module=auth&action=login";
+    public string login_method = "POST";
+    public string login_request = "";
+    public string login_response = "";
+    
     static HttpClient myAppHTTPClient = new HttpClient();
 
     public LoginModel(){
@@ -20,25 +25,19 @@ public class LoginModel : PageModel {
         body.EmployeePassword = "Demo";
         body.language = "english";
 
-        this.doRequest("POST", "/index.php?page=api&module=auth&action=login", body.ToString());
+        doRequest(this.login_method, this.login_url, this.login_request = body.ToString()).ContinueWith(t => login_response = t.Result);
     }
 
-    public async doRequest(string type, string getParams, string body){
-        string firstName, lastName, email;
-        string host = "https://google.com:443/";
-        string pathname = "/";
-
-        string requestUrl = host;
-
+    public async Task<string> doRequest(string type, string getParams, string body){
         HttpRequestMessage httpRequestMessage = new HttpRequestMessage();
-
+        string result = "";
         Console.WriteLine("Start API Request");        
         try
         {
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
+            var data = new StringContent(body, System.Text.Encoding.UTF8, "application/json");
             var client = new HttpClient();
-            var response = await client.PostAsync("http://localhost/EnterpriseUniversalAPI" + getParams, new StringContent(body));
-            string result = response.Content.ReadAsStringAsync().Result;
+            var response = await client.PostAsync("http://localhost/EnterpriseUniversalAPI" + getParams, data);
+            result = response.Content.ReadAsStringAsync().Result;
             dynamic resObj = JObject.Parse(result);
             Console.WriteLine(resObj);
             //Console.WriteLine(result);            
@@ -46,8 +45,7 @@ public class LoginModel : PageModel {
             /*
             HttpResponseMessage responseMessage = await myAppHTTPClient.PostAsync(requestUrl, httpRequestMessage.Content);
             HttpContent content = responseMessage.Content;
-            string message = await content.ReadAsStringAsync();
-            Console.WriteLine("The output from thirdparty is: {0}", message);*/
+            string message = await content.ReadAsStringAsync();*/
             RedirectToPage();
         }
         catch (HttpRequestException exception)
@@ -55,5 +53,6 @@ public class LoginModel : PageModel {
             Console.WriteLine("An HTTP request exception occurred. {0}", exception.Message);
         }
         Console.WriteLine("End API Request");
+        return result;
     }
 }
