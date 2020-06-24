@@ -14,6 +14,7 @@ public class API {
         HttpRequestMessage httpRequestMessage = new HttpRequestMessage();
         string result = "";
         Console.WriteLine("Start API Request");        
+        Console.WriteLine(baseUrl + getParams);        
         try
         {
             var data = type == "POST" ? new StringContent(body, System.Text.Encoding.UTF8, "application/json") : new StringContent("");
