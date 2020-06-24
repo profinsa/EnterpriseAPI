@@ -10,7 +10,7 @@ using Newtonsoft.Json.Linq;
 
 public class API {
     public static async Task<string> doRequest(string type, string getParams, string body){
-        string baseUrl = "http://localhost/EnterpriseUniversalAPI";
+        string baseUrl = "https://stfb.net/EnterpriseUniversalAPI";
         HttpRequestMessage httpRequestMessage = new HttpRequestMessage();
         string result = "";
         Console.WriteLine("Start API Request");        
