@@ -16,7 +16,6 @@ public class LoginModel : PageModel {
     public string login_url = "/index.php?page=api&module=auth&action=login";
     public string login_method = "POST";
     public string login_request = "";
-    public string login_response = "";
     
     static HttpClient myAppHTTPClient = new HttpClient();
 
@@ -40,6 +39,6 @@ public class LoginModel : PageModel {
           }
           Where session_id is uuid, which used for any other API request
          */
-        API.doRequest(this.login_method, this.login_url, this.login_request = body.ToString()).ContinueWith(t => login_response = t.Result);
+        API.doRequest(this.login_method, this.login_url, this.login_request = body.ToString()).ContinueWith(t => t.Result);
     }
 }

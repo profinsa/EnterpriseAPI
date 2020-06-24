@@ -16,8 +16,14 @@ public class ListModel : PageModel {
     public string login_url = "/index.php?page=api&module=auth&action=login";
     public string login_method = "POST";
     public string login_request = "";
-    public string login_response = "";
-    
+
+    /* 
+       Request URL for List action
+       For this example we using AccountsReceivable/OrderProcessing/ViewOrders Enterprise screen, but you can use any screen from list in file EnterpriseScreens.json
+     */
+    public string list_url = "/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=";
+    public string list_method = "GET";
+
     static HttpClient myAppHTTPClient = new HttpClient();
 
     public ListModel(){
@@ -47,8 +53,9 @@ public class ListModel : PageModel {
         dynamic sessionResult = JObject.Parse(await(API.doRequest(this.login_method, this.login_url, this.login_request = body.ToString())));
         Console.WriteLine(sessionResult);
         /*
-          List Request.
+          Forms List Request.
+          Getting list of all Opened Orders
          */
-        Console.WriteLine(await(API.doRequest("GET", "/index.php?page=api&module=forms&path=AccountsReceivable/OrderProcessing/ViewOrders&action=list&session_id=" + sessionResult.session_id, null)));
+        Console.WriteLine(await(API.doRequest(list_method, list_url + sessionResult.session_id, null)));
     }
 }
