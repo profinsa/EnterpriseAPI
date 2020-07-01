@@ -25,11 +25,11 @@
   Calls:
   MySql Database
    
-  Last Modified: 19/09/2019
+  Last Modified: 04/06/2020
   Last Modified by: Nikita Zaharov
 */
 
-require "./models/gridDataSource.php";
+require_once "./models/gridDataSource.php";
 class AccessPermissionsList extends gridDataSource{
     public $tableName = "accesspermissions";
     public $dashboardTitle ="Access Permissions";

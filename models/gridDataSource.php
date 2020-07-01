@@ -389,12 +389,15 @@ class gridDataSource extends Dictionaries{
                 }
             }
 
-            if(count($columns)){
+            if(count($columns))
                 $result = DB::select("SELECT " . implode(",", $columns) . " from " . $this->tableName . ( $keyFields != "" ? " WHERE ". $keyFields : ""), array());
-                $result = json_decode(json_encode($result), true)[0];
-            }else
+            else
                 $result = [];
 
+            if($result != null && count($result))
+                $result = json_decode(json_encode($result), true)[0];
+            else
+                $result = [];
         
             foreach($this->editCategories[$type] as $key=>$value) {
                 foreach($describe as $struct) {
@@ -417,11 +420,9 @@ class gridDataSource extends Dictionaries{
                     }
                 }
             }
-            
+            $result = array_merge($result,$fresult);
             if($result == null)
-                $result == [];
-            else
-                $result = array_merge($result,$fresult);
+                $result = [];
 
             return $result;
         }
