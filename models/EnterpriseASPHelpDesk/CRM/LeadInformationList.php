@@ -25,7 +25,7 @@
   Calls:
   MySql Database
    
-  Last Modified: 18/11/2019
+  Last Modified: 21/03/2020
   Last Modified by: Nikita Zaharov
 */
 require "./models/gridDataSource.php";
@@ -41,6 +41,19 @@ class LeadInformationList extends gridDataSource{
             "inputType" => "text",
             "required" => "true",
         ],
+        "Hot" => [
+            "dbType" => "tinyint(1)",
+            "inputType" => "checkbox"
+        ],
+        "LeadEmail" => [
+            "dbType" => "varchar(60)",
+            "inputType" => "text"
+        ],
+        "LeadCompany" => [
+            "dbType" => "varchar(50)",
+            "inputType" => "text",
+            "defaultValue" => ""
+        ],
         "LeadLastName" => [
             "dbType" => "varchar(50)",
             "inputType" => "text"
@@ -48,22 +61,6 @@ class LeadInformationList extends gridDataSource{
         "LeadFirstName" => [
             "dbType" => "varchar(50)",
             "inputType" => "text"
-        ],
-        "LeadEmail" => [
-            "dbType" => "varchar(60)",
-            "inputType" => "text"
-        ],
-        "LeadLogin" => [
-            "dbType" => "varchar(60)",
-            "inputType" => "text"
-        ],
-        "LeadPassword" => [
-            "dbType" => "varchar(20)",
-            "inputType" => "text"
-        ],
-        "Hot" => [
-            "dbType" => "tinyint(1)",
-            "inputType" => "checkbox"
         ],
         "Confirmed" => [
             "dbType" => "tinyint(1)",
@@ -537,7 +534,7 @@ class LeadInformationList extends gridDataSource{
         "LeadPassword" => "Password",
         "Hot" => "Hot",
         "Confirmed" => "Confirmed",
-        "LeadCompany" => "Lead Company",
+        "LeadCompany" => "Company",
         "LeadSalutation" => "Lead Salutation",
         "LeadAddress1" => "Lead Address 1",
         "LeadAddress2" => "Lead Address 2",

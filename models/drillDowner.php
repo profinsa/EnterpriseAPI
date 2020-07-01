@@ -187,14 +187,14 @@ class drillDowner{
         $user = $GLOBALS["user"];
         $keyString = $user["CompanyID"] . "__" . $user["DivisionID"] . "__" . $user["DepartmentID"];
 
-        $conn =  DB::connection()->getPdo();
-        $conn->setAttribute($conn::ATTR_EMULATE_PREPARES, true);
+        if($this->accounts == null){
+            $conn =  DB::connection()->getPdo();
+            $conn->setAttribute($conn::ATTR_EMULATE_PREPARES, true);
         
-        $stmt = $conn->prepare($proc,array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
-
-        $rs = $stmt->execute();
-
-        $this->accounts = $stmt->fetchAll($conn::FETCH_ASSOC);
+            $stmt = $conn->prepare($proc,array($conn::MYSQL_ATTR_USE_BUFFERED_QUERY => true));
+            $rs = $stmt->execute();
+            $this->accounts = $stmt->fetchAll($conn::FETCH_ASSOC);
+        }
 
         $stmt = null;
 

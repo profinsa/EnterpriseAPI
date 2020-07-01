@@ -25,11 +25,12 @@
   Calls:
   MySql Database
    
-  Last Modified: 20/09/2019
+  Last Modified: 04/06/2020
   Last Modified by: Zaharov Nikita
 */
 
-require "./models/gridDataSource.php";
+require_once "./models/gridDataSource.php";
+require "./models/EnterpriseASPSystem/CompanySetup/AccessPermissionsList.php";
 class PayrollEmployeesList extends gridDataSource{
 	public $tableName = "payrollemployees";
 	public $dashboardTitle ="Employees";
@@ -69,7 +70,8 @@ class PayrollEmployeesList extends gridDataSource{
 			"EmployeeID" => [
 				"dbType" => "varchar(36)",
 				"inputType" => "text",
-				"defaultValue" => ""
+				"defaultValue" => "",
+                "required" => true
 			],
 			"EmployeeTypeID" => [
 				"dbType" => "varchar(36)",
@@ -79,11 +81,13 @@ class PayrollEmployeesList extends gridDataSource{
 			"EmployeeUserName" => [
 				"dbType" => "varchar(15)",
 				"inputType" => "text",
+                "required" => true,
 				"defaultValue" => ""
 			],
 			"EmployeePassword" => [
 				"dbType" => "varchar(15)",
 				"inputType" => "text",
+                "required" => true,
 				"defaultValue" => ""
 			],
 			"EmployeePasswordOld" => [
@@ -703,6 +707,18 @@ class PayrollEmployeesList extends gridDataSource{
             return json_decode(json_encode($payrollEmployeesDetailsResult), true)[0];
     }
 
+    public function insertItem($values, $remoteCall = false){
+        $user = Session::get("user");
+
+        $accessPermissions = new AccessPermissionsList;
+        $insertedPermissions = $accessPermissions->insertItemLocal(["EmployeeID" => $values["EmployeeID"]]);
+        //echo json_encode($insertedPermissions, JSON_PRETTY_PRINT);
+        
+        parent::insertItem($values);
+    }
+    
+    /////////////////////////////
+    //External API
     public function changeInterface(){
         $interfaces = new interfaces();
         $user = Session::get("user");
