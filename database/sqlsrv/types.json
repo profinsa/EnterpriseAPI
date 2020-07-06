@@ -1,0 +1,17 @@
+[
+    "nvarchar",
+    "datetime",
+    "bit",
+    "int",
+    "money",
+    "real",
+    "numeric",
+    "float",
+    "bigint",
+    "tinyint",
+    "nchar",
+    "char",
+    "smallint",
+    "varchar",
+    "text"
+]
