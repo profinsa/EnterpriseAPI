@@ -40,7 +40,7 @@ class DB{
         if($GLOBALS["config"]["db_type"] == "mysql")
             return  DB::select("describe " . $tableName);
         else{
-            $results = DB::select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$tableName'", array());
+            $results = $GLOBALS["DB"]::select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$tableName'", array());
             $columns = [];
             foreach($results as $columnDef){
                 $column = new stdClass();
@@ -87,10 +87,62 @@ class DB{
             $result = $_SESSION["DBQueries"][$queryKey]["result"];
             $_SESSION["cachedQueries"][$queryKey] = "from cache";
         } else {
+            $records = $GLOBALS["DB"]::select($query, $args);
+            if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+                //parsing values for SQL Server windows PDO driver which returns all values as strings;
+                if(preg_match('/^select.*from\s(\w+)$/i', $query, $matches)){
+                    $tableName = $matches[1];
+                    $types = [
+                        "bit" => "int",
+                        "int" => "int",
+                        "bigint" => "int",
+                        "tinyint" => "int",
+                        "smallint" => "int",
+                        "nvarchar" => "string",
+                        "varchar" => "string",
+                        "text" => "string",
+                        "datetime" => "string",
+                        "nchar" => "string",
+                        "char" => "string",
+                        "money" => "float",
+                        "real" => "float",
+                        "numeric" => "float",
+                        "float" => "float"
+                    ];
+                    $desc = DB::describe($tableName);
+                    $result = [];
+                    //echo json_encode($desc, JSON_PRETTY_PRINT);
+                    foreach($records as $record){
+                        $parsedRecord = new stdClass();
+                        //echo "dfdf";
+                        foreach($desc as $column){
+                            $columnName = $column->Field;
+                            if($record->$columnName == null)
+                                $parsedRecord->$columnName = null;
+                            else{
+                                switch($types[$column->Type]){
+                                case "int" :
+                                    $parsedRecord->$columnName = intval("" . $record->$columnName);
+                                    break;
+                                case "float" :
+                                    $parsedRecord->$columnName = floatval("" . $record->$columnName);
+                                    break;
+                                case "string" :
+                                    $parsedRecord->$columnName = "" . $record->$columnName;
+                                    break;
+                                }
+                            }
+                        }
+                        $result[] = $parsedRecord;
+                    }
+                }
+            }else
+                $result = $records;
+            
             $_SESSION["DBQueries"][$queryKey] = [
                 "timestamp" => time(),
                 "args" => $args,
-                "result" => $result = $GLOBALS["DB"]::select($query, $args) 
+                "result" => $result 
             ];
             $_SESSION["cachedQueries"][$queryKey] = "from db";
         }
@@ -139,6 +191,70 @@ class DB{
             if($GLOBALS["config"]["db_type"] == "mysql")
                 $GLOBALS["DB"]::statement("set @EmployeeID='{$_SESSION["user"]["EmployeeID"]}'");
         return $GLOBALS["DB"]::getDatabaseName();
+    }
+
+    public static function getTables(){
+        $ignoreTables = [
+            "activeemployee",
+            "translation",
+            "translations",
+            "dtproperties",
+            "gl detail by date",
+            "gl details",
+            "customerhistorytransactions",
+            "customertransactions",
+            "itemhistorytransactions",
+            "itemtransactions",
+            "jointpaymentsdetail",
+            "jointpaymentsheader",
+            "payrollcommision",
+            "projecthistorytransactions",
+            "projecttransactions",
+            "vendorhistorytransactions",
+            "vendortransactions"
+        ];
+            
+        if($GLOBALS["config"]["db_type"] == "mysql"){
+            $pdo = DB::connection()->getPdo();
+            $result = DB::select("show tables", array());
+            $databaseName = "Tables_in_" . DB::getDatabaseName();
+
+            foreach($result as $key=>$row){
+                if(!in_array($row->$databaseName, $ignoreTables) &&
+                   !preg_match("/^report/", $row->$databaseName) &&
+                   !preg_match("/report$/", $row->$databaseName))
+                    $tables[] = $row->$databaseName;
+            }
+
+            foreach($tables as $tableName){
+                $desc = DB::select("describe $tableName", array());
+                $keys = 0;
+                foreach($desc as $column)
+                    if($column->Field == "CompanyID" || $column->Field == "DivisionID" || $column->Field == "DepartmentID")
+                        $keys++;
+                if($keys == 3)
+                    $tablesColumns[$tableName] = $desc;
+            }
+        }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+            $result = DB::select("SELECT * FROM INFORMATION_SCHEMA.TABLES");
+            foreach($result as $key=>$row){
+                if(!in_array($row->TABLE_NAME, $ignoreTables) &&
+                   !preg_match("/^report/", $row->TABLE_NAME) &&
+                   !preg_match("/report$/", $row->TABLE_NAME))
+                    $tables[] = $row->TABLE_NAME;
+            }
+
+            foreach($tables as $tableName){
+                $desc = DB::describe($tableName);
+                $keys = 0;
+                foreach($desc as $column)
+                    if($column->Field == "CompanyID" || $column->Field == "DivisionID" || $column->Field == "DepartmentID")
+                        $keys++;
+                if($keys == 3)
+                    $tablesColumns[$tableName] = $desc;
+            }
+        }
+        return $tablesColumns;
     }
     
     public static function getFuncOrProcDefinition($name){
