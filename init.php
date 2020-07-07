@@ -37,8 +37,7 @@ class DB{
         if($GLOBALS["config"]["db_type"] == "mysql")
             return  DB::select("describe " . $tableName);
         else{
-            $results = DB::select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$tableName'", array());
-            //echo $tableName;
+            $results = $GLOBALS["DB"]::select("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '$tableName'", array());
             $columns = [];
             foreach($results as $columnDef){
                 $column = new stdClass();
@@ -115,16 +114,20 @@ class DB{
                         //echo "dfdf";
                         foreach($desc as $column){
                             $columnName = $column->Field;
-                            switch($types[$column->Type]){
-                            case "int" :
-                                $parsedRecord->$columnName = intval("" . $record->$columnName);
-                                break;
-                            case "float" :
-                                $parsedRecord->$columnName = floatval("" . $record->$columnName);
-                                break;
-                            case "string" :
-                                $parsedRecord->$columnName = "" . $record->$columnName;
-                                break;
+                            if($record->$columnName == null)
+                                $parsedRecord->$columnName = null;
+                            else{
+                                switch($types[$column->Type]){
+                                case "int" :
+                                    $parsedRecord->$columnName = intval("" . $record->$columnName);
+                                    break;
+                                case "float" :
+                                    $parsedRecord->$columnName = floatval("" . $record->$columnName);
+                                    break;
+                                case "string" :
+                                    $parsedRecord->$columnName = "" . $record->$columnName;
+                                    break;
+                                }
                             }
                         }
                         $result[] = $parsedRecord;
