@@ -4,8 +4,8 @@
  */
 include './init.php';
 
-file_put_contents("database/sqlsrv/tablesDescription.json", json_encode(DB::getTables(), JSON_PRETTY_PRINT));
-$tablesDescription = json_decode(file_get_contents("database/sqlsrv/tablesDescription.json"));
+file_put_contents("../database/sqlsrv/tablesDescription.json", json_encode(DB::getTables(), JSON_PRETTY_PRINT));
+$tablesDescription = json_decode(file_get_contents("../database/sqlsrv/tablesDescription.json"));
 $types = [];
 foreach($tablesDescription as $name=>$desc){
     foreach($desc as $fieldDesc)

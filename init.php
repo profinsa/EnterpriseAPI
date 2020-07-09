@@ -233,6 +233,23 @@ class DB{
                     $tablesColumns[$tableName] = $desc;
             }
         }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+            $result = $GLOBALS["DB"]::select("SELECT * FROM INFORMATION_SCHEMA.TABLES");
+            foreach($result as $key=>$row){
+                if(!in_array($row->TABLE_NAME, $ignoreTables) &&
+                   !preg_match("/^report/", $row->TABLE_NAME) &&
+                   !preg_match("/report$/", $row->TABLE_NAME))
+                    $tables[] = $row->TABLE_NAME;
+            }
+
+            foreach($tables as $tableName){
+                $desc = DB::describe($tableName);
+                $keys = 0;
+                foreach($desc as $column)
+                    if($column->Field == "CompanyID" || $column->Field == "DivisionID" || $column->Field == "DepartmentID")
+                        $keys++;
+                if($keys == 3)
+                    $tablesColumns[$tableName] = $desc;
+            }
             $result = DB::select("SELECT * FROM INFORMATION_SCHEMA.TABLES");
             foreach($result as $key=>$row){
                 if(!in_array($row->TABLE_NAME, $ignoreTables) &&
