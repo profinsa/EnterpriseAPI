@@ -50,6 +50,11 @@ class DB{
             return $columns;
         }            
     }
+
+    public static function quote($value){
+        $pdo = DB::connection()->getPdo();
+        return $pdo->quote($value);
+    }
     
     public static function statement($query, $args = false){
         if(key_exists("user", $_SESSION) && key_exists("EmployeeID", $_SESSION["user"])){

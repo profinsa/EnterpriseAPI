@@ -1,0 +1,1352 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "810",
+        "EDIDocumentDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "832",
+        "EDIDocumentDescription": "Item Informaiton",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "850",
+        "EDIDocumentDescription": "Order",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "856",
+        "EDIDocumentDescription": "Advanced Ship Notice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "864",
+        "EDIDocumentDescription": "Address Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EDIDocumentTypeID": "OFX",
+        "EDIDocumentDescription": "Open Financial Exchange",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

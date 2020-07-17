@@ -1,0 +1,1577 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Analysis",
+        "QuoteTypeDescription": "Analysis",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "FinalNegotiation",
+        "QuoteTypeDescription": "Final Negotiation",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Lose",
+        "QuoteTypeDescription": "Lost The Business",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Prospect",
+        "QuoteTypeDescription": "Prospect",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Qualification",
+        "QuoteTypeDescription": "Qualification",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Review",
+        "QuoteTypeDescription": "Review",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "QuoteTypeID": "Win",
+        "QuoteTypeDescription": "Won the Business",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

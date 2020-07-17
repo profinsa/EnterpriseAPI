@@ -1,0 +1,1352 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Hot",
+        "LeadTypeDescription": "Hot Lead - Customer has immed. Needs",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Lead",
+        "LeadTypeDescription": "Normal - Normal Lead",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Referal",
+        "LeadTypeDescription": "Referal - Refered by Existing Customer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Research",
+        "LeadTypeDescription": "Research - Customer is just researching solutions",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Technical",
+        "LeadTypeDescription": "Techncial - Has Tech issues \/ Needs Tech Help",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "LeadTypeID": "Waiter",
+        "LeadTypeDescription": "Waiter - Customer waiting for next \/ new release",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

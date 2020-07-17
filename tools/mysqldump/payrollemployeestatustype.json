@@ -1,0 +1,1577 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "JOINT",
+        "EmployeeStatusTypeDescription": "JOINT",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "MARRIED",
+        "EmployeeStatusTypeDescription": "MARRIED",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONE",
+        "EmployeeStatusTypeDescription": "NONE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "NONRES",
+        "EmployeeStatusTypeDescription": "NONRES",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SEP",
+        "EmployeeStatusTypeDescription": "SEP",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "SINGLE",
+        "EmployeeStatusTypeDescription": "SINGLE",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeStatusTypeID": "ZERO",
+        "EmployeeStatusTypeDescription": "ZERO",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

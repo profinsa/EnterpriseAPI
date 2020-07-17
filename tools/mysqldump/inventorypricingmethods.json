@@ -1,0 +1,227 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PricingMethodID": "Normal",
+        "PricingMethodDescription": "Normal Pricing Methods Apply",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

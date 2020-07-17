@@ -1,0 +1,677 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "DEFAULT",
+        "PaymentClassesDescription": "Default Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Dividend",
+        "PaymentClassesDescription": "Dividend Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PaymentClassID": "Normal",
+        "PaymentClassesDescription": "Normal Payment Class",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

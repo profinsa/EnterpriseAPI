@@ -1,0 +1,902 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Office",
+        "EmployeeDepartmentDescription": "Office",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Production",
+        "EmployeeDepartmentDescription": "Production",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Sales",
+        "EmployeeDepartmentDescription": "Sales",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeeDepartmentID": "Warehouse",
+        "EmployeeDepartmentDescription": "Warehouse",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

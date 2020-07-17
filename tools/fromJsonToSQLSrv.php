@@ -1,10 +1,23 @@
 <?php
+$GLOBALS["configName"] = "common_sqlsrv";
+
 include '../init.php';
 
+$mysqldump = opendir("mysqldump");
+$tables = [];
+while (false !== ($entry = readdir($mysqldump))) {
+    if($entry != ".." && $entry != "."){
+        $name = preg_replace('/\.json/', "", $entry);
+        //     $tables[$entry
+        $tables[] = $name;
+    }
+}
+closedir($mysqldump);
 
+//echo json_encode($tables, JSON_PRETTY_PRINT);
+$queriesCounter = 0;
+foreach($tables as $name)
+    system("php fromJsonToSQLSrv/worker.php $name");
 
-$query = "select TOP(1) * from orderheader";
-//$query = "select * from orderheader limit 1";
-echo json_encode(DB::select($query), JSON_PRETTY_PRINT);
-//echo json_encode(DB::describe("OrderHeader"), JSON_PRETTY_PRINT);
+echo "Queries: $queriesCounter\n";
 ?>

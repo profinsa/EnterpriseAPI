@@ -1,0 +1,452 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Addition",
+        "PayrollItemTypeDescription": "Addition",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemTypeID": "Deduction",
+        "PayrollItemTypeDescription": "Deduction",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

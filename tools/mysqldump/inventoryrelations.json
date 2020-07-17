@@ -1,0 +1,252 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemID": "DEFAULT",
+        "RelatedItemID": "Sample",
+        "RelatedItemReason": null,
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

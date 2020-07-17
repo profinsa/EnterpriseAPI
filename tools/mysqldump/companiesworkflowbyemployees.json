@@ -1,0 +1,182 @@
+[
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "Work Flow Other",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowAP",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowAR",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowChallange",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowCollections",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowCRM",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowECart",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowEM",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowExternal",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowGL",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowIN",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowOE",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowOther",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowPO",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowPR",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowSupport",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowWH",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "WorkFlowTypeID": "WorkFlowWO",
+        "WorkFlowResponsibleEmployee": "Admin",
+        "WorkFlowDescription": null,
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

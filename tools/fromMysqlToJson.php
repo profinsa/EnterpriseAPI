@@ -55,20 +55,8 @@ $types = [
     "double" => "float",
 ];
 
-foreach($tables as $name=>$columns){
-    $dump = DB::select("select * from $name limit 1");
-    echo "dumping $name\n";
-    file_put_contents("mysqldump/$name.json", json_encode($dump, JSON_PRETTY_PRINT));
-    //    foreach($columns as $desc)
-    //  if(!in_array($desc->Type, $types))
-    //      $types[] = $desc->Type;
-}
+foreach($tables as $name=>$columns)
+    echo system("php fromMysqlToJson/worker.php $name");
 
-//echo json_encode($dump, JSON_PRETTY_PRINT);
-
-//$query = "select TOP(1) * from orderheader";
-//$query = "select * from orderheader limit 1";
-//echo json_encode(DB::select($query), JSON_PRETTY_PRINT);
-//echo json_encode(DB::describe("OrderHeader"), JSON_PRETTY_PRINT);
 ?>
 

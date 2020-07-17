@@ -1,0 +1,1127 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Annual",
+        "ContractTypeDescription": "Annual Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Daily",
+        "ContractTypeDescription": "Daily Billed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Monthly",
+        "ContractTypeDescription": "Monthly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Quarterly",
+        "ContractTypeDescription": "Quarterly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ContractTypeID": "Weekly",
+        "ContractTypeDescription": "Weekly Processed Contract",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

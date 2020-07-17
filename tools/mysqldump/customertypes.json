@@ -1,0 +1,2027 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Consignment",
+        "CustomerTypeDescription": "Consignment Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Distribution",
+        "CustomerTypeDescription": "Distribtuion",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Importers",
+        "CustomerTypeDescription": "Importers",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Internet",
+        "CustomerTypeDescription": "Internet Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Mail Order",
+        "CustomerTypeDescription": "Mail Order Companies",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Professional",
+        "CustomerTypeDescription": "Professional Service Firm (Law, Accounting)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Retail",
+        "CustomerTypeDescription": "Retail Stores",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Service",
+        "CustomerTypeDescription": "Service Shops",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "CustomerTypeID": "Wholesale",
+        "CustomerTypeDescription": "Wholesalers",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]
