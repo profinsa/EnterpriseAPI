@@ -1,0 +1,1802 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Auto",
+        "AssetTypeDescription": "Automobiles",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Buildings",
+        "AssetTypeDescription": "Buildings",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Hardware",
+        "AssetTypeDescription": "Computer Hardware",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Computer Software",
+        "AssetTypeDescription": "Computer Software",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Fixtures",
+        "AssetTypeDescription": "Fixtures",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Furnature",
+        "AssetTypeDescription": "Furnature",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Heavy Equip",
+        "AssetTypeDescription": "Heavy Equipment (Diesel Generator, etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetTypeID": "Office Equip",
+        "AssetTypeDescription": "Office Equipment (Phones, Fax, Etc.)",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

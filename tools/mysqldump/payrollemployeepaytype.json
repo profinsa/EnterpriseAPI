@@ -1,0 +1,902 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Commission",
+        "EmployeePayTypeDescription": "Commission",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Hourly",
+        "EmployeePayTypeDescription": "Hourly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary",
+        "EmployeePayTypeDescription": "Salary",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayTypeID": "Salary + Commission",
+        "EmployeePayTypeDescription": "Salary + Commission",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

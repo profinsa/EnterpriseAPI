@@ -1,0 +1,452 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Customer",
+        "ReceiptClassDescription": "Customer Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ReceiptClassID": "Vendor",
+        "ReceiptClassDescription": "Vendor Receipts",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

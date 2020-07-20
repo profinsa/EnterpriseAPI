@@ -1,0 +1,4943 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Adjustment",
+        "TransactionTypeDescription": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Beginning",
+        "TransactionTypeDescription": "Beginning Balance",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Payment",
+        "TransactionTypeDescription": "Cash Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Cash Receipt",
+        "TransactionTypeDescription": "Cash Receipt",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Check",
+        "TransactionTypeDescription": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Credit Memo",
+        "TransactionTypeDescription": "Credit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Debit Memo",
+        "TransactionTypeDescription": "Debit Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Deposit",
+        "TransactionTypeDescription": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "GL Entry",
+        "TransactionTypeDescription": "GL Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Invoice",
+        "TransactionTypeDescription": "Invoice",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "MiscAdjust",
+        "TransactionTypeDescription": "Miscellanious Adjustment (FK)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Payroll",
+        "TransactionTypeDescription": "Payroll",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Receiving",
+        "TransactionTypeDescription": "Receiving",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Return",
+        "TransactionTypeDescription": "Return (From Us to Vendor)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "RMA",
+        "TransactionTypeDescription": "Return Merchantdise Authorization (From Customer to us)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Sales Memo",
+        "TransactionTypeDescription": "Sales Memo",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Service Charge",
+        "TransactionTypeDescription": "Service Charge",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "System",
+        "TransactionTypeDescription": "System Generated GL Transaction",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Transfer",
+        "TransactionTypeDescription": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Void Check",
+        "TransactionTypeDescription": "Voided Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Voucher",
+        "TransactionTypeDescription": "Voucher for Payment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "TransactionTypeID": "Withdrawal",
+        "TransactionTypeDescription": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

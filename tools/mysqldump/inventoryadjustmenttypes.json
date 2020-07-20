@@ -1,0 +1,1361 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Spoilage",
+        "AdjustmentTypeDescription": "Loss due to Spoliage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": "Demo",
+        "LockTS": "2019-11-01 03:53:27"
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Aquired",
+        "AdjustmentTypeDescription": "Inventory Aquired outside of normal process",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Assembly",
+        "AdjustmentTypeDescription": "Assembled into a Kit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Beginning",
+        "AdjustmentTypeDescription": "Beginning Inventory Entry",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Breakage",
+        "AdjustmentTypeDescription": "Loss due to Breakage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Environment",
+        "AdjustmentTypeDescription": "Enviromental Flood \/ Mold \/ Weather Damage",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AdjustmentTypeID": "Shrink",
+        "AdjustmentTypeDescription": "Loss due to Shrinkage",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

@@ -1,0 +1,1252 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Custom",
+        "ItemTypeDescription": "Custom Part",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Non Stock",
+        "ItemTypeDescription": "Non Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service",
+        "ItemTypeDescription": "Service Charge or Fee",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Service Unit",
+        "ItemTypeDescription": "A Unit of Service",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ItemTypeID": "Stock",
+        "ItemTypeDescription": "Normal Stock Item",
+        "LockedBy": null,
+        "LockTS": null,
+        "Serialized": null
+    }
+]

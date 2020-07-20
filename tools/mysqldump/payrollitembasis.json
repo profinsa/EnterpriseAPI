@@ -1,0 +1,677 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "AGI",
+        "PayrollItemBasisDescription": "AGI",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Gross",
+        "PayrollItemBasisDescription": "Gross",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "PayrollItemBasisID": "Net",
+        "PayrollItemBasisDescription": "Net",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

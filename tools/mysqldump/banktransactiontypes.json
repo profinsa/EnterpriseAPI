@@ -1,0 +1,2243 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Adjustment",
+        "BankTransactionTypeDesc": "Adjustment",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Check",
+        "BankTransactionTypeDesc": "Check",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Deposit",
+        "BankTransactionTypeDesc": "Deposit",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Earned Interest",
+        "BankTransactionTypeDesc": "Earned Interest",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Inbound Wire",
+        "BankTransactionTypeDesc": "Inbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Outbound Wire",
+        "BankTransactionTypeDesc": "Outbound Wire Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Service Fee",
+        "BankTransactionTypeDesc": "Service Fee",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Test Bank Transaction Type ID",
+        "BankTransactionTypeDesc": "Test Bank Transaction Type ID Description",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Transfer",
+        "BankTransactionTypeDesc": "Transfer",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "BankTransactionTypeID": "Withdrawal",
+        "BankTransactionTypeDesc": "Withdrawal",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

@@ -1,0 +1,902 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Biweekly",
+        "EmployeePayFrequencyDescription": "Biweekly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Monthly",
+        "EmployeePayFrequencyDescription": "Monthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Semimonthly",
+        "EmployeePayFrequencyDescription": "Semimonthly",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "EmployeePayFrequencyID": "Weekly",
+        "EmployeePayFrequencyDescription": "Weekly",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

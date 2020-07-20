@@ -1,0 +1,1127 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Duplicate",
+        "ExceptionTypeDescription": "Duplicate Transaction Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Part",
+        "ExceptionTypeDescription": "Invalid Part Number",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "Price",
+        "ExceptionTypeDescription": "Invalid Price",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipFor",
+        "ExceptionTypeDescription": "Invalid Ship For Information",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "ExceptionTypeID": "ShipTo",
+        "ExceptionTypeDescription": "Invalid Ship To Information",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]

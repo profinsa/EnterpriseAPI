@@ -1,0 +1,1252 @@
+[
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Africa",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Asia",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "London",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "Europe",
+        "DepartmentID": "Rome",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "Montreal",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "NorthAmerica",
+        "DepartmentID": "NewYork",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Caracas",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "AMultiNational",
+        "DivisionID": "SouthAmerica",
+        "DepartmentID": "Santiago",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DEFAULT",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "California",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "GiftShop",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Operations",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Payroll",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DINOS",
+        "DivisionID": "Florida",
+        "DepartmentID": "Ranch",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining",
+        "DepreciationMethodDescription": "Declining Balance",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.5)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Declining 150",
+        "DepreciationMethodDescription": "Declining Balance 150%",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.125)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Double Decline",
+        "DepreciationMethodDescription": "Delcining Balance (Double)",
+        "DepreciationFormula": "(AssetOriginalCost - AccumulatedDeperciation) \/ (AssetUsefullLife * 0.25)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Straight",
+        "DepreciationMethodDescription": "Straight Line Depreciation",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) \/ (AssetUsefullLife)",
+        "LockedBy": null,
+        "LockTS": null
+    },
+    {
+        "CompanyID": "DinosClean",
+        "DivisionID": "DEFAULT",
+        "DepartmentID": "DEFAULT",
+        "AssetDepreciationMethodID": "Sum of Years",
+        "DepreciationMethodDescription": "Sum of Years",
+        "DepreciationFormula": "(AssetOriginalCost - AssetSalvageValue) * ((AssetUsefull Life - (InServiceDate - LastDepreationDate)) \/ (AssetUsefullLife)!)",
+        "LockedBy": null,
+        "LockTS": null
+    }
+]
