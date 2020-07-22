@@ -591,12 +591,13 @@ class gridDataSource extends Dictionaries{
         if($this->tableName == "orderdetail" || $this->tableName == "invoicedetail")
             $defaultCompanyRecord->TaxGroupID = $defaultCompanyRecord->DefaultSalesTaxGroup;
             
-        if(count($defaultRecord))
+        if(count($defaultRecord) && $GLOBALS["config"]["db_type"] != "sqlsrv") //default values for SQL Server database not supported because of it contains it as sql expressions
             $defaultRecord = $defaultRecord[0];
         else
             $defaultRecord = false;
         
         $result = DB::describe($this->tableName);
+//		 echo json_encode($defaultCompanyRecord, JSON_PRETTY_PRINT);
 
         foreach($this->editCategories[$type] as $key=>$value) {
             foreach($result as $struct) {
@@ -608,7 +609,10 @@ class gridDataSource extends Dictionaries{
                           -default value from default record
                           -default value from company record
                          */
-                        $this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+						if($GLOBALS["config"]["db_type"] != "sqlsrv")
+							$this->editCategories[$type][$key]["defaultValue"] = $struct->Default;
+						else if($struct->Default != null)
+							$this->editCategories[$type][$key]["defaultValue"]  = DB::select("select " . $struct->Default . " as Value")[0]->Value;
                         if($defaultRecord &&
                            property_exists($defaultRecord, $key) &&
                            $defaultRecord->$key != "" &&
