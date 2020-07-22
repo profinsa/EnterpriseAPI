@@ -22,7 +22,7 @@
    Calls:
    sql
 
-   Last Modified: 20.07.2020
+   Last Modified: 22.07.2020
    Last Modified by: Nikita Zaharov
  */
 
@@ -63,12 +63,17 @@ class docReportsData extends docReportsBase{
         //formatting data
         foreach($result as $rkey=>$row){
             foreach($row as $key=>$value){
-                if($meta[$key]["native_type"] == "NEWDECIMAL" || $meta[$key]["native_type"] == "DECIMAL"){
+                if($meta[$key]["native_type"] == "NEWDECIMAL" ||
+                   $meta[$key]["native_type"] == "DECIMAL" ||
+                   $meta[$key]["native_type"] == "money"){
                     $afterdot = 2;
                     if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts))
                         $result[$rkey][$key] = numberToStr($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
                 }
-                if($meta[$key]["native_type"] == "TIMESTAMP" || $meta[$key]["native_type"] == "DATETIME")
+                if($meta[$key]["native_type"] == "TIMESTAMP" ||
+                   $meta[$key]["native_type"] == "DATETIME" ||
+                   $meta[$key]["native_type"] == "timestamp" ||
+                   $meta[$key]["native_type"] == "datetime")
                     if($value != "")
                         $result[$rkey][$key] = date("m/d/y", strtotime($value));
             }
@@ -101,12 +106,17 @@ class docReportsData extends docReportsBase{
         //formatting data
         foreach($result as $rkey=>$row){
             foreach($row as $key=>$value){
-                if($meta[$key]["native_type"] == "NEWDECIMAL" || $meta[$key]["native_type"] == "DECIMAL"){
+                if($meta[$key]["native_type"] == "NEWDECIMAL" ||
+                   $meta[$key]["native_type"] == "DECIMAL" ||
+                   $meta[$key]["native_type"] == "money"){
                     $afterdot = 2;
                     if(preg_match('/([-+\d]+)\.(\d+)/', $value, $numberParts))
                         $result[$rkey][$key] = numberToStr($numberParts[1]) . '.' . substr($numberParts[2], 0, $afterdot);
                 }
-                if($meta[$key]["native_type"] == "TIMESTAMP" || $meta[$key]["native_type"] == "DATETIME")
+                if($meta[$key]["native_type"] == "TIMESTAMP" ||
+                   $meta[$key]["native_type"] == "DATETIME" ||
+                   $meta[$key]["native_type"] == "timestamp" ||
+                   $meta[$key]["native_type"] == "datetime")
                     if($value != "")
                         $result[$rkey][$key] = date("m/d/y", strtotime($value));
             }
