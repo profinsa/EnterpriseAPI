@@ -43,14 +43,14 @@ class docReportsData extends docReportsBase{
 
     public function getHeaderData(){
         $user = $_SESSION["user"];
-        
+
         $dbName = DB::getDatabaseName();
         $conn =  $GLOBALS["capsule"]::connection()->getPdo();
         if($GLOBALS["config"]["db_type"] == "mysql")
             $stmt = $conn->prepare("CALL RptDocOrderHeaderSingle('". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "', '" . $this->id . "')");
         else if($GLOBALS["config"]["db_type"] == "sqlsrv")
             $stmt = $conn->prepare("EXEC $dbName.RptDocOrderHeaderSingle '". $user["CompanyID"] . "','". $user["DivisionID"] ."','" . $user["DepartmentID"] . "', '" . $this->id . "'");
-        
+
         $rs = $stmt->execute();
         $result = $stmt->fetchAll($conn::FETCH_ASSOC);
 
@@ -73,8 +73,7 @@ class docReportsData extends docReportsBase{
                         $result[$rkey][$key] = date("m/d/y", strtotime($value));
             }
         }
-        
-        //        echo json_encode($res);
+
         return $result[0];
     }
 

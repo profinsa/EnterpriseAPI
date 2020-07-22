@@ -2348,6 +2348,12 @@ public $permissions = [
         "update" => "Always",
         "insert" => "Always",
         "delete" => "Always",
+    ],
+    "DocReports" => [
+        "select" => "APView|ARView|GLView|ADView|ADSetup",
+        "update" => "Always",
+        "insert" => "Always",
+        "delete" => "Always",
     ]
 ];
 }

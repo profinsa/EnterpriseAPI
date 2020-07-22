@@ -29,6 +29,16 @@ class users{
         $config = config();
         $result = DB::select("SELECT * from payrollemployees WHERE CompanyID='" . $company . "' AND EmployeeUserName='". $name ."' AND EmployeePassword='" . $password . "' AND DivisionID='" . $division . "' AND DepartmentID='" . $department . "'", array());
 
+        
+        /*        echo json_encode([
+            "name" => $name,
+            "company" => $company,
+            "password" => $password,
+            "division" => $division,
+            "department" => $department
+            ], JSON_PRETTY_PRINT);*/
+        //        echo json_encode($result, JSON_PRETTY_PRINT);
+        //exit;
         if(!$result)
             return false;
         $result = json_decode(json_encode($result), true);

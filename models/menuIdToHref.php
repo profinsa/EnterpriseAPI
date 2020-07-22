@@ -431,6 +431,7 @@
 
     "SystemSetup/Admin/AppInstallations" => "EnterpriseASPSystem/Admin/AppInstallationsList",
     "SystemSetup/Application/Interface" => "EnterpriseASPSystem/Application/InterfaceList",
-    "API/Ecommerce/Ecommerce" => "API/Ecommerce/EcommerceList"
+    "API/Ecommerce/Ecommerce" => "API/Ecommerce/EcommerceList",
+    "API/Reports/Doc" => "API/Reports/DocReportsList"
 ];
 ?>
