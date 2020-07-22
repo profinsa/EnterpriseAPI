@@ -92,7 +92,7 @@ class DB{
             $records = $GLOBALS["DB"]::select($query, $args);
             if($GLOBALS["config"]["db_type"] == "sqlsrv"){
                 //parsing values for SQL Server windows PDO driver which returns all values as strings;
-                if(preg_match('/^select.*from\s(\w+)$/i', $query, $matches)){
+                if(preg_match('/^select.*from\s([\w\s]+)$/i', $query, $matches)){
                     $tableName = $matches[1];
                     $types = [
                         "bit" => "int",
@@ -116,7 +116,7 @@ class DB{
                     //echo json_encode($desc, JSON_PRETTY_PRINT);
                     foreach($records as $record){
                         $parsedRecord = new stdClass();
-                        //echo "dfdf";
+                        
                         foreach($desc as $column){
                             $columnName = $column->Field;
                             if($record->$columnName == null)
@@ -137,10 +137,11 @@ class DB{
                         }
                         $result[] = $parsedRecord;
                     }
-                }
+                }else
+                    $result = $records;
             }else
                 $result = $records;
-            
+
             $_SESSION["DBQueries"][$queryKey] = [
                 "timestamp" => time(),
                 "args" => $args,
