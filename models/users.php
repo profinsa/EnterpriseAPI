@@ -28,6 +28,7 @@ class users{
     public function search($company, $name, $password, $division, $department){
         $config = config();
         $result = DB::select("SELECT * from payrollemployees WHERE CompanyID='" . $company . "' AND EmployeeUserName='". $name ."' AND EmployeePassword='" . $password . "' AND DivisionID='" . $division . "' AND DepartmentID='" . $department . "'", array());
+
         if(!$result)
             return false;
         $result = json_decode(json_encode($result), true);
