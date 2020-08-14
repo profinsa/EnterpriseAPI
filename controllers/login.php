@@ -120,24 +120,18 @@ class loginController{
 
                 echo json_encode($response);
             }
-        }else if($_SERVER['REQUEST_METHOD'] === 'GET') { //rendering login page
+        }else if($_SERVER['REQUEST_METHOD'] === 'GET'){ //json with info login form
             $this->captchaBuilder->build();
-            $_SESSION['captcha'] = $this->captchaBuilder->getPhrase();
-            if(!key_exists("user", $_SESSION) || !$_SESSION["user"])
-                $_SESSION["user"] = ["language" => "English"];
-
-            $this->user = $_SESSION["user"];
-            if(key_exists("interface", $config))
-                $_SESSION["user"]["interface"] = $config["interface"];
-            else
-                $_SESSION["user"]["interface"] = key_exists("interface", $_GET) ? $_GET["interface"] : "default";
-            $_SESSION["user"]["interfaceType"] = key_exists("interfacetype", $_GET) ? $_GET["interfacetype"] :  "ltr";
-            
-            $translation = new translation( $_SESSION["user"]["language"]);
-            $companies = new companies();
-            $scope = $this;
-
-            require "views/{$config["loginForm"]}.php";
+			
+			$result = [
+				"captchaNumber" => $this->captchaBuilder->getPhrase(),
+                 "captcha" =>  $this->captchaBuilder->inline(),
+				"language" => "English",
+			    "translation" => new translation("English"),
+				"companies" => new companies()
+			];
+           
+			echo json_encode($result);
         }
     }
 }
