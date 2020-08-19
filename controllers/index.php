@@ -81,7 +81,9 @@ class indexController{
             $ascope = json_decode(json_encode($scope), true);
             $keyString = $this->user["CompanyID"] . "__" . $this->user["DivisionID"] . "__" . $this->user["DepartmentID"];
             require 'models/menuCategoriesGenerated.php';
-            require 'views/interfaces/' . $this->interfaces->description[$interface]["interface"] . '/index.php';
+			$ascope["tranlation"] = $translation;
+			$ascope["menuCategories"] = $left;
+            //require 'views/interfaces/' . $this->interfaces->description[$interface]["interface"] . '/index.php';
         }
     }
 }

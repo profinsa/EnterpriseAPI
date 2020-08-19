@@ -24,7 +24,7 @@
   models/help/*
   app from index.php
 
-  Last Modified: 24.04.2020
+  Last Modified: 19.08.2020
   Last Modified by: Nikita Zaharov
 */
 

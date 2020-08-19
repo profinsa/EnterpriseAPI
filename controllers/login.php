@@ -102,6 +102,7 @@ class loginController{
                 echo json_encode(array(
                     "session_id" => session_id(),
                     "companies" => $companies,
+					"user" => $_SESSION["user"],
                     "message" =>  "ok"
                 ), JSON_PRETTY_PRINT);
             }else{//something wrong: captcha, company, username, password. Generating new captcha

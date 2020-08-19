@@ -10,7 +10,22 @@
  *  Most dictionaries has selfexplanary names.
  *
  */
+require_once "./translation.php";
+require_once "./linksMaker.php";
 class Dictionaries{
+	public function getMenuCategories(){
+		$linksMaker = new linksMaker();
+		return new translation($_GET["language"]);
+		$ascope = [];
+		require_once "./menuCategoiresGenerated.php";
+		
+		return $leftMenu;
+	}
+	
+	public function getTranslation(){
+		return new translation($_GET["language"]);
+	}
+	
     //Vendors Dialog Chooser
     public function getVendors(){
         $user = Session::get("user");

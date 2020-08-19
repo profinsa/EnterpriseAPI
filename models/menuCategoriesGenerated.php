@@ -1,16 +1,16 @@
 <?php
 $categories = [];
-require "menuCategories/CommonTasks.php";
-require "menuCategories/GeneralLedger.php";
-require "menuCategories/AccountsReceivable.php";
-require "menuCategories/AccountsPayable.php";
-require "menuCategories/Inventory.php";
-require "menuCategories/Payroll.php";
-require "menuCategories/CRM.php";
-require "menuCategories/ECommerce.php";
-require "menuCategories/MRP.php";
-require "menuCategories/Setup.php";
-require "menuCategories/Reports.php";
+require_once "menuCategories/CommonTasks.php";
+require_once "menuCategories/GeneralLedger.php";
+require_once "menuCategories/AccountsReceivable.php";
+require_once "menuCategories/AccountsPayable.php";
+require_once "menuCategories/Inventory.php";
+require_once "menuCategories/Payroll.php";
+require_once "menuCategories/CRM.php";
+require_once "menuCategories/ECommerce.php";
+require_once "menuCategories/MRP.php";
+require_once "menuCategories/Setup.php";
+require_once "menuCategories/Reports.php";
 $leftMenu = [
     "My" => [
         "type" => "category",
