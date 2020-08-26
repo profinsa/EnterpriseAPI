@@ -10,6 +10,7 @@ function config(){
         "db_user" => "enterprise@enterprisex", //user of mysql database
         "db_password" => "enterprise", //password of mysql database user
         "db_base" => "enterprise", //name of mysql database*/
+        "db_ssl_cert" => "certs/BaltimoreCyberTrustRoot.crt.pem",
         "loginLogo" => "assets/images/stfb-logo.gif",
         "mediumLogo" => "assets/images/stfb-logo.gif",
         "smallLogo" => "assets/images/stfblogosm.jpg",

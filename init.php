@@ -410,7 +410,7 @@ class Session{
     }
 }
 
-$capsule->addConnection([
+$connectionConfig = [
     "driver" => key_exists("db_type", $GLOBALS["config"]) ? $GLOBALS["config"]["db_type"] : "mysql" ,
     "host" => $GLOBALS["config"]["db_host"],
     "database" => $GLOBALS["config"]["db_base"],
@@ -419,6 +419,16 @@ $capsule->addConnection([
     "charset" => "utf8",
     "collation" => "utf8_unicode_ci",
     "prefix" => ""
-]);
+];
+
+if(key_exists("db_ssl_cert", $GLOBALS["config"])){
+    //    echo __DIR__ . "/" . $GLOBALS["config"]["db_ssl_cert"];
+    $connectionConfig["sslmode"] = "require";
+    $connectionConfig["options"] = [
+        PDO::MYSQL_ATTR_SSL_KEY => __DIR__ . "/" . $GLOBALS["config"]["db_ssl_cert"]
+    ];
+}
+
+$capsule->addConnection($connectionConfig);
 $capsule->setAsGlobal();
 ?>
