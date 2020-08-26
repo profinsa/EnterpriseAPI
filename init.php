@@ -24,7 +24,7 @@ session_start([
 
 $_SESSION["DBQueries"] = [];
 $_SESSION["cachedQueries"] = [];
-require 'vendor/autoload.php';
+require '_vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
