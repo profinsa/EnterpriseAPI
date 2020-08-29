@@ -426,7 +426,7 @@ $capsule->addConnection([
     "prefix" => ""
 ]);
 $capsule->setAsGlobal();
-//header('Access-Control-Allow-Origin: *');
-//header("Access-Control-Allow-Methods: POST");
-//header("Access-Control-Allow-Headers: Origin, Methods, Content-Type");
+#header('Access-Control-Allow-Origin: *');
+#header("Access-Control-Allow-Methods: POST");
+#header("Access-Control-Allow-Headers: Origin, Methods, Content-Type");
 ?>
