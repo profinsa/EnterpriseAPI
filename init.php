@@ -1,4 +1,6 @@
 <?php
+set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__);
+    
 session_name("EnterpriseX");
 if(key_exists("session_id", $_GET))
     session_id($_GET['session_id']);
@@ -27,7 +29,7 @@ session_start([
 
 $_SESSION["DBQueries"] = [];
 $_SESSION["cachedQueries"] = [];
-require 'vendor/autoload.php';
+require '_vendor/autoload.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
@@ -415,7 +417,7 @@ class Session{
     }
 }
 
-$capsule->addConnection([
+$connectionConfig = [
     "driver" => key_exists("db_type", $GLOBALS["config"]) ? $GLOBALS["config"]["db_type"] : "mysql" ,
     "host" => $GLOBALS["config"]["db_host"],
     "database" => $GLOBALS["config"]["db_base"],
@@ -424,7 +426,17 @@ $capsule->addConnection([
     "charset" => "utf8",
     "collation" => "utf8_unicode_ci",
     "prefix" => ""
-]);
+];
+
+if(key_exists("db_ssl_cert", $GLOBALS["config"])){
+    //    echo __DIR__ . "/" . $GLOBALS["config"]["db_ssl_cert"];
+    $connectionConfig["sslmode"] = "require";
+    $connectionConfig["options"] = [
+        PDO::MYSQL_ATTR_SSL_KEY => __DIR__ . "/" . $GLOBALS["config"]["db_ssl_cert"]
+    ];
+}
+
+$capsule->addConnection($connectionConfig);
 $capsule->setAsGlobal();
 #header('Access-Control-Allow-Origin: *');
 #header("Access-Control-Allow-Methods: POST");
