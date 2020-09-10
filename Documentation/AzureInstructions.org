@@ -1,5 +1,6 @@
 * initial steps
   For working with azure you need git and azure client optionally
+
   Most steps we doing under commmand line, you can do it over Azure Cloud Shell(in Azure Portal) or on native shell:
   - linux bash
   - Windows Power Shell
@@ -21,81 +22,117 @@
   It need for working with azure mysql server over mysql cli to create and upload the database.
 
   With using Azure Shell you need type:
-  # az group create --name EnterpriseX --location "West Europe"
+  - $ az group create --name EnterpriseX --location "West Europe"
     you can choose any other location and name of group
-  # az mysql server create --resource-group EnterpriseX --name EnterpriseX --admin-user mysqladmin --admin-password dollar32167DollarDollarPasswordDollar --sku-name B_Gen5_1
+  - $ az mysql server create --resource-group EnterpriseX --name EnterpriseX --admin-user mysqladmin --admin-password dollar32167DollarDollarPasswordDollar --sku-name B_Gen5_1
     resource name must be equal to created group in previous line. Admin user nad password can be any which you like.
     problems with passwords which contains $ or %. These paswords acepted, but auth not processed 
-  # as server firewall-rule create --name allAzureIPs --server EnterpriseX --resource-group EnterpriseX --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
+  - $ as server firewall-rule create --name allAzureIPs --server EnterpriseX --resource-group EnterpriseX --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
     it need to open ports for application inside azure
-  # az mysql server firewall-rule create --name AllowLocalClient --server EnterpriseX --resource-group EnterpriseX --start-ip-address=your_ip_address --end-ip-address=your_ip_address
+  - $ az mysql server firewall-rule create --name AllowLocalClient --server EnterpriseX --resource-group EnterpriseX --start-ip-address=your_ip_address --end-ip-address=your_ip_address
     it need to open ports for external host with application. You'll can test EnterpriseX and it needed for working with mysql database from your host with mysql client to load database data.
 
   Then you need open cmd
-  # mysql -u mysqladmin@enterprisex -h mysqlserver_hostname -P 3306 -p
+  - $ mysql -u mysqladmin@enterprisex -h mysqlserver_hostname -P 3306 -p
   and type password
   Then you need execute following mysql commands in mysql client:
-  # create database enterprise;
-  # create user 'enterprise'@'%' identified by 'enterprise';
-  # grant all privileges on enterprise.* to 'enterprise'@'%';
-  # exit;
+  - $ create database enterprise;
+  - $ create user 'enterprise'@'%' identified by 'enterprise';
+  - $ grant all privileges on enterprise.* to 'enterprise'@'%';
+  - $ exit;
   After this you will have database and user for database.
   Of course you can use any username and password which you like
   
   Change directory to EnterpriseX
-  # cd EnterpriseX_directory
+  - $ cd EnterpriseX_directory
   and load database snapshot
-  # mysql -u mysqladmin@enterprisex -h mysqlserver_hostname -P 3306 -p enterprise < database/backups/cleanenterprise.sql
+  - $ mysql -u mysqladmin@enterprisex -h mysqlserver_hostname -P 3306 -p enterprise < database/backups/cleanenterprise.sql
 * EnterpriseX
   For working with azure client we can use Azure Cloud shell or native Azure Client
+
   For application deployement we need to create deployment user.
-  # az webapp deployment user set --user-name user_name --password user_password
+
+  - $ az webapp deployment user set --user-name user_name --password user_password
+
   then we need to create service plan. For creating Service Plan we need:
   - resource group. In this example we using EnterpriseX resource group which was created when we created mysql server
   - sku. For more information about this parameter you'll can learn at https://docs.microsoft.com/ru-ru/rest/api/compute/resourceskus/list
   - is-linux - type of server. For php and web static applications - linux is best choose.
-  # az appservice plan create --name enterpriseServicePlan --resource-group EnterpriseX --sku F1 --is-linux
+
+  - $ az appservice plan create --name enterpriseServicePlan --resource-group EnterpriseX --sku F1 --is-linux
+
   After service plan we'll create application with Git deployment. php7.3 version and git deployment method are used.
-  # az webapp create --resource-group EnterpriseX --plan enterpriseServicePlan --name EnterpriseX --runtime "PHP|7.3" --deployment-local-git
+
+  - $ az webapp create --resource-group EnterpriseX --plan enterpriseServicePlan --name EnterpriseX --runtime "PHP|7.3" --deployment-local-git
+
   Result of command will contains deployment url. We'll need it for adding as remote repositoy in next step
+
   Now we need open native cmd and follow to EnterpriseX directory
+
   Before working with git, we need to edit common.php file to change these lines:
+
   "db_host" => "full_url_for_database", //host of mysql or ms sql database
+
   "db_user" => "user@dbhost", //user of mysql or ms sql database  
+
   Then we need to commit changes:
-  # git add .
-  # git commit -m "changes in config for azure"
+
+  - $ git add .
+
+  - $ git commit -m "changes in config for azure"
+
   After that we need to add remote repository as repository for application deployment_url
-  # git remote add azure deployment_url
+
+  - $ git remote add azure deployment_url
+
   And push content to remote repository
-  # git push azure master
+
+  - $ git push azure master
 
   Now we have application installed on azure
+
   For accessing application we need type in browser application_url/index.php?page=login
 * Enterprise Universal API
   Installtion of Enterprise Universal API is same as EnterpriseX except we will use MS SQL Server as database.
+
   For working with azure client we can use Azure Cloud shell or native Azure Client
+
   For application deployement we need to create deployment user.
-  # az webapp deployment user set --user-name user_name --password user_password
+  - $ az webapp deployment user set --user-name user_name --password user_password
   then we need to create service plan. For creating Service Plan we need:
   - resource group. In this example we using EnterpriseX resource group which was created when we created mysql server
   - sku. For more information about this parameter you'll can learn at https://docs.microsoft.com/ru-ru/rest/api/compute/resourceskus/list
   - is-linux - type of server. For php and web static applications - linux is best choose.
-  # az appservice plan create --name enterpriseServicePlan --resource-group EnterpriseX --sku F1 --is-linux
+
+  - $ az appservice plan create --name enterpriseServicePlan --resource-group EnterpriseX --sku F1 --is-linux
+
   After service plan we'll create application with Git deployment. php7.3 version and git deployment method are used.
-  # az webapp create --resource-group EnterpriseX --plan enterpriseServicePlan --name EnterpriseX --runtime "PHP|7.3" --deployment-local-git
+
+  - $ az webapp create --resource-group EnterpriseX --plan enterpriseServicePlan --name EnterpriseX --runtime "PHP|7.3" --deployment-local-git
+
   Result of command will contains deployment url. We'll need it for adding as remote repositoy in next step
+
   Now we need open native cmd and follow to EnterpriseX directory
+
   Before working with git, we need to edit common.php file to change these lines:
+
   "db_type" => "sqlsrv",
+
   "db_host" => "full_url_for_database", //host of database
+
   "db_user" => "user@dbhost", //user of mysql or database  
+
   Then we need to commit changes:
-  # git add .
-  # git commit -m "changes in config for azure"
+
+  - $ git add .
+
+  - $ git commit -m "changes in config for azure"
+
   After that we need to add remote repository as repository for application deployment_url
-  # git remote add azure deployment_url
+
+  - $ git remote add azure deployment_url
+
   And push content to remote repository
-  # git push azure master
+  - $ git push azure master
 
   Now we have application installed on azure
