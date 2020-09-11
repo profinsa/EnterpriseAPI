@@ -50,7 +50,7 @@
 * EnterpriseX
   For working with azure client we can use Azure Cloud shell or native Azure Client
 
-  For application deployement we need to create deployment user.
+  For application deployment we need to create deployment user.
 
   - $ az webapp deployment user set --user-name user_name --password user_password
 
@@ -94,13 +94,13 @@
 
   Now we have application installed on azure
 
-  For accessing application we need type in browser application_url/index.php?page=login
+  For accessing application we need type in browser application_url/index.php?page=ByPassLogin
 * Enterprise Universal API
   Installtion of Enterprise Universal API is same as EnterpriseX except we will use MS SQL Server as database.
 
   For working with azure client we can use Azure Cloud shell or native Azure Client
 
-  For application deployement we need to create deployment user.
+  For application deployment we need to create deployment user.
   - $ az webapp deployment user set --user-name user_name --password user_password
   then we need to create service plan. For creating Service Plan we need:
   - resource group. In this example we using EnterpriseX resource group which was created when we created mysql server
