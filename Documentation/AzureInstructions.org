@@ -59,6 +59,9 @@
   - sku. For more information about this parameter you'll can learn at https://docs.microsoft.com/ru-ru/rest/api/compute/resourceskus/list
   - is-linux - type of server. For php and web static applications - linux is best choose.
 
+  - $ az group create --name EnterpriseX --location "West Europe"
+    you can choose any other location and name of group
+	
   - $ az appservice plan create --name enterpriseServicePlan --resource-group EnterpriseX --sku F1 --is-linux
 
   After service plan we'll create application with Git deployment. php7.3 version and git deployment method are used.
@@ -104,6 +107,9 @@
   - sku. For more information about this parameter you'll can learn at https://docs.microsoft.com/ru-ru/rest/api/compute/resourceskus/list
   - is-linux - type of server. For php and web static applications - linux is best choose.
 
+  - $ az group create --name EnterpriseX --location "West Europe"
+    you can choose any other location and name of group
+	
   - $ az appservice plan create --name enterpriseServicePlan --resource-group EnterpriseX --sku F1 --is-linux
 
   After service plan we'll create application with Git deployment. php7.3 version and git deployment method are used.
