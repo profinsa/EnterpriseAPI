@@ -142,3 +142,28 @@
   - $ git push azure master
 
   Now we have application installed on azure
+
+* Enterprise Cloud MVC Blazor
+	This is azure web static application. It completely loaded into browser as wasm and then it will to connect to EnterpriseUniversalAPI to work together.
+
+	For installing this application you need native Azure Client.
+
+		
+	First you need to open cmd.
+	
+	Then you need to execute following commands to install application:
+	
+   - $ git clone https://github.com/stfbinc/EnterpriseCloudMVCBlazor
+     to get source code of Application together with latest build of application in bin directory
+   - $ cd bin/Release/net5.0/browser-wasm/publish
+     this directory contains the latest build of application
+   - $ az group create --name EnterpriseBlazor --location "West Europe"
+     it creates resource group for application
+   - $ az storage account create -n ixblazordemostorage -g EnterpriseBlazor
+     it creates storage account for application
+   - $ az storage blob service-properties update --account-name ixblazordemostorage --static-website --404-document 404.html --index-document index.html
+     it changes storage account properties for properly wokring application
+   - $ az storage blob upload-batch --account-name ixblazordemostorage -s wwwroot -d "$web"
+     it uploads from lattest build to server
+   
+   After that you can open in browser url which was listed in "az storage create account" command as primaryEndpoints.web
