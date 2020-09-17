@@ -147,12 +147,33 @@ class dashboardController{
                     $dashboardFile = $this->interfaces->description[$this->interface]["defaultDashboard"];
                     $this->breadCrumbTitle = $this->dashboardTitle = $titlesRewrite[$dashboardFile];
                 }
-                if($user["accesspermissions"]["DefaultDashboard"] != ""){
+                if(key_exists("DefaultDashboard", $user["accesspermissions"]) && $user["accesspermissions"]["DefaultDashboard"] != ""){
                     $dashboardFile = preg_replace("/[\s]+/", "", $user["accesspermissions"]["DefaultDashboard"]);
                     $this->breadCrumbTitle = $this->dashboardTitle =  $translation->translateLabel($user["accesspermissions"]["DefaultDashboard"]); 
                 }
             }
-            require "views/dashboards/{$dashboardFile}.php";
+            if(key_exists("hideui", $_GET)){
+                if(key_exists("list", $_GET)){
+                    $result = [];
+                    $list = explode(",", $_GET["list"]);
+                    foreach($list as $function){
+                        $function = "get" . $function;
+                        $result = $data->$function();
+                    }
+                    echo json_encode($result, JSON_PRETTY_PRINT);
+                }
+                /*$dashboardData = [
+    "companyDailyActivity" => $data->getCompanyDailyActivityByDepartments(),
+    "departments" => $data->getDepartments(),
+    "companyAccountStatus" => $data->CompanyAccountsStatus(),
+    "companyAccountStatusByDepartments" => $data->getAccountsStatusesByDepartments(),
+    "leadFollowUpByDepartments" => $data->getLeadFollowUpByDepartments(),
+    "todaysTasksByDepartments" => $data->getTodaysTasksByDepartments(),
+    "topOrdersReceiptsByDepartments" => $data->getTopOrdersReceiptsByDepartments()
+    ];*/
+            }
+            else
+                require "views/dashboards/{$dashboardFile}.php";
         }
     }
 }
