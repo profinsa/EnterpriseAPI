@@ -30,7 +30,8 @@ class dashboardData{
     public $breadCrumbTitle = "General Ledger";
     public $dashboardTitle = "General Ledger";
 
-    //Accounting dashboard    
+    //Accounting dashboard
+    public function getCompanyAccountsStatus(){ return $this->CompanyAccountsStatus(); }
     public function CompanyAccountsStatus(){
         $user = Session::get("user");
 
