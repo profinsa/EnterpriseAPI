@@ -286,7 +286,7 @@ class DB{
     
     public static function getFuncOrProcDefinition($name){
         $names = [$name, $name . "1", $name . "2"];
-        $dbName = strtolower(DB::getDatabaseName());
+        $dbName = strtolower(DB::getDatabaseName() == "EnterpriseNew" ? "Enterprise" : DB::getDatabaseName());
         $fname;
         //        echo $dbName;
         foreach($names as $name){
@@ -308,13 +308,15 @@ class DB{
             return null;
     }
 
-    public static function callProcedureOrFunction($name, $parameters){
+    public static function callProcedureOrFunction($name, $parameters, $returnRecords = false){
         $procDef = DB::getFuncOrProcDefinition($name);
-        $dbName = DB::getDatabaseName();
+        $dbName = DB::getDatabaseName() == "EnterpriseNew" ? "Enterprise" : DB::getDatabaseName();
+
         if($procDef == null){
             //echo "Procedure or Function doesn't exists";
             return null;
         }
+
         $paramsStr = [];
         $paramsArr = [];
         $outArr = [];
@@ -343,12 +345,14 @@ class DB{
             if($outStr != "")
                 $outStr = substr($outStr, 0, -1);
             if($procDef["definition"]->ROUTINE_TYPE == "PROCEDURE")
-                DB::statement("CALL {$procDef["definition"]->ROUTINE_NAME}($paramsStr)", $paramsArr);
+                $records = DB::select("CALL {$procDef["definition"]->ROUTINE_NAME}($paramsStr)", $paramsArr);
             else
                 DB::statement("SET @SWP_Ret_Value = {$procDef["definition"]->ROUTINE_NAME}($paramsStr)", $paramsArr);
             
             if($outStr != "")
                 $result = DB::select("select $outStr")[0];
+            else
+                $result = (object) [];
             if(property_exists($result, "SWP_Ret_Value")){
                 $result->ReturnValue = $result->SWP_Ret_Value;
                 unset($result->SWP_Ret_Value);
@@ -357,6 +361,8 @@ class DB{
             //print_r($paramsArr);
             //print_r($outStr);
             //print_r($result);
+            if($returnRecords)
+                $result->records = $records;
             
             return $result;
         }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
@@ -398,10 +404,21 @@ class DB{
             DB::statement($tmpTableStmt);
             //echo "$declareStmt EXEC $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues);";
             if($procDef["definition"]->ROUTINE_TYPE == "PROCEDURE")
-                DB::statement("$declareStmt EXEC @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
+                if($returnRecords)
+                    $records = DB::SELECT("EXEC enterprise.{$procDef["definition"]->ROUTINE_NAME} $paramsStr", $paramsArr);
+                else
+                    DB::statement("$declareStmt EXEC @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
             else
-                DB::statement("$declareStmt SET @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME}($paramsStr); insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
-            $result = DB::select("select * from $tmpTableName")[0];
+                $records = DB::statement("$declareStmt SET @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME}($paramsStr); insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
+           
+            $result = DB::select("select * from $tmpTableName");
+            if($result != null && count($result))
+                $result = $result[0];
+            else $result = (object)[];
+
+
+            $result->records = $records;
+
             return $result;
         }
     }

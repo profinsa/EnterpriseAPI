@@ -30,19 +30,30 @@ class dashboardData{
     public $breadCrumbTitle = "General Ledger";
     public $dashboardTitle = "General Ledger";
 
-    //Accounting dashboard    
+    //Accounting dashboard
+    public function getCompanyAccountsStatus(){ return $this->CompanyAccountsStatus(); }
     public function CompanyAccountsStatus(){
         $user = Session::get("user");
 
-        $results = DB::select("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
-
+        //        $results = DB::select("CALL spCompanyAccountsStatus('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results = DB::callProcedureOrFunction("spCompanyAccountsStatus",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"]
+                                              ], true)->records;        
         return $results;
     }
 
     public function CollectionAlerts(){
         $user = Session::get("user");
 
-        $results = DB::select("CALL spCollectionAlerts('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "')", array());
+        $results = DB::callProcedureOrFunction("spCollectionAlerts",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"]
+                                              ], true)->records;
 
         return $results;
     }
@@ -73,7 +84,12 @@ class dashboardData{
     public function CompanySystemWideMessage(){
         $user = Session::get("user");
 
-        $results = DB::select("CALL spCompanySystemWideMessage('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
+        $results = DB::callProcedureOrFunction("spCompanySystemWideMessage",
+                                              [
+                                                  "CompanyID" => $user["CompanyID"],
+                                                  "DivisionID" => $user["DivisionID"],
+                                                  "DepartmentID" => $user["DepartmentID"]
+                                              ], true)->records;
 
         return $results;
     }
@@ -129,11 +145,18 @@ class dashboardData{
         
         $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
         foreach($departments as &$row){
-            $row->Status = DB::select("CALL spCompanyAccountsStatus(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+            $row->Status = DB::callProcedureOrFunction("spCompanyAccountsStatus",
+                                              [
+                                                  "CompanyID" => $row->CompanyID,
+                                                  "DivisionID" => $row->DivisionID,
+                                                  "DepartmentID" => $row->DepartmentID
+                                              ], true)->records;        
+        //            $row->Status = DB::select("CALL spCompanyAccountsStatus(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
             $row->Total = 0;
             foreach($row->Status as $record)
                 $row->Total += $record->Totals;
         }
+
         return $departments;
     }
     
@@ -143,11 +166,24 @@ class dashboardData{
         $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
         foreach($departments as &$row){
             $row->Status = [];
-            $row->Status["orders"] = DB::select("CALL spTopOrdersReceipts(?, ?, ?, @SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+            $row->Status["orders"] = DB::callProcedureOrFunction("spTopOrdersReceipts",
+                                              [
+                                                  "CompanyID" => $row->CompanyID,
+                                                  "DivisionID" => $row->DivisionID,
+                                                  "DepartmentID" => $row->DepartmentID
+                                              ], true)->records;        
+            //$row->Status["orders"] = DB::select("CALL spTopOrdersReceipts(?, ?, ?, @SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
             $row->OrdersTotal = 0;
             foreach($row->Status["orders"] as $record)
                 $row->OrdersTotal += $record->OrderTotal;
-            $row->Status["purchases"] = DB::select("CALL spTopOrdersReceiptsPurchases(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+            $row->Status["purchases"] = DB::callProcedureOrFunction("spTopOrdersReceiptsPurchases",
+                                              [
+                                                  "CompanyID" => $row->CompanyID,
+                                                  "DivisionID" => $row->DivisionID,
+                                                  "DepartmentID" => $row->DepartmentID
+                                                  ], true)->records;       
+
+            //$row->Status["purchases"] = DB::select("CALL spTopOrdersReceiptsPurchases(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
             $row->ReceiptsTotal = 0;
             foreach($row->Status["purchases"] as $record)
                 $row->ReceiptsTotal += $record->ReceiptTotal;
@@ -174,7 +210,13 @@ class dashboardData{
         $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=?", [$user["CompanyID"]]);
         
         foreach($departments as &$row)
-            $row->Status = DB::select("CALL spLeadFollowUp(?, ?, ? ,'" . $user["EmployeeID"] . "')", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+            $row->Status = DB::callProcedureOrFunction("spTopOrdersReceipts",
+                                              [
+                                                  "CompanyID" => $row->CompanyID,
+                                                  "DivisionID" => $row->DivisionID,
+                                                  "DepartmentID" => $row->DepartmentID,
+                                                  "EmployeeID" => $user["EmployeeID"]
+                                              ], true)->records;
 
         return $departments;
     }
@@ -188,30 +230,52 @@ class dashboardData{
             $departments =  DB::select("SELECT CompanyID, DivisionID, DepartmentID from departments WHERE CompanyID=? AND DivisionID=?", [$user["CompanyID"], $division->DivisionID]);
             foreach($departments as &$row){
                 $row->Status = [];
-
-                $row->Status["quotes"] = DB::select("select count(OrderNumber) as Quotes, sum(IFNULL(Total,0)) as QuoteTotals from orderheader WHERE LOWER(OrderTypeID) = LOWER('Quote') and  OrderDate >= now() - INTERVAL 1 DAY and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                if($GLOBALS["config"]["db_type"] == "mysql"){
+                    $row->Status["quotes"] = DB::select("select count(OrderNumber) as Quotes, sum(IFNULL(Total,0)) as QuoteTotals from orderheader WHERE LOWER(OrderTypeID) = LOWER('Quote') and  OrderDate >= now() - INTERVAL 1 DAY and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+                    $row->Status["quotes"] = DB::select("select count(OrderNumber) as Quotes, sum(IFNULL(Total,0)) as QuoteTotals from orderheader WHERE LOWER(OrderTypeID) = LOWER('Quote') and  OrderDate >= DATEADD(day, -1, GETDATE()) and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                }
                 //        $results["quotes"] = DB::select("CALL spCompanyDailyActivityQuotes('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
                 $division->QuotesTotal = 0;
                 foreach($row->Status["quotes"] as $record)
                     $division->QuotesTotal += $record->Quotes;
 
-                $row->Status["orders"] = DB::select("CALL spCompanyDailyActivityOrders(?, ?, ?, @SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                $row->Status["orders"] = DB::callProcedureOrFunction("spCompanyDailyActivityOrders",
+                                              [
+                                                  "CompanyID" => $row->CompanyID,
+                                                  "DivisionID" => $row->DivisionID,
+                                                  "DepartmentID" => $row->DepartmentID,
+                                              ], true)->records;
                 $division->OrdersTotal = 0;
                 foreach($row->Status["orders"] as $record)
                     $division->OrdersTotal += $record->Orders;
                 
-                $row->Status["receivings"] = DB::select("select count(PurchaseNumber) as Receivings, sum(IFNULL(Total,0)) as ReceiptTotals from purchaseheader WHERE Received=0 and  PurchaseDate >= now() - INTERVAL 1 DAY and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                if($GLOBALS["config"]["db_type"] == "mysql"){
+                    $row->Status["receivings"] = DB::select("select count(PurchaseNumber) as Receivings, sum(IFNULL(Total,0)) as ReceiptTotals from purchaseheader WHERE Received=0 and  PurchaseDate >= now() - INTERVAL 1 DAY and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+                    $row->Status["receivings"] = DB::select("select count(PurchaseNumber) as Receivings, sum(IFNULL(Total,0)) as ReceiptTotals from purchaseheader WHERE Received=0 and  PurchaseDate >= DATEADD(day, -1, GETDATE()) and CompanyID=? AND DivisionID=? AND DepartmentID=?", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                }
                 $division->ReceivingsTotal = 0;
                 foreach($row->Status["receivings"] as $record)
                     $division->ReceivingsTotal += $record->Receivings;
 
                 //        $results["receivings"] = DB::select("CALL spCompanyDailyActivityReceivings('" . $user["CompanyID"] . "','" . $user["DivisionID"] . "','" . $user["DepartmentID"] . "',@SWP_RET_VALUE)", array());
-                $row->Status["purchases"] = DB::select("CALL spCompanyDailyActivityPurchases(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                $row->Status["purchases"] = DB::callProcedureOrFunction("spCompanyDailyActivityPurchases",
+                                              [
+                                                  "CompanyID" => $row->CompanyID,
+                                                  "DivisionID" => $row->DivisionID,
+                                                  "DepartmentID" => $row->DepartmentID,
+                                              ], true)->records;
                 $division->PurchasesTotal = 0;
                 foreach($row->Status["purchases"] as $record)
                     $division->PurchasesTotal += $record->Purchases;
 
-                $row->Status["shipments"] = DB::select("CALL spCompanyDailyActivityShipments(?, ?, ?,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
+                $row->Status["shipments"] = DB::callProcedureOrFunction("spCompanyDailyActivityShipments",
+                                              [
+                                                  "CompanyID" => $row->CompanyID,
+                                                  "DivisionID" => $row->DivisionID,
+                                                  "DepartmentID" => $row->DepartmentID,
+                                              ], true)->records;
                 $division->ShipmentsTotal = 0;
                 foreach($row->Status["shipments"] as $record)
                     $division->ShipmentsTotal += $record->Shipments;
@@ -417,10 +481,17 @@ EOF;
     public function customerGetCustomersNumbers(){
         $user = Session::get("user");
 
-        $newmonth = DB::select("select CustomerID from customerinformation WHERE CustomerSince >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
-        $newyear = DB::select("select CustomerID from customerinformation WHERE CustomerSince >= NOW() - INTERVAL 365 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
-        $inactive = DB::select("select CustomerID from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
-        $total = DB::select("select CustomerID from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        if($GLOBALS["config"]["db_type"] == "mysql"){
+            $newmonth = DB::select("select CustomerID from customerinformation WHERE CustomerSince >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $newyear = DB::select("select CustomerID from customerinformation WHERE CustomerSince >= NOW() - INTERVAL 365 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $inactive = DB::select("select CustomerID from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $total = DB::select("select CustomerID from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        }else if($GLOBALS["config"]["db_type"] == "sqlsrv") {
+            $newmonth = DB::select("select CustomerID from customerinformation WHERE CustomerSince >= DATEADD(month, -1, GETDATE()) AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $newyear = DB::select("select CustomerID from customerinformation WHERE CustomerSince >= DATEADD(year, -1, GETDATE()) AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $inactive = DB::select("select CustomerID from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $total = DB::select("select CustomerID from customerinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        }
         $ret = [
             "newmonth" => count($newmonth),
             "newyear" => count($newyear),
@@ -471,10 +542,17 @@ EOF;
     public function vendorGetVendorsNumbers(){
         $user = Session::get("user");
 
-        $newmonth = DB::select("select VendorID from vendorinformation WHERE CustomerSince >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
-        $newyear = DB::select("select VendorID from vendorinformation WHERE CustomerSince >= NOW() - INTERVAL 365 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
-        $inactive = DB::select("select VendorID from vendorinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
-        $total = DB::select("select VendorID from vendorinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        if($GLOBALS["config"]["db_type"] == "mysql"){
+            $newmonth = DB::select("select VendorID from vendorinformation WHERE CustomerSince >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $newyear = DB::select("select VendorID from vendorinformation WHERE CustomerSince >= NOW() - INTERVAL 365 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $inactive = DB::select("select VendorID from vendorinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $total = DB::select("select VendorID from vendorinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+            $newmonth = DB::select("select VendorID from vendorinformation WHERE CustomerSince >= DATEADD(month, -1, GETDATE()) AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $newyear = DB::select("select VendorID from vendorinformation WHERE CustomerSince >= DATEADD(year, -1, GETDATE()) AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $inactive = DB::select("select VendorID from vendorinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+            $total = DB::select("select VendorID from vendorinformation WHERE CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]);
+        }
         $ret = [
             "newmonth" => count($newmonth),
             "newyear" => count($newyear),
@@ -617,10 +695,17 @@ EOF;
     public function accountingGetNumbers(){
         $user = Session::get("user");
 
-        $ret = [
-            "newinvoices" => count(DB::select("select InvoiceNumber from invoiceheader WHERE (NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0)) AND InvoiceDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
-            "newpurchases" => count(DB::select("select PurchaseNumber from purchaseheader WHERE (NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND ((IFNULL(Received,0) = 0) OR (IFNULL(PurchaseHeader.Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT') AND PurchaseDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]))
-        ];
+        if($GLOBALS["config"]["db_type"] == "mysql"){
+            $ret = [
+                "newinvoices" => count(DB::select("select InvoiceNumber from invoiceheader WHERE (NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0)) AND InvoiceDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+                "newpurchases" => count(DB::select("select PurchaseNumber from purchaseheader WHERE (NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND ((IFNULL(Received,0) = 0) OR (IFNULL(PurchaseHeader.Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT') AND PurchaseDate >= NOW() - INTERVAL 30 DAY AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]))
+            ];
+        }else if($GLOBALS["config"]["db_type"] == "sqlsrv"){
+            $ret = [
+                "newinvoices" => count(DB::select("select InvoiceNumber from invoiceheader WHERE (NOT (LOWER(IFNULL(InvoiceHeader.TransactionTypeID,N'')) IN ('return', 'service invoice', 'credit memo')) AND (ABS(InvoiceHeader.BalanceDue) >= 0.005 OR ABS(InvoiceHeader.Total) < 0.005 OR IFNULL(InvoiceHeader.Posted,0) = 0)) AND InvoiceDate >= DATEADD(month, -1, GETDATE()) AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]])),
+                "newpurchases" => count(DB::select("select PurchaseNumber from purchaseheader WHERE (NOT LOWER(IFNULL(PurchaseHeader.TransactionTypeID,N'')) IN ('rma','debit memo')) AND ((IFNULL(Received,0) = 0) OR (IFNULL(PurchaseHeader.Paid,0) = 0) OR UPPER(PurchaseNumber)='DEFAULT') AND PurchaseDate >= DATEADD(month, -1, GETDATE()) AND CompanyID=? AND DivisionID=? AND DepartmentID=?", [$user["CompanyID"], $user["DivisionID"], $user["DepartmentID"]]))
+            ];
+        }
 
         return $ret;
     }
