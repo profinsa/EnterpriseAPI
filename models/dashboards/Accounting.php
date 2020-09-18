@@ -478,6 +478,7 @@ EOF;
     }
 
     //Functions for Customer Dashboard
+    public function getCustomerCustomersNumbers(){ return $this->customerGetCustomersNumbers();}
     public function customerGetCustomersNumbers(){
         $user = Session::get("user");
 
@@ -539,6 +540,7 @@ EOF;
     }
 
     //Vendor dashboard
+    public function getVendorVendorsNumbers(){ return $this->vendorGetVendorsNumbers(); }
     public function vendorGetVendorsNumbers(){
         $user = Session::get("user");
 
@@ -692,6 +694,7 @@ EOF;
         return $ret;
     }
 
+    public function getAccountingNumbers(){ return $this->accountingGetNumbers(); }
     public function accountingGetNumbers(){
         $user = Session::get("user");
 
