@@ -97,7 +97,7 @@ class DB{
             $records = $GLOBALS["DB"]::select($query, $args);
             if($GLOBALS["config"]["db_type"] == "sqlsrv"){
                 //parsing values for SQL Server windows PDO driver which returns all values as strings;
-                if(preg_match('/^select.*from\s(\w+).*/i', $query, $matches)){
+                if(preg_match('/^select.*from\s([\w\s]+)$/i', $query, $matches)){
                     $tableName = $matches[1];
                     $types = [
                         "bit" => "int",
@@ -125,22 +125,22 @@ class DB{
                         foreach($desc as $column){
                             $columnName = $column->Field;
 							if(property_exists($record, $columnName)){
-                            if($record->$columnName == null)
-                                $parsedRecord->$columnName = null;
-                            else{
-                                switch($types[$column->Type]){
-                                case "int" :
-                                    $parsedRecord->$columnName = intval("" . $record->$columnName);
-                                    break;
-                                case "float" :
-                                    $parsedRecord->$columnName = floatval("" . $record->$columnName);
-                                    break;
-                                case "string" :
-                                    $parsedRecord->$columnName = "" . $record->$columnName;
-                                    break;
+                                if($record->$columnName == null)
+                                    $parsedRecord->$columnName = null;
+                                else{
+                                    switch($types[$column->Type]){
+                                    case "int" :
+                                        $parsedRecord->$columnName = intval("" . $record->$columnName);
+                                        break;
+                                    case "float" :
+                                        $parsedRecord->$columnName = floatval("" . $record->$columnName);
+                                        break;
+                                    case "string" :
+                                        $parsedRecord->$columnName = "" . $record->$columnName;
+                                        break;
+                                    }
                                 }
                             }
-							}
                         }
                         $result[] = $parsedRecord;
                     }
@@ -288,9 +288,10 @@ class DB{
         $names = [$name, $name . "1", $name . "2"];
         $dbName = strtolower(DB::getDatabaseName() == "EnterpriseNew" ? "Enterprise" : DB::getDatabaseName());
         $fname;
-        //        echo $dbName;
+        echo $dbName;
         foreach($names as $name){
             $routineDef = DB::select("SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_NAME=? AND ROUTINE_SCHEMA=?", [$name, $dbName]);
+            //    echo json_encode($routineDef);
             if(count($routineDef)){
                 $routineDef = $routineDef[0];
                 $fname = $name;
