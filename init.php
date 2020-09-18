@@ -288,7 +288,7 @@ class DB{
         $names = [$name, $name . "1", $name . "2"];
         $dbName = strtolower(DB::getDatabaseName() == "EnterpriseNew" ? "Enterprise" : DB::getDatabaseName());
         $fname;
-        echo $dbName;
+        //echo $dbName;
         foreach($names as $name){
             $routineDef = DB::select("SELECT * FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_NAME=? AND ROUTINE_SCHEMA=?", [$name, $dbName]);
             //    echo json_encode($routineDef);
