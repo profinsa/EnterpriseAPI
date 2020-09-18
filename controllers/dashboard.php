@@ -157,8 +157,8 @@ class dashboardController{
                     $result = [];
                     $list = explode(",", $_GET["list"]);
                     foreach($list as $function){
-                        $function = "get" . $function;
-                        $result = $data->$function();
+                        $function = "get" . ($name = $function);
+                        $result[$name] = $data->$function();
                     }
                     echo json_encode($result, JSON_PRETTY_PRINT);
                 }
