@@ -298,6 +298,7 @@ class DB{
             }                  
         }
 
+
         if($routineDef != null){
             $params = DB::select("SELECT * FROM INFORMATION_SCHEMA.PARAMETERS  WHERE SPECIFIC_SCHEMA=? AND SPECIFIC_NAME=?  ORDER BY ORDINAL_POSITION", [$dbName, $fname]);
             return [
@@ -316,6 +317,7 @@ class DB{
             //echo "Procedure or Function doesn't exists";
             return null;
         }
+
 
         $paramsStr = [];
         $paramsArr = [];
@@ -410,7 +412,6 @@ class DB{
                     DB::statement("$declareStmt EXEC @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
             else
                 $records = DB::statement("$declareStmt SET @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME}($paramsStr); insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
-           
             $result = DB::select("select * from $tmpTableName");
             if($result != null && count($result))
                 $result = $result[0];
