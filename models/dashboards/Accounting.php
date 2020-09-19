@@ -181,10 +181,15 @@ class dashboardData{
                                                   "CompanyID" => $row->CompanyID,
                                                   "DivisionID" => $row->DivisionID,
                                                   "DepartmentID" => $row->DepartmentID
-                                                  ], true)->records;       
+                                                  ], true);
+			if($row->Status["purchases"] != null)
+					$row->Status["purchases"] = $row->Status["purchases"]->records;
+			else
+				$row->Status["purchases"] = [];
 
             //$row->Status["purchases"] = DB::select("CALL spTopOrdersReceiptsPurchases(?, ?, ? ,@SWP_RET_VALUE)", [$row->CompanyID, $row->DivisionID, $row->DepartmentID]);
             $row->ReceiptsTotal = 0;
+			if($row->Status["purchases"] != null)
             foreach($row->Status["purchases"] as $record)
                 $row->ReceiptsTotal += $record->ReceiptTotal;
         }
@@ -245,7 +250,11 @@ class dashboardData{
                                                   "CompanyID" => $row->CompanyID,
                                                   "DivisionID" => $row->DivisionID,
                                                   "DepartmentID" => $row->DepartmentID,
-                                              ], true)->records;
+                                              ], true);
+				if($row->Status["orders"] != null)
+					$row->Status["orders"] = $row->Status["orders"]->records;
+				else
+					$row->Status["orders"] = [];
                 $division->OrdersTotal = 0;
                 foreach($row->Status["orders"] as $record)
                     $division->OrdersTotal += $record->Orders;
@@ -265,8 +274,12 @@ class dashboardData{
                                                   "CompanyID" => $row->CompanyID,
                                                   "DivisionID" => $row->DivisionID,
                                                   "DepartmentID" => $row->DepartmentID,
-                                              ], true)->records;
-                $division->PurchasesTotal = 0;
+                                              ], true);
+                if($row->Status["purchases"] != null)
+					$row->Status["purchases"] = $row->Status["purchases"]->records;
+				else
+					$row->Status["purchases"] = [];
+				$division->PurchasesTotal = 0;
                 foreach($row->Status["purchases"] as $record)
                     $division->PurchasesTotal += $record->Purchases;
 
@@ -275,7 +288,11 @@ class dashboardData{
                                                   "CompanyID" => $row->CompanyID,
                                                   "DivisionID" => $row->DivisionID,
                                                   "DepartmentID" => $row->DepartmentID,
-                                              ], true)->records;
+                                              ], true);
+				if($row->Status["shipments"] !=null)
+					$row->Status["shipments"] = $row->Status["shipments"]->records;
+				else
+					$row->Status["shipments"] = [];
                 $division->ShipmentsTotal = 0;
                 foreach($row->Status["shipments"] as $record)
                     $division->ShipmentsTotal += $record->Shipments;
