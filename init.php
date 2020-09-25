@@ -319,7 +319,6 @@ class DB{
             return null;
         }
 
-
         $paramsStr = [];
         $paramsArr = [];
         $outArr = [];
@@ -413,6 +412,7 @@ class DB{
                     DB::statement("$declareStmt EXEC @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME} $paramsStr; insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
             else
                 $records = DB::statement("$declareStmt SET @ReturnValue = $dbName.{$procDef["definition"]->ROUTINE_NAME}($paramsStr); insert into $tmpTableName ($insertFields) values ($insertValues)", $paramsArr);
+           
             $result = DB::select("select * from $tmpTableName");
             if($result != null && count($result))
                 $result = $result[0];
